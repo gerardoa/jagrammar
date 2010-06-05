@@ -8,27 +8,24 @@ compilationUnit
     ;
     
 typeDeclaration
-    :   classOrInterfaceDeclaration
+    :   classDeclaration
     |   ';'
     ;
     
-classOrInterfaceDeclaration
-    :   classOrInterfaceModifier classDeclaration 
+classDeclaration
+    :   classModifier classDeclaration 
     ;
 
 
-classOrInterfaceModifier
+classModifier
     :  
-        'public'
+        PUBLIC
     ;
 
-modifiers
-    :   modifier
-    ;
 
 classDeclaration
-    :   'class' IDENTIFIER 
-        ('extends' type)?
+    :   CLASS IDENTIFIER 
+        (EXTENDS type)?
         classBody
     ;
     
@@ -42,12 +39,12 @@ classBody
 
 classBodyDeclaration
     :   ';'
-    |   modifiers memberDecl
+    |   modifier memberDecl
     ;
     
 memberDecl
     :    memberDeclaration
-    |   'void' IDENTIFIER voidMethodDeclaratorRest
+    |   VOID IDENTIFIER voidMethodDeclaratorRest
     |    IDENTIFIER constructorDeclaratorRest
     ;
     
@@ -82,24 +79,12 @@ constructorDeclaratorRest
     :   formalParameters constructorBody
     ;
 
-constantDeclarator
-    :   IDENTIFIER constantDeclaratorRest
-    ;
-    
 variableDeclarators
     :   variableDeclarator (',' variableDeclarator)*
     ;
 
 variableDeclarator
     :   variableDeclaratorId ('=' variableInitializer)?
-    ;
-    
-constantDeclaratorsRest
-    :   constantDeclaratorRest (',' constantDeclarator)*
-    ;
-
-constantDeclaratorRest
-    :   ('[' ']')* '=' variableInitializer
     ;
     
 variableDeclaratorId
@@ -116,8 +101,8 @@ arrayInitializer
     ;
 
 modifier
-    :   'public'
-    |   'private'
+    :   PUBLIC
+    |   PRIVATE
     ;
 
 typeName
@@ -125,38 +110,34 @@ typeName
     ;
 
 type
-	:	classOrInterfaceType ('[' ']')*
+	:	classType ('[' ']')*
 	|	primitiveType ('[' ']')*
 	;
 
-classOrInterfaceType
+classType
 	:	IDENTIFIER
 	;
 
 primitiveType
-    :   'boolean'
-    |   'char'
-    |   'byte'
-    |   'short'
-    |   'int'
-    |   'long'
-    |   'float'
-    |   'double'
+    :   	
+    |   CHAR
+    |   BYTE
+    |   SHORT
+    |   INT
+    |   LONG
+    |   FLOAT
+    |   DOUBLE
     ;
     
-qualifiedNameList
-    :   qualifiedName (',' qualifiedName)*
-    ;
-
 formalParameters
     :   '(' formalParameterDecls? ')'
     ;
     
 formalParameterDecls
-    :   modifiers type formalParameterDeclsRest
+    :   modifier type formalParameterDeclsRest
     ;
     
-formalParameterDeclsRest
+formalParameterDeclsRest'null'
     :   variableDeclaratorId (',' formalParameterDecls)?
     |   '...' variableDeclaratorId
     ;
@@ -169,23 +150,18 @@ constructorBody
     :   '{' explicitConstructorInvocation? blockStatement* '}'
     ;
 
-// ????
 explicitConstructorInvocation
-    :   ('this' | 'super') arguments ';'
+    :   (THIS | SUPER) arguments ';'
     //|   primary '.'  'super' arguments ';'
     ;
 
-qualifiedName
-    :   IDENTIFIER ('.' IDENTIFIER)*
-    ;
-    
 literal 
     :   INTLITERAL
     |   FloatingPointLiteral
     |   CHARLITERAL
     |   STRINGLITERAL
     |   BOOLEANLITERAL
-    |   'null'
+    |   NULLLITERAL
     ;
 
 
@@ -197,7 +173,7 @@ block
     
 blockStatement
     :   localVariableDeclarationStatement
-    |   classOrInterfaceDeclaration
+    |   classDeclaration
     |   statement
     ;
     
@@ -206,17 +182,17 @@ localVariableDeclarationStatement
     ;
 
 localVariableDeclaration
-    :   modifiers type variableDeclarators
+    :   modifier type variableDeclarators
     ;
    
 
 statement
     : block
-    |   'if' parExpression statement (options {k=1;}:'else' statement)?
-    |   'for' '(' forInit? ';' expression? ';' forUpdate? ')' statement
-    |   'while' parExpression statement
-    |   'do' statement 'while' parExpression ';'
-    |   'return' expression? ';'
+    |   IF parExpression statement (ELSE statement)?
+    |   FOR '(' forInit? ';' expression? ';' forUpdate? ')' statement
+    |   parExpression statement
+    |   DO statement WHILE parExpression ';'
+    |   RETURN expression? ';'
     |   ';' 
     |   statementExpression ';'
     |   IDENTIFIER ':' statement
@@ -254,7 +230,7 @@ constantExpression
     ;
     
 expression
-    :   conditionalOrExpression (assignmentOperator expression)?
+    :  OrExpression (assignmentOperator expression)?
     ;
     
 assignmentOperator
@@ -265,11 +241,11 @@ assignmentOperator
     |   '/='
     ;
 
-conditionalOrExpression
-    :   conditionalAndExpression ( '||' conditionalAndExpression )*
+OrExpression
+    :   AndExpression ( '||' AndExpression )*
     ;
 
-conditionalAndExpression
+AndExpression
     :   equalityExpression ( '&&' equalityExpression )*
     ;
 
@@ -278,7 +254,7 @@ equalityExpression
     ;
 
 instanceOfExpression
-    :   relationalExpression ('instanceof' type)?
+    :   relationalExpression (INSTANCEOF type)?
     ;
 
 relationalExpression
@@ -314,20 +290,20 @@ castExpression
 
 primary
     :   parExpression
-    |   'this' //('.' IDENTIFIER)+ identifierSuffix?
-    |   'super' superMemberAccess
+    |   THIS //('.' IDENTIFIER)+ identifierSuffix?
+    |   SUPER superMemberAccess
     |   literal
-    |   'new' creator
+    |   NEW creator
     |   IDENTIFIER identifierSuffix?
-    |   primitiveType ('[' ']')* '.' 'class'
-    |   'void' '.' 'class'
+    |   primitiveType ('[' ']')* '.' CLASS
+    |   VOID '.' CLASS
     ;
 
 identifierSuffix
-    :   ('[' ']')+ '.' 'class'
+    :   ('[' ']')+ '.' CLASS
     |   ('[' expression ']')+ // can also be matched by selector, but do here
     |   arguments
-    |   '.' 'class'
+    |   '.' CLASS
     //|   '.' 'this'
     //|   '.' 'super' arguments
     ;
@@ -337,7 +313,7 @@ creator
     ;
 
 createdName
-    :   classOrInterfaceType
+    :   classType
     |   primitiveType
     ;
     
@@ -462,6 +438,44 @@ BOOLEANLITERAL
 NULLLITERAL
     :   'null'
     ;
+
+
+BOOLEAN
+    :   'boolean'
+    ;
+    
+BYTE
+    :   'byte'
+    ;
+
+CHAR
+    :   'char'
+    ;
+    	
+SHORT
+    :   'short'
+    ;
+	
+INT
+    :   'int'
+    ;
+
+LONG
+    :   'long'
+    ;
+
+FLOAT
+    :   'float'
+    ;
+
+DOUBLE
+    :   'double'
+    ;		
+
+VOID
+    :   'void'
+    ;	
+
 	
 WS  
     :   (
@@ -485,6 +499,63 @@ LINE_COMMENT
             { $channel=HIDDEN; }
     ;   
         
+CLASS
+    :   'class'
+    ;
+
+EXTENDS
+    :   'extends'
+    ;
+		
+FOR
+    :   'for'
+    ;
+
+DO
+    :   'do'
+    ;
+
+WHILE
+    :   'while'
+    ;
+	
+IF
+    :   'if'
+    ;
+
+ELSE
+    :   'else'
+    ;	
+	
+INSTANCEOF
+    :   'instanceof'
+    ;
+	
+NEW
+    :   'new'
+    ;
+
+PRIVATE
+    :   'private'
+    ;
+
+PUBLIC
+    :   'public'
+    ;
+
+RETURN
+    :   'return'
+    ;
+
+SUPER
+    :   'super'
+    ;
+
+THIS
+    :   'this'
+    ;
+
+
 COMPAREOP
     :	 '>'
     	| '<'
