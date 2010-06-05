@@ -30,8 +30,8 @@ AssignmentOperator:
 	;
 
 Type: 
-	Identifier BracketsOpt
-	| BasicType
+	BasicType
+	| Identifier BracketsOpt
 	;
 
 StatementExpression: 
@@ -483,42 +483,7 @@ EscapeSequence
              |   '\\'
              )          
 ;     
-
-BOOLEAN
-    :   'boolean'
-    ;
-    
-BYTE
-    :   'byte'
-    ;
-
-CHAR
-    :   'char'
-    ;
-    	
-SHORT
-    :   'short'
-    ;
 	
-INT
-    :   'int'
-    ;
-
-LONG
-    :   'long'
-    ;
-
-FLOAT
-    :   'float'
-    ;
-
-DOUBLE
-    :   'double'
-    ;		
-
-VOID
-    :   'void'
-    ;	
 
 BOOLEANLITERAL
 	: 'true'
@@ -550,162 +515,6 @@ LINE_COMMENT
             { skip(); }
     ;   
         
-CLASS
-    :   'class'
-    ;
-
-EXTENDS
-    :   'extends'
-    ;
-		
-FOR
-    :   'for'
-    ;
-
-DO
-    :   'do'
-    ;
-
-WHILE
-    :   'while'
-    ;
-	
-IF
-    :   'if'
-    ;
-
-ELSE
-    :   'else'
-    ;	
-	
-INSTANCEOF
-    :   'instanceof'
-    ;
-	
-NEW
-    :   'new'
-    ;
-
-PRIVATE
-    :   'private'
-    ;
-
-PUBLIC
-    :   'public'
-    ;
-
-RETURN
-    :   'return'
-    ;
-
-SUPER
-    :   'super'
-    ;
-
-THIS
-    :   'this'
-    ;
-
-LPAREN
-    :   '('
-    ;
-
-RPAREN
-    :   ')'
-    ;
-
-LBRACE
-    :   '{'
-    ;
-
-RBRACE
-    :   '}'
-    ;
-
-LBRACKET
-    :   '['
-    ;
-
-RBRACKET
-    :   ']'
-    ;
-
-SEMICOLUMN
-    :   ';'
-    ;
-
-COMMA
-    :   ','
-    ;
-
-DOT
-    :   '.'
-    ;
-
-EQ
-    :   '='
-    ;
-
-PLUS
-    :   '+'
-    ;
-
-MINUS
-    :   '-'
-    ;
-
-STAR
-    :   '*'
-    ;
-
-SLASH
-    :   '/'
-    ;
-
-NOT
-    :   '!'
-    ;
-
-EQEQ
-    :   '=='
-    ;
-
-AND
-    :   '&&'
-    ;
-
-OR
-    :   '||'
-    ;
-
-PLUSPLUS
-    :   '++'
-    ;
-
-MINUSMINUS
-    :   '--'
-    ;
-	
-PLUSEQ
-    :   '+='
-    ; 
-    
-MINUSEQ
-    :   '-='
-    ;
-
-STAREQ
-    :   '*='
-    ;
-
-SLASHEQ
-    :   '/='
-    ;
-
-NOTEQ
-    :   '!='
-    ;
-
 COMPAREOP
     :	 '>'
     	| '<'
