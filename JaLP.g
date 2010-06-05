@@ -1,5 +1,5 @@
 grammar JaLP;
-options {backtrack=true; memoize=true;}
+options {language = Java;}
 
 
 // starting point for parsing a java file
@@ -172,7 +172,7 @@ constructorBody
 // ????
 explicitConstructorInvocation
     :   ('this' | 'super') arguments ';'
-    |   primary '.'  'super' arguments ';'
+    //|   primary '.'  'super' arguments ';'
     ;
 
 qualifiedName
@@ -213,7 +213,7 @@ localVariableDeclaration
 statement
     : block
     |   'if' parExpression statement (options {k=1;}:'else' statement)?
-    |   'for' '(' forControl ')' statement
+    |   'for' '(' forInit? ';' expression? ';' forUpdate? ')' statement
     |   'while' parExpression statement
     |   'do' statement 'while' parExpression ';'
     |   'return' expression? ';'
@@ -221,11 +221,11 @@ statement
     |   statementExpression ';'
     |   IDENTIFIER ':' statement
     ;
-    
+/*    
 forControl
-    :forInit? ';' expression? ';' forUpdate?
+    :
     ;
-
+*/
 forInit
     :   localVariableDeclaration
     |   expressionList
@@ -308,17 +308,17 @@ unaryExpressionNotPlusMinus
     ;
 
 castExpression
-    :  '(' primitiveType ')' unaryExpression
-    |  '(' (type | expression) ')' unaryExpressionNotPlusMinus
+    :  ('(' primitiveType) => '(' primitiveType ')' unaryExpression
+    |  '(' type ')' unaryExpressionNotPlusMinus
     ;
 
 primary
     :   parExpression
-    |   'this' ('.' IDENTIFIER)* identifierSuffix?
-    |   'super' superSuffix
+    |   'this' //('.' IDENTIFIER)+ identifierSuffix?
+    |   'super' superMemberAccess
     |   literal
     |   'new' creator
-    |   IDENTIFIER ('.' IDENTIFIER)* identifierSuffix?
+    |   IDENTIFIER identifierSuffix?
     |   primitiveType ('[' ']')* '.' 'class'
     |   'void' '.' 'class'
     ;
@@ -328,8 +328,8 @@ identifierSuffix
     |   ('[' expression ']')+ // can also be matched by selector, but do here
     |   arguments
     |   '.' 'class'
-    |   '.' 'this'
-    |   '.' 'super' arguments
+    //|   '.' 'this'
+    //|   '.' 'super' arguments
     ;
 
 creator
@@ -355,15 +355,16 @@ classCreatorRest
     
 selector
     :   '.' IDENTIFIER arguments?
-    |   '.' 'this'
-    |   '.' 'super' superSuffix
+    //|   '.' 'this'
+    //|   '.' 'super' superSuffix
     |   '[' expression ']'
     ;
     
-superSuffix
-    :   arguments
-    |   '.' IDENTIFIER arguments?
-    ;
+   
+superMemberAccess
+	:
+	'.' IDENTIFIER arguments?	
+	;
 
 arguments
     :   '(' expressionList? ')'
