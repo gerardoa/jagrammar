@@ -1,405 +1,374 @@
 grammar JaLP;
-
-options {
-    language=Java;
-}
-
-identifier:
-	IDENTIFIER
-	;
-	
-literal:
-	 INTLITERAL 	
-	| FLOATLITERAL
-	| CHARLITERAL 	
-	| STRINGLITERAL 	
-	| BOOLEANLITERAL
-	| NULLLITERAL
-	;
-
-expression: 
-	expression1 (assignmentOperator expression1)?
-	;
-	
-assignmentOperator:
-	'=' 
-	| '+=' 
-	| '-=' 
-	| '*=' 
-	| '/=' 	
-	;
-
-type: 
-	basicType
-	| identifier bracketsOpt
-	;
-
-statementExpression: 
-	expression
-	;
-
-constantExpression: 
-	expression
-	;
-
-expression1: 
-	expression2 // (Expression1Rest)?
-	;
-
-/* Expression1Rest: 
-	[  ?   Expression   :   Expression1]
-*/
-
-expression2 : 
-	expression3 (expression2Rest)?
-	;
+options {backtrack=true; memoize=true;}
 
 
-expression2Rest: 
-	(infixop expression3)*
-	| expression3 'instanceof' type
-	;
+// starting point for parsing a java file
+compilationUnit
+    :  typeDeclaration*
+    ;
+    
+typeDeclaration
+    :   classOrInterfaceDeclaration
+    |   ';'
+    ;
+    
+classOrInterfaceDeclaration
+    :   classOrInterfaceModifier classDeclaration 
+    ;
 
-infixop:
-	'||'
-	| '&&' 
-	| '==' 
-	| '!=' 
-	| COMPAREOP
-	| '+' 
-	| '-' 
-	| '*' 
-	| '/' 
-	;
 
-expression3: 
-	prefixOp expression3
-	| '('   ( /*Expr |*/ type)   ')'   expression3
-	| primary (selector)* (postfixOp)*
-	;
+classOrInterfaceModifier
+    :  
+        'public'
+    ;
 
-primary: 
-	| '(' expression ')'
-	| 'this' (arguments)?
-	| 'super' superSuffix
-	| literal
-	| 'new' creator
-	| identifier ( '.' identifier )* (identifierSuffix)?
-	| basicType bracketsOpt '.class'
-	| 'void.class'
-	;
+modifiers
+    :   modifier
+    ;
 
-identifierSuffix:
-	'[' 
-		( 
-		  (']' bracketsOpt   '.class') 
-		| ( expression ']')
-		)
-	| arguments
-	| '.'   ( 'class' | 'this' | ('super' arguments) /*| ('new' InnerCreator)*/ )
-	;
+classDeclaration
+    :   'class' IDENTIFIER 
+        ('extends' type)?
+        classBody
+    ;
+    
+typeList
+    :   type (',' type)*
+    ;
+    
+classBody
+    :   '{' classBodyDeclaration* '}'
+    ;
 
-prefixOp:
-	'++' 
-	| '--' 
-	| '!' 
-	// ~ 
-	| '+' 
-	| '-'
-	; 
+classBodyDeclaration
+    :   ';'
+    |   modifiers memberDecl
+    ;
+    
+memberDecl
+    :    memberDeclaration
+    |   'void' IDENTIFIER voidMethodDeclaratorRest
+    |    IDENTIFIER constructorDeclaratorRest
+    ;
+    
+memberDeclaration
+    :   type (methodDeclaration | fieldDeclaration)
+    ;
 
-postfixOp: 
-	'++'
-	| '--'
-	; 
 
-selector: 
-	'.' identifier (arguments)?
-	 //. this
-	 // . super SuperSuffix // delete
-	 // . new InnerCreator // delete
-	| '[' expression ']'
-	;
-	
-superSuffix: 
-	arguments 
-	| '.' identifier (arguments)?
-	;
+methodDeclaration
+    :   IDENTIFIER methodDeclaratorRest
+    ;
 
-basicType: 
-	'byte' 
-	| 'short'
-	| 'char' 
-	| 'int' 
-	| 'long' 
-	| 'float'
-	| 'double'
-	| 'boolean'
+fieldDeclaration
+    :   variableDeclarators ';'
+    ;
+    
+methodDeclaratorRest
+    :   formalParameters ('[' ']')*
+        (   methodBody
+        |   ';'
+        )
+    ;
+    
+voidMethodDeclaratorRest
+    :   formalParameters
+        (   methodBody
+        |   ';'
+        )
+    ;
+
+constructorDeclaratorRest
+    :   formalParameters constructorBody
+    ;
+
+constantDeclarator
+    :   IDENTIFIER constantDeclaratorRest
+    ;
+    
+variableDeclarators
+    :   variableDeclarator (',' variableDeclarator)*
+    ;
+
+variableDeclarator
+    :   variableDeclaratorId ('=' variableInitializer)?
+    ;
+    
+constantDeclaratorsRest
+    :   constantDeclaratorRest (',' constantDeclarator)*
+    ;
+
+constantDeclaratorRest
+    :   ('[' ']')* '=' variableInitializer
+    ;
+    
+variableDeclaratorId
+    :   IDENTIFIER ('[' ']')*
+    ;
+
+variableInitializer
+    :   arrayInitializer
+    |   expression
+    ;
+        
+arrayInitializer
+    :   '{' (variableInitializer (',' variableInitializer)* (',')? )? '}'
+    ;
+
+modifier
+    :   'public'
+    |   'private'
+    ;
+
+typeName
+    :   qualifiedName
+    ;
+
+type
+	:	classOrInterfaceType ('[' ']')*
+	|	primitiveType ('[' ']')*
 	;
 
-argumentsOpt: 
-	(arguments)?
+classOrInterfaceType
+	:	IDENTIFIER
 	;
 
-arguments: 
-	'(' (expression (',' expression)*)? ')'
-	;
-	
-bracketsOpt: 
-	('[]')*
-	;
+primitiveType
+    :   'boolean'
+    |   'char'
+    |   'byte'
+    |   'short'
+    |   'int'
+    |   'long'
+    |   'float'
+    |   'double'
+    ;
+    
+qualifiedNameList
+    :   qualifiedName (',' qualifiedName)*
+    ;
 
-creator: 
-	/*Qualified*/identifier ( arrayCreatorRest  | classCreatorRest )
-	;
+formalParameters
+    :   '(' formalParameterDecls? ')'
+    ;
+    
+formalParameterDecls
+    :   modifiers type formalParameterDeclsRest
+    ;
+    
+formalParameterDeclsRest
+    :   variableDeclaratorId (',' formalParameterDecls)?
+    |   '...' variableDeclaratorId
+    ;
+    
+methodBody
+    :   block
+    ;
 
-/*InnerCreator: 
-	Identifier ClassCreatorRest
-	;
-*/
-arrayCreatorRest: 
-	'[' ( (']' bracketsOpt arrayInitializer) | (expression ']' ('[' expression ']')* bracketsOpt ) )
-	; 
-	
-classCreatorRest: 
-	arguments // (ClassBody)?
-	;
+constructorBody
+    :   '{' explicitConstructorInvocation? blockStatement* '}'
+    ;
 
-arrayInitializer: 
-	'{' (variableInitializer (',' variableInitializer)* (',')?)? '}'
-	;
+// ????
+explicitConstructorInvocation
+    :   ('this' | 'super') arguments ';'
+    |   primary '.'  'super' arguments ';'
+    ;
 
-variableInitializer: 
-	arrayInitializer
-	| expression
-	;
+qualifiedName
+    :   IDENTIFIER ('.' IDENTIFIER)*
+    ;
+    
+literal 
+    :   INTLITERAL
+    |   FloatingPointLiteral
+    |   CHARLITERAL
+    |   STRINGLITERAL
+    |   BOOLEANLITERAL
+    |   'null'
+    ;
 
-parExpression: 
-	( expression )
-	;
 
-block: 
-	'{' blockStatements '}'
-	;
+// STATEMENTS / BLOCKS
 
-blockStatements: 
-	(blockStatement)*
-	;
+block
+    :   '{' blockStatement* '}'
+    ;
+    
+blockStatement
+    :   localVariableDeclarationStatement
+    |   classOrInterfaceDeclaration
+    |   statement
+    ;
+    
+localVariableDeclarationStatement
+    :    localVariableDeclaration ';'
+    ;
 
-blockStatement : 
-	localVariableDeclarationStatement
-	| classOrInterfaceDeclaration
-	| (identifier ':')? statement
-	;
+localVariableDeclaration
+    :   modifiers type variableDeclarators
+    ;
+   
 
-localVariableDeclarationStatement:
-	/*(final)?*/ type variableDeclarators ';'   
-	;  
+statement
+    : block
+    |   'if' parExpression statement (options {k=1;}:'else' statement)?
+    |   'for' '(' forControl ')' statement
+    |   'while' parExpression statement
+    |   'do' statement 'while' parExpression ';'
+    |   'return' expression? ';'
+    |   ';' 
+    |   statementExpression ';'
+    |   IDENTIFIER ':' statement
+    ;
+    
+forControl
+    :forInit? ';' expression? ';' forUpdate?
+    ;
 
-statement:
-	block
-	| 'if' parExpression statement ('else' statement)?
-	| 'for' '(' forInit   ';'   (expression)?   ';'   forUpdate ')' statement
-	| 'while' parExpression statement
-	| 'do' statement 'while' parExpression ';' 
-	// | 'try' Block ( Catches | [Catches] 'finally' Block )
-	// switch ParExpression { SwitchBlockStatementGroups }
-	// synchronized ParExpression Block
-	| 'return' (expression)? ';' 
-	// | throw Expression   ; 
-	// break [Identifier]
-	// continue [Identifier]
-	| ';' 
-	| statementExpression //ExpressionStatement
-	| identifier   ':'   statement
-	;
-	
-/*Catches: 
-	CatchClause {CatchClause}
+forInit
+    :   localVariableDeclaration
+    |   expressionList
+    ;
 
-CatchClause: 
-	catch ( FormalParameter ) Block
+forUpdate
+    :   expressionList
+    ;
 
-SwitchBlockStatementGroups: 
-	{ SwitchBlockStatementGroup }
+// EXPRESSIONS
 
-SwitchBlockStatementGroup: 
-	SwitchLabel BlockStatements
+parExpression
+    :   '(' expression ')'
+    ;
+    
+expressionList
+    :   expression (',' expression)*
+    ;
 
-SwitchLabel: 
-	case ConstantExpression   :
-	default:  
-*/
-moreStatementExpressions: 
-	( ',' statementExpression )*
-	;
+statementExpression
+    :   expression
+    ;
+    
+constantExpression
+    :   expression
+    ;
+    
+expression
+    :   conditionalOrExpression (assignmentOperator expression)?
+    ;
+    
+assignmentOperator
+    :   '='
+    |   '+='
+    |   '-='
+    |   '*='
+    |   '/='
+    ;
 
-forInit: 
-	statementExpression moreStatementExpressions
-	| /*[final]*/ type variableDeclarators
-	;
+conditionalOrExpression
+    :   conditionalAndExpression ( '||' conditionalAndExpression )*
+    ;
 
-forUpdate: 
-	statementExpression moreStatementExpressions
-	;
+conditionalAndExpression
+    :   equalityExpression ( '&&' equalityExpression )*
+    ;
 
-modifiersOpt: 
-	/*(*/ modifier // )*
-	;
+equalityExpression
+    :   instanceOfExpression ( ('==' | '!=') instanceOfExpression )*
+    ;
 
-modifier: 
-	'public' 
-	// | 'protected' 
-	| 'private' 
-	// | 'static'
-	// | 'abstract'
-	// | 'final' 
-	// | 'native'
-	// | 'synchronized'
-	// | 'transient'
-	// | 'volatile'
-	// | 'strictfp'
-	;
+instanceOfExpression
+    :   relationalExpression ('instanceof' type)?
+    ;
 
-variableDeclarators: 
-	variableDeclarator ( ','   variableDeclarator )*
-	;
+relationalExpression
+    :   additiveExpression ( COMPAREOP additiveExpression )*
+    ;
 
-variableDeclaratorsRest: 
-	variableDeclaratorRest ( ','   variableDeclarator )*
-	;
+additiveExpression
+    :   multiplicativeExpression ( ('+' | '-') multiplicativeExpression )*
+    ;
 
-constantDeclaratorsRest: 
-	constantDeclaratorRest (','   constantDeclarator )*
-	;
+multiplicativeExpression
+    :   unaryExpression ( ( '*' | '/' | '%' ) unaryExpression )*
+    ;
+    
+unaryExpression
+    :   '+' unaryExpression
+    |   '-' unaryExpression
+    |   '++' unaryExpression
+    |   '--' unaryExpression
+    |   unaryExpressionNotPlusMinus
+    ;
 
-variableDeclarator: 
-	identifier variableDeclaratorRest
-	;
+unaryExpressionNotPlusMinus
+    :	'!' unaryExpression
+    |   castExpression
+    |   primary selector* ('++'|'--')?
+    ;
 
-constantDeclarator: 
-	identifier constantDeclaratorRest
-	;
+castExpression
+    :  '(' primitiveType ')' unaryExpression
+    |  '(' (type | expression) ')' unaryExpressionNotPlusMinus
+    ;
 
-variableDeclaratorRest: 
-	bracketsOpt (  '='   variableInitializer)?
-	;
+primary
+    :   parExpression
+    |   'this' ('.' IDENTIFIER)* identifierSuffix?
+    |   'super' superSuffix
+    |   literal
+    |   'new' creator
+    |   IDENTIFIER ('.' IDENTIFIER)* identifierSuffix?
+    |   primitiveType ('[' ']')* '.' 'class'
+    |   'void' '.' 'class'
+    ;
 
-constantDeclaratorRest: 
-	bracketsOpt   '='   variableInitializer
-	;
+identifierSuffix
+    :   ('[' ']')+ '.' 'class'
+    |   ('[' expression ']')+ // can also be matched by selector, but do here
+    |   arguments
+    |   '.' 'class'
+    |   '.' 'this'
+    |   '.' 'super' arguments
+    ;
 
-variableDeclaratorId: 
-	identifier bracketsOpt
-	;
+creator
+    :  createdName (arrayCreatorRest | classCreatorRest)
+    ;
 
-compilationUnit: 
-	//[package QualifiedIdentifier   ;  ] {ImportDeclaration} 
-	/*(*/ typeDeclaration //)*
-	;
-/*
-ImportDeclaration: 
-	import Identifier {   .   Identifier } [   .     *   ] ;  
-*/
-typeDeclaration: 
-	classOrInterfaceDeclaration
-	;
+createdName
+    :   classOrInterfaceType
+    |   primitiveType
+    ;
+    
+arrayCreatorRest
+    :   '['
+        (   ']' ('[' ']')* arrayInitializer
+        |   expression ']' ('[' expression ']')* ('[' ']')*
+        )
+    ;
 
-classOrInterfaceDeclaration: 
-	modifiersOpt classDeclaration // | InterfaceDeclaration)
-	;
+classCreatorRest
+    :   arguments 
+    ;
+    
+    
+selector
+    :   '.' IDENTIFIER arguments?
+    |   '.' 'this'
+    |   '.' 'super' superSuffix
+    |   '[' expression ']'
+    ;
+    
+superSuffix
+    :   arguments
+    |   '.' IDENTIFIER arguments?
+    ;
 
-classDeclaration: 
-	'class' identifier ('extends' type)? /*[implements TypeList]*/ classBody
-	;
-/*
-InterfaceDeclaration: 
-	interface Identifier [extends TypeList] InterfaceBody
-*/
-typeList: 
-	type (','   type)*
-	;
-
-classBody: 
-	'{' (classBodyDeclaration)* '}'
-	;
-/*
-InterfaceBody: 
-	{ {InterfaceBodyDeclaration} }
-*/
-classBodyDeclaration:
-	';' 
-	| /*[static]*/ block
-	| modifiersOpt memberDecl
-	;
-
-memberDecl:
-	methodOrFieldDecl
-	| 'void' identifier methodDeclaratorRest
-	| identifier constructorDeclaratorRest
-	| classOrInterfaceDeclaration
-	;
-
-methodOrFieldDecl:
-	type identifier methodOrFieldRest
-	;
-
-methodOrFieldRest:
-	variableDeclaratorRest
-	| methodDeclaratorRest
-	;
-/*
-InterfaceBodyDeclaration:
-	; 
-	ModifiersOpt InterfaceMemberDecl
-
-InterfaceMemberDecl:
-	InterfaceMethodOrFieldDecl
-	void Identifier VoidInterfaceMethodDeclaratorRest
-	ClassOrInterfaceDeclaration
-
-InterfaceMethodOrFieldDecl:
-	Type Identifier InterfaceMethodOrFieldRest
-
-InterfaceMethodOrFieldRest:
-	ConstantDeclaratorsRest ;
-	InterfaceMethodDeclaratorRest
-*/
-methodDeclaratorRest:
-		formalParameters bracketsOpt /* [throws QualifiedIdentifierList]*/ (methodBody |   ';')
-		;
-
-voidMethodDeclaratorRest:
-		formalParameters /*[throws QualifiedIdentifierList]*/ ( methodBody |   ';') 
-		;
-/*
-InterfaceMethodDeclaratorRest:
-	FormalParameters BracketsOpt [throws QualifiedIdentifierList]   ;  
-
-VoidInterfaceMethodDeclaratorRest:
-	FormalParameters [throws QualifiedIdentifierList]   ;  
-*/
-constructorDeclaratorRest:
-	formalParameters /*[throws QualifiedIdentifierList]*/ methodBody
-	;
-/*
-QualifiedIdentifierList: 
-	QualifiedIdentifier (  ','   QualifiedIdentifier)*
-	;
-*/
-formalParameters: 
-	'(' (formalParameter ( ',' formalParameter)*)? ')'
-	;
-
-formalParameter: 
-	/*[final]*/ type variableDeclaratorId
-	;
-
-methodBody:
-	block
-	;
-
-	
+arguments
+    :   '(' expressionList? ')'
+    ;
+    
 // LEXER
 
 fragment
@@ -547,3 +516,4 @@ Currency
     : 	 '$'
     	| '£'    	
     ;
+    
