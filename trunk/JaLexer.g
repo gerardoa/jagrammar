@@ -7,20 +7,16 @@ options {
 }
 
 r : INTLITERAL {System.out.println("let's see "+$INTLITERAL.text);} ;
-
-LONGLITERAL
-    :   IntegerNumber LongSuffix
+      	  
+fragment
+Digit
+    : '0'..'9'
     ;
-
-    
-INTLITERAL
-    :   IntegerNumber 
-    ;
-    
+        
 fragment
 IntegerNumber
     :   '0' 
-    |   '1'..'9' ('0'..'9')*    
+    |   '1'..'9' Digit*    
     ;
 
 fragment
@@ -28,18 +24,27 @@ LongSuffix
     :   'l' | 'L'
     ;
 
-
+INTLITERAL
+    :   IntegerNumber 
+    ;
+	
+LONGLITERAL
+    :   IntegerNumber LongSuffix
+    ;
+	
 fragment
 NonIntegerNumber
-    :   ('0' .. '9')+ '.' ('0' .. '9')* Exponent?  
-    |   '.' ( '0' .. '9' )+ Exponent?  
-    |   ('0' .. '9')+ Exponent  
-    |   ('0' .. '9')+ 
+    :   Digit+ '.' Digit* Exponent?
+    |   ('.')? Digit+ Exponent?  
+     /*  
+    |   '.' Digit+ Exponent?  
+    |   Digit+ Exponent  
+    |   Digit+ */ 
     ;
         
 fragment 
 Exponent    
-    :   ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+ 
+    :   ( 'e' | 'E' ) ( '+' | '-' )? Digit+ 
     ;
     
 fragment 
@@ -79,32 +84,281 @@ STRINGLITERAL
 fragment
 EscapeSequence 
     :   '\\' (
-                 'b' 
-             |   't' 
+                 't' 
              |   'n' 
-             |   'f' 
              |   'r' 
              |   '\"' 
              |   '\'' 
-             |   '\\' 
-             |       
-                 ('0'..'3') ('0'..'7') ('0'..'7')
-             |       
-                 ('0'..'7') ('0'..'7') 
-             |       
-                 ('0'..'7')
+             |   '\\'
              )          
 ;     
 
+BOOLEAN
+    :   'boolean'
+    ;
+    
+BYTE
+    :   'byte'
+    ;
+
+CHAR
+    :   'char'
+    ;
+    	
+SHORT
+    :   'short'
+    ;
+	
+INT
+    :   'int'
+    ;
+
+LONG
+    :   'long'
+    ;
+
+FLOAT
+    :   'float'
+    ;
+
+DOUBLE
+    :   'double'
+    ;		
+
+VOID
+    :   'void'
+    ;	
+
+TRUE
+    :   'true'
+    ;
+
+FALSE
+    :   'false'
+    ;
+
+NULL
+    :   'null'
+    ;
+	
 WS  
     :   (
              ' '
         |    '\r'
         |    '\t'
-        |    '\u000C'
         |    '\n'
         ) 
-            {
-                skip();
-            }          
+			{ skip(); }          
+;
+
+COMMENT
+    :   '/*'
+        (options {greedy=false;} : . )* // ~('*/')
+        '*/'
+            { skip(); }
+    ;
+
+LINE_COMMENT
+    :   // '//' ~('\n'|'\r')*  ('\r\n' | '\r' | '\n') 
+        //    { skip(); }
+       '//' ~('\n'|'\r')*
+            { skip(); }
+    ;   
+        
+
+CLASS
+    :   'class'
+    ;
+
+EXTENDS
+    :   'extends'
+    ;
+		
+FOR
+    :   'for'
+    ;
+
+DO
+    :   'do'
+    ;
+
+WHILE
+    :   'while'
+    ;
+	
+IF
+    :   'if'
+    ;
+
+ELSE
+    :   'else'
+    ;	
+	
+INSTANCEOF
+    :   'instanceof'
+    ;
+	
+NEW
+    :   'new'
+    ;
+
+PRIVATE
+    :   'private'
+    ;
+
+PUBLIC
+    :   'public'
+    ;
+
+RETURN
+    :   'return'
+    ;
+
+SUPER
+    :   'super'
+    ;
+
+THIS
+    :   'this'
+    ;
+
+LPAREN
+    :   '('
+    ;
+
+RPAREN
+    :   ')'
+    ;
+
+LBRACE
+    :   '{'
+    ;
+
+RBRACE
+    :   '}'
+    ;
+
+LBRACKET
+    :   '['
+    ;
+
+RBRACKET
+    :   ']'
+    ;
+
+SEMICOLUMN
+    :   ';'
+    ;
+
+COMMA
+    :   ','
+    ;
+
+DOT
+    :   '.'
+    ;
+
+EQ
+    :   '='
+    ;
+
+PLUS
+    :   '+'
+    ;
+
+SUB
+    :   '-'
+    ;
+
+STAR
+    :   '*'
+    ;
+
+SLASH
+    :   '/'
+    ;
+
+BANG
+    :   '!'
+    ;
+
+EQEQ
+    :   '=='
+    ;
+
+AND
+    :   '&&'
+    ;
+
+OR
+    :   '||'
+    ;
+
+PLUSPLUS
+    :   '++'
+    ;
+
+SUBSUB
+    :   '--'
+    ;
+	
+PLUSEQ
+    :   '+='
+    ; 
+    
+SUBEQ
+    :   '-='
+    ;
+
+STAREQ
+    :   '*='
+    ;
+
+SLASHEQ
+    :   '/='
+    ;
+
+BANGEQ
+    :   '!='
+    ;
+
+GT
+    :   '>'
+    ;
+
+LT
+    :   '<'
+    ;
+    
+GTEQ
+    :   '>='
+    ;
+
+LTEQ
+    :   '<='
+    ;         
+
+IDENTIFIER
+    :  (
+		Letter 
+		|   Currency 
+		|	'_') 
+		(
+			Digit 
+		| 	Letter 
+		| 	Currency 
+		|	'_'
+		)*
+    ;    			
+   
+fragment
+Letter
+    : 	'a'..'z' 
+	|	'A'..'Z'
+    ;
+   
+fragment 
+Currency
+    : 	'$'
+    | 	'£'
     ;
