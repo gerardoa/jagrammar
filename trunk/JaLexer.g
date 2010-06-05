@@ -1,13 +1,13 @@
-grammar JaLexer;
+grammar Ja;
 options {
     language=Java;
 }
 
-@members {
-}
+prog 	:
+		IDENTIFIER '=' IDENTIFIER
+		| 'for' IDENTIFIER ';'	
+	;
 
-r : INTLITERAL {System.out.println("let's see "+$INTLITERAL.text);} ;
-      	  
 fragment
 Digit
     : '0'..'9'
@@ -36,10 +36,6 @@ fragment
 NonIntegerNumber
     :   Digit+ '.' Digit* Exponent?
     |   ('.')? Digit+ Exponent?  
-     /*  
-    |   '.' Digit+ Exponent?  
-    |   Digit+ Exponent  
-    |   Digit+ */ 
     ;
         
 fragment 
@@ -159,13 +155,10 @@ COMMENT
     ;
 
 LINE_COMMENT
-    :   // '//' ~('\n'|'\r')*  ('\r\n' | '\r' | '\n') 
-        //    { skip(); }
-       '//' ~('\n'|'\r')*
+    :	'//' ~('\n'|'\r')*
             { skip(); }
     ;   
         
-
 CLASS
     :   'class'
     ;
@@ -174,10 +167,10 @@ EXTENDS
     :   'extends'
     ;
 		
-FOR
+/*FOR
     :   'for'
     ;
-
+*/
 DO
     :   'do'
     ;
@@ -266,7 +259,7 @@ PLUS
     :   '+'
     ;
 
-SUB
+MINUS
     :   '-'
     ;
 
@@ -278,7 +271,7 @@ SLASH
     :   '/'
     ;
 
-BANG
+NOT
     :   '!'
     ;
 
@@ -298,7 +291,7 @@ PLUSPLUS
     :   '++'
     ;
 
-SUBSUB
+MINUSMINUS
     :   '--'
     ;
 	
@@ -306,7 +299,7 @@ PLUSEQ
     :   '+='
     ; 
     
-SUBEQ
+MINUSEQ
     :   '-='
     ;
 
@@ -318,7 +311,7 @@ SLASHEQ
     :   '/='
     ;
 
-BANGEQ
+NOTEQ
     :   '!='
     ;
 
