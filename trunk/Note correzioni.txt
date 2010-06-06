@@ -1,6 +1,2 @@
-1. TrueLiteral & FalseLiteral;
-2. NotIntegerNumber: cambiare;
-3. Verificare se si può rimuovere il {greedy=false};
-4. Togliere i token per i segni di punteggiatura (per migliorare la leggibilità della grammatica);
-5. Accorpare gli operatori di confronto in un unico token, perché sono identici dal punto di vista del riconoscimento di tipo;
+1. in primary verificare che accetti: this() super()
 
