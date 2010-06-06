@@ -1,5 +1,7 @@
 grammar JaLP;
-options {language = Java;}
+options {language = Java;
+	//backtrack=true;
+}
 
 
 // starting point for parsing a java file
@@ -13,20 +15,14 @@ typeDeclaration
     ;
     
 classDeclaration
-    :   classModifier classDeclaration 
+    :   classModifier CLASS IDENTIFIER 
+        (EXTENDS type)?
+        classBody
     ;
-
 
 classModifier
     :  
         PUBLIC
-    ;
-
-
-classDeclaration
-    :   CLASS IDENTIFIER 
-        (EXTENDS type)?
-        classBody
     ;
     
 typeList
@@ -45,7 +41,7 @@ classBodyDeclaration
 memberDecl
     :    memberDeclaration
     |   VOID IDENTIFIER voidMethodDeclaratorRest
-    |    IDENTIFIER constructorDeclaratorRest
+    |   (IDENTIFIER formalParameters) => IDENTIFIER formalParameters constructorBody
     ;
     
 memberDeclaration
@@ -75,10 +71,6 @@ voidMethodDeclaratorRest
         )
     ;
 
-constructorDeclaratorRest
-    :   formalParameters constructorBody
-    ;
-
 variableDeclarators
     :   variableDeclarator (',' variableDeclarator)*
     ;
@@ -106,7 +98,7 @@ modifier
     ;
 
 typeName
-    :   qualifiedName
+    :   IDENTIFIER
     ;
 
 type
@@ -119,8 +111,7 @@ classType
 	;
 
 primitiveType
-    :   	
-    |   CHAR
+    :   CHAR
     |   BYTE
     |   SHORT
     |   INT
@@ -137,7 +128,7 @@ formalParameterDecls
     :   modifier type formalParameterDeclsRest
     ;
     
-formalParameterDeclsRest'null'
+formalParameterDeclsRest
     :   variableDeclaratorId (',' formalParameterDecls)?
     |   '...' variableDeclaratorId
     ;
@@ -195,7 +186,6 @@ statement
     |   RETURN expression? ';'
     |   ';' 
     |   statementExpression ';'
-    |   IDENTIFIER ':' statement
     ;
 /*    
 forControl
@@ -230,7 +220,7 @@ constantExpression
     ;
     
 expression
-    :  OrExpression (assignmentOperator expression)?
+    :  orExpression (assignmentOperator expression)?
     ;
     
 assignmentOperator
@@ -241,11 +231,11 @@ assignmentOperator
     |   '/='
     ;
 
-OrExpression
-    :   AndExpression ( '||' AndExpression )*
+orExpression
+    :   andExpression ( '||' andExpression )*
     ;
 
-AndExpression
+andExpression
     :   equalityExpression ( '&&' equalityExpression )*
     ;
 
@@ -290,7 +280,7 @@ castExpression
 
 primary
     :   parExpression
-    |   THIS //('.' IDENTIFIER)+ identifierSuffix?
+    |   THIS //arguments? //('.' IDENTIFIER)+ identifierSuffix?
     |   SUPER superMemberAccess
     |   literal
     |   NEW creator
@@ -301,7 +291,7 @@ primary
 
 identifierSuffix
     :   ('[' ']')+ '.' CLASS
-    |   ('[' expression ']')+ // can also be matched by selector, but do here
+    //|   ('[' expression ']')+ // can also be matched by selector, but do here
     |   arguments
     |   '.' CLASS
     //|   '.' 'this'
@@ -317,11 +307,16 @@ createdName
     |   primitiveType
     ;
     
+arrayCreatorRest1
+    :   '['']' ('[' ']')* arrayInitializer
+    ;
+arrayCreatorRest2
+    :	'[' expression ']' ('[' expression ']')* 
+    ; 
+
 arrayCreatorRest
-    :   '['
-        (   ']' ('[' ']')* arrayInitializer
-        |   expression ']' ('[' expression ']')* ('[' ']')*
-        )
+    :  	arrayCreatorRest1
+    |	arrayCreatorRest2('[' ']')*
     ;
 
 classCreatorRest
