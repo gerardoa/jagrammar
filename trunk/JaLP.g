@@ -178,8 +178,8 @@ localVariableDeclaration
    
 
 statement
-    : block
-    |   IF parExpression statement (ELSE statement)?
+    :   block
+    |   IF parExpression statement elseStmt
     |   FOR '(' forInit? ';' expression? ';' forUpdate? ')' statement
     |   parExpression statement
     |   DO statement WHILE parExpression ';'
@@ -187,6 +187,12 @@ statement
     |   ';' 
     |   statementExpression ';'
     ;
+    
+elseStmt:	
+	(ELSE) => ELSE statement
+	|
+	;
+    
 /*    
 forControl
     :
@@ -270,6 +276,7 @@ unaryExpression
 unaryExpressionNotPlusMinus
     :	'!' unaryExpression
     |   castExpression
+    |   NEW creator
     |   primary selector* ('++'|'--')?
     ;
 
@@ -280,10 +287,9 @@ castExpression
 
 primary
     :   parExpression
-    |   THIS //arguments? //('.' IDENTIFIER)+ identifierSuffix?
+    |   THIS //arguments? 
     |   SUPER superMemberAccess
     |   literal
-    |   NEW creator
     |   IDENTIFIER identifierSuffix?
     |   primitiveType ('[' ']')* '.' CLASS
     |   VOID '.' CLASS
@@ -307,17 +313,10 @@ createdName
     |   primitiveType
     ;
     
-arrayCreatorRest1
-    :   '['']' ('[' ']')* arrayInitializer
-    ;
-arrayCreatorRest2
-    :	'[' expression ']' ('[' expression ']')* 
-    ; 
-
 arrayCreatorRest
-    :  	arrayCreatorRest1
-    |	arrayCreatorRest2('[' ']')*
-    ;
+    :   '['']' ('[' ']')* arrayInitializer
+    |	'[' expression ']' ('[' expression ']')* 
+    ; 
 
 classCreatorRest
     :   arguments 
