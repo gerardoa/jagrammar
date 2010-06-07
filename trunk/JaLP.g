@@ -173,7 +173,7 @@ localVariableDeclarationStatement
     ;
 
 localVariableDeclaration
-    :   modifier type variableDeclarators
+    : 	 type variableDeclarators
     ;
    
 
@@ -181,7 +181,7 @@ statement
     :   block
     |   IF parExpression statement elseStmt
     |   FOR '(' forInit? ';' expression? ';' forUpdate? ')' statement
-    |   parExpression statement
+    |   WHILE parExpression statement
     |   DO statement WHILE parExpression ';'
     |   RETURN expression? ';'
     |   ';' 
