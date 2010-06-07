@@ -275,14 +275,17 @@ unaryExpression
 
 unaryExpressionNotPlusMinus
     :	'!' unaryExpression
-    |   castExpression
+    |  	('(' primitiveType) =>  primitiveCastExpression
+    | 	('(' classType) => castExpression
     |   NEW creator
     |   primary selector* ('++'|'--')?
     ;
 
-castExpression
+primitiveCastExpression
     :  ('(' primitiveType) => '(' primitiveType ')' unaryExpression
-    |  '(' type ')' unaryExpressionNotPlusMinus
+    ;
+castExpression    
+    :  '(' type  ')' unaryExpressionNotPlusMinus
     ;
 
 primary
