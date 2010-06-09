@@ -1,0 +1,9 @@
+fuori da block:
+prima fase(driver, raccolta interfacce, AST fuori da block)
+
+dentro block:
+prima fase(AST dentro block)
+seconda fase (type checking)
+
+
+stampa del sorgente congiunta
