@@ -1,6 +1,9 @@
 grammar JaLP;
 options {language = Java;
-	//backtrack=true;
+	 output = AST;
+}
+tokens {
+	METHODCALL; FIELDACCESS; ARRAYACCESS; DOTCLASS;ARRAYTYPE;
 }
 
 
@@ -102,8 +105,13 @@ typeName
     ;
 
 type
+	:	nonPrimitiveType
+	|	primitiveType
+	;
+	
+nonPrimitiveType
 	:	classType ('[' ']')*
-	|	primitiveType ('[' ']')*
+	|	primitiveType ('[' ']')+
 	;
 
 classType
@@ -180,12 +188,12 @@ localVariableDeclaration
 statement
     :   block
     |   IF parExpression statement elseStmt
-    |   FOR '(' forInit? ';' expression? ';' forUpdate? ')' statement
+    |   FOR '('! forInit? ';'! expression? ';'! forUpdate? ')'! statement
     |   WHILE parExpression statement
-    |   DO statement WHILE parExpression ';'
-    |   RETURN expression? ';'
-    |   ';' 
-    |   statementExpression ';'
+    |   DO statement WHILE parExpression ';'!
+    |   RETURN expression? ';'!
+    |   ';'! 
+    |   statementExpression ';'!
     ;
     
 elseStmt:	
@@ -210,7 +218,7 @@ forUpdate
 // EXPRESSIONS
 
 parExpression
-    :   '(' expression ')'
+    :   '('! expression ')'!
     ;
     
 expressionList
@@ -275,27 +283,24 @@ unaryExpression
 
 unaryExpressionNotPlusMinus
     :	'!' unaryExpression
-    |  	('(' primitiveType) =>  primitiveCastExpression
-    | 	('(' classType) => castExpression
+    |  	('(' primitiveType ')')  => '(' primitiveType ')' unaryExpression
+    // possibile ottimizzazione su unaryExpressionNotPlusMinus
+    |   ('(' nonPrimitiveType  ')' unaryExpressionNotPlusMinus) => '(' nonPrimitiveType  ')' unaryExpressionNotPlusMinus
     |   NEW creator
-    |   primary selector* ('++'|'--')?
-    ;
-
-primitiveCastExpression
-    :  ('(' primitiveType) => '(' primitiveType ')' unaryExpression
-    ;
-castExpression    
-    :  '(' type  ')' unaryExpressionNotPlusMinus
+    |   primary selector[(Tree)$primary.tree]^* ('++'|'--')?// -> primary ^(selector)*
     ;
 
 primary
     :   parExpression
     |   THIS //arguments? 
-    |   SUPER superMemberAccess
+    |   SUPER^ superMemberAccess
     |   literal
-    |   IDENTIFIER identifierSuffix?
-    |   primitiveType ('[' ']')* '.' CLASS
-    |   VOID '.' CLASS
+    |   IDENTIFIER
+    |   (IDENTIFIER -> IDENTIFIER) ('[' ']' -> ^(ARRAYTYPE $primary))+ ('.' CLASS -> ^(DOTCLASS $primary))
+    | 	IDENTIFIER  arguments -> ^(METHODCALL IDENTIFIER arguments THIS)
+    |	IDENTIFIER '.' CLASS -> ^(DOTCLASS IDENTIFIER)
+    |   (primitiveType -> primitiveType) ('[' ']' -> ^(ARRAYTYPE $primary))* ('.' CLASS -> ^(DOTCLASS $primary))
+    |   VOID '.' CLASS -> ^(DOTCLASS VOID)
     ;
 
 identifierSuffix
@@ -326,11 +331,12 @@ classCreatorRest
     ;
     
     
-selector
-    :   '.' IDENTIFIER arguments?
+selector[Tree t]
+    :   '.' IDENTIFIER -> ^(FIELDACCESS IDENTIFIER)
+    |	'.' IDENTIFIER arguments -> ^(METHODCALL IDENTIFIER arguments)
     //|   '.' 'this'
     //|   '.' 'super' superSuffix
-    |   '[' expression ']'
+    |   '[' expression ']'-> ^(ARRAYACCESS expression)
     ;
     
    
@@ -340,7 +346,7 @@ superMemberAccess
 	;
 
 arguments
-    :   '(' expressionList? ')'
+    :   '('! expressionList? ')'!
     ;
     
 // LEXER
