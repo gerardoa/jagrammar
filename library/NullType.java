@@ -1,6 +1,12 @@
 /*
-*	il tipo NULL di Ja.
-*/
+ *	il tipo NULL di Ja.
+ *
+ *
+ *      @author Gaetano Pellegrino
+ *	@version 1.0 11/06/2010
+ *	@see Type
+ *
+ */
 
 public class NullType implements Type{
 
@@ -42,13 +48,14 @@ public class NullType implements Type{
 	}
 	
 	public boolean isCastableTo(Type t){
-		//null è castabile agli stessi tipi ai quali è assegnabile
+		//null ï¿½ castabile agli stessi tipi ai quali ï¿½ assegnabile
 		return isAssignableTo(t);
 	}
 	
 	public boolean isSubtypeOf(Type t){
 		return false;
 	}
-	
+
+        //unica istanza di questa classe
 	public static final NullType TYPE = new NullType();
 }

@@ -1,6 +1,12 @@
 /*
-*	il tipo VOID di Ja.
-*/
+ *	il tipo VOID di Ja.
+ *
+ *
+ *      @author Gaetano Pellegrino
+ *	@version 1.0 11/06/2010
+ *	@see Type
+ *
+ */
 
 public class VoidType implements Type{
 
@@ -45,6 +51,7 @@ public class VoidType implements Type{
 	public boolean isSubtypeOf(Type t){
 		return false;
 	}
-	
+
+        //unica istanza di questa classe
 	public static final VoidType TYPE = new VoidType();
 }

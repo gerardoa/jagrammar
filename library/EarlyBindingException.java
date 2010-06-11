@@ -1,4 +1,13 @@
-import java.util.List;
+/*
+ *	Eccezione sollevata quando sobraggiunge
+ *      un errore in fase di Early Binding, come
+ *      un'illecita chiamata a metodo
+ *
+ *      @author Gaetano Pellegrino
+ *	@version 1.0 11/06/2010
+ *
+ */
+
 
 public class EarlyBindingException extends RuntimeException{
 	/*

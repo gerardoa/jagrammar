@@ -1,9 +1,17 @@
 /*
-*	interfaccia cardine della gerarchia
-*	dei tipi di Ja. Rappresenta un tipo del
-*	linguaggio.
-*
-*/
+ *	interfaccia cardine della gerarchia
+ *	dei tipi di Ja. Rappresenta un tipo del
+ *	linguaggio.
+ *
+ *      @author Gaetano Pellegrino
+ *	@version 1.0 11/06/2010
+ *	@see BasicType
+ *      @see ComplexType
+ *      @see ArrayType
+ *      @see ReferenceType
+ *      @see NullType
+ *      @see VoidType
+ */
 
 
 public interface Type{
@@ -23,21 +31,21 @@ public interface Type{
 	public boolean isComplexType();
 	
 	/*
-	*	ritorna TRUE se il tipo this è assegnabile
+	*	ritorna TRUE se il tipo this Ã¨ assegnabile
 	*	a t senza ricorrere ad operazioni di cast;
 	*	FALSE altrimenti
 	*/
 	public boolean isAssignableTo(Type t);
 		
 	/*
-	*	ritorna TRUE se il tipo this è assegnabile
+	*	ritorna TRUE se il tipo this Ã¨ assegnabile
 	*	a t ricorrendo ad un'operazione di cast;
 	*	FALSE altrimenti
 	*/
 	public boolean isCastableTo(Type t);
 	
 	/*
-	*	ritorna TRUE se il tipo this è sottotipo
+	*	ritorna TRUE se il tipo this Ã¨ sottotipo
 	*	del tipo di t. FALSE altrimenti
 	*/
 	public boolean isSubtypeOf(Type t);
