@@ -1,16 +1,11 @@
 /*
-	classe astratta che rappresenta un Tipo Base di Ja
-
-	EDIT: verificare se è possibile eliminare una delle mappe perché
-	isCastableTo() può essere implementato sulla base di isAssignableTo():
-		isCastableTo(a,b) = isAssignableTo(a,b) V isAssignableTo(b,a) 
-		VERIFICARE
-*/
-
-import java.util.Map;
-import java.util.HashMap;
-import java.util.Set;
-import java.util.HashSet;
+ *	classe astratta che rappresenta un Tipo Base di Ja
+ *
+ *      @author Gaetano Pellegrino
+ *	@version 1.0 11/06/2010
+ *	@see Type
+ * 
+ */
 
 
 public enum BasicType implements Type{
