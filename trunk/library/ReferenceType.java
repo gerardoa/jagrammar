@@ -1,29 +1,13 @@
 /*
 *	Un tipo reference del linguaggio Ja
+*	
+*	@author Gaetano Pellegrino
+*	@version 1.0 11/06/2010
+*	@see Type
+*	@see ComplexType
+*
 */
 
-/*
-*	NOTE:
-*
-*	i client non devono vedere Method, Field, Constructor.
-*	Questo restringe il campo a classi private in questo file,
-*	classi interne (statiche all'occorrenza), e classi anonime.
-*	Siccome devo avere collezioni di queste classi, mi sentirei
-*	si escludere classi anonime. Propenderei per le classi interne
-*	private, perché gioverei della stretta connessione con la classe
-*	esterna.
-*
-*	EDIT 24/05: 1 problema --> addMethod e addConstructor, ovvero se devo fare la doppia iterazione per valutare le liste dei
-*								parametri (alloco però solo se necessario). Oppure alloco sempre ma gestisco con hashCode()
-*				2 problema --> devo gestire i blocchi?
-*
-*	EDIT 25/05: riorganzizzare la gerarchia dei tipi in Type, SimpleType (con null e void in semi-enumeration), BasicType che
-*				estende SimpleType e che ha le sue istanze di classe, e ComplexType che racchiude buona parte del codice
-*				comune ai tipi complessi ReferenceType e ArrayType (che la estendono)???
-*
-*	EDIT 29/05: meglio realizzare il set di metodi con un TreeSet o un HashSet? Con TreeSet contains costa di più ma non alloco
-*				il metodo da cercare. 
-*/
 
 import java.util.Collection;
 import java.util.Map;
@@ -31,6 +15,7 @@ import java.util.Set;
 import java.util.HashSet;
 import java.util.HashMap;
 import java.util.List;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Iterator;
 
@@ -78,7 +63,8 @@ public class ReferenceType extends ComplexType{
 	//un method è iterabile sul tipo dei suoi parametri
 	private class Method implements Iterable<Type>{
 	
-		private Method(boolean v, String n, Type r, List<Type> p){
+		//JAVADOC: uso l'arraylist perché ho bisogno dell'accesso posizionale
+		private Method(boolean v, String n, Type r, ArrayList<Type> p){
 			isPublic = v;
 			name = n;
 			returnType = r;
@@ -95,8 +81,6 @@ public class ReferenceType extends ComplexType{
 			if (!m.name.equals(name))
 				return false;
 			int i = 0;
-			//EDIT: usare l'iteratore e non l'accesso posizionale
-			//oppure passare ad ArrayList
 			for (Type t : m)
 				if (!t.equals(arguments.get(i++)))
 					return false;
@@ -120,32 +104,26 @@ public class ReferenceType extends ComplexType{
 			return res; 
 		}
 		
-		//JAVADOC: call deve essere sempre istanziata (all'occorrenza essere senza elementi)
-		private boolean isCompatibleWith(List<Type> call){
+		//JAVADOC: 	call deve essere sempre istanziata (all'occorrenza essere senza elementi)
+		//			inoltre call deve essere un ArrayList per avere l'accesso posizionale
+		private boolean isCompatibleWith(ArrayList<Type> call){
 			if (call.isEmpty())
 				return (arguments.isEmpty());
-			//modificare con gli iteratori
-			//Iterator<Type> i = arguments.iterator();
+			int i = 0;
 			for (Type t : call)
 				if (!t.isAssignableTo(arguments.get(i++)))//assignableTo deve essere riflessivo
 					return false;
-			Iterator<Type> i = arguments.iterator();		
-			for (Type t : call){
-				if (!i.hasNext())
-					return false;
-								
-			}
 			return true;
 		}
 		
 		private final boolean isPublic;
 		private final String name;
 		private final Type returnType;
-		private List<Type> arguments;
+		private ArrayList<Type> arguments;
 	}
 	
 	//EDIT: javadoc
-	public void addMethod(boolean pub, Type ret, String name, List<Type> args){			
+	public void addMethod(boolean pub, Type ret, String name, ArrayList<Type> args){			
 		Method m = new Method(pub,name,ret,args);
 		if (superClass != null) 
 			//parto dalla superclasse diretta. Il controllo locale lo faccio dopo
@@ -185,7 +163,7 @@ public class ReferenceType extends ComplexType{
 	
 	//scrivere in JAVADOC cosa succede in questo metodo, cosa restituisce
 	//se non c'è nessuna firma candidata
-	private List<Method> getCandidateSignatures(boolean isSameClass, String name, List<Type> args){
+	private List<Method> getCandidateSignatures(boolean isSameClass, String name, ArrayList<Type> args){
 		List<Method> ret = new LinkedList<Method>();
 		Set<Method> l = methods.get(name);
 		if (l == null)
@@ -199,7 +177,7 @@ public class ReferenceType extends ComplexType{
 	}
 	
 	//JAVADOC
-	public void bindMethod(boolean isSameClass, String name, List<Type> args){
+	public void bindMethod(boolean isSameClass, String name, ArrayList<Type> args){
 		//genero la lista delle firme candidate
 		//se c'è una firma più specifica delle altre ritorno.
 		//altrimenti lancio un'eccezione
