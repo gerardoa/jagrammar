@@ -234,43 +234,43 @@ constantExpression
     ;
     
 expression
-    :  orExpression (assignmentOperator expression)?
+    :  orExpression ( assignmentOperator expression)?
     ;
     
 assignmentOperator
-    :   '='
-    |   '+='
+    :   '='|   
+    	'+='
     |   '-='
     |   '*='
     |   '/='
     ;
 
 orExpression
-    :   andExpression ( '||' andExpression )*
+    :   andExpression ( '||'^ andExpression )*
     ;
 
 andExpression
-    :   equalityExpression ( '&&' equalityExpression )*
+    :   equalityExpression ( '&&'^ equalityExpression )*
     ;
 
 equalityExpression
-    :   instanceOfExpression ( ('==' | '!=') instanceOfExpression )*
+    :   instanceOfExpression ( ('==' | '!=')^ instanceOfExpression )*
     ;
 
 instanceOfExpression
-    :   relationalExpression (INSTANCEOF type)?
+    :   relationalExpression (INSTANCEOF^ type)?
     ;
 
 relationalExpression
-    :   additiveExpression ( COMPAREOP additiveExpression )*
+    :   additiveExpression ( COMPAREOP^ additiveExpression )*
     ;
 
 additiveExpression
-    :   multiplicativeExpression ( ('+' | '-') multiplicativeExpression )*
+    :   multiplicativeExpression ( ('+' | '-')^ multiplicativeExpression )*
     ;
 
 multiplicativeExpression
-    :   unaryExpression ( ( '*' | '/' | '%' ) unaryExpression )*
+    :   unaryExpression ( ( '*' | '/' | '%' )^ unaryExpression )*
     ;
     
 unaryExpression
