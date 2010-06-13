@@ -3,23 +3,19 @@ options {language = Java;
 	 output = AST;
 }
 tokens {
-	METHODCALL; FIELDACCESS; ARRAYACCESS; DOTCLASS;ARRAYTYPE;
+	METHODCALL; FIELDACCESS; ARRAYACCESS; DOTCLASS;ARRAYTYPE; METHOD; FIELD; CONSTR; FPARM; MBODY;
 }
 
 
 // starting point for parsing a java file
 compilationUnit
-    :  typeDeclaration*
-    ;
-    
-typeDeclaration
-    :   classDeclaration
-    |   ';'
+    :  classDeclaration^ // toglie nil
+    | ';'
     ;
     
 classDeclaration
-    :   classModifier CLASS IDENTIFIER 
-        (EXTENDS type)?
+    :   classModifier! CLASS^ IDENTIFIER 
+        (EXTENDS! type)?
         classBody
     ;
 
@@ -28,29 +24,27 @@ classModifier
         PUBLIC
     ;
     
-typeList
+/*typeList
     :   type (',' type)*
     ;
-    
+*/    
 classBody
-    :   '{' classBodyDeclaration* '}'
+    :   '{'! classBodyDeclaration* '}'!
     ;
 
 classBodyDeclaration
-    :   ';'
-    |   modifier memberDecl
-    ;
-    
-memberDecl
-    :    memberDeclaration
-    |   VOID IDENTIFIER voidMethodDeclaratorRest
-    |   (IDENTIFIER formalParameters) => IDENTIFIER formalParameters constructorBody
+    :   ';'!
+    |   memberDeclaration
     ;
     
 memberDeclaration
-    :   type (methodDeclaration | fieldDeclaration)
+    :   (modifier type -> modifier type)(methodDeclaration -> ^(METHOD $memberDeclaration methodDeclaration)
+    					| fieldDeclaration -> ^(FIELD $memberDeclaration fieldDeclaration)
+    					)
+    |   modifier VOID IDENTIFIER voidMethodDeclaratorRest -> ^(METHOD modifier VOID IDENTIFIER voidMethodDeclaratorRest)
+    |   modifier (IDENTIFIER formalParameters) => IDENTIFIER formalParameters constructorBody 
+    	-> ^(CONSTR modifier IDENTIFIER formalParameters constructorBody)
     ;
-
 
 methodDeclaration
     :   IDENTIFIER methodDeclaratorRest
@@ -61,11 +55,12 @@ fieldDeclaration
     ;
     
 methodDeclaratorRest
-    :   formalParameters ('[' ']')*
+    :   formalParameters
         (   methodBody
         |   ';'
-        )
+        )// -> ^(FPARM formalParameters methodBody?)
     ;
+
     
 voidMethodDeclaratorRest
     :   formalParameters
@@ -129,20 +124,20 @@ primitiveType
     ;
     
 formalParameters
-    :   '(' formalParameterDecls? ')'
+    :   '(' formalParameterDecls? ')' -> ^(FPARM formalParameterDecls?)
     ;
     
 formalParameterDecls
-    :   modifier type formalParameterDeclsRest
+    :   type formalParameterDeclsRest
     ;
     
 formalParameterDeclsRest
-    :   variableDeclaratorId (',' formalParameterDecls)?
+    :   variableDeclaratorId (','! formalParameterDecls)?
     |   '...' variableDeclaratorId
     ;
     
 methodBody
-    :   block
+    :   block -> ^(MBODY block)
     ;
 
 constructorBody
@@ -287,7 +282,7 @@ unaryExpressionNotPlusMinus
     // possibile ottimizzazione su unaryExpressionNotPlusMinus
     |   ('(' nonPrimitiveType  ')' unaryExpressionNotPlusMinus) => '(' nonPrimitiveType  ')' unaryExpressionNotPlusMinus
     |   NEW creator
-    |   primary selector[(Tree)$primary.tree]^* ('++'|'--')?// -> primary ^(selector)*
+    |   primary selector^* ('++'|'--')?// -> primary ^(selector)*
     ;
 
 primary
@@ -301,6 +296,14 @@ primary
     |	IDENTIFIER '.' CLASS -> ^(DOTCLASS IDENTIFIER)
     |   (primitiveType -> primitiveType) ('[' ']' -> ^(ARRAYTYPE $primary))* ('.' CLASS -> ^(DOTCLASS $primary))
     |   VOID '.' CLASS -> ^(DOTCLASS VOID)
+    ;
+    
+selector
+    :   '.' IDENTIFIER -> ^(FIELDACCESS IDENTIFIER)
+    |	'.' IDENTIFIER arguments -> ^(METHODCALL IDENTIFIER arguments?)
+    //|   '.' 'this'
+    //|   '.' 'super' superSuffix
+    |   '[' expression ']'-> ^(ARRAYACCESS expression)
     ;
 
 identifierSuffix
@@ -328,17 +331,7 @@ arrayCreatorRest
 
 classCreatorRest
     :   arguments 
-    ;
-    
-    
-selector[Tree t]
-    :   '.' IDENTIFIER -> ^(FIELDACCESS IDENTIFIER)
-    |	'.' IDENTIFIER arguments -> ^(METHODCALL IDENTIFIER arguments)
-    //|   '.' 'this'
-    //|   '.' 'super' superSuffix
-    |   '[' expression ']'-> ^(ARRAYACCESS expression)
-    ;
-    
+    ;   
    
 superMemberAccess
 	:
