@@ -1,0 +1,24 @@
+public class Test{
+	public int A = 3;
+	public int B, C;
+
+	public void main(){
+	  int x, y;
+	  a.f().g();
+	}
+
+	public int ciao(int c1, int c2, int ... p) {
+		a += 3;
+		{
+		x++;
+		y = 2 + 3;
+		}
+		if(true)
+		
+			A++;
+ 		else {
+			A--;
+		}
+		for(int i = 0; i < 5; i++){A++;}
+	}
+}
