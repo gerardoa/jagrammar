@@ -3,7 +3,8 @@ options {language = Java;
 	 output = AST;
 }
 tokens {
-	METHODCALL; FIELDACCESS; ARRAYACCESS; DOTCLASS;ARRAYTYPE; METHOD; FIELD; CONSTR; FPARM; MBODY;
+	METHODCALL; FIELDACCESS; ARRAYACCESS; DOTCLASS;ARRAYTYPE; METHOD; FIELD; CONSTR; FPARMS; FPARM; FMULTPARM; MBODY;
+	VARDECL; BLOCK; STMT; INIT; CONDITION; UPDATE; DOWHILE; THEN;
 }
 
 
@@ -39,7 +40,7 @@ classBodyDeclaration
     
 memberDeclaration
     :   (modifier type -> modifier type)(methodDeclaration -> ^(METHOD $memberDeclaration methodDeclaration)
-    					| fieldDeclaration -> ^(FIELD $memberDeclaration fieldDeclaration)
+    					| fieldDeclaration[(CommonTree)$memberDeclaration.tree] -> fieldDeclaration //^(FIELD $memberDeclaration fieldDeclaration)
     					)
     |   modifier VOID IDENTIFIER voidMethodDeclaratorRest -> ^(METHOD modifier VOID IDENTIFIER voidMethodDeclaratorRest)
     |   modifier (IDENTIFIER formalParameters) => IDENTIFIER formalParameters constructorBody 
@@ -50,8 +51,8 @@ methodDeclaration
     :   IDENTIFIER methodDeclaratorRest
     ;
 
-fieldDeclaration
-    :   variableDeclarators ';'
+fieldDeclaration[CommonTree modAndTyp]
+    :   variableDeclarator (',' variableDeclarator)* ';' -> ^(FIELD {$modAndTyp} variableDeclarator)+ 
     ;
     
 methodDeclaratorRest
@@ -69,12 +70,8 @@ voidMethodDeclaratorRest
         )
     ;
 
-variableDeclarators
-    :   variableDeclarator (',' variableDeclarator)*
-    ;
-
 variableDeclarator
-    :   variableDeclaratorId ('=' variableInitializer)?
+    :   variableDeclaratorId ('='! variableInitializer)? //-> variableDeclaratorId ^(INIT variableInitializer)?
     ;
     
 variableDeclaratorId
@@ -124,16 +121,12 @@ primitiveType
     ;
     
 formalParameters
-    :   '(' formalParameterDecls? ')' -> ^(FPARM formalParameterDecls?)
+    :   '(' formalParameterDecls? ')' -> ^(FPARMS formalParameterDecls?)
     ;
     
 formalParameterDecls
-    :   type formalParameterDeclsRest
-    ;
-    
-formalParameterDeclsRest
-    :   variableDeclaratorId (','! formalParameterDecls)?
-    |   '...' variableDeclaratorId
+    :  type variableDeclaratorId (',' formalParameterDecls)? -> ^(FPARM type variableDeclaratorId) formalParameterDecls?
+    |  type '...' variableDeclaratorId -> ^(FMULTPARM type variableDeclaratorId)
     ;
     
 methodBody
@@ -162,37 +155,37 @@ literal
 // STATEMENTS / BLOCKS
 
 block
-    :   '{' blockStatement* '}'
+    :   '{'! blockStatement* '}'!
     ;
     
 blockStatement
     :   localVariableDeclarationStatement
-    |   classDeclaration
     |   statement
     ;
     
 localVariableDeclarationStatement
-    :    localVariableDeclaration ';'
+    :    localVariableDeclaration ';'!
     ;
 
 localVariableDeclaration
-    : 	 type variableDeclarators
+    : 	 type variableDeclarator (',' variableDeclarator)* -> ^(VARDECL type variableDeclarator)+
     ;
    
 
 statement
-    :   block
-    |   IF parExpression statement elseStmt
-    |   FOR '('! forInit? ';'! expression? ';'! forUpdate? ')'! statement
-    |   WHILE parExpression statement
-    |   DO statement WHILE parExpression ';'!
-    |   RETURN expression? ';'!
+    :   block -> ^(BLOCK block)
+    |   IF parExpression statement elseStmt -> ^(IF ^(CONDITION parExpression) ^(THEN statement) elseStmt)
+    |   FOR '(' forInit? ';' expression? ';' forUpdate? ')' statement 
+    	-> ^(FOR ^(INIT forInit)? ^(CONDITION expression)? ^(UPDATE forUpdate)? statement )
+    |   WHILE parExpression statement -> ^(WHILE ^(CONDITION parExpression) statement)
+    |   DO statement WHILE parExpression ';' -> ^(DOWHILE ^(CONDITION parExpression) statement)
+    |   RETURN^ expression? ';'!
     |   ';'! 
-    |   statementExpression ';'!
+    |   statementExpression ';' -> ^(STMT statementExpression)
     ;
     
 elseStmt:	
-	(ELSE) => ELSE statement
+	(ELSE) => ELSE^ statement
 	|
 	;
     
@@ -229,15 +222,15 @@ constantExpression
     ;
     
 expression
-    :  orExpression ( assignmentOperator expression)?
+    :  orExpression ( assignmentOperator^ expression)?     			 	
     ;
     
 assignmentOperator
-    :   '='|   
-    	'+='
-    |   '-='
-    |   '*='
-    |   '/='
+    :   '=' //-> ^('=' {$orExp})
+    |   '+=' //-> ^('+=' {$orExp})
+    |   '-=' //-> ^('-=' {$orExp})
+    |   '*=' //-> ^('*=' {$orExp})
+    |   '/=' //-> ^('=' {$orExp})
     ;
 
 orExpression
@@ -282,9 +275,13 @@ unaryExpressionNotPlusMinus
     // possibile ottimizzazione su unaryExpressionNotPlusMinus
     |   ('(' nonPrimitiveType  ')' unaryExpressionNotPlusMinus) => '(' nonPrimitiveType  ')' unaryExpressionNotPlusMinus
     |   NEW creator
-    |   primary selector^* ('++'|'--')?// -> primary ^(selector)*
+    |   primary  selector^* ('++' | '--')? //-> {$s1.tree != null}? ^(selector '++'? '--'?)+ //^($s2 '++'? '--'?)+  //se c'è selector primary viene incluso nel sottoalbero di selector
+    						//	    	    -> ^(primary '++'? '--'?)
+    						     /* {$selector.tree != null}? ^(selector '--'?)
+    							   -> ^(primary '--'?)*/
     ;
 
+    
 primary
     :   parExpression
     |   THIS //arguments? 
@@ -343,7 +340,7 @@ arguments
     ;
     
 // LEXER
-
+    
 fragment
 IntegerNumber
     :   '0' 
@@ -550,7 +547,6 @@ SUPER
 THIS
     :   'this'
     ;
-
 
 COMPAREOP
     :	 '>'

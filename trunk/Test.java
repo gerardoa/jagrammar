@@ -1,10 +1,6 @@
-public class Test {
-	public static void main(String[] args) throws Exception {
-		//int x = ++3 = 5;
-		boolean b;
-		if (b = true)
-		{
-			System.out.println(b);
-		}
+public class Test{
+
+	public int[][] ciao() {
+		return new int[5][];
 	}
 }
