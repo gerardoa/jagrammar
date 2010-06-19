@@ -4,7 +4,7 @@ public class Test{
 
 	public void main(){
 	  int x, y;
-	  a.f().g();
+	  a.f().g(1).b.z(3);
 	}
 
 	public int ciao(int c1, int c2, int ... p) {
@@ -13,12 +13,24 @@ public class Test{
 		x++;
 		y = 2 + 3;
 		}
-		if(true)
+		if(A instanceof B)
 		
 			A++;
  		else {
 			A--;
 		}
 		for(int i = 0; i < 5; i++){A++;}
+		while( a != b ) {
+			int g = 3*9;
+			if(c == "Iliana")
+			{
+				do {
+					System.out.println("Cosa devo fare con me??");
+				} while(3 <= 4);
+			} else {
+				return a[].class;				
+			}
+			
+		}
 	}
 }

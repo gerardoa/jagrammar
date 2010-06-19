@@ -174,7 +174,7 @@ localVariableDeclaration
 
 statement
     :   block -> ^(BLOCK block)
-    |   IF parExpression statement elseStmt -> ^(IF ^(CONDITION parExpression) ^(THEN statement) elseStmt)
+    |   IF parExpression statement elseStmt -> ^(IF ^(CONDITION parExpression) ^(THEN statement) elseStmt?)
     |   FOR '(' forInit? ';' expression? ';' forUpdate? ')' statement 
     	-> ^(FOR ^(INIT forInit)? ^(CONDITION expression)? ^(UPDATE forUpdate)? statement )
     |   WHILE parExpression statement -> ^(WHILE ^(CONDITION parExpression) statement)
@@ -222,15 +222,20 @@ constantExpression
     ;
     
 expression
-    :  orExpression ( assignmentOperator^ expression)?     			 	
+    :  orExpression ( ap=assignmentOperator expression)? -> {$ap.c == '='}? ^('=' orExpression expression)
+    							 -> {$ap.c == '+'}? ^(EQ orExpression ^(PLUS  orExpression expression))
+    							 -> {$ap.c == '-'}? ^(EQ orExpression ^(MINUS orExpression expression))
+    							 -> {$ap.c == '*'}? ^(EQ orExpression ^(STAR  orExpression expression))
+    							 -> {$ap.c == '/'}? ^(EQ orExpression ^(SLASH orExpression expression))
+    							 ->  orExpression
     ;
     
-assignmentOperator
-    :   '=' //-> ^('=' {$orExp})
-    |   '+=' //-> ^('+=' {$orExp})
-    |   '-=' //-> ^('-=' {$orExp})
-    |   '*=' //-> ^('*=' {$orExp})
-    |   '/=' //-> ^('=' {$orExp})
+assignmentOperator returns [char c]
+    :   '=' {$c = '='; } //-> ^('=' {$orExp})
+    |   '+=' {$c = '+';} //-> ^('+=' {$orExp})
+    |   '-=' {$c = '-';}//-> ^('-=' {$orExp})
+    |   '*=' {$c = '*';}//-> ^('*=' {$orExp})
+    |   '/=' {$c = '/';}//-> ^('=' {$orExp})
     ;
 
 orExpression
@@ -547,6 +552,27 @@ SUPER
 THIS
     :   'this'
     ;
+    
+EQ
+    :   '='
+    ;
+
+PLUS
+    :   '+'
+    ;
+
+MINUS
+    :   '-'
+    ;
+
+STAR
+    :   '*'
+    ;
+
+SLASH
+    :   '/'
+    ;
+    
 
 COMPAREOP
     :	 '>'
