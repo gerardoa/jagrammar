@@ -15,7 +15,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.antlr.runtime.*;
 import org.antlr.runtime.tree.Tree;
-
 /**
  *
  * @author Gerardo
@@ -33,7 +32,7 @@ public class JaDriver {
 //        for (String s : args) {
 //            q.add(s);
 //        }
-        q.add("TestDebug.txt");
+        q.add("../TestDebug.txt");
 
 
 
