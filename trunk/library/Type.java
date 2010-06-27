@@ -12,7 +12,7 @@
  *      @see NullType
  *      @see VoidType
  */
-
+package jagrammar.typehierarchy;
 
 public interface Type{
 

@@ -25,7 +25,7 @@ public class Test{
 			if(c == "Iliana")
 			{
 				do {
-					System.out.println("Cosa devo fare con me??");
+					System.out.println("Hello World!");
 				} while(3 <= 4);
 			} else {
 				return a[].class;				

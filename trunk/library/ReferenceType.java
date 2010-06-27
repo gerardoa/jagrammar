@@ -7,6 +7,7 @@
  *	@see ComplexType
  *
  */
+package jagrammar.typehierarchy;
 
 import java.util.Map;
 import java.util.Set;

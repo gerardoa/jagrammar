@@ -1,3 +1,4 @@
+package jagrammar.typehierarchy;
 
 public class UnacceptableMethodException extends RuntimeException{
 

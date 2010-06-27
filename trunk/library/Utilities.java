@@ -1,4 +1,4 @@
-
+package jagrammar.typehierarchy;
 
 public class Utilities{
 

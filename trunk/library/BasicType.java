@@ -6,6 +6,7 @@
  *	@see Type
  * 
  */
+package jagrammar.typehierarchy;
 
 
 public enum BasicType implements Type{

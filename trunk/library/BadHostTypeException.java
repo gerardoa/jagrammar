@@ -7,6 +7,7 @@
  *	@version 1.0 11/06/2010
  *	
  */
+package jagrammar.typehierarchy;
 
 public class BadHostTypeException extends RuntimeException{
 	
