@@ -15,6 +15,10 @@ tokens {
 	//import java.util.Map; già importato da antlr
 }
 
+@lexer::header{
+	package jagrammar;
+}
+
 @members {
 	private Queue todo;
 	private Map classTable;
