@@ -7,6 +7,7 @@
  *	@see Type
  *
  */
+package jagrammar.typehierarchy;
 
 public class VoidType implements Type{
 

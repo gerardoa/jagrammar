@@ -1,7 +1,7 @@
 /*
 *	Generico tipo complesso del linguaggio Ja
 */
-
+package jagrammar.typehierarchy;
 
 public abstract class ComplexType implements Type{
 	

@@ -6,6 +6,7 @@
  *	@see Type
  *	@see ComplexType
  */
+package jagrammar.typehierarchy;
 
 public class ArrayType extends ComplexType {
 
