@@ -36,7 +36,7 @@ tokens {
     		return rt;
     	}
     	
-    	private ComplexType createArrayType(Type t, byte dim) {
+    	private ComplexType createArrayType(Type t, int dim) {
     		for(int i=0; i < dim; i++) {
     			t = new ArrayType(t);
     		}
@@ -154,23 +154,23 @@ nonPrimitiveType returns [ComplexType t]
 
 classType returns [ReferenceType t]
 	:	IDENTIFIER { if(cTab.containsKey($IDENTIFIER.text)) {
-	        			t = cTab.get($IDENTIFIER.text);
+	        			$t = cTab.get($IDENTIFIER.text);
         			} else {
-        				t = new ReferenceType($IDENTIFIER.text);
-        				cTab.put($IDENTIFIER.text, t);
+        				$t = new ReferenceType($IDENTIFIER.text);
+        				cTab.put($IDENTIFIER.text, $t);
         				todo.add($IDENTIFIER.text);	
         			}
         		  }
 	;
 
 primitiveType returns [BasicType bs]
-    :   CHAR {$bs=BacisType.CHAR;}
-    |   BYTE {$bs=BacisType.BYTE;}
-    |   SHORT {$bs=BacisType.SHORT;}
-    |   INT {$bs=BacisType.INT;}
-    |   LONG {$bs=BacisType.LONG;}
-    |   FLOAT {$bs=BacisType.FLOAT;}
-    |   DOUBLE {$bs=BacisType.DOUBLE;}
+    :   CHAR {$bs=BasicType.CHAR;}
+    |   BYTE {$bs=BasicType.BYTE;}
+    |   SHORT {$bs=BasicType.SHORT;}
+    |   INT {$bs=BasicType.INT;}
+    |   LONG {$bs=BasicType.LONG;}
+    |   FLOAT {$bs=BasicType.FLOAT;}
+    |   DOUBLE {$bs=BasicType.DOUBLE;}
     ;
     
 formalParameters
