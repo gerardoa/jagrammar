@@ -1,4 +1,4 @@
-// $ANTLR 3.2 Sep 23, 2009 12:02:23 C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g 2010-07-04 20:21:17
+// $ANTLR 3.2 Sep 23, 2009 12:02:23 C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g 2010-07-04 20:30:04
 
 	package jagrammar;
 	
@@ -824,7 +824,7 @@ public class JaParser extends Parser {
 
 
                             // AST REWRITE
-                            // elements: memberDeclaration, methodDeclaration
+                            // elements: methodDeclaration, memberDeclaration
                             // token labels: 
                             // rule labels: retval
                             // token list labels: 
@@ -915,7 +915,7 @@ public class JaParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: voidMethodDeclaratorRest, IDENTIFIER, VOID, modifier
+                    // elements: modifier, VOID, IDENTIFIER, voidMethodDeclaratorRest
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -976,7 +976,7 @@ public class JaParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: constructorBody, formalParameters, modifier, IDENTIFIER
+                    // elements: IDENTIFIER, constructorBody, modifier, formalParameters
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -3423,7 +3423,7 @@ public class JaParser extends Parser {
 
 
             // AST REWRITE
-            // elements: variableDeclarator, type
+            // elements: type, variableDeclarator
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -3436,10 +3436,10 @@ public class JaParser extends Parser {
             root_0 = (Object)adaptor.nil();
             // 237:59: -> ( ^( VARDECL type variableDeclarator ) )+
             {
-                if ( !(stream_variableDeclarator.hasNext()||stream_type.hasNext()) ) {
+                if ( !(stream_type.hasNext()||stream_variableDeclarator.hasNext()) ) {
                     throw new RewriteEarlyExitException();
                 }
-                while ( stream_variableDeclarator.hasNext()||stream_type.hasNext() ) {
+                while ( stream_type.hasNext()||stream_variableDeclarator.hasNext() ) {
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:237:62: ^( VARDECL type variableDeclarator )
                     {
                     Object root_1 = (Object)adaptor.nil();
@@ -3452,8 +3452,8 @@ public class JaParser extends Parser {
                     }
 
                 }
-                stream_variableDeclarator.reset();
                 stream_type.reset();
+                stream_variableDeclarator.reset();
 
             }
 
@@ -3855,7 +3855,7 @@ public class JaParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: forInit, FOR, statement, forUpdate, expression
+                    // elements: FOR, forUpdate, forInit, statement, expression
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -3946,7 +3946,7 @@ public class JaParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: statement, parExpression, WHILE
+                    // elements: parExpression, WHILE, statement
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -4010,7 +4010,7 @@ public class JaParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: parExpression, statement
+                    // elements: statement, parExpression
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -4702,7 +4702,7 @@ public class JaParser extends Parser {
 
 
             // AST REWRITE
-            // elements: expression, orExpression, orExpression, orExpression, orExpression, expression, expression, orExpression, orExpression, orExpression, orExpression, EQ, expression, expression, orExpression, orExpression
+            // elements: expression, orExpression, expression, orExpression, EQ, orExpression, expression, orExpression, orExpression, orExpression, expression, orExpression, expression, orExpression, orExpression, orExpression
             // token labels: 
             // rule labels: retval
             // token list labels: 
