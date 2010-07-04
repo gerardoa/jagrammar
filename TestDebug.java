@@ -1,4 +1,4 @@
-public class Test{
+public class TestDebug{
 	public int A = 3;
 	public int B, C;
 

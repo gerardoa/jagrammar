@@ -19,7 +19,7 @@ tokens {
 	package jagrammar;
 }
 
-@members {
+@members {        
 	private Queue<String> todo;
 	private Map<String, ReferenceType> cTab;
 	private ReferenceType rt;
@@ -90,38 +90,40 @@ classBodyDeclaration
     ;
     
 memberDeclaration
-    :   (modifier type -> modifier type)(methodDeclaration -> ^(METHOD $memberDeclaration methodDeclaration)
-    					| fieldDeclaration[(CommonTree)$memberDeclaration.tree] -> fieldDeclaration //^(FIELD $memberDeclaration fieldDeclaration)
+    :   (modifier type -> modifier type)(methodDeclaration[$modifier.pub, $type.t] -> ^(METHOD $memberDeclaration methodDeclaration)
+    					| fieldDeclaration[(CommonTree)$memberDeclaration.tree, $modifier.pub, $type.t] -> fieldDeclaration //^(FIELD $memberDeclaration fieldDeclaration)
     					)
-    |   modifier VOID IDENTIFIER voidMethodDeclaratorRest -> ^(METHOD modifier VOID IDENTIFIER voidMethodDeclaratorRest)
-    |   modifier (IDENTIFIER formalParameters) => IDENTIFIER formalParameters constructorBody 
+    |   modifier VOID IDENTIFIER voidMethodDeclaratorRest[$modifier.pub, VoidType.TYPE, $IDENTIFIER.text] -> ^(METHOD modifier VOID IDENTIFIER voidMethodDeclaratorRest)
+    |   modifier (IDENTIFIER formalParameters) => IDENTIFIER formalParameters constructorBody { rt.addConstructor($modifier.pub, $formalParameters.args); }
     	-> ^(CONSTR modifier IDENTIFIER formalParameters constructorBody)
     ;
 
-methodDeclaration
-    :   IDENTIFIER formalParameters
+methodDeclaration[boolean pub, Type t]
+    :   IDENTIFIER formalParameters { rt.addMethod($pub, $t, $IDENTIFIER.text, $formalParameters.args); }
         (   methodBody
         |   ';'
         )// -> ^(FPARM formalParameters methodBody?)
     ;
 
-fieldDeclaration[CommonTree modAndTyp]
-    :   variableDeclarator (',' variableDeclarator)* ';' -> ^(FIELD {$modAndTyp} variableDeclarator)+ 
+fieldDeclaration[CommonTree modAndTyp, boolean pub, Type t]
+    :   v1=variableDeclarator      { rt.addField($v1.varName, t, pub); } 
+        (',' v2=variableDeclarator { rt.addField($v2.varName, t, pub); })* ';' 
+        -> ^(FIELD {$modAndTyp} variableDeclarator)+ 
     ;
     
-voidMethodDeclaratorRest
-    :   formalParameters
+voidMethodDeclaratorRest[boolean pub, Type t, String methodName]
+    :   formalParameters { rt.addMethod($pub, $t, $methodName, $formalParameters.args); }
         (   methodBody
         |   ';'
         )
     ;
 
-variableDeclarator
-    :   variableDeclaratorId ('='! variableInitializer)? //-> variableDeclaratorId ^(INIT variableInitializer)?
+variableDeclarator returns [String varName]
+    :   variableDeclaratorId { $varName = $variableDeclaratorId.text; } ('='! variableInitializer)? //-> variableDeclaratorId ^(INIT variableInitializer)?
     ;
     
 variableDeclaratorId  returns [int arrayDim]
-    :   IDENTIFIER (l+='[' ']')* {$arrayDim = $l.size();} 
+    :   IDENTIFIER (l+='[' ']')* {if($l != null) $arrayDim = $l.size();} 
     ;
 
 variableInitializer
@@ -133,9 +135,9 @@ arrayInitializer
     :   '{' (variableInitializer (',' variableInitializer)* (',')? )? '}'
     ;
 
-modifier
-    :   PUBLIC
-    |   PRIVATE
+modifier returns [boolean pub]
+    :   PUBLIC  { $pub = true;  }
+    |   PRIVATE { $pub = false; }
     ;
 
 typeName
@@ -148,8 +150,8 @@ type returns [Type t]
 	;
 	
 nonPrimitiveType returns [ComplexType t]
-	:	classType (l+='[' ']')* {$t = createArrayType($classType.t, $l.size());}
-	|	primitiveType (l+='[' ']')+ {$t = createArrayType($primitiveType.bs, $l.size());}
+	:	classType (l+='[' ']')* {if($l != null) $t = createArrayType($classType.t, $l.size());}
+	|	primitiveType (l+='[' ']')+ {if($l != null) $t = createArrayType($primitiveType.bs, $l.size());}
 	;
 
 classType returns [ReferenceType t]
@@ -173,21 +175,21 @@ primitiveType returns [BasicType bs]
     |   DOUBLE {$bs=BasicType.DOUBLE;}
     ;
     
-formalParameters
+formalParameters returns [ArrayList<Type> args]
 @init {
 	ArrayList<Type> args = new ArrayList<Type>();
 }
-    :   '(' formalParameterDecls/*[$args]*/? ')' -> {$formalParameterDecls.tree != null}? ^(FPARMS formalParameterDecls?)
+    :   '(' formalParameterDecls[args]? ')' {$args = args;} -> {$formalParameterDecls.tree != null}? ^(FPARMS formalParameterDecls?)
     				      ->
     ;
     
-formalParameterDecls//[ArrayList<Type> args]
-    :  type variableDeclaratorId (',' formalParameterDecls)? /*{if($variableDeclaratorId.arrayDim > 0) {
-    								 $args.add(createArrayType($type.t, $variableDeclaratorId.arrayDim);
+formalParameterDecls[ArrayList<Type> args]
+    :  type variableDeclaratorId (',' formalParameterDecls[args])? {if($variableDeclaratorId.arrayDim > 0) {
+    								 $args.add(createArrayType($type.t, $variableDeclaratorId.arrayDim));
     								} else {
     								 $args.add($type.t);
     								}
-    							     }*/
+    							     }
     
      -> ^(FPARM type variableDeclaratorId) formalParameterDecls?
     |  type '...' variableDeclaratorId -> ^(FMULTPARM type variableDeclaratorId)
@@ -344,7 +346,7 @@ unaryExpressionNotPlusMinus
     // possibile ottimizzazione su unaryExpressionNotPlusMinus
     |   ('(' nonPrimitiveType  ')' unaryExpressionNotPlusMinus) => '(' nonPrimitiveType  ')' unaryExpressionNotPlusMinus
     |   NEW creator
-    |   primary  selector^* ('++' | '--')? //-> {$s1.tree != null}? ^(selector '++'? '--'?)+ //^($s2 '++'? '--'?)+  //se c'è selector primary viene incluso nel sottoalbero di selector
+    |   primary  selector^* ('++' | '--')? //-> {$s1.tree != null}? ^(selector '++'? '--'?)+ //^($s2 '++'? '--'?)+  //se ce selector primary viene incluso nel sottoalbero di selector
     						//	    	    -> ^(primary '++'? '--'?)
     						     /* {$selector.tree != null}? ^(selector '--'?)
     							   -> ^(primary '--'?)*/
@@ -667,7 +669,6 @@ Letter
    
 fragment 
 Currency
-    : 	 '$'
-    	| '£'    	
+    : 	 '$'    	
     ;
     
