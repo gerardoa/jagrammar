@@ -12,7 +12,7 @@ tokens {
 	
 	import jagrammar.typehierarchy.*;
 	import java.util.Queue;
-	//import java.util.Map; già importato da antlr
+	//import java.util.Map; importato da antlr
 }
 
 @lexer::header{
@@ -20,20 +20,28 @@ tokens {
 }
 
 @members {
-	private Queue todo;
-	private Map classTable;
+	private Queue<String> todo;
+	private Map<String, ReferenceType> cTab;
 	private ReferenceType rt;
 	
-	public void setQueue(Queue q){
+	public void setQueue(Queue<String> q){
         	todo = q;
     	}
     	
-    	public void setClassTable(Map m){
-        	classTable = m;
+    	public void setClassTable(Map<String, ReferenceType> m){
+        	cTab = m;
     	}
     	
-    	public void setReferenceType(ReferenceType refType) {
-    		rt = refType;
+    	public ReferenceType getReferenceType() {
+    		return rt;
+    	}
+    	
+    	private ComplexType createArrayType(Type t, byte dim) {
+    		for(int i=0; i < dim; i++) {
+    			t = new ArrayType(t);
+    		}
+    		// siamo sicuri che per BasicType dim  > 0 dunque entra nel for
+    		return (ComplexType)t;
     	}
 }
 
@@ -44,8 +52,22 @@ compilationUnit
     ;
     
 classDeclaration
-    :   classModifier! CLASS^ IDENTIFIER
-        (EXTENDS! type)?
+    :   classModifier! CLASS^ IDENTIFIER { if(cTab.containsKey($IDENTIFIER.text)) {
+    						 rt = cTab.get($IDENTIFIER.text);
+    					   } else {
+    					   	rt = new ReferenceType($IDENTIFIER.text);
+    					   	cTab.put($IDENTIFIER.text, rt);
+    					   }
+    					 }
+	        (EXTENDS! type {if(cTab.containsKey($type.text)) {
+	        			rt.addSuperType(cTab.get($type.text));
+        			} else {
+        				ReferenceType superRt = new ReferenceType($type.text);
+        				rt.addSuperType(superRt);
+        				cTab.put($type.text, superRt);
+        				todo.add($type.text);	
+        			}
+        		})?
         classBody
     ;
 
@@ -77,20 +99,15 @@ memberDeclaration
     ;
 
 methodDeclaration
-    :   IDENTIFIER methodDeclaratorRest
-    ;
-
-fieldDeclaration[CommonTree modAndTyp]
-    :   variableDeclarator (',' variableDeclarator)* ';' -> ^(FIELD {$modAndTyp} variableDeclarator)+ 
-    ;
-    
-methodDeclaratorRest
-    :   formalParameters
+    :   IDENTIFIER formalParameters
         (   methodBody
         |   ';'
         )// -> ^(FPARM formalParameters methodBody?)
     ;
 
+fieldDeclaration[CommonTree modAndTyp]
+    :   variableDeclarator (',' variableDeclarator)* ';' -> ^(FIELD {$modAndTyp} variableDeclarator)+ 
+    ;
     
 voidMethodDeclaratorRest
     :   formalParameters
@@ -103,8 +120,8 @@ variableDeclarator
     :   variableDeclaratorId ('='! variableInitializer)? //-> variableDeclaratorId ^(INIT variableInitializer)?
     ;
     
-variableDeclaratorId
-    :   IDENTIFIER ('[' ']')*
+variableDeclaratorId  returns [int arrayDim]
+    :   IDENTIFIER (l+='[' ']')* {$arrayDim = $l.size();} 
     ;
 
 variableInitializer
@@ -125,37 +142,54 @@ typeName
     :   IDENTIFIER
     ;
 
-type
-	:	nonPrimitiveType
-	|	primitiveType
+type returns [Type t]
+	:	nonPrimitiveType {$t=$nonPrimitiveType.t;}
+	|	primitiveType {$t=$primitiveType.bs;}
 	;
 	
-nonPrimitiveType
-	:	classType ('[' ']')*
-	|	primitiveType ('[' ']')+
+nonPrimitiveType returns [ComplexType t]
+	:	classType (l+='[' ']')* {$t = createArrayType($classType.t, $l.size());}
+	|	primitiveType (l+='[' ']')+ {$t = createArrayType($primitiveType.bs, $l.size());}
 	;
 
-classType
-	:	IDENTIFIER
+classType returns [ReferenceType t]
+	:	IDENTIFIER { if(cTab.containsKey($IDENTIFIER.text)) {
+	        			t = cTab.get($IDENTIFIER.text);
+        			} else {
+        				t = new ReferenceType($IDENTIFIER.text);
+        				cTab.put($IDENTIFIER.text, t);
+        				todo.add($IDENTIFIER.text);	
+        			}
+        		  }
 	;
 
-primitiveType
-    :   CHAR
-    |   BYTE
-    |   SHORT
-    |   INT
-    |   LONG
-    |   FLOAT
-    |   DOUBLE
+primitiveType returns [BasicType bs]
+    :   CHAR {$bs=BacisType.CHAR;}
+    |   BYTE {$bs=BacisType.BYTE;}
+    |   SHORT {$bs=BacisType.SHORT;}
+    |   INT {$bs=BacisType.INT;}
+    |   LONG {$bs=BacisType.LONG;}
+    |   FLOAT {$bs=BacisType.FLOAT;}
+    |   DOUBLE {$bs=BacisType.DOUBLE;}
     ;
     
 formalParameters
-    :   '(' formalParameterDecls? ')' -> {$formalParameterDecls.tree != null}? ^(FPARMS formalParameterDecls?)
+@init {
+	ArrayList<Type> args = new ArrayList<Type>();
+}
+    :   '(' formalParameterDecls/*[$args]*/? ')' -> {$formalParameterDecls.tree != null}? ^(FPARMS formalParameterDecls?)
     				      ->
     ;
     
-formalParameterDecls
-    :  type variableDeclaratorId (',' formalParameterDecls)? -> ^(FPARM type variableDeclaratorId) formalParameterDecls?
+formalParameterDecls//[ArrayList<Type> args]
+    :  type variableDeclaratorId (',' formalParameterDecls)? /*{if($variableDeclaratorId.arrayDim > 0) {
+    								 $args.add(createArrayType($type.t, $variableDeclaratorId.arrayDim);
+    								} else {
+    								 $args.add($type.t);
+    								}
+    							     }*/
+    
+     -> ^(FPARM type variableDeclaratorId) formalParameterDecls?
     |  type '...' variableDeclaratorId -> ^(FMULTPARM type variableDeclaratorId)
     ;
     

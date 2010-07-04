@@ -30,8 +30,7 @@ public class ReferenceType extends ComplexType {
         constructors = new LinkedList<Constructor>();
     }
 
-    public ReferenceType(String n, ReferenceType sClass) {
-        this(n);
+    public void addSuperType(ReferenceType sClass) {
         superClass = sClass;
     }
 
@@ -71,7 +70,7 @@ public class ReferenceType extends ComplexType {
 
         /*
          *  Costruttore di metodi.
-         *  Si usa un ArrayList pe ri parametri perché c'è la necessità dell'accesso posizionale
+         *  Si usa un ArrayList per i parametri perché c'è la necessità dell'accesso posizionale
          * 
          *  @param v visibilità del metodo. TRUE se è pubblico, FALSE se è privato
          *  @param n nome del metodo

@@ -5,16 +5,17 @@
 package jagrammar;
 
 import jagrammar.typehierarchy.ReferenceType;
+import jagrammar.util.LinkedSetList;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.Map;
 import java.util.Queue;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.antlr.runtime.*;
 import org.antlr.runtime.tree.Tree;
+
 /**
  *
  * @author Gerardo
@@ -28,11 +29,11 @@ public class JaDriver {
         JaParser.compilationUnit_return cuTree = null;
         System.out.println("Start...");
         Map<String, ReferenceType> myclasses = new HashMap<String, ReferenceType>();
-        Queue<String> q = new LinkedList<String>();
+        Queue<String> q = new LinkedSetList();
 //        for (String s : args) {
 //            q.add(s);
 //        }
-        q.add("../TestDebug.txt");
+        q.add("TestDebug");
 
 
 
@@ -43,7 +44,7 @@ public class JaDriver {
             ANTLRInputStream input = null;
             try {
 
-                input = new ANTLRInputStream(new FileInputStream(pathname));
+                input = new ANTLRInputStream(new FileInputStream(pathname+".java"));
             } catch (IOException ex) {
                 Logger.getLogger(JaDriver.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -58,17 +59,17 @@ public class JaDriver {
             JaParser parser = new JaParser(tokens);
             parser.setQueue(q);
             parser.setClassTable(myclasses);
-            String className = pathname.substring(0, pathname.lastIndexOf('.'));
-            ReferenceType rt = new ReferenceType(className);
-            parser.setReferenceType(rt);
+            /*String className = pathname.substring(0, pathname.lastIndexOf('.'));
+            ReferenceType rt = new ReferenceType(className);*/
+            //parser.setReferenceType(rt);
             try {
                 // begin parsing at rule r
                 cuTree = parser.compilationUnit();
-                myclasses.put(className, rt);
+                //gia aggiunto nel parser myclasses.put(className, rt);
             } catch (RecognitionException ex) {
                 Logger.getLogger(JaDriver.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        System.out.println(((Tree)cuTree.getTree()).toStringTree());
+        System.out.println(((Tree) cuTree.getTree()).toStringTree());
     }
 }
