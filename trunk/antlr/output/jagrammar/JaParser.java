@@ -1,4 +1,4 @@
-// $ANTLR 3.2 Sep 23, 2009 12:02:23 C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g 2010-07-04 15:54:55
+// $ANTLR 3.2 Sep 23, 2009 12:02:23 C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g 2010-07-04 17:41:30
 
 	package jagrammar;
 	
@@ -13,12 +13,10 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
-import org.antlr.runtime.debug.*;
-import java.io.IOException;
 
 import org.antlr.runtime.tree.*;
 
-public class JaParser extends DebugParser {
+public class JaParser extends Parser {
     public static final String[] tokenNames = new String[] {
         "<invalid>", "<EOR>", "<DOWN>", "<UP>", "METHODCALL", "FIELDACCESS", "ARRAYACCESS", "DOTCLASS", "ARRAYTYPE", "METHOD", "FIELD", "CONSTR", "FPARMS", "FPARM", "FMULTPARM", "MBODY", "VARDECL", "BLOCK", "STMT", "INIT", "CONDITION", "UPDATE", "DOWHILE", "THEN", "CLASS", "IDENTIFIER", "EXTENDS", "PUBLIC", "VOID", "PRIVATE", "CHAR", "BYTE", "SHORT", "INT", "LONG", "FLOAT", "DOUBLE", "THIS", "SUPER", "INTLITERAL", "FloatingPointLiteral", "CHARLITERAL", "STRINGLITERAL", "BOOLEANLITERAL", "NULLLITERAL", "IF", "FOR", "WHILE", "DO", "RETURN", "ELSE", "INSTANCEOF", "COMPAREOP", "NEW", "Digit", "IntegerNumber", "LongSuffix", "LONGLITERAL", "Exponent", "FloatSuffix", "DoubleSuffix", "FLOATLITERAL", "DOUBLELITERAL", "EscapeSequence", "BOOLEAN", "WS", "COMMENT", "LINE_COMMENT", "EQ", "PLUS", "MINUS", "STAR", "SLASH", "Letter", "Currency", "';'", "'{'", "'}'", "','", "'['", "']'", "'('", "')'", "'...'", "'+='", "'-='", "'*='", "'/='", "'||'", "'&&'", "'=='", "'!='", "'%'", "'++'", "'--'", "'!'", "'.'"
     };
@@ -120,70 +118,23 @@ public class JaParser extends DebugParser {
     // delegates
     // delegators
 
-    public static final String[] ruleNames = new String[] {
-        "invalidRule", "arrayCreatorRest", "modifier", "instanceOfExpression", 
-        "constructorBody", "synpred1_Ja", "classModifier", "parExpression", 
-        "statementExpression", "methodDeclaration", "variableInitializer", 
-        "classCreatorRest", "formalParameters", "typeName", "assignmentOperator", 
-        "forUpdate", "expressionList", "constantExpression", "classDeclaration", 
-        "classBody", "variableDeclarator", "localVariableDeclarationStatement", 
-        "block", "type", "explicitConstructorInvocation", "fieldDeclaration", 
-        "createdName", "forInit", "expression", "primitiveType", "identifierSuffix", 
-        "compilationUnit", "relationalExpression", "selector", "orExpression", 
-        "arrayInitializer", "synpred3_Ja", "memberDeclaration", "creator", 
-        "primary", "equalityExpression", "voidMethodDeclaratorRest", "statement", 
-        "formalParameterDecls", "literal", "nonPrimitiveType", "unaryExpressionNotPlusMinus", 
-        "classBodyDeclaration", "blockStatement", "andExpression", "superMemberAccess", 
-        "elseStmt", "unaryExpression", "variableDeclaratorId", "localVariableDeclaration", 
-        "classType", "additiveExpression", "arguments", "synpred2_Ja", "methodBody", 
-        "multiplicativeExpression", "synpred4_Ja"
-    };
-     
-        public int ruleLevel = 0;
-        public int getRuleLevel() { return ruleLevel; }
-        public void incRuleLevel() { ruleLevel++; }
-        public void decRuleLevel() { ruleLevel--; }
+
         public JaParser(TokenStream input) {
-            this(input, DebugEventSocketProxy.DEFAULT_DEBUGGER_PORT, new RecognizerSharedState());
+            this(input, new RecognizerSharedState());
         }
-        public JaParser(TokenStream input, int port, RecognizerSharedState state) {
+        public JaParser(TokenStream input, RecognizerSharedState state) {
             super(input, state);
-            DebugEventSocketProxy proxy =
-                new DebugEventSocketProxy(this,port,adaptor);
-            setDebugListener(proxy);
-            setTokenStream(new DebugTokenStream(input,proxy));
-            try {
-                proxy.handshake();
-            }
-            catch (IOException ioe) {
-                reportError(ioe);
-            }
-            TreeAdaptor adap = new CommonTreeAdaptor();
-            setTreeAdaptor(adap);
-            proxy.setTreeAdaptor(adap);
+             
         }
-    public JaParser(TokenStream input, DebugEventListener dbg) {
-        super(input, dbg);
+        
+    protected TreeAdaptor adaptor = new CommonTreeAdaptor();
 
-         
-        TreeAdaptor adap = new CommonTreeAdaptor();
-        setTreeAdaptor(adap);
-
-    }
-    protected boolean evalPredicate(boolean result, String predicate) {
-        dbg.semanticPredicate(result, predicate);
-        return result;
-    }
-
-    protected DebugTreeAdaptor adaptor;
     public void setTreeAdaptor(TreeAdaptor adaptor) {
-        this.adaptor = new DebugTreeAdaptor(dbg,adaptor);
-
+        this.adaptor = adaptor;
     }
     public TreeAdaptor getTreeAdaptor() {
         return adaptor;
     }
-
 
     public String[] getTokenNames() { return JaParser.tokenNames; }
     public String getGrammarFileName() { return "C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g"; }
@@ -205,7 +156,7 @@ public class JaParser extends DebugParser {
         		return rt;
         	}
         	
-        	private ComplexType createArrayType(Type t, byte dim) {
+        	private ComplexType createArrayType(Type t, int dim) {
         		for(int i=0; i < dim; i++) {
         			t = new ArrayType(t);
         		}
@@ -233,16 +184,9 @@ public class JaParser extends DebugParser {
 
         Object char_literal2_tree=null;
 
-        try { dbg.enterRule(getGrammarFileName(), "compilationUnit");
-        if ( getRuleLevel()==0 ) {dbg.commence();}
-        incRuleLevel();
-        dbg.location(49, 1);
-
         try {
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:50:5: ( classDeclaration | ';' )
             int alt1=2;
-            try { dbg.enterDecision(1);
-
             int LA1_0 = input.LA(1);
 
             if ( (LA1_0==PUBLIC) ) {
@@ -256,20 +200,14 @@ public class JaParser extends DebugParser {
                 NoViableAltException nvae =
                     new NoViableAltException("", 1, 0, input);
 
-                dbg.recognitionException(nvae);
                 throw nvae;
             }
-            } finally {dbg.exitDecision(1);}
-
             switch (alt1) {
                 case 1 :
-                    dbg.enterAlt(1);
-
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:50:8: classDeclaration
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    dbg.location(50,24);
                     pushFollow(FOLLOW_classDeclaration_in_compilationUnit119);
                     classDeclaration1=classDeclaration();
 
@@ -280,13 +218,10 @@ public class JaParser extends DebugParser {
                     }
                     break;
                 case 2 :
-                    dbg.enterAlt(2);
-
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:51:7: ';'
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    dbg.location(51,7);
                     char_literal2=(Token)match(input,75,FOLLOW_75_in_compilationUnit129); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     char_literal2_tree = (Object)adaptor.create(char_literal2);
@@ -313,15 +248,6 @@ public class JaParser extends DebugParser {
         }
         finally {
         }
-        dbg.location(52, 5);
-
-        }
-        finally {
-            dbg.exitRule(getGrammarFileName(), "compilationUnit");
-            decRuleLevel();
-            if ( getRuleLevel()==0 ) {dbg.terminate();}
-        }
-
         return retval;
     }
     // $ANTLR end "compilationUnit"
@@ -353,38 +279,27 @@ public class JaParser extends DebugParser {
         Object IDENTIFIER5_tree=null;
         Object EXTENDS6_tree=null;
 
-        try { dbg.enterRule(getGrammarFileName(), "classDeclaration");
-        if ( getRuleLevel()==0 ) {dbg.commence();}
-        incRuleLevel();
-        dbg.location(54, 1);
-
         try {
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:55:5: ( classModifier CLASS IDENTIFIER ( EXTENDS type )? classBody )
-            dbg.enterAlt(1);
-
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:55:9: classModifier CLASS IDENTIFIER ( EXTENDS type )? classBody
             {
             root_0 = (Object)adaptor.nil();
 
-            dbg.location(55,22);
             pushFollow(FOLLOW_classModifier_in_classDeclaration152);
             classModifier3=classModifier();
 
             state._fsp--;
             if (state.failed) return retval;
-            dbg.location(55,29);
             CLASS4=(Token)match(input,CLASS,FOLLOW_CLASS_in_classDeclaration155); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             CLASS4_tree = (Object)adaptor.create(CLASS4);
             root_0 = (Object)adaptor.becomeRoot(CLASS4_tree, root_0);
             }
-            dbg.location(55,31);
             IDENTIFIER5=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_classDeclaration158); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             IDENTIFIER5_tree = (Object)adaptor.create(IDENTIFIER5);
             adaptor.addChild(root_0, IDENTIFIER5_tree);
             }
-            dbg.location(55,42);
             if ( state.backtracking==0 ) {
                if(cTab.containsKey((IDENTIFIER5!=null?IDENTIFIER5.getText():null))) {
                   						 rt = cTab.get((IDENTIFIER5!=null?IDENTIFIER5.getText():null));
@@ -394,35 +309,24 @@ public class JaParser extends DebugParser {
                   					   }
                   					 
             }
-            dbg.location(62,10);
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:62:10: ( EXTENDS type )?
             int alt2=2;
-            try { dbg.enterSubRule(2);
-            try { dbg.enterDecision(2);
-
             int LA2_0 = input.LA(1);
 
             if ( (LA2_0==EXTENDS) ) {
                 alt2=1;
             }
-            } finally {dbg.exitDecision(2);}
-
             switch (alt2) {
                 case 1 :
-                    dbg.enterAlt(1);
-
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:62:11: EXTENDS type
                     {
-                    dbg.location(62,18);
                     EXTENDS6=(Token)match(input,EXTENDS,FOLLOW_EXTENDS_in_classDeclaration172); if (state.failed) return retval;
-                    dbg.location(62,20);
                     pushFollow(FOLLOW_type_in_classDeclaration175);
                     type7=type();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) adaptor.addChild(root_0, type7.getTree());
-                    dbg.location(62,25);
                     if ( state.backtracking==0 ) {
                       if(cTab.containsKey((type7!=null?input.toString(type7.start,type7.stop):null))) {
                       	        			rt.addSuperType(cTab.get((type7!=null?input.toString(type7.start,type7.stop):null)));
@@ -439,9 +343,7 @@ public class JaParser extends DebugParser {
                     break;
 
             }
-            } finally {dbg.exitSubRule(2);}
 
-            dbg.location(71,9);
             pushFollow(FOLLOW_classBody_in_classDeclaration189);
             classBody8=classBody();
 
@@ -467,15 +369,6 @@ public class JaParser extends DebugParser {
         }
         finally {
         }
-        dbg.location(72, 5);
-
-        }
-        finally {
-            dbg.exitRule(getGrammarFileName(), "classDeclaration");
-            decRuleLevel();
-            if ( getRuleLevel()==0 ) {dbg.terminate();}
-        }
-
         return retval;
     }
     // $ANTLR end "classDeclaration"
@@ -497,20 +390,12 @@ public class JaParser extends DebugParser {
 
         Object PUBLIC9_tree=null;
 
-        try { dbg.enterRule(getGrammarFileName(), "classModifier");
-        if ( getRuleLevel()==0 ) {dbg.commence();}
-        incRuleLevel();
-        dbg.location(74, 1);
-
         try {
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:75:5: ( PUBLIC )
-            dbg.enterAlt(1);
-
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:76:9: PUBLIC
             {
             root_0 = (Object)adaptor.nil();
 
-            dbg.location(76,9);
             PUBLIC9=(Token)match(input,PUBLIC,FOLLOW_PUBLIC_in_classModifier216); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             PUBLIC9_tree = (Object)adaptor.create(PUBLIC9);
@@ -535,15 +420,6 @@ public class JaParser extends DebugParser {
         }
         finally {
         }
-        dbg.location(77, 5);
-
-        }
-        finally {
-            dbg.exitRule(getGrammarFileName(), "classModifier");
-            decRuleLevel();
-            if ( getRuleLevel()==0 ) {dbg.terminate();}
-        }
-
         return retval;
     }
     // $ANTLR end "classModifier"
@@ -569,30 +445,17 @@ public class JaParser extends DebugParser {
         Object char_literal10_tree=null;
         Object char_literal12_tree=null;
 
-        try { dbg.enterRule(getGrammarFileName(), "classBody");
-        if ( getRuleLevel()==0 ) {dbg.commence();}
-        incRuleLevel();
-        dbg.location(83, 1);
-
         try {
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:84:5: ( '{' ( classBodyDeclaration )* '}' )
-            dbg.enterAlt(1);
-
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:84:9: '{' ( classBodyDeclaration )* '}'
             {
             root_0 = (Object)adaptor.nil();
 
-            dbg.location(84,12);
             char_literal10=(Token)match(input,76,FOLLOW_76_in_classBody245); if (state.failed) return retval;
-            dbg.location(84,14);
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:84:14: ( classBodyDeclaration )*
-            try { dbg.enterSubRule(3);
-
             loop3:
             do {
                 int alt3=2;
-                try { dbg.enterDecision(3);
-
                 int LA3_0 = input.LA(1);
 
                 if ( (LA3_0==PUBLIC||LA3_0==PRIVATE||LA3_0==75) ) {
@@ -600,15 +463,10 @@ public class JaParser extends DebugParser {
                 }
 
 
-                } finally {dbg.exitDecision(3);}
-
                 switch (alt3) {
             	case 1 :
-            	    dbg.enterAlt(1);
-
             	    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:84:14: classBodyDeclaration
             	    {
-            	    dbg.location(84,14);
             	    pushFollow(FOLLOW_classBodyDeclaration_in_classBody248);
             	    classBodyDeclaration11=classBodyDeclaration();
 
@@ -623,9 +481,7 @@ public class JaParser extends DebugParser {
             	    break loop3;
                 }
             } while (true);
-            } finally {dbg.exitSubRule(3);}
 
-            dbg.location(84,39);
             char_literal12=(Token)match(input,77,FOLLOW_77_in_classBody251); if (state.failed) return retval;
 
             }
@@ -646,15 +502,6 @@ public class JaParser extends DebugParser {
         }
         finally {
         }
-        dbg.location(85, 5);
-
-        }
-        finally {
-            dbg.exitRule(getGrammarFileName(), "classBody");
-            decRuleLevel();
-            if ( getRuleLevel()==0 ) {dbg.terminate();}
-        }
-
         return retval;
     }
     // $ANTLR end "classBody"
@@ -678,16 +525,9 @@ public class JaParser extends DebugParser {
 
         Object char_literal13_tree=null;
 
-        try { dbg.enterRule(getGrammarFileName(), "classBodyDeclaration");
-        if ( getRuleLevel()==0 ) {dbg.commence();}
-        incRuleLevel();
-        dbg.location(87, 1);
-
         try {
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:88:5: ( ';' | memberDeclaration )
             int alt4=2;
-            try { dbg.enterDecision(4);
-
             int LA4_0 = input.LA(1);
 
             if ( (LA4_0==75) ) {
@@ -701,32 +541,23 @@ public class JaParser extends DebugParser {
                 NoViableAltException nvae =
                     new NoViableAltException("", 4, 0, input);
 
-                dbg.recognitionException(nvae);
                 throw nvae;
             }
-            } finally {dbg.exitDecision(4);}
-
             switch (alt4) {
                 case 1 :
-                    dbg.enterAlt(1);
-
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:88:9: ';'
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    dbg.location(88,12);
                     char_literal13=(Token)match(input,75,FOLLOW_75_in_classBodyDeclaration271); if (state.failed) return retval;
 
                     }
                     break;
                 case 2 :
-                    dbg.enterAlt(2);
-
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:89:9: memberDeclaration
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    dbg.location(89,9);
                     pushFollow(FOLLOW_memberDeclaration_in_classBodyDeclaration282);
                     memberDeclaration14=memberDeclaration();
 
@@ -754,15 +585,6 @@ public class JaParser extends DebugParser {
         }
         finally {
         }
-        dbg.location(90, 5);
-
-        }
-        finally {
-            dbg.exitRule(getGrammarFileName(), "classBodyDeclaration");
-            decRuleLevel();
-            if ( getRuleLevel()==0 ) {dbg.terminate();}
-        }
-
         return retval;
     }
     // $ANTLR end "classBodyDeclaration"
@@ -814,16 +636,9 @@ public class JaParser extends DebugParser {
         RewriteRuleSubtreeStream stream_voidMethodDeclaratorRest=new RewriteRuleSubtreeStream(adaptor,"rule voidMethodDeclaratorRest");
         RewriteRuleSubtreeStream stream_type=new RewriteRuleSubtreeStream(adaptor,"rule type");
         RewriteRuleSubtreeStream stream_methodDeclaration=new RewriteRuleSubtreeStream(adaptor,"rule methodDeclaration");
-        try { dbg.enterRule(getGrammarFileName(), "memberDeclaration");
-        if ( getRuleLevel()==0 ) {dbg.commence();}
-        incRuleLevel();
-        dbg.location(92, 1);
-
         try {
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:93:5: ( ( modifier type -> modifier type ) ( methodDeclaration -> ^( METHOD $memberDeclaration methodDeclaration ) | fieldDeclaration[(CommonTree)$memberDeclaration.tree] -> fieldDeclaration ) | modifier VOID IDENTIFIER voidMethodDeclaratorRest -> ^( METHOD modifier VOID IDENTIFIER voidMethodDeclaratorRest ) | modifier ( IDENTIFIER formalParameters )=> IDENTIFIER formalParameters constructorBody -> ^( CONSTR modifier IDENTIFIER formalParameters constructorBody ) )
             int alt6=3;
-            try { dbg.enterDecision(6);
-
             int LA6_0 = input.LA(1);
 
             if ( (LA6_0==PUBLIC||LA6_0==PRIVATE) ) {
@@ -843,7 +658,6 @@ public class JaParser extends DebugParser {
                         NoViableAltException nvae =
                             new NoViableAltException("", 6, 2, input);
 
-                        dbg.recognitionException(nvae);
                         throw nvae;
                     }
                     }
@@ -869,7 +683,6 @@ public class JaParser extends DebugParser {
                     NoViableAltException nvae =
                         new NoViableAltException("", 6, 1, input);
 
-                    dbg.recognitionException(nvae);
                     throw nvae;
                 }
 
@@ -879,31 +692,21 @@ public class JaParser extends DebugParser {
                 NoViableAltException nvae =
                     new NoViableAltException("", 6, 0, input);
 
-                dbg.recognitionException(nvae);
                 throw nvae;
             }
-            } finally {dbg.exitDecision(6);}
-
             switch (alt6) {
                 case 1 :
-                    dbg.enterAlt(1);
-
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:93:9: ( modifier type -> modifier type ) ( methodDeclaration -> ^( METHOD $memberDeclaration methodDeclaration ) | fieldDeclaration[(CommonTree)$memberDeclaration.tree] -> fieldDeclaration )
                     {
-                    dbg.location(93,9);
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:93:9: ( modifier type -> modifier type )
-                    dbg.enterAlt(1);
-
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:93:10: modifier type
                     {
-                    dbg.location(93,10);
                     pushFollow(FOLLOW_modifier_in_memberDeclaration306);
                     modifier15=modifier();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) stream_modifier.add(modifier15.getTree());
-                    dbg.location(93,19);
                     pushFollow(FOLLOW_type_in_memberDeclaration308);
                     type16=type();
 
@@ -926,9 +729,7 @@ public class JaParser extends DebugParser {
                     root_0 = (Object)adaptor.nil();
                     // 93:24: -> modifier type
                     {
-                        dbg.location(93,27);
                         adaptor.addChild(root_0, stream_modifier.nextTree());
-                        dbg.location(93,36);
                         adaptor.addChild(root_0, stream_type.nextTree());
 
                     }
@@ -936,12 +737,8 @@ public class JaParser extends DebugParser {
                     retval.tree = root_0;}
                     }
 
-                    dbg.location(93,41);
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:93:41: ( methodDeclaration -> ^( METHOD $memberDeclaration methodDeclaration ) | fieldDeclaration[(CommonTree)$memberDeclaration.tree] -> fieldDeclaration )
                     int alt5=2;
-                    try { dbg.enterSubRule(5);
-                    try { dbg.enterDecision(5);
-
                     int LA5_0 = input.LA(1);
 
                     if ( (LA5_0==IDENTIFIER) ) {
@@ -958,7 +755,6 @@ public class JaParser extends DebugParser {
                             NoViableAltException nvae =
                                 new NoViableAltException("", 5, 1, input);
 
-                            dbg.recognitionException(nvae);
                             throw nvae;
                         }
                     }
@@ -967,18 +763,12 @@ public class JaParser extends DebugParser {
                         NoViableAltException nvae =
                             new NoViableAltException("", 5, 0, input);
 
-                        dbg.recognitionException(nvae);
                         throw nvae;
                     }
-                    } finally {dbg.exitDecision(5);}
-
                     switch (alt5) {
                         case 1 :
-                            dbg.enterAlt(1);
-
                             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:93:42: methodDeclaration
                             {
-                            dbg.location(93,42);
                             pushFollow(FOLLOW_methodDeclaration_in_memberDeclaration317);
                             methodDeclaration17=methodDeclaration();
 
@@ -1001,16 +791,12 @@ public class JaParser extends DebugParser {
                             root_0 = (Object)adaptor.nil();
                             // 93:60: -> ^( METHOD $memberDeclaration methodDeclaration )
                             {
-                                dbg.location(93,63);
                                 // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:93:63: ^( METHOD $memberDeclaration methodDeclaration )
                                 {
                                 Object root_1 = (Object)adaptor.nil();
-                                dbg.location(93,65);
                                 root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(METHOD, "METHOD"), root_1);
 
-                                dbg.location(93,72);
                                 adaptor.addChild(root_1, stream_retval.nextTree());
-                                dbg.location(93,91);
                                 adaptor.addChild(root_1, stream_methodDeclaration.nextTree());
 
                                 adaptor.addChild(root_0, root_1);
@@ -1022,11 +808,8 @@ public class JaParser extends DebugParser {
                             }
                             break;
                         case 2 :
-                            dbg.enterAlt(2);
-
                             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:94:12: fieldDeclaration[(CommonTree)$memberDeclaration.tree]
                             {
-                            dbg.location(94,12);
                             pushFollow(FOLLOW_fieldDeclaration_in_memberDeclaration341);
                             fieldDeclaration18=fieldDeclaration((CommonTree)((Object)retval.tree));
 
@@ -1049,7 +832,6 @@ public class JaParser extends DebugParser {
                             root_0 = (Object)adaptor.nil();
                             // 94:66: -> fieldDeclaration
                             {
-                                dbg.location(94,69);
                                 adaptor.addChild(root_0, stream_fieldDeclaration.nextTree());
 
                             }
@@ -1059,32 +841,25 @@ public class JaParser extends DebugParser {
                             break;
 
                     }
-                    } finally {dbg.exitSubRule(5);}
 
 
                     }
                     break;
                 case 2 :
-                    dbg.enterAlt(2);
-
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:96:9: modifier VOID IDENTIFIER voidMethodDeclaratorRest
                     {
-                    dbg.location(96,9);
                     pushFollow(FOLLOW_modifier_in_memberDeclaration368);
                     modifier19=modifier();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) stream_modifier.add(modifier19.getTree());
-                    dbg.location(96,18);
                     VOID20=(Token)match(input,VOID,FOLLOW_VOID_in_memberDeclaration370); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_VOID.add(VOID20);
 
-                    dbg.location(96,23);
                     IDENTIFIER21=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_memberDeclaration372); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_IDENTIFIER.add(IDENTIFIER21);
 
-                    dbg.location(96,34);
                     pushFollow(FOLLOW_voidMethodDeclaratorRest_in_memberDeclaration374);
                     voidMethodDeclaratorRest22=voidMethodDeclaratorRest();
 
@@ -1094,7 +869,7 @@ public class JaParser extends DebugParser {
 
 
                     // AST REWRITE
-                    // elements: voidMethodDeclaratorRest, modifier, VOID, IDENTIFIER
+                    // elements: modifier, voidMethodDeclaratorRest, VOID, IDENTIFIER
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -1107,20 +882,14 @@ public class JaParser extends DebugParser {
                     root_0 = (Object)adaptor.nil();
                     // 96:59: -> ^( METHOD modifier VOID IDENTIFIER voidMethodDeclaratorRest )
                     {
-                        dbg.location(96,62);
                         // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:96:62: ^( METHOD modifier VOID IDENTIFIER voidMethodDeclaratorRest )
                         {
                         Object root_1 = (Object)adaptor.nil();
-                        dbg.location(96,64);
                         root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(METHOD, "METHOD"), root_1);
 
-                        dbg.location(96,71);
                         adaptor.addChild(root_1, stream_modifier.nextTree());
-                        dbg.location(96,80);
                         adaptor.addChild(root_1, stream_VOID.nextNode());
-                        dbg.location(96,85);
                         adaptor.addChild(root_1, stream_IDENTIFIER.nextNode());
-                        dbg.location(96,96);
                         adaptor.addChild(root_1, stream_voidMethodDeclaratorRest.nextTree());
 
                         adaptor.addChild(root_0, root_1);
@@ -1132,29 +901,23 @@ public class JaParser extends DebugParser {
                     }
                     break;
                 case 3 :
-                    dbg.enterAlt(3);
-
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:97:9: modifier ( IDENTIFIER formalParameters )=> IDENTIFIER formalParameters constructorBody
                     {
-                    dbg.location(97,9);
                     pushFollow(FOLLOW_modifier_in_memberDeclaration398);
                     modifier23=modifier();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) stream_modifier.add(modifier23.getTree());
-                    dbg.location(97,51);
                     IDENTIFIER24=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_memberDeclaration408); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_IDENTIFIER.add(IDENTIFIER24);
 
-                    dbg.location(97,62);
                     pushFollow(FOLLOW_formalParameters_in_memberDeclaration410);
                     formalParameters25=formalParameters();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) stream_formalParameters.add(formalParameters25.getTree());
-                    dbg.location(97,79);
                     pushFollow(FOLLOW_constructorBody_in_memberDeclaration412);
                     constructorBody26=constructorBody();
 
@@ -1164,7 +927,7 @@ public class JaParser extends DebugParser {
 
 
                     // AST REWRITE
-                    // elements: formalParameters, IDENTIFIER, modifier, constructorBody
+                    // elements: constructorBody, formalParameters, IDENTIFIER, modifier
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -1177,20 +940,14 @@ public class JaParser extends DebugParser {
                     root_0 = (Object)adaptor.nil();
                     // 98:6: -> ^( CONSTR modifier IDENTIFIER formalParameters constructorBody )
                     {
-                        dbg.location(98,9);
                         // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:98:9: ^( CONSTR modifier IDENTIFIER formalParameters constructorBody )
                         {
                         Object root_1 = (Object)adaptor.nil();
-                        dbg.location(98,11);
                         root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(CONSTR, "CONSTR"), root_1);
 
-                        dbg.location(98,18);
                         adaptor.addChild(root_1, stream_modifier.nextTree());
-                        dbg.location(98,27);
                         adaptor.addChild(root_1, stream_IDENTIFIER.nextNode());
-                        dbg.location(98,38);
                         adaptor.addChild(root_1, stream_formalParameters.nextTree());
-                        dbg.location(98,55);
                         adaptor.addChild(root_1, stream_constructorBody.nextTree());
 
                         adaptor.addChild(root_0, root_1);
@@ -1219,15 +976,6 @@ public class JaParser extends DebugParser {
         }
         finally {
         }
-        dbg.location(99, 5);
-
-        }
-        finally {
-            dbg.exitRule(getGrammarFileName(), "memberDeclaration");
-            decRuleLevel();
-            if ( getRuleLevel()==0 ) {dbg.terminate();}
-        }
-
         return retval;
     }
     // $ANTLR end "memberDeclaration"
@@ -1255,38 +1003,25 @@ public class JaParser extends DebugParser {
         Object IDENTIFIER27_tree=null;
         Object char_literal30_tree=null;
 
-        try { dbg.enterRule(getGrammarFileName(), "methodDeclaration");
-        if ( getRuleLevel()==0 ) {dbg.commence();}
-        incRuleLevel();
-        dbg.location(101, 1);
-
         try {
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:102:5: ( IDENTIFIER formalParameters ( methodBody | ';' ) )
-            dbg.enterAlt(1);
-
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:102:9: IDENTIFIER formalParameters ( methodBody | ';' )
             {
             root_0 = (Object)adaptor.nil();
 
-            dbg.location(102,9);
             IDENTIFIER27=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_methodDeclaration451); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             IDENTIFIER27_tree = (Object)adaptor.create(IDENTIFIER27);
             adaptor.addChild(root_0, IDENTIFIER27_tree);
             }
-            dbg.location(102,20);
             pushFollow(FOLLOW_formalParameters_in_methodDeclaration453);
             formalParameters28=formalParameters();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, formalParameters28.getTree());
-            dbg.location(103,9);
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:103:9: ( methodBody | ';' )
             int alt7=2;
-            try { dbg.enterSubRule(7);
-            try { dbg.enterDecision(7);
-
             int LA7_0 = input.LA(1);
 
             if ( (LA7_0==76) ) {
@@ -1300,18 +1035,12 @@ public class JaParser extends DebugParser {
                 NoViableAltException nvae =
                     new NoViableAltException("", 7, 0, input);
 
-                dbg.recognitionException(nvae);
                 throw nvae;
             }
-            } finally {dbg.exitDecision(7);}
-
             switch (alt7) {
                 case 1 :
-                    dbg.enterAlt(1);
-
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:103:13: methodBody
                     {
-                    dbg.location(103,13);
                     pushFollow(FOLLOW_methodBody_in_methodDeclaration467);
                     methodBody29=methodBody();
 
@@ -1322,11 +1051,8 @@ public class JaParser extends DebugParser {
                     }
                     break;
                 case 2 :
-                    dbg.enterAlt(2);
-
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:104:13: ';'
                     {
-                    dbg.location(104,13);
                     char_literal30=(Token)match(input,75,FOLLOW_75_in_methodDeclaration481); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     char_literal30_tree = (Object)adaptor.create(char_literal30);
@@ -1337,7 +1063,6 @@ public class JaParser extends DebugParser {
                     break;
 
             }
-            } finally {dbg.exitSubRule(7);}
 
 
             }
@@ -1358,15 +1083,6 @@ public class JaParser extends DebugParser {
         }
         finally {
         }
-        dbg.location(106, 5);
-
-        }
-        finally {
-            dbg.exitRule(getGrammarFileName(), "methodDeclaration");
-            decRuleLevel();
-            if ( getRuleLevel()==0 ) {dbg.terminate();}
-        }
-
         return retval;
     }
     // $ANTLR end "methodDeclaration"
@@ -1396,33 +1112,20 @@ public class JaParser extends DebugParser {
         RewriteRuleTokenStream stream_78=new RewriteRuleTokenStream(adaptor,"token 78");
         RewriteRuleTokenStream stream_75=new RewriteRuleTokenStream(adaptor,"token 75");
         RewriteRuleSubtreeStream stream_variableDeclarator=new RewriteRuleSubtreeStream(adaptor,"rule variableDeclarator");
-        try { dbg.enterRule(getGrammarFileName(), "fieldDeclaration");
-        if ( getRuleLevel()==0 ) {dbg.commence();}
-        incRuleLevel();
-        dbg.location(108, 1);
-
         try {
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:109:5: ( variableDeclarator ( ',' variableDeclarator )* ';' -> ( ^( FIELD variableDeclarator ) )+ )
-            dbg.enterAlt(1);
-
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:109:9: variableDeclarator ( ',' variableDeclarator )* ';'
             {
-            dbg.location(109,9);
             pushFollow(FOLLOW_variableDeclarator_in_fieldDeclaration511);
             variableDeclarator31=variableDeclarator();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) stream_variableDeclarator.add(variableDeclarator31.getTree());
-            dbg.location(109,28);
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:109:28: ( ',' variableDeclarator )*
-            try { dbg.enterSubRule(8);
-
             loop8:
             do {
                 int alt8=2;
-                try { dbg.enterDecision(8);
-
                 int LA8_0 = input.LA(1);
 
                 if ( (LA8_0==78) ) {
@@ -1430,19 +1133,13 @@ public class JaParser extends DebugParser {
                 }
 
 
-                } finally {dbg.exitDecision(8);}
-
                 switch (alt8) {
             	case 1 :
-            	    dbg.enterAlt(1);
-
             	    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:109:29: ',' variableDeclarator
             	    {
-            	    dbg.location(109,29);
             	    char_literal32=(Token)match(input,78,FOLLOW_78_in_fieldDeclaration514); if (state.failed) return retval; 
             	    if ( state.backtracking==0 ) stream_78.add(char_literal32);
 
-            	    dbg.location(109,33);
             	    pushFollow(FOLLOW_variableDeclarator_in_fieldDeclaration516);
             	    variableDeclarator33=variableDeclarator();
 
@@ -1457,9 +1154,7 @@ public class JaParser extends DebugParser {
             	    break loop8;
                 }
             } while (true);
-            } finally {dbg.exitSubRule(8);}
 
-            dbg.location(109,54);
             char_literal34=(Token)match(input,75,FOLLOW_75_in_fieldDeclaration520); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_75.add(char_literal34);
 
@@ -1479,21 +1174,16 @@ public class JaParser extends DebugParser {
             root_0 = (Object)adaptor.nil();
             // 109:58: -> ( ^( FIELD variableDeclarator ) )+
             {
-                dbg.location(109,61);
                 if ( !(stream_variableDeclarator.hasNext()) ) {
                     throw new RewriteEarlyExitException();
                 }
                 while ( stream_variableDeclarator.hasNext() ) {
-                    dbg.location(109,61);
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:109:61: ^( FIELD variableDeclarator )
                     {
                     Object root_1 = (Object)adaptor.nil();
-                    dbg.location(109,63);
                     root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(FIELD, "FIELD"), root_1);
 
-                    dbg.location(109,69);
                     adaptor.addChild(root_1, modAndTyp);
-                    dbg.location(109,82);
                     adaptor.addChild(root_1, stream_variableDeclarator.nextTree());
 
                     adaptor.addChild(root_0, root_1);
@@ -1523,15 +1213,6 @@ public class JaParser extends DebugParser {
         }
         finally {
         }
-        dbg.location(110, 5);
-
-        }
-        finally {
-            dbg.exitRule(getGrammarFileName(), "fieldDeclaration");
-            decRuleLevel();
-            if ( getRuleLevel()==0 ) {dbg.terminate();}
-        }
-
         return retval;
     }
     // $ANTLR end "fieldDeclaration"
@@ -1557,32 +1238,20 @@ public class JaParser extends DebugParser {
 
         Object char_literal37_tree=null;
 
-        try { dbg.enterRule(getGrammarFileName(), "voidMethodDeclaratorRest");
-        if ( getRuleLevel()==0 ) {dbg.commence();}
-        incRuleLevel();
-        dbg.location(112, 1);
-
         try {
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:113:5: ( formalParameters ( methodBody | ';' ) )
-            dbg.enterAlt(1);
-
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:113:9: formalParameters ( methodBody | ';' )
             {
             root_0 = (Object)adaptor.nil();
 
-            dbg.location(113,9);
             pushFollow(FOLLOW_formalParameters_in_voidMethodDeclaratorRest555);
             formalParameters35=formalParameters();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, formalParameters35.getTree());
-            dbg.location(114,9);
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:114:9: ( methodBody | ';' )
             int alt9=2;
-            try { dbg.enterSubRule(9);
-            try { dbg.enterDecision(9);
-
             int LA9_0 = input.LA(1);
 
             if ( (LA9_0==76) ) {
@@ -1596,18 +1265,12 @@ public class JaParser extends DebugParser {
                 NoViableAltException nvae =
                     new NoViableAltException("", 9, 0, input);
 
-                dbg.recognitionException(nvae);
                 throw nvae;
             }
-            } finally {dbg.exitDecision(9);}
-
             switch (alt9) {
                 case 1 :
-                    dbg.enterAlt(1);
-
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:114:13: methodBody
                     {
-                    dbg.location(114,13);
                     pushFollow(FOLLOW_methodBody_in_voidMethodDeclaratorRest569);
                     methodBody36=methodBody();
 
@@ -1618,11 +1281,8 @@ public class JaParser extends DebugParser {
                     }
                     break;
                 case 2 :
-                    dbg.enterAlt(2);
-
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:115:13: ';'
                     {
-                    dbg.location(115,13);
                     char_literal37=(Token)match(input,75,FOLLOW_75_in_voidMethodDeclaratorRest583); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     char_literal37_tree = (Object)adaptor.create(char_literal37);
@@ -1633,7 +1293,6 @@ public class JaParser extends DebugParser {
                     break;
 
             }
-            } finally {dbg.exitSubRule(9);}
 
 
             }
@@ -1654,15 +1313,6 @@ public class JaParser extends DebugParser {
         }
         finally {
         }
-        dbg.location(117, 5);
-
-        }
-        finally {
-            dbg.exitRule(getGrammarFileName(), "voidMethodDeclaratorRest");
-            decRuleLevel();
-            if ( getRuleLevel()==0 ) {dbg.terminate();}
-        }
-
         return retval;
     }
     // $ANTLR end "voidMethodDeclaratorRest"
@@ -1688,48 +1338,30 @@ public class JaParser extends DebugParser {
 
         Object char_literal39_tree=null;
 
-        try { dbg.enterRule(getGrammarFileName(), "variableDeclarator");
-        if ( getRuleLevel()==0 ) {dbg.commence();}
-        incRuleLevel();
-        dbg.location(119, 1);
-
         try {
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:120:5: ( variableDeclaratorId ( '=' variableInitializer )? )
-            dbg.enterAlt(1);
-
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:120:9: variableDeclaratorId ( '=' variableInitializer )?
             {
             root_0 = (Object)adaptor.nil();
 
-            dbg.location(120,9);
             pushFollow(FOLLOW_variableDeclaratorId_in_variableDeclarator612);
             variableDeclaratorId38=variableDeclaratorId();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, variableDeclaratorId38.getTree());
-            dbg.location(120,30);
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:120:30: ( '=' variableInitializer )?
             int alt10=2;
-            try { dbg.enterSubRule(10);
-            try { dbg.enterDecision(10);
-
             int LA10_0 = input.LA(1);
 
             if ( (LA10_0==EQ) ) {
                 alt10=1;
             }
-            } finally {dbg.exitDecision(10);}
-
             switch (alt10) {
                 case 1 :
-                    dbg.enterAlt(1);
-
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:120:31: '=' variableInitializer
                     {
-                    dbg.location(120,34);
                     char_literal39=(Token)match(input,EQ,FOLLOW_EQ_in_variableDeclarator615); if (state.failed) return retval;
-                    dbg.location(120,36);
                     pushFollow(FOLLOW_variableInitializer_in_variableDeclarator618);
                     variableInitializer40=variableInitializer();
 
@@ -1741,7 +1373,6 @@ public class JaParser extends DebugParser {
                     break;
 
             }
-            } finally {dbg.exitSubRule(10);}
 
 
             }
@@ -1762,15 +1393,6 @@ public class JaParser extends DebugParser {
         }
         finally {
         }
-        dbg.location(121, 5);
-
-        }
-        finally {
-            dbg.exitRule(getGrammarFileName(), "variableDeclarator");
-            decRuleLevel();
-            if ( getRuleLevel()==0 ) {dbg.terminate();}
-        }
-
         return retval;
     }
     // $ANTLR end "variableDeclarator"
@@ -1798,34 +1420,21 @@ public class JaParser extends DebugParser {
         Object char_literal42_tree=null;
         Object l_tree=null;
 
-        try { dbg.enterRule(getGrammarFileName(), "variableDeclaratorId");
-        if ( getRuleLevel()==0 ) {dbg.commence();}
-        incRuleLevel();
-        dbg.location(123, 1);
-
         try {
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:124:5: ( IDENTIFIER (l+= '[' ']' )* )
-            dbg.enterAlt(1);
-
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:124:9: IDENTIFIER (l+= '[' ']' )*
             {
             root_0 = (Object)adaptor.nil();
 
-            dbg.location(124,9);
             IDENTIFIER41=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_variableDeclaratorId649); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             IDENTIFIER41_tree = (Object)adaptor.create(IDENTIFIER41);
             adaptor.addChild(root_0, IDENTIFIER41_tree);
             }
-            dbg.location(124,20);
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:124:20: (l+= '[' ']' )*
-            try { dbg.enterSubRule(11);
-
             loop11:
             do {
                 int alt11=2;
-                try { dbg.enterDecision(11);
-
                 int LA11_0 = input.LA(1);
 
                 if ( (LA11_0==79) ) {
@@ -1833,15 +1442,10 @@ public class JaParser extends DebugParser {
                 }
 
 
-                } finally {dbg.exitDecision(11);}
-
                 switch (alt11) {
             	case 1 :
-            	    dbg.enterAlt(1);
-
             	    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:124:21: l+= '[' ']'
             	    {
-            	    dbg.location(124,22);
             	    l=(Token)match(input,79,FOLLOW_79_in_variableDeclaratorId654); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
             	    l_tree = (Object)adaptor.create(l);
@@ -1850,7 +1454,6 @@ public class JaParser extends DebugParser {
             	    if (list_l==null) list_l=new ArrayList();
             	    list_l.add(l);
 
-            	    dbg.location(124,28);
             	    char_literal42=(Token)match(input,80,FOLLOW_80_in_variableDeclaratorId656); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
             	    char_literal42_tree = (Object)adaptor.create(char_literal42);
@@ -1864,9 +1467,7 @@ public class JaParser extends DebugParser {
             	    break loop11;
                 }
             } while (true);
-            } finally {dbg.exitSubRule(11);}
 
-            dbg.location(124,34);
             if ( state.backtracking==0 ) {
               retval.arrayDim = list_l.size();
             }
@@ -1889,15 +1490,6 @@ public class JaParser extends DebugParser {
         }
         finally {
         }
-        dbg.location(125, 5);
-
-        }
-        finally {
-            dbg.exitRule(getGrammarFileName(), "variableDeclaratorId");
-            decRuleLevel();
-            if ( getRuleLevel()==0 ) {dbg.terminate();}
-        }
-
         return retval;
     }
     // $ANTLR end "variableDeclaratorId"
@@ -1921,16 +1513,9 @@ public class JaParser extends DebugParser {
 
 
 
-        try { dbg.enterRule(getGrammarFileName(), "variableInitializer");
-        if ( getRuleLevel()==0 ) {dbg.commence();}
-        incRuleLevel();
-        dbg.location(127, 1);
-
         try {
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:128:5: ( arrayInitializer | expression )
             int alt12=2;
-            try { dbg.enterDecision(12);
-
             int LA12_0 = input.LA(1);
 
             if ( (LA12_0==76) ) {
@@ -1944,20 +1529,14 @@ public class JaParser extends DebugParser {
                 NoViableAltException nvae =
                     new NoViableAltException("", 12, 0, input);
 
-                dbg.recognitionException(nvae);
                 throw nvae;
             }
-            } finally {dbg.exitDecision(12);}
-
             switch (alt12) {
                 case 1 :
-                    dbg.enterAlt(1);
-
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:128:9: arrayInitializer
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    dbg.location(128,9);
                     pushFollow(FOLLOW_arrayInitializer_in_variableInitializer680);
                     arrayInitializer43=arrayInitializer();
 
@@ -1968,13 +1547,10 @@ public class JaParser extends DebugParser {
                     }
                     break;
                 case 2 :
-                    dbg.enterAlt(2);
-
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:129:9: expression
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    dbg.location(129,9);
                     pushFollow(FOLLOW_expression_in_variableInitializer690);
                     expression44=expression();
 
@@ -2002,15 +1578,6 @@ public class JaParser extends DebugParser {
         }
         finally {
         }
-        dbg.location(130, 5);
-
-        }
-        finally {
-            dbg.exitRule(getGrammarFileName(), "variableInitializer");
-            decRuleLevel();
-            if ( getRuleLevel()==0 ) {dbg.terminate();}
-        }
-
         return retval;
     }
     // $ANTLR end "variableInitializer"
@@ -2042,60 +1609,38 @@ public class JaParser extends DebugParser {
         Object char_literal49_tree=null;
         Object char_literal50_tree=null;
 
-        try { dbg.enterRule(getGrammarFileName(), "arrayInitializer");
-        if ( getRuleLevel()==0 ) {dbg.commence();}
-        incRuleLevel();
-        dbg.location(132, 1);
-
         try {
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:133:5: ( '{' ( variableInitializer ( ',' variableInitializer )* ( ',' )? )? '}' )
-            dbg.enterAlt(1);
-
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:133:9: '{' ( variableInitializer ( ',' variableInitializer )* ( ',' )? )? '}'
             {
             root_0 = (Object)adaptor.nil();
 
-            dbg.location(133,9);
             char_literal45=(Token)match(input,76,FOLLOW_76_in_arrayInitializer717); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             char_literal45_tree = (Object)adaptor.create(char_literal45);
             adaptor.addChild(root_0, char_literal45_tree);
             }
-            dbg.location(133,13);
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:133:13: ( variableInitializer ( ',' variableInitializer )* ( ',' )? )?
             int alt15=2;
-            try { dbg.enterSubRule(15);
-            try { dbg.enterDecision(15);
-
             int LA15_0 = input.LA(1);
 
             if ( (LA15_0==IDENTIFIER||LA15_0==VOID||(LA15_0>=CHAR && LA15_0<=NULLLITERAL)||LA15_0==NEW||(LA15_0>=PLUS && LA15_0<=MINUS)||LA15_0==76||LA15_0==81||(LA15_0>=93 && LA15_0<=95)) ) {
                 alt15=1;
             }
-            } finally {dbg.exitDecision(15);}
-
             switch (alt15) {
                 case 1 :
-                    dbg.enterAlt(1);
-
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:133:14: variableInitializer ( ',' variableInitializer )* ( ',' )?
                     {
-                    dbg.location(133,14);
                     pushFollow(FOLLOW_variableInitializer_in_arrayInitializer720);
                     variableInitializer46=variableInitializer();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) adaptor.addChild(root_0, variableInitializer46.getTree());
-                    dbg.location(133,34);
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:133:34: ( ',' variableInitializer )*
-                    try { dbg.enterSubRule(13);
-
                     loop13:
                     do {
                         int alt13=2;
-                        try { dbg.enterDecision(13);
-
                         int LA13_0 = input.LA(1);
 
                         if ( (LA13_0==78) ) {
@@ -2109,21 +1654,15 @@ public class JaParser extends DebugParser {
                         }
 
 
-                        } finally {dbg.exitDecision(13);}
-
                         switch (alt13) {
                     	case 1 :
-                    	    dbg.enterAlt(1);
-
                     	    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:133:35: ',' variableInitializer
                     	    {
-                    	    dbg.location(133,35);
                     	    char_literal47=(Token)match(input,78,FOLLOW_78_in_arrayInitializer723); if (state.failed) return retval;
                     	    if ( state.backtracking==0 ) {
                     	    char_literal47_tree = (Object)adaptor.create(char_literal47);
                     	    adaptor.addChild(root_0, char_literal47_tree);
                     	    }
-                    	    dbg.location(133,39);
                     	    pushFollow(FOLLOW_variableInitializer_in_arrayInitializer725);
                     	    variableInitializer48=variableInitializer();
 
@@ -2138,28 +1677,18 @@ public class JaParser extends DebugParser {
                     	    break loop13;
                         }
                     } while (true);
-                    } finally {dbg.exitSubRule(13);}
 
-                    dbg.location(133,61);
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:133:61: ( ',' )?
                     int alt14=2;
-                    try { dbg.enterSubRule(14);
-                    try { dbg.enterDecision(14);
-
                     int LA14_0 = input.LA(1);
 
                     if ( (LA14_0==78) ) {
                         alt14=1;
                     }
-                    } finally {dbg.exitDecision(14);}
-
                     switch (alt14) {
                         case 1 :
-                            dbg.enterAlt(1);
-
                             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:133:62: ','
                             {
-                            dbg.location(133,62);
                             char_literal49=(Token)match(input,78,FOLLOW_78_in_arrayInitializer730); if (state.failed) return retval;
                             if ( state.backtracking==0 ) {
                             char_literal49_tree = (Object)adaptor.create(char_literal49);
@@ -2170,16 +1699,13 @@ public class JaParser extends DebugParser {
                             break;
 
                     }
-                    } finally {dbg.exitSubRule(14);}
 
 
                     }
                     break;
 
             }
-            } finally {dbg.exitSubRule(15);}
 
-            dbg.location(133,71);
             char_literal50=(Token)match(input,77,FOLLOW_77_in_arrayInitializer737); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             char_literal50_tree = (Object)adaptor.create(char_literal50);
@@ -2204,15 +1730,6 @@ public class JaParser extends DebugParser {
         }
         finally {
         }
-        dbg.location(134, 5);
-
-        }
-        finally {
-            dbg.exitRule(getGrammarFileName(), "arrayInitializer");
-            decRuleLevel();
-            if ( getRuleLevel()==0 ) {dbg.terminate();}
-        }
-
         return retval;
     }
     // $ANTLR end "arrayInitializer"
@@ -2234,20 +1751,12 @@ public class JaParser extends DebugParser {
 
         Object set51_tree=null;
 
-        try { dbg.enterRule(getGrammarFileName(), "modifier");
-        if ( getRuleLevel()==0 ) {dbg.commence();}
-        incRuleLevel();
-        dbg.location(136, 1);
-
         try {
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:137:5: ( PUBLIC | PRIVATE )
-            dbg.enterAlt(1);
-
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:
             {
             root_0 = (Object)adaptor.nil();
 
-            dbg.location(137,5);
             set51=(Token)input.LT(1);
             if ( input.LA(1)==PUBLIC||input.LA(1)==PRIVATE ) {
                 input.consume();
@@ -2257,7 +1766,6 @@ public class JaParser extends DebugParser {
             else {
                 if (state.backtracking>0) {state.failed=true; return retval;}
                 MismatchedSetException mse = new MismatchedSetException(null,input);
-                dbg.recognitionException(mse);
                 throw mse;
             }
 
@@ -2280,15 +1788,6 @@ public class JaParser extends DebugParser {
         }
         finally {
         }
-        dbg.location(139, 5);
-
-        }
-        finally {
-            dbg.exitRule(getGrammarFileName(), "modifier");
-            decRuleLevel();
-            if ( getRuleLevel()==0 ) {dbg.terminate();}
-        }
-
         return retval;
     }
     // $ANTLR end "modifier"
@@ -2310,20 +1809,12 @@ public class JaParser extends DebugParser {
 
         Object IDENTIFIER52_tree=null;
 
-        try { dbg.enterRule(getGrammarFileName(), "typeName");
-        if ( getRuleLevel()==0 ) {dbg.commence();}
-        incRuleLevel();
-        dbg.location(141, 1);
-
         try {
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:142:5: ( IDENTIFIER )
-            dbg.enterAlt(1);
-
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:142:9: IDENTIFIER
             {
             root_0 = (Object)adaptor.nil();
 
-            dbg.location(142,9);
             IDENTIFIER52=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_typeName785); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             IDENTIFIER52_tree = (Object)adaptor.create(IDENTIFIER52);
@@ -2348,15 +1839,6 @@ public class JaParser extends DebugParser {
         }
         finally {
         }
-        dbg.location(143, 5);
-
-        }
-        finally {
-            dbg.exitRule(getGrammarFileName(), "typeName");
-            decRuleLevel();
-            if ( getRuleLevel()==0 ) {dbg.terminate();}
-        }
-
         return retval;
     }
     // $ANTLR end "typeName"
@@ -2381,42 +1863,22 @@ public class JaParser extends DebugParser {
 
 
 
-        try { dbg.enterRule(getGrammarFileName(), "type");
-        if ( getRuleLevel()==0 ) {dbg.commence();}
-        incRuleLevel();
-        dbg.location(145, 1);
-
         try {
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:146:2: ( nonPrimitiveType | primitiveType )
             int alt16=2;
-            try { dbg.enterDecision(16);
-
-            try {
-                isCyclicDecision = true;
-                alt16 = dfa16.predict(input);
-            }
-            catch (NoViableAltException nvae) {
-                dbg.recognitionException(nvae);
-                throw nvae;
-            }
-            } finally {dbg.exitDecision(16);}
-
+            alt16 = dfa16.predict(input);
             switch (alt16) {
                 case 1 :
-                    dbg.enterAlt(1);
-
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:146:4: nonPrimitiveType
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    dbg.location(146,4);
                     pushFollow(FOLLOW_nonPrimitiveType_in_type803);
                     nonPrimitiveType53=nonPrimitiveType();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) adaptor.addChild(root_0, nonPrimitiveType53.getTree());
-                    dbg.location(146,21);
                     if ( state.backtracking==0 ) {
                       retval.t =(nonPrimitiveType53!=null?nonPrimitiveType53.t:null);
                     }
@@ -2424,20 +1886,16 @@ public class JaParser extends DebugParser {
                     }
                     break;
                 case 2 :
-                    dbg.enterAlt(2);
-
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:147:4: primitiveType
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    dbg.location(147,4);
                     pushFollow(FOLLOW_primitiveType_in_type810);
                     primitiveType54=primitiveType();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) adaptor.addChild(root_0, primitiveType54.getTree());
-                    dbg.location(147,18);
                     if ( state.backtracking==0 ) {
                       retval.t =(primitiveType54!=null?primitiveType54.bs:null);
                     }
@@ -2462,15 +1920,6 @@ public class JaParser extends DebugParser {
         }
         finally {
         }
-        dbg.location(148, 2);
-
-        }
-        finally {
-            dbg.exitRule(getGrammarFileName(), "type");
-            decRuleLevel();
-            if ( getRuleLevel()==0 ) {dbg.terminate();}
-        }
-
         return retval;
     }
     // $ANTLR end "type"
@@ -2502,16 +1951,9 @@ public class JaParser extends DebugParser {
         Object char_literal58_tree=null;
         Object l_tree=null;
 
-        try { dbg.enterRule(getGrammarFileName(), "nonPrimitiveType");
-        if ( getRuleLevel()==0 ) {dbg.commence();}
-        incRuleLevel();
-        dbg.location(150, 1);
-
         try {
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:151:2: ( classType (l+= '[' ']' )* | primitiveType (l+= '[' ']' )+ )
             int alt19=2;
-            try { dbg.enterDecision(19);
-
             int LA19_0 = input.LA(1);
 
             if ( (LA19_0==IDENTIFIER) ) {
@@ -2525,35 +1967,24 @@ public class JaParser extends DebugParser {
                 NoViableAltException nvae =
                     new NoViableAltException("", 19, 0, input);
 
-                dbg.recognitionException(nvae);
                 throw nvae;
             }
-            } finally {dbg.exitDecision(19);}
-
             switch (alt19) {
                 case 1 :
-                    dbg.enterAlt(1);
-
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:151:4: classType (l+= '[' ']' )*
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    dbg.location(151,4);
                     pushFollow(FOLLOW_classType_in_nonPrimitiveType828);
                     classType55=classType();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) adaptor.addChild(root_0, classType55.getTree());
-                    dbg.location(151,14);
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:151:14: (l+= '[' ']' )*
-                    try { dbg.enterSubRule(17);
-
                     loop17:
                     do {
                         int alt17=2;
-                        try { dbg.enterDecision(17);
-
                         int LA17_0 = input.LA(1);
 
                         if ( (LA17_0==79) ) {
@@ -2561,15 +1992,10 @@ public class JaParser extends DebugParser {
                         }
 
 
-                        } finally {dbg.exitDecision(17);}
-
                         switch (alt17) {
                     	case 1 :
-                    	    dbg.enterAlt(1);
-
                     	    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:151:15: l+= '[' ']'
                     	    {
-                    	    dbg.location(151,16);
                     	    l=(Token)match(input,79,FOLLOW_79_in_nonPrimitiveType833); if (state.failed) return retval;
                     	    if ( state.backtracking==0 ) {
                     	    l_tree = (Object)adaptor.create(l);
@@ -2578,7 +2004,6 @@ public class JaParser extends DebugParser {
                     	    if (list_l==null) list_l=new ArrayList();
                     	    list_l.add(l);
 
-                    	    dbg.location(151,22);
                     	    char_literal56=(Token)match(input,80,FOLLOW_80_in_nonPrimitiveType835); if (state.failed) return retval;
                     	    if ( state.backtracking==0 ) {
                     	    char_literal56_tree = (Object)adaptor.create(char_literal56);
@@ -2592,9 +2017,7 @@ public class JaParser extends DebugParser {
                     	    break loop17;
                         }
                     } while (true);
-                    } finally {dbg.exitSubRule(17);}
 
-                    dbg.location(151,28);
                     if ( state.backtracking==0 ) {
                       retval.t = createArrayType((classType55!=null?classType55.t:null), list_l.size());
                     }
@@ -2602,29 +2025,21 @@ public class JaParser extends DebugParser {
                     }
                     break;
                 case 2 :
-                    dbg.enterAlt(2);
-
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:152:4: primitiveType (l+= '[' ']' )+
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    dbg.location(152,4);
                     pushFollow(FOLLOW_primitiveType_in_nonPrimitiveType844);
                     primitiveType57=primitiveType();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) adaptor.addChild(root_0, primitiveType57.getTree());
-                    dbg.location(152,18);
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:152:18: (l+= '[' ']' )+
                     int cnt18=0;
-                    try { dbg.enterSubRule(18);
-
                     loop18:
                     do {
                         int alt18=2;
-                        try { dbg.enterDecision(18);
-
                         int LA18_0 = input.LA(1);
 
                         if ( (LA18_0==79) ) {
@@ -2632,15 +2047,10 @@ public class JaParser extends DebugParser {
                         }
 
 
-                        } finally {dbg.exitDecision(18);}
-
                         switch (alt18) {
                     	case 1 :
-                    	    dbg.enterAlt(1);
-
                     	    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:152:19: l+= '[' ']'
                     	    {
-                    	    dbg.location(152,20);
                     	    l=(Token)match(input,79,FOLLOW_79_in_nonPrimitiveType849); if (state.failed) return retval;
                     	    if ( state.backtracking==0 ) {
                     	    l_tree = (Object)adaptor.create(l);
@@ -2649,7 +2059,6 @@ public class JaParser extends DebugParser {
                     	    if (list_l==null) list_l=new ArrayList();
                     	    list_l.add(l);
 
-                    	    dbg.location(152,26);
                     	    char_literal58=(Token)match(input,80,FOLLOW_80_in_nonPrimitiveType851); if (state.failed) return retval;
                     	    if ( state.backtracking==0 ) {
                     	    char_literal58_tree = (Object)adaptor.create(char_literal58);
@@ -2664,15 +2073,11 @@ public class JaParser extends DebugParser {
                     	    if (state.backtracking>0) {state.failed=true; return retval;}
                                 EarlyExitException eee =
                                     new EarlyExitException(18, input);
-                                dbg.recognitionException(eee);
-
                                 throw eee;
                         }
                         cnt18++;
                     } while (true);
-                    } finally {dbg.exitSubRule(18);}
 
-                    dbg.location(152,32);
                     if ( state.backtracking==0 ) {
                       retval.t = createArrayType((primitiveType57!=null?primitiveType57.bs:null), list_l.size());
                     }
@@ -2697,15 +2102,6 @@ public class JaParser extends DebugParser {
         }
         finally {
         }
-        dbg.location(153, 2);
-
-        }
-        finally {
-            dbg.exitRule(getGrammarFileName(), "nonPrimitiveType");
-            decRuleLevel();
-            if ( getRuleLevel()==0 ) {dbg.terminate();}
-        }
-
         return retval;
     }
     // $ANTLR end "nonPrimitiveType"
@@ -2728,32 +2124,23 @@ public class JaParser extends DebugParser {
 
         Object IDENTIFIER59_tree=null;
 
-        try { dbg.enterRule(getGrammarFileName(), "classType");
-        if ( getRuleLevel()==0 ) {dbg.commence();}
-        incRuleLevel();
-        dbg.location(155, 1);
-
         try {
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:156:2: ( IDENTIFIER )
-            dbg.enterAlt(1);
-
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:156:4: IDENTIFIER
             {
             root_0 = (Object)adaptor.nil();
 
-            dbg.location(156,4);
             IDENTIFIER59=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_classType870); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             IDENTIFIER59_tree = (Object)adaptor.create(IDENTIFIER59);
             adaptor.addChild(root_0, IDENTIFIER59_tree);
             }
-            dbg.location(156,15);
             if ( state.backtracking==0 ) {
                if(cTab.containsKey((IDENTIFIER59!=null?IDENTIFIER59.getText():null))) {
-              	        			t = cTab.get((IDENTIFIER59!=null?IDENTIFIER59.getText():null));
+              	        			retval.t = cTab.get((IDENTIFIER59!=null?IDENTIFIER59.getText():null));
                       			} else {
-                      				t = new ReferenceType((IDENTIFIER59!=null?IDENTIFIER59.getText():null));
-                      				cTab.put((IDENTIFIER59!=null?IDENTIFIER59.getText():null), t);
+                      				retval.t = new ReferenceType((IDENTIFIER59!=null?IDENTIFIER59.getText():null));
+                      				cTab.put((IDENTIFIER59!=null?IDENTIFIER59.getText():null), retval.t);
                       				todo.add((IDENTIFIER59!=null?IDENTIFIER59.getText():null));	
                       			}
                       		  
@@ -2777,15 +2164,6 @@ public class JaParser extends DebugParser {
         }
         finally {
         }
-        dbg.location(164, 2);
-
-        }
-        finally {
-            dbg.exitRule(getGrammarFileName(), "classType");
-            decRuleLevel();
-            if ( getRuleLevel()==0 ) {dbg.terminate();}
-        }
-
         return retval;
     }
     // $ANTLR end "classType"
@@ -2820,16 +2198,9 @@ public class JaParser extends DebugParser {
         Object FLOAT65_tree=null;
         Object DOUBLE66_tree=null;
 
-        try { dbg.enterRule(getGrammarFileName(), "primitiveType");
-        if ( getRuleLevel()==0 ) {dbg.commence();}
-        incRuleLevel();
-        dbg.location(166, 1);
-
         try {
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:167:5: ( CHAR | BYTE | SHORT | INT | LONG | FLOAT | DOUBLE )
             int alt20=7;
-            try { dbg.enterDecision(20);
-
             switch ( input.LA(1) ) {
             case CHAR:
                 {
@@ -2871,149 +2242,118 @@ public class JaParser extends DebugParser {
                 NoViableAltException nvae =
                     new NoViableAltException("", 20, 0, input);
 
-                dbg.recognitionException(nvae);
                 throw nvae;
             }
 
-            } finally {dbg.exitDecision(20);}
-
             switch (alt20) {
                 case 1 :
-                    dbg.enterAlt(1);
-
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:167:9: CHAR
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    dbg.location(167,9);
                     CHAR60=(Token)match(input,CHAR,FOLLOW_CHAR_in_primitiveType892); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     CHAR60_tree = (Object)adaptor.create(CHAR60);
                     adaptor.addChild(root_0, CHAR60_tree);
                     }
-                    dbg.location(167,14);
                     if ( state.backtracking==0 ) {
-                      retval.bs =BacisType.CHAR;
+                      retval.bs =BasicType.CHAR;
                     }
 
                     }
                     break;
                 case 2 :
-                    dbg.enterAlt(2);
-
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:168:9: BYTE
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    dbg.location(168,9);
                     BYTE61=(Token)match(input,BYTE,FOLLOW_BYTE_in_primitiveType904); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     BYTE61_tree = (Object)adaptor.create(BYTE61);
                     adaptor.addChild(root_0, BYTE61_tree);
                     }
-                    dbg.location(168,14);
                     if ( state.backtracking==0 ) {
-                      retval.bs =BacisType.BYTE;
+                      retval.bs =BasicType.BYTE;
                     }
 
                     }
                     break;
                 case 3 :
-                    dbg.enterAlt(3);
-
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:169:9: SHORT
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    dbg.location(169,9);
                     SHORT62=(Token)match(input,SHORT,FOLLOW_SHORT_in_primitiveType916); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     SHORT62_tree = (Object)adaptor.create(SHORT62);
                     adaptor.addChild(root_0, SHORT62_tree);
                     }
-                    dbg.location(169,15);
                     if ( state.backtracking==0 ) {
-                      retval.bs =BacisType.SHORT;
+                      retval.bs =BasicType.SHORT;
                     }
 
                     }
                     break;
                 case 4 :
-                    dbg.enterAlt(4);
-
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:170:9: INT
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    dbg.location(170,9);
                     INT63=(Token)match(input,INT,FOLLOW_INT_in_primitiveType928); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     INT63_tree = (Object)adaptor.create(INT63);
                     adaptor.addChild(root_0, INT63_tree);
                     }
-                    dbg.location(170,13);
                     if ( state.backtracking==0 ) {
-                      retval.bs =BacisType.INT;
+                      retval.bs =BasicType.INT;
                     }
 
                     }
                     break;
                 case 5 :
-                    dbg.enterAlt(5);
-
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:171:9: LONG
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    dbg.location(171,9);
                     LONG64=(Token)match(input,LONG,FOLLOW_LONG_in_primitiveType940); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     LONG64_tree = (Object)adaptor.create(LONG64);
                     adaptor.addChild(root_0, LONG64_tree);
                     }
-                    dbg.location(171,14);
                     if ( state.backtracking==0 ) {
-                      retval.bs =BacisType.LONG;
+                      retval.bs =BasicType.LONG;
                     }
 
                     }
                     break;
                 case 6 :
-                    dbg.enterAlt(6);
-
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:172:9: FLOAT
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    dbg.location(172,9);
                     FLOAT65=(Token)match(input,FLOAT,FOLLOW_FLOAT_in_primitiveType952); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     FLOAT65_tree = (Object)adaptor.create(FLOAT65);
                     adaptor.addChild(root_0, FLOAT65_tree);
                     }
-                    dbg.location(172,15);
                     if ( state.backtracking==0 ) {
-                      retval.bs =BacisType.FLOAT;
+                      retval.bs =BasicType.FLOAT;
                     }
 
                     }
                     break;
                 case 7 :
-                    dbg.enterAlt(7);
-
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:173:9: DOUBLE
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    dbg.location(173,9);
                     DOUBLE66=(Token)match(input,DOUBLE,FOLLOW_DOUBLE_in_primitiveType964); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     DOUBLE66_tree = (Object)adaptor.create(DOUBLE66);
                     adaptor.addChild(root_0, DOUBLE66_tree);
                     }
-                    dbg.location(173,16);
                     if ( state.backtracking==0 ) {
-                      retval.bs =BacisType.DOUBLE;
+                      retval.bs =BasicType.DOUBLE;
                     }
 
                     }
@@ -3036,15 +2376,6 @@ public class JaParser extends DebugParser {
         }
         finally {
         }
-        dbg.location(174, 5);
-
-        }
-        finally {
-            dbg.exitRule(getGrammarFileName(), "primitiveType");
-            decRuleLevel();
-            if ( getRuleLevel()==0 ) {dbg.terminate();}
-        }
-
         return retval;
     }
     // $ANTLR end "primitiveType"
@@ -3075,41 +2406,24 @@ public class JaParser extends DebugParser {
 
         	ArrayList<Type> args = new ArrayList<Type>();
 
-        try { dbg.enterRule(getGrammarFileName(), "formalParameters");
-        if ( getRuleLevel()==0 ) {dbg.commence();}
-        incRuleLevel();
-        dbg.location(176, 1);
-
         try {
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:180:5: ( '(' ( formalParameterDecls )? ')' -> {$formalParameterDecls.tree != null}? ^( FPARMS ( formalParameterDecls )? ) ->)
-            dbg.enterAlt(1);
-
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:180:9: '(' ( formalParameterDecls )? ')'
             {
-            dbg.location(180,9);
             char_literal67=(Token)match(input,81,FOLLOW_81_in_formalParameters994); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_81.add(char_literal67);
 
-            dbg.location(180,13);
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:180:13: ( formalParameterDecls )?
             int alt21=2;
-            try { dbg.enterSubRule(21);
-            try { dbg.enterDecision(21);
-
             int LA21_0 = input.LA(1);
 
             if ( (LA21_0==IDENTIFIER||(LA21_0>=CHAR && LA21_0<=DOUBLE)) ) {
                 alt21=1;
             }
-            } finally {dbg.exitDecision(21);}
-
             switch (alt21) {
                 case 1 :
-                    dbg.enterAlt(1);
-
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:180:13: formalParameterDecls
                     {
-                    dbg.location(180,13);
                     pushFollow(FOLLOW_formalParameterDecls_in_formalParameters996);
                     formalParameterDecls68=formalParameterDecls();
 
@@ -3121,9 +2435,7 @@ public class JaParser extends DebugParser {
                     break;
 
             }
-            } finally {dbg.exitSubRule(21);}
 
-            dbg.location(180,46);
             char_literal69=(Token)match(input,82,FOLLOW_82_in_formalParameters1000); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_82.add(char_literal69);
 
@@ -3143,17 +2455,13 @@ public class JaParser extends DebugParser {
             root_0 = (Object)adaptor.nil();
             // 180:50: -> {$formalParameterDecls.tree != null}? ^( FPARMS ( formalParameterDecls )? )
             if ((formalParameterDecls68!=null?((Object)formalParameterDecls68.tree):null) != null) {
-                dbg.location(180,91);
                 // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:180:91: ^( FPARMS ( formalParameterDecls )? )
                 {
                 Object root_1 = (Object)adaptor.nil();
-                dbg.location(180,93);
                 root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(FPARMS, "FPARMS"), root_1);
 
-                dbg.location(180,100);
                 // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:180:100: ( formalParameterDecls )?
                 if ( stream_formalParameterDecls.hasNext() ) {
-                    dbg.location(180,100);
                     adaptor.addChild(root_1, stream_formalParameterDecls.nextTree());
 
                 }
@@ -3165,7 +2473,6 @@ public class JaParser extends DebugParser {
             }
             else // 181:15: ->
             {
-                dbg.location(182,5);
                 root_0 = null;
             }
 
@@ -3188,15 +2495,6 @@ public class JaParser extends DebugParser {
         }
         finally {
         }
-        dbg.location(182, 5);
-
-        }
-        finally {
-            dbg.exitRule(getGrammarFileName(), "formalParameters");
-            decRuleLevel();
-            if ( getRuleLevel()==0 ) {dbg.terminate();}
-        }
-
         return retval;
     }
     // $ANTLR end "formalParameters"
@@ -3234,70 +2532,40 @@ public class JaParser extends DebugParser {
         RewriteRuleSubtreeStream stream_variableDeclaratorId=new RewriteRuleSubtreeStream(adaptor,"rule variableDeclaratorId");
         RewriteRuleSubtreeStream stream_formalParameterDecls=new RewriteRuleSubtreeStream(adaptor,"rule formalParameterDecls");
         RewriteRuleSubtreeStream stream_type=new RewriteRuleSubtreeStream(adaptor,"rule type");
-        try { dbg.enterRule(getGrammarFileName(), "formalParameterDecls");
-        if ( getRuleLevel()==0 ) {dbg.commence();}
-        incRuleLevel();
-        dbg.location(184, 1);
-
         try {
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:185:5: ( type variableDeclaratorId ( ',' formalParameterDecls )? -> ^( FPARM type variableDeclaratorId ) ( formalParameterDecls )? | type '...' variableDeclaratorId -> ^( FMULTPARM type variableDeclaratorId ) )
             int alt23=2;
-            try { dbg.enterDecision(23);
-
-            try {
-                isCyclicDecision = true;
-                alt23 = dfa23.predict(input);
-            }
-            catch (NoViableAltException nvae) {
-                dbg.recognitionException(nvae);
-                throw nvae;
-            }
-            } finally {dbg.exitDecision(23);}
-
+            alt23 = dfa23.predict(input);
             switch (alt23) {
                 case 1 :
-                    dbg.enterAlt(1);
-
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:185:8: type variableDeclaratorId ( ',' formalParameterDecls )?
                     {
-                    dbg.location(185,8);
                     pushFollow(FOLLOW_type_in_formalParameterDecls1049);
                     type70=type();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) stream_type.add(type70.getTree());
-                    dbg.location(185,13);
                     pushFollow(FOLLOW_variableDeclaratorId_in_formalParameterDecls1051);
                     variableDeclaratorId71=variableDeclaratorId();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) stream_variableDeclaratorId.add(variableDeclaratorId71.getTree());
-                    dbg.location(185,34);
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:185:34: ( ',' formalParameterDecls )?
                     int alt22=2;
-                    try { dbg.enterSubRule(22);
-                    try { dbg.enterDecision(22);
-
                     int LA22_0 = input.LA(1);
 
                     if ( (LA22_0==78) ) {
                         alt22=1;
                     }
-                    } finally {dbg.exitDecision(22);}
-
                     switch (alt22) {
                         case 1 :
-                            dbg.enterAlt(1);
-
                             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:185:35: ',' formalParameterDecls
                             {
-                            dbg.location(185,35);
                             char_literal72=(Token)match(input,78,FOLLOW_78_in_formalParameterDecls1054); if (state.failed) return retval; 
                             if ( state.backtracking==0 ) stream_78.add(char_literal72);
 
-                            dbg.location(185,39);
                             pushFollow(FOLLOW_formalParameterDecls_in_formalParameterDecls1056);
                             formalParameterDecls73=formalParameterDecls();
 
@@ -3309,12 +2577,11 @@ public class JaParser extends DebugParser {
                             break;
 
                     }
-                    } finally {dbg.exitSubRule(22);}
 
 
 
                     // AST REWRITE
-                    // elements: formalParameterDecls, variableDeclaratorId, type
+                    // elements: type, formalParameterDecls, variableDeclaratorId
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -3327,24 +2594,18 @@ public class JaParser extends DebugParser {
                     root_0 = (Object)adaptor.nil();
                     // 192:6: -> ^( FPARM type variableDeclaratorId ) ( formalParameterDecls )?
                     {
-                        dbg.location(192,9);
                         // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:192:9: ^( FPARM type variableDeclaratorId )
                         {
                         Object root_1 = (Object)adaptor.nil();
-                        dbg.location(192,11);
                         root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(FPARM, "FPARM"), root_1);
 
-                        dbg.location(192,17);
                         adaptor.addChild(root_1, stream_type.nextTree());
-                        dbg.location(192,22);
                         adaptor.addChild(root_1, stream_variableDeclaratorId.nextTree());
 
                         adaptor.addChild(root_0, root_1);
                         }
-                        dbg.location(192,44);
                         // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:192:44: ( formalParameterDecls )?
                         if ( stream_formalParameterDecls.hasNext() ) {
-                            dbg.location(192,44);
                             adaptor.addChild(root_0, stream_formalParameterDecls.nextTree());
 
                         }
@@ -3356,22 +2617,17 @@ public class JaParser extends DebugParser {
                     }
                     break;
                 case 2 :
-                    dbg.enterAlt(2);
-
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:193:8: type '...' variableDeclaratorId
                     {
-                    dbg.location(193,8);
                     pushFollow(FOLLOW_type_in_formalParameterDecls1092);
                     type74=type();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) stream_type.add(type74.getTree());
-                    dbg.location(193,13);
                     string_literal75=(Token)match(input,83,FOLLOW_83_in_formalParameterDecls1094); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_83.add(string_literal75);
 
-                    dbg.location(193,19);
                     pushFollow(FOLLOW_variableDeclaratorId_in_formalParameterDecls1096);
                     variableDeclaratorId76=variableDeclaratorId();
 
@@ -3394,16 +2650,12 @@ public class JaParser extends DebugParser {
                     root_0 = (Object)adaptor.nil();
                     // 193:40: -> ^( FMULTPARM type variableDeclaratorId )
                     {
-                        dbg.location(193,43);
                         // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:193:43: ^( FMULTPARM type variableDeclaratorId )
                         {
                         Object root_1 = (Object)adaptor.nil();
-                        dbg.location(193,45);
                         root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(FMULTPARM, "FMULTPARM"), root_1);
 
-                        dbg.location(193,55);
                         adaptor.addChild(root_1, stream_type.nextTree());
-                        dbg.location(193,60);
                         adaptor.addChild(root_1, stream_variableDeclaratorId.nextTree());
 
                         adaptor.addChild(root_0, root_1);
@@ -3432,15 +2684,6 @@ public class JaParser extends DebugParser {
         }
         finally {
         }
-        dbg.location(194, 5);
-
-        }
-        finally {
-            dbg.exitRule(getGrammarFileName(), "formalParameterDecls");
-            decRuleLevel();
-            if ( getRuleLevel()==0 ) {dbg.terminate();}
-        }
-
         return retval;
     }
     // $ANTLR end "formalParameterDecls"
@@ -3462,18 +2705,10 @@ public class JaParser extends DebugParser {
 
 
         RewriteRuleSubtreeStream stream_block=new RewriteRuleSubtreeStream(adaptor,"rule block");
-        try { dbg.enterRule(getGrammarFileName(), "methodBody");
-        if ( getRuleLevel()==0 ) {dbg.commence();}
-        incRuleLevel();
-        dbg.location(196, 1);
-
         try {
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:197:5: ( block -> ^( MBODY block ) )
-            dbg.enterAlt(1);
-
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:197:9: block
             {
-            dbg.location(197,9);
             pushFollow(FOLLOW_block_in_methodBody1129);
             block77=block();
 
@@ -3496,14 +2731,11 @@ public class JaParser extends DebugParser {
             root_0 = (Object)adaptor.nil();
             // 197:15: -> ^( MBODY block )
             {
-                dbg.location(197,18);
                 // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:197:18: ^( MBODY block )
                 {
                 Object root_1 = (Object)adaptor.nil();
-                dbg.location(197,20);
                 root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(MBODY, "MBODY"), root_1);
 
-                dbg.location(197,26);
                 adaptor.addChild(root_1, stream_block.nextTree());
 
                 adaptor.addChild(root_0, root_1);
@@ -3530,15 +2762,6 @@ public class JaParser extends DebugParser {
         }
         finally {
         }
-        dbg.location(198, 5);
-
-        }
-        finally {
-            dbg.exitRule(getGrammarFileName(), "methodBody");
-            decRuleLevel();
-            if ( getRuleLevel()==0 ) {dbg.terminate();}
-        }
-
         return retval;
     }
     // $ANTLR end "methodBody"
@@ -3566,31 +2789,19 @@ public class JaParser extends DebugParser {
         Object char_literal78_tree=null;
         Object char_literal81_tree=null;
 
-        try { dbg.enterRule(getGrammarFileName(), "constructorBody");
-        if ( getRuleLevel()==0 ) {dbg.commence();}
-        incRuleLevel();
-        dbg.location(200, 1);
-
         try {
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:201:5: ( '{' ( explicitConstructorInvocation )? ( blockStatement )* '}' )
-            dbg.enterAlt(1);
-
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:201:9: '{' ( explicitConstructorInvocation )? ( blockStatement )* '}'
             {
             root_0 = (Object)adaptor.nil();
 
-            dbg.location(201,9);
             char_literal78=(Token)match(input,76,FOLLOW_76_in_constructorBody1156); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             char_literal78_tree = (Object)adaptor.create(char_literal78);
             adaptor.addChild(root_0, char_literal78_tree);
             }
-            dbg.location(201,13);
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:201:13: ( explicitConstructorInvocation )?
             int alt24=2;
-            try { dbg.enterSubRule(24);
-            try { dbg.enterDecision(24);
-
             int LA24_0 = input.LA(1);
 
             if ( (LA24_0==THIS) ) {
@@ -3607,15 +2818,10 @@ public class JaParser extends DebugParser {
                     alt24=1;
                 }
             }
-            } finally {dbg.exitDecision(24);}
-
             switch (alt24) {
                 case 1 :
-                    dbg.enterAlt(1);
-
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:201:13: explicitConstructorInvocation
                     {
-                    dbg.location(201,13);
                     pushFollow(FOLLOW_explicitConstructorInvocation_in_constructorBody1158);
                     explicitConstructorInvocation79=explicitConstructorInvocation();
 
@@ -3627,17 +2833,11 @@ public class JaParser extends DebugParser {
                     break;
 
             }
-            } finally {dbg.exitSubRule(24);}
 
-            dbg.location(201,44);
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:201:44: ( blockStatement )*
-            try { dbg.enterSubRule(25);
-
             loop25:
             do {
                 int alt25=2;
-                try { dbg.enterDecision(25);
-
                 int LA25_0 = input.LA(1);
 
                 if ( (LA25_0==IDENTIFIER||LA25_0==VOID||(LA25_0>=CHAR && LA25_0<=RETURN)||LA25_0==NEW||(LA25_0>=PLUS && LA25_0<=MINUS)||(LA25_0>=75 && LA25_0<=76)||LA25_0==81||(LA25_0>=93 && LA25_0<=95)) ) {
@@ -3645,15 +2845,10 @@ public class JaParser extends DebugParser {
                 }
 
 
-                } finally {dbg.exitDecision(25);}
-
                 switch (alt25) {
             	case 1 :
-            	    dbg.enterAlt(1);
-
             	    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:201:44: blockStatement
             	    {
-            	    dbg.location(201,44);
             	    pushFollow(FOLLOW_blockStatement_in_constructorBody1161);
             	    blockStatement80=blockStatement();
 
@@ -3668,9 +2863,7 @@ public class JaParser extends DebugParser {
             	    break loop25;
                 }
             } while (true);
-            } finally {dbg.exitSubRule(25);}
 
-            dbg.location(201,60);
             char_literal81=(Token)match(input,77,FOLLOW_77_in_constructorBody1164); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             char_literal81_tree = (Object)adaptor.create(char_literal81);
@@ -3695,15 +2888,6 @@ public class JaParser extends DebugParser {
         }
         finally {
         }
-        dbg.location(202, 5);
-
-        }
-        finally {
-            dbg.exitRule(getGrammarFileName(), "constructorBody");
-            decRuleLevel();
-            if ( getRuleLevel()==0 ) {dbg.terminate();}
-        }
-
         return retval;
     }
     // $ANTLR end "constructorBody"
@@ -3729,20 +2913,12 @@ public class JaParser extends DebugParser {
         Object set82_tree=null;
         Object char_literal84_tree=null;
 
-        try { dbg.enterRule(getGrammarFileName(), "explicitConstructorInvocation");
-        if ( getRuleLevel()==0 ) {dbg.commence();}
-        incRuleLevel();
-        dbg.location(204, 1);
-
         try {
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:205:5: ( ( THIS | SUPER ) arguments ';' )
-            dbg.enterAlt(1);
-
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:205:9: ( THIS | SUPER ) arguments ';'
             {
             root_0 = (Object)adaptor.nil();
 
-            dbg.location(205,9);
             set82=(Token)input.LT(1);
             if ( (input.LA(1)>=THIS && input.LA(1)<=SUPER) ) {
                 input.consume();
@@ -3752,18 +2928,15 @@ public class JaParser extends DebugParser {
             else {
                 if (state.backtracking>0) {state.failed=true; return retval;}
                 MismatchedSetException mse = new MismatchedSetException(null,input);
-                dbg.recognitionException(mse);
                 throw mse;
             }
 
-            dbg.location(205,24);
             pushFollow(FOLLOW_arguments_in_explicitConstructorInvocation1191);
             arguments83=arguments();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, arguments83.getTree());
-            dbg.location(205,34);
             char_literal84=(Token)match(input,75,FOLLOW_75_in_explicitConstructorInvocation1193); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             char_literal84_tree = (Object)adaptor.create(char_literal84);
@@ -3788,15 +2961,6 @@ public class JaParser extends DebugParser {
         }
         finally {
         }
-        dbg.location(207, 5);
-
-        }
-        finally {
-            dbg.exitRule(getGrammarFileName(), "explicitConstructorInvocation");
-            decRuleLevel();
-            if ( getRuleLevel()==0 ) {dbg.terminate();}
-        }
-
         return retval;
     }
     // $ANTLR end "explicitConstructorInvocation"
@@ -3818,20 +2982,12 @@ public class JaParser extends DebugParser {
 
         Object set85_tree=null;
 
-        try { dbg.enterRule(getGrammarFileName(), "literal");
-        if ( getRuleLevel()==0 ) {dbg.commence();}
-        incRuleLevel();
-        dbg.location(209, 1);
-
         try {
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:210:5: ( INTLITERAL | FloatingPointLiteral | CHARLITERAL | STRINGLITERAL | BOOLEANLITERAL | NULLLITERAL )
-            dbg.enterAlt(1);
-
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:
             {
             root_0 = (Object)adaptor.nil();
 
-            dbg.location(210,5);
             set85=(Token)input.LT(1);
             if ( (input.LA(1)>=INTLITERAL && input.LA(1)<=NULLLITERAL) ) {
                 input.consume();
@@ -3841,7 +2997,6 @@ public class JaParser extends DebugParser {
             else {
                 if (state.backtracking>0) {state.failed=true; return retval;}
                 MismatchedSetException mse = new MismatchedSetException(null,input);
-                dbg.recognitionException(mse);
                 throw mse;
             }
 
@@ -3864,15 +3019,6 @@ public class JaParser extends DebugParser {
         }
         finally {
         }
-        dbg.location(216, 5);
-
-        }
-        finally {
-            dbg.exitRule(getGrammarFileName(), "literal");
-            decRuleLevel();
-            if ( getRuleLevel()==0 ) {dbg.terminate();}
-        }
-
         return retval;
     }
     // $ANTLR end "literal"
@@ -3898,30 +3044,17 @@ public class JaParser extends DebugParser {
         Object char_literal86_tree=null;
         Object char_literal88_tree=null;
 
-        try { dbg.enterRule(getGrammarFileName(), "block");
-        if ( getRuleLevel()==0 ) {dbg.commence();}
-        incRuleLevel();
-        dbg.location(221, 1);
-
         try {
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:222:5: ( '{' ( blockStatement )* '}' )
-            dbg.enterAlt(1);
-
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:222:9: '{' ( blockStatement )* '}'
             {
             root_0 = (Object)adaptor.nil();
 
-            dbg.location(222,12);
             char_literal86=(Token)match(input,76,FOLLOW_76_in_block1290); if (state.failed) return retval;
-            dbg.location(222,14);
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:222:14: ( blockStatement )*
-            try { dbg.enterSubRule(26);
-
             loop26:
             do {
                 int alt26=2;
-                try { dbg.enterDecision(26);
-
                 int LA26_0 = input.LA(1);
 
                 if ( (LA26_0==IDENTIFIER||LA26_0==VOID||(LA26_0>=CHAR && LA26_0<=RETURN)||LA26_0==NEW||(LA26_0>=PLUS && LA26_0<=MINUS)||(LA26_0>=75 && LA26_0<=76)||LA26_0==81||(LA26_0>=93 && LA26_0<=95)) ) {
@@ -3929,15 +3062,10 @@ public class JaParser extends DebugParser {
                 }
 
 
-                } finally {dbg.exitDecision(26);}
-
                 switch (alt26) {
             	case 1 :
-            	    dbg.enterAlt(1);
-
             	    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:222:14: blockStatement
             	    {
-            	    dbg.location(222,14);
             	    pushFollow(FOLLOW_blockStatement_in_block1293);
             	    blockStatement87=blockStatement();
 
@@ -3952,9 +3080,7 @@ public class JaParser extends DebugParser {
             	    break loop26;
                 }
             } while (true);
-            } finally {dbg.exitSubRule(26);}
 
-            dbg.location(222,33);
             char_literal88=(Token)match(input,77,FOLLOW_77_in_block1296); if (state.failed) return retval;
 
             }
@@ -3975,15 +3101,6 @@ public class JaParser extends DebugParser {
         }
         finally {
         }
-        dbg.location(223, 5);
-
-        }
-        finally {
-            dbg.exitRule(getGrammarFileName(), "block");
-            decRuleLevel();
-            if ( getRuleLevel()==0 ) {dbg.terminate();}
-        }
-
         return retval;
     }
     // $ANTLR end "block"
@@ -4007,35 +3124,16 @@ public class JaParser extends DebugParser {
 
 
 
-        try { dbg.enterRule(getGrammarFileName(), "blockStatement");
-        if ( getRuleLevel()==0 ) {dbg.commence();}
-        incRuleLevel();
-        dbg.location(225, 1);
-
         try {
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:226:5: ( localVariableDeclarationStatement | statement )
             int alt27=2;
-            try { dbg.enterDecision(27);
-
-            try {
-                isCyclicDecision = true;
-                alt27 = dfa27.predict(input);
-            }
-            catch (NoViableAltException nvae) {
-                dbg.recognitionException(nvae);
-                throw nvae;
-            }
-            } finally {dbg.exitDecision(27);}
-
+            alt27 = dfa27.predict(input);
             switch (alt27) {
                 case 1 :
-                    dbg.enterAlt(1);
-
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:226:9: localVariableDeclarationStatement
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    dbg.location(226,9);
                     pushFollow(FOLLOW_localVariableDeclarationStatement_in_blockStatement1320);
                     localVariableDeclarationStatement89=localVariableDeclarationStatement();
 
@@ -4046,13 +3144,10 @@ public class JaParser extends DebugParser {
                     }
                     break;
                 case 2 :
-                    dbg.enterAlt(2);
-
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:227:9: statement
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    dbg.location(227,9);
                     pushFollow(FOLLOW_statement_in_blockStatement1330);
                     statement90=statement();
 
@@ -4080,15 +3175,6 @@ public class JaParser extends DebugParser {
         }
         finally {
         }
-        dbg.location(228, 5);
-
-        }
-        finally {
-            dbg.exitRule(getGrammarFileName(), "blockStatement");
-            decRuleLevel();
-            if ( getRuleLevel()==0 ) {dbg.terminate();}
-        }
-
         return retval;
     }
     // $ANTLR end "blockStatement"
@@ -4112,27 +3198,18 @@ public class JaParser extends DebugParser {
 
         Object char_literal92_tree=null;
 
-        try { dbg.enterRule(getGrammarFileName(), "localVariableDeclarationStatement");
-        if ( getRuleLevel()==0 ) {dbg.commence();}
-        incRuleLevel();
-        dbg.location(230, 1);
-
         try {
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:231:5: ( localVariableDeclaration ';' )
-            dbg.enterAlt(1);
-
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:231:10: localVariableDeclaration ';'
             {
             root_0 = (Object)adaptor.nil();
 
-            dbg.location(231,10);
             pushFollow(FOLLOW_localVariableDeclaration_in_localVariableDeclarationStatement1354);
             localVariableDeclaration91=localVariableDeclaration();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, localVariableDeclaration91.getTree());
-            dbg.location(231,38);
             char_literal92=(Token)match(input,75,FOLLOW_75_in_localVariableDeclarationStatement1356); if (state.failed) return retval;
 
             }
@@ -4153,15 +3230,6 @@ public class JaParser extends DebugParser {
         }
         finally {
         }
-        dbg.location(232, 5);
-
-        }
-        finally {
-            dbg.exitRule(getGrammarFileName(), "localVariableDeclarationStatement");
-            decRuleLevel();
-            if ( getRuleLevel()==0 ) {dbg.terminate();}
-        }
-
         return retval;
     }
     // $ANTLR end "localVariableDeclarationStatement"
@@ -4191,40 +3259,26 @@ public class JaParser extends DebugParser {
         RewriteRuleTokenStream stream_78=new RewriteRuleTokenStream(adaptor,"token 78");
         RewriteRuleSubtreeStream stream_variableDeclarator=new RewriteRuleSubtreeStream(adaptor,"rule variableDeclarator");
         RewriteRuleSubtreeStream stream_type=new RewriteRuleSubtreeStream(adaptor,"rule type");
-        try { dbg.enterRule(getGrammarFileName(), "localVariableDeclaration");
-        if ( getRuleLevel()==0 ) {dbg.commence();}
-        incRuleLevel();
-        dbg.location(234, 1);
-
         try {
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:235:5: ( type variableDeclarator ( ',' variableDeclarator )* -> ( ^( VARDECL type variableDeclarator ) )+ )
-            dbg.enterAlt(1);
-
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:235:9: type variableDeclarator ( ',' variableDeclarator )*
             {
-            dbg.location(235,9);
             pushFollow(FOLLOW_type_in_localVariableDeclaration1376);
             type93=type();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) stream_type.add(type93.getTree());
-            dbg.location(235,14);
             pushFollow(FOLLOW_variableDeclarator_in_localVariableDeclaration1378);
             variableDeclarator94=variableDeclarator();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) stream_variableDeclarator.add(variableDeclarator94.getTree());
-            dbg.location(235,33);
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:235:33: ( ',' variableDeclarator )*
-            try { dbg.enterSubRule(28);
-
             loop28:
             do {
                 int alt28=2;
-                try { dbg.enterDecision(28);
-
                 int LA28_0 = input.LA(1);
 
                 if ( (LA28_0==78) ) {
@@ -4232,19 +3286,13 @@ public class JaParser extends DebugParser {
                 }
 
 
-                } finally {dbg.exitDecision(28);}
-
                 switch (alt28) {
             	case 1 :
-            	    dbg.enterAlt(1);
-
             	    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:235:34: ',' variableDeclarator
             	    {
-            	    dbg.location(235,34);
             	    char_literal95=(Token)match(input,78,FOLLOW_78_in_localVariableDeclaration1381); if (state.failed) return retval; 
             	    if ( state.backtracking==0 ) stream_78.add(char_literal95);
 
-            	    dbg.location(235,38);
             	    pushFollow(FOLLOW_variableDeclarator_in_localVariableDeclaration1383);
             	    variableDeclarator96=variableDeclarator();
 
@@ -4259,7 +3307,6 @@ public class JaParser extends DebugParser {
             	    break loop28;
                 }
             } while (true);
-            } finally {dbg.exitSubRule(28);}
 
 
 
@@ -4277,21 +3324,16 @@ public class JaParser extends DebugParser {
             root_0 = (Object)adaptor.nil();
             // 235:59: -> ( ^( VARDECL type variableDeclarator ) )+
             {
-                dbg.location(235,62);
                 if ( !(stream_type.hasNext()||stream_variableDeclarator.hasNext()) ) {
                     throw new RewriteEarlyExitException();
                 }
                 while ( stream_type.hasNext()||stream_variableDeclarator.hasNext() ) {
-                    dbg.location(235,62);
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:235:62: ^( VARDECL type variableDeclarator )
                     {
                     Object root_1 = (Object)adaptor.nil();
-                    dbg.location(235,64);
                     root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(VARDECL, "VARDECL"), root_1);
 
-                    dbg.location(235,72);
                     adaptor.addChild(root_1, stream_type.nextTree());
-                    dbg.location(235,77);
                     adaptor.addChild(root_1, stream_variableDeclarator.nextTree());
 
                     adaptor.addChild(root_0, root_1);
@@ -4322,15 +3364,6 @@ public class JaParser extends DebugParser {
         }
         finally {
         }
-        dbg.location(236, 5);
-
-        }
-        finally {
-            dbg.exitRule(getGrammarFileName(), "localVariableDeclaration");
-            decRuleLevel();
-            if ( getRuleLevel()==0 ) {dbg.terminate();}
-        }
-
         return retval;
     }
     // $ANTLR end "localVariableDeclaration"
@@ -4420,16 +3453,9 @@ public class JaParser extends DebugParser {
         RewriteRuleSubtreeStream stream_block=new RewriteRuleSubtreeStream(adaptor,"rule block");
         RewriteRuleSubtreeStream stream_forInit=new RewriteRuleSubtreeStream(adaptor,"rule forInit");
         RewriteRuleSubtreeStream stream_forUpdate=new RewriteRuleSubtreeStream(adaptor,"rule forUpdate");
-        try { dbg.enterRule(getGrammarFileName(), "statement");
-        if ( getRuleLevel()==0 ) {dbg.commence();}
-        incRuleLevel();
-        dbg.location(239, 1);
-
         try {
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:240:5: ( block -> ^( BLOCK block ) | IF parExpression statement elseStmt -> ^( IF ^( CONDITION parExpression ) ^( THEN statement ) ( elseStmt )? ) | FOR '(' ( forInit )? ';' ( expression )? ';' ( forUpdate )? ')' statement -> ^( FOR ( ^( INIT forInit ) )? ( ^( CONDITION expression ) )? ( ^( UPDATE forUpdate ) )? statement ) | WHILE parExpression statement -> ^( WHILE ^( CONDITION parExpression ) statement ) | DO statement WHILE parExpression ';' -> ^( DOWHILE ^( CONDITION parExpression ) statement ) | RETURN ( expression )? ';' | ';' | statementExpression ';' -> ^( STMT statementExpression ) )
             int alt33=8;
-            try { dbg.enterDecision(33);
-
             switch ( input.LA(1) ) {
             case 76:
                 {
@@ -4499,19 +3525,13 @@ public class JaParser extends DebugParser {
                 NoViableAltException nvae =
                     new NoViableAltException("", 33, 0, input);
 
-                dbg.recognitionException(nvae);
                 throw nvae;
             }
 
-            } finally {dbg.exitDecision(33);}
-
             switch (alt33) {
                 case 1 :
-                    dbg.enterAlt(1);
-
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:240:9: block
                     {
-                    dbg.location(240,9);
                     pushFollow(FOLLOW_block_in_statement1419);
                     block97=block();
 
@@ -4534,14 +3554,11 @@ public class JaParser extends DebugParser {
                     root_0 = (Object)adaptor.nil();
                     // 240:15: -> ^( BLOCK block )
                     {
-                        dbg.location(240,18);
                         // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:240:18: ^( BLOCK block )
                         {
                         Object root_1 = (Object)adaptor.nil();
-                        dbg.location(240,20);
                         root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(BLOCK, "BLOCK"), root_1);
 
-                        dbg.location(240,26);
                         adaptor.addChild(root_1, stream_block.nextTree());
 
                         adaptor.addChild(root_0, root_1);
@@ -4553,29 +3570,23 @@ public class JaParser extends DebugParser {
                     }
                     break;
                 case 2 :
-                    dbg.enterAlt(2);
-
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:241:9: IF parExpression statement elseStmt
                     {
-                    dbg.location(241,9);
                     IF98=(Token)match(input,IF,FOLLOW_IF_in_statement1437); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_IF.add(IF98);
 
-                    dbg.location(241,12);
                     pushFollow(FOLLOW_parExpression_in_statement1439);
                     parExpression99=parExpression();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) stream_parExpression.add(parExpression99.getTree());
-                    dbg.location(241,26);
                     pushFollow(FOLLOW_statement_in_statement1441);
                     statement100=statement();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) stream_statement.add(statement100.getTree());
-                    dbg.location(241,36);
                     pushFollow(FOLLOW_elseStmt_in_statement1443);
                     elseStmt101=elseStmt();
 
@@ -4585,7 +3596,7 @@ public class JaParser extends DebugParser {
 
 
                     // AST REWRITE
-                    // elements: IF, statement, parExpression, elseStmt
+                    // elements: elseStmt, statement, parExpression, IF
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -4598,41 +3609,31 @@ public class JaParser extends DebugParser {
                     root_0 = (Object)adaptor.nil();
                     // 241:45: -> ^( IF ^( CONDITION parExpression ) ^( THEN statement ) ( elseStmt )? )
                     {
-                        dbg.location(241,48);
                         // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:241:48: ^( IF ^( CONDITION parExpression ) ^( THEN statement ) ( elseStmt )? )
                         {
                         Object root_1 = (Object)adaptor.nil();
-                        dbg.location(241,50);
                         root_1 = (Object)adaptor.becomeRoot(stream_IF.nextNode(), root_1);
 
-                        dbg.location(241,53);
                         // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:241:53: ^( CONDITION parExpression )
                         {
                         Object root_2 = (Object)adaptor.nil();
-                        dbg.location(241,55);
                         root_2 = (Object)adaptor.becomeRoot((Object)adaptor.create(CONDITION, "CONDITION"), root_2);
 
-                        dbg.location(241,65);
                         adaptor.addChild(root_2, stream_parExpression.nextTree());
 
                         adaptor.addChild(root_1, root_2);
                         }
-                        dbg.location(241,80);
                         // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:241:80: ^( THEN statement )
                         {
                         Object root_2 = (Object)adaptor.nil();
-                        dbg.location(241,82);
                         root_2 = (Object)adaptor.becomeRoot((Object)adaptor.create(THEN, "THEN"), root_2);
 
-                        dbg.location(241,87);
                         adaptor.addChild(root_2, stream_statement.nextTree());
 
                         adaptor.addChild(root_1, root_2);
                         }
-                        dbg.location(241,98);
                         // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:241:98: ( elseStmt )?
                         if ( stream_elseStmt.hasNext() ) {
-                            dbg.location(241,98);
                             adaptor.addChild(root_1, stream_elseStmt.nextTree());
 
                         }
@@ -4647,38 +3648,25 @@ public class JaParser extends DebugParser {
                     }
                     break;
                 case 3 :
-                    dbg.enterAlt(3);
-
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:242:9: FOR '(' ( forInit )? ';' ( expression )? ';' ( forUpdate )? ')' statement
                     {
-                    dbg.location(242,9);
                     FOR102=(Token)match(input,FOR,FOLLOW_FOR_in_statement1474); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_FOR.add(FOR102);
 
-                    dbg.location(242,13);
                     char_literal103=(Token)match(input,81,FOLLOW_81_in_statement1476); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_81.add(char_literal103);
 
-                    dbg.location(242,17);
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:242:17: ( forInit )?
                     int alt29=2;
-                    try { dbg.enterSubRule(29);
-                    try { dbg.enterDecision(29);
-
                     int LA29_0 = input.LA(1);
 
                     if ( (LA29_0==IDENTIFIER||LA29_0==VOID||(LA29_0>=CHAR && LA29_0<=NULLLITERAL)||LA29_0==NEW||(LA29_0>=PLUS && LA29_0<=MINUS)||LA29_0==81||(LA29_0>=93 && LA29_0<=95)) ) {
                         alt29=1;
                     }
-                    } finally {dbg.exitDecision(29);}
-
                     switch (alt29) {
                         case 1 :
-                            dbg.enterAlt(1);
-
                             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:242:17: forInit
                             {
-                            dbg.location(242,17);
                             pushFollow(FOLLOW_forInit_in_statement1478);
                             forInit104=forInit();
 
@@ -4690,32 +3678,21 @@ public class JaParser extends DebugParser {
                             break;
 
                     }
-                    } finally {dbg.exitSubRule(29);}
 
-                    dbg.location(242,26);
                     char_literal105=(Token)match(input,75,FOLLOW_75_in_statement1481); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_75.add(char_literal105);
 
-                    dbg.location(242,30);
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:242:30: ( expression )?
                     int alt30=2;
-                    try { dbg.enterSubRule(30);
-                    try { dbg.enterDecision(30);
-
                     int LA30_0 = input.LA(1);
 
                     if ( (LA30_0==IDENTIFIER||LA30_0==VOID||(LA30_0>=CHAR && LA30_0<=NULLLITERAL)||LA30_0==NEW||(LA30_0>=PLUS && LA30_0<=MINUS)||LA30_0==81||(LA30_0>=93 && LA30_0<=95)) ) {
                         alt30=1;
                     }
-                    } finally {dbg.exitDecision(30);}
-
                     switch (alt30) {
                         case 1 :
-                            dbg.enterAlt(1);
-
                             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:242:30: expression
                             {
-                            dbg.location(242,30);
                             pushFollow(FOLLOW_expression_in_statement1483);
                             expression106=expression();
 
@@ -4727,32 +3704,21 @@ public class JaParser extends DebugParser {
                             break;
 
                     }
-                    } finally {dbg.exitSubRule(30);}
 
-                    dbg.location(242,42);
                     char_literal107=(Token)match(input,75,FOLLOW_75_in_statement1486); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_75.add(char_literal107);
 
-                    dbg.location(242,46);
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:242:46: ( forUpdate )?
                     int alt31=2;
-                    try { dbg.enterSubRule(31);
-                    try { dbg.enterDecision(31);
-
                     int LA31_0 = input.LA(1);
 
                     if ( (LA31_0==IDENTIFIER||LA31_0==VOID||(LA31_0>=CHAR && LA31_0<=NULLLITERAL)||LA31_0==NEW||(LA31_0>=PLUS && LA31_0<=MINUS)||LA31_0==81||(LA31_0>=93 && LA31_0<=95)) ) {
                         alt31=1;
                     }
-                    } finally {dbg.exitDecision(31);}
-
                     switch (alt31) {
                         case 1 :
-                            dbg.enterAlt(1);
-
                             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:242:46: forUpdate
                             {
-                            dbg.location(242,46);
                             pushFollow(FOLLOW_forUpdate_in_statement1488);
                             forUpdate108=forUpdate();
 
@@ -4764,13 +3730,10 @@ public class JaParser extends DebugParser {
                             break;
 
                     }
-                    } finally {dbg.exitSubRule(31);}
 
-                    dbg.location(242,57);
                     char_literal109=(Token)match(input,82,FOLLOW_82_in_statement1491); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_82.add(char_literal109);
 
-                    dbg.location(242,61);
                     pushFollow(FOLLOW_statement_in_statement1493);
                     statement110=statement();
 
@@ -4780,7 +3743,7 @@ public class JaParser extends DebugParser {
 
 
                     // AST REWRITE
-                    // elements: expression, FOR, statement, forInit, forUpdate
+                    // elements: expression, FOR, forInit, statement, forUpdate
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -4793,24 +3756,18 @@ public class JaParser extends DebugParser {
                     root_0 = (Object)adaptor.nil();
                     // 243:6: -> ^( FOR ( ^( INIT forInit ) )? ( ^( CONDITION expression ) )? ( ^( UPDATE forUpdate ) )? statement )
                     {
-                        dbg.location(243,9);
                         // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:243:9: ^( FOR ( ^( INIT forInit ) )? ( ^( CONDITION expression ) )? ( ^( UPDATE forUpdate ) )? statement )
                         {
                         Object root_1 = (Object)adaptor.nil();
-                        dbg.location(243,11);
                         root_1 = (Object)adaptor.becomeRoot(stream_FOR.nextNode(), root_1);
 
-                        dbg.location(243,15);
                         // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:243:15: ( ^( INIT forInit ) )?
                         if ( stream_forInit.hasNext() ) {
-                            dbg.location(243,15);
                             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:243:15: ^( INIT forInit )
                             {
                             Object root_2 = (Object)adaptor.nil();
-                            dbg.location(243,17);
                             root_2 = (Object)adaptor.becomeRoot((Object)adaptor.create(INIT, "INIT"), root_2);
 
-                            dbg.location(243,22);
                             adaptor.addChild(root_2, stream_forInit.nextTree());
 
                             adaptor.addChild(root_1, root_2);
@@ -4818,17 +3775,13 @@ public class JaParser extends DebugParser {
 
                         }
                         stream_forInit.reset();
-                        dbg.location(243,32);
                         // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:243:32: ( ^( CONDITION expression ) )?
                         if ( stream_expression.hasNext() ) {
-                            dbg.location(243,32);
                             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:243:32: ^( CONDITION expression )
                             {
                             Object root_2 = (Object)adaptor.nil();
-                            dbg.location(243,34);
                             root_2 = (Object)adaptor.becomeRoot((Object)adaptor.create(CONDITION, "CONDITION"), root_2);
 
-                            dbg.location(243,44);
                             adaptor.addChild(root_2, stream_expression.nextTree());
 
                             adaptor.addChild(root_1, root_2);
@@ -4836,17 +3789,13 @@ public class JaParser extends DebugParser {
 
                         }
                         stream_expression.reset();
-                        dbg.location(243,57);
                         // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:243:57: ( ^( UPDATE forUpdate ) )?
                         if ( stream_forUpdate.hasNext() ) {
-                            dbg.location(243,57);
                             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:243:57: ^( UPDATE forUpdate )
                             {
                             Object root_2 = (Object)adaptor.nil();
-                            dbg.location(243,59);
                             root_2 = (Object)adaptor.becomeRoot((Object)adaptor.create(UPDATE, "UPDATE"), root_2);
 
-                            dbg.location(243,66);
                             adaptor.addChild(root_2, stream_forUpdate.nextTree());
 
                             adaptor.addChild(root_1, root_2);
@@ -4854,7 +3803,6 @@ public class JaParser extends DebugParser {
 
                         }
                         stream_forUpdate.reset();
-                        dbg.location(243,78);
                         adaptor.addChild(root_1, stream_statement.nextTree());
 
                         adaptor.addChild(root_0, root_1);
@@ -4866,22 +3814,17 @@ public class JaParser extends DebugParser {
                     }
                     break;
                 case 4 :
-                    dbg.enterAlt(4);
-
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:244:9: WHILE parExpression statement
                     {
-                    dbg.location(244,9);
                     WHILE111=(Token)match(input,WHILE,FOLLOW_WHILE_in_statement1539); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_WHILE.add(WHILE111);
 
-                    dbg.location(244,15);
                     pushFollow(FOLLOW_parExpression_in_statement1541);
                     parExpression112=parExpression();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) stream_parExpression.add(parExpression112.getTree());
-                    dbg.location(244,29);
                     pushFollow(FOLLOW_statement_in_statement1543);
                     statement113=statement();
 
@@ -4891,7 +3834,7 @@ public class JaParser extends DebugParser {
 
 
                     // AST REWRITE
-                    // elements: WHILE, statement, parExpression
+                    // elements: parExpression, WHILE, statement
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -4904,26 +3847,20 @@ public class JaParser extends DebugParser {
                     root_0 = (Object)adaptor.nil();
                     // 244:39: -> ^( WHILE ^( CONDITION parExpression ) statement )
                     {
-                        dbg.location(244,42);
                         // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:244:42: ^( WHILE ^( CONDITION parExpression ) statement )
                         {
                         Object root_1 = (Object)adaptor.nil();
-                        dbg.location(244,44);
                         root_1 = (Object)adaptor.becomeRoot(stream_WHILE.nextNode(), root_1);
 
-                        dbg.location(244,50);
                         // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:244:50: ^( CONDITION parExpression )
                         {
                         Object root_2 = (Object)adaptor.nil();
-                        dbg.location(244,52);
                         root_2 = (Object)adaptor.becomeRoot((Object)adaptor.create(CONDITION, "CONDITION"), root_2);
 
-                        dbg.location(244,62);
                         adaptor.addChild(root_2, stream_parExpression.nextTree());
 
                         adaptor.addChild(root_1, root_2);
                         }
-                        dbg.location(244,77);
                         adaptor.addChild(root_1, stream_statement.nextTree());
 
                         adaptor.addChild(root_0, root_1);
@@ -4935,33 +3872,26 @@ public class JaParser extends DebugParser {
                     }
                     break;
                 case 5 :
-                    dbg.enterAlt(5);
-
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:245:9: DO statement WHILE parExpression ';'
                     {
-                    dbg.location(245,9);
                     DO114=(Token)match(input,DO,FOLLOW_DO_in_statement1567); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_DO.add(DO114);
 
-                    dbg.location(245,12);
                     pushFollow(FOLLOW_statement_in_statement1569);
                     statement115=statement();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) stream_statement.add(statement115.getTree());
-                    dbg.location(245,22);
                     WHILE116=(Token)match(input,WHILE,FOLLOW_WHILE_in_statement1571); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_WHILE.add(WHILE116);
 
-                    dbg.location(245,28);
                     pushFollow(FOLLOW_parExpression_in_statement1573);
                     parExpression117=parExpression();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) stream_parExpression.add(parExpression117.getTree());
-                    dbg.location(245,42);
                     char_literal118=(Token)match(input,75,FOLLOW_75_in_statement1575); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_75.add(char_literal118);
 
@@ -4981,26 +3911,20 @@ public class JaParser extends DebugParser {
                     root_0 = (Object)adaptor.nil();
                     // 245:46: -> ^( DOWHILE ^( CONDITION parExpression ) statement )
                     {
-                        dbg.location(245,49);
                         // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:245:49: ^( DOWHILE ^( CONDITION parExpression ) statement )
                         {
                         Object root_1 = (Object)adaptor.nil();
-                        dbg.location(245,51);
                         root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(DOWHILE, "DOWHILE"), root_1);
 
-                        dbg.location(245,59);
                         // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:245:59: ^( CONDITION parExpression )
                         {
                         Object root_2 = (Object)adaptor.nil();
-                        dbg.location(245,61);
                         root_2 = (Object)adaptor.becomeRoot((Object)adaptor.create(CONDITION, "CONDITION"), root_2);
 
-                        dbg.location(245,71);
                         adaptor.addChild(root_2, stream_parExpression.nextTree());
 
                         adaptor.addChild(root_1, root_2);
                         }
-                        dbg.location(245,86);
                         adaptor.addChild(root_1, stream_statement.nextTree());
 
                         adaptor.addChild(root_0, root_1);
@@ -5012,38 +3936,26 @@ public class JaParser extends DebugParser {
                     }
                     break;
                 case 6 :
-                    dbg.enterAlt(6);
-
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:246:9: RETURN ( expression )? ';'
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    dbg.location(246,15);
                     RETURN119=(Token)match(input,RETURN,FOLLOW_RETURN_in_statement1599); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     RETURN119_tree = (Object)adaptor.create(RETURN119);
                     root_0 = (Object)adaptor.becomeRoot(RETURN119_tree, root_0);
                     }
-                    dbg.location(246,17);
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:246:17: ( expression )?
                     int alt32=2;
-                    try { dbg.enterSubRule(32);
-                    try { dbg.enterDecision(32);
-
                     int LA32_0 = input.LA(1);
 
                     if ( (LA32_0==IDENTIFIER||LA32_0==VOID||(LA32_0>=CHAR && LA32_0<=NULLLITERAL)||LA32_0==NEW||(LA32_0>=PLUS && LA32_0<=MINUS)||LA32_0==81||(LA32_0>=93 && LA32_0<=95)) ) {
                         alt32=1;
                     }
-                    } finally {dbg.exitDecision(32);}
-
                     switch (alt32) {
                         case 1 :
-                            dbg.enterAlt(1);
-
                             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:246:17: expression
                             {
-                            dbg.location(246,17);
                             pushFollow(FOLLOW_expression_in_statement1602);
                             expression120=expression();
 
@@ -5055,38 +3967,29 @@ public class JaParser extends DebugParser {
                             break;
 
                     }
-                    } finally {dbg.exitSubRule(32);}
 
-                    dbg.location(246,32);
                     char_literal121=(Token)match(input,75,FOLLOW_75_in_statement1605); if (state.failed) return retval;
 
                     }
                     break;
                 case 7 :
-                    dbg.enterAlt(7);
-
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:247:9: ';'
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    dbg.location(247,12);
                     char_literal122=(Token)match(input,75,FOLLOW_75_in_statement1616); if (state.failed) return retval;
 
                     }
                     break;
                 case 8 :
-                    dbg.enterAlt(8);
-
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:248:9: statementExpression ';'
                     {
-                    dbg.location(248,9);
                     pushFollow(FOLLOW_statementExpression_in_statement1628);
                     statementExpression123=statementExpression();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) stream_statementExpression.add(statementExpression123.getTree());
-                    dbg.location(248,29);
                     char_literal124=(Token)match(input,75,FOLLOW_75_in_statement1630); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_75.add(char_literal124);
 
@@ -5106,14 +4009,11 @@ public class JaParser extends DebugParser {
                     root_0 = (Object)adaptor.nil();
                     // 248:33: -> ^( STMT statementExpression )
                     {
-                        dbg.location(248,36);
                         // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:248:36: ^( STMT statementExpression )
                         {
                         Object root_1 = (Object)adaptor.nil();
-                        dbg.location(248,38);
                         root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(STMT, "STMT"), root_1);
 
-                        dbg.location(248,43);
                         adaptor.addChild(root_1, stream_statementExpression.nextTree());
 
                         adaptor.addChild(root_0, root_1);
@@ -5142,15 +4042,6 @@ public class JaParser extends DebugParser {
         }
         finally {
         }
-        dbg.location(249, 5);
-
-        }
-        finally {
-            dbg.exitRule(getGrammarFileName(), "statement");
-            decRuleLevel();
-            if ( getRuleLevel()==0 ) {dbg.terminate();}
-        }
-
         return retval;
     }
     // $ANTLR end "statement"
@@ -5174,16 +4065,9 @@ public class JaParser extends DebugParser {
 
         Object ELSE125_tree=null;
 
-        try { dbg.enterRule(getGrammarFileName(), "elseStmt");
-        if ( getRuleLevel()==0 ) {dbg.commence();}
-        incRuleLevel();
-        dbg.location(251, 1);
-
         try {
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:251:9: ( ( ELSE )=> ELSE statement | )
             int alt34=2;
-            try { dbg.enterDecision(34);
-
             int LA34_0 = input.LA(1);
 
             if ( (LA34_0==ELSE) ) {
@@ -5200,7 +4084,6 @@ public class JaParser extends DebugParser {
                     NoViableAltException nvae =
                         new NoViableAltException("", 34, 1, input);
 
-                    dbg.recognitionException(nvae);
                     throw nvae;
                 }
             }
@@ -5212,26 +4095,19 @@ public class JaParser extends DebugParser {
                 NoViableAltException nvae =
                     new NoViableAltException("", 34, 0, input);
 
-                dbg.recognitionException(nvae);
                 throw nvae;
             }
-            } finally {dbg.exitDecision(34);}
-
             switch (alt34) {
                 case 1 :
-                    dbg.enterAlt(1);
-
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:252:2: ( ELSE )=> ELSE statement
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    dbg.location(252,16);
                     ELSE125=(Token)match(input,ELSE,FOLLOW_ELSE_in_elseStmt1662); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     ELSE125_tree = (Object)adaptor.create(ELSE125);
                     root_0 = (Object)adaptor.becomeRoot(ELSE125_tree, root_0);
                     }
-                    dbg.location(252,18);
                     pushFollow(FOLLOW_statement_in_elseStmt1665);
                     statement126=statement();
 
@@ -5242,8 +4118,6 @@ public class JaParser extends DebugParser {
                     }
                     break;
                 case 2 :
-                    dbg.enterAlt(2);
-
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:254:2: 
                     {
                     root_0 = (Object)adaptor.nil();
@@ -5268,15 +4142,6 @@ public class JaParser extends DebugParser {
         }
         finally {
         }
-        dbg.location(254, 2);
-
-        }
-        finally {
-            dbg.exitRule(getGrammarFileName(), "elseStmt");
-            decRuleLevel();
-            if ( getRuleLevel()==0 ) {dbg.terminate();}
-        }
-
         return retval;
     }
     // $ANTLR end "elseStmt"
@@ -5300,35 +4165,16 @@ public class JaParser extends DebugParser {
 
 
 
-        try { dbg.enterRule(getGrammarFileName(), "forInit");
-        if ( getRuleLevel()==0 ) {dbg.commence();}
-        incRuleLevel();
-        dbg.location(261, 1);
-
         try {
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:262:5: ( localVariableDeclaration | expressionList )
             int alt35=2;
-            try { dbg.enterDecision(35);
-
-            try {
-                isCyclicDecision = true;
-                alt35 = dfa35.predict(input);
-            }
-            catch (NoViableAltException nvae) {
-                dbg.recognitionException(nvae);
-                throw nvae;
-            }
-            } finally {dbg.exitDecision(35);}
-
+            alt35 = dfa35.predict(input);
             switch (alt35) {
                 case 1 :
-                    dbg.enterAlt(1);
-
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:262:9: localVariableDeclaration
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    dbg.location(262,9);
                     pushFollow(FOLLOW_localVariableDeclaration_in_forInit1690);
                     localVariableDeclaration127=localVariableDeclaration();
 
@@ -5339,13 +4185,10 @@ public class JaParser extends DebugParser {
                     }
                     break;
                 case 2 :
-                    dbg.enterAlt(2);
-
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:263:9: expressionList
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    dbg.location(263,9);
                     pushFollow(FOLLOW_expressionList_in_forInit1700);
                     expressionList128=expressionList();
 
@@ -5373,15 +4216,6 @@ public class JaParser extends DebugParser {
         }
         finally {
         }
-        dbg.location(264, 5);
-
-        }
-        finally {
-            dbg.exitRule(getGrammarFileName(), "forInit");
-            decRuleLevel();
-            if ( getRuleLevel()==0 ) {dbg.terminate();}
-        }
-
         return retval;
     }
     // $ANTLR end "forInit"
@@ -5403,20 +4237,12 @@ public class JaParser extends DebugParser {
 
 
 
-        try { dbg.enterRule(getGrammarFileName(), "forUpdate");
-        if ( getRuleLevel()==0 ) {dbg.commence();}
-        incRuleLevel();
-        dbg.location(266, 1);
-
         try {
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:267:5: ( expressionList )
-            dbg.enterAlt(1);
-
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:267:9: expressionList
             {
             root_0 = (Object)adaptor.nil();
 
-            dbg.location(267,9);
             pushFollow(FOLLOW_expressionList_in_forUpdate1719);
             expressionList129=expressionList();
 
@@ -5442,15 +4268,6 @@ public class JaParser extends DebugParser {
         }
         finally {
         }
-        dbg.location(268, 5);
-
-        }
-        finally {
-            dbg.exitRule(getGrammarFileName(), "forUpdate");
-            decRuleLevel();
-            if ( getRuleLevel()==0 ) {dbg.terminate();}
-        }
-
         return retval;
     }
     // $ANTLR end "forUpdate"
@@ -5476,29 +4293,19 @@ public class JaParser extends DebugParser {
         Object char_literal130_tree=null;
         Object char_literal132_tree=null;
 
-        try { dbg.enterRule(getGrammarFileName(), "parExpression");
-        if ( getRuleLevel()==0 ) {dbg.commence();}
-        incRuleLevel();
-        dbg.location(272, 1);
-
         try {
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:273:5: ( '(' expression ')' )
-            dbg.enterAlt(1);
-
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:273:9: '(' expression ')'
             {
             root_0 = (Object)adaptor.nil();
 
-            dbg.location(273,12);
             char_literal130=(Token)match(input,81,FOLLOW_81_in_parExpression1740); if (state.failed) return retval;
-            dbg.location(273,14);
             pushFollow(FOLLOW_expression_in_parExpression1743);
             expression131=expression();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, expression131.getTree());
-            dbg.location(273,28);
             char_literal132=(Token)match(input,82,FOLLOW_82_in_parExpression1745); if (state.failed) return retval;
 
             }
@@ -5519,15 +4326,6 @@ public class JaParser extends DebugParser {
         }
         finally {
         }
-        dbg.location(274, 5);
-
-        }
-        finally {
-            dbg.exitRule(getGrammarFileName(), "parExpression");
-            decRuleLevel();
-            if ( getRuleLevel()==0 ) {dbg.terminate();}
-        }
-
         return retval;
     }
     // $ANTLR end "parExpression"
@@ -5553,35 +4351,22 @@ public class JaParser extends DebugParser {
 
         Object char_literal134_tree=null;
 
-        try { dbg.enterRule(getGrammarFileName(), "expressionList");
-        if ( getRuleLevel()==0 ) {dbg.commence();}
-        incRuleLevel();
-        dbg.location(276, 1);
-
         try {
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:277:5: ( expression ( ',' expression )* )
-            dbg.enterAlt(1);
-
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:277:9: expression ( ',' expression )*
             {
             root_0 = (Object)adaptor.nil();
 
-            dbg.location(277,9);
             pushFollow(FOLLOW_expression_in_expressionList1769);
             expression133=expression();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, expression133.getTree());
-            dbg.location(277,20);
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:277:20: ( ',' expression )*
-            try { dbg.enterSubRule(36);
-
             loop36:
             do {
                 int alt36=2;
-                try { dbg.enterDecision(36);
-
                 int LA36_0 = input.LA(1);
 
                 if ( (LA36_0==78) ) {
@@ -5589,21 +4374,15 @@ public class JaParser extends DebugParser {
                 }
 
 
-                } finally {dbg.exitDecision(36);}
-
                 switch (alt36) {
             	case 1 :
-            	    dbg.enterAlt(1);
-
             	    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:277:21: ',' expression
             	    {
-            	    dbg.location(277,21);
             	    char_literal134=(Token)match(input,78,FOLLOW_78_in_expressionList1772); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
             	    char_literal134_tree = (Object)adaptor.create(char_literal134);
             	    adaptor.addChild(root_0, char_literal134_tree);
             	    }
-            	    dbg.location(277,25);
             	    pushFollow(FOLLOW_expression_in_expressionList1774);
             	    expression135=expression();
 
@@ -5618,7 +4397,6 @@ public class JaParser extends DebugParser {
             	    break loop36;
                 }
             } while (true);
-            } finally {dbg.exitSubRule(36);}
 
 
             }
@@ -5639,15 +4417,6 @@ public class JaParser extends DebugParser {
         }
         finally {
         }
-        dbg.location(278, 5);
-
-        }
-        finally {
-            dbg.exitRule(getGrammarFileName(), "expressionList");
-            decRuleLevel();
-            if ( getRuleLevel()==0 ) {dbg.terminate();}
-        }
-
         return retval;
     }
     // $ANTLR end "expressionList"
@@ -5669,20 +4438,12 @@ public class JaParser extends DebugParser {
 
 
 
-        try { dbg.enterRule(getGrammarFileName(), "statementExpression");
-        if ( getRuleLevel()==0 ) {dbg.commence();}
-        incRuleLevel();
-        dbg.location(280, 1);
-
         try {
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:281:5: ( expression )
-            dbg.enterAlt(1);
-
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:281:9: expression
             {
             root_0 = (Object)adaptor.nil();
 
-            dbg.location(281,9);
             pushFollow(FOLLOW_expression_in_statementExpression1795);
             expression136=expression();
 
@@ -5708,15 +4469,6 @@ public class JaParser extends DebugParser {
         }
         finally {
         }
-        dbg.location(282, 5);
-
-        }
-        finally {
-            dbg.exitRule(getGrammarFileName(), "statementExpression");
-            decRuleLevel();
-            if ( getRuleLevel()==0 ) {dbg.terminate();}
-        }
-
         return retval;
     }
     // $ANTLR end "statementExpression"
@@ -5738,20 +4490,12 @@ public class JaParser extends DebugParser {
 
 
 
-        try { dbg.enterRule(getGrammarFileName(), "constantExpression");
-        if ( getRuleLevel()==0 ) {dbg.commence();}
-        incRuleLevel();
-        dbg.location(284, 1);
-
         try {
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:285:5: ( expression )
-            dbg.enterAlt(1);
-
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:285:9: expression
             {
             root_0 = (Object)adaptor.nil();
 
-            dbg.location(285,9);
             pushFollow(FOLLOW_expression_in_constantExpression1818);
             expression137=expression();
 
@@ -5777,15 +4521,6 @@ public class JaParser extends DebugParser {
         }
         finally {
         }
-        dbg.location(286, 5);
-
-        }
-        finally {
-            dbg.exitRule(getGrammarFileName(), "constantExpression");
-            decRuleLevel();
-            if ( getRuleLevel()==0 ) {dbg.terminate();}
-        }
-
         return retval;
     }
     // $ANTLR end "constantExpression"
@@ -5813,51 +4548,33 @@ public class JaParser extends DebugParser {
         RewriteRuleSubtreeStream stream_assignmentOperator=new RewriteRuleSubtreeStream(adaptor,"rule assignmentOperator");
         RewriteRuleSubtreeStream stream_expression=new RewriteRuleSubtreeStream(adaptor,"rule expression");
         RewriteRuleSubtreeStream stream_orExpression=new RewriteRuleSubtreeStream(adaptor,"rule orExpression");
-        try { dbg.enterRule(getGrammarFileName(), "expression");
-        if ( getRuleLevel()==0 ) {dbg.commence();}
-        incRuleLevel();
-        dbg.location(288, 1);
-
         try {
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:289:5: ( orExpression (ap= assignmentOperator expression )? -> {$ap.c == '='}? ^( '=' orExpression expression ) -> {$ap.c == '+'}? ^( EQ orExpression ^( PLUS orExpression expression ) ) -> {$ap.c == '-'}? ^( EQ orExpression ^( MINUS orExpression expression ) ) -> {$ap.c == '*'}? ^( EQ orExpression ^( STAR orExpression expression ) ) -> {$ap.c == '/'}? ^( EQ orExpression ^( SLASH orExpression expression ) ) -> orExpression )
-            dbg.enterAlt(1);
-
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:289:8: orExpression (ap= assignmentOperator expression )?
             {
-            dbg.location(289,8);
             pushFollow(FOLLOW_orExpression_in_expression1840);
             orExpression138=orExpression();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) stream_orExpression.add(orExpression138.getTree());
-            dbg.location(289,21);
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:289:21: (ap= assignmentOperator expression )?
             int alt37=2;
-            try { dbg.enterSubRule(37);
-            try { dbg.enterDecision(37);
-
             int LA37_0 = input.LA(1);
 
             if ( (LA37_0==EQ||(LA37_0>=84 && LA37_0<=87)) ) {
                 alt37=1;
             }
-            } finally {dbg.exitDecision(37);}
-
             switch (alt37) {
                 case 1 :
-                    dbg.enterAlt(1);
-
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:289:23: ap= assignmentOperator expression
                     {
-                    dbg.location(289,25);
                     pushFollow(FOLLOW_assignmentOperator_in_expression1846);
                     ap=assignmentOperator();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) stream_assignmentOperator.add(ap.getTree());
-                    dbg.location(289,45);
                     pushFollow(FOLLOW_expression_in_expression1848);
                     expression139=expression();
 
@@ -5869,12 +4586,11 @@ public class JaParser extends DebugParser {
                     break;
 
             }
-            } finally {dbg.exitSubRule(37);}
 
 
 
             // AST REWRITE
-            // elements: EQ, expression, orExpression, orExpression, orExpression, orExpression, orExpression, expression, expression, orExpression, orExpression, expression, orExpression, expression, orExpression, orExpression
+            // elements: orExpression, orExpression, orExpression, EQ, orExpression, orExpression, expression, orExpression, expression, expression, orExpression, expression, expression, orExpression, orExpression, orExpression
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -5887,16 +4603,12 @@ public class JaParser extends DebugParser {
             root_0 = (Object)adaptor.nil();
             // 289:58: -> {$ap.c == '='}? ^( '=' orExpression expression )
             if ((ap!=null?ap.c:0) == '=') {
-                dbg.location(289,77);
                 // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:289:77: ^( '=' orExpression expression )
                 {
                 Object root_1 = (Object)adaptor.nil();
-                dbg.location(289,79);
                 root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(EQ, "EQ"), root_1);
 
-                dbg.location(289,83);
                 adaptor.addChild(root_1, stream_orExpression.nextTree());
-                dbg.location(289,96);
                 adaptor.addChild(root_1, stream_expression.nextTree());
 
                 adaptor.addChild(root_0, root_1);
@@ -5905,25 +4617,18 @@ public class JaParser extends DebugParser {
             }
             else // 290:13: -> {$ap.c == '+'}? ^( EQ orExpression ^( PLUS orExpression expression ) )
             if ((ap!=null?ap.c:0) == '+') {
-                dbg.location(290,32);
                 // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:290:32: ^( EQ orExpression ^( PLUS orExpression expression ) )
                 {
                 Object root_1 = (Object)adaptor.nil();
-                dbg.location(290,34);
                 root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(EQ, "EQ"), root_1);
 
-                dbg.location(290,37);
                 adaptor.addChild(root_1, stream_orExpression.nextTree());
-                dbg.location(290,50);
                 // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:290:50: ^( PLUS orExpression expression )
                 {
                 Object root_2 = (Object)adaptor.nil();
-                dbg.location(290,52);
                 root_2 = (Object)adaptor.becomeRoot((Object)adaptor.create(PLUS, "PLUS"), root_2);
 
-                dbg.location(290,58);
                 adaptor.addChild(root_2, stream_orExpression.nextTree());
-                dbg.location(290,71);
                 adaptor.addChild(root_2, stream_expression.nextTree());
 
                 adaptor.addChild(root_1, root_2);
@@ -5935,25 +4640,18 @@ public class JaParser extends DebugParser {
             }
             else // 291:13: -> {$ap.c == '-'}? ^( EQ orExpression ^( MINUS orExpression expression ) )
             if ((ap!=null?ap.c:0) == '-') {
-                dbg.location(291,32);
                 // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:291:32: ^( EQ orExpression ^( MINUS orExpression expression ) )
                 {
                 Object root_1 = (Object)adaptor.nil();
-                dbg.location(291,34);
                 root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(EQ, "EQ"), root_1);
 
-                dbg.location(291,37);
                 adaptor.addChild(root_1, stream_orExpression.nextTree());
-                dbg.location(291,50);
                 // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:291:50: ^( MINUS orExpression expression )
                 {
                 Object root_2 = (Object)adaptor.nil();
-                dbg.location(291,52);
                 root_2 = (Object)adaptor.becomeRoot((Object)adaptor.create(MINUS, "MINUS"), root_2);
 
-                dbg.location(291,58);
                 adaptor.addChild(root_2, stream_orExpression.nextTree());
-                dbg.location(291,71);
                 adaptor.addChild(root_2, stream_expression.nextTree());
 
                 adaptor.addChild(root_1, root_2);
@@ -5965,25 +4663,18 @@ public class JaParser extends DebugParser {
             }
             else // 292:13: -> {$ap.c == '*'}? ^( EQ orExpression ^( STAR orExpression expression ) )
             if ((ap!=null?ap.c:0) == '*') {
-                dbg.location(292,32);
                 // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:292:32: ^( EQ orExpression ^( STAR orExpression expression ) )
                 {
                 Object root_1 = (Object)adaptor.nil();
-                dbg.location(292,34);
                 root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(EQ, "EQ"), root_1);
 
-                dbg.location(292,37);
                 adaptor.addChild(root_1, stream_orExpression.nextTree());
-                dbg.location(292,50);
                 // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:292:50: ^( STAR orExpression expression )
                 {
                 Object root_2 = (Object)adaptor.nil();
-                dbg.location(292,52);
                 root_2 = (Object)adaptor.becomeRoot((Object)adaptor.create(STAR, "STAR"), root_2);
 
-                dbg.location(292,58);
                 adaptor.addChild(root_2, stream_orExpression.nextTree());
-                dbg.location(292,71);
                 adaptor.addChild(root_2, stream_expression.nextTree());
 
                 adaptor.addChild(root_1, root_2);
@@ -5995,25 +4686,18 @@ public class JaParser extends DebugParser {
             }
             else // 293:13: -> {$ap.c == '/'}? ^( EQ orExpression ^( SLASH orExpression expression ) )
             if ((ap!=null?ap.c:0) == '/') {
-                dbg.location(293,32);
                 // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:293:32: ^( EQ orExpression ^( SLASH orExpression expression ) )
                 {
                 Object root_1 = (Object)adaptor.nil();
-                dbg.location(293,34);
                 root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(EQ, "EQ"), root_1);
 
-                dbg.location(293,37);
                 adaptor.addChild(root_1, stream_orExpression.nextTree());
-                dbg.location(293,50);
                 // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:293:50: ^( SLASH orExpression expression )
                 {
                 Object root_2 = (Object)adaptor.nil();
-                dbg.location(293,52);
                 root_2 = (Object)adaptor.becomeRoot((Object)adaptor.create(SLASH, "SLASH"), root_2);
 
-                dbg.location(293,58);
                 adaptor.addChild(root_2, stream_orExpression.nextTree());
-                dbg.location(293,71);
                 adaptor.addChild(root_2, stream_expression.nextTree());
 
                 adaptor.addChild(root_1, root_2);
@@ -6025,7 +4709,6 @@ public class JaParser extends DebugParser {
             }
             else // 294:13: -> orExpression
             {
-                dbg.location(294,17);
                 adaptor.addChild(root_0, stream_orExpression.nextTree());
 
             }
@@ -6049,15 +4732,6 @@ public class JaParser extends DebugParser {
         }
         finally {
         }
-        dbg.location(295, 5);
-
-        }
-        finally {
-            dbg.exitRule(getGrammarFileName(), "expression");
-            decRuleLevel();
-            if ( getRuleLevel()==0 ) {dbg.terminate();}
-        }
-
         return retval;
     }
     // $ANTLR end "expression"
@@ -6088,16 +4762,9 @@ public class JaParser extends DebugParser {
         Object string_literal143_tree=null;
         Object string_literal144_tree=null;
 
-        try { dbg.enterRule(getGrammarFileName(), "assignmentOperator");
-        if ( getRuleLevel()==0 ) {dbg.commence();}
-        incRuleLevel();
-        dbg.location(297, 1);
-
         try {
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:298:5: ( '=' | '+=' | '-=' | '*=' | '/=' )
             int alt38=5;
-            try { dbg.enterDecision(38);
-
             switch ( input.LA(1) ) {
             case EQ:
                 {
@@ -6129,27 +4796,20 @@ public class JaParser extends DebugParser {
                 NoViableAltException nvae =
                     new NoViableAltException("", 38, 0, input);
 
-                dbg.recognitionException(nvae);
                 throw nvae;
             }
 
-            } finally {dbg.exitDecision(38);}
-
             switch (alt38) {
                 case 1 :
-                    dbg.enterAlt(1);
-
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:298:9: '='
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    dbg.location(298,9);
                     char_literal140=(Token)match(input,EQ,FOLLOW_EQ_in_assignmentOperator2028); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     char_literal140_tree = (Object)adaptor.create(char_literal140);
                     adaptor.addChild(root_0, char_literal140_tree);
                     }
-                    dbg.location(298,13);
                     if ( state.backtracking==0 ) {
                       retval.c = '='; 
                     }
@@ -6157,19 +4817,15 @@ public class JaParser extends DebugParser {
                     }
                     break;
                 case 2 :
-                    dbg.enterAlt(2);
-
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:299:9: '+='
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    dbg.location(299,9);
                     string_literal141=(Token)match(input,84,FOLLOW_84_in_assignmentOperator2041); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     string_literal141_tree = (Object)adaptor.create(string_literal141);
                     adaptor.addChild(root_0, string_literal141_tree);
                     }
-                    dbg.location(299,14);
                     if ( state.backtracking==0 ) {
                       retval.c = '+';
                     }
@@ -6177,19 +4833,15 @@ public class JaParser extends DebugParser {
                     }
                     break;
                 case 3 :
-                    dbg.enterAlt(3);
-
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:300:9: '-='
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    dbg.location(300,9);
                     string_literal142=(Token)match(input,85,FOLLOW_85_in_assignmentOperator2054); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     string_literal142_tree = (Object)adaptor.create(string_literal142);
                     adaptor.addChild(root_0, string_literal142_tree);
                     }
-                    dbg.location(300,14);
                     if ( state.backtracking==0 ) {
                       retval.c = '-';
                     }
@@ -6197,19 +4849,15 @@ public class JaParser extends DebugParser {
                     }
                     break;
                 case 4 :
-                    dbg.enterAlt(4);
-
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:301:9: '*='
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    dbg.location(301,9);
                     string_literal143=(Token)match(input,86,FOLLOW_86_in_assignmentOperator2066); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     string_literal143_tree = (Object)adaptor.create(string_literal143);
                     adaptor.addChild(root_0, string_literal143_tree);
                     }
-                    dbg.location(301,14);
                     if ( state.backtracking==0 ) {
                       retval.c = '*';
                     }
@@ -6217,19 +4865,15 @@ public class JaParser extends DebugParser {
                     }
                     break;
                 case 5 :
-                    dbg.enterAlt(5);
-
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:302:9: '/='
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    dbg.location(302,9);
                     string_literal144=(Token)match(input,87,FOLLOW_87_in_assignmentOperator2078); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     string_literal144_tree = (Object)adaptor.create(string_literal144);
                     adaptor.addChild(root_0, string_literal144_tree);
                     }
-                    dbg.location(302,14);
                     if ( state.backtracking==0 ) {
                       retval.c = '/';
                     }
@@ -6254,15 +4898,6 @@ public class JaParser extends DebugParser {
         }
         finally {
         }
-        dbg.location(303, 5);
-
-        }
-        finally {
-            dbg.exitRule(getGrammarFileName(), "assignmentOperator");
-            decRuleLevel();
-            if ( getRuleLevel()==0 ) {dbg.terminate();}
-        }
-
         return retval;
     }
     // $ANTLR end "assignmentOperator"
@@ -6288,35 +4923,22 @@ public class JaParser extends DebugParser {
 
         Object string_literal146_tree=null;
 
-        try { dbg.enterRule(getGrammarFileName(), "orExpression");
-        if ( getRuleLevel()==0 ) {dbg.commence();}
-        incRuleLevel();
-        dbg.location(305, 1);
-
         try {
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:306:5: ( andExpression ( '||' andExpression )* )
-            dbg.enterAlt(1);
-
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:306:9: andExpression ( '||' andExpression )*
             {
             root_0 = (Object)adaptor.nil();
 
-            dbg.location(306,9);
             pushFollow(FOLLOW_andExpression_in_orExpression2099);
             andExpression145=andExpression();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, andExpression145.getTree());
-            dbg.location(306,23);
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:306:23: ( '||' andExpression )*
-            try { dbg.enterSubRule(39);
-
             loop39:
             do {
                 int alt39=2;
-                try { dbg.enterDecision(39);
-
                 int LA39_0 = input.LA(1);
 
                 if ( (LA39_0==88) ) {
@@ -6324,21 +4946,15 @@ public class JaParser extends DebugParser {
                 }
 
 
-                } finally {dbg.exitDecision(39);}
-
                 switch (alt39) {
             	case 1 :
-            	    dbg.enterAlt(1);
-
             	    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:306:25: '||' andExpression
             	    {
-            	    dbg.location(306,29);
             	    string_literal146=(Token)match(input,88,FOLLOW_88_in_orExpression2103); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
             	    string_literal146_tree = (Object)adaptor.create(string_literal146);
             	    root_0 = (Object)adaptor.becomeRoot(string_literal146_tree, root_0);
             	    }
-            	    dbg.location(306,31);
             	    pushFollow(FOLLOW_andExpression_in_orExpression2106);
             	    andExpression147=andExpression();
 
@@ -6353,7 +4969,6 @@ public class JaParser extends DebugParser {
             	    break loop39;
                 }
             } while (true);
-            } finally {dbg.exitSubRule(39);}
 
 
             }
@@ -6374,15 +4989,6 @@ public class JaParser extends DebugParser {
         }
         finally {
         }
-        dbg.location(307, 5);
-
-        }
-        finally {
-            dbg.exitRule(getGrammarFileName(), "orExpression");
-            decRuleLevel();
-            if ( getRuleLevel()==0 ) {dbg.terminate();}
-        }
-
         return retval;
     }
     // $ANTLR end "orExpression"
@@ -6408,35 +5014,22 @@ public class JaParser extends DebugParser {
 
         Object string_literal149_tree=null;
 
-        try { dbg.enterRule(getGrammarFileName(), "andExpression");
-        if ( getRuleLevel()==0 ) {dbg.commence();}
-        incRuleLevel();
-        dbg.location(309, 1);
-
         try {
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:310:5: ( equalityExpression ( '&&' equalityExpression )* )
-            dbg.enterAlt(1);
-
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:310:9: equalityExpression ( '&&' equalityExpression )*
             {
             root_0 = (Object)adaptor.nil();
 
-            dbg.location(310,9);
             pushFollow(FOLLOW_equalityExpression_in_andExpression2128);
             equalityExpression148=equalityExpression();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, equalityExpression148.getTree());
-            dbg.location(310,28);
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:310:28: ( '&&' equalityExpression )*
-            try { dbg.enterSubRule(40);
-
             loop40:
             do {
                 int alt40=2;
-                try { dbg.enterDecision(40);
-
                 int LA40_0 = input.LA(1);
 
                 if ( (LA40_0==89) ) {
@@ -6444,21 +5037,15 @@ public class JaParser extends DebugParser {
                 }
 
 
-                } finally {dbg.exitDecision(40);}
-
                 switch (alt40) {
             	case 1 :
-            	    dbg.enterAlt(1);
-
             	    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:310:30: '&&' equalityExpression
             	    {
-            	    dbg.location(310,34);
             	    string_literal149=(Token)match(input,89,FOLLOW_89_in_andExpression2132); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
             	    string_literal149_tree = (Object)adaptor.create(string_literal149);
             	    root_0 = (Object)adaptor.becomeRoot(string_literal149_tree, root_0);
             	    }
-            	    dbg.location(310,36);
             	    pushFollow(FOLLOW_equalityExpression_in_andExpression2135);
             	    equalityExpression150=equalityExpression();
 
@@ -6473,7 +5060,6 @@ public class JaParser extends DebugParser {
             	    break loop40;
                 }
             } while (true);
-            } finally {dbg.exitSubRule(40);}
 
 
             }
@@ -6494,15 +5080,6 @@ public class JaParser extends DebugParser {
         }
         finally {
         }
-        dbg.location(311, 5);
-
-        }
-        finally {
-            dbg.exitRule(getGrammarFileName(), "andExpression");
-            decRuleLevel();
-            if ( getRuleLevel()==0 ) {dbg.terminate();}
-        }
-
         return retval;
     }
     // $ANTLR end "andExpression"
@@ -6528,35 +5105,22 @@ public class JaParser extends DebugParser {
 
         Object set152_tree=null;
 
-        try { dbg.enterRule(getGrammarFileName(), "equalityExpression");
-        if ( getRuleLevel()==0 ) {dbg.commence();}
-        incRuleLevel();
-        dbg.location(313, 1);
-
         try {
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:314:5: ( instanceOfExpression ( ( '==' | '!=' ) instanceOfExpression )* )
-            dbg.enterAlt(1);
-
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:314:9: instanceOfExpression ( ( '==' | '!=' ) instanceOfExpression )*
             {
             root_0 = (Object)adaptor.nil();
 
-            dbg.location(314,9);
             pushFollow(FOLLOW_instanceOfExpression_in_equalityExpression2157);
             instanceOfExpression151=instanceOfExpression();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, instanceOfExpression151.getTree());
-            dbg.location(314,30);
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:314:30: ( ( '==' | '!=' ) instanceOfExpression )*
-            try { dbg.enterSubRule(41);
-
             loop41:
             do {
                 int alt41=2;
-                try { dbg.enterDecision(41);
-
                 int LA41_0 = input.LA(1);
 
                 if ( ((LA41_0>=90 && LA41_0<=91)) ) {
@@ -6564,15 +5128,10 @@ public class JaParser extends DebugParser {
                 }
 
 
-                } finally {dbg.exitDecision(41);}
-
                 switch (alt41) {
             	case 1 :
-            	    dbg.enterAlt(1);
-
             	    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:314:32: ( '==' | '!=' ) instanceOfExpression
             	    {
-            	    dbg.location(314,32);
             	    set152=(Token)input.LT(1);
             	    set152=(Token)input.LT(1);
             	    if ( (input.LA(1)>=90 && input.LA(1)<=91) ) {
@@ -6583,11 +5142,9 @@ public class JaParser extends DebugParser {
             	    else {
             	        if (state.backtracking>0) {state.failed=true; return retval;}
             	        MismatchedSetException mse = new MismatchedSetException(null,input);
-            	        dbg.recognitionException(mse);
             	        throw mse;
             	    }
 
-            	    dbg.location(314,47);
             	    pushFollow(FOLLOW_instanceOfExpression_in_equalityExpression2170);
             	    instanceOfExpression153=instanceOfExpression();
 
@@ -6602,7 +5159,6 @@ public class JaParser extends DebugParser {
             	    break loop41;
                 }
             } while (true);
-            } finally {dbg.exitSubRule(41);}
 
 
             }
@@ -6623,15 +5179,6 @@ public class JaParser extends DebugParser {
         }
         finally {
         }
-        dbg.location(315, 5);
-
-        }
-        finally {
-            dbg.exitRule(getGrammarFileName(), "equalityExpression");
-            decRuleLevel();
-            if ( getRuleLevel()==0 ) {dbg.terminate();}
-        }
-
         return retval;
     }
     // $ANTLR end "equalityExpression"
@@ -6657,52 +5204,34 @@ public class JaParser extends DebugParser {
 
         Object INSTANCEOF155_tree=null;
 
-        try { dbg.enterRule(getGrammarFileName(), "instanceOfExpression");
-        if ( getRuleLevel()==0 ) {dbg.commence();}
-        incRuleLevel();
-        dbg.location(317, 1);
-
         try {
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:318:5: ( relationalExpression ( INSTANCEOF type )? )
-            dbg.enterAlt(1);
-
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:318:9: relationalExpression ( INSTANCEOF type )?
             {
             root_0 = (Object)adaptor.nil();
 
-            dbg.location(318,9);
             pushFollow(FOLLOW_relationalExpression_in_instanceOfExpression2192);
             relationalExpression154=relationalExpression();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, relationalExpression154.getTree());
-            dbg.location(318,30);
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:318:30: ( INSTANCEOF type )?
             int alt42=2;
-            try { dbg.enterSubRule(42);
-            try { dbg.enterDecision(42);
-
             int LA42_0 = input.LA(1);
 
             if ( (LA42_0==INSTANCEOF) ) {
                 alt42=1;
             }
-            } finally {dbg.exitDecision(42);}
-
             switch (alt42) {
                 case 1 :
-                    dbg.enterAlt(1);
-
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:318:31: INSTANCEOF type
                     {
-                    dbg.location(318,41);
                     INSTANCEOF155=(Token)match(input,INSTANCEOF,FOLLOW_INSTANCEOF_in_instanceOfExpression2195); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     INSTANCEOF155_tree = (Object)adaptor.create(INSTANCEOF155);
                     root_0 = (Object)adaptor.becomeRoot(INSTANCEOF155_tree, root_0);
                     }
-                    dbg.location(318,43);
                     pushFollow(FOLLOW_type_in_instanceOfExpression2198);
                     type156=type();
 
@@ -6714,7 +5243,6 @@ public class JaParser extends DebugParser {
                     break;
 
             }
-            } finally {dbg.exitSubRule(42);}
 
 
             }
@@ -6735,15 +5263,6 @@ public class JaParser extends DebugParser {
         }
         finally {
         }
-        dbg.location(319, 5);
-
-        }
-        finally {
-            dbg.exitRule(getGrammarFileName(), "instanceOfExpression");
-            decRuleLevel();
-            if ( getRuleLevel()==0 ) {dbg.terminate();}
-        }
-
         return retval;
     }
     // $ANTLR end "instanceOfExpression"
@@ -6769,35 +5288,22 @@ public class JaParser extends DebugParser {
 
         Object COMPAREOP158_tree=null;
 
-        try { dbg.enterRule(getGrammarFileName(), "relationalExpression");
-        if ( getRuleLevel()==0 ) {dbg.commence();}
-        incRuleLevel();
-        dbg.location(321, 1);
-
         try {
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:322:5: ( additiveExpression ( COMPAREOP additiveExpression )* )
-            dbg.enterAlt(1);
-
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:322:9: additiveExpression ( COMPAREOP additiveExpression )*
             {
             root_0 = (Object)adaptor.nil();
 
-            dbg.location(322,9);
             pushFollow(FOLLOW_additiveExpression_in_relationalExpression2219);
             additiveExpression157=additiveExpression();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, additiveExpression157.getTree());
-            dbg.location(322,28);
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:322:28: ( COMPAREOP additiveExpression )*
-            try { dbg.enterSubRule(43);
-
             loop43:
             do {
                 int alt43=2;
-                try { dbg.enterDecision(43);
-
                 int LA43_0 = input.LA(1);
 
                 if ( (LA43_0==COMPAREOP) ) {
@@ -6805,21 +5311,15 @@ public class JaParser extends DebugParser {
                 }
 
 
-                } finally {dbg.exitDecision(43);}
-
                 switch (alt43) {
             	case 1 :
-            	    dbg.enterAlt(1);
-
             	    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:322:30: COMPAREOP additiveExpression
             	    {
-            	    dbg.location(322,39);
             	    COMPAREOP158=(Token)match(input,COMPAREOP,FOLLOW_COMPAREOP_in_relationalExpression2223); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
             	    COMPAREOP158_tree = (Object)adaptor.create(COMPAREOP158);
             	    root_0 = (Object)adaptor.becomeRoot(COMPAREOP158_tree, root_0);
             	    }
-            	    dbg.location(322,41);
             	    pushFollow(FOLLOW_additiveExpression_in_relationalExpression2226);
             	    additiveExpression159=additiveExpression();
 
@@ -6834,7 +5334,6 @@ public class JaParser extends DebugParser {
             	    break loop43;
                 }
             } while (true);
-            } finally {dbg.exitSubRule(43);}
 
 
             }
@@ -6855,15 +5354,6 @@ public class JaParser extends DebugParser {
         }
         finally {
         }
-        dbg.location(323, 5);
-
-        }
-        finally {
-            dbg.exitRule(getGrammarFileName(), "relationalExpression");
-            decRuleLevel();
-            if ( getRuleLevel()==0 ) {dbg.terminate();}
-        }
-
         return retval;
     }
     // $ANTLR end "relationalExpression"
@@ -6889,35 +5379,22 @@ public class JaParser extends DebugParser {
 
         Object set161_tree=null;
 
-        try { dbg.enterRule(getGrammarFileName(), "additiveExpression");
-        if ( getRuleLevel()==0 ) {dbg.commence();}
-        incRuleLevel();
-        dbg.location(325, 1);
-
         try {
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:326:5: ( multiplicativeExpression ( ( '+' | '-' ) multiplicativeExpression )* )
-            dbg.enterAlt(1);
-
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:326:9: multiplicativeExpression ( ( '+' | '-' ) multiplicativeExpression )*
             {
             root_0 = (Object)adaptor.nil();
 
-            dbg.location(326,9);
             pushFollow(FOLLOW_multiplicativeExpression_in_additiveExpression2248);
             multiplicativeExpression160=multiplicativeExpression();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, multiplicativeExpression160.getTree());
-            dbg.location(326,34);
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:326:34: ( ( '+' | '-' ) multiplicativeExpression )*
-            try { dbg.enterSubRule(44);
-
             loop44:
             do {
                 int alt44=2;
-                try { dbg.enterDecision(44);
-
                 int LA44_0 = input.LA(1);
 
                 if ( ((LA44_0>=PLUS && LA44_0<=MINUS)) ) {
@@ -6925,15 +5402,10 @@ public class JaParser extends DebugParser {
                 }
 
 
-                } finally {dbg.exitDecision(44);}
-
                 switch (alt44) {
             	case 1 :
-            	    dbg.enterAlt(1);
-
             	    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:326:36: ( '+' | '-' ) multiplicativeExpression
             	    {
-            	    dbg.location(326,36);
             	    set161=(Token)input.LT(1);
             	    set161=(Token)input.LT(1);
             	    if ( (input.LA(1)>=PLUS && input.LA(1)<=MINUS) ) {
@@ -6944,11 +5416,9 @@ public class JaParser extends DebugParser {
             	    else {
             	        if (state.backtracking>0) {state.failed=true; return retval;}
             	        MismatchedSetException mse = new MismatchedSetException(null,input);
-            	        dbg.recognitionException(mse);
             	        throw mse;
             	    }
 
-            	    dbg.location(326,49);
             	    pushFollow(FOLLOW_multiplicativeExpression_in_additiveExpression2261);
             	    multiplicativeExpression162=multiplicativeExpression();
 
@@ -6963,7 +5433,6 @@ public class JaParser extends DebugParser {
             	    break loop44;
                 }
             } while (true);
-            } finally {dbg.exitSubRule(44);}
 
 
             }
@@ -6984,15 +5453,6 @@ public class JaParser extends DebugParser {
         }
         finally {
         }
-        dbg.location(327, 5);
-
-        }
-        finally {
-            dbg.exitRule(getGrammarFileName(), "additiveExpression");
-            decRuleLevel();
-            if ( getRuleLevel()==0 ) {dbg.terminate();}
-        }
-
         return retval;
     }
     // $ANTLR end "additiveExpression"
@@ -7018,35 +5478,22 @@ public class JaParser extends DebugParser {
 
         Object set164_tree=null;
 
-        try { dbg.enterRule(getGrammarFileName(), "multiplicativeExpression");
-        if ( getRuleLevel()==0 ) {dbg.commence();}
-        incRuleLevel();
-        dbg.location(329, 1);
-
         try {
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:330:5: ( unaryExpression ( ( '*' | '/' | '%' ) unaryExpression )* )
-            dbg.enterAlt(1);
-
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:330:9: unaryExpression ( ( '*' | '/' | '%' ) unaryExpression )*
             {
             root_0 = (Object)adaptor.nil();
 
-            dbg.location(330,9);
             pushFollow(FOLLOW_unaryExpression_in_multiplicativeExpression2283);
             unaryExpression163=unaryExpression();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, unaryExpression163.getTree());
-            dbg.location(330,25);
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:330:25: ( ( '*' | '/' | '%' ) unaryExpression )*
-            try { dbg.enterSubRule(45);
-
             loop45:
             do {
                 int alt45=2;
-                try { dbg.enterDecision(45);
-
                 int LA45_0 = input.LA(1);
 
                 if ( ((LA45_0>=STAR && LA45_0<=SLASH)||LA45_0==92) ) {
@@ -7054,15 +5501,10 @@ public class JaParser extends DebugParser {
                 }
 
 
-                } finally {dbg.exitDecision(45);}
-
                 switch (alt45) {
             	case 1 :
-            	    dbg.enterAlt(1);
-
             	    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:330:27: ( '*' | '/' | '%' ) unaryExpression
             	    {
-            	    dbg.location(330,27);
             	    set164=(Token)input.LT(1);
             	    set164=(Token)input.LT(1);
             	    if ( (input.LA(1)>=STAR && input.LA(1)<=SLASH)||input.LA(1)==92 ) {
@@ -7073,11 +5515,9 @@ public class JaParser extends DebugParser {
             	    else {
             	        if (state.backtracking>0) {state.failed=true; return retval;}
             	        MismatchedSetException mse = new MismatchedSetException(null,input);
-            	        dbg.recognitionException(mse);
             	        throw mse;
             	    }
 
-            	    dbg.location(330,48);
             	    pushFollow(FOLLOW_unaryExpression_in_multiplicativeExpression2302);
             	    unaryExpression165=unaryExpression();
 
@@ -7092,7 +5532,6 @@ public class JaParser extends DebugParser {
             	    break loop45;
                 }
             } while (true);
-            } finally {dbg.exitSubRule(45);}
 
 
             }
@@ -7113,15 +5552,6 @@ public class JaParser extends DebugParser {
         }
         finally {
         }
-        dbg.location(331, 5);
-
-        }
-        finally {
-            dbg.exitRule(getGrammarFileName(), "multiplicativeExpression");
-            decRuleLevel();
-            if ( getRuleLevel()==0 ) {dbg.terminate();}
-        }
-
         return retval;
     }
     // $ANTLR end "multiplicativeExpression"
@@ -7159,16 +5589,9 @@ public class JaParser extends DebugParser {
         Object string_literal170_tree=null;
         Object string_literal172_tree=null;
 
-        try { dbg.enterRule(getGrammarFileName(), "unaryExpression");
-        if ( getRuleLevel()==0 ) {dbg.commence();}
-        incRuleLevel();
-        dbg.location(333, 1);
-
         try {
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:334:5: ( '+' unaryExpression | '-' unaryExpression | '++' unaryExpression | '--' unaryExpression | unaryExpressionNotPlusMinus )
             int alt46=5;
-            try { dbg.enterDecision(46);
-
             switch ( input.LA(1) ) {
             case PLUS:
                 {
@@ -7219,27 +5642,20 @@ public class JaParser extends DebugParser {
                 NoViableAltException nvae =
                     new NoViableAltException("", 46, 0, input);
 
-                dbg.recognitionException(nvae);
                 throw nvae;
             }
 
-            } finally {dbg.exitDecision(46);}
-
             switch (alt46) {
                 case 1 :
-                    dbg.enterAlt(1);
-
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:334:9: '+' unaryExpression
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    dbg.location(334,9);
                     char_literal166=(Token)match(input,PLUS,FOLLOW_PLUS_in_unaryExpression2328); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     char_literal166_tree = (Object)adaptor.create(char_literal166);
                     adaptor.addChild(root_0, char_literal166_tree);
                     }
-                    dbg.location(334,13);
                     pushFollow(FOLLOW_unaryExpression_in_unaryExpression2330);
                     unaryExpression167=unaryExpression();
 
@@ -7250,19 +5666,15 @@ public class JaParser extends DebugParser {
                     }
                     break;
                 case 2 :
-                    dbg.enterAlt(2);
-
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:335:9: '-' unaryExpression
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    dbg.location(335,9);
                     char_literal168=(Token)match(input,MINUS,FOLLOW_MINUS_in_unaryExpression2340); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     char_literal168_tree = (Object)adaptor.create(char_literal168);
                     adaptor.addChild(root_0, char_literal168_tree);
                     }
-                    dbg.location(335,13);
                     pushFollow(FOLLOW_unaryExpression_in_unaryExpression2342);
                     unaryExpression169=unaryExpression();
 
@@ -7273,19 +5685,15 @@ public class JaParser extends DebugParser {
                     }
                     break;
                 case 3 :
-                    dbg.enterAlt(3);
-
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:336:9: '++' unaryExpression
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    dbg.location(336,9);
                     string_literal170=(Token)match(input,93,FOLLOW_93_in_unaryExpression2352); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     string_literal170_tree = (Object)adaptor.create(string_literal170);
                     adaptor.addChild(root_0, string_literal170_tree);
                     }
-                    dbg.location(336,14);
                     pushFollow(FOLLOW_unaryExpression_in_unaryExpression2354);
                     unaryExpression171=unaryExpression();
 
@@ -7296,19 +5704,15 @@ public class JaParser extends DebugParser {
                     }
                     break;
                 case 4 :
-                    dbg.enterAlt(4);
-
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:337:9: '--' unaryExpression
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    dbg.location(337,9);
                     string_literal172=(Token)match(input,94,FOLLOW_94_in_unaryExpression2364); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     string_literal172_tree = (Object)adaptor.create(string_literal172);
                     adaptor.addChild(root_0, string_literal172_tree);
                     }
-                    dbg.location(337,14);
                     pushFollow(FOLLOW_unaryExpression_in_unaryExpression2366);
                     unaryExpression173=unaryExpression();
 
@@ -7319,13 +5723,10 @@ public class JaParser extends DebugParser {
                     }
                     break;
                 case 5 :
-                    dbg.enterAlt(5);
-
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:338:9: unaryExpressionNotPlusMinus
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    dbg.location(338,9);
                     pushFollow(FOLLOW_unaryExpressionNotPlusMinus_in_unaryExpression2376);
                     unaryExpressionNotPlusMinus174=unaryExpressionNotPlusMinus();
 
@@ -7353,15 +5754,6 @@ public class JaParser extends DebugParser {
         }
         finally {
         }
-        dbg.location(339, 5);
-
-        }
-        finally {
-            dbg.exitRule(getGrammarFileName(), "unaryExpression");
-            decRuleLevel();
-            if ( getRuleLevel()==0 ) {dbg.terminate();}
-        }
-
         return retval;
     }
     // $ANTLR end "unaryExpression"
@@ -7411,41 +5803,21 @@ public class JaParser extends DebugParser {
         Object NEW185_tree=null;
         Object set189_tree=null;
 
-        try { dbg.enterRule(getGrammarFileName(), "unaryExpressionNotPlusMinus");
-        if ( getRuleLevel()==0 ) {dbg.commence();}
-        incRuleLevel();
-        dbg.location(341, 1);
-
         try {
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:342:5: ( '!' unaryExpression | ( '(' primitiveType ')' )=> '(' primitiveType ')' unaryExpression | ( '(' nonPrimitiveType ')' unaryExpressionNotPlusMinus )=> '(' nonPrimitiveType ')' unaryExpressionNotPlusMinus | NEW creator | primary ( selector )* ( '++' | '--' )? )
             int alt49=5;
-            try { dbg.enterDecision(49);
-
-            try {
-                isCyclicDecision = true;
-                alt49 = dfa49.predict(input);
-            }
-            catch (NoViableAltException nvae) {
-                dbg.recognitionException(nvae);
-                throw nvae;
-            }
-            } finally {dbg.exitDecision(49);}
-
+            alt49 = dfa49.predict(input);
             switch (alt49) {
                 case 1 :
-                    dbg.enterAlt(1);
-
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:342:7: '!' unaryExpression
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    dbg.location(342,7);
                     char_literal175=(Token)match(input,95,FOLLOW_95_in_unaryExpressionNotPlusMinus2393); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     char_literal175_tree = (Object)adaptor.create(char_literal175);
                     adaptor.addChild(root_0, char_literal175_tree);
                     }
-                    dbg.location(342,11);
                     pushFollow(FOLLOW_unaryExpression_in_unaryExpressionNotPlusMinus2395);
                     unaryExpression176=unaryExpression();
 
@@ -7456,32 +5828,26 @@ public class JaParser extends DebugParser {
                     }
                     break;
                 case 2 :
-                    dbg.enterAlt(2);
-
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:343:9: ( '(' primitiveType ')' )=> '(' primitiveType ')' unaryExpression
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    dbg.location(343,37);
                     char_literal177=(Token)match(input,81,FOLLOW_81_in_unaryExpressionNotPlusMinus2416); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     char_literal177_tree = (Object)adaptor.create(char_literal177);
                     adaptor.addChild(root_0, char_literal177_tree);
                     }
-                    dbg.location(343,41);
                     pushFollow(FOLLOW_primitiveType_in_unaryExpressionNotPlusMinus2418);
                     primitiveType178=primitiveType();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) adaptor.addChild(root_0, primitiveType178.getTree());
-                    dbg.location(343,55);
                     char_literal179=(Token)match(input,82,FOLLOW_82_in_unaryExpressionNotPlusMinus2420); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     char_literal179_tree = (Object)adaptor.create(char_literal179);
                     adaptor.addChild(root_0, char_literal179_tree);
                     }
-                    dbg.location(343,59);
                     pushFollow(FOLLOW_unaryExpression_in_unaryExpressionNotPlusMinus2422);
                     unaryExpression180=unaryExpression();
 
@@ -7492,32 +5858,26 @@ public class JaParser extends DebugParser {
                     }
                     break;
                 case 3 :
-                    dbg.enterAlt(3);
-
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:345:9: ( '(' nonPrimitiveType ')' unaryExpressionNotPlusMinus )=> '(' nonPrimitiveType ')' unaryExpressionNotPlusMinus
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    dbg.location(345,68);
                     char_literal181=(Token)match(input,81,FOLLOW_81_in_unaryExpressionNotPlusMinus2450); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     char_literal181_tree = (Object)adaptor.create(char_literal181);
                     adaptor.addChild(root_0, char_literal181_tree);
                     }
-                    dbg.location(345,72);
                     pushFollow(FOLLOW_nonPrimitiveType_in_unaryExpressionNotPlusMinus2452);
                     nonPrimitiveType182=nonPrimitiveType();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) adaptor.addChild(root_0, nonPrimitiveType182.getTree());
-                    dbg.location(345,90);
                     char_literal183=(Token)match(input,82,FOLLOW_82_in_unaryExpressionNotPlusMinus2455); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     char_literal183_tree = (Object)adaptor.create(char_literal183);
                     adaptor.addChild(root_0, char_literal183_tree);
                     }
-                    dbg.location(345,94);
                     pushFollow(FOLLOW_unaryExpressionNotPlusMinus_in_unaryExpressionNotPlusMinus2457);
                     unaryExpressionNotPlusMinus184=unaryExpressionNotPlusMinus();
 
@@ -7528,19 +5888,15 @@ public class JaParser extends DebugParser {
                     }
                     break;
                 case 4 :
-                    dbg.enterAlt(4);
-
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:346:9: NEW creator
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    dbg.location(346,9);
                     NEW185=(Token)match(input,NEW,FOLLOW_NEW_in_unaryExpressionNotPlusMinus2467); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     NEW185_tree = (Object)adaptor.create(NEW185);
                     adaptor.addChild(root_0, NEW185_tree);
                     }
-                    dbg.location(346,13);
                     pushFollow(FOLLOW_creator_in_unaryExpressionNotPlusMinus2469);
                     creator186=creator();
 
@@ -7551,28 +5907,20 @@ public class JaParser extends DebugParser {
                     }
                     break;
                 case 5 :
-                    dbg.enterAlt(5);
-
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:347:9: primary ( selector )* ( '++' | '--' )?
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    dbg.location(347,9);
                     pushFollow(FOLLOW_primary_in_unaryExpressionNotPlusMinus2479);
                     primary187=primary();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) adaptor.addChild(root_0, primary187.getTree());
-                    dbg.location(347,26);
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:347:26: ( selector )*
-                    try { dbg.enterSubRule(47);
-
                     loop47:
                     do {
                         int alt47=2;
-                        try { dbg.enterDecision(47);
-
                         int LA47_0 = input.LA(1);
 
                         if ( (LA47_0==79||LA47_0==96) ) {
@@ -7580,15 +5928,10 @@ public class JaParser extends DebugParser {
                         }
 
 
-                        } finally {dbg.exitDecision(47);}
-
                         switch (alt47) {
                     	case 1 :
-                    	    dbg.enterAlt(1);
-
                     	    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:347:26: selector
                     	    {
-                    	    dbg.location(347,26);
                     	    pushFollow(FOLLOW_selector_in_unaryExpressionNotPlusMinus2482);
                     	    selector188=selector();
 
@@ -7603,28 +5946,18 @@ public class JaParser extends DebugParser {
                     	    break loop47;
                         }
                     } while (true);
-                    } finally {dbg.exitSubRule(47);}
 
-                    dbg.location(347,29);
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:347:29: ( '++' | '--' )?
                     int alt48=2;
-                    try { dbg.enterSubRule(48);
-                    try { dbg.enterDecision(48);
-
                     int LA48_0 = input.LA(1);
 
                     if ( ((LA48_0>=93 && LA48_0<=94)) ) {
                         alt48=1;
                     }
-                    } finally {dbg.exitDecision(48);}
-
                     switch (alt48) {
                         case 1 :
-                            dbg.enterAlt(1);
-
                             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:
                             {
-                            dbg.location(347,29);
                             set189=(Token)input.LT(1);
                             if ( (input.LA(1)>=93 && input.LA(1)<=94) ) {
                                 input.consume();
@@ -7634,7 +5967,6 @@ public class JaParser extends DebugParser {
                             else {
                                 if (state.backtracking>0) {state.failed=true; return retval;}
                                 MismatchedSetException mse = new MismatchedSetException(null,input);
-                                dbg.recognitionException(mse);
                                 throw mse;
                             }
 
@@ -7643,7 +5975,6 @@ public class JaParser extends DebugParser {
                             break;
 
                     }
-                    } finally {dbg.exitSubRule(48);}
 
 
                     }
@@ -7666,15 +5997,6 @@ public class JaParser extends DebugParser {
         }
         finally {
         }
-        dbg.location(351, 5);
-
-        }
-        finally {
-            dbg.exitRule(getGrammarFileName(), "unaryExpressionNotPlusMinus");
-            decRuleLevel();
-            if ( getRuleLevel()==0 ) {dbg.terminate();}
-        }
-
         return retval;
     }
     // $ANTLR end "unaryExpressionNotPlusMinus"
@@ -7749,35 +6071,16 @@ public class JaParser extends DebugParser {
         RewriteRuleTokenStream stream_IDENTIFIER=new RewriteRuleTokenStream(adaptor,"token IDENTIFIER");
         RewriteRuleSubtreeStream stream_arguments=new RewriteRuleSubtreeStream(adaptor,"rule arguments");
         RewriteRuleSubtreeStream stream_primitiveType=new RewriteRuleSubtreeStream(adaptor,"rule primitiveType");
-        try { dbg.enterRule(getGrammarFileName(), "primary");
-        if ( getRuleLevel()==0 ) {dbg.commence();}
-        incRuleLevel();
-        dbg.location(354, 1);
-
         try {
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:355:5: ( parExpression | THIS | SUPER superMemberAccess | literal | IDENTIFIER | ( IDENTIFIER -> IDENTIFIER ) ( '[' ']' -> ^( ARRAYTYPE $primary) )+ ( '.' CLASS -> ^( DOTCLASS $primary) ) | IDENTIFIER arguments -> ^( METHODCALL IDENTIFIER arguments THIS ) | IDENTIFIER '.' CLASS -> ^( DOTCLASS IDENTIFIER ) | ( primitiveType -> primitiveType ) ( '[' ']' -> ^( ARRAYTYPE $primary) )* ( '.' CLASS -> ^( DOTCLASS $primary) ) | VOID '.' CLASS -> ^( DOTCLASS VOID ) )
             int alt52=10;
-            try { dbg.enterDecision(52);
-
-            try {
-                isCyclicDecision = true;
-                alt52 = dfa52.predict(input);
-            }
-            catch (NoViableAltException nvae) {
-                dbg.recognitionException(nvae);
-                throw nvae;
-            }
-            } finally {dbg.exitDecision(52);}
-
+            alt52 = dfa52.predict(input);
             switch (alt52) {
                 case 1 :
-                    dbg.enterAlt(1);
-
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:355:9: parExpression
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    dbg.location(355,9);
                     pushFollow(FOLLOW_parExpression_in_primary2546);
                     parExpression190=parExpression();
 
@@ -7788,13 +6091,10 @@ public class JaParser extends DebugParser {
                     }
                     break;
                 case 2 :
-                    dbg.enterAlt(2);
-
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:356:9: THIS
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    dbg.location(356,9);
                     THIS191=(Token)match(input,THIS,FOLLOW_THIS_in_primary2556); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     THIS191_tree = (Object)adaptor.create(THIS191);
@@ -7804,19 +6104,15 @@ public class JaParser extends DebugParser {
                     }
                     break;
                 case 3 :
-                    dbg.enterAlt(3);
-
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:357:9: SUPER superMemberAccess
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    dbg.location(357,14);
                     SUPER192=(Token)match(input,SUPER,FOLLOW_SUPER_in_primary2567); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     SUPER192_tree = (Object)adaptor.create(SUPER192);
                     root_0 = (Object)adaptor.becomeRoot(SUPER192_tree, root_0);
                     }
-                    dbg.location(357,16);
                     pushFollow(FOLLOW_superMemberAccess_in_primary2570);
                     superMemberAccess193=superMemberAccess();
 
@@ -7827,13 +6123,10 @@ public class JaParser extends DebugParser {
                     }
                     break;
                 case 4 :
-                    dbg.enterAlt(4);
-
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:358:9: literal
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    dbg.location(358,9);
                     pushFollow(FOLLOW_literal_in_primary2580);
                     literal194=literal();
 
@@ -7844,13 +6137,10 @@ public class JaParser extends DebugParser {
                     }
                     break;
                 case 5 :
-                    dbg.enterAlt(5);
-
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:359:9: IDENTIFIER
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    dbg.location(359,9);
                     IDENTIFIER195=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_primary2590); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     IDENTIFIER195_tree = (Object)adaptor.create(IDENTIFIER195);
@@ -7860,17 +6150,11 @@ public class JaParser extends DebugParser {
                     }
                     break;
                 case 6 :
-                    dbg.enterAlt(6);
-
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:360:9: ( IDENTIFIER -> IDENTIFIER ) ( '[' ']' -> ^( ARRAYTYPE $primary) )+ ( '.' CLASS -> ^( DOTCLASS $primary) )
                     {
-                    dbg.location(360,9);
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:360:9: ( IDENTIFIER -> IDENTIFIER )
-                    dbg.enterAlt(1);
-
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:360:10: IDENTIFIER
                     {
-                    dbg.location(360,10);
                     IDENTIFIER196=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_primary2601); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_IDENTIFIER.add(IDENTIFIER196);
 
@@ -7890,7 +6174,6 @@ public class JaParser extends DebugParser {
                     root_0 = (Object)adaptor.nil();
                     // 360:21: -> IDENTIFIER
                     {
-                        dbg.location(360,24);
                         adaptor.addChild(root_0, stream_IDENTIFIER.nextNode());
 
                     }
@@ -7898,16 +6181,11 @@ public class JaParser extends DebugParser {
                     retval.tree = root_0;}
                     }
 
-                    dbg.location(360,36);
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:360:36: ( '[' ']' -> ^( ARRAYTYPE $primary) )+
                     int cnt50=0;
-                    try { dbg.enterSubRule(50);
-
                     loop50:
                     do {
                         int alt50=2;
-                        try { dbg.enterDecision(50);
-
                         int LA50_0 = input.LA(1);
 
                         if ( (LA50_0==79) ) {
@@ -7915,19 +6193,13 @@ public class JaParser extends DebugParser {
                         }
 
 
-                        } finally {dbg.exitDecision(50);}
-
                         switch (alt50) {
                     	case 1 :
-                    	    dbg.enterAlt(1);
-
                     	    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:360:37: '[' ']'
                     	    {
-                    	    dbg.location(360,37);
                     	    char_literal197=(Token)match(input,79,FOLLOW_79_in_primary2609); if (state.failed) return retval; 
                     	    if ( state.backtracking==0 ) stream_79.add(char_literal197);
 
-                    	    dbg.location(360,41);
                     	    char_literal198=(Token)match(input,80,FOLLOW_80_in_primary2611); if (state.failed) return retval; 
                     	    if ( state.backtracking==0 ) stream_80.add(char_literal198);
 
@@ -7947,14 +6219,11 @@ public class JaParser extends DebugParser {
                     	    root_0 = (Object)adaptor.nil();
                     	    // 360:45: -> ^( ARRAYTYPE $primary)
                     	    {
-                    	        dbg.location(360,48);
                     	        // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:360:48: ^( ARRAYTYPE $primary)
                     	        {
                     	        Object root_1 = (Object)adaptor.nil();
-                    	        dbg.location(360,50);
                     	        root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(ARRAYTYPE, "ARRAYTYPE"), root_1);
 
-                    	        dbg.location(360,60);
                     	        adaptor.addChild(root_1, stream_retval.nextTree());
 
                     	        adaptor.addChild(root_0, root_1);
@@ -7971,25 +6240,17 @@ public class JaParser extends DebugParser {
                     	    if (state.backtracking>0) {state.failed=true; return retval;}
                                 EarlyExitException eee =
                                     new EarlyExitException(50, input);
-                                dbg.recognitionException(eee);
-
                                 throw eee;
                         }
                         cnt50++;
                     } while (true);
-                    } finally {dbg.exitSubRule(50);}
 
-                    dbg.location(360,72);
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:360:72: ( '.' CLASS -> ^( DOTCLASS $primary) )
-                    dbg.enterAlt(1);
-
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:360:73: '.' CLASS
                     {
-                    dbg.location(360,73);
                     char_literal199=(Token)match(input,96,FOLLOW_96_in_primary2625); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_96.add(char_literal199);
 
-                    dbg.location(360,77);
                     CLASS200=(Token)match(input,CLASS,FOLLOW_CLASS_in_primary2627); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_CLASS.add(CLASS200);
 
@@ -8009,14 +6270,11 @@ public class JaParser extends DebugParser {
                     root_0 = (Object)adaptor.nil();
                     // 360:83: -> ^( DOTCLASS $primary)
                     {
-                        dbg.location(360,86);
                         // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:360:86: ^( DOTCLASS $primary)
                         {
                         Object root_1 = (Object)adaptor.nil();
-                        dbg.location(360,88);
                         root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(DOTCLASS, "DOTCLASS"), root_1);
 
-                        dbg.location(360,97);
                         adaptor.addChild(root_1, stream_retval.nextTree());
 
                         adaptor.addChild(root_0, root_1);
@@ -8031,15 +6289,11 @@ public class JaParser extends DebugParser {
                     }
                     break;
                 case 7 :
-                    dbg.enterAlt(7);
-
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:361:8: IDENTIFIER arguments
                     {
-                    dbg.location(361,8);
                     IDENTIFIER201=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_primary2646); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_IDENTIFIER.add(IDENTIFIER201);
 
-                    dbg.location(361,20);
                     pushFollow(FOLLOW_arguments_in_primary2649);
                     arguments202=arguments();
 
@@ -8062,18 +6316,13 @@ public class JaParser extends DebugParser {
                     root_0 = (Object)adaptor.nil();
                     // 361:30: -> ^( METHODCALL IDENTIFIER arguments THIS )
                     {
-                        dbg.location(361,33);
                         // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:361:33: ^( METHODCALL IDENTIFIER arguments THIS )
                         {
                         Object root_1 = (Object)adaptor.nil();
-                        dbg.location(361,35);
                         root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(METHODCALL, "METHODCALL"), root_1);
 
-                        dbg.location(361,46);
                         adaptor.addChild(root_1, stream_IDENTIFIER.nextNode());
-                        dbg.location(361,57);
                         adaptor.addChild(root_1, stream_arguments.nextTree());
-                        dbg.location(361,67);
                         adaptor.addChild(root_1, (Object)adaptor.create(THIS, "THIS"));
 
                         adaptor.addChild(root_0, root_1);
@@ -8085,19 +6334,14 @@ public class JaParser extends DebugParser {
                     }
                     break;
                 case 8 :
-                    dbg.enterAlt(8);
-
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:362:7: IDENTIFIER '.' CLASS
                     {
-                    dbg.location(362,7);
                     IDENTIFIER203=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_primary2669); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_IDENTIFIER.add(IDENTIFIER203);
 
-                    dbg.location(362,18);
                     char_literal204=(Token)match(input,96,FOLLOW_96_in_primary2671); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_96.add(char_literal204);
 
-                    dbg.location(362,22);
                     CLASS205=(Token)match(input,CLASS,FOLLOW_CLASS_in_primary2673); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_CLASS.add(CLASS205);
 
@@ -8117,14 +6361,11 @@ public class JaParser extends DebugParser {
                     root_0 = (Object)adaptor.nil();
                     // 362:28: -> ^( DOTCLASS IDENTIFIER )
                     {
-                        dbg.location(362,31);
                         // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:362:31: ^( DOTCLASS IDENTIFIER )
                         {
                         Object root_1 = (Object)adaptor.nil();
-                        dbg.location(362,33);
                         root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(DOTCLASS, "DOTCLASS"), root_1);
 
-                        dbg.location(362,42);
                         adaptor.addChild(root_1, stream_IDENTIFIER.nextNode());
 
                         adaptor.addChild(root_0, root_1);
@@ -8136,17 +6377,11 @@ public class JaParser extends DebugParser {
                     }
                     break;
                 case 9 :
-                    dbg.enterAlt(9);
-
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:363:9: ( primitiveType -> primitiveType ) ( '[' ']' -> ^( ARRAYTYPE $primary) )* ( '.' CLASS -> ^( DOTCLASS $primary) )
                     {
-                    dbg.location(363,9);
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:363:9: ( primitiveType -> primitiveType )
-                    dbg.enterAlt(1);
-
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:363:10: primitiveType
                     {
-                    dbg.location(363,10);
                     pushFollow(FOLLOW_primitiveType_in_primary2692);
                     primitiveType206=primitiveType();
 
@@ -8169,7 +6404,6 @@ public class JaParser extends DebugParser {
                     root_0 = (Object)adaptor.nil();
                     // 363:24: -> primitiveType
                     {
-                        dbg.location(363,27);
                         adaptor.addChild(root_0, stream_primitiveType.nextTree());
 
                     }
@@ -8177,15 +6411,10 @@ public class JaParser extends DebugParser {
                     retval.tree = root_0;}
                     }
 
-                    dbg.location(363,42);
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:363:42: ( '[' ']' -> ^( ARRAYTYPE $primary) )*
-                    try { dbg.enterSubRule(51);
-
                     loop51:
                     do {
                         int alt51=2;
-                        try { dbg.enterDecision(51);
-
                         int LA51_0 = input.LA(1);
 
                         if ( (LA51_0==79) ) {
@@ -8193,19 +6422,13 @@ public class JaParser extends DebugParser {
                         }
 
 
-                        } finally {dbg.exitDecision(51);}
-
                         switch (alt51) {
                     	case 1 :
-                    	    dbg.enterAlt(1);
-
                     	    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:363:43: '[' ']'
                     	    {
-                    	    dbg.location(363,43);
                     	    char_literal207=(Token)match(input,79,FOLLOW_79_in_primary2700); if (state.failed) return retval; 
                     	    if ( state.backtracking==0 ) stream_79.add(char_literal207);
 
-                    	    dbg.location(363,47);
                     	    char_literal208=(Token)match(input,80,FOLLOW_80_in_primary2702); if (state.failed) return retval; 
                     	    if ( state.backtracking==0 ) stream_80.add(char_literal208);
 
@@ -8225,14 +6448,11 @@ public class JaParser extends DebugParser {
                     	    root_0 = (Object)adaptor.nil();
                     	    // 363:51: -> ^( ARRAYTYPE $primary)
                     	    {
-                    	        dbg.location(363,54);
                     	        // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:363:54: ^( ARRAYTYPE $primary)
                     	        {
                     	        Object root_1 = (Object)adaptor.nil();
-                    	        dbg.location(363,56);
                     	        root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(ARRAYTYPE, "ARRAYTYPE"), root_1);
 
-                    	        dbg.location(363,66);
                     	        adaptor.addChild(root_1, stream_retval.nextTree());
 
                     	        adaptor.addChild(root_0, root_1);
@@ -8248,19 +6468,13 @@ public class JaParser extends DebugParser {
                     	    break loop51;
                         }
                     } while (true);
-                    } finally {dbg.exitSubRule(51);}
 
-                    dbg.location(363,78);
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:363:78: ( '.' CLASS -> ^( DOTCLASS $primary) )
-                    dbg.enterAlt(1);
-
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:363:79: '.' CLASS
                     {
-                    dbg.location(363,79);
                     char_literal209=(Token)match(input,96,FOLLOW_96_in_primary2716); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_96.add(char_literal209);
 
-                    dbg.location(363,83);
                     CLASS210=(Token)match(input,CLASS,FOLLOW_CLASS_in_primary2718); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_CLASS.add(CLASS210);
 
@@ -8280,14 +6494,11 @@ public class JaParser extends DebugParser {
                     root_0 = (Object)adaptor.nil();
                     // 363:89: -> ^( DOTCLASS $primary)
                     {
-                        dbg.location(363,92);
                         // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:363:92: ^( DOTCLASS $primary)
                         {
                         Object root_1 = (Object)adaptor.nil();
-                        dbg.location(363,94);
                         root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(DOTCLASS, "DOTCLASS"), root_1);
 
-                        dbg.location(363,103);
                         adaptor.addChild(root_1, stream_retval.nextTree());
 
                         adaptor.addChild(root_0, root_1);
@@ -8302,19 +6513,14 @@ public class JaParser extends DebugParser {
                     }
                     break;
                 case 10 :
-                    dbg.enterAlt(10);
-
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:364:9: VOID '.' CLASS
                     {
-                    dbg.location(364,9);
                     VOID211=(Token)match(input,VOID,FOLLOW_VOID_in_primary2738); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_VOID.add(VOID211);
 
-                    dbg.location(364,14);
                     char_literal212=(Token)match(input,96,FOLLOW_96_in_primary2740); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_96.add(char_literal212);
 
-                    dbg.location(364,18);
                     CLASS213=(Token)match(input,CLASS,FOLLOW_CLASS_in_primary2742); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_CLASS.add(CLASS213);
 
@@ -8334,14 +6540,11 @@ public class JaParser extends DebugParser {
                     root_0 = (Object)adaptor.nil();
                     // 364:24: -> ^( DOTCLASS VOID )
                     {
-                        dbg.location(364,27);
                         // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:364:27: ^( DOTCLASS VOID )
                         {
                         Object root_1 = (Object)adaptor.nil();
-                        dbg.location(364,29);
                         root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(DOTCLASS, "DOTCLASS"), root_1);
 
-                        dbg.location(364,38);
                         adaptor.addChild(root_1, stream_VOID.nextNode());
 
                         adaptor.addChild(root_0, root_1);
@@ -8370,15 +6573,6 @@ public class JaParser extends DebugParser {
         }
         finally {
         }
-        dbg.location(365, 5);
-
-        }
-        finally {
-            dbg.exitRule(getGrammarFileName(), "primary");
-            decRuleLevel();
-            if ( getRuleLevel()==0 ) {dbg.terminate();}
-        }
-
         return retval;
     }
     // $ANTLR end "primary"
@@ -8419,16 +6613,9 @@ public class JaParser extends DebugParser {
         RewriteRuleTokenStream stream_IDENTIFIER=new RewriteRuleTokenStream(adaptor,"token IDENTIFIER");
         RewriteRuleSubtreeStream stream_expression=new RewriteRuleSubtreeStream(adaptor,"rule expression");
         RewriteRuleSubtreeStream stream_arguments=new RewriteRuleSubtreeStream(adaptor,"rule arguments");
-        try { dbg.enterRule(getGrammarFileName(), "selector");
-        if ( getRuleLevel()==0 ) {dbg.commence();}
-        incRuleLevel();
-        dbg.location(367, 1);
-
         try {
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:368:5: ( '.' IDENTIFIER -> ^( FIELDACCESS IDENTIFIER ) | '.' IDENTIFIER arguments -> ^( METHODCALL IDENTIFIER ( arguments )? ) | '[' expression ']' -> ^( ARRAYACCESS expression ) )
             int alt53=3;
-            try { dbg.enterDecision(53);
-
             int LA53_0 = input.LA(1);
 
             if ( (LA53_0==96) ) {
@@ -8448,7 +6635,6 @@ public class JaParser extends DebugParser {
                         NoViableAltException nvae =
                             new NoViableAltException("", 53, 3, input);
 
-                        dbg.recognitionException(nvae);
                         throw nvae;
                     }
                 }
@@ -8457,7 +6643,6 @@ public class JaParser extends DebugParser {
                     NoViableAltException nvae =
                         new NoViableAltException("", 53, 1, input);
 
-                    dbg.recognitionException(nvae);
                     throw nvae;
                 }
             }
@@ -8469,22 +6654,15 @@ public class JaParser extends DebugParser {
                 NoViableAltException nvae =
                     new NoViableAltException("", 53, 0, input);
 
-                dbg.recognitionException(nvae);
                 throw nvae;
             }
-            } finally {dbg.exitDecision(53);}
-
             switch (alt53) {
                 case 1 :
-                    dbg.enterAlt(1);
-
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:368:9: '.' IDENTIFIER
                     {
-                    dbg.location(368,9);
                     char_literal214=(Token)match(input,96,FOLLOW_96_in_selector2773); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_96.add(char_literal214);
 
-                    dbg.location(368,13);
                     IDENTIFIER215=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_selector2775); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_IDENTIFIER.add(IDENTIFIER215);
 
@@ -8504,14 +6682,11 @@ public class JaParser extends DebugParser {
                     root_0 = (Object)adaptor.nil();
                     // 368:24: -> ^( FIELDACCESS IDENTIFIER )
                     {
-                        dbg.location(368,27);
                         // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:368:27: ^( FIELDACCESS IDENTIFIER )
                         {
                         Object root_1 = (Object)adaptor.nil();
-                        dbg.location(368,29);
                         root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(FIELDACCESS, "FIELDACCESS"), root_1);
 
-                        dbg.location(368,41);
                         adaptor.addChild(root_1, stream_IDENTIFIER.nextNode());
 
                         adaptor.addChild(root_0, root_1);
@@ -8523,19 +6698,14 @@ public class JaParser extends DebugParser {
                     }
                     break;
                 case 2 :
-                    dbg.enterAlt(2);
-
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:369:7: '.' IDENTIFIER arguments
                     {
-                    dbg.location(369,7);
                     char_literal216=(Token)match(input,96,FOLLOW_96_in_selector2791); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_96.add(char_literal216);
 
-                    dbg.location(369,11);
                     IDENTIFIER217=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_selector2793); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_IDENTIFIER.add(IDENTIFIER217);
 
-                    dbg.location(369,22);
                     pushFollow(FOLLOW_arguments_in_selector2795);
                     arguments218=arguments();
 
@@ -8558,19 +6728,14 @@ public class JaParser extends DebugParser {
                     root_0 = (Object)adaptor.nil();
                     // 369:32: -> ^( METHODCALL IDENTIFIER ( arguments )? )
                     {
-                        dbg.location(369,35);
                         // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:369:35: ^( METHODCALL IDENTIFIER ( arguments )? )
                         {
                         Object root_1 = (Object)adaptor.nil();
-                        dbg.location(369,37);
                         root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(METHODCALL, "METHODCALL"), root_1);
 
-                        dbg.location(369,48);
                         adaptor.addChild(root_1, stream_IDENTIFIER.nextNode());
-                        dbg.location(369,59);
                         // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:369:59: ( arguments )?
                         if ( stream_arguments.hasNext() ) {
-                            dbg.location(369,59);
                             adaptor.addChild(root_1, stream_arguments.nextTree());
 
                         }
@@ -8585,22 +6750,17 @@ public class JaParser extends DebugParser {
                     }
                     break;
                 case 3 :
-                    dbg.enterAlt(3);
-
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:372:9: '[' expression ']'
                     {
-                    dbg.location(372,9);
                     char_literal219=(Token)match(input,79,FOLLOW_79_in_selector2826); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_79.add(char_literal219);
 
-                    dbg.location(372,13);
                     pushFollow(FOLLOW_expression_in_selector2828);
                     expression220=expression();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) stream_expression.add(expression220.getTree());
-                    dbg.location(372,24);
                     char_literal221=(Token)match(input,80,FOLLOW_80_in_selector2830); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_80.add(char_literal221);
 
@@ -8620,14 +6780,11 @@ public class JaParser extends DebugParser {
                     root_0 = (Object)adaptor.nil();
                     // 372:27: -> ^( ARRAYACCESS expression )
                     {
-                        dbg.location(372,30);
                         // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:372:30: ^( ARRAYACCESS expression )
                         {
                         Object root_1 = (Object)adaptor.nil();
-                        dbg.location(372,32);
                         root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(ARRAYACCESS, "ARRAYACCESS"), root_1);
 
-                        dbg.location(372,44);
                         adaptor.addChild(root_1, stream_expression.nextTree());
 
                         adaptor.addChild(root_0, root_1);
@@ -8656,15 +6813,6 @@ public class JaParser extends DebugParser {
         }
         finally {
         }
-        dbg.location(373, 5);
-
-        }
-        finally {
-            dbg.exitRule(getGrammarFileName(), "selector");
-            decRuleLevel();
-            if ( getRuleLevel()==0 ) {dbg.terminate();}
-        }
-
         return retval;
     }
     // $ANTLR end "selector"
@@ -8698,16 +6846,9 @@ public class JaParser extends DebugParser {
         Object char_literal227_tree=null;
         Object CLASS228_tree=null;
 
-        try { dbg.enterRule(getGrammarFileName(), "identifierSuffix");
-        if ( getRuleLevel()==0 ) {dbg.commence();}
-        incRuleLevel();
-        dbg.location(375, 1);
-
         try {
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:376:5: ( ( '[' ']' )+ '.' CLASS | arguments | '.' CLASS )
             int alt55=3;
-            try { dbg.enterDecision(55);
-
             switch ( input.LA(1) ) {
             case 79:
                 {
@@ -8729,30 +6870,20 @@ public class JaParser extends DebugParser {
                 NoViableAltException nvae =
                     new NoViableAltException("", 55, 0, input);
 
-                dbg.recognitionException(nvae);
                 throw nvae;
             }
 
-            } finally {dbg.exitDecision(55);}
-
             switch (alt55) {
                 case 1 :
-                    dbg.enterAlt(1);
-
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:376:9: ( '[' ']' )+ '.' CLASS
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    dbg.location(376,9);
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:376:9: ( '[' ']' )+
                     int cnt54=0;
-                    try { dbg.enterSubRule(54);
-
                     loop54:
                     do {
                         int alt54=2;
-                        try { dbg.enterDecision(54);
-
                         int LA54_0 = input.LA(1);
 
                         if ( (LA54_0==79) ) {
@@ -8760,21 +6891,15 @@ public class JaParser extends DebugParser {
                         }
 
 
-                        } finally {dbg.exitDecision(54);}
-
                         switch (alt54) {
                     	case 1 :
-                    	    dbg.enterAlt(1);
-
                     	    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:376:10: '[' ']'
                     	    {
-                    	    dbg.location(376,10);
                     	    char_literal222=(Token)match(input,79,FOLLOW_79_in_identifierSuffix2857); if (state.failed) return retval;
                     	    if ( state.backtracking==0 ) {
                     	    char_literal222_tree = (Object)adaptor.create(char_literal222);
                     	    adaptor.addChild(root_0, char_literal222_tree);
                     	    }
-                    	    dbg.location(376,14);
                     	    char_literal223=(Token)match(input,80,FOLLOW_80_in_identifierSuffix2859); if (state.failed) return retval;
                     	    if ( state.backtracking==0 ) {
                     	    char_literal223_tree = (Object)adaptor.create(char_literal223);
@@ -8789,21 +6914,16 @@ public class JaParser extends DebugParser {
                     	    if (state.backtracking>0) {state.failed=true; return retval;}
                                 EarlyExitException eee =
                                     new EarlyExitException(54, input);
-                                dbg.recognitionException(eee);
-
                                 throw eee;
                         }
                         cnt54++;
                     } while (true);
-                    } finally {dbg.exitSubRule(54);}
 
-                    dbg.location(376,20);
                     char_literal224=(Token)match(input,96,FOLLOW_96_in_identifierSuffix2863); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     char_literal224_tree = (Object)adaptor.create(char_literal224);
                     adaptor.addChild(root_0, char_literal224_tree);
                     }
-                    dbg.location(376,24);
                     CLASS225=(Token)match(input,CLASS,FOLLOW_CLASS_in_identifierSuffix2865); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     CLASS225_tree = (Object)adaptor.create(CLASS225);
@@ -8813,13 +6933,10 @@ public class JaParser extends DebugParser {
                     }
                     break;
                 case 2 :
-                    dbg.enterAlt(2);
-
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:378:9: arguments
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    dbg.location(378,9);
                     pushFollow(FOLLOW_arguments_in_identifierSuffix2880);
                     arguments226=arguments();
 
@@ -8830,19 +6947,15 @@ public class JaParser extends DebugParser {
                     }
                     break;
                 case 3 :
-                    dbg.enterAlt(3);
-
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:379:9: '.' CLASS
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    dbg.location(379,9);
                     char_literal227=(Token)match(input,96,FOLLOW_96_in_identifierSuffix2890); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     char_literal227_tree = (Object)adaptor.create(char_literal227);
                     adaptor.addChild(root_0, char_literal227_tree);
                     }
-                    dbg.location(379,13);
                     CLASS228=(Token)match(input,CLASS,FOLLOW_CLASS_in_identifierSuffix2892); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     CLASS228_tree = (Object)adaptor.create(CLASS228);
@@ -8869,15 +6982,6 @@ public class JaParser extends DebugParser {
         }
         finally {
         }
-        dbg.location(382, 5);
-
-        }
-        finally {
-            dbg.exitRule(getGrammarFileName(), "identifierSuffix");
-            decRuleLevel();
-            if ( getRuleLevel()==0 ) {dbg.terminate();}
-        }
-
         return retval;
     }
     // $ANTLR end "identifierSuffix"
@@ -8903,32 +7007,20 @@ public class JaParser extends DebugParser {
 
 
 
-        try { dbg.enterRule(getGrammarFileName(), "creator");
-        if ( getRuleLevel()==0 ) {dbg.commence();}
-        incRuleLevel();
-        dbg.location(384, 1);
-
         try {
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:385:5: ( createdName ( arrayCreatorRest | classCreatorRest ) )
-            dbg.enterAlt(1);
-
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:385:8: createdName ( arrayCreatorRest | classCreatorRest )
             {
             root_0 = (Object)adaptor.nil();
 
-            dbg.location(385,8);
             pushFollow(FOLLOW_createdName_in_creator2920);
             createdName229=createdName();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, createdName229.getTree());
-            dbg.location(385,20);
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:385:20: ( arrayCreatorRest | classCreatorRest )
             int alt56=2;
-            try { dbg.enterSubRule(56);
-            try { dbg.enterDecision(56);
-
             int LA56_0 = input.LA(1);
 
             if ( (LA56_0==79) ) {
@@ -8942,18 +7034,12 @@ public class JaParser extends DebugParser {
                 NoViableAltException nvae =
                     new NoViableAltException("", 56, 0, input);
 
-                dbg.recognitionException(nvae);
                 throw nvae;
             }
-            } finally {dbg.exitDecision(56);}
-
             switch (alt56) {
                 case 1 :
-                    dbg.enterAlt(1);
-
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:385:21: arrayCreatorRest
                     {
-                    dbg.location(385,21);
                     pushFollow(FOLLOW_arrayCreatorRest_in_creator2923);
                     arrayCreatorRest230=arrayCreatorRest();
 
@@ -8964,11 +7050,8 @@ public class JaParser extends DebugParser {
                     }
                     break;
                 case 2 :
-                    dbg.enterAlt(2);
-
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:385:40: classCreatorRest
                     {
-                    dbg.location(385,40);
                     pushFollow(FOLLOW_classCreatorRest_in_creator2927);
                     classCreatorRest231=classCreatorRest();
 
@@ -8980,7 +7063,6 @@ public class JaParser extends DebugParser {
                     break;
 
             }
-            } finally {dbg.exitSubRule(56);}
 
 
             }
@@ -9001,15 +7083,6 @@ public class JaParser extends DebugParser {
         }
         finally {
         }
-        dbg.location(386, 5);
-
-        }
-        finally {
-            dbg.exitRule(getGrammarFileName(), "creator");
-            decRuleLevel();
-            if ( getRuleLevel()==0 ) {dbg.terminate();}
-        }
-
         return retval;
     }
     // $ANTLR end "creator"
@@ -9033,16 +7106,9 @@ public class JaParser extends DebugParser {
 
 
 
-        try { dbg.enterRule(getGrammarFileName(), "createdName");
-        if ( getRuleLevel()==0 ) {dbg.commence();}
-        incRuleLevel();
-        dbg.location(388, 1);
-
         try {
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:389:5: ( classType | primitiveType )
             int alt57=2;
-            try { dbg.enterDecision(57);
-
             int LA57_0 = input.LA(1);
 
             if ( (LA57_0==IDENTIFIER) ) {
@@ -9056,20 +7122,14 @@ public class JaParser extends DebugParser {
                 NoViableAltException nvae =
                     new NoViableAltException("", 57, 0, input);
 
-                dbg.recognitionException(nvae);
                 throw nvae;
             }
-            } finally {dbg.exitDecision(57);}
-
             switch (alt57) {
                 case 1 :
-                    dbg.enterAlt(1);
-
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:389:9: classType
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    dbg.location(389,9);
                     pushFollow(FOLLOW_classType_in_createdName2947);
                     classType232=classType();
 
@@ -9080,13 +7140,10 @@ public class JaParser extends DebugParser {
                     }
                     break;
                 case 2 :
-                    dbg.enterAlt(2);
-
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:390:9: primitiveType
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    dbg.location(390,9);
                     pushFollow(FOLLOW_primitiveType_in_createdName2957);
                     primitiveType233=primitiveType();
 
@@ -9114,15 +7171,6 @@ public class JaParser extends DebugParser {
         }
         finally {
         }
-        dbg.location(391, 5);
-
-        }
-        finally {
-            dbg.exitRule(getGrammarFileName(), "createdName");
-            decRuleLevel();
-            if ( getRuleLevel()==0 ) {dbg.terminate();}
-        }
-
         return retval;
     }
     // $ANTLR end "createdName"
@@ -9164,16 +7212,9 @@ public class JaParser extends DebugParser {
         Object char_literal242_tree=null;
         Object char_literal244_tree=null;
 
-        try { dbg.enterRule(getGrammarFileName(), "arrayCreatorRest");
-        if ( getRuleLevel()==0 ) {dbg.commence();}
-        incRuleLevel();
-        dbg.location(393, 1);
-
         try {
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:394:5: ( '[' ']' ( '[' ']' )* arrayInitializer | '[' expression ']' ( '[' expression ']' )* )
             int alt60=2;
-            try { dbg.enterDecision(60);
-
             int LA60_0 = input.LA(1);
 
             if ( (LA60_0==79) ) {
@@ -9190,7 +7231,6 @@ public class JaParser extends DebugParser {
                     NoViableAltException nvae =
                         new NoViableAltException("", 60, 1, input);
 
-                    dbg.recognitionException(nvae);
                     throw nvae;
                 }
             }
@@ -9199,40 +7239,28 @@ public class JaParser extends DebugParser {
                 NoViableAltException nvae =
                     new NoViableAltException("", 60, 0, input);
 
-                dbg.recognitionException(nvae);
                 throw nvae;
             }
-            } finally {dbg.exitDecision(60);}
-
             switch (alt60) {
                 case 1 :
-                    dbg.enterAlt(1);
-
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:394:9: '[' ']' ( '[' ']' )* arrayInitializer
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    dbg.location(394,9);
                     char_literal234=(Token)match(input,79,FOLLOW_79_in_arrayCreatorRest2980); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     char_literal234_tree = (Object)adaptor.create(char_literal234);
                     adaptor.addChild(root_0, char_literal234_tree);
                     }
-                    dbg.location(394,12);
                     char_literal235=(Token)match(input,80,FOLLOW_80_in_arrayCreatorRest2981); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     char_literal235_tree = (Object)adaptor.create(char_literal235);
                     adaptor.addChild(root_0, char_literal235_tree);
                     }
-                    dbg.location(394,16);
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:394:16: ( '[' ']' )*
-                    try { dbg.enterSubRule(58);
-
                     loop58:
                     do {
                         int alt58=2;
-                        try { dbg.enterDecision(58);
-
                         int LA58_0 = input.LA(1);
 
                         if ( (LA58_0==79) ) {
@@ -9240,21 +7268,15 @@ public class JaParser extends DebugParser {
                         }
 
 
-                        } finally {dbg.exitDecision(58);}
-
                         switch (alt58) {
                     	case 1 :
-                    	    dbg.enterAlt(1);
-
                     	    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:394:17: '[' ']'
                     	    {
-                    	    dbg.location(394,17);
                     	    char_literal236=(Token)match(input,79,FOLLOW_79_in_arrayCreatorRest2984); if (state.failed) return retval;
                     	    if ( state.backtracking==0 ) {
                     	    char_literal236_tree = (Object)adaptor.create(char_literal236);
                     	    adaptor.addChild(root_0, char_literal236_tree);
                     	    }
-                    	    dbg.location(394,21);
                     	    char_literal237=(Token)match(input,80,FOLLOW_80_in_arrayCreatorRest2986); if (state.failed) return retval;
                     	    if ( state.backtracking==0 ) {
                     	    char_literal237_tree = (Object)adaptor.create(char_literal237);
@@ -9268,9 +7290,7 @@ public class JaParser extends DebugParser {
                     	    break loop58;
                         }
                     } while (true);
-                    } finally {dbg.exitSubRule(58);}
 
-                    dbg.location(394,27);
                     pushFollow(FOLLOW_arrayInitializer_in_arrayCreatorRest2990);
                     arrayInitializer238=arrayInitializer();
 
@@ -9281,40 +7301,30 @@ public class JaParser extends DebugParser {
                     }
                     break;
                 case 2 :
-                    dbg.enterAlt(2);
-
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:395:7: '[' expression ']' ( '[' expression ']' )*
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    dbg.location(395,7);
                     char_literal239=(Token)match(input,79,FOLLOW_79_in_arrayCreatorRest2998); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     char_literal239_tree = (Object)adaptor.create(char_literal239);
                     adaptor.addChild(root_0, char_literal239_tree);
                     }
-                    dbg.location(395,11);
                     pushFollow(FOLLOW_expression_in_arrayCreatorRest3000);
                     expression240=expression();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) adaptor.addChild(root_0, expression240.getTree());
-                    dbg.location(395,22);
                     char_literal241=(Token)match(input,80,FOLLOW_80_in_arrayCreatorRest3002); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     char_literal241_tree = (Object)adaptor.create(char_literal241);
                     adaptor.addChild(root_0, char_literal241_tree);
                     }
-                    dbg.location(395,26);
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:395:26: ( '[' expression ']' )*
-                    try { dbg.enterSubRule(59);
-
                     loop59:
                     do {
                         int alt59=2;
-                        try { dbg.enterDecision(59);
-
                         int LA59_0 = input.LA(1);
 
                         if ( (LA59_0==79) ) {
@@ -9322,28 +7332,21 @@ public class JaParser extends DebugParser {
                         }
 
 
-                        } finally {dbg.exitDecision(59);}
-
                         switch (alt59) {
                     	case 1 :
-                    	    dbg.enterAlt(1);
-
                     	    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:395:27: '[' expression ']'
                     	    {
-                    	    dbg.location(395,27);
                     	    char_literal242=(Token)match(input,79,FOLLOW_79_in_arrayCreatorRest3005); if (state.failed) return retval;
                     	    if ( state.backtracking==0 ) {
                     	    char_literal242_tree = (Object)adaptor.create(char_literal242);
                     	    adaptor.addChild(root_0, char_literal242_tree);
                     	    }
-                    	    dbg.location(395,31);
                     	    pushFollow(FOLLOW_expression_in_arrayCreatorRest3007);
                     	    expression243=expression();
 
                     	    state._fsp--;
                     	    if (state.failed) return retval;
                     	    if ( state.backtracking==0 ) adaptor.addChild(root_0, expression243.getTree());
-                    	    dbg.location(395,42);
                     	    char_literal244=(Token)match(input,80,FOLLOW_80_in_arrayCreatorRest3009); if (state.failed) return retval;
                     	    if ( state.backtracking==0 ) {
                     	    char_literal244_tree = (Object)adaptor.create(char_literal244);
@@ -9357,7 +7360,6 @@ public class JaParser extends DebugParser {
                     	    break loop59;
                         }
                     } while (true);
-                    } finally {dbg.exitSubRule(59);}
 
 
                     }
@@ -9380,15 +7382,6 @@ public class JaParser extends DebugParser {
         }
         finally {
         }
-        dbg.location(396, 5);
-
-        }
-        finally {
-            dbg.exitRule(getGrammarFileName(), "arrayCreatorRest");
-            decRuleLevel();
-            if ( getRuleLevel()==0 ) {dbg.terminate();}
-        }
-
         return retval;
     }
     // $ANTLR end "arrayCreatorRest"
@@ -9410,20 +7403,12 @@ public class JaParser extends DebugParser {
 
 
 
-        try { dbg.enterRule(getGrammarFileName(), "classCreatorRest");
-        if ( getRuleLevel()==0 ) {dbg.commence();}
-        incRuleLevel();
-        dbg.location(398, 1);
-
         try {
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:399:5: ( arguments )
-            dbg.enterAlt(1);
-
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:399:9: arguments
             {
             root_0 = (Object)adaptor.nil();
 
-            dbg.location(399,9);
             pushFollow(FOLLOW_arguments_in_classCreatorRest3032);
             arguments245=arguments();
 
@@ -9449,15 +7434,6 @@ public class JaParser extends DebugParser {
         }
         finally {
         }
-        dbg.location(400, 5);
-
-        }
-        finally {
-            dbg.exitRule(getGrammarFileName(), "classCreatorRest");
-            decRuleLevel();
-            if ( getRuleLevel()==0 ) {dbg.terminate();}
-        }
-
         return retval;
     }
     // $ANTLR end "classCreatorRest"
@@ -9483,51 +7459,33 @@ public class JaParser extends DebugParser {
         Object char_literal246_tree=null;
         Object IDENTIFIER247_tree=null;
 
-        try { dbg.enterRule(getGrammarFileName(), "superMemberAccess");
-        if ( getRuleLevel()==0 ) {dbg.commence();}
-        incRuleLevel();
-        dbg.location(402, 1);
-
         try {
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:403:2: ( '.' IDENTIFIER ( arguments )? )
-            dbg.enterAlt(1);
-
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:404:2: '.' IDENTIFIER ( arguments )?
             {
             root_0 = (Object)adaptor.nil();
 
-            dbg.location(404,2);
             char_literal246=(Token)match(input,96,FOLLOW_96_in_superMemberAccess3054); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             char_literal246_tree = (Object)adaptor.create(char_literal246);
             adaptor.addChild(root_0, char_literal246_tree);
             }
-            dbg.location(404,6);
             IDENTIFIER247=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_superMemberAccess3056); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             IDENTIFIER247_tree = (Object)adaptor.create(IDENTIFIER247);
             adaptor.addChild(root_0, IDENTIFIER247_tree);
             }
-            dbg.location(404,17);
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:404:17: ( arguments )?
             int alt61=2;
-            try { dbg.enterSubRule(61);
-            try { dbg.enterDecision(61);
-
             int LA61_0 = input.LA(1);
 
             if ( (LA61_0==81) ) {
                 alt61=1;
             }
-            } finally {dbg.exitDecision(61);}
-
             switch (alt61) {
                 case 1 :
-                    dbg.enterAlt(1);
-
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:404:17: arguments
                     {
-                    dbg.location(404,17);
                     pushFollow(FOLLOW_arguments_in_superMemberAccess3058);
                     arguments248=arguments();
 
@@ -9539,7 +7497,6 @@ public class JaParser extends DebugParser {
                     break;
 
             }
-            } finally {dbg.exitSubRule(61);}
 
 
             }
@@ -9560,15 +7517,6 @@ public class JaParser extends DebugParser {
         }
         finally {
         }
-        dbg.location(405, 2);
-
-        }
-        finally {
-            dbg.exitRule(getGrammarFileName(), "superMemberAccess");
-            decRuleLevel();
-            if ( getRuleLevel()==0 ) {dbg.terminate();}
-        }
-
         return retval;
     }
     // $ANTLR end "superMemberAccess"
@@ -9594,41 +7542,24 @@ public class JaParser extends DebugParser {
         Object char_literal249_tree=null;
         Object char_literal251_tree=null;
 
-        try { dbg.enterRule(getGrammarFileName(), "arguments");
-        if ( getRuleLevel()==0 ) {dbg.commence();}
-        incRuleLevel();
-        dbg.location(407, 1);
-
         try {
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:408:5: ( '(' ( expressionList )? ')' )
-            dbg.enterAlt(1);
-
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:408:9: '(' ( expressionList )? ')'
             {
             root_0 = (Object)adaptor.nil();
 
-            dbg.location(408,12);
             char_literal249=(Token)match(input,81,FOLLOW_81_in_arguments3076); if (state.failed) return retval;
-            dbg.location(408,14);
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:408:14: ( expressionList )?
             int alt62=2;
-            try { dbg.enterSubRule(62);
-            try { dbg.enterDecision(62);
-
             int LA62_0 = input.LA(1);
 
             if ( (LA62_0==IDENTIFIER||LA62_0==VOID||(LA62_0>=CHAR && LA62_0<=NULLLITERAL)||LA62_0==NEW||(LA62_0>=PLUS && LA62_0<=MINUS)||LA62_0==81||(LA62_0>=93 && LA62_0<=95)) ) {
                 alt62=1;
             }
-            } finally {dbg.exitDecision(62);}
-
             switch (alt62) {
                 case 1 :
-                    dbg.enterAlt(1);
-
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:408:14: expressionList
                     {
-                    dbg.location(408,14);
                     pushFollow(FOLLOW_expressionList_in_arguments3079);
                     expressionList250=expressionList();
 
@@ -9640,9 +7571,7 @@ public class JaParser extends DebugParser {
                     break;
 
             }
-            } finally {dbg.exitSubRule(62);}
 
-            dbg.location(408,33);
             char_literal251=(Token)match(input,82,FOLLOW_82_in_arguments3082); if (state.failed) return retval;
 
             }
@@ -9663,15 +7592,6 @@ public class JaParser extends DebugParser {
         }
         finally {
         }
-        dbg.location(409, 5);
-
-        }
-        finally {
-            dbg.exitRule(getGrammarFileName(), "arguments");
-            decRuleLevel();
-            if ( getRuleLevel()==0 ) {dbg.terminate();}
-        }
-
         return retval;
     }
     // $ANTLR end "arguments"
@@ -9679,11 +7599,8 @@ public class JaParser extends DebugParser {
     // $ANTLR start synpred2_Ja
     public final void synpred2_Ja_fragment() throws RecognitionException {   
         // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:252:2: ( ELSE )
-        dbg.enterAlt(1);
-
         // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:252:3: ELSE
         {
-        dbg.location(252,3);
         match(input,ELSE,FOLLOW_ELSE_in_synpred2_Ja1657); if (state.failed) return ;
 
         }
@@ -9693,19 +7610,14 @@ public class JaParser extends DebugParser {
     // $ANTLR start synpred3_Ja
     public final void synpred3_Ja_fragment() throws RecognitionException {   
         // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:343:9: ( '(' primitiveType ')' )
-        dbg.enterAlt(1);
-
         // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:343:10: '(' primitiveType ')'
         {
-        dbg.location(343,10);
         match(input,81,FOLLOW_81_in_synpred3_Ja2406); if (state.failed) return ;
-        dbg.location(343,14);
         pushFollow(FOLLOW_primitiveType_in_synpred3_Ja2408);
         primitiveType();
 
         state._fsp--;
         if (state.failed) return ;
-        dbg.location(343,28);
         match(input,82,FOLLOW_82_in_synpred3_Ja2410); if (state.failed) return ;
 
         }
@@ -9715,21 +7627,15 @@ public class JaParser extends DebugParser {
     // $ANTLR start synpred4_Ja
     public final void synpred4_Ja_fragment() throws RecognitionException {   
         // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:345:9: ( '(' nonPrimitiveType ')' unaryExpressionNotPlusMinus )
-        dbg.enterAlt(1);
-
         // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:345:10: '(' nonPrimitiveType ')' unaryExpressionNotPlusMinus
         {
-        dbg.location(345,10);
         match(input,81,FOLLOW_81_in_synpred4_Ja2438); if (state.failed) return ;
-        dbg.location(345,14);
         pushFollow(FOLLOW_nonPrimitiveType_in_synpred4_Ja2440);
         nonPrimitiveType();
 
         state._fsp--;
         if (state.failed) return ;
-        dbg.location(345,32);
         match(input,82,FOLLOW_82_in_synpred4_Ja2443); if (state.failed) return ;
-        dbg.location(345,36);
         pushFollow(FOLLOW_unaryExpressionNotPlusMinus_in_synpred4_Ja2445);
         unaryExpressionNotPlusMinus();
 
@@ -9744,7 +7650,6 @@ public class JaParser extends DebugParser {
 
     public final boolean synpred3_Ja() {
         state.backtracking++;
-        dbg.beginBacktrack(state.backtracking);
         int start = input.mark();
         try {
             synpred3_Ja_fragment(); // can never throw exception
@@ -9753,14 +7658,12 @@ public class JaParser extends DebugParser {
         }
         boolean success = !state.failed;
         input.rewind(start);
-        dbg.endBacktrack(state.backtracking, success);
         state.backtracking--;
         state.failed=false;
         return success;
     }
     public final boolean synpred4_Ja() {
         state.backtracking++;
-        dbg.beginBacktrack(state.backtracking);
         int start = input.mark();
         try {
             synpred4_Ja_fragment(); // can never throw exception
@@ -9769,14 +7672,12 @@ public class JaParser extends DebugParser {
         }
         boolean success = !state.failed;
         input.rewind(start);
-        dbg.endBacktrack(state.backtracking, success);
         state.backtracking--;
         state.failed=false;
         return success;
     }
     public final boolean synpred2_Ja() {
         state.backtracking++;
-        dbg.beginBacktrack(state.backtracking);
         int start = input.mark();
         try {
             synpred2_Ja_fragment(); // can never throw exception
@@ -9785,7 +7686,6 @@ public class JaParser extends DebugParser {
         }
         boolean success = !state.failed;
         input.rewind(start);
-        dbg.endBacktrack(state.backtracking, success);
         state.backtracking--;
         state.failed=false;
         return success;
@@ -9855,9 +7755,6 @@ public class JaParser extends DebugParser {
         public String getDescription() {
             return "145:1: type returns [Type t] : ( nonPrimitiveType | primitiveType );";
         }
-        public void error(NoViableAltException nvae) {
-            dbg.recognitionException(nvae);
-        }
     }
     static final String DFA23_eotS =
         "\17\uffff";
@@ -9920,9 +7817,6 @@ public class JaParser extends DebugParser {
         }
         public String getDescription() {
             return "184:1: formalParameterDecls : ( type variableDeclaratorId ( ',' formalParameterDecls )? -> ^( FPARM type variableDeclaratorId ) ( formalParameterDecls )? | type '...' variableDeclaratorId -> ^( FMULTPARM type variableDeclaratorId ) );";
-        }
-        public void error(NoViableAltException nvae) {
-            dbg.recognitionException(nvae);
         }
     }
     static final String DFA27_eotS =
@@ -9992,9 +7886,6 @@ public class JaParser extends DebugParser {
         public String getDescription() {
             return "225:1: blockStatement : ( localVariableDeclarationStatement | statement );";
         }
-        public void error(NoViableAltException nvae) {
-            dbg.recognitionException(nvae);
-        }
     }
     static final String DFA35_eotS =
         "\20\uffff";
@@ -10061,9 +7952,6 @@ public class JaParser extends DebugParser {
         }
         public String getDescription() {
             return "261:1: forInit : ( localVariableDeclaration | expressionList );";
-        }
-        public void error(NoViableAltException nvae) {
-            dbg.recognitionException(nvae);
         }
     }
     static final String DFA49_eotS =
@@ -10158,9 +8046,6 @@ public class JaParser extends DebugParser {
         }
         public String getDescription() {
             return "341:1: unaryExpressionNotPlusMinus : ( '!' unaryExpression | ( '(' primitiveType ')' )=> '(' primitiveType ')' unaryExpression | ( '(' nonPrimitiveType ')' unaryExpressionNotPlusMinus )=> '(' nonPrimitiveType ')' unaryExpressionNotPlusMinus | NEW creator | primary ( selector )* ( '++' | '--' )? );";
-        }
-        public void error(NoViableAltException nvae) {
-            dbg.recognitionException(nvae);
         }
         public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
             TokenStream input = (TokenStream)_input;
@@ -10433,9 +8318,6 @@ public class JaParser extends DebugParser {
         }
         public String getDescription() {
             return "354:1: primary : ( parExpression | THIS | SUPER superMemberAccess | literal | IDENTIFIER | ( IDENTIFIER -> IDENTIFIER ) ( '[' ']' -> ^( ARRAYTYPE $primary) )+ ( '.' CLASS -> ^( DOTCLASS $primary) ) | IDENTIFIER arguments -> ^( METHODCALL IDENTIFIER arguments THIS ) | IDENTIFIER '.' CLASS -> ^( DOTCLASS IDENTIFIER ) | ( primitiveType -> primitiveType ) ( '[' ']' -> ^( ARRAYTYPE $primary) )* ( '.' CLASS -> ^( DOTCLASS $primary) ) | VOID '.' CLASS -> ^( DOTCLASS VOID ) );";
-        }
-        public void error(NoViableAltException nvae) {
-            dbg.recognitionException(nvae);
         }
     }
  
