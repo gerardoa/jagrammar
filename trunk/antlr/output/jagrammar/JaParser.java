@@ -1,4 +1,4 @@
-// $ANTLR 3.2 Sep 23, 2009 12:02:23 C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g 2010-07-04 17:41:30
+// $ANTLR 3.2 Sep 23, 2009 12:02:23 C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g 2010-07-04 20:21:17
 
 	package jagrammar;
 	
@@ -139,7 +139,7 @@ public class JaParser extends Parser {
     public String[] getTokenNames() { return JaParser.tokenNames; }
     public String getGrammarFileName() { return "C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g"; }
 
-
+            
     	private Queue<String> todo;
     	private Map<String, ReferenceType> cTab;
     	private ReferenceType rt;
@@ -595,7 +595,7 @@ public class JaParser extends Parser {
     };
 
     // $ANTLR start "memberDeclaration"
-    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:92:1: memberDeclaration : ( ( modifier type -> modifier type ) ( methodDeclaration -> ^( METHOD $memberDeclaration methodDeclaration ) | fieldDeclaration[(CommonTree)$memberDeclaration.tree] -> fieldDeclaration ) | modifier VOID IDENTIFIER voidMethodDeclaratorRest -> ^( METHOD modifier VOID IDENTIFIER voidMethodDeclaratorRest ) | modifier ( IDENTIFIER formalParameters )=> IDENTIFIER formalParameters constructorBody -> ^( CONSTR modifier IDENTIFIER formalParameters constructorBody ) );
+    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:92:1: memberDeclaration : ( ( modifier type -> modifier type ) ( methodDeclaration[$modifier.pub, $type.t] -> ^( METHOD $memberDeclaration methodDeclaration ) | fieldDeclaration[(CommonTree)$memberDeclaration.tree, $modifier.pub, $type.t] -> fieldDeclaration ) | modifier VOID IDENTIFIER voidMethodDeclaratorRest[$modifier.pub, VoidType.TYPE, $IDENTIFIER.text] -> ^( METHOD modifier VOID IDENTIFIER voidMethodDeclaratorRest ) | modifier ( IDENTIFIER formalParameters )=> IDENTIFIER formalParameters constructorBody -> ^( CONSTR modifier IDENTIFIER formalParameters constructorBody ) );
     public final JaParser.memberDeclaration_return memberDeclaration() throws RecognitionException {
         JaParser.memberDeclaration_return retval = new JaParser.memberDeclaration_return();
         retval.start = input.LT(1);
@@ -637,26 +637,26 @@ public class JaParser extends Parser {
         RewriteRuleSubtreeStream stream_type=new RewriteRuleSubtreeStream(adaptor,"rule type");
         RewriteRuleSubtreeStream stream_methodDeclaration=new RewriteRuleSubtreeStream(adaptor,"rule methodDeclaration");
         try {
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:93:5: ( ( modifier type -> modifier type ) ( methodDeclaration -> ^( METHOD $memberDeclaration methodDeclaration ) | fieldDeclaration[(CommonTree)$memberDeclaration.tree] -> fieldDeclaration ) | modifier VOID IDENTIFIER voidMethodDeclaratorRest -> ^( METHOD modifier VOID IDENTIFIER voidMethodDeclaratorRest ) | modifier ( IDENTIFIER formalParameters )=> IDENTIFIER formalParameters constructorBody -> ^( CONSTR modifier IDENTIFIER formalParameters constructorBody ) )
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:93:5: ( ( modifier type -> modifier type ) ( methodDeclaration[$modifier.pub, $type.t] -> ^( METHOD $memberDeclaration methodDeclaration ) | fieldDeclaration[(CommonTree)$memberDeclaration.tree, $modifier.pub, $type.t] -> fieldDeclaration ) | modifier VOID IDENTIFIER voidMethodDeclaratorRest[$modifier.pub, VoidType.TYPE, $IDENTIFIER.text] -> ^( METHOD modifier VOID IDENTIFIER voidMethodDeclaratorRest ) | modifier ( IDENTIFIER formalParameters )=> IDENTIFIER formalParameters constructorBody -> ^( CONSTR modifier IDENTIFIER formalParameters constructorBody ) )
             int alt6=3;
             int LA6_0 = input.LA(1);
 
-            if ( (LA6_0==PUBLIC||LA6_0==PRIVATE) ) {
+            if ( (LA6_0==PUBLIC) ) {
                 switch ( input.LA(2) ) {
                 case IDENTIFIER:
                     {
-                    int LA6_2 = input.LA(3);
+                    int LA6_3 = input.LA(3);
 
-                    if ( (LA6_2==81) ) {
-                        alt6=3;
-                    }
-                    else if ( (LA6_2==IDENTIFIER||LA6_2==79) ) {
+                    if ( (LA6_3==IDENTIFIER||LA6_3==79) ) {
                         alt6=1;
+                    }
+                    else if ( (LA6_3==81) ) {
+                        alt6=3;
                     }
                     else {
                         if (state.backtracking>0) {state.failed=true; return retval;}
                         NoViableAltException nvae =
-                            new NoViableAltException("", 6, 2, input);
+                            new NoViableAltException("", 6, 3, input);
 
                         throw nvae;
                     }
@@ -687,6 +687,52 @@ public class JaParser extends Parser {
                 }
 
             }
+            else if ( (LA6_0==PRIVATE) ) {
+                switch ( input.LA(2) ) {
+                case IDENTIFIER:
+                    {
+                    int LA6_3 = input.LA(3);
+
+                    if ( (LA6_3==IDENTIFIER||LA6_3==79) ) {
+                        alt6=1;
+                    }
+                    else if ( (LA6_3==81) ) {
+                        alt6=3;
+                    }
+                    else {
+                        if (state.backtracking>0) {state.failed=true; return retval;}
+                        NoViableAltException nvae =
+                            new NoViableAltException("", 6, 3, input);
+
+                        throw nvae;
+                    }
+                    }
+                    break;
+                case CHAR:
+                case BYTE:
+                case SHORT:
+                case INT:
+                case LONG:
+                case FLOAT:
+                case DOUBLE:
+                    {
+                    alt6=1;
+                    }
+                    break;
+                case VOID:
+                    {
+                    alt6=2;
+                    }
+                    break;
+                default:
+                    if (state.backtracking>0) {state.failed=true; return retval;}
+                    NoViableAltException nvae =
+                        new NoViableAltException("", 6, 2, input);
+
+                    throw nvae;
+                }
+
+            }
             else {
                 if (state.backtracking>0) {state.failed=true; return retval;}
                 NoViableAltException nvae =
@@ -696,7 +742,7 @@ public class JaParser extends Parser {
             }
             switch (alt6) {
                 case 1 :
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:93:9: ( modifier type -> modifier type ) ( methodDeclaration -> ^( METHOD $memberDeclaration methodDeclaration ) | fieldDeclaration[(CommonTree)$memberDeclaration.tree] -> fieldDeclaration )
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:93:9: ( modifier type -> modifier type ) ( methodDeclaration[$modifier.pub, $type.t] -> ^( METHOD $memberDeclaration methodDeclaration ) | fieldDeclaration[(CommonTree)$memberDeclaration.tree, $modifier.pub, $type.t] -> fieldDeclaration )
                     {
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:93:9: ( modifier type -> modifier type )
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:93:10: modifier type
@@ -716,7 +762,7 @@ public class JaParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: type, modifier
+                    // elements: modifier, type
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -737,18 +783,18 @@ public class JaParser extends Parser {
                     retval.tree = root_0;}
                     }
 
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:93:41: ( methodDeclaration -> ^( METHOD $memberDeclaration methodDeclaration ) | fieldDeclaration[(CommonTree)$memberDeclaration.tree] -> fieldDeclaration )
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:93:41: ( methodDeclaration[$modifier.pub, $type.t] -> ^( METHOD $memberDeclaration methodDeclaration ) | fieldDeclaration[(CommonTree)$memberDeclaration.tree, $modifier.pub, $type.t] -> fieldDeclaration )
                     int alt5=2;
                     int LA5_0 = input.LA(1);
 
                     if ( (LA5_0==IDENTIFIER) ) {
                         int LA5_1 = input.LA(2);
 
-                        if ( (LA5_1==EQ||LA5_1==75||(LA5_1>=78 && LA5_1<=79)) ) {
-                            alt5=2;
-                        }
-                        else if ( (LA5_1==81) ) {
+                        if ( (LA5_1==81) ) {
                             alt5=1;
+                        }
+                        else if ( (LA5_1==EQ||LA5_1==75||(LA5_1>=78 && LA5_1<=79)) ) {
+                            alt5=2;
                         }
                         else {
                             if (state.backtracking>0) {state.failed=true; return retval;}
@@ -767,10 +813,10 @@ public class JaParser extends Parser {
                     }
                     switch (alt5) {
                         case 1 :
-                            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:93:42: methodDeclaration
+                            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:93:42: methodDeclaration[$modifier.pub, $type.t]
                             {
                             pushFollow(FOLLOW_methodDeclaration_in_memberDeclaration317);
-                            methodDeclaration17=methodDeclaration();
+                            methodDeclaration17=methodDeclaration((modifier15!=null?modifier15.pub:false), (type16!=null?type16.t:null));
 
                             state._fsp--;
                             if (state.failed) return retval;
@@ -789,9 +835,9 @@ public class JaParser extends Parser {
                             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                             root_0 = (Object)adaptor.nil();
-                            // 93:60: -> ^( METHOD $memberDeclaration methodDeclaration )
+                            // 93:84: -> ^( METHOD $memberDeclaration methodDeclaration )
                             {
-                                // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:93:63: ^( METHOD $memberDeclaration methodDeclaration )
+                                // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:93:87: ^( METHOD $memberDeclaration methodDeclaration )
                                 {
                                 Object root_1 = (Object)adaptor.nil();
                                 root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(METHOD, "METHOD"), root_1);
@@ -808,10 +854,10 @@ public class JaParser extends Parser {
                             }
                             break;
                         case 2 :
-                            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:94:12: fieldDeclaration[(CommonTree)$memberDeclaration.tree]
+                            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:94:12: fieldDeclaration[(CommonTree)$memberDeclaration.tree, $modifier.pub, $type.t]
                             {
-                            pushFollow(FOLLOW_fieldDeclaration_in_memberDeclaration341);
-                            fieldDeclaration18=fieldDeclaration((CommonTree)((Object)retval.tree));
+                            pushFollow(FOLLOW_fieldDeclaration_in_memberDeclaration342);
+                            fieldDeclaration18=fieldDeclaration((CommonTree)((Object)retval.tree), (modifier15!=null?modifier15.pub:false), (type16!=null?type16.t:null));
 
                             state._fsp--;
                             if (state.failed) return retval;
@@ -830,7 +876,7 @@ public class JaParser extends Parser {
                             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                             root_0 = (Object)adaptor.nil();
-                            // 94:66: -> fieldDeclaration
+                            // 94:90: -> fieldDeclaration
                             {
                                 adaptor.addChild(root_0, stream_fieldDeclaration.nextTree());
 
@@ -846,22 +892,22 @@ public class JaParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:96:9: modifier VOID IDENTIFIER voidMethodDeclaratorRest
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:96:9: modifier VOID IDENTIFIER voidMethodDeclaratorRest[$modifier.pub, VoidType.TYPE, $IDENTIFIER.text]
                     {
-                    pushFollow(FOLLOW_modifier_in_memberDeclaration368);
+                    pushFollow(FOLLOW_modifier_in_memberDeclaration369);
                     modifier19=modifier();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) stream_modifier.add(modifier19.getTree());
-                    VOID20=(Token)match(input,VOID,FOLLOW_VOID_in_memberDeclaration370); if (state.failed) return retval; 
+                    VOID20=(Token)match(input,VOID,FOLLOW_VOID_in_memberDeclaration371); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_VOID.add(VOID20);
 
-                    IDENTIFIER21=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_memberDeclaration372); if (state.failed) return retval; 
+                    IDENTIFIER21=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_memberDeclaration373); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_IDENTIFIER.add(IDENTIFIER21);
 
-                    pushFollow(FOLLOW_voidMethodDeclaratorRest_in_memberDeclaration374);
-                    voidMethodDeclaratorRest22=voidMethodDeclaratorRest();
+                    pushFollow(FOLLOW_voidMethodDeclaratorRest_in_memberDeclaration375);
+                    voidMethodDeclaratorRest22=voidMethodDeclaratorRest((modifier19!=null?modifier19.pub:false), VoidType.TYPE, (IDENTIFIER21!=null?IDENTIFIER21.getText():null));
 
                     state._fsp--;
                     if (state.failed) return retval;
@@ -869,7 +915,7 @@ public class JaParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: modifier, voidMethodDeclaratorRest, VOID, IDENTIFIER
+                    // elements: voidMethodDeclaratorRest, IDENTIFIER, VOID, modifier
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -880,9 +926,9 @@ public class JaParser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 96:59: -> ^( METHOD modifier VOID IDENTIFIER voidMethodDeclaratorRest )
+                    // 96:107: -> ^( METHOD modifier VOID IDENTIFIER voidMethodDeclaratorRest )
                     {
-                        // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:96:62: ^( METHOD modifier VOID IDENTIFIER voidMethodDeclaratorRest )
+                        // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:96:110: ^( METHOD modifier VOID IDENTIFIER voidMethodDeclaratorRest )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(METHOD, "METHOD"), root_1);
@@ -903,31 +949,34 @@ public class JaParser extends Parser {
                 case 3 :
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:97:9: modifier ( IDENTIFIER formalParameters )=> IDENTIFIER formalParameters constructorBody
                     {
-                    pushFollow(FOLLOW_modifier_in_memberDeclaration398);
+                    pushFollow(FOLLOW_modifier_in_memberDeclaration400);
                     modifier23=modifier();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) stream_modifier.add(modifier23.getTree());
-                    IDENTIFIER24=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_memberDeclaration408); if (state.failed) return retval; 
+                    IDENTIFIER24=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_memberDeclaration410); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_IDENTIFIER.add(IDENTIFIER24);
 
-                    pushFollow(FOLLOW_formalParameters_in_memberDeclaration410);
+                    pushFollow(FOLLOW_formalParameters_in_memberDeclaration412);
                     formalParameters25=formalParameters();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) stream_formalParameters.add(formalParameters25.getTree());
-                    pushFollow(FOLLOW_constructorBody_in_memberDeclaration412);
+                    pushFollow(FOLLOW_constructorBody_in_memberDeclaration414);
                     constructorBody26=constructorBody();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) stream_constructorBody.add(constructorBody26.getTree());
+                    if ( state.backtracking==0 ) {
+                       rt.addConstructor((modifier23!=null?modifier23.pub:false), (formalParameters25!=null?formalParameters25.args:null)); 
+                    }
 
 
                     // AST REWRITE
-                    // elements: constructorBody, formalParameters, IDENTIFIER, modifier
+                    // elements: constructorBody, formalParameters, modifier, IDENTIFIER
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -986,8 +1035,8 @@ public class JaParser extends Parser {
     };
 
     // $ANTLR start "methodDeclaration"
-    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:101:1: methodDeclaration : IDENTIFIER formalParameters ( methodBody | ';' ) ;
-    public final JaParser.methodDeclaration_return methodDeclaration() throws RecognitionException {
+    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:101:1: methodDeclaration[boolean pub, Type t] : IDENTIFIER formalParameters ( methodBody | ';' ) ;
+    public final JaParser.methodDeclaration_return methodDeclaration(boolean pub, Type t) throws RecognitionException {
         JaParser.methodDeclaration_return retval = new JaParser.methodDeclaration_return();
         retval.start = input.LT(1);
 
@@ -1009,17 +1058,20 @@ public class JaParser extends Parser {
             {
             root_0 = (Object)adaptor.nil();
 
-            IDENTIFIER27=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_methodDeclaration451); if (state.failed) return retval;
+            IDENTIFIER27=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_methodDeclaration455); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             IDENTIFIER27_tree = (Object)adaptor.create(IDENTIFIER27);
             adaptor.addChild(root_0, IDENTIFIER27_tree);
             }
-            pushFollow(FOLLOW_formalParameters_in_methodDeclaration453);
+            pushFollow(FOLLOW_formalParameters_in_methodDeclaration457);
             formalParameters28=formalParameters();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, formalParameters28.getTree());
+            if ( state.backtracking==0 ) {
+               rt.addMethod(pub, t, (IDENTIFIER27!=null?IDENTIFIER27.getText():null), (formalParameters28!=null?formalParameters28.args:null)); 
+            }
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:103:9: ( methodBody | ';' )
             int alt7=2;
             int LA7_0 = input.LA(1);
@@ -1041,7 +1093,7 @@ public class JaParser extends Parser {
                 case 1 :
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:103:13: methodBody
                     {
-                    pushFollow(FOLLOW_methodBody_in_methodDeclaration467);
+                    pushFollow(FOLLOW_methodBody_in_methodDeclaration473);
                     methodBody29=methodBody();
 
                     state._fsp--;
@@ -1053,7 +1105,7 @@ public class JaParser extends Parser {
                 case 2 :
                     // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:104:13: ';'
                     {
-                    char_literal30=(Token)match(input,75,FOLLOW_75_in_methodDeclaration481); if (state.failed) return retval;
+                    char_literal30=(Token)match(input,75,FOLLOW_75_in_methodDeclaration487); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     char_literal30_tree = (Object)adaptor.create(char_literal30);
                     adaptor.addChild(root_0, char_literal30_tree);
@@ -1093,36 +1145,39 @@ public class JaParser extends Parser {
     };
 
     // $ANTLR start "fieldDeclaration"
-    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:108:1: fieldDeclaration[CommonTree modAndTyp] : variableDeclarator ( ',' variableDeclarator )* ';' -> ( ^( FIELD variableDeclarator ) )+ ;
-    public final JaParser.fieldDeclaration_return fieldDeclaration(CommonTree modAndTyp) throws RecognitionException {
+    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:108:1: fieldDeclaration[CommonTree modAndTyp, boolean pub, Type t] : v1= variableDeclarator ( ',' v2= variableDeclarator )* ';' -> ( ^( FIELD variableDeclarator ) )+ ;
+    public final JaParser.fieldDeclaration_return fieldDeclaration(CommonTree modAndTyp, boolean pub, Type t) throws RecognitionException {
         JaParser.fieldDeclaration_return retval = new JaParser.fieldDeclaration_return();
         retval.start = input.LT(1);
 
         Object root_0 = null;
 
+        Token char_literal31=null;
         Token char_literal32=null;
-        Token char_literal34=null;
-        JaParser.variableDeclarator_return variableDeclarator31 = null;
+        JaParser.variableDeclarator_return v1 = null;
 
-        JaParser.variableDeclarator_return variableDeclarator33 = null;
+        JaParser.variableDeclarator_return v2 = null;
 
 
+        Object char_literal31_tree=null;
         Object char_literal32_tree=null;
-        Object char_literal34_tree=null;
         RewriteRuleTokenStream stream_78=new RewriteRuleTokenStream(adaptor,"token 78");
         RewriteRuleTokenStream stream_75=new RewriteRuleTokenStream(adaptor,"token 75");
         RewriteRuleSubtreeStream stream_variableDeclarator=new RewriteRuleSubtreeStream(adaptor,"rule variableDeclarator");
         try {
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:109:5: ( variableDeclarator ( ',' variableDeclarator )* ';' -> ( ^( FIELD variableDeclarator ) )+ )
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:109:9: variableDeclarator ( ',' variableDeclarator )* ';'
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:109:5: (v1= variableDeclarator ( ',' v2= variableDeclarator )* ';' -> ( ^( FIELD variableDeclarator ) )+ )
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:109:9: v1= variableDeclarator ( ',' v2= variableDeclarator )* ';'
             {
-            pushFollow(FOLLOW_variableDeclarator_in_fieldDeclaration511);
-            variableDeclarator31=variableDeclarator();
+            pushFollow(FOLLOW_variableDeclarator_in_fieldDeclaration519);
+            v1=variableDeclarator();
 
             state._fsp--;
             if (state.failed) return retval;
-            if ( state.backtracking==0 ) stream_variableDeclarator.add(variableDeclarator31.getTree());
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:109:28: ( ',' variableDeclarator )*
+            if ( state.backtracking==0 ) stream_variableDeclarator.add(v1.getTree());
+            if ( state.backtracking==0 ) {
+               rt.addField((v1!=null?v1.varName:null), t, pub); 
+            }
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:110:9: ( ',' v2= variableDeclarator )*
             loop8:
             do {
                 int alt8=2;
@@ -1135,17 +1190,20 @@ public class JaParser extends Parser {
 
                 switch (alt8) {
             	case 1 :
-            	    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:109:29: ',' variableDeclarator
+            	    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:110:10: ',' v2= variableDeclarator
             	    {
-            	    char_literal32=(Token)match(input,78,FOLLOW_78_in_fieldDeclaration514); if (state.failed) return retval; 
-            	    if ( state.backtracking==0 ) stream_78.add(char_literal32);
+            	    char_literal31=(Token)match(input,78,FOLLOW_78_in_fieldDeclaration538); if (state.failed) return retval; 
+            	    if ( state.backtracking==0 ) stream_78.add(char_literal31);
 
-            	    pushFollow(FOLLOW_variableDeclarator_in_fieldDeclaration516);
-            	    variableDeclarator33=variableDeclarator();
+            	    pushFollow(FOLLOW_variableDeclarator_in_fieldDeclaration542);
+            	    v2=variableDeclarator();
 
             	    state._fsp--;
             	    if (state.failed) return retval;
-            	    if ( state.backtracking==0 ) stream_variableDeclarator.add(variableDeclarator33.getTree());
+            	    if ( state.backtracking==0 ) stream_variableDeclarator.add(v2.getTree());
+            	    if ( state.backtracking==0 ) {
+            	       rt.addField((v2!=null?v2.varName:null), t, pub); 
+            	    }
 
             	    }
             	    break;
@@ -1155,8 +1213,8 @@ public class JaParser extends Parser {
                 }
             } while (true);
 
-            char_literal34=(Token)match(input,75,FOLLOW_75_in_fieldDeclaration520); if (state.failed) return retval; 
-            if ( state.backtracking==0 ) stream_75.add(char_literal34);
+            char_literal32=(Token)match(input,75,FOLLOW_75_in_fieldDeclaration548); if (state.failed) return retval; 
+            if ( state.backtracking==0 ) stream_75.add(char_literal32);
 
 
 
@@ -1172,13 +1230,13 @@ public class JaParser extends Parser {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
             root_0 = (Object)adaptor.nil();
-            // 109:58: -> ( ^( FIELD variableDeclarator ) )+
+            // 111:9: -> ( ^( FIELD variableDeclarator ) )+
             {
                 if ( !(stream_variableDeclarator.hasNext()) ) {
                     throw new RewriteEarlyExitException();
                 }
                 while ( stream_variableDeclarator.hasNext() ) {
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:109:61: ^( FIELD variableDeclarator )
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:111:12: ^( FIELD variableDeclarator )
                     {
                     Object root_1 = (Object)adaptor.nil();
                     root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(FIELD, "FIELD"), root_1);
@@ -1223,34 +1281,37 @@ public class JaParser extends Parser {
     };
 
     // $ANTLR start "voidMethodDeclaratorRest"
-    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:112:1: voidMethodDeclaratorRest : formalParameters ( methodBody | ';' ) ;
-    public final JaParser.voidMethodDeclaratorRest_return voidMethodDeclaratorRest() throws RecognitionException {
+    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:114:1: voidMethodDeclaratorRest[boolean pub, Type t, String methodName] : formalParameters ( methodBody | ';' ) ;
+    public final JaParser.voidMethodDeclaratorRest_return voidMethodDeclaratorRest(boolean pub, Type t, String methodName) throws RecognitionException {
         JaParser.voidMethodDeclaratorRest_return retval = new JaParser.voidMethodDeclaratorRest_return();
         retval.start = input.LT(1);
 
         Object root_0 = null;
 
-        Token char_literal37=null;
-        JaParser.formalParameters_return formalParameters35 = null;
+        Token char_literal35=null;
+        JaParser.formalParameters_return formalParameters33 = null;
 
-        JaParser.methodBody_return methodBody36 = null;
+        JaParser.methodBody_return methodBody34 = null;
 
 
-        Object char_literal37_tree=null;
+        Object char_literal35_tree=null;
 
         try {
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:113:5: ( formalParameters ( methodBody | ';' ) )
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:113:9: formalParameters ( methodBody | ';' )
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:115:5: ( formalParameters ( methodBody | ';' ) )
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:115:9: formalParameters ( methodBody | ';' )
             {
             root_0 = (Object)adaptor.nil();
 
-            pushFollow(FOLLOW_formalParameters_in_voidMethodDeclaratorRest555);
-            formalParameters35=formalParameters();
+            pushFollow(FOLLOW_formalParameters_in_voidMethodDeclaratorRest593);
+            formalParameters33=formalParameters();
 
             state._fsp--;
             if (state.failed) return retval;
-            if ( state.backtracking==0 ) adaptor.addChild(root_0, formalParameters35.getTree());
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:114:9: ( methodBody | ';' )
+            if ( state.backtracking==0 ) adaptor.addChild(root_0, formalParameters33.getTree());
+            if ( state.backtracking==0 ) {
+               rt.addMethod(pub, t, methodName, (formalParameters33!=null?formalParameters33.args:null)); 
+            }
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:116:9: ( methodBody | ';' )
             int alt9=2;
             int LA9_0 = input.LA(1);
 
@@ -1269,24 +1330,24 @@ public class JaParser extends Parser {
             }
             switch (alt9) {
                 case 1 :
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:114:13: methodBody
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:116:13: methodBody
                     {
-                    pushFollow(FOLLOW_methodBody_in_voidMethodDeclaratorRest569);
-                    methodBody36=methodBody();
+                    pushFollow(FOLLOW_methodBody_in_voidMethodDeclaratorRest609);
+                    methodBody34=methodBody();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, methodBody36.getTree());
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, methodBody34.getTree());
 
                     }
                     break;
                 case 2 :
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:115:13: ';'
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:117:13: ';'
                     {
-                    char_literal37=(Token)match(input,75,FOLLOW_75_in_voidMethodDeclaratorRest583); if (state.failed) return retval;
+                    char_literal35=(Token)match(input,75,FOLLOW_75_in_voidMethodDeclaratorRest623); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    char_literal37_tree = (Object)adaptor.create(char_literal37);
-                    adaptor.addChild(root_0, char_literal37_tree);
+                    char_literal35_tree = (Object)adaptor.create(char_literal35);
+                    adaptor.addChild(root_0, char_literal35_tree);
                     }
 
                     }
@@ -1318,39 +1379,43 @@ public class JaParser extends Parser {
     // $ANTLR end "voidMethodDeclaratorRest"
 
     public static class variableDeclarator_return extends ParserRuleReturnScope {
+        public String varName;
         Object tree;
         public Object getTree() { return tree; }
     };
 
     // $ANTLR start "variableDeclarator"
-    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:119:1: variableDeclarator : variableDeclaratorId ( '=' variableInitializer )? ;
+    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:121:1: variableDeclarator returns [String varName] : variableDeclaratorId ( '=' variableInitializer )? ;
     public final JaParser.variableDeclarator_return variableDeclarator() throws RecognitionException {
         JaParser.variableDeclarator_return retval = new JaParser.variableDeclarator_return();
         retval.start = input.LT(1);
 
         Object root_0 = null;
 
-        Token char_literal39=null;
-        JaParser.variableDeclaratorId_return variableDeclaratorId38 = null;
+        Token char_literal37=null;
+        JaParser.variableDeclaratorId_return variableDeclaratorId36 = null;
 
-        JaParser.variableInitializer_return variableInitializer40 = null;
+        JaParser.variableInitializer_return variableInitializer38 = null;
 
 
-        Object char_literal39_tree=null;
+        Object char_literal37_tree=null;
 
         try {
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:120:5: ( variableDeclaratorId ( '=' variableInitializer )? )
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:120:9: variableDeclaratorId ( '=' variableInitializer )?
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:122:5: ( variableDeclaratorId ( '=' variableInitializer )? )
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:122:9: variableDeclaratorId ( '=' variableInitializer )?
             {
             root_0 = (Object)adaptor.nil();
 
-            pushFollow(FOLLOW_variableDeclaratorId_in_variableDeclarator612);
-            variableDeclaratorId38=variableDeclaratorId();
+            pushFollow(FOLLOW_variableDeclaratorId_in_variableDeclarator656);
+            variableDeclaratorId36=variableDeclaratorId();
 
             state._fsp--;
             if (state.failed) return retval;
-            if ( state.backtracking==0 ) adaptor.addChild(root_0, variableDeclaratorId38.getTree());
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:120:30: ( '=' variableInitializer )?
+            if ( state.backtracking==0 ) adaptor.addChild(root_0, variableDeclaratorId36.getTree());
+            if ( state.backtracking==0 ) {
+               retval.varName = (variableDeclaratorId36!=null?input.toString(variableDeclaratorId36.start,variableDeclaratorId36.stop):null); 
+            }
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:122:73: ( '=' variableInitializer )?
             int alt10=2;
             int LA10_0 = input.LA(1);
 
@@ -1359,15 +1424,15 @@ public class JaParser extends Parser {
             }
             switch (alt10) {
                 case 1 :
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:120:31: '=' variableInitializer
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:122:74: '=' variableInitializer
                     {
-                    char_literal39=(Token)match(input,EQ,FOLLOW_EQ_in_variableDeclarator615); if (state.failed) return retval;
-                    pushFollow(FOLLOW_variableInitializer_in_variableDeclarator618);
-                    variableInitializer40=variableInitializer();
+                    char_literal37=(Token)match(input,EQ,FOLLOW_EQ_in_variableDeclarator661); if (state.failed) return retval;
+                    pushFollow(FOLLOW_variableInitializer_in_variableDeclarator664);
+                    variableInitializer38=variableInitializer();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, variableInitializer40.getTree());
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, variableInitializer38.getTree());
 
                     }
                     break;
@@ -1404,34 +1469,34 @@ public class JaParser extends Parser {
     };
 
     // $ANTLR start "variableDeclaratorId"
-    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:123:1: variableDeclaratorId returns [int arrayDim] : IDENTIFIER (l+= '[' ']' )* ;
+    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:125:1: variableDeclaratorId returns [int arrayDim] : IDENTIFIER (l+= '[' ']' )* ;
     public final JaParser.variableDeclaratorId_return variableDeclaratorId() throws RecognitionException {
         JaParser.variableDeclaratorId_return retval = new JaParser.variableDeclaratorId_return();
         retval.start = input.LT(1);
 
         Object root_0 = null;
 
-        Token IDENTIFIER41=null;
-        Token char_literal42=null;
+        Token IDENTIFIER39=null;
+        Token char_literal40=null;
         Token l=null;
         List list_l=null;
 
-        Object IDENTIFIER41_tree=null;
-        Object char_literal42_tree=null;
+        Object IDENTIFIER39_tree=null;
+        Object char_literal40_tree=null;
         Object l_tree=null;
 
         try {
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:124:5: ( IDENTIFIER (l+= '[' ']' )* )
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:124:9: IDENTIFIER (l+= '[' ']' )*
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:126:5: ( IDENTIFIER (l+= '[' ']' )* )
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:126:9: IDENTIFIER (l+= '[' ']' )*
             {
             root_0 = (Object)adaptor.nil();
 
-            IDENTIFIER41=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_variableDeclaratorId649); if (state.failed) return retval;
+            IDENTIFIER39=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_variableDeclaratorId695); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            IDENTIFIER41_tree = (Object)adaptor.create(IDENTIFIER41);
-            adaptor.addChild(root_0, IDENTIFIER41_tree);
+            IDENTIFIER39_tree = (Object)adaptor.create(IDENTIFIER39);
+            adaptor.addChild(root_0, IDENTIFIER39_tree);
             }
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:124:20: (l+= '[' ']' )*
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:126:20: (l+= '[' ']' )*
             loop11:
             do {
                 int alt11=2;
@@ -1444,9 +1509,9 @@ public class JaParser extends Parser {
 
                 switch (alt11) {
             	case 1 :
-            	    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:124:21: l+= '[' ']'
+            	    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:126:21: l+= '[' ']'
             	    {
-            	    l=(Token)match(input,79,FOLLOW_79_in_variableDeclaratorId654); if (state.failed) return retval;
+            	    l=(Token)match(input,79,FOLLOW_79_in_variableDeclaratorId700); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
             	    l_tree = (Object)adaptor.create(l);
             	    adaptor.addChild(root_0, l_tree);
@@ -1454,10 +1519,10 @@ public class JaParser extends Parser {
             	    if (list_l==null) list_l=new ArrayList();
             	    list_l.add(l);
 
-            	    char_literal42=(Token)match(input,80,FOLLOW_80_in_variableDeclaratorId656); if (state.failed) return retval;
+            	    char_literal40=(Token)match(input,80,FOLLOW_80_in_variableDeclaratorId702); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
-            	    char_literal42_tree = (Object)adaptor.create(char_literal42);
-            	    adaptor.addChild(root_0, char_literal42_tree);
+            	    char_literal40_tree = (Object)adaptor.create(char_literal40);
+            	    adaptor.addChild(root_0, char_literal40_tree);
             	    }
 
             	    }
@@ -1469,7 +1534,7 @@ public class JaParser extends Parser {
             } while (true);
 
             if ( state.backtracking==0 ) {
-              retval.arrayDim = list_l.size();
+              if(list_l != null) retval.arrayDim = list_l.size();
             }
 
             }
@@ -1500,21 +1565,21 @@ public class JaParser extends Parser {
     };
 
     // $ANTLR start "variableInitializer"
-    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:127:1: variableInitializer : ( arrayInitializer | expression );
+    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:129:1: variableInitializer : ( arrayInitializer | expression );
     public final JaParser.variableInitializer_return variableInitializer() throws RecognitionException {
         JaParser.variableInitializer_return retval = new JaParser.variableInitializer_return();
         retval.start = input.LT(1);
 
         Object root_0 = null;
 
-        JaParser.arrayInitializer_return arrayInitializer43 = null;
+        JaParser.arrayInitializer_return arrayInitializer41 = null;
 
-        JaParser.expression_return expression44 = null;
+        JaParser.expression_return expression42 = null;
 
 
 
         try {
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:128:5: ( arrayInitializer | expression )
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:130:5: ( arrayInitializer | expression )
             int alt12=2;
             int LA12_0 = input.LA(1);
 
@@ -1533,30 +1598,30 @@ public class JaParser extends Parser {
             }
             switch (alt12) {
                 case 1 :
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:128:9: arrayInitializer
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:130:9: arrayInitializer
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_arrayInitializer_in_variableInitializer680);
-                    arrayInitializer43=arrayInitializer();
+                    pushFollow(FOLLOW_arrayInitializer_in_variableInitializer726);
+                    arrayInitializer41=arrayInitializer();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, arrayInitializer43.getTree());
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, arrayInitializer41.getTree());
 
                     }
                     break;
                 case 2 :
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:129:9: expression
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:131:9: expression
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_expression_in_variableInitializer690);
-                    expression44=expression();
+                    pushFollow(FOLLOW_expression_in_variableInitializer736);
+                    expression42=expression();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, expression44.getTree());
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, expression42.getTree());
 
                     }
                     break;
@@ -1588,39 +1653,39 @@ public class JaParser extends Parser {
     };
 
     // $ANTLR start "arrayInitializer"
-    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:132:1: arrayInitializer : '{' ( variableInitializer ( ',' variableInitializer )* ( ',' )? )? '}' ;
+    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:134:1: arrayInitializer : '{' ( variableInitializer ( ',' variableInitializer )* ( ',' )? )? '}' ;
     public final JaParser.arrayInitializer_return arrayInitializer() throws RecognitionException {
         JaParser.arrayInitializer_return retval = new JaParser.arrayInitializer_return();
         retval.start = input.LT(1);
 
         Object root_0 = null;
 
+        Token char_literal43=null;
         Token char_literal45=null;
         Token char_literal47=null;
-        Token char_literal49=null;
-        Token char_literal50=null;
+        Token char_literal48=null;
+        JaParser.variableInitializer_return variableInitializer44 = null;
+
         JaParser.variableInitializer_return variableInitializer46 = null;
 
-        JaParser.variableInitializer_return variableInitializer48 = null;
 
-
+        Object char_literal43_tree=null;
         Object char_literal45_tree=null;
         Object char_literal47_tree=null;
-        Object char_literal49_tree=null;
-        Object char_literal50_tree=null;
+        Object char_literal48_tree=null;
 
         try {
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:133:5: ( '{' ( variableInitializer ( ',' variableInitializer )* ( ',' )? )? '}' )
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:133:9: '{' ( variableInitializer ( ',' variableInitializer )* ( ',' )? )? '}'
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:135:5: ( '{' ( variableInitializer ( ',' variableInitializer )* ( ',' )? )? '}' )
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:135:9: '{' ( variableInitializer ( ',' variableInitializer )* ( ',' )? )? '}'
             {
             root_0 = (Object)adaptor.nil();
 
-            char_literal45=(Token)match(input,76,FOLLOW_76_in_arrayInitializer717); if (state.failed) return retval;
+            char_literal43=(Token)match(input,76,FOLLOW_76_in_arrayInitializer763); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            char_literal45_tree = (Object)adaptor.create(char_literal45);
-            adaptor.addChild(root_0, char_literal45_tree);
+            char_literal43_tree = (Object)adaptor.create(char_literal43);
+            adaptor.addChild(root_0, char_literal43_tree);
             }
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:133:13: ( variableInitializer ( ',' variableInitializer )* ( ',' )? )?
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:135:13: ( variableInitializer ( ',' variableInitializer )* ( ',' )? )?
             int alt15=2;
             int LA15_0 = input.LA(1);
 
@@ -1629,15 +1694,15 @@ public class JaParser extends Parser {
             }
             switch (alt15) {
                 case 1 :
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:133:14: variableInitializer ( ',' variableInitializer )* ( ',' )?
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:135:14: variableInitializer ( ',' variableInitializer )* ( ',' )?
                     {
-                    pushFollow(FOLLOW_variableInitializer_in_arrayInitializer720);
-                    variableInitializer46=variableInitializer();
+                    pushFollow(FOLLOW_variableInitializer_in_arrayInitializer766);
+                    variableInitializer44=variableInitializer();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, variableInitializer46.getTree());
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:133:34: ( ',' variableInitializer )*
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, variableInitializer44.getTree());
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:135:34: ( ',' variableInitializer )*
                     loop13:
                     do {
                         int alt13=2;
@@ -1656,19 +1721,19 @@ public class JaParser extends Parser {
 
                         switch (alt13) {
                     	case 1 :
-                    	    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:133:35: ',' variableInitializer
+                    	    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:135:35: ',' variableInitializer
                     	    {
-                    	    char_literal47=(Token)match(input,78,FOLLOW_78_in_arrayInitializer723); if (state.failed) return retval;
+                    	    char_literal45=(Token)match(input,78,FOLLOW_78_in_arrayInitializer769); if (state.failed) return retval;
                     	    if ( state.backtracking==0 ) {
-                    	    char_literal47_tree = (Object)adaptor.create(char_literal47);
-                    	    adaptor.addChild(root_0, char_literal47_tree);
+                    	    char_literal45_tree = (Object)adaptor.create(char_literal45);
+                    	    adaptor.addChild(root_0, char_literal45_tree);
                     	    }
-                    	    pushFollow(FOLLOW_variableInitializer_in_arrayInitializer725);
-                    	    variableInitializer48=variableInitializer();
+                    	    pushFollow(FOLLOW_variableInitializer_in_arrayInitializer771);
+                    	    variableInitializer46=variableInitializer();
 
                     	    state._fsp--;
                     	    if (state.failed) return retval;
-                    	    if ( state.backtracking==0 ) adaptor.addChild(root_0, variableInitializer48.getTree());
+                    	    if ( state.backtracking==0 ) adaptor.addChild(root_0, variableInitializer46.getTree());
 
                     	    }
                     	    break;
@@ -1678,7 +1743,7 @@ public class JaParser extends Parser {
                         }
                     } while (true);
 
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:133:61: ( ',' )?
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:135:61: ( ',' )?
                     int alt14=2;
                     int LA14_0 = input.LA(1);
 
@@ -1687,12 +1752,12 @@ public class JaParser extends Parser {
                     }
                     switch (alt14) {
                         case 1 :
-                            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:133:62: ','
+                            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:135:62: ','
                             {
-                            char_literal49=(Token)match(input,78,FOLLOW_78_in_arrayInitializer730); if (state.failed) return retval;
+                            char_literal47=(Token)match(input,78,FOLLOW_78_in_arrayInitializer776); if (state.failed) return retval;
                             if ( state.backtracking==0 ) {
-                            char_literal49_tree = (Object)adaptor.create(char_literal49);
-                            adaptor.addChild(root_0, char_literal49_tree);
+                            char_literal47_tree = (Object)adaptor.create(char_literal47);
+                            adaptor.addChild(root_0, char_literal47_tree);
                             }
 
                             }
@@ -1706,10 +1771,10 @@ public class JaParser extends Parser {
 
             }
 
-            char_literal50=(Token)match(input,77,FOLLOW_77_in_arrayInitializer737); if (state.failed) return retval;
+            char_literal48=(Token)match(input,77,FOLLOW_77_in_arrayInitializer783); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            char_literal50_tree = (Object)adaptor.create(char_literal50);
-            adaptor.addChild(root_0, char_literal50_tree);
+            char_literal48_tree = (Object)adaptor.create(char_literal48);
+            adaptor.addChild(root_0, char_literal48_tree);
             }
 
             }
@@ -1735,43 +1800,78 @@ public class JaParser extends Parser {
     // $ANTLR end "arrayInitializer"
 
     public static class modifier_return extends ParserRuleReturnScope {
+        public boolean pub;
         Object tree;
         public Object getTree() { return tree; }
     };
 
     // $ANTLR start "modifier"
-    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:136:1: modifier : ( PUBLIC | PRIVATE );
+    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:138:1: modifier returns [boolean pub] : ( PUBLIC | PRIVATE );
     public final JaParser.modifier_return modifier() throws RecognitionException {
         JaParser.modifier_return retval = new JaParser.modifier_return();
         retval.start = input.LT(1);
 
         Object root_0 = null;
 
-        Token set51=null;
+        Token PUBLIC49=null;
+        Token PRIVATE50=null;
 
-        Object set51_tree=null;
+        Object PUBLIC49_tree=null;
+        Object PRIVATE50_tree=null;
 
         try {
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:137:5: ( PUBLIC | PRIVATE )
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:
-            {
-            root_0 = (Object)adaptor.nil();
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:139:5: ( PUBLIC | PRIVATE )
+            int alt16=2;
+            int LA16_0 = input.LA(1);
 
-            set51=(Token)input.LT(1);
-            if ( input.LA(1)==PUBLIC||input.LA(1)==PRIVATE ) {
-                input.consume();
-                if ( state.backtracking==0 ) adaptor.addChild(root_0, (Object)adaptor.create(set51));
-                state.errorRecovery=false;state.failed=false;
+            if ( (LA16_0==PUBLIC) ) {
+                alt16=1;
+            }
+            else if ( (LA16_0==PRIVATE) ) {
+                alt16=2;
             }
             else {
                 if (state.backtracking>0) {state.failed=true; return retval;}
-                MismatchedSetException mse = new MismatchedSetException(null,input);
-                throw mse;
+                NoViableAltException nvae =
+                    new NoViableAltException("", 16, 0, input);
+
+                throw nvae;
             }
+            switch (alt16) {
+                case 1 :
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:139:9: PUBLIC
+                    {
+                    root_0 = (Object)adaptor.nil();
 
+                    PUBLIC49=(Token)match(input,PUBLIC,FOLLOW_PUBLIC_in_modifier806); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) {
+                    PUBLIC49_tree = (Object)adaptor.create(PUBLIC49);
+                    adaptor.addChild(root_0, PUBLIC49_tree);
+                    }
+                    if ( state.backtracking==0 ) {
+                       retval.pub = true;  
+                    }
+
+                    }
+                    break;
+                case 2 :
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:140:9: PRIVATE
+                    {
+                    root_0 = (Object)adaptor.nil();
+
+                    PRIVATE50=(Token)match(input,PRIVATE,FOLLOW_PRIVATE_in_modifier819); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) {
+                    PRIVATE50_tree = (Object)adaptor.create(PRIVATE50);
+                    adaptor.addChild(root_0, PRIVATE50_tree);
+                    }
+                    if ( state.backtracking==0 ) {
+                       retval.pub = false; 
+                    }
+
+                    }
+                    break;
 
             }
-
             retval.stop = input.LT(-1);
 
             if ( state.backtracking==0 ) {
@@ -1798,27 +1898,27 @@ public class JaParser extends Parser {
     };
 
     // $ANTLR start "typeName"
-    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:141:1: typeName : IDENTIFIER ;
+    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:143:1: typeName : IDENTIFIER ;
     public final JaParser.typeName_return typeName() throws RecognitionException {
         JaParser.typeName_return retval = new JaParser.typeName_return();
         retval.start = input.LT(1);
 
         Object root_0 = null;
 
-        Token IDENTIFIER52=null;
+        Token IDENTIFIER51=null;
 
-        Object IDENTIFIER52_tree=null;
+        Object IDENTIFIER51_tree=null;
 
         try {
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:142:5: ( IDENTIFIER )
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:142:9: IDENTIFIER
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:144:5: ( IDENTIFIER )
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:144:9: IDENTIFIER
             {
             root_0 = (Object)adaptor.nil();
 
-            IDENTIFIER52=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_typeName785); if (state.failed) return retval;
+            IDENTIFIER51=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_typeName840); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            IDENTIFIER52_tree = (Object)adaptor.create(IDENTIFIER52);
-            adaptor.addChild(root_0, IDENTIFIER52_tree);
+            IDENTIFIER51_tree = (Object)adaptor.create(IDENTIFIER51);
+            adaptor.addChild(root_0, IDENTIFIER51_tree);
             }
 
             }
@@ -1850,54 +1950,54 @@ public class JaParser extends Parser {
     };
 
     // $ANTLR start "type"
-    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:145:1: type returns [Type t] : ( nonPrimitiveType | primitiveType );
+    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:147:1: type returns [Type t] : ( nonPrimitiveType | primitiveType );
     public final JaParser.type_return type() throws RecognitionException {
         JaParser.type_return retval = new JaParser.type_return();
         retval.start = input.LT(1);
 
         Object root_0 = null;
 
-        JaParser.nonPrimitiveType_return nonPrimitiveType53 = null;
+        JaParser.nonPrimitiveType_return nonPrimitiveType52 = null;
 
-        JaParser.primitiveType_return primitiveType54 = null;
+        JaParser.primitiveType_return primitiveType53 = null;
 
 
 
         try {
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:146:2: ( nonPrimitiveType | primitiveType )
-            int alt16=2;
-            alt16 = dfa16.predict(input);
-            switch (alt16) {
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:148:2: ( nonPrimitiveType | primitiveType )
+            int alt17=2;
+            alt17 = dfa17.predict(input);
+            switch (alt17) {
                 case 1 :
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:146:4: nonPrimitiveType
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:148:4: nonPrimitiveType
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_nonPrimitiveType_in_type803);
-                    nonPrimitiveType53=nonPrimitiveType();
+                    pushFollow(FOLLOW_nonPrimitiveType_in_type858);
+                    nonPrimitiveType52=nonPrimitiveType();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, nonPrimitiveType53.getTree());
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, nonPrimitiveType52.getTree());
                     if ( state.backtracking==0 ) {
-                      retval.t =(nonPrimitiveType53!=null?nonPrimitiveType53.t:null);
+                      retval.t =(nonPrimitiveType52!=null?nonPrimitiveType52.t:null);
                     }
 
                     }
                     break;
                 case 2 :
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:147:4: primitiveType
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:149:4: primitiveType
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_primitiveType_in_type810);
-                    primitiveType54=primitiveType();
+                    pushFollow(FOLLOW_primitiveType_in_type865);
+                    primitiveType53=primitiveType();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, primitiveType54.getTree());
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, primitiveType53.getTree());
                     if ( state.backtracking==0 ) {
-                      retval.t =(primitiveType54!=null?primitiveType54.bs:null);
+                      retval.t =(primitiveType53!=null?primitiveType53.bs:null);
                     }
 
                     }
@@ -1931,112 +2031,57 @@ public class JaParser extends Parser {
     };
 
     // $ANTLR start "nonPrimitiveType"
-    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:150:1: nonPrimitiveType returns [ComplexType t] : ( classType (l+= '[' ']' )* | primitiveType (l+= '[' ']' )+ );
+    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:152:1: nonPrimitiveType returns [ComplexType t] : ( classType (l+= '[' ']' )* | primitiveType (l+= '[' ']' )+ );
     public final JaParser.nonPrimitiveType_return nonPrimitiveType() throws RecognitionException {
         JaParser.nonPrimitiveType_return retval = new JaParser.nonPrimitiveType_return();
         retval.start = input.LT(1);
 
         Object root_0 = null;
 
-        Token char_literal56=null;
-        Token char_literal58=null;
+        Token char_literal55=null;
+        Token char_literal57=null;
         Token l=null;
         List list_l=null;
-        JaParser.classType_return classType55 = null;
+        JaParser.classType_return classType54 = null;
 
-        JaParser.primitiveType_return primitiveType57 = null;
+        JaParser.primitiveType_return primitiveType56 = null;
 
 
-        Object char_literal56_tree=null;
-        Object char_literal58_tree=null;
+        Object char_literal55_tree=null;
+        Object char_literal57_tree=null;
         Object l_tree=null;
 
         try {
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:151:2: ( classType (l+= '[' ']' )* | primitiveType (l+= '[' ']' )+ )
-            int alt19=2;
-            int LA19_0 = input.LA(1);
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:153:2: ( classType (l+= '[' ']' )* | primitiveType (l+= '[' ']' )+ )
+            int alt20=2;
+            int LA20_0 = input.LA(1);
 
-            if ( (LA19_0==IDENTIFIER) ) {
-                alt19=1;
+            if ( (LA20_0==IDENTIFIER) ) {
+                alt20=1;
             }
-            else if ( ((LA19_0>=CHAR && LA19_0<=DOUBLE)) ) {
-                alt19=2;
+            else if ( ((LA20_0>=CHAR && LA20_0<=DOUBLE)) ) {
+                alt20=2;
             }
             else {
                 if (state.backtracking>0) {state.failed=true; return retval;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 19, 0, input);
+                    new NoViableAltException("", 20, 0, input);
 
                 throw nvae;
             }
-            switch (alt19) {
+            switch (alt20) {
                 case 1 :
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:151:4: classType (l+= '[' ']' )*
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:153:4: classType (l+= '[' ']' )*
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_classType_in_nonPrimitiveType828);
-                    classType55=classType();
+                    pushFollow(FOLLOW_classType_in_nonPrimitiveType883);
+                    classType54=classType();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, classType55.getTree());
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:151:14: (l+= '[' ']' )*
-                    loop17:
-                    do {
-                        int alt17=2;
-                        int LA17_0 = input.LA(1);
-
-                        if ( (LA17_0==79) ) {
-                            alt17=1;
-                        }
-
-
-                        switch (alt17) {
-                    	case 1 :
-                    	    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:151:15: l+= '[' ']'
-                    	    {
-                    	    l=(Token)match(input,79,FOLLOW_79_in_nonPrimitiveType833); if (state.failed) return retval;
-                    	    if ( state.backtracking==0 ) {
-                    	    l_tree = (Object)adaptor.create(l);
-                    	    adaptor.addChild(root_0, l_tree);
-                    	    }
-                    	    if (list_l==null) list_l=new ArrayList();
-                    	    list_l.add(l);
-
-                    	    char_literal56=(Token)match(input,80,FOLLOW_80_in_nonPrimitiveType835); if (state.failed) return retval;
-                    	    if ( state.backtracking==0 ) {
-                    	    char_literal56_tree = (Object)adaptor.create(char_literal56);
-                    	    adaptor.addChild(root_0, char_literal56_tree);
-                    	    }
-
-                    	    }
-                    	    break;
-
-                    	default :
-                    	    break loop17;
-                        }
-                    } while (true);
-
-                    if ( state.backtracking==0 ) {
-                      retval.t = createArrayType((classType55!=null?classType55.t:null), list_l.size());
-                    }
-
-                    }
-                    break;
-                case 2 :
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:152:4: primitiveType (l+= '[' ']' )+
-                    {
-                    root_0 = (Object)adaptor.nil();
-
-                    pushFollow(FOLLOW_primitiveType_in_nonPrimitiveType844);
-                    primitiveType57=primitiveType();
-
-                    state._fsp--;
-                    if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, primitiveType57.getTree());
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:152:18: (l+= '[' ']' )+
-                    int cnt18=0;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, classType54.getTree());
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:153:14: (l+= '[' ']' )*
                     loop18:
                     do {
                         int alt18=2;
@@ -2049,9 +2094,9 @@ public class JaParser extends Parser {
 
                         switch (alt18) {
                     	case 1 :
-                    	    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:152:19: l+= '[' ']'
+                    	    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:153:15: l+= '[' ']'
                     	    {
-                    	    l=(Token)match(input,79,FOLLOW_79_in_nonPrimitiveType849); if (state.failed) return retval;
+                    	    l=(Token)match(input,79,FOLLOW_79_in_nonPrimitiveType888); if (state.failed) return retval;
                     	    if ( state.backtracking==0 ) {
                     	    l_tree = (Object)adaptor.create(l);
                     	    adaptor.addChild(root_0, l_tree);
@@ -2059,27 +2104,82 @@ public class JaParser extends Parser {
                     	    if (list_l==null) list_l=new ArrayList();
                     	    list_l.add(l);
 
-                    	    char_literal58=(Token)match(input,80,FOLLOW_80_in_nonPrimitiveType851); if (state.failed) return retval;
+                    	    char_literal55=(Token)match(input,80,FOLLOW_80_in_nonPrimitiveType890); if (state.failed) return retval;
                     	    if ( state.backtracking==0 ) {
-                    	    char_literal58_tree = (Object)adaptor.create(char_literal58);
-                    	    adaptor.addChild(root_0, char_literal58_tree);
+                    	    char_literal55_tree = (Object)adaptor.create(char_literal55);
+                    	    adaptor.addChild(root_0, char_literal55_tree);
                     	    }
 
                     	    }
                     	    break;
 
                     	default :
-                    	    if ( cnt18 >= 1 ) break loop18;
-                    	    if (state.backtracking>0) {state.failed=true; return retval;}
-                                EarlyExitException eee =
-                                    new EarlyExitException(18, input);
-                                throw eee;
+                    	    break loop18;
                         }
-                        cnt18++;
                     } while (true);
 
                     if ( state.backtracking==0 ) {
-                      retval.t = createArrayType((primitiveType57!=null?primitiveType57.bs:null), list_l.size());
+                      if(list_l != null) retval.t = createArrayType((classType54!=null?classType54.t:null), list_l.size());
+                    }
+
+                    }
+                    break;
+                case 2 :
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:154:4: primitiveType (l+= '[' ']' )+
+                    {
+                    root_0 = (Object)adaptor.nil();
+
+                    pushFollow(FOLLOW_primitiveType_in_nonPrimitiveType899);
+                    primitiveType56=primitiveType();
+
+                    state._fsp--;
+                    if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, primitiveType56.getTree());
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:154:18: (l+= '[' ']' )+
+                    int cnt19=0;
+                    loop19:
+                    do {
+                        int alt19=2;
+                        int LA19_0 = input.LA(1);
+
+                        if ( (LA19_0==79) ) {
+                            alt19=1;
+                        }
+
+
+                        switch (alt19) {
+                    	case 1 :
+                    	    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:154:19: l+= '[' ']'
+                    	    {
+                    	    l=(Token)match(input,79,FOLLOW_79_in_nonPrimitiveType904); if (state.failed) return retval;
+                    	    if ( state.backtracking==0 ) {
+                    	    l_tree = (Object)adaptor.create(l);
+                    	    adaptor.addChild(root_0, l_tree);
+                    	    }
+                    	    if (list_l==null) list_l=new ArrayList();
+                    	    list_l.add(l);
+
+                    	    char_literal57=(Token)match(input,80,FOLLOW_80_in_nonPrimitiveType906); if (state.failed) return retval;
+                    	    if ( state.backtracking==0 ) {
+                    	    char_literal57_tree = (Object)adaptor.create(char_literal57);
+                    	    adaptor.addChild(root_0, char_literal57_tree);
+                    	    }
+
+                    	    }
+                    	    break;
+
+                    	default :
+                    	    if ( cnt19 >= 1 ) break loop19;
+                    	    if (state.backtracking>0) {state.failed=true; return retval;}
+                                EarlyExitException eee =
+                                    new EarlyExitException(19, input);
+                                throw eee;
+                        }
+                        cnt19++;
+                    } while (true);
+
+                    if ( state.backtracking==0 ) {
+                      if(list_l != null) retval.t = createArrayType((primitiveType56!=null?primitiveType56.bs:null), list_l.size());
                     }
 
                     }
@@ -2113,35 +2213,35 @@ public class JaParser extends Parser {
     };
 
     // $ANTLR start "classType"
-    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:155:1: classType returns [ReferenceType t] : IDENTIFIER ;
+    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:157:1: classType returns [ReferenceType t] : IDENTIFIER ;
     public final JaParser.classType_return classType() throws RecognitionException {
         JaParser.classType_return retval = new JaParser.classType_return();
         retval.start = input.LT(1);
 
         Object root_0 = null;
 
-        Token IDENTIFIER59=null;
+        Token IDENTIFIER58=null;
 
-        Object IDENTIFIER59_tree=null;
+        Object IDENTIFIER58_tree=null;
 
         try {
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:156:2: ( IDENTIFIER )
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:156:4: IDENTIFIER
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:158:2: ( IDENTIFIER )
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:158:4: IDENTIFIER
             {
             root_0 = (Object)adaptor.nil();
 
-            IDENTIFIER59=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_classType870); if (state.failed) return retval;
+            IDENTIFIER58=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_classType925); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            IDENTIFIER59_tree = (Object)adaptor.create(IDENTIFIER59);
-            adaptor.addChild(root_0, IDENTIFIER59_tree);
+            IDENTIFIER58_tree = (Object)adaptor.create(IDENTIFIER58);
+            adaptor.addChild(root_0, IDENTIFIER58_tree);
             }
             if ( state.backtracking==0 ) {
-               if(cTab.containsKey((IDENTIFIER59!=null?IDENTIFIER59.getText():null))) {
-              	        			retval.t = cTab.get((IDENTIFIER59!=null?IDENTIFIER59.getText():null));
+               if(cTab.containsKey((IDENTIFIER58!=null?IDENTIFIER58.getText():null))) {
+              	        			retval.t = cTab.get((IDENTIFIER58!=null?IDENTIFIER58.getText():null));
                       			} else {
-                      				retval.t = new ReferenceType((IDENTIFIER59!=null?IDENTIFIER59.getText():null));
-                      				cTab.put((IDENTIFIER59!=null?IDENTIFIER59.getText():null), retval.t);
-                      				todo.add((IDENTIFIER59!=null?IDENTIFIER59.getText():null));	
+                      				retval.t = new ReferenceType((IDENTIFIER58!=null?IDENTIFIER58.getText():null));
+                      				cTab.put((IDENTIFIER58!=null?IDENTIFIER58.getText():null), retval.t);
+                      				todo.add((IDENTIFIER58!=null?IDENTIFIER58.getText():null));	
                       			}
                       		  
             }
@@ -2175,86 +2275,86 @@ public class JaParser extends Parser {
     };
 
     // $ANTLR start "primitiveType"
-    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:166:1: primitiveType returns [BasicType bs] : ( CHAR | BYTE | SHORT | INT | LONG | FLOAT | DOUBLE );
+    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:168:1: primitiveType returns [BasicType bs] : ( CHAR | BYTE | SHORT | INT | LONG | FLOAT | DOUBLE );
     public final JaParser.primitiveType_return primitiveType() throws RecognitionException {
         JaParser.primitiveType_return retval = new JaParser.primitiveType_return();
         retval.start = input.LT(1);
 
         Object root_0 = null;
 
-        Token CHAR60=null;
-        Token BYTE61=null;
-        Token SHORT62=null;
-        Token INT63=null;
-        Token LONG64=null;
-        Token FLOAT65=null;
-        Token DOUBLE66=null;
+        Token CHAR59=null;
+        Token BYTE60=null;
+        Token SHORT61=null;
+        Token INT62=null;
+        Token LONG63=null;
+        Token FLOAT64=null;
+        Token DOUBLE65=null;
 
-        Object CHAR60_tree=null;
-        Object BYTE61_tree=null;
-        Object SHORT62_tree=null;
-        Object INT63_tree=null;
-        Object LONG64_tree=null;
-        Object FLOAT65_tree=null;
-        Object DOUBLE66_tree=null;
+        Object CHAR59_tree=null;
+        Object BYTE60_tree=null;
+        Object SHORT61_tree=null;
+        Object INT62_tree=null;
+        Object LONG63_tree=null;
+        Object FLOAT64_tree=null;
+        Object DOUBLE65_tree=null;
 
         try {
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:167:5: ( CHAR | BYTE | SHORT | INT | LONG | FLOAT | DOUBLE )
-            int alt20=7;
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:169:5: ( CHAR | BYTE | SHORT | INT | LONG | FLOAT | DOUBLE )
+            int alt21=7;
             switch ( input.LA(1) ) {
             case CHAR:
                 {
-                alt20=1;
+                alt21=1;
                 }
                 break;
             case BYTE:
                 {
-                alt20=2;
+                alt21=2;
                 }
                 break;
             case SHORT:
                 {
-                alt20=3;
+                alt21=3;
                 }
                 break;
             case INT:
                 {
-                alt20=4;
+                alt21=4;
                 }
                 break;
             case LONG:
                 {
-                alt20=5;
+                alt21=5;
                 }
                 break;
             case FLOAT:
                 {
-                alt20=6;
+                alt21=6;
                 }
                 break;
             case DOUBLE:
                 {
-                alt20=7;
+                alt21=7;
                 }
                 break;
             default:
                 if (state.backtracking>0) {state.failed=true; return retval;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 20, 0, input);
+                    new NoViableAltException("", 21, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt20) {
+            switch (alt21) {
                 case 1 :
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:167:9: CHAR
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:169:9: CHAR
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    CHAR60=(Token)match(input,CHAR,FOLLOW_CHAR_in_primitiveType892); if (state.failed) return retval;
+                    CHAR59=(Token)match(input,CHAR,FOLLOW_CHAR_in_primitiveType947); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    CHAR60_tree = (Object)adaptor.create(CHAR60);
-                    adaptor.addChild(root_0, CHAR60_tree);
+                    CHAR59_tree = (Object)adaptor.create(CHAR59);
+                    adaptor.addChild(root_0, CHAR59_tree);
                     }
                     if ( state.backtracking==0 ) {
                       retval.bs =BasicType.CHAR;
@@ -2263,14 +2363,14 @@ public class JaParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:168:9: BYTE
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:170:9: BYTE
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    BYTE61=(Token)match(input,BYTE,FOLLOW_BYTE_in_primitiveType904); if (state.failed) return retval;
+                    BYTE60=(Token)match(input,BYTE,FOLLOW_BYTE_in_primitiveType959); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    BYTE61_tree = (Object)adaptor.create(BYTE61);
-                    adaptor.addChild(root_0, BYTE61_tree);
+                    BYTE60_tree = (Object)adaptor.create(BYTE60);
+                    adaptor.addChild(root_0, BYTE60_tree);
                     }
                     if ( state.backtracking==0 ) {
                       retval.bs =BasicType.BYTE;
@@ -2279,14 +2379,14 @@ public class JaParser extends Parser {
                     }
                     break;
                 case 3 :
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:169:9: SHORT
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:171:9: SHORT
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    SHORT62=(Token)match(input,SHORT,FOLLOW_SHORT_in_primitiveType916); if (state.failed) return retval;
+                    SHORT61=(Token)match(input,SHORT,FOLLOW_SHORT_in_primitiveType971); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    SHORT62_tree = (Object)adaptor.create(SHORT62);
-                    adaptor.addChild(root_0, SHORT62_tree);
+                    SHORT61_tree = (Object)adaptor.create(SHORT61);
+                    adaptor.addChild(root_0, SHORT61_tree);
                     }
                     if ( state.backtracking==0 ) {
                       retval.bs =BasicType.SHORT;
@@ -2295,14 +2395,14 @@ public class JaParser extends Parser {
                     }
                     break;
                 case 4 :
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:170:9: INT
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:172:9: INT
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    INT63=(Token)match(input,INT,FOLLOW_INT_in_primitiveType928); if (state.failed) return retval;
+                    INT62=(Token)match(input,INT,FOLLOW_INT_in_primitiveType983); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    INT63_tree = (Object)adaptor.create(INT63);
-                    adaptor.addChild(root_0, INT63_tree);
+                    INT62_tree = (Object)adaptor.create(INT62);
+                    adaptor.addChild(root_0, INT62_tree);
                     }
                     if ( state.backtracking==0 ) {
                       retval.bs =BasicType.INT;
@@ -2311,14 +2411,14 @@ public class JaParser extends Parser {
                     }
                     break;
                 case 5 :
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:171:9: LONG
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:173:9: LONG
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    LONG64=(Token)match(input,LONG,FOLLOW_LONG_in_primitiveType940); if (state.failed) return retval;
+                    LONG63=(Token)match(input,LONG,FOLLOW_LONG_in_primitiveType995); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    LONG64_tree = (Object)adaptor.create(LONG64);
-                    adaptor.addChild(root_0, LONG64_tree);
+                    LONG63_tree = (Object)adaptor.create(LONG63);
+                    adaptor.addChild(root_0, LONG63_tree);
                     }
                     if ( state.backtracking==0 ) {
                       retval.bs =BasicType.LONG;
@@ -2327,14 +2427,14 @@ public class JaParser extends Parser {
                     }
                     break;
                 case 6 :
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:172:9: FLOAT
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:174:9: FLOAT
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    FLOAT65=(Token)match(input,FLOAT,FOLLOW_FLOAT_in_primitiveType952); if (state.failed) return retval;
+                    FLOAT64=(Token)match(input,FLOAT,FOLLOW_FLOAT_in_primitiveType1007); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    FLOAT65_tree = (Object)adaptor.create(FLOAT65);
-                    adaptor.addChild(root_0, FLOAT65_tree);
+                    FLOAT64_tree = (Object)adaptor.create(FLOAT64);
+                    adaptor.addChild(root_0, FLOAT64_tree);
                     }
                     if ( state.backtracking==0 ) {
                       retval.bs =BasicType.FLOAT;
@@ -2343,14 +2443,14 @@ public class JaParser extends Parser {
                     }
                     break;
                 case 7 :
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:173:9: DOUBLE
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:175:9: DOUBLE
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    DOUBLE66=(Token)match(input,DOUBLE,FOLLOW_DOUBLE_in_primitiveType964); if (state.failed) return retval;
+                    DOUBLE65=(Token)match(input,DOUBLE,FOLLOW_DOUBLE_in_primitiveType1019); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    DOUBLE66_tree = (Object)adaptor.create(DOUBLE66);
-                    adaptor.addChild(root_0, DOUBLE66_tree);
+                    DOUBLE65_tree = (Object)adaptor.create(DOUBLE65);
+                    adaptor.addChild(root_0, DOUBLE65_tree);
                     }
                     if ( state.backtracking==0 ) {
                       retval.bs =BasicType.DOUBLE;
@@ -2381,25 +2481,26 @@ public class JaParser extends Parser {
     // $ANTLR end "primitiveType"
 
     public static class formalParameters_return extends ParserRuleReturnScope {
+        public ArrayList<Type> args;
         Object tree;
         public Object getTree() { return tree; }
     };
 
     // $ANTLR start "formalParameters"
-    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:176:1: formalParameters : '(' ( formalParameterDecls )? ')' -> {$formalParameterDecls.tree != null}? ^( FPARMS ( formalParameterDecls )? ) ->;
+    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:178:1: formalParameters returns [ArrayList<Type> args] : '(' ( formalParameterDecls[args] )? ')' -> {$formalParameterDecls.tree != null}? ^( FPARMS ( formalParameterDecls )? ) ->;
     public final JaParser.formalParameters_return formalParameters() throws RecognitionException {
         JaParser.formalParameters_return retval = new JaParser.formalParameters_return();
         retval.start = input.LT(1);
 
         Object root_0 = null;
 
-        Token char_literal67=null;
-        Token char_literal69=null;
-        JaParser.formalParameterDecls_return formalParameterDecls68 = null;
+        Token char_literal66=null;
+        Token char_literal68=null;
+        JaParser.formalParameterDecls_return formalParameterDecls67 = null;
 
 
-        Object char_literal67_tree=null;
-        Object char_literal69_tree=null;
+        Object char_literal66_tree=null;
+        Object char_literal68_tree=null;
         RewriteRuleTokenStream stream_82=new RewriteRuleTokenStream(adaptor,"token 82");
         RewriteRuleTokenStream stream_81=new RewriteRuleTokenStream(adaptor,"token 81");
         RewriteRuleSubtreeStream stream_formalParameterDecls=new RewriteRuleSubtreeStream(adaptor,"rule formalParameterDecls");
@@ -2407,38 +2508,41 @@ public class JaParser extends Parser {
         	ArrayList<Type> args = new ArrayList<Type>();
 
         try {
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:180:5: ( '(' ( formalParameterDecls )? ')' -> {$formalParameterDecls.tree != null}? ^( FPARMS ( formalParameterDecls )? ) ->)
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:180:9: '(' ( formalParameterDecls )? ')'
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:182:5: ( '(' ( formalParameterDecls[args] )? ')' -> {$formalParameterDecls.tree != null}? ^( FPARMS ( formalParameterDecls )? ) ->)
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:182:9: '(' ( formalParameterDecls[args] )? ')'
             {
-            char_literal67=(Token)match(input,81,FOLLOW_81_in_formalParameters994); if (state.failed) return retval; 
-            if ( state.backtracking==0 ) stream_81.add(char_literal67);
+            char_literal66=(Token)match(input,81,FOLLOW_81_in_formalParameters1053); if (state.failed) return retval; 
+            if ( state.backtracking==0 ) stream_81.add(char_literal66);
 
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:180:13: ( formalParameterDecls )?
-            int alt21=2;
-            int LA21_0 = input.LA(1);
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:182:13: ( formalParameterDecls[args] )?
+            int alt22=2;
+            int LA22_0 = input.LA(1);
 
-            if ( (LA21_0==IDENTIFIER||(LA21_0>=CHAR && LA21_0<=DOUBLE)) ) {
-                alt21=1;
+            if ( (LA22_0==IDENTIFIER||(LA22_0>=CHAR && LA22_0<=DOUBLE)) ) {
+                alt22=1;
             }
-            switch (alt21) {
+            switch (alt22) {
                 case 1 :
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:180:13: formalParameterDecls
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:182:13: formalParameterDecls[args]
                     {
-                    pushFollow(FOLLOW_formalParameterDecls_in_formalParameters996);
-                    formalParameterDecls68=formalParameterDecls();
+                    pushFollow(FOLLOW_formalParameterDecls_in_formalParameters1055);
+                    formalParameterDecls67=formalParameterDecls(args);
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) stream_formalParameterDecls.add(formalParameterDecls68.getTree());
+                    if ( state.backtracking==0 ) stream_formalParameterDecls.add(formalParameterDecls67.getTree());
 
                     }
                     break;
 
             }
 
-            char_literal69=(Token)match(input,82,FOLLOW_82_in_formalParameters1000); if (state.failed) return retval; 
-            if ( state.backtracking==0 ) stream_82.add(char_literal69);
+            char_literal68=(Token)match(input,82,FOLLOW_82_in_formalParameters1059); if (state.failed) return retval; 
+            if ( state.backtracking==0 ) stream_82.add(char_literal68);
 
+            if ( state.backtracking==0 ) {
+              retval.args = args;
+            }
 
 
             // AST REWRITE
@@ -2453,14 +2557,14 @@ public class JaParser extends Parser {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
             root_0 = (Object)adaptor.nil();
-            // 180:50: -> {$formalParameterDecls.tree != null}? ^( FPARMS ( formalParameterDecls )? )
-            if ((formalParameterDecls68!=null?((Object)formalParameterDecls68.tree):null) != null) {
-                // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:180:91: ^( FPARMS ( formalParameterDecls )? )
+            // 182:61: -> {$formalParameterDecls.tree != null}? ^( FPARMS ( formalParameterDecls )? )
+            if ((formalParameterDecls67!=null?((Object)formalParameterDecls67.tree):null) != null) {
+                // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:182:102: ^( FPARMS ( formalParameterDecls )? )
                 {
                 Object root_1 = (Object)adaptor.nil();
                 root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(FPARMS, "FPARMS"), root_1);
 
-                // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:180:100: ( formalParameterDecls )?
+                // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:182:111: ( formalParameterDecls )?
                 if ( stream_formalParameterDecls.hasNext() ) {
                     adaptor.addChild(root_1, stream_formalParameterDecls.nextTree());
 
@@ -2471,7 +2575,7 @@ public class JaParser extends Parser {
                 }
 
             }
-            else // 181:15: ->
+            else // 183:15: ->
             {
                 root_0 = null;
             }
@@ -2505,83 +2609,91 @@ public class JaParser extends Parser {
     };
 
     // $ANTLR start "formalParameterDecls"
-    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:184:1: formalParameterDecls : ( type variableDeclaratorId ( ',' formalParameterDecls )? -> ^( FPARM type variableDeclaratorId ) ( formalParameterDecls )? | type '...' variableDeclaratorId -> ^( FMULTPARM type variableDeclaratorId ) );
-    public final JaParser.formalParameterDecls_return formalParameterDecls() throws RecognitionException {
+    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:186:1: formalParameterDecls[ArrayList<Type> args] : ( type variableDeclaratorId ( ',' formalParameterDecls[args] )? -> ^( FPARM type variableDeclaratorId ) ( formalParameterDecls )? | type '...' variableDeclaratorId -> ^( FMULTPARM type variableDeclaratorId ) );
+    public final JaParser.formalParameterDecls_return formalParameterDecls(ArrayList<Type> args) throws RecognitionException {
         JaParser.formalParameterDecls_return retval = new JaParser.formalParameterDecls_return();
         retval.start = input.LT(1);
 
         Object root_0 = null;
 
-        Token char_literal72=null;
-        Token string_literal75=null;
-        JaParser.type_return type70 = null;
+        Token char_literal71=null;
+        Token string_literal74=null;
+        JaParser.type_return type69 = null;
 
-        JaParser.variableDeclaratorId_return variableDeclaratorId71 = null;
+        JaParser.variableDeclaratorId_return variableDeclaratorId70 = null;
 
-        JaParser.formalParameterDecls_return formalParameterDecls73 = null;
+        JaParser.formalParameterDecls_return formalParameterDecls72 = null;
 
-        JaParser.type_return type74 = null;
+        JaParser.type_return type73 = null;
 
-        JaParser.variableDeclaratorId_return variableDeclaratorId76 = null;
+        JaParser.variableDeclaratorId_return variableDeclaratorId75 = null;
 
 
-        Object char_literal72_tree=null;
-        Object string_literal75_tree=null;
+        Object char_literal71_tree=null;
+        Object string_literal74_tree=null;
         RewriteRuleTokenStream stream_78=new RewriteRuleTokenStream(adaptor,"token 78");
         RewriteRuleTokenStream stream_83=new RewriteRuleTokenStream(adaptor,"token 83");
         RewriteRuleSubtreeStream stream_variableDeclaratorId=new RewriteRuleSubtreeStream(adaptor,"rule variableDeclaratorId");
         RewriteRuleSubtreeStream stream_formalParameterDecls=new RewriteRuleSubtreeStream(adaptor,"rule formalParameterDecls");
         RewriteRuleSubtreeStream stream_type=new RewriteRuleSubtreeStream(adaptor,"rule type");
         try {
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:185:5: ( type variableDeclaratorId ( ',' formalParameterDecls )? -> ^( FPARM type variableDeclaratorId ) ( formalParameterDecls )? | type '...' variableDeclaratorId -> ^( FMULTPARM type variableDeclaratorId ) )
-            int alt23=2;
-            alt23 = dfa23.predict(input);
-            switch (alt23) {
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:187:5: ( type variableDeclaratorId ( ',' formalParameterDecls[args] )? -> ^( FPARM type variableDeclaratorId ) ( formalParameterDecls )? | type '...' variableDeclaratorId -> ^( FMULTPARM type variableDeclaratorId ) )
+            int alt24=2;
+            alt24 = dfa24.predict(input);
+            switch (alt24) {
                 case 1 :
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:185:8: type variableDeclaratorId ( ',' formalParameterDecls )?
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:187:8: type variableDeclaratorId ( ',' formalParameterDecls[args] )?
                     {
-                    pushFollow(FOLLOW_type_in_formalParameterDecls1049);
-                    type70=type();
+                    pushFollow(FOLLOW_type_in_formalParameterDecls1111);
+                    type69=type();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) stream_type.add(type70.getTree());
-                    pushFollow(FOLLOW_variableDeclaratorId_in_formalParameterDecls1051);
-                    variableDeclaratorId71=variableDeclaratorId();
+                    if ( state.backtracking==0 ) stream_type.add(type69.getTree());
+                    pushFollow(FOLLOW_variableDeclaratorId_in_formalParameterDecls1113);
+                    variableDeclaratorId70=variableDeclaratorId();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) stream_variableDeclaratorId.add(variableDeclaratorId71.getTree());
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:185:34: ( ',' formalParameterDecls )?
-                    int alt22=2;
-                    int LA22_0 = input.LA(1);
+                    if ( state.backtracking==0 ) stream_variableDeclaratorId.add(variableDeclaratorId70.getTree());
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:187:34: ( ',' formalParameterDecls[args] )?
+                    int alt23=2;
+                    int LA23_0 = input.LA(1);
 
-                    if ( (LA22_0==78) ) {
-                        alt22=1;
+                    if ( (LA23_0==78) ) {
+                        alt23=1;
                     }
-                    switch (alt22) {
+                    switch (alt23) {
                         case 1 :
-                            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:185:35: ',' formalParameterDecls
+                            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:187:35: ',' formalParameterDecls[args]
                             {
-                            char_literal72=(Token)match(input,78,FOLLOW_78_in_formalParameterDecls1054); if (state.failed) return retval; 
-                            if ( state.backtracking==0 ) stream_78.add(char_literal72);
+                            char_literal71=(Token)match(input,78,FOLLOW_78_in_formalParameterDecls1116); if (state.failed) return retval; 
+                            if ( state.backtracking==0 ) stream_78.add(char_literal71);
 
-                            pushFollow(FOLLOW_formalParameterDecls_in_formalParameterDecls1056);
-                            formalParameterDecls73=formalParameterDecls();
+                            pushFollow(FOLLOW_formalParameterDecls_in_formalParameterDecls1118);
+                            formalParameterDecls72=formalParameterDecls(args);
 
                             state._fsp--;
                             if (state.failed) return retval;
-                            if ( state.backtracking==0 ) stream_formalParameterDecls.add(formalParameterDecls73.getTree());
+                            if ( state.backtracking==0 ) stream_formalParameterDecls.add(formalParameterDecls72.getTree());
 
                             }
                             break;
 
                     }
 
+                    if ( state.backtracking==0 ) {
+                      if((variableDeclaratorId70!=null?variableDeclaratorId70.arrayDim:0) > 0) {
+                          								 args.add(createArrayType((type69!=null?type69.t:null), (variableDeclaratorId70!=null?variableDeclaratorId70.arrayDim:0)));
+                          								} else {
+                          								 args.add((type69!=null?type69.t:null));
+                          								}
+                          							     
+                    }
 
 
                     // AST REWRITE
-                    // elements: type, formalParameterDecls, variableDeclaratorId
+                    // elements: formalParameterDecls, type, variableDeclaratorId
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -2592,9 +2704,9 @@ public class JaParser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 192:6: -> ^( FPARM type variableDeclaratorId ) ( formalParameterDecls )?
+                    // 194:6: -> ^( FPARM type variableDeclaratorId ) ( formalParameterDecls )?
                     {
-                        // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:192:9: ^( FPARM type variableDeclaratorId )
+                        // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:194:9: ^( FPARM type variableDeclaratorId )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(FPARM, "FPARM"), root_1);
@@ -2604,7 +2716,7 @@ public class JaParser extends Parser {
 
                         adaptor.addChild(root_0, root_1);
                         }
-                        // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:192:44: ( formalParameterDecls )?
+                        // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:194:44: ( formalParameterDecls )?
                         if ( stream_formalParameterDecls.hasNext() ) {
                             adaptor.addChild(root_0, stream_formalParameterDecls.nextTree());
 
@@ -2617,23 +2729,23 @@ public class JaParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:193:8: type '...' variableDeclaratorId
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:195:8: type '...' variableDeclaratorId
                     {
-                    pushFollow(FOLLOW_type_in_formalParameterDecls1092);
-                    type74=type();
+                    pushFollow(FOLLOW_type_in_formalParameterDecls1155);
+                    type73=type();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) stream_type.add(type74.getTree());
-                    string_literal75=(Token)match(input,83,FOLLOW_83_in_formalParameterDecls1094); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_83.add(string_literal75);
+                    if ( state.backtracking==0 ) stream_type.add(type73.getTree());
+                    string_literal74=(Token)match(input,83,FOLLOW_83_in_formalParameterDecls1157); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_83.add(string_literal74);
 
-                    pushFollow(FOLLOW_variableDeclaratorId_in_formalParameterDecls1096);
-                    variableDeclaratorId76=variableDeclaratorId();
+                    pushFollow(FOLLOW_variableDeclaratorId_in_formalParameterDecls1159);
+                    variableDeclaratorId75=variableDeclaratorId();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) stream_variableDeclaratorId.add(variableDeclaratorId76.getTree());
+                    if ( state.backtracking==0 ) stream_variableDeclaratorId.add(variableDeclaratorId75.getTree());
 
 
                     // AST REWRITE
@@ -2648,9 +2760,9 @@ public class JaParser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 193:40: -> ^( FMULTPARM type variableDeclaratorId )
+                    // 195:40: -> ^( FMULTPARM type variableDeclaratorId )
                     {
-                        // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:193:43: ^( FMULTPARM type variableDeclaratorId )
+                        // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:195:43: ^( FMULTPARM type variableDeclaratorId )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(FMULTPARM, "FMULTPARM"), root_1);
@@ -2694,27 +2806,27 @@ public class JaParser extends Parser {
     };
 
     // $ANTLR start "methodBody"
-    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:196:1: methodBody : block -> ^( MBODY block ) ;
+    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:198:1: methodBody : block -> ^( MBODY block ) ;
     public final JaParser.methodBody_return methodBody() throws RecognitionException {
         JaParser.methodBody_return retval = new JaParser.methodBody_return();
         retval.start = input.LT(1);
 
         Object root_0 = null;
 
-        JaParser.block_return block77 = null;
+        JaParser.block_return block76 = null;
 
 
         RewriteRuleSubtreeStream stream_block=new RewriteRuleSubtreeStream(adaptor,"rule block");
         try {
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:197:5: ( block -> ^( MBODY block ) )
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:197:9: block
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:199:5: ( block -> ^( MBODY block ) )
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:199:9: block
             {
-            pushFollow(FOLLOW_block_in_methodBody1129);
-            block77=block();
+            pushFollow(FOLLOW_block_in_methodBody1192);
+            block76=block();
 
             state._fsp--;
             if (state.failed) return retval;
-            if ( state.backtracking==0 ) stream_block.add(block77.getTree());
+            if ( state.backtracking==0 ) stream_block.add(block76.getTree());
 
 
             // AST REWRITE
@@ -2729,9 +2841,9 @@ public class JaParser extends Parser {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
             root_0 = (Object)adaptor.nil();
-            // 197:15: -> ^( MBODY block )
+            // 199:15: -> ^( MBODY block )
             {
-                // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:197:18: ^( MBODY block )
+                // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:199:18: ^( MBODY block )
                 {
                 Object root_1 = (Object)adaptor.nil();
                 root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(MBODY, "MBODY"), root_1);
@@ -2772,102 +2884,102 @@ public class JaParser extends Parser {
     };
 
     // $ANTLR start "constructorBody"
-    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:200:1: constructorBody : '{' ( explicitConstructorInvocation )? ( blockStatement )* '}' ;
+    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:202:1: constructorBody : '{' ( explicitConstructorInvocation )? ( blockStatement )* '}' ;
     public final JaParser.constructorBody_return constructorBody() throws RecognitionException {
         JaParser.constructorBody_return retval = new JaParser.constructorBody_return();
         retval.start = input.LT(1);
 
         Object root_0 = null;
 
-        Token char_literal78=null;
-        Token char_literal81=null;
-        JaParser.explicitConstructorInvocation_return explicitConstructorInvocation79 = null;
+        Token char_literal77=null;
+        Token char_literal80=null;
+        JaParser.explicitConstructorInvocation_return explicitConstructorInvocation78 = null;
 
-        JaParser.blockStatement_return blockStatement80 = null;
+        JaParser.blockStatement_return blockStatement79 = null;
 
 
-        Object char_literal78_tree=null;
-        Object char_literal81_tree=null;
+        Object char_literal77_tree=null;
+        Object char_literal80_tree=null;
 
         try {
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:201:5: ( '{' ( explicitConstructorInvocation )? ( blockStatement )* '}' )
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:201:9: '{' ( explicitConstructorInvocation )? ( blockStatement )* '}'
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:203:5: ( '{' ( explicitConstructorInvocation )? ( blockStatement )* '}' )
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:203:9: '{' ( explicitConstructorInvocation )? ( blockStatement )* '}'
             {
             root_0 = (Object)adaptor.nil();
 
-            char_literal78=(Token)match(input,76,FOLLOW_76_in_constructorBody1156); if (state.failed) return retval;
+            char_literal77=(Token)match(input,76,FOLLOW_76_in_constructorBody1219); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            char_literal78_tree = (Object)adaptor.create(char_literal78);
-            adaptor.addChild(root_0, char_literal78_tree);
+            char_literal77_tree = (Object)adaptor.create(char_literal77);
+            adaptor.addChild(root_0, char_literal77_tree);
             }
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:201:13: ( explicitConstructorInvocation )?
-            int alt24=2;
-            int LA24_0 = input.LA(1);
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:203:13: ( explicitConstructorInvocation )?
+            int alt25=2;
+            int LA25_0 = input.LA(1);
 
-            if ( (LA24_0==THIS) ) {
-                int LA24_1 = input.LA(2);
+            if ( (LA25_0==THIS) ) {
+                int LA25_1 = input.LA(2);
 
-                if ( (LA24_1==81) ) {
-                    alt24=1;
+                if ( (LA25_1==81) ) {
+                    alt25=1;
                 }
             }
-            else if ( (LA24_0==SUPER) ) {
-                int LA24_3 = input.LA(2);
+            else if ( (LA25_0==SUPER) ) {
+                int LA25_3 = input.LA(2);
 
-                if ( (LA24_3==81) ) {
-                    alt24=1;
+                if ( (LA25_3==81) ) {
+                    alt25=1;
                 }
             }
-            switch (alt24) {
+            switch (alt25) {
                 case 1 :
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:201:13: explicitConstructorInvocation
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:203:13: explicitConstructorInvocation
                     {
-                    pushFollow(FOLLOW_explicitConstructorInvocation_in_constructorBody1158);
-                    explicitConstructorInvocation79=explicitConstructorInvocation();
+                    pushFollow(FOLLOW_explicitConstructorInvocation_in_constructorBody1221);
+                    explicitConstructorInvocation78=explicitConstructorInvocation();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, explicitConstructorInvocation79.getTree());
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, explicitConstructorInvocation78.getTree());
 
                     }
                     break;
 
             }
 
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:201:44: ( blockStatement )*
-            loop25:
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:203:44: ( blockStatement )*
+            loop26:
             do {
-                int alt25=2;
-                int LA25_0 = input.LA(1);
+                int alt26=2;
+                int LA26_0 = input.LA(1);
 
-                if ( (LA25_0==IDENTIFIER||LA25_0==VOID||(LA25_0>=CHAR && LA25_0<=RETURN)||LA25_0==NEW||(LA25_0>=PLUS && LA25_0<=MINUS)||(LA25_0>=75 && LA25_0<=76)||LA25_0==81||(LA25_0>=93 && LA25_0<=95)) ) {
-                    alt25=1;
+                if ( (LA26_0==IDENTIFIER||LA26_0==VOID||(LA26_0>=CHAR && LA26_0<=RETURN)||LA26_0==NEW||(LA26_0>=PLUS && LA26_0<=MINUS)||(LA26_0>=75 && LA26_0<=76)||LA26_0==81||(LA26_0>=93 && LA26_0<=95)) ) {
+                    alt26=1;
                 }
 
 
-                switch (alt25) {
+                switch (alt26) {
             	case 1 :
-            	    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:201:44: blockStatement
+            	    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:203:44: blockStatement
             	    {
-            	    pushFollow(FOLLOW_blockStatement_in_constructorBody1161);
-            	    blockStatement80=blockStatement();
+            	    pushFollow(FOLLOW_blockStatement_in_constructorBody1224);
+            	    blockStatement79=blockStatement();
 
             	    state._fsp--;
             	    if (state.failed) return retval;
-            	    if ( state.backtracking==0 ) adaptor.addChild(root_0, blockStatement80.getTree());
+            	    if ( state.backtracking==0 ) adaptor.addChild(root_0, blockStatement79.getTree());
 
             	    }
             	    break;
 
             	default :
-            	    break loop25;
+            	    break loop26;
                 }
             } while (true);
 
-            char_literal81=(Token)match(input,77,FOLLOW_77_in_constructorBody1164); if (state.failed) return retval;
+            char_literal80=(Token)match(input,77,FOLLOW_77_in_constructorBody1227); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            char_literal81_tree = (Object)adaptor.create(char_literal81);
-            adaptor.addChild(root_0, char_literal81_tree);
+            char_literal80_tree = (Object)adaptor.create(char_literal80);
+            adaptor.addChild(root_0, char_literal80_tree);
             }
 
             }
@@ -2898,31 +3010,31 @@ public class JaParser extends Parser {
     };
 
     // $ANTLR start "explicitConstructorInvocation"
-    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:204:1: explicitConstructorInvocation : ( THIS | SUPER ) arguments ';' ;
+    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:206:1: explicitConstructorInvocation : ( THIS | SUPER ) arguments ';' ;
     public final JaParser.explicitConstructorInvocation_return explicitConstructorInvocation() throws RecognitionException {
         JaParser.explicitConstructorInvocation_return retval = new JaParser.explicitConstructorInvocation_return();
         retval.start = input.LT(1);
 
         Object root_0 = null;
 
-        Token set82=null;
-        Token char_literal84=null;
-        JaParser.arguments_return arguments83 = null;
+        Token set81=null;
+        Token char_literal83=null;
+        JaParser.arguments_return arguments82 = null;
 
 
-        Object set82_tree=null;
-        Object char_literal84_tree=null;
+        Object set81_tree=null;
+        Object char_literal83_tree=null;
 
         try {
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:205:5: ( ( THIS | SUPER ) arguments ';' )
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:205:9: ( THIS | SUPER ) arguments ';'
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:207:5: ( ( THIS | SUPER ) arguments ';' )
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:207:9: ( THIS | SUPER ) arguments ';'
             {
             root_0 = (Object)adaptor.nil();
 
-            set82=(Token)input.LT(1);
+            set81=(Token)input.LT(1);
             if ( (input.LA(1)>=THIS && input.LA(1)<=SUPER) ) {
                 input.consume();
-                if ( state.backtracking==0 ) adaptor.addChild(root_0, (Object)adaptor.create(set82));
+                if ( state.backtracking==0 ) adaptor.addChild(root_0, (Object)adaptor.create(set81));
                 state.errorRecovery=false;state.failed=false;
             }
             else {
@@ -2931,16 +3043,16 @@ public class JaParser extends Parser {
                 throw mse;
             }
 
-            pushFollow(FOLLOW_arguments_in_explicitConstructorInvocation1191);
-            arguments83=arguments();
+            pushFollow(FOLLOW_arguments_in_explicitConstructorInvocation1254);
+            arguments82=arguments();
 
             state._fsp--;
             if (state.failed) return retval;
-            if ( state.backtracking==0 ) adaptor.addChild(root_0, arguments83.getTree());
-            char_literal84=(Token)match(input,75,FOLLOW_75_in_explicitConstructorInvocation1193); if (state.failed) return retval;
+            if ( state.backtracking==0 ) adaptor.addChild(root_0, arguments82.getTree());
+            char_literal83=(Token)match(input,75,FOLLOW_75_in_explicitConstructorInvocation1256); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            char_literal84_tree = (Object)adaptor.create(char_literal84);
-            adaptor.addChild(root_0, char_literal84_tree);
+            char_literal83_tree = (Object)adaptor.create(char_literal83);
+            adaptor.addChild(root_0, char_literal83_tree);
             }
 
             }
@@ -2971,27 +3083,27 @@ public class JaParser extends Parser {
     };
 
     // $ANTLR start "literal"
-    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:209:1: literal : ( INTLITERAL | FloatingPointLiteral | CHARLITERAL | STRINGLITERAL | BOOLEANLITERAL | NULLLITERAL );
+    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:211:1: literal : ( INTLITERAL | FloatingPointLiteral | CHARLITERAL | STRINGLITERAL | BOOLEANLITERAL | NULLLITERAL );
     public final JaParser.literal_return literal() throws RecognitionException {
         JaParser.literal_return retval = new JaParser.literal_return();
         retval.start = input.LT(1);
 
         Object root_0 = null;
 
-        Token set85=null;
+        Token set84=null;
 
-        Object set85_tree=null;
+        Object set84_tree=null;
 
         try {
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:210:5: ( INTLITERAL | FloatingPointLiteral | CHARLITERAL | STRINGLITERAL | BOOLEANLITERAL | NULLLITERAL )
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:212:5: ( INTLITERAL | FloatingPointLiteral | CHARLITERAL | STRINGLITERAL | BOOLEANLITERAL | NULLLITERAL )
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:
             {
             root_0 = (Object)adaptor.nil();
 
-            set85=(Token)input.LT(1);
+            set84=(Token)input.LT(1);
             if ( (input.LA(1)>=INTLITERAL && input.LA(1)<=NULLLITERAL) ) {
                 input.consume();
-                if ( state.backtracking==0 ) adaptor.addChild(root_0, (Object)adaptor.create(set85));
+                if ( state.backtracking==0 ) adaptor.addChild(root_0, (Object)adaptor.create(set84));
                 state.errorRecovery=false;state.failed=false;
             }
             else {
@@ -3029,59 +3141,59 @@ public class JaParser extends Parser {
     };
 
     // $ANTLR start "block"
-    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:221:1: block : '{' ( blockStatement )* '}' ;
+    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:223:1: block : '{' ( blockStatement )* '}' ;
     public final JaParser.block_return block() throws RecognitionException {
         JaParser.block_return retval = new JaParser.block_return();
         retval.start = input.LT(1);
 
         Object root_0 = null;
 
-        Token char_literal86=null;
-        Token char_literal88=null;
-        JaParser.blockStatement_return blockStatement87 = null;
+        Token char_literal85=null;
+        Token char_literal87=null;
+        JaParser.blockStatement_return blockStatement86 = null;
 
 
-        Object char_literal86_tree=null;
-        Object char_literal88_tree=null;
+        Object char_literal85_tree=null;
+        Object char_literal87_tree=null;
 
         try {
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:222:5: ( '{' ( blockStatement )* '}' )
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:222:9: '{' ( blockStatement )* '}'
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:224:5: ( '{' ( blockStatement )* '}' )
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:224:9: '{' ( blockStatement )* '}'
             {
             root_0 = (Object)adaptor.nil();
 
-            char_literal86=(Token)match(input,76,FOLLOW_76_in_block1290); if (state.failed) return retval;
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:222:14: ( blockStatement )*
-            loop26:
+            char_literal85=(Token)match(input,76,FOLLOW_76_in_block1353); if (state.failed) return retval;
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:224:14: ( blockStatement )*
+            loop27:
             do {
-                int alt26=2;
-                int LA26_0 = input.LA(1);
+                int alt27=2;
+                int LA27_0 = input.LA(1);
 
-                if ( (LA26_0==IDENTIFIER||LA26_0==VOID||(LA26_0>=CHAR && LA26_0<=RETURN)||LA26_0==NEW||(LA26_0>=PLUS && LA26_0<=MINUS)||(LA26_0>=75 && LA26_0<=76)||LA26_0==81||(LA26_0>=93 && LA26_0<=95)) ) {
-                    alt26=1;
+                if ( (LA27_0==IDENTIFIER||LA27_0==VOID||(LA27_0>=CHAR && LA27_0<=RETURN)||LA27_0==NEW||(LA27_0>=PLUS && LA27_0<=MINUS)||(LA27_0>=75 && LA27_0<=76)||LA27_0==81||(LA27_0>=93 && LA27_0<=95)) ) {
+                    alt27=1;
                 }
 
 
-                switch (alt26) {
+                switch (alt27) {
             	case 1 :
-            	    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:222:14: blockStatement
+            	    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:224:14: blockStatement
             	    {
-            	    pushFollow(FOLLOW_blockStatement_in_block1293);
-            	    blockStatement87=blockStatement();
+            	    pushFollow(FOLLOW_blockStatement_in_block1356);
+            	    blockStatement86=blockStatement();
 
             	    state._fsp--;
             	    if (state.failed) return retval;
-            	    if ( state.backtracking==0 ) adaptor.addChild(root_0, blockStatement87.getTree());
+            	    if ( state.backtracking==0 ) adaptor.addChild(root_0, blockStatement86.getTree());
 
             	    }
             	    break;
 
             	default :
-            	    break loop26;
+            	    break loop27;
                 }
             } while (true);
 
-            char_literal88=(Token)match(input,77,FOLLOW_77_in_block1296); if (state.failed) return retval;
+            char_literal87=(Token)match(input,77,FOLLOW_77_in_block1359); if (state.failed) return retval;
 
             }
 
@@ -3111,49 +3223,49 @@ public class JaParser extends Parser {
     };
 
     // $ANTLR start "blockStatement"
-    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:225:1: blockStatement : ( localVariableDeclarationStatement | statement );
+    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:227:1: blockStatement : ( localVariableDeclarationStatement | statement );
     public final JaParser.blockStatement_return blockStatement() throws RecognitionException {
         JaParser.blockStatement_return retval = new JaParser.blockStatement_return();
         retval.start = input.LT(1);
 
         Object root_0 = null;
 
-        JaParser.localVariableDeclarationStatement_return localVariableDeclarationStatement89 = null;
+        JaParser.localVariableDeclarationStatement_return localVariableDeclarationStatement88 = null;
 
-        JaParser.statement_return statement90 = null;
+        JaParser.statement_return statement89 = null;
 
 
 
         try {
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:226:5: ( localVariableDeclarationStatement | statement )
-            int alt27=2;
-            alt27 = dfa27.predict(input);
-            switch (alt27) {
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:228:5: ( localVariableDeclarationStatement | statement )
+            int alt28=2;
+            alt28 = dfa28.predict(input);
+            switch (alt28) {
                 case 1 :
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:226:9: localVariableDeclarationStatement
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:228:9: localVariableDeclarationStatement
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_localVariableDeclarationStatement_in_blockStatement1320);
-                    localVariableDeclarationStatement89=localVariableDeclarationStatement();
+                    pushFollow(FOLLOW_localVariableDeclarationStatement_in_blockStatement1383);
+                    localVariableDeclarationStatement88=localVariableDeclarationStatement();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, localVariableDeclarationStatement89.getTree());
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, localVariableDeclarationStatement88.getTree());
 
                     }
                     break;
                 case 2 :
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:227:9: statement
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:229:9: statement
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_statement_in_blockStatement1330);
-                    statement90=statement();
+                    pushFollow(FOLLOW_statement_in_blockStatement1393);
+                    statement89=statement();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, statement90.getTree());
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, statement89.getTree());
 
                     }
                     break;
@@ -3185,32 +3297,32 @@ public class JaParser extends Parser {
     };
 
     // $ANTLR start "localVariableDeclarationStatement"
-    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:230:1: localVariableDeclarationStatement : localVariableDeclaration ';' ;
+    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:232:1: localVariableDeclarationStatement : localVariableDeclaration ';' ;
     public final JaParser.localVariableDeclarationStatement_return localVariableDeclarationStatement() throws RecognitionException {
         JaParser.localVariableDeclarationStatement_return retval = new JaParser.localVariableDeclarationStatement_return();
         retval.start = input.LT(1);
 
         Object root_0 = null;
 
-        Token char_literal92=null;
-        JaParser.localVariableDeclaration_return localVariableDeclaration91 = null;
+        Token char_literal91=null;
+        JaParser.localVariableDeclaration_return localVariableDeclaration90 = null;
 
 
-        Object char_literal92_tree=null;
+        Object char_literal91_tree=null;
 
         try {
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:231:5: ( localVariableDeclaration ';' )
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:231:10: localVariableDeclaration ';'
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:233:5: ( localVariableDeclaration ';' )
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:233:10: localVariableDeclaration ';'
             {
             root_0 = (Object)adaptor.nil();
 
-            pushFollow(FOLLOW_localVariableDeclaration_in_localVariableDeclarationStatement1354);
-            localVariableDeclaration91=localVariableDeclaration();
+            pushFollow(FOLLOW_localVariableDeclaration_in_localVariableDeclarationStatement1417);
+            localVariableDeclaration90=localVariableDeclaration();
 
             state._fsp--;
             if (state.failed) return retval;
-            if ( state.backtracking==0 ) adaptor.addChild(root_0, localVariableDeclaration91.getTree());
-            char_literal92=(Token)match(input,75,FOLLOW_75_in_localVariableDeclarationStatement1356); if (state.failed) return retval;
+            if ( state.backtracking==0 ) adaptor.addChild(root_0, localVariableDeclaration90.getTree());
+            char_literal91=(Token)match(input,75,FOLLOW_75_in_localVariableDeclarationStatement1419); if (state.failed) return retval;
 
             }
 
@@ -3240,78 +3352,78 @@ public class JaParser extends Parser {
     };
 
     // $ANTLR start "localVariableDeclaration"
-    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:234:1: localVariableDeclaration : type variableDeclarator ( ',' variableDeclarator )* -> ( ^( VARDECL type variableDeclarator ) )+ ;
+    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:236:1: localVariableDeclaration : type variableDeclarator ( ',' variableDeclarator )* -> ( ^( VARDECL type variableDeclarator ) )+ ;
     public final JaParser.localVariableDeclaration_return localVariableDeclaration() throws RecognitionException {
         JaParser.localVariableDeclaration_return retval = new JaParser.localVariableDeclaration_return();
         retval.start = input.LT(1);
 
         Object root_0 = null;
 
-        Token char_literal95=null;
-        JaParser.type_return type93 = null;
+        Token char_literal94=null;
+        JaParser.type_return type92 = null;
 
-        JaParser.variableDeclarator_return variableDeclarator94 = null;
+        JaParser.variableDeclarator_return variableDeclarator93 = null;
 
-        JaParser.variableDeclarator_return variableDeclarator96 = null;
+        JaParser.variableDeclarator_return variableDeclarator95 = null;
 
 
-        Object char_literal95_tree=null;
+        Object char_literal94_tree=null;
         RewriteRuleTokenStream stream_78=new RewriteRuleTokenStream(adaptor,"token 78");
         RewriteRuleSubtreeStream stream_variableDeclarator=new RewriteRuleSubtreeStream(adaptor,"rule variableDeclarator");
         RewriteRuleSubtreeStream stream_type=new RewriteRuleSubtreeStream(adaptor,"rule type");
         try {
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:235:5: ( type variableDeclarator ( ',' variableDeclarator )* -> ( ^( VARDECL type variableDeclarator ) )+ )
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:235:9: type variableDeclarator ( ',' variableDeclarator )*
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:237:5: ( type variableDeclarator ( ',' variableDeclarator )* -> ( ^( VARDECL type variableDeclarator ) )+ )
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:237:9: type variableDeclarator ( ',' variableDeclarator )*
             {
-            pushFollow(FOLLOW_type_in_localVariableDeclaration1376);
-            type93=type();
+            pushFollow(FOLLOW_type_in_localVariableDeclaration1439);
+            type92=type();
 
             state._fsp--;
             if (state.failed) return retval;
-            if ( state.backtracking==0 ) stream_type.add(type93.getTree());
-            pushFollow(FOLLOW_variableDeclarator_in_localVariableDeclaration1378);
-            variableDeclarator94=variableDeclarator();
+            if ( state.backtracking==0 ) stream_type.add(type92.getTree());
+            pushFollow(FOLLOW_variableDeclarator_in_localVariableDeclaration1441);
+            variableDeclarator93=variableDeclarator();
 
             state._fsp--;
             if (state.failed) return retval;
-            if ( state.backtracking==0 ) stream_variableDeclarator.add(variableDeclarator94.getTree());
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:235:33: ( ',' variableDeclarator )*
-            loop28:
+            if ( state.backtracking==0 ) stream_variableDeclarator.add(variableDeclarator93.getTree());
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:237:33: ( ',' variableDeclarator )*
+            loop29:
             do {
-                int alt28=2;
-                int LA28_0 = input.LA(1);
+                int alt29=2;
+                int LA29_0 = input.LA(1);
 
-                if ( (LA28_0==78) ) {
-                    alt28=1;
+                if ( (LA29_0==78) ) {
+                    alt29=1;
                 }
 
 
-                switch (alt28) {
+                switch (alt29) {
             	case 1 :
-            	    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:235:34: ',' variableDeclarator
+            	    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:237:34: ',' variableDeclarator
             	    {
-            	    char_literal95=(Token)match(input,78,FOLLOW_78_in_localVariableDeclaration1381); if (state.failed) return retval; 
-            	    if ( state.backtracking==0 ) stream_78.add(char_literal95);
+            	    char_literal94=(Token)match(input,78,FOLLOW_78_in_localVariableDeclaration1444); if (state.failed) return retval; 
+            	    if ( state.backtracking==0 ) stream_78.add(char_literal94);
 
-            	    pushFollow(FOLLOW_variableDeclarator_in_localVariableDeclaration1383);
-            	    variableDeclarator96=variableDeclarator();
+            	    pushFollow(FOLLOW_variableDeclarator_in_localVariableDeclaration1446);
+            	    variableDeclarator95=variableDeclarator();
 
             	    state._fsp--;
             	    if (state.failed) return retval;
-            	    if ( state.backtracking==0 ) stream_variableDeclarator.add(variableDeclarator96.getTree());
+            	    if ( state.backtracking==0 ) stream_variableDeclarator.add(variableDeclarator95.getTree());
 
             	    }
             	    break;
 
             	default :
-            	    break loop28;
+            	    break loop29;
                 }
             } while (true);
 
 
 
             // AST REWRITE
-            // elements: type, variableDeclarator
+            // elements: variableDeclarator, type
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -3322,13 +3434,13 @@ public class JaParser extends Parser {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
             root_0 = (Object)adaptor.nil();
-            // 235:59: -> ( ^( VARDECL type variableDeclarator ) )+
+            // 237:59: -> ( ^( VARDECL type variableDeclarator ) )+
             {
-                if ( !(stream_type.hasNext()||stream_variableDeclarator.hasNext()) ) {
+                if ( !(stream_variableDeclarator.hasNext()||stream_type.hasNext()) ) {
                     throw new RewriteEarlyExitException();
                 }
-                while ( stream_type.hasNext()||stream_variableDeclarator.hasNext() ) {
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:235:62: ^( VARDECL type variableDeclarator )
+                while ( stream_variableDeclarator.hasNext()||stream_type.hasNext() ) {
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:237:62: ^( VARDECL type variableDeclarator )
                     {
                     Object root_1 = (Object)adaptor.nil();
                     root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(VARDECL, "VARDECL"), root_1);
@@ -3340,8 +3452,8 @@ public class JaParser extends Parser {
                     }
 
                 }
-                stream_type.reset();
                 stream_variableDeclarator.reset();
+                stream_type.reset();
 
             }
 
@@ -3374,70 +3486,70 @@ public class JaParser extends Parser {
     };
 
     // $ANTLR start "statement"
-    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:239:1: statement : ( block -> ^( BLOCK block ) | IF parExpression statement elseStmt -> ^( IF ^( CONDITION parExpression ) ^( THEN statement ) ( elseStmt )? ) | FOR '(' ( forInit )? ';' ( expression )? ';' ( forUpdate )? ')' statement -> ^( FOR ( ^( INIT forInit ) )? ( ^( CONDITION expression ) )? ( ^( UPDATE forUpdate ) )? statement ) | WHILE parExpression statement -> ^( WHILE ^( CONDITION parExpression ) statement ) | DO statement WHILE parExpression ';' -> ^( DOWHILE ^( CONDITION parExpression ) statement ) | RETURN ( expression )? ';' | ';' | statementExpression ';' -> ^( STMT statementExpression ) );
+    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:241:1: statement : ( block -> ^( BLOCK block ) | IF parExpression statement elseStmt -> ^( IF ^( CONDITION parExpression ) ^( THEN statement ) ( elseStmt )? ) | FOR '(' ( forInit )? ';' ( expression )? ';' ( forUpdate )? ')' statement -> ^( FOR ( ^( INIT forInit ) )? ( ^( CONDITION expression ) )? ( ^( UPDATE forUpdate ) )? statement ) | WHILE parExpression statement -> ^( WHILE ^( CONDITION parExpression ) statement ) | DO statement WHILE parExpression ';' -> ^( DOWHILE ^( CONDITION parExpression ) statement ) | RETURN ( expression )? ';' | ';' | statementExpression ';' -> ^( STMT statementExpression ) );
     public final JaParser.statement_return statement() throws RecognitionException {
         JaParser.statement_return retval = new JaParser.statement_return();
         retval.start = input.LT(1);
 
         Object root_0 = null;
 
-        Token IF98=null;
-        Token FOR102=null;
-        Token char_literal103=null;
-        Token char_literal105=null;
-        Token char_literal107=null;
-        Token char_literal109=null;
-        Token WHILE111=null;
-        Token DO114=null;
-        Token WHILE116=null;
-        Token char_literal118=null;
-        Token RETURN119=null;
+        Token IF97=null;
+        Token FOR101=null;
+        Token char_literal102=null;
+        Token char_literal104=null;
+        Token char_literal106=null;
+        Token char_literal108=null;
+        Token WHILE110=null;
+        Token DO113=null;
+        Token WHILE115=null;
+        Token char_literal117=null;
+        Token RETURN118=null;
+        Token char_literal120=null;
         Token char_literal121=null;
-        Token char_literal122=null;
-        Token char_literal124=null;
-        JaParser.block_return block97 = null;
+        Token char_literal123=null;
+        JaParser.block_return block96 = null;
 
-        JaParser.parExpression_return parExpression99 = null;
+        JaParser.parExpression_return parExpression98 = null;
 
-        JaParser.statement_return statement100 = null;
+        JaParser.statement_return statement99 = null;
 
-        JaParser.elseStmt_return elseStmt101 = null;
+        JaParser.elseStmt_return elseStmt100 = null;
 
-        JaParser.forInit_return forInit104 = null;
+        JaParser.forInit_return forInit103 = null;
 
-        JaParser.expression_return expression106 = null;
+        JaParser.expression_return expression105 = null;
 
-        JaParser.forUpdate_return forUpdate108 = null;
+        JaParser.forUpdate_return forUpdate107 = null;
 
-        JaParser.statement_return statement110 = null;
+        JaParser.statement_return statement109 = null;
 
-        JaParser.parExpression_return parExpression112 = null;
+        JaParser.parExpression_return parExpression111 = null;
 
-        JaParser.statement_return statement113 = null;
+        JaParser.statement_return statement112 = null;
 
-        JaParser.statement_return statement115 = null;
+        JaParser.statement_return statement114 = null;
 
-        JaParser.parExpression_return parExpression117 = null;
+        JaParser.parExpression_return parExpression116 = null;
 
-        JaParser.expression_return expression120 = null;
+        JaParser.expression_return expression119 = null;
 
-        JaParser.statementExpression_return statementExpression123 = null;
+        JaParser.statementExpression_return statementExpression122 = null;
 
 
-        Object IF98_tree=null;
-        Object FOR102_tree=null;
-        Object char_literal103_tree=null;
-        Object char_literal105_tree=null;
-        Object char_literal107_tree=null;
-        Object char_literal109_tree=null;
-        Object WHILE111_tree=null;
-        Object DO114_tree=null;
-        Object WHILE116_tree=null;
-        Object char_literal118_tree=null;
-        Object RETURN119_tree=null;
+        Object IF97_tree=null;
+        Object FOR101_tree=null;
+        Object char_literal102_tree=null;
+        Object char_literal104_tree=null;
+        Object char_literal106_tree=null;
+        Object char_literal108_tree=null;
+        Object WHILE110_tree=null;
+        Object DO113_tree=null;
+        Object WHILE115_tree=null;
+        Object char_literal117_tree=null;
+        Object RETURN118_tree=null;
+        Object char_literal120_tree=null;
         Object char_literal121_tree=null;
-        Object char_literal122_tree=null;
-        Object char_literal124_tree=null;
+        Object char_literal123_tree=null;
         RewriteRuleTokenStream stream_DO=new RewriteRuleTokenStream(adaptor,"token DO");
         RewriteRuleTokenStream stream_FOR=new RewriteRuleTokenStream(adaptor,"token FOR");
         RewriteRuleTokenStream stream_WHILE=new RewriteRuleTokenStream(adaptor,"token WHILE");
@@ -3454,42 +3566,42 @@ public class JaParser extends Parser {
         RewriteRuleSubtreeStream stream_forInit=new RewriteRuleSubtreeStream(adaptor,"rule forInit");
         RewriteRuleSubtreeStream stream_forUpdate=new RewriteRuleSubtreeStream(adaptor,"rule forUpdate");
         try {
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:240:5: ( block -> ^( BLOCK block ) | IF parExpression statement elseStmt -> ^( IF ^( CONDITION parExpression ) ^( THEN statement ) ( elseStmt )? ) | FOR '(' ( forInit )? ';' ( expression )? ';' ( forUpdate )? ')' statement -> ^( FOR ( ^( INIT forInit ) )? ( ^( CONDITION expression ) )? ( ^( UPDATE forUpdate ) )? statement ) | WHILE parExpression statement -> ^( WHILE ^( CONDITION parExpression ) statement ) | DO statement WHILE parExpression ';' -> ^( DOWHILE ^( CONDITION parExpression ) statement ) | RETURN ( expression )? ';' | ';' | statementExpression ';' -> ^( STMT statementExpression ) )
-            int alt33=8;
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:242:5: ( block -> ^( BLOCK block ) | IF parExpression statement elseStmt -> ^( IF ^( CONDITION parExpression ) ^( THEN statement ) ( elseStmt )? ) | FOR '(' ( forInit )? ';' ( expression )? ';' ( forUpdate )? ')' statement -> ^( FOR ( ^( INIT forInit ) )? ( ^( CONDITION expression ) )? ( ^( UPDATE forUpdate ) )? statement ) | WHILE parExpression statement -> ^( WHILE ^( CONDITION parExpression ) statement ) | DO statement WHILE parExpression ';' -> ^( DOWHILE ^( CONDITION parExpression ) statement ) | RETURN ( expression )? ';' | ';' | statementExpression ';' -> ^( STMT statementExpression ) )
+            int alt34=8;
             switch ( input.LA(1) ) {
             case 76:
                 {
-                alt33=1;
+                alt34=1;
                 }
                 break;
             case IF:
                 {
-                alt33=2;
+                alt34=2;
                 }
                 break;
             case FOR:
                 {
-                alt33=3;
+                alt34=3;
                 }
                 break;
             case WHILE:
                 {
-                alt33=4;
+                alt34=4;
                 }
                 break;
             case DO:
                 {
-                alt33=5;
+                alt34=5;
                 }
                 break;
             case RETURN:
                 {
-                alt33=6;
+                alt34=6;
                 }
                 break;
             case 75:
                 {
-                alt33=7;
+                alt34=7;
                 }
                 break;
             case IDENTIFIER:
@@ -3517,27 +3629,27 @@ public class JaParser extends Parser {
             case 94:
             case 95:
                 {
-                alt33=8;
+                alt34=8;
                 }
                 break;
             default:
                 if (state.backtracking>0) {state.failed=true; return retval;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 33, 0, input);
+                    new NoViableAltException("", 34, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt33) {
+            switch (alt34) {
                 case 1 :
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:240:9: block
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:242:9: block
                     {
-                    pushFollow(FOLLOW_block_in_statement1419);
-                    block97=block();
+                    pushFollow(FOLLOW_block_in_statement1482);
+                    block96=block();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) stream_block.add(block97.getTree());
+                    if ( state.backtracking==0 ) stream_block.add(block96.getTree());
 
 
                     // AST REWRITE
@@ -3552,9 +3664,9 @@ public class JaParser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 240:15: -> ^( BLOCK block )
+                    // 242:15: -> ^( BLOCK block )
                     {
-                        // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:240:18: ^( BLOCK block )
+                        // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:242:18: ^( BLOCK block )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(BLOCK, "BLOCK"), root_1);
@@ -3570,33 +3682,33 @@ public class JaParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:241:9: IF parExpression statement elseStmt
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:243:9: IF parExpression statement elseStmt
                     {
-                    IF98=(Token)match(input,IF,FOLLOW_IF_in_statement1437); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_IF.add(IF98);
+                    IF97=(Token)match(input,IF,FOLLOW_IF_in_statement1500); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_IF.add(IF97);
 
-                    pushFollow(FOLLOW_parExpression_in_statement1439);
-                    parExpression99=parExpression();
-
-                    state._fsp--;
-                    if (state.failed) return retval;
-                    if ( state.backtracking==0 ) stream_parExpression.add(parExpression99.getTree());
-                    pushFollow(FOLLOW_statement_in_statement1441);
-                    statement100=statement();
+                    pushFollow(FOLLOW_parExpression_in_statement1502);
+                    parExpression98=parExpression();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) stream_statement.add(statement100.getTree());
-                    pushFollow(FOLLOW_elseStmt_in_statement1443);
-                    elseStmt101=elseStmt();
+                    if ( state.backtracking==0 ) stream_parExpression.add(parExpression98.getTree());
+                    pushFollow(FOLLOW_statement_in_statement1504);
+                    statement99=statement();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) stream_elseStmt.add(elseStmt101.getTree());
+                    if ( state.backtracking==0 ) stream_statement.add(statement99.getTree());
+                    pushFollow(FOLLOW_elseStmt_in_statement1506);
+                    elseStmt100=elseStmt();
+
+                    state._fsp--;
+                    if (state.failed) return retval;
+                    if ( state.backtracking==0 ) stream_elseStmt.add(elseStmt100.getTree());
 
 
                     // AST REWRITE
-                    // elements: elseStmt, statement, parExpression, IF
+                    // elements: elseStmt, IF, statement, parExpression
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -3607,14 +3719,14 @@ public class JaParser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 241:45: -> ^( IF ^( CONDITION parExpression ) ^( THEN statement ) ( elseStmt )? )
+                    // 243:45: -> ^( IF ^( CONDITION parExpression ) ^( THEN statement ) ( elseStmt )? )
                     {
-                        // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:241:48: ^( IF ^( CONDITION parExpression ) ^( THEN statement ) ( elseStmt )? )
+                        // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:243:48: ^( IF ^( CONDITION parExpression ) ^( THEN statement ) ( elseStmt )? )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(stream_IF.nextNode(), root_1);
 
-                        // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:241:53: ^( CONDITION parExpression )
+                        // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:243:53: ^( CONDITION parExpression )
                         {
                         Object root_2 = (Object)adaptor.nil();
                         root_2 = (Object)adaptor.becomeRoot((Object)adaptor.create(CONDITION, "CONDITION"), root_2);
@@ -3623,7 +3735,7 @@ public class JaParser extends Parser {
 
                         adaptor.addChild(root_1, root_2);
                         }
-                        // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:241:80: ^( THEN statement )
+                        // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:243:80: ^( THEN statement )
                         {
                         Object root_2 = (Object)adaptor.nil();
                         root_2 = (Object)adaptor.becomeRoot((Object)adaptor.create(THEN, "THEN"), root_2);
@@ -3632,7 +3744,7 @@ public class JaParser extends Parser {
 
                         adaptor.addChild(root_1, root_2);
                         }
-                        // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:241:98: ( elseStmt )?
+                        // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:243:98: ( elseStmt )?
                         if ( stream_elseStmt.hasNext() ) {
                             adaptor.addChild(root_1, stream_elseStmt.nextTree());
 
@@ -3648,41 +3760,15 @@ public class JaParser extends Parser {
                     }
                     break;
                 case 3 :
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:242:9: FOR '(' ( forInit )? ';' ( expression )? ';' ( forUpdate )? ')' statement
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:244:9: FOR '(' ( forInit )? ';' ( expression )? ';' ( forUpdate )? ')' statement
                     {
-                    FOR102=(Token)match(input,FOR,FOLLOW_FOR_in_statement1474); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_FOR.add(FOR102);
+                    FOR101=(Token)match(input,FOR,FOLLOW_FOR_in_statement1537); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_FOR.add(FOR101);
 
-                    char_literal103=(Token)match(input,81,FOLLOW_81_in_statement1476); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_81.add(char_literal103);
+                    char_literal102=(Token)match(input,81,FOLLOW_81_in_statement1539); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_81.add(char_literal102);
 
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:242:17: ( forInit )?
-                    int alt29=2;
-                    int LA29_0 = input.LA(1);
-
-                    if ( (LA29_0==IDENTIFIER||LA29_0==VOID||(LA29_0>=CHAR && LA29_0<=NULLLITERAL)||LA29_0==NEW||(LA29_0>=PLUS && LA29_0<=MINUS)||LA29_0==81||(LA29_0>=93 && LA29_0<=95)) ) {
-                        alt29=1;
-                    }
-                    switch (alt29) {
-                        case 1 :
-                            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:242:17: forInit
-                            {
-                            pushFollow(FOLLOW_forInit_in_statement1478);
-                            forInit104=forInit();
-
-                            state._fsp--;
-                            if (state.failed) return retval;
-                            if ( state.backtracking==0 ) stream_forInit.add(forInit104.getTree());
-
-                            }
-                            break;
-
-                    }
-
-                    char_literal105=(Token)match(input,75,FOLLOW_75_in_statement1481); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_75.add(char_literal105);
-
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:242:30: ( expression )?
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:244:17: ( forInit )?
                     int alt30=2;
                     int LA30_0 = input.LA(1);
 
@@ -3691,24 +3777,24 @@ public class JaParser extends Parser {
                     }
                     switch (alt30) {
                         case 1 :
-                            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:242:30: expression
+                            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:244:17: forInit
                             {
-                            pushFollow(FOLLOW_expression_in_statement1483);
-                            expression106=expression();
+                            pushFollow(FOLLOW_forInit_in_statement1541);
+                            forInit103=forInit();
 
                             state._fsp--;
                             if (state.failed) return retval;
-                            if ( state.backtracking==0 ) stream_expression.add(expression106.getTree());
+                            if ( state.backtracking==0 ) stream_forInit.add(forInit103.getTree());
 
                             }
                             break;
 
                     }
 
-                    char_literal107=(Token)match(input,75,FOLLOW_75_in_statement1486); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_75.add(char_literal107);
+                    char_literal104=(Token)match(input,75,FOLLOW_75_in_statement1544); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_75.add(char_literal104);
 
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:242:46: ( forUpdate )?
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:244:30: ( expression )?
                     int alt31=2;
                     int LA31_0 = input.LA(1);
 
@@ -3717,33 +3803,59 @@ public class JaParser extends Parser {
                     }
                     switch (alt31) {
                         case 1 :
-                            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:242:46: forUpdate
+                            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:244:30: expression
                             {
-                            pushFollow(FOLLOW_forUpdate_in_statement1488);
-                            forUpdate108=forUpdate();
+                            pushFollow(FOLLOW_expression_in_statement1546);
+                            expression105=expression();
 
                             state._fsp--;
                             if (state.failed) return retval;
-                            if ( state.backtracking==0 ) stream_forUpdate.add(forUpdate108.getTree());
+                            if ( state.backtracking==0 ) stream_expression.add(expression105.getTree());
 
                             }
                             break;
 
                     }
 
-                    char_literal109=(Token)match(input,82,FOLLOW_82_in_statement1491); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_82.add(char_literal109);
+                    char_literal106=(Token)match(input,75,FOLLOW_75_in_statement1549); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_75.add(char_literal106);
 
-                    pushFollow(FOLLOW_statement_in_statement1493);
-                    statement110=statement();
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:244:46: ( forUpdate )?
+                    int alt32=2;
+                    int LA32_0 = input.LA(1);
+
+                    if ( (LA32_0==IDENTIFIER||LA32_0==VOID||(LA32_0>=CHAR && LA32_0<=NULLLITERAL)||LA32_0==NEW||(LA32_0>=PLUS && LA32_0<=MINUS)||LA32_0==81||(LA32_0>=93 && LA32_0<=95)) ) {
+                        alt32=1;
+                    }
+                    switch (alt32) {
+                        case 1 :
+                            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:244:46: forUpdate
+                            {
+                            pushFollow(FOLLOW_forUpdate_in_statement1551);
+                            forUpdate107=forUpdate();
+
+                            state._fsp--;
+                            if (state.failed) return retval;
+                            if ( state.backtracking==0 ) stream_forUpdate.add(forUpdate107.getTree());
+
+                            }
+                            break;
+
+                    }
+
+                    char_literal108=(Token)match(input,82,FOLLOW_82_in_statement1554); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_82.add(char_literal108);
+
+                    pushFollow(FOLLOW_statement_in_statement1556);
+                    statement109=statement();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) stream_statement.add(statement110.getTree());
+                    if ( state.backtracking==0 ) stream_statement.add(statement109.getTree());
 
 
                     // AST REWRITE
-                    // elements: expression, FOR, forInit, statement, forUpdate
+                    // elements: forInit, FOR, statement, forUpdate, expression
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -3754,16 +3866,16 @@ public class JaParser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 243:6: -> ^( FOR ( ^( INIT forInit ) )? ( ^( CONDITION expression ) )? ( ^( UPDATE forUpdate ) )? statement )
+                    // 245:6: -> ^( FOR ( ^( INIT forInit ) )? ( ^( CONDITION expression ) )? ( ^( UPDATE forUpdate ) )? statement )
                     {
-                        // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:243:9: ^( FOR ( ^( INIT forInit ) )? ( ^( CONDITION expression ) )? ( ^( UPDATE forUpdate ) )? statement )
+                        // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:245:9: ^( FOR ( ^( INIT forInit ) )? ( ^( CONDITION expression ) )? ( ^( UPDATE forUpdate ) )? statement )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(stream_FOR.nextNode(), root_1);
 
-                        // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:243:15: ( ^( INIT forInit ) )?
+                        // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:245:15: ( ^( INIT forInit ) )?
                         if ( stream_forInit.hasNext() ) {
-                            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:243:15: ^( INIT forInit )
+                            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:245:15: ^( INIT forInit )
                             {
                             Object root_2 = (Object)adaptor.nil();
                             root_2 = (Object)adaptor.becomeRoot((Object)adaptor.create(INIT, "INIT"), root_2);
@@ -3775,9 +3887,9 @@ public class JaParser extends Parser {
 
                         }
                         stream_forInit.reset();
-                        // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:243:32: ( ^( CONDITION expression ) )?
+                        // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:245:32: ( ^( CONDITION expression ) )?
                         if ( stream_expression.hasNext() ) {
-                            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:243:32: ^( CONDITION expression )
+                            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:245:32: ^( CONDITION expression )
                             {
                             Object root_2 = (Object)adaptor.nil();
                             root_2 = (Object)adaptor.becomeRoot((Object)adaptor.create(CONDITION, "CONDITION"), root_2);
@@ -3789,9 +3901,9 @@ public class JaParser extends Parser {
 
                         }
                         stream_expression.reset();
-                        // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:243:57: ( ^( UPDATE forUpdate ) )?
+                        // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:245:57: ( ^( UPDATE forUpdate ) )?
                         if ( stream_forUpdate.hasNext() ) {
-                            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:243:57: ^( UPDATE forUpdate )
+                            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:245:57: ^( UPDATE forUpdate )
                             {
                             Object root_2 = (Object)adaptor.nil();
                             root_2 = (Object)adaptor.becomeRoot((Object)adaptor.create(UPDATE, "UPDATE"), root_2);
@@ -3814,27 +3926,27 @@ public class JaParser extends Parser {
                     }
                     break;
                 case 4 :
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:244:9: WHILE parExpression statement
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:246:9: WHILE parExpression statement
                     {
-                    WHILE111=(Token)match(input,WHILE,FOLLOW_WHILE_in_statement1539); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_WHILE.add(WHILE111);
+                    WHILE110=(Token)match(input,WHILE,FOLLOW_WHILE_in_statement1602); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_WHILE.add(WHILE110);
 
-                    pushFollow(FOLLOW_parExpression_in_statement1541);
-                    parExpression112=parExpression();
-
-                    state._fsp--;
-                    if (state.failed) return retval;
-                    if ( state.backtracking==0 ) stream_parExpression.add(parExpression112.getTree());
-                    pushFollow(FOLLOW_statement_in_statement1543);
-                    statement113=statement();
+                    pushFollow(FOLLOW_parExpression_in_statement1604);
+                    parExpression111=parExpression();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) stream_statement.add(statement113.getTree());
+                    if ( state.backtracking==0 ) stream_parExpression.add(parExpression111.getTree());
+                    pushFollow(FOLLOW_statement_in_statement1606);
+                    statement112=statement();
+
+                    state._fsp--;
+                    if (state.failed) return retval;
+                    if ( state.backtracking==0 ) stream_statement.add(statement112.getTree());
 
 
                     // AST REWRITE
-                    // elements: parExpression, WHILE, statement
+                    // elements: statement, parExpression, WHILE
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -3845,14 +3957,14 @@ public class JaParser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 244:39: -> ^( WHILE ^( CONDITION parExpression ) statement )
+                    // 246:39: -> ^( WHILE ^( CONDITION parExpression ) statement )
                     {
-                        // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:244:42: ^( WHILE ^( CONDITION parExpression ) statement )
+                        // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:246:42: ^( WHILE ^( CONDITION parExpression ) statement )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(stream_WHILE.nextNode(), root_1);
 
-                        // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:244:50: ^( CONDITION parExpression )
+                        // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:246:50: ^( CONDITION parExpression )
                         {
                         Object root_2 = (Object)adaptor.nil();
                         root_2 = (Object)adaptor.becomeRoot((Object)adaptor.create(CONDITION, "CONDITION"), root_2);
@@ -3872,28 +3984,28 @@ public class JaParser extends Parser {
                     }
                     break;
                 case 5 :
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:245:9: DO statement WHILE parExpression ';'
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:247:9: DO statement WHILE parExpression ';'
                     {
-                    DO114=(Token)match(input,DO,FOLLOW_DO_in_statement1567); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_DO.add(DO114);
+                    DO113=(Token)match(input,DO,FOLLOW_DO_in_statement1630); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_DO.add(DO113);
 
-                    pushFollow(FOLLOW_statement_in_statement1569);
-                    statement115=statement();
-
-                    state._fsp--;
-                    if (state.failed) return retval;
-                    if ( state.backtracking==0 ) stream_statement.add(statement115.getTree());
-                    WHILE116=(Token)match(input,WHILE,FOLLOW_WHILE_in_statement1571); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_WHILE.add(WHILE116);
-
-                    pushFollow(FOLLOW_parExpression_in_statement1573);
-                    parExpression117=parExpression();
+                    pushFollow(FOLLOW_statement_in_statement1632);
+                    statement114=statement();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) stream_parExpression.add(parExpression117.getTree());
-                    char_literal118=(Token)match(input,75,FOLLOW_75_in_statement1575); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_75.add(char_literal118);
+                    if ( state.backtracking==0 ) stream_statement.add(statement114.getTree());
+                    WHILE115=(Token)match(input,WHILE,FOLLOW_WHILE_in_statement1634); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_WHILE.add(WHILE115);
+
+                    pushFollow(FOLLOW_parExpression_in_statement1636);
+                    parExpression116=parExpression();
+
+                    state._fsp--;
+                    if (state.failed) return retval;
+                    if ( state.backtracking==0 ) stream_parExpression.add(parExpression116.getTree());
+                    char_literal117=(Token)match(input,75,FOLLOW_75_in_statement1638); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_75.add(char_literal117);
 
 
 
@@ -3909,14 +4021,14 @@ public class JaParser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 245:46: -> ^( DOWHILE ^( CONDITION parExpression ) statement )
+                    // 247:46: -> ^( DOWHILE ^( CONDITION parExpression ) statement )
                     {
-                        // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:245:49: ^( DOWHILE ^( CONDITION parExpression ) statement )
+                        // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:247:49: ^( DOWHILE ^( CONDITION parExpression ) statement )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(DOWHILE, "DOWHILE"), root_1);
 
-                        // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:245:59: ^( CONDITION parExpression )
+                        // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:247:59: ^( CONDITION parExpression )
                         {
                         Object root_2 = (Object)adaptor.nil();
                         root_2 = (Object)adaptor.becomeRoot((Object)adaptor.create(CONDITION, "CONDITION"), root_2);
@@ -3936,62 +4048,62 @@ public class JaParser extends Parser {
                     }
                     break;
                 case 6 :
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:246:9: RETURN ( expression )? ';'
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:248:9: RETURN ( expression )? ';'
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    RETURN119=(Token)match(input,RETURN,FOLLOW_RETURN_in_statement1599); if (state.failed) return retval;
+                    RETURN118=(Token)match(input,RETURN,FOLLOW_RETURN_in_statement1662); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    RETURN119_tree = (Object)adaptor.create(RETURN119);
-                    root_0 = (Object)adaptor.becomeRoot(RETURN119_tree, root_0);
+                    RETURN118_tree = (Object)adaptor.create(RETURN118);
+                    root_0 = (Object)adaptor.becomeRoot(RETURN118_tree, root_0);
                     }
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:246:17: ( expression )?
-                    int alt32=2;
-                    int LA32_0 = input.LA(1);
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:248:17: ( expression )?
+                    int alt33=2;
+                    int LA33_0 = input.LA(1);
 
-                    if ( (LA32_0==IDENTIFIER||LA32_0==VOID||(LA32_0>=CHAR && LA32_0<=NULLLITERAL)||LA32_0==NEW||(LA32_0>=PLUS && LA32_0<=MINUS)||LA32_0==81||(LA32_0>=93 && LA32_0<=95)) ) {
-                        alt32=1;
+                    if ( (LA33_0==IDENTIFIER||LA33_0==VOID||(LA33_0>=CHAR && LA33_0<=NULLLITERAL)||LA33_0==NEW||(LA33_0>=PLUS && LA33_0<=MINUS)||LA33_0==81||(LA33_0>=93 && LA33_0<=95)) ) {
+                        alt33=1;
                     }
-                    switch (alt32) {
+                    switch (alt33) {
                         case 1 :
-                            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:246:17: expression
+                            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:248:17: expression
                             {
-                            pushFollow(FOLLOW_expression_in_statement1602);
-                            expression120=expression();
+                            pushFollow(FOLLOW_expression_in_statement1665);
+                            expression119=expression();
 
                             state._fsp--;
                             if (state.failed) return retval;
-                            if ( state.backtracking==0 ) adaptor.addChild(root_0, expression120.getTree());
+                            if ( state.backtracking==0 ) adaptor.addChild(root_0, expression119.getTree());
 
                             }
                             break;
 
                     }
 
-                    char_literal121=(Token)match(input,75,FOLLOW_75_in_statement1605); if (state.failed) return retval;
+                    char_literal120=(Token)match(input,75,FOLLOW_75_in_statement1668); if (state.failed) return retval;
 
                     }
                     break;
                 case 7 :
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:247:9: ';'
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:249:9: ';'
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    char_literal122=(Token)match(input,75,FOLLOW_75_in_statement1616); if (state.failed) return retval;
+                    char_literal121=(Token)match(input,75,FOLLOW_75_in_statement1679); if (state.failed) return retval;
 
                     }
                     break;
                 case 8 :
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:248:9: statementExpression ';'
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:250:9: statementExpression ';'
                     {
-                    pushFollow(FOLLOW_statementExpression_in_statement1628);
-                    statementExpression123=statementExpression();
+                    pushFollow(FOLLOW_statementExpression_in_statement1691);
+                    statementExpression122=statementExpression();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) stream_statementExpression.add(statementExpression123.getTree());
-                    char_literal124=(Token)match(input,75,FOLLOW_75_in_statement1630); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_75.add(char_literal124);
+                    if ( state.backtracking==0 ) stream_statementExpression.add(statementExpression122.getTree());
+                    char_literal123=(Token)match(input,75,FOLLOW_75_in_statement1693); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_75.add(char_literal123);
 
 
 
@@ -4007,9 +4119,9 @@ public class JaParser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 248:33: -> ^( STMT statementExpression )
+                    // 250:33: -> ^( STMT statementExpression )
                     {
-                        // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:248:36: ^( STMT statementExpression )
+                        // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:250:36: ^( STMT statementExpression )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(STMT, "STMT"), root_1);
@@ -4052,73 +4164,73 @@ public class JaParser extends Parser {
     };
 
     // $ANTLR start "elseStmt"
-    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:251:1: elseStmt : ( ( ELSE )=> ELSE statement | );
+    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:253:1: elseStmt : ( ( ELSE )=> ELSE statement | );
     public final JaParser.elseStmt_return elseStmt() throws RecognitionException {
         JaParser.elseStmt_return retval = new JaParser.elseStmt_return();
         retval.start = input.LT(1);
 
         Object root_0 = null;
 
-        Token ELSE125=null;
-        JaParser.statement_return statement126 = null;
+        Token ELSE124=null;
+        JaParser.statement_return statement125 = null;
 
 
-        Object ELSE125_tree=null;
+        Object ELSE124_tree=null;
 
         try {
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:251:9: ( ( ELSE )=> ELSE statement | )
-            int alt34=2;
-            int LA34_0 = input.LA(1);
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:253:9: ( ( ELSE )=> ELSE statement | )
+            int alt35=2;
+            int LA35_0 = input.LA(1);
 
-            if ( (LA34_0==ELSE) ) {
-                int LA34_1 = input.LA(2);
+            if ( (LA35_0==ELSE) ) {
+                int LA35_1 = input.LA(2);
 
                 if ( (synpred2_Ja()) ) {
-                    alt34=1;
+                    alt35=1;
                 }
                 else if ( (true) ) {
-                    alt34=2;
+                    alt35=2;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return retval;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 34, 1, input);
+                        new NoViableAltException("", 35, 1, input);
 
                     throw nvae;
                 }
             }
-            else if ( (LA34_0==IDENTIFIER||LA34_0==VOID||(LA34_0>=CHAR && LA34_0<=RETURN)||LA34_0==NEW||(LA34_0>=PLUS && LA34_0<=MINUS)||(LA34_0>=75 && LA34_0<=77)||LA34_0==81||(LA34_0>=93 && LA34_0<=95)) ) {
-                alt34=2;
+            else if ( (LA35_0==IDENTIFIER||LA35_0==VOID||(LA35_0>=CHAR && LA35_0<=RETURN)||LA35_0==NEW||(LA35_0>=PLUS && LA35_0<=MINUS)||(LA35_0>=75 && LA35_0<=77)||LA35_0==81||(LA35_0>=93 && LA35_0<=95)) ) {
+                alt35=2;
             }
             else {
                 if (state.backtracking>0) {state.failed=true; return retval;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 34, 0, input);
+                    new NoViableAltException("", 35, 0, input);
 
                 throw nvae;
             }
-            switch (alt34) {
+            switch (alt35) {
                 case 1 :
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:252:2: ( ELSE )=> ELSE statement
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:254:2: ( ELSE )=> ELSE statement
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    ELSE125=(Token)match(input,ELSE,FOLLOW_ELSE_in_elseStmt1662); if (state.failed) return retval;
+                    ELSE124=(Token)match(input,ELSE,FOLLOW_ELSE_in_elseStmt1725); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    ELSE125_tree = (Object)adaptor.create(ELSE125);
-                    root_0 = (Object)adaptor.becomeRoot(ELSE125_tree, root_0);
+                    ELSE124_tree = (Object)adaptor.create(ELSE124);
+                    root_0 = (Object)adaptor.becomeRoot(ELSE124_tree, root_0);
                     }
-                    pushFollow(FOLLOW_statement_in_elseStmt1665);
-                    statement126=statement();
+                    pushFollow(FOLLOW_statement_in_elseStmt1728);
+                    statement125=statement();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, statement126.getTree());
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, statement125.getTree());
 
                     }
                     break;
                 case 2 :
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:254:2: 
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:256:2: 
                     {
                     root_0 = (Object)adaptor.nil();
 
@@ -4152,49 +4264,49 @@ public class JaParser extends Parser {
     };
 
     // $ANTLR start "forInit"
-    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:261:1: forInit : ( localVariableDeclaration | expressionList );
+    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:263:1: forInit : ( localVariableDeclaration | expressionList );
     public final JaParser.forInit_return forInit() throws RecognitionException {
         JaParser.forInit_return retval = new JaParser.forInit_return();
         retval.start = input.LT(1);
 
         Object root_0 = null;
 
-        JaParser.localVariableDeclaration_return localVariableDeclaration127 = null;
+        JaParser.localVariableDeclaration_return localVariableDeclaration126 = null;
 
-        JaParser.expressionList_return expressionList128 = null;
+        JaParser.expressionList_return expressionList127 = null;
 
 
 
         try {
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:262:5: ( localVariableDeclaration | expressionList )
-            int alt35=2;
-            alt35 = dfa35.predict(input);
-            switch (alt35) {
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:264:5: ( localVariableDeclaration | expressionList )
+            int alt36=2;
+            alt36 = dfa36.predict(input);
+            switch (alt36) {
                 case 1 :
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:262:9: localVariableDeclaration
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:264:9: localVariableDeclaration
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_localVariableDeclaration_in_forInit1690);
-                    localVariableDeclaration127=localVariableDeclaration();
+                    pushFollow(FOLLOW_localVariableDeclaration_in_forInit1753);
+                    localVariableDeclaration126=localVariableDeclaration();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, localVariableDeclaration127.getTree());
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, localVariableDeclaration126.getTree());
 
                     }
                     break;
                 case 2 :
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:263:9: expressionList
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:265:9: expressionList
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_expressionList_in_forInit1700);
-                    expressionList128=expressionList();
+                    pushFollow(FOLLOW_expressionList_in_forInit1763);
+                    expressionList127=expressionList();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, expressionList128.getTree());
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, expressionList127.getTree());
 
                     }
                     break;
@@ -4226,29 +4338,29 @@ public class JaParser extends Parser {
     };
 
     // $ANTLR start "forUpdate"
-    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:266:1: forUpdate : expressionList ;
+    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:268:1: forUpdate : expressionList ;
     public final JaParser.forUpdate_return forUpdate() throws RecognitionException {
         JaParser.forUpdate_return retval = new JaParser.forUpdate_return();
         retval.start = input.LT(1);
 
         Object root_0 = null;
 
-        JaParser.expressionList_return expressionList129 = null;
+        JaParser.expressionList_return expressionList128 = null;
 
 
 
         try {
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:267:5: ( expressionList )
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:267:9: expressionList
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:269:5: ( expressionList )
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:269:9: expressionList
             {
             root_0 = (Object)adaptor.nil();
 
-            pushFollow(FOLLOW_expressionList_in_forUpdate1719);
-            expressionList129=expressionList();
+            pushFollow(FOLLOW_expressionList_in_forUpdate1782);
+            expressionList128=expressionList();
 
             state._fsp--;
             if (state.failed) return retval;
-            if ( state.backtracking==0 ) adaptor.addChild(root_0, expressionList129.getTree());
+            if ( state.backtracking==0 ) adaptor.addChild(root_0, expressionList128.getTree());
 
             }
 
@@ -4278,35 +4390,35 @@ public class JaParser extends Parser {
     };
 
     // $ANTLR start "parExpression"
-    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:272:1: parExpression : '(' expression ')' ;
+    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:274:1: parExpression : '(' expression ')' ;
     public final JaParser.parExpression_return parExpression() throws RecognitionException {
         JaParser.parExpression_return retval = new JaParser.parExpression_return();
         retval.start = input.LT(1);
 
         Object root_0 = null;
 
-        Token char_literal130=null;
-        Token char_literal132=null;
-        JaParser.expression_return expression131 = null;
+        Token char_literal129=null;
+        Token char_literal131=null;
+        JaParser.expression_return expression130 = null;
 
 
-        Object char_literal130_tree=null;
-        Object char_literal132_tree=null;
+        Object char_literal129_tree=null;
+        Object char_literal131_tree=null;
 
         try {
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:273:5: ( '(' expression ')' )
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:273:9: '(' expression ')'
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:275:5: ( '(' expression ')' )
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:275:9: '(' expression ')'
             {
             root_0 = (Object)adaptor.nil();
 
-            char_literal130=(Token)match(input,81,FOLLOW_81_in_parExpression1740); if (state.failed) return retval;
-            pushFollow(FOLLOW_expression_in_parExpression1743);
-            expression131=expression();
+            char_literal129=(Token)match(input,81,FOLLOW_81_in_parExpression1803); if (state.failed) return retval;
+            pushFollow(FOLLOW_expression_in_parExpression1806);
+            expression130=expression();
 
             state._fsp--;
             if (state.failed) return retval;
-            if ( state.backtracking==0 ) adaptor.addChild(root_0, expression131.getTree());
-            char_literal132=(Token)match(input,82,FOLLOW_82_in_parExpression1745); if (state.failed) return retval;
+            if ( state.backtracking==0 ) adaptor.addChild(root_0, expression130.getTree());
+            char_literal131=(Token)match(input,82,FOLLOW_82_in_parExpression1808); if (state.failed) return retval;
 
             }
 
@@ -4336,65 +4448,65 @@ public class JaParser extends Parser {
     };
 
     // $ANTLR start "expressionList"
-    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:276:1: expressionList : expression ( ',' expression )* ;
+    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:278:1: expressionList : expression ( ',' expression )* ;
     public final JaParser.expressionList_return expressionList() throws RecognitionException {
         JaParser.expressionList_return retval = new JaParser.expressionList_return();
         retval.start = input.LT(1);
 
         Object root_0 = null;
 
-        Token char_literal134=null;
-        JaParser.expression_return expression133 = null;
+        Token char_literal133=null;
+        JaParser.expression_return expression132 = null;
 
-        JaParser.expression_return expression135 = null;
+        JaParser.expression_return expression134 = null;
 
 
-        Object char_literal134_tree=null;
+        Object char_literal133_tree=null;
 
         try {
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:277:5: ( expression ( ',' expression )* )
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:277:9: expression ( ',' expression )*
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:279:5: ( expression ( ',' expression )* )
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:279:9: expression ( ',' expression )*
             {
             root_0 = (Object)adaptor.nil();
 
-            pushFollow(FOLLOW_expression_in_expressionList1769);
-            expression133=expression();
+            pushFollow(FOLLOW_expression_in_expressionList1832);
+            expression132=expression();
 
             state._fsp--;
             if (state.failed) return retval;
-            if ( state.backtracking==0 ) adaptor.addChild(root_0, expression133.getTree());
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:277:20: ( ',' expression )*
-            loop36:
+            if ( state.backtracking==0 ) adaptor.addChild(root_0, expression132.getTree());
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:279:20: ( ',' expression )*
+            loop37:
             do {
-                int alt36=2;
-                int LA36_0 = input.LA(1);
+                int alt37=2;
+                int LA37_0 = input.LA(1);
 
-                if ( (LA36_0==78) ) {
-                    alt36=1;
+                if ( (LA37_0==78) ) {
+                    alt37=1;
                 }
 
 
-                switch (alt36) {
+                switch (alt37) {
             	case 1 :
-            	    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:277:21: ',' expression
+            	    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:279:21: ',' expression
             	    {
-            	    char_literal134=(Token)match(input,78,FOLLOW_78_in_expressionList1772); if (state.failed) return retval;
+            	    char_literal133=(Token)match(input,78,FOLLOW_78_in_expressionList1835); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
-            	    char_literal134_tree = (Object)adaptor.create(char_literal134);
-            	    adaptor.addChild(root_0, char_literal134_tree);
+            	    char_literal133_tree = (Object)adaptor.create(char_literal133);
+            	    adaptor.addChild(root_0, char_literal133_tree);
             	    }
-            	    pushFollow(FOLLOW_expression_in_expressionList1774);
-            	    expression135=expression();
+            	    pushFollow(FOLLOW_expression_in_expressionList1837);
+            	    expression134=expression();
 
             	    state._fsp--;
             	    if (state.failed) return retval;
-            	    if ( state.backtracking==0 ) adaptor.addChild(root_0, expression135.getTree());
+            	    if ( state.backtracking==0 ) adaptor.addChild(root_0, expression134.getTree());
 
             	    }
             	    break;
 
             	default :
-            	    break loop36;
+            	    break loop37;
                 }
             } while (true);
 
@@ -4427,29 +4539,29 @@ public class JaParser extends Parser {
     };
 
     // $ANTLR start "statementExpression"
-    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:280:1: statementExpression : expression ;
+    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:282:1: statementExpression : expression ;
     public final JaParser.statementExpression_return statementExpression() throws RecognitionException {
         JaParser.statementExpression_return retval = new JaParser.statementExpression_return();
         retval.start = input.LT(1);
 
         Object root_0 = null;
 
-        JaParser.expression_return expression136 = null;
+        JaParser.expression_return expression135 = null;
 
 
 
         try {
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:281:5: ( expression )
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:281:9: expression
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:283:5: ( expression )
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:283:9: expression
             {
             root_0 = (Object)adaptor.nil();
 
-            pushFollow(FOLLOW_expression_in_statementExpression1795);
-            expression136=expression();
+            pushFollow(FOLLOW_expression_in_statementExpression1858);
+            expression135=expression();
 
             state._fsp--;
             if (state.failed) return retval;
-            if ( state.backtracking==0 ) adaptor.addChild(root_0, expression136.getTree());
+            if ( state.backtracking==0 ) adaptor.addChild(root_0, expression135.getTree());
 
             }
 
@@ -4479,29 +4591,29 @@ public class JaParser extends Parser {
     };
 
     // $ANTLR start "constantExpression"
-    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:284:1: constantExpression : expression ;
+    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:286:1: constantExpression : expression ;
     public final JaParser.constantExpression_return constantExpression() throws RecognitionException {
         JaParser.constantExpression_return retval = new JaParser.constantExpression_return();
         retval.start = input.LT(1);
 
         Object root_0 = null;
 
-        JaParser.expression_return expression137 = null;
+        JaParser.expression_return expression136 = null;
 
 
 
         try {
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:285:5: ( expression )
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:285:9: expression
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:287:5: ( expression )
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:287:9: expression
             {
             root_0 = (Object)adaptor.nil();
 
-            pushFollow(FOLLOW_expression_in_constantExpression1818);
-            expression137=expression();
+            pushFollow(FOLLOW_expression_in_constantExpression1881);
+            expression136=expression();
 
             state._fsp--;
             if (state.failed) return retval;
-            if ( state.backtracking==0 ) adaptor.addChild(root_0, expression137.getTree());
+            if ( state.backtracking==0 ) adaptor.addChild(root_0, expression136.getTree());
 
             }
 
@@ -4531,7 +4643,7 @@ public class JaParser extends Parser {
     };
 
     // $ANTLR start "expression"
-    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:288:1: expression : orExpression (ap= assignmentOperator expression )? -> {$ap.c == '='}? ^( '=' orExpression expression ) -> {$ap.c == '+'}? ^( EQ orExpression ^( PLUS orExpression expression ) ) -> {$ap.c == '-'}? ^( EQ orExpression ^( MINUS orExpression expression ) ) -> {$ap.c == '*'}? ^( EQ orExpression ^( STAR orExpression expression ) ) -> {$ap.c == '/'}? ^( EQ orExpression ^( SLASH orExpression expression ) ) -> orExpression ;
+    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:290:1: expression : orExpression (ap= assignmentOperator expression )? -> {$ap.c == '='}? ^( '=' orExpression expression ) -> {$ap.c == '+'}? ^( EQ orExpression ^( PLUS orExpression expression ) ) -> {$ap.c == '-'}? ^( EQ orExpression ^( MINUS orExpression expression ) ) -> {$ap.c == '*'}? ^( EQ orExpression ^( STAR orExpression expression ) ) -> {$ap.c == '/'}? ^( EQ orExpression ^( SLASH orExpression expression ) ) -> orExpression ;
     public final JaParser.expression_return expression() throws RecognitionException {
         JaParser.expression_return retval = new JaParser.expression_return();
         retval.start = input.LT(1);
@@ -4540,47 +4652,47 @@ public class JaParser extends Parser {
 
         JaParser.assignmentOperator_return ap = null;
 
-        JaParser.orExpression_return orExpression138 = null;
+        JaParser.orExpression_return orExpression137 = null;
 
-        JaParser.expression_return expression139 = null;
+        JaParser.expression_return expression138 = null;
 
 
         RewriteRuleSubtreeStream stream_assignmentOperator=new RewriteRuleSubtreeStream(adaptor,"rule assignmentOperator");
         RewriteRuleSubtreeStream stream_expression=new RewriteRuleSubtreeStream(adaptor,"rule expression");
         RewriteRuleSubtreeStream stream_orExpression=new RewriteRuleSubtreeStream(adaptor,"rule orExpression");
         try {
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:289:5: ( orExpression (ap= assignmentOperator expression )? -> {$ap.c == '='}? ^( '=' orExpression expression ) -> {$ap.c == '+'}? ^( EQ orExpression ^( PLUS orExpression expression ) ) -> {$ap.c == '-'}? ^( EQ orExpression ^( MINUS orExpression expression ) ) -> {$ap.c == '*'}? ^( EQ orExpression ^( STAR orExpression expression ) ) -> {$ap.c == '/'}? ^( EQ orExpression ^( SLASH orExpression expression ) ) -> orExpression )
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:289:8: orExpression (ap= assignmentOperator expression )?
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:291:5: ( orExpression (ap= assignmentOperator expression )? -> {$ap.c == '='}? ^( '=' orExpression expression ) -> {$ap.c == '+'}? ^( EQ orExpression ^( PLUS orExpression expression ) ) -> {$ap.c == '-'}? ^( EQ orExpression ^( MINUS orExpression expression ) ) -> {$ap.c == '*'}? ^( EQ orExpression ^( STAR orExpression expression ) ) -> {$ap.c == '/'}? ^( EQ orExpression ^( SLASH orExpression expression ) ) -> orExpression )
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:291:8: orExpression (ap= assignmentOperator expression )?
             {
-            pushFollow(FOLLOW_orExpression_in_expression1840);
-            orExpression138=orExpression();
+            pushFollow(FOLLOW_orExpression_in_expression1903);
+            orExpression137=orExpression();
 
             state._fsp--;
             if (state.failed) return retval;
-            if ( state.backtracking==0 ) stream_orExpression.add(orExpression138.getTree());
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:289:21: (ap= assignmentOperator expression )?
-            int alt37=2;
-            int LA37_0 = input.LA(1);
+            if ( state.backtracking==0 ) stream_orExpression.add(orExpression137.getTree());
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:291:21: (ap= assignmentOperator expression )?
+            int alt38=2;
+            int LA38_0 = input.LA(1);
 
-            if ( (LA37_0==EQ||(LA37_0>=84 && LA37_0<=87)) ) {
-                alt37=1;
+            if ( (LA38_0==EQ||(LA38_0>=84 && LA38_0<=87)) ) {
+                alt38=1;
             }
-            switch (alt37) {
+            switch (alt38) {
                 case 1 :
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:289:23: ap= assignmentOperator expression
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:291:23: ap= assignmentOperator expression
                     {
-                    pushFollow(FOLLOW_assignmentOperator_in_expression1846);
+                    pushFollow(FOLLOW_assignmentOperator_in_expression1909);
                     ap=assignmentOperator();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) stream_assignmentOperator.add(ap.getTree());
-                    pushFollow(FOLLOW_expression_in_expression1848);
-                    expression139=expression();
+                    pushFollow(FOLLOW_expression_in_expression1911);
+                    expression138=expression();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) stream_expression.add(expression139.getTree());
+                    if ( state.backtracking==0 ) stream_expression.add(expression138.getTree());
 
                     }
                     break;
@@ -4590,7 +4702,7 @@ public class JaParser extends Parser {
 
 
             // AST REWRITE
-            // elements: orExpression, orExpression, orExpression, EQ, orExpression, orExpression, expression, orExpression, expression, expression, orExpression, expression, expression, orExpression, orExpression, orExpression
+            // elements: expression, orExpression, orExpression, orExpression, orExpression, expression, expression, orExpression, orExpression, orExpression, orExpression, EQ, expression, expression, orExpression, orExpression
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -4601,9 +4713,9 @@ public class JaParser extends Parser {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
             root_0 = (Object)adaptor.nil();
-            // 289:58: -> {$ap.c == '='}? ^( '=' orExpression expression )
+            // 291:58: -> {$ap.c == '='}? ^( '=' orExpression expression )
             if ((ap!=null?ap.c:0) == '=') {
-                // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:289:77: ^( '=' orExpression expression )
+                // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:291:77: ^( '=' orExpression expression )
                 {
                 Object root_1 = (Object)adaptor.nil();
                 root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(EQ, "EQ"), root_1);
@@ -4615,15 +4727,15 @@ public class JaParser extends Parser {
                 }
 
             }
-            else // 290:13: -> {$ap.c == '+'}? ^( EQ orExpression ^( PLUS orExpression expression ) )
+            else // 292:13: -> {$ap.c == '+'}? ^( EQ orExpression ^( PLUS orExpression expression ) )
             if ((ap!=null?ap.c:0) == '+') {
-                // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:290:32: ^( EQ orExpression ^( PLUS orExpression expression ) )
+                // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:292:32: ^( EQ orExpression ^( PLUS orExpression expression ) )
                 {
                 Object root_1 = (Object)adaptor.nil();
                 root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(EQ, "EQ"), root_1);
 
                 adaptor.addChild(root_1, stream_orExpression.nextTree());
-                // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:290:50: ^( PLUS orExpression expression )
+                // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:292:50: ^( PLUS orExpression expression )
                 {
                 Object root_2 = (Object)adaptor.nil();
                 root_2 = (Object)adaptor.becomeRoot((Object)adaptor.create(PLUS, "PLUS"), root_2);
@@ -4638,15 +4750,15 @@ public class JaParser extends Parser {
                 }
 
             }
-            else // 291:13: -> {$ap.c == '-'}? ^( EQ orExpression ^( MINUS orExpression expression ) )
+            else // 293:13: -> {$ap.c == '-'}? ^( EQ orExpression ^( MINUS orExpression expression ) )
             if ((ap!=null?ap.c:0) == '-') {
-                // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:291:32: ^( EQ orExpression ^( MINUS orExpression expression ) )
+                // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:293:32: ^( EQ orExpression ^( MINUS orExpression expression ) )
                 {
                 Object root_1 = (Object)adaptor.nil();
                 root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(EQ, "EQ"), root_1);
 
                 adaptor.addChild(root_1, stream_orExpression.nextTree());
-                // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:291:50: ^( MINUS orExpression expression )
+                // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:293:50: ^( MINUS orExpression expression )
                 {
                 Object root_2 = (Object)adaptor.nil();
                 root_2 = (Object)adaptor.becomeRoot((Object)adaptor.create(MINUS, "MINUS"), root_2);
@@ -4661,15 +4773,15 @@ public class JaParser extends Parser {
                 }
 
             }
-            else // 292:13: -> {$ap.c == '*'}? ^( EQ orExpression ^( STAR orExpression expression ) )
+            else // 294:13: -> {$ap.c == '*'}? ^( EQ orExpression ^( STAR orExpression expression ) )
             if ((ap!=null?ap.c:0) == '*') {
-                // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:292:32: ^( EQ orExpression ^( STAR orExpression expression ) )
+                // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:294:32: ^( EQ orExpression ^( STAR orExpression expression ) )
                 {
                 Object root_1 = (Object)adaptor.nil();
                 root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(EQ, "EQ"), root_1);
 
                 adaptor.addChild(root_1, stream_orExpression.nextTree());
-                // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:292:50: ^( STAR orExpression expression )
+                // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:294:50: ^( STAR orExpression expression )
                 {
                 Object root_2 = (Object)adaptor.nil();
                 root_2 = (Object)adaptor.becomeRoot((Object)adaptor.create(STAR, "STAR"), root_2);
@@ -4684,15 +4796,15 @@ public class JaParser extends Parser {
                 }
 
             }
-            else // 293:13: -> {$ap.c == '/'}? ^( EQ orExpression ^( SLASH orExpression expression ) )
+            else // 295:13: -> {$ap.c == '/'}? ^( EQ orExpression ^( SLASH orExpression expression ) )
             if ((ap!=null?ap.c:0) == '/') {
-                // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:293:32: ^( EQ orExpression ^( SLASH orExpression expression ) )
+                // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:295:32: ^( EQ orExpression ^( SLASH orExpression expression ) )
                 {
                 Object root_1 = (Object)adaptor.nil();
                 root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(EQ, "EQ"), root_1);
 
                 adaptor.addChild(root_1, stream_orExpression.nextTree());
-                // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:293:50: ^( SLASH orExpression expression )
+                // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:295:50: ^( SLASH orExpression expression )
                 {
                 Object root_2 = (Object)adaptor.nil();
                 root_2 = (Object)adaptor.becomeRoot((Object)adaptor.create(SLASH, "SLASH"), root_2);
@@ -4707,7 +4819,7 @@ public class JaParser extends Parser {
                 }
 
             }
-            else // 294:13: -> orExpression
+            else // 296:13: -> orExpression
             {
                 adaptor.addChild(root_0, stream_orExpression.nextTree());
 
@@ -4743,72 +4855,72 @@ public class JaParser extends Parser {
     };
 
     // $ANTLR start "assignmentOperator"
-    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:297:1: assignmentOperator returns [char c] : ( '=' | '+=' | '-=' | '*=' | '/=' );
+    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:299:1: assignmentOperator returns [char c] : ( '=' | '+=' | '-=' | '*=' | '/=' );
     public final JaParser.assignmentOperator_return assignmentOperator() throws RecognitionException {
         JaParser.assignmentOperator_return retval = new JaParser.assignmentOperator_return();
         retval.start = input.LT(1);
 
         Object root_0 = null;
 
-        Token char_literal140=null;
+        Token char_literal139=null;
+        Token string_literal140=null;
         Token string_literal141=null;
         Token string_literal142=null;
         Token string_literal143=null;
-        Token string_literal144=null;
 
-        Object char_literal140_tree=null;
+        Object char_literal139_tree=null;
+        Object string_literal140_tree=null;
         Object string_literal141_tree=null;
         Object string_literal142_tree=null;
         Object string_literal143_tree=null;
-        Object string_literal144_tree=null;
 
         try {
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:298:5: ( '=' | '+=' | '-=' | '*=' | '/=' )
-            int alt38=5;
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:300:5: ( '=' | '+=' | '-=' | '*=' | '/=' )
+            int alt39=5;
             switch ( input.LA(1) ) {
             case EQ:
                 {
-                alt38=1;
+                alt39=1;
                 }
                 break;
             case 84:
                 {
-                alt38=2;
+                alt39=2;
                 }
                 break;
             case 85:
                 {
-                alt38=3;
+                alt39=3;
                 }
                 break;
             case 86:
                 {
-                alt38=4;
+                alt39=4;
                 }
                 break;
             case 87:
                 {
-                alt38=5;
+                alt39=5;
                 }
                 break;
             default:
                 if (state.backtracking>0) {state.failed=true; return retval;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 38, 0, input);
+                    new NoViableAltException("", 39, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt38) {
+            switch (alt39) {
                 case 1 :
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:298:9: '='
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:300:9: '='
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    char_literal140=(Token)match(input,EQ,FOLLOW_EQ_in_assignmentOperator2028); if (state.failed) return retval;
+                    char_literal139=(Token)match(input,EQ,FOLLOW_EQ_in_assignmentOperator2091); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    char_literal140_tree = (Object)adaptor.create(char_literal140);
-                    adaptor.addChild(root_0, char_literal140_tree);
+                    char_literal139_tree = (Object)adaptor.create(char_literal139);
+                    adaptor.addChild(root_0, char_literal139_tree);
                     }
                     if ( state.backtracking==0 ) {
                       retval.c = '='; 
@@ -4817,14 +4929,14 @@ public class JaParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:299:9: '+='
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:301:9: '+='
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    string_literal141=(Token)match(input,84,FOLLOW_84_in_assignmentOperator2041); if (state.failed) return retval;
+                    string_literal140=(Token)match(input,84,FOLLOW_84_in_assignmentOperator2104); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    string_literal141_tree = (Object)adaptor.create(string_literal141);
-                    adaptor.addChild(root_0, string_literal141_tree);
+                    string_literal140_tree = (Object)adaptor.create(string_literal140);
+                    adaptor.addChild(root_0, string_literal140_tree);
                     }
                     if ( state.backtracking==0 ) {
                       retval.c = '+';
@@ -4833,14 +4945,14 @@ public class JaParser extends Parser {
                     }
                     break;
                 case 3 :
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:300:9: '-='
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:302:9: '-='
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    string_literal142=(Token)match(input,85,FOLLOW_85_in_assignmentOperator2054); if (state.failed) return retval;
+                    string_literal141=(Token)match(input,85,FOLLOW_85_in_assignmentOperator2117); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    string_literal142_tree = (Object)adaptor.create(string_literal142);
-                    adaptor.addChild(root_0, string_literal142_tree);
+                    string_literal141_tree = (Object)adaptor.create(string_literal141);
+                    adaptor.addChild(root_0, string_literal141_tree);
                     }
                     if ( state.backtracking==0 ) {
                       retval.c = '-';
@@ -4849,14 +4961,14 @@ public class JaParser extends Parser {
                     }
                     break;
                 case 4 :
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:301:9: '*='
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:303:9: '*='
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    string_literal143=(Token)match(input,86,FOLLOW_86_in_assignmentOperator2066); if (state.failed) return retval;
+                    string_literal142=(Token)match(input,86,FOLLOW_86_in_assignmentOperator2129); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    string_literal143_tree = (Object)adaptor.create(string_literal143);
-                    adaptor.addChild(root_0, string_literal143_tree);
+                    string_literal142_tree = (Object)adaptor.create(string_literal142);
+                    adaptor.addChild(root_0, string_literal142_tree);
                     }
                     if ( state.backtracking==0 ) {
                       retval.c = '*';
@@ -4865,14 +4977,14 @@ public class JaParser extends Parser {
                     }
                     break;
                 case 5 :
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:302:9: '/='
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:304:9: '/='
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    string_literal144=(Token)match(input,87,FOLLOW_87_in_assignmentOperator2078); if (state.failed) return retval;
+                    string_literal143=(Token)match(input,87,FOLLOW_87_in_assignmentOperator2141); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    string_literal144_tree = (Object)adaptor.create(string_literal144);
-                    adaptor.addChild(root_0, string_literal144_tree);
+                    string_literal143_tree = (Object)adaptor.create(string_literal143);
+                    adaptor.addChild(root_0, string_literal143_tree);
                     }
                     if ( state.backtracking==0 ) {
                       retval.c = '/';
@@ -4908,65 +5020,65 @@ public class JaParser extends Parser {
     };
 
     // $ANTLR start "orExpression"
-    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:305:1: orExpression : andExpression ( '||' andExpression )* ;
+    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:307:1: orExpression : andExpression ( '||' andExpression )* ;
     public final JaParser.orExpression_return orExpression() throws RecognitionException {
         JaParser.orExpression_return retval = new JaParser.orExpression_return();
         retval.start = input.LT(1);
 
         Object root_0 = null;
 
-        Token string_literal146=null;
-        JaParser.andExpression_return andExpression145 = null;
+        Token string_literal145=null;
+        JaParser.andExpression_return andExpression144 = null;
 
-        JaParser.andExpression_return andExpression147 = null;
+        JaParser.andExpression_return andExpression146 = null;
 
 
-        Object string_literal146_tree=null;
+        Object string_literal145_tree=null;
 
         try {
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:306:5: ( andExpression ( '||' andExpression )* )
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:306:9: andExpression ( '||' andExpression )*
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:308:5: ( andExpression ( '||' andExpression )* )
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:308:9: andExpression ( '||' andExpression )*
             {
             root_0 = (Object)adaptor.nil();
 
-            pushFollow(FOLLOW_andExpression_in_orExpression2099);
-            andExpression145=andExpression();
+            pushFollow(FOLLOW_andExpression_in_orExpression2162);
+            andExpression144=andExpression();
 
             state._fsp--;
             if (state.failed) return retval;
-            if ( state.backtracking==0 ) adaptor.addChild(root_0, andExpression145.getTree());
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:306:23: ( '||' andExpression )*
-            loop39:
+            if ( state.backtracking==0 ) adaptor.addChild(root_0, andExpression144.getTree());
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:308:23: ( '||' andExpression )*
+            loop40:
             do {
-                int alt39=2;
-                int LA39_0 = input.LA(1);
+                int alt40=2;
+                int LA40_0 = input.LA(1);
 
-                if ( (LA39_0==88) ) {
-                    alt39=1;
+                if ( (LA40_0==88) ) {
+                    alt40=1;
                 }
 
 
-                switch (alt39) {
+                switch (alt40) {
             	case 1 :
-            	    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:306:25: '||' andExpression
+            	    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:308:25: '||' andExpression
             	    {
-            	    string_literal146=(Token)match(input,88,FOLLOW_88_in_orExpression2103); if (state.failed) return retval;
+            	    string_literal145=(Token)match(input,88,FOLLOW_88_in_orExpression2166); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
-            	    string_literal146_tree = (Object)adaptor.create(string_literal146);
-            	    root_0 = (Object)adaptor.becomeRoot(string_literal146_tree, root_0);
+            	    string_literal145_tree = (Object)adaptor.create(string_literal145);
+            	    root_0 = (Object)adaptor.becomeRoot(string_literal145_tree, root_0);
             	    }
-            	    pushFollow(FOLLOW_andExpression_in_orExpression2106);
-            	    andExpression147=andExpression();
+            	    pushFollow(FOLLOW_andExpression_in_orExpression2169);
+            	    andExpression146=andExpression();
 
             	    state._fsp--;
             	    if (state.failed) return retval;
-            	    if ( state.backtracking==0 ) adaptor.addChild(root_0, andExpression147.getTree());
+            	    if ( state.backtracking==0 ) adaptor.addChild(root_0, andExpression146.getTree());
 
             	    }
             	    break;
 
             	default :
-            	    break loop39;
+            	    break loop40;
                 }
             } while (true);
 
@@ -4999,65 +5111,65 @@ public class JaParser extends Parser {
     };
 
     // $ANTLR start "andExpression"
-    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:309:1: andExpression : equalityExpression ( '&&' equalityExpression )* ;
+    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:311:1: andExpression : equalityExpression ( '&&' equalityExpression )* ;
     public final JaParser.andExpression_return andExpression() throws RecognitionException {
         JaParser.andExpression_return retval = new JaParser.andExpression_return();
         retval.start = input.LT(1);
 
         Object root_0 = null;
 
-        Token string_literal149=null;
-        JaParser.equalityExpression_return equalityExpression148 = null;
+        Token string_literal148=null;
+        JaParser.equalityExpression_return equalityExpression147 = null;
 
-        JaParser.equalityExpression_return equalityExpression150 = null;
+        JaParser.equalityExpression_return equalityExpression149 = null;
 
 
-        Object string_literal149_tree=null;
+        Object string_literal148_tree=null;
 
         try {
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:310:5: ( equalityExpression ( '&&' equalityExpression )* )
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:310:9: equalityExpression ( '&&' equalityExpression )*
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:312:5: ( equalityExpression ( '&&' equalityExpression )* )
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:312:9: equalityExpression ( '&&' equalityExpression )*
             {
             root_0 = (Object)adaptor.nil();
 
-            pushFollow(FOLLOW_equalityExpression_in_andExpression2128);
-            equalityExpression148=equalityExpression();
+            pushFollow(FOLLOW_equalityExpression_in_andExpression2191);
+            equalityExpression147=equalityExpression();
 
             state._fsp--;
             if (state.failed) return retval;
-            if ( state.backtracking==0 ) adaptor.addChild(root_0, equalityExpression148.getTree());
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:310:28: ( '&&' equalityExpression )*
-            loop40:
+            if ( state.backtracking==0 ) adaptor.addChild(root_0, equalityExpression147.getTree());
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:312:28: ( '&&' equalityExpression )*
+            loop41:
             do {
-                int alt40=2;
-                int LA40_0 = input.LA(1);
+                int alt41=2;
+                int LA41_0 = input.LA(1);
 
-                if ( (LA40_0==89) ) {
-                    alt40=1;
+                if ( (LA41_0==89) ) {
+                    alt41=1;
                 }
 
 
-                switch (alt40) {
+                switch (alt41) {
             	case 1 :
-            	    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:310:30: '&&' equalityExpression
+            	    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:312:30: '&&' equalityExpression
             	    {
-            	    string_literal149=(Token)match(input,89,FOLLOW_89_in_andExpression2132); if (state.failed) return retval;
+            	    string_literal148=(Token)match(input,89,FOLLOW_89_in_andExpression2195); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
-            	    string_literal149_tree = (Object)adaptor.create(string_literal149);
-            	    root_0 = (Object)adaptor.becomeRoot(string_literal149_tree, root_0);
+            	    string_literal148_tree = (Object)adaptor.create(string_literal148);
+            	    root_0 = (Object)adaptor.becomeRoot(string_literal148_tree, root_0);
             	    }
-            	    pushFollow(FOLLOW_equalityExpression_in_andExpression2135);
-            	    equalityExpression150=equalityExpression();
+            	    pushFollow(FOLLOW_equalityExpression_in_andExpression2198);
+            	    equalityExpression149=equalityExpression();
 
             	    state._fsp--;
             	    if (state.failed) return retval;
-            	    if ( state.backtracking==0 ) adaptor.addChild(root_0, equalityExpression150.getTree());
+            	    if ( state.backtracking==0 ) adaptor.addChild(root_0, equalityExpression149.getTree());
 
             	    }
             	    break;
 
             	default :
-            	    break loop40;
+            	    break loop41;
                 }
             } while (true);
 
@@ -5090,53 +5202,53 @@ public class JaParser extends Parser {
     };
 
     // $ANTLR start "equalityExpression"
-    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:313:1: equalityExpression : instanceOfExpression ( ( '==' | '!=' ) instanceOfExpression )* ;
+    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:315:1: equalityExpression : instanceOfExpression ( ( '==' | '!=' ) instanceOfExpression )* ;
     public final JaParser.equalityExpression_return equalityExpression() throws RecognitionException {
         JaParser.equalityExpression_return retval = new JaParser.equalityExpression_return();
         retval.start = input.LT(1);
 
         Object root_0 = null;
 
-        Token set152=null;
-        JaParser.instanceOfExpression_return instanceOfExpression151 = null;
+        Token set151=null;
+        JaParser.instanceOfExpression_return instanceOfExpression150 = null;
 
-        JaParser.instanceOfExpression_return instanceOfExpression153 = null;
+        JaParser.instanceOfExpression_return instanceOfExpression152 = null;
 
 
-        Object set152_tree=null;
+        Object set151_tree=null;
 
         try {
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:314:5: ( instanceOfExpression ( ( '==' | '!=' ) instanceOfExpression )* )
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:314:9: instanceOfExpression ( ( '==' | '!=' ) instanceOfExpression )*
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:316:5: ( instanceOfExpression ( ( '==' | '!=' ) instanceOfExpression )* )
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:316:9: instanceOfExpression ( ( '==' | '!=' ) instanceOfExpression )*
             {
             root_0 = (Object)adaptor.nil();
 
-            pushFollow(FOLLOW_instanceOfExpression_in_equalityExpression2157);
-            instanceOfExpression151=instanceOfExpression();
+            pushFollow(FOLLOW_instanceOfExpression_in_equalityExpression2220);
+            instanceOfExpression150=instanceOfExpression();
 
             state._fsp--;
             if (state.failed) return retval;
-            if ( state.backtracking==0 ) adaptor.addChild(root_0, instanceOfExpression151.getTree());
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:314:30: ( ( '==' | '!=' ) instanceOfExpression )*
-            loop41:
+            if ( state.backtracking==0 ) adaptor.addChild(root_0, instanceOfExpression150.getTree());
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:316:30: ( ( '==' | '!=' ) instanceOfExpression )*
+            loop42:
             do {
-                int alt41=2;
-                int LA41_0 = input.LA(1);
+                int alt42=2;
+                int LA42_0 = input.LA(1);
 
-                if ( ((LA41_0>=90 && LA41_0<=91)) ) {
-                    alt41=1;
+                if ( ((LA42_0>=90 && LA42_0<=91)) ) {
+                    alt42=1;
                 }
 
 
-                switch (alt41) {
+                switch (alt42) {
             	case 1 :
-            	    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:314:32: ( '==' | '!=' ) instanceOfExpression
+            	    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:316:32: ( '==' | '!=' ) instanceOfExpression
             	    {
-            	    set152=(Token)input.LT(1);
-            	    set152=(Token)input.LT(1);
+            	    set151=(Token)input.LT(1);
+            	    set151=(Token)input.LT(1);
             	    if ( (input.LA(1)>=90 && input.LA(1)<=91) ) {
             	        input.consume();
-            	        if ( state.backtracking==0 ) root_0 = (Object)adaptor.becomeRoot((Object)adaptor.create(set152), root_0);
+            	        if ( state.backtracking==0 ) root_0 = (Object)adaptor.becomeRoot((Object)adaptor.create(set151), root_0);
             	        state.errorRecovery=false;state.failed=false;
             	    }
             	    else {
@@ -5145,18 +5257,18 @@ public class JaParser extends Parser {
             	        throw mse;
             	    }
 
-            	    pushFollow(FOLLOW_instanceOfExpression_in_equalityExpression2170);
-            	    instanceOfExpression153=instanceOfExpression();
+            	    pushFollow(FOLLOW_instanceOfExpression_in_equalityExpression2233);
+            	    instanceOfExpression152=instanceOfExpression();
 
             	    state._fsp--;
             	    if (state.failed) return retval;
-            	    if ( state.backtracking==0 ) adaptor.addChild(root_0, instanceOfExpression153.getTree());
+            	    if ( state.backtracking==0 ) adaptor.addChild(root_0, instanceOfExpression152.getTree());
 
             	    }
             	    break;
 
             	default :
-            	    break loop41;
+            	    break loop42;
                 }
             } while (true);
 
@@ -5189,55 +5301,55 @@ public class JaParser extends Parser {
     };
 
     // $ANTLR start "instanceOfExpression"
-    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:317:1: instanceOfExpression : relationalExpression ( INSTANCEOF type )? ;
+    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:319:1: instanceOfExpression : relationalExpression ( INSTANCEOF type )? ;
     public final JaParser.instanceOfExpression_return instanceOfExpression() throws RecognitionException {
         JaParser.instanceOfExpression_return retval = new JaParser.instanceOfExpression_return();
         retval.start = input.LT(1);
 
         Object root_0 = null;
 
-        Token INSTANCEOF155=null;
-        JaParser.relationalExpression_return relationalExpression154 = null;
+        Token INSTANCEOF154=null;
+        JaParser.relationalExpression_return relationalExpression153 = null;
 
-        JaParser.type_return type156 = null;
+        JaParser.type_return type155 = null;
 
 
-        Object INSTANCEOF155_tree=null;
+        Object INSTANCEOF154_tree=null;
 
         try {
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:318:5: ( relationalExpression ( INSTANCEOF type )? )
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:318:9: relationalExpression ( INSTANCEOF type )?
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:320:5: ( relationalExpression ( INSTANCEOF type )? )
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:320:9: relationalExpression ( INSTANCEOF type )?
             {
             root_0 = (Object)adaptor.nil();
 
-            pushFollow(FOLLOW_relationalExpression_in_instanceOfExpression2192);
-            relationalExpression154=relationalExpression();
+            pushFollow(FOLLOW_relationalExpression_in_instanceOfExpression2255);
+            relationalExpression153=relationalExpression();
 
             state._fsp--;
             if (state.failed) return retval;
-            if ( state.backtracking==0 ) adaptor.addChild(root_0, relationalExpression154.getTree());
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:318:30: ( INSTANCEOF type )?
-            int alt42=2;
-            int LA42_0 = input.LA(1);
+            if ( state.backtracking==0 ) adaptor.addChild(root_0, relationalExpression153.getTree());
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:320:30: ( INSTANCEOF type )?
+            int alt43=2;
+            int LA43_0 = input.LA(1);
 
-            if ( (LA42_0==INSTANCEOF) ) {
-                alt42=1;
+            if ( (LA43_0==INSTANCEOF) ) {
+                alt43=1;
             }
-            switch (alt42) {
+            switch (alt43) {
                 case 1 :
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:318:31: INSTANCEOF type
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:320:31: INSTANCEOF type
                     {
-                    INSTANCEOF155=(Token)match(input,INSTANCEOF,FOLLOW_INSTANCEOF_in_instanceOfExpression2195); if (state.failed) return retval;
+                    INSTANCEOF154=(Token)match(input,INSTANCEOF,FOLLOW_INSTANCEOF_in_instanceOfExpression2258); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    INSTANCEOF155_tree = (Object)adaptor.create(INSTANCEOF155);
-                    root_0 = (Object)adaptor.becomeRoot(INSTANCEOF155_tree, root_0);
+                    INSTANCEOF154_tree = (Object)adaptor.create(INSTANCEOF154);
+                    root_0 = (Object)adaptor.becomeRoot(INSTANCEOF154_tree, root_0);
                     }
-                    pushFollow(FOLLOW_type_in_instanceOfExpression2198);
-                    type156=type();
+                    pushFollow(FOLLOW_type_in_instanceOfExpression2261);
+                    type155=type();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, type156.getTree());
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, type155.getTree());
 
                     }
                     break;
@@ -5273,65 +5385,65 @@ public class JaParser extends Parser {
     };
 
     // $ANTLR start "relationalExpression"
-    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:321:1: relationalExpression : additiveExpression ( COMPAREOP additiveExpression )* ;
+    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:323:1: relationalExpression : additiveExpression ( COMPAREOP additiveExpression )* ;
     public final JaParser.relationalExpression_return relationalExpression() throws RecognitionException {
         JaParser.relationalExpression_return retval = new JaParser.relationalExpression_return();
         retval.start = input.LT(1);
 
         Object root_0 = null;
 
-        Token COMPAREOP158=null;
-        JaParser.additiveExpression_return additiveExpression157 = null;
+        Token COMPAREOP157=null;
+        JaParser.additiveExpression_return additiveExpression156 = null;
 
-        JaParser.additiveExpression_return additiveExpression159 = null;
+        JaParser.additiveExpression_return additiveExpression158 = null;
 
 
-        Object COMPAREOP158_tree=null;
+        Object COMPAREOP157_tree=null;
 
         try {
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:322:5: ( additiveExpression ( COMPAREOP additiveExpression )* )
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:322:9: additiveExpression ( COMPAREOP additiveExpression )*
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:324:5: ( additiveExpression ( COMPAREOP additiveExpression )* )
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:324:9: additiveExpression ( COMPAREOP additiveExpression )*
             {
             root_0 = (Object)adaptor.nil();
 
-            pushFollow(FOLLOW_additiveExpression_in_relationalExpression2219);
-            additiveExpression157=additiveExpression();
+            pushFollow(FOLLOW_additiveExpression_in_relationalExpression2282);
+            additiveExpression156=additiveExpression();
 
             state._fsp--;
             if (state.failed) return retval;
-            if ( state.backtracking==0 ) adaptor.addChild(root_0, additiveExpression157.getTree());
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:322:28: ( COMPAREOP additiveExpression )*
-            loop43:
+            if ( state.backtracking==0 ) adaptor.addChild(root_0, additiveExpression156.getTree());
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:324:28: ( COMPAREOP additiveExpression )*
+            loop44:
             do {
-                int alt43=2;
-                int LA43_0 = input.LA(1);
+                int alt44=2;
+                int LA44_0 = input.LA(1);
 
-                if ( (LA43_0==COMPAREOP) ) {
-                    alt43=1;
+                if ( (LA44_0==COMPAREOP) ) {
+                    alt44=1;
                 }
 
 
-                switch (alt43) {
+                switch (alt44) {
             	case 1 :
-            	    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:322:30: COMPAREOP additiveExpression
+            	    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:324:30: COMPAREOP additiveExpression
             	    {
-            	    COMPAREOP158=(Token)match(input,COMPAREOP,FOLLOW_COMPAREOP_in_relationalExpression2223); if (state.failed) return retval;
+            	    COMPAREOP157=(Token)match(input,COMPAREOP,FOLLOW_COMPAREOP_in_relationalExpression2286); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
-            	    COMPAREOP158_tree = (Object)adaptor.create(COMPAREOP158);
-            	    root_0 = (Object)adaptor.becomeRoot(COMPAREOP158_tree, root_0);
+            	    COMPAREOP157_tree = (Object)adaptor.create(COMPAREOP157);
+            	    root_0 = (Object)adaptor.becomeRoot(COMPAREOP157_tree, root_0);
             	    }
-            	    pushFollow(FOLLOW_additiveExpression_in_relationalExpression2226);
-            	    additiveExpression159=additiveExpression();
+            	    pushFollow(FOLLOW_additiveExpression_in_relationalExpression2289);
+            	    additiveExpression158=additiveExpression();
 
             	    state._fsp--;
             	    if (state.failed) return retval;
-            	    if ( state.backtracking==0 ) adaptor.addChild(root_0, additiveExpression159.getTree());
+            	    if ( state.backtracking==0 ) adaptor.addChild(root_0, additiveExpression158.getTree());
 
             	    }
             	    break;
 
             	default :
-            	    break loop43;
+            	    break loop44;
                 }
             } while (true);
 
@@ -5364,53 +5476,53 @@ public class JaParser extends Parser {
     };
 
     // $ANTLR start "additiveExpression"
-    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:325:1: additiveExpression : multiplicativeExpression ( ( '+' | '-' ) multiplicativeExpression )* ;
+    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:327:1: additiveExpression : multiplicativeExpression ( ( '+' | '-' ) multiplicativeExpression )* ;
     public final JaParser.additiveExpression_return additiveExpression() throws RecognitionException {
         JaParser.additiveExpression_return retval = new JaParser.additiveExpression_return();
         retval.start = input.LT(1);
 
         Object root_0 = null;
 
-        Token set161=null;
-        JaParser.multiplicativeExpression_return multiplicativeExpression160 = null;
+        Token set160=null;
+        JaParser.multiplicativeExpression_return multiplicativeExpression159 = null;
 
-        JaParser.multiplicativeExpression_return multiplicativeExpression162 = null;
+        JaParser.multiplicativeExpression_return multiplicativeExpression161 = null;
 
 
-        Object set161_tree=null;
+        Object set160_tree=null;
 
         try {
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:326:5: ( multiplicativeExpression ( ( '+' | '-' ) multiplicativeExpression )* )
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:326:9: multiplicativeExpression ( ( '+' | '-' ) multiplicativeExpression )*
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:328:5: ( multiplicativeExpression ( ( '+' | '-' ) multiplicativeExpression )* )
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:328:9: multiplicativeExpression ( ( '+' | '-' ) multiplicativeExpression )*
             {
             root_0 = (Object)adaptor.nil();
 
-            pushFollow(FOLLOW_multiplicativeExpression_in_additiveExpression2248);
-            multiplicativeExpression160=multiplicativeExpression();
+            pushFollow(FOLLOW_multiplicativeExpression_in_additiveExpression2311);
+            multiplicativeExpression159=multiplicativeExpression();
 
             state._fsp--;
             if (state.failed) return retval;
-            if ( state.backtracking==0 ) adaptor.addChild(root_0, multiplicativeExpression160.getTree());
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:326:34: ( ( '+' | '-' ) multiplicativeExpression )*
-            loop44:
+            if ( state.backtracking==0 ) adaptor.addChild(root_0, multiplicativeExpression159.getTree());
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:328:34: ( ( '+' | '-' ) multiplicativeExpression )*
+            loop45:
             do {
-                int alt44=2;
-                int LA44_0 = input.LA(1);
+                int alt45=2;
+                int LA45_0 = input.LA(1);
 
-                if ( ((LA44_0>=PLUS && LA44_0<=MINUS)) ) {
-                    alt44=1;
+                if ( ((LA45_0>=PLUS && LA45_0<=MINUS)) ) {
+                    alt45=1;
                 }
 
 
-                switch (alt44) {
+                switch (alt45) {
             	case 1 :
-            	    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:326:36: ( '+' | '-' ) multiplicativeExpression
+            	    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:328:36: ( '+' | '-' ) multiplicativeExpression
             	    {
-            	    set161=(Token)input.LT(1);
-            	    set161=(Token)input.LT(1);
+            	    set160=(Token)input.LT(1);
+            	    set160=(Token)input.LT(1);
             	    if ( (input.LA(1)>=PLUS && input.LA(1)<=MINUS) ) {
             	        input.consume();
-            	        if ( state.backtracking==0 ) root_0 = (Object)adaptor.becomeRoot((Object)adaptor.create(set161), root_0);
+            	        if ( state.backtracking==0 ) root_0 = (Object)adaptor.becomeRoot((Object)adaptor.create(set160), root_0);
             	        state.errorRecovery=false;state.failed=false;
             	    }
             	    else {
@@ -5419,18 +5531,18 @@ public class JaParser extends Parser {
             	        throw mse;
             	    }
 
-            	    pushFollow(FOLLOW_multiplicativeExpression_in_additiveExpression2261);
-            	    multiplicativeExpression162=multiplicativeExpression();
+            	    pushFollow(FOLLOW_multiplicativeExpression_in_additiveExpression2324);
+            	    multiplicativeExpression161=multiplicativeExpression();
 
             	    state._fsp--;
             	    if (state.failed) return retval;
-            	    if ( state.backtracking==0 ) adaptor.addChild(root_0, multiplicativeExpression162.getTree());
+            	    if ( state.backtracking==0 ) adaptor.addChild(root_0, multiplicativeExpression161.getTree());
 
             	    }
             	    break;
 
             	default :
-            	    break loop44;
+            	    break loop45;
                 }
             } while (true);
 
@@ -5463,53 +5575,53 @@ public class JaParser extends Parser {
     };
 
     // $ANTLR start "multiplicativeExpression"
-    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:329:1: multiplicativeExpression : unaryExpression ( ( '*' | '/' | '%' ) unaryExpression )* ;
+    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:331:1: multiplicativeExpression : unaryExpression ( ( '*' | '/' | '%' ) unaryExpression )* ;
     public final JaParser.multiplicativeExpression_return multiplicativeExpression() throws RecognitionException {
         JaParser.multiplicativeExpression_return retval = new JaParser.multiplicativeExpression_return();
         retval.start = input.LT(1);
 
         Object root_0 = null;
 
-        Token set164=null;
-        JaParser.unaryExpression_return unaryExpression163 = null;
+        Token set163=null;
+        JaParser.unaryExpression_return unaryExpression162 = null;
 
-        JaParser.unaryExpression_return unaryExpression165 = null;
+        JaParser.unaryExpression_return unaryExpression164 = null;
 
 
-        Object set164_tree=null;
+        Object set163_tree=null;
 
         try {
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:330:5: ( unaryExpression ( ( '*' | '/' | '%' ) unaryExpression )* )
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:330:9: unaryExpression ( ( '*' | '/' | '%' ) unaryExpression )*
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:332:5: ( unaryExpression ( ( '*' | '/' | '%' ) unaryExpression )* )
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:332:9: unaryExpression ( ( '*' | '/' | '%' ) unaryExpression )*
             {
             root_0 = (Object)adaptor.nil();
 
-            pushFollow(FOLLOW_unaryExpression_in_multiplicativeExpression2283);
-            unaryExpression163=unaryExpression();
+            pushFollow(FOLLOW_unaryExpression_in_multiplicativeExpression2346);
+            unaryExpression162=unaryExpression();
 
             state._fsp--;
             if (state.failed) return retval;
-            if ( state.backtracking==0 ) adaptor.addChild(root_0, unaryExpression163.getTree());
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:330:25: ( ( '*' | '/' | '%' ) unaryExpression )*
-            loop45:
+            if ( state.backtracking==0 ) adaptor.addChild(root_0, unaryExpression162.getTree());
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:332:25: ( ( '*' | '/' | '%' ) unaryExpression )*
+            loop46:
             do {
-                int alt45=2;
-                int LA45_0 = input.LA(1);
+                int alt46=2;
+                int LA46_0 = input.LA(1);
 
-                if ( ((LA45_0>=STAR && LA45_0<=SLASH)||LA45_0==92) ) {
-                    alt45=1;
+                if ( ((LA46_0>=STAR && LA46_0<=SLASH)||LA46_0==92) ) {
+                    alt46=1;
                 }
 
 
-                switch (alt45) {
+                switch (alt46) {
             	case 1 :
-            	    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:330:27: ( '*' | '/' | '%' ) unaryExpression
+            	    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:332:27: ( '*' | '/' | '%' ) unaryExpression
             	    {
-            	    set164=(Token)input.LT(1);
-            	    set164=(Token)input.LT(1);
+            	    set163=(Token)input.LT(1);
+            	    set163=(Token)input.LT(1);
             	    if ( (input.LA(1)>=STAR && input.LA(1)<=SLASH)||input.LA(1)==92 ) {
             	        input.consume();
-            	        if ( state.backtracking==0 ) root_0 = (Object)adaptor.becomeRoot((Object)adaptor.create(set164), root_0);
+            	        if ( state.backtracking==0 ) root_0 = (Object)adaptor.becomeRoot((Object)adaptor.create(set163), root_0);
             	        state.errorRecovery=false;state.failed=false;
             	    }
             	    else {
@@ -5518,18 +5630,18 @@ public class JaParser extends Parser {
             	        throw mse;
             	    }
 
-            	    pushFollow(FOLLOW_unaryExpression_in_multiplicativeExpression2302);
-            	    unaryExpression165=unaryExpression();
+            	    pushFollow(FOLLOW_unaryExpression_in_multiplicativeExpression2365);
+            	    unaryExpression164=unaryExpression();
 
             	    state._fsp--;
             	    if (state.failed) return retval;
-            	    if ( state.backtracking==0 ) adaptor.addChild(root_0, unaryExpression165.getTree());
+            	    if ( state.backtracking==0 ) adaptor.addChild(root_0, unaryExpression164.getTree());
 
             	    }
             	    break;
 
             	default :
-            	    break loop45;
+            	    break loop46;
                 }
             } while (true);
 
@@ -5562,55 +5674,55 @@ public class JaParser extends Parser {
     };
 
     // $ANTLR start "unaryExpression"
-    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:333:1: unaryExpression : ( '+' unaryExpression | '-' unaryExpression | '++' unaryExpression | '--' unaryExpression | unaryExpressionNotPlusMinus );
+    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:335:1: unaryExpression : ( '+' unaryExpression | '-' unaryExpression | '++' unaryExpression | '--' unaryExpression | unaryExpressionNotPlusMinus );
     public final JaParser.unaryExpression_return unaryExpression() throws RecognitionException {
         JaParser.unaryExpression_return retval = new JaParser.unaryExpression_return();
         retval.start = input.LT(1);
 
         Object root_0 = null;
 
-        Token char_literal166=null;
-        Token char_literal168=null;
-        Token string_literal170=null;
-        Token string_literal172=null;
-        JaParser.unaryExpression_return unaryExpression167 = null;
+        Token char_literal165=null;
+        Token char_literal167=null;
+        Token string_literal169=null;
+        Token string_literal171=null;
+        JaParser.unaryExpression_return unaryExpression166 = null;
 
-        JaParser.unaryExpression_return unaryExpression169 = null;
+        JaParser.unaryExpression_return unaryExpression168 = null;
 
-        JaParser.unaryExpression_return unaryExpression171 = null;
+        JaParser.unaryExpression_return unaryExpression170 = null;
 
-        JaParser.unaryExpression_return unaryExpression173 = null;
+        JaParser.unaryExpression_return unaryExpression172 = null;
 
-        JaParser.unaryExpressionNotPlusMinus_return unaryExpressionNotPlusMinus174 = null;
+        JaParser.unaryExpressionNotPlusMinus_return unaryExpressionNotPlusMinus173 = null;
 
 
-        Object char_literal166_tree=null;
-        Object char_literal168_tree=null;
-        Object string_literal170_tree=null;
-        Object string_literal172_tree=null;
+        Object char_literal165_tree=null;
+        Object char_literal167_tree=null;
+        Object string_literal169_tree=null;
+        Object string_literal171_tree=null;
 
         try {
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:334:5: ( '+' unaryExpression | '-' unaryExpression | '++' unaryExpression | '--' unaryExpression | unaryExpressionNotPlusMinus )
-            int alt46=5;
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:336:5: ( '+' unaryExpression | '-' unaryExpression | '++' unaryExpression | '--' unaryExpression | unaryExpressionNotPlusMinus )
+            int alt47=5;
             switch ( input.LA(1) ) {
             case PLUS:
                 {
-                alt46=1;
+                alt47=1;
                 }
                 break;
             case MINUS:
                 {
-                alt46=2;
+                alt47=2;
                 }
                 break;
             case 93:
                 {
-                alt46=3;
+                alt47=3;
                 }
                 break;
             case 94:
                 {
-                alt46=4;
+                alt47=4;
                 }
                 break;
             case IDENTIFIER:
@@ -5634,105 +5746,105 @@ public class JaParser extends Parser {
             case 81:
             case 95:
                 {
-                alt46=5;
+                alt47=5;
                 }
                 break;
             default:
                 if (state.backtracking>0) {state.failed=true; return retval;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 46, 0, input);
+                    new NoViableAltException("", 47, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt46) {
+            switch (alt47) {
                 case 1 :
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:334:9: '+' unaryExpression
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:336:9: '+' unaryExpression
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    char_literal166=(Token)match(input,PLUS,FOLLOW_PLUS_in_unaryExpression2328); if (state.failed) return retval;
+                    char_literal165=(Token)match(input,PLUS,FOLLOW_PLUS_in_unaryExpression2391); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    char_literal166_tree = (Object)adaptor.create(char_literal166);
-                    adaptor.addChild(root_0, char_literal166_tree);
+                    char_literal165_tree = (Object)adaptor.create(char_literal165);
+                    adaptor.addChild(root_0, char_literal165_tree);
                     }
-                    pushFollow(FOLLOW_unaryExpression_in_unaryExpression2330);
-                    unaryExpression167=unaryExpression();
+                    pushFollow(FOLLOW_unaryExpression_in_unaryExpression2393);
+                    unaryExpression166=unaryExpression();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, unaryExpression167.getTree());
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, unaryExpression166.getTree());
 
                     }
                     break;
                 case 2 :
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:335:9: '-' unaryExpression
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:337:9: '-' unaryExpression
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    char_literal168=(Token)match(input,MINUS,FOLLOW_MINUS_in_unaryExpression2340); if (state.failed) return retval;
+                    char_literal167=(Token)match(input,MINUS,FOLLOW_MINUS_in_unaryExpression2403); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    char_literal168_tree = (Object)adaptor.create(char_literal168);
-                    adaptor.addChild(root_0, char_literal168_tree);
+                    char_literal167_tree = (Object)adaptor.create(char_literal167);
+                    adaptor.addChild(root_0, char_literal167_tree);
                     }
-                    pushFollow(FOLLOW_unaryExpression_in_unaryExpression2342);
-                    unaryExpression169=unaryExpression();
+                    pushFollow(FOLLOW_unaryExpression_in_unaryExpression2405);
+                    unaryExpression168=unaryExpression();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, unaryExpression169.getTree());
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, unaryExpression168.getTree());
 
                     }
                     break;
                 case 3 :
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:336:9: '++' unaryExpression
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:338:9: '++' unaryExpression
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    string_literal170=(Token)match(input,93,FOLLOW_93_in_unaryExpression2352); if (state.failed) return retval;
+                    string_literal169=(Token)match(input,93,FOLLOW_93_in_unaryExpression2415); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    string_literal170_tree = (Object)adaptor.create(string_literal170);
-                    adaptor.addChild(root_0, string_literal170_tree);
+                    string_literal169_tree = (Object)adaptor.create(string_literal169);
+                    adaptor.addChild(root_0, string_literal169_tree);
                     }
-                    pushFollow(FOLLOW_unaryExpression_in_unaryExpression2354);
-                    unaryExpression171=unaryExpression();
+                    pushFollow(FOLLOW_unaryExpression_in_unaryExpression2417);
+                    unaryExpression170=unaryExpression();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, unaryExpression171.getTree());
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, unaryExpression170.getTree());
 
                     }
                     break;
                 case 4 :
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:337:9: '--' unaryExpression
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:339:9: '--' unaryExpression
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    string_literal172=(Token)match(input,94,FOLLOW_94_in_unaryExpression2364); if (state.failed) return retval;
+                    string_literal171=(Token)match(input,94,FOLLOW_94_in_unaryExpression2427); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    string_literal172_tree = (Object)adaptor.create(string_literal172);
-                    adaptor.addChild(root_0, string_literal172_tree);
+                    string_literal171_tree = (Object)adaptor.create(string_literal171);
+                    adaptor.addChild(root_0, string_literal171_tree);
                     }
-                    pushFollow(FOLLOW_unaryExpression_in_unaryExpression2366);
-                    unaryExpression173=unaryExpression();
+                    pushFollow(FOLLOW_unaryExpression_in_unaryExpression2429);
+                    unaryExpression172=unaryExpression();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, unaryExpression173.getTree());
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, unaryExpression172.getTree());
 
                     }
                     break;
                 case 5 :
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:338:9: unaryExpressionNotPlusMinus
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:340:9: unaryExpressionNotPlusMinus
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_unaryExpressionNotPlusMinus_in_unaryExpression2376);
-                    unaryExpressionNotPlusMinus174=unaryExpressionNotPlusMinus();
+                    pushFollow(FOLLOW_unaryExpressionNotPlusMinus_in_unaryExpression2439);
+                    unaryExpressionNotPlusMinus173=unaryExpressionNotPlusMinus();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, unaryExpressionNotPlusMinus174.getTree());
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, unaryExpressionNotPlusMinus173.getTree());
 
                     }
                     break;
@@ -5764,204 +5876,204 @@ public class JaParser extends Parser {
     };
 
     // $ANTLR start "unaryExpressionNotPlusMinus"
-    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:341:1: unaryExpressionNotPlusMinus : ( '!' unaryExpression | ( '(' primitiveType ')' )=> '(' primitiveType ')' unaryExpression | ( '(' nonPrimitiveType ')' unaryExpressionNotPlusMinus )=> '(' nonPrimitiveType ')' unaryExpressionNotPlusMinus | NEW creator | primary ( selector )* ( '++' | '--' )? );
+    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:343:1: unaryExpressionNotPlusMinus : ( '!' unaryExpression | ( '(' primitiveType ')' )=> '(' primitiveType ')' unaryExpression | ( '(' nonPrimitiveType ')' unaryExpressionNotPlusMinus )=> '(' nonPrimitiveType ')' unaryExpressionNotPlusMinus | NEW creator | primary ( selector )* ( '++' | '--' )? );
     public final JaParser.unaryExpressionNotPlusMinus_return unaryExpressionNotPlusMinus() throws RecognitionException {
         JaParser.unaryExpressionNotPlusMinus_return retval = new JaParser.unaryExpressionNotPlusMinus_return();
         retval.start = input.LT(1);
 
         Object root_0 = null;
 
-        Token char_literal175=null;
-        Token char_literal177=null;
-        Token char_literal179=null;
-        Token char_literal181=null;
-        Token char_literal183=null;
-        Token NEW185=null;
-        Token set189=null;
-        JaParser.unaryExpression_return unaryExpression176 = null;
+        Token char_literal174=null;
+        Token char_literal176=null;
+        Token char_literal178=null;
+        Token char_literal180=null;
+        Token char_literal182=null;
+        Token NEW184=null;
+        Token set188=null;
+        JaParser.unaryExpression_return unaryExpression175 = null;
 
-        JaParser.primitiveType_return primitiveType178 = null;
+        JaParser.primitiveType_return primitiveType177 = null;
 
-        JaParser.unaryExpression_return unaryExpression180 = null;
+        JaParser.unaryExpression_return unaryExpression179 = null;
 
-        JaParser.nonPrimitiveType_return nonPrimitiveType182 = null;
+        JaParser.nonPrimitiveType_return nonPrimitiveType181 = null;
 
-        JaParser.unaryExpressionNotPlusMinus_return unaryExpressionNotPlusMinus184 = null;
+        JaParser.unaryExpressionNotPlusMinus_return unaryExpressionNotPlusMinus183 = null;
 
-        JaParser.creator_return creator186 = null;
+        JaParser.creator_return creator185 = null;
 
-        JaParser.primary_return primary187 = null;
+        JaParser.primary_return primary186 = null;
 
-        JaParser.selector_return selector188 = null;
+        JaParser.selector_return selector187 = null;
 
 
-        Object char_literal175_tree=null;
-        Object char_literal177_tree=null;
-        Object char_literal179_tree=null;
-        Object char_literal181_tree=null;
-        Object char_literal183_tree=null;
-        Object NEW185_tree=null;
-        Object set189_tree=null;
+        Object char_literal174_tree=null;
+        Object char_literal176_tree=null;
+        Object char_literal178_tree=null;
+        Object char_literal180_tree=null;
+        Object char_literal182_tree=null;
+        Object NEW184_tree=null;
+        Object set188_tree=null;
 
         try {
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:342:5: ( '!' unaryExpression | ( '(' primitiveType ')' )=> '(' primitiveType ')' unaryExpression | ( '(' nonPrimitiveType ')' unaryExpressionNotPlusMinus )=> '(' nonPrimitiveType ')' unaryExpressionNotPlusMinus | NEW creator | primary ( selector )* ( '++' | '--' )? )
-            int alt49=5;
-            alt49 = dfa49.predict(input);
-            switch (alt49) {
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:344:5: ( '!' unaryExpression | ( '(' primitiveType ')' )=> '(' primitiveType ')' unaryExpression | ( '(' nonPrimitiveType ')' unaryExpressionNotPlusMinus )=> '(' nonPrimitiveType ')' unaryExpressionNotPlusMinus | NEW creator | primary ( selector )* ( '++' | '--' )? )
+            int alt50=5;
+            alt50 = dfa50.predict(input);
+            switch (alt50) {
                 case 1 :
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:342:7: '!' unaryExpression
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:344:7: '!' unaryExpression
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    char_literal175=(Token)match(input,95,FOLLOW_95_in_unaryExpressionNotPlusMinus2393); if (state.failed) return retval;
+                    char_literal174=(Token)match(input,95,FOLLOW_95_in_unaryExpressionNotPlusMinus2456); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    char_literal175_tree = (Object)adaptor.create(char_literal175);
-                    adaptor.addChild(root_0, char_literal175_tree);
+                    char_literal174_tree = (Object)adaptor.create(char_literal174);
+                    adaptor.addChild(root_0, char_literal174_tree);
                     }
-                    pushFollow(FOLLOW_unaryExpression_in_unaryExpressionNotPlusMinus2395);
-                    unaryExpression176=unaryExpression();
+                    pushFollow(FOLLOW_unaryExpression_in_unaryExpressionNotPlusMinus2458);
+                    unaryExpression175=unaryExpression();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, unaryExpression176.getTree());
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, unaryExpression175.getTree());
 
                     }
                     break;
                 case 2 :
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:343:9: ( '(' primitiveType ')' )=> '(' primitiveType ')' unaryExpression
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:345:9: ( '(' primitiveType ')' )=> '(' primitiveType ')' unaryExpression
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    char_literal177=(Token)match(input,81,FOLLOW_81_in_unaryExpressionNotPlusMinus2416); if (state.failed) return retval;
+                    char_literal176=(Token)match(input,81,FOLLOW_81_in_unaryExpressionNotPlusMinus2479); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    char_literal177_tree = (Object)adaptor.create(char_literal177);
-                    adaptor.addChild(root_0, char_literal177_tree);
+                    char_literal176_tree = (Object)adaptor.create(char_literal176);
+                    adaptor.addChild(root_0, char_literal176_tree);
                     }
-                    pushFollow(FOLLOW_primitiveType_in_unaryExpressionNotPlusMinus2418);
-                    primitiveType178=primitiveType();
+                    pushFollow(FOLLOW_primitiveType_in_unaryExpressionNotPlusMinus2481);
+                    primitiveType177=primitiveType();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, primitiveType178.getTree());
-                    char_literal179=(Token)match(input,82,FOLLOW_82_in_unaryExpressionNotPlusMinus2420); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, primitiveType177.getTree());
+                    char_literal178=(Token)match(input,82,FOLLOW_82_in_unaryExpressionNotPlusMinus2483); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    char_literal179_tree = (Object)adaptor.create(char_literal179);
-                    adaptor.addChild(root_0, char_literal179_tree);
+                    char_literal178_tree = (Object)adaptor.create(char_literal178);
+                    adaptor.addChild(root_0, char_literal178_tree);
                     }
-                    pushFollow(FOLLOW_unaryExpression_in_unaryExpressionNotPlusMinus2422);
-                    unaryExpression180=unaryExpression();
+                    pushFollow(FOLLOW_unaryExpression_in_unaryExpressionNotPlusMinus2485);
+                    unaryExpression179=unaryExpression();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, unaryExpression180.getTree());
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, unaryExpression179.getTree());
 
                     }
                     break;
                 case 3 :
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:345:9: ( '(' nonPrimitiveType ')' unaryExpressionNotPlusMinus )=> '(' nonPrimitiveType ')' unaryExpressionNotPlusMinus
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:347:9: ( '(' nonPrimitiveType ')' unaryExpressionNotPlusMinus )=> '(' nonPrimitiveType ')' unaryExpressionNotPlusMinus
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    char_literal181=(Token)match(input,81,FOLLOW_81_in_unaryExpressionNotPlusMinus2450); if (state.failed) return retval;
+                    char_literal180=(Token)match(input,81,FOLLOW_81_in_unaryExpressionNotPlusMinus2513); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    char_literal181_tree = (Object)adaptor.create(char_literal181);
-                    adaptor.addChild(root_0, char_literal181_tree);
+                    char_literal180_tree = (Object)adaptor.create(char_literal180);
+                    adaptor.addChild(root_0, char_literal180_tree);
                     }
-                    pushFollow(FOLLOW_nonPrimitiveType_in_unaryExpressionNotPlusMinus2452);
-                    nonPrimitiveType182=nonPrimitiveType();
+                    pushFollow(FOLLOW_nonPrimitiveType_in_unaryExpressionNotPlusMinus2515);
+                    nonPrimitiveType181=nonPrimitiveType();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, nonPrimitiveType182.getTree());
-                    char_literal183=(Token)match(input,82,FOLLOW_82_in_unaryExpressionNotPlusMinus2455); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, nonPrimitiveType181.getTree());
+                    char_literal182=(Token)match(input,82,FOLLOW_82_in_unaryExpressionNotPlusMinus2518); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    char_literal183_tree = (Object)adaptor.create(char_literal183);
-                    adaptor.addChild(root_0, char_literal183_tree);
+                    char_literal182_tree = (Object)adaptor.create(char_literal182);
+                    adaptor.addChild(root_0, char_literal182_tree);
                     }
-                    pushFollow(FOLLOW_unaryExpressionNotPlusMinus_in_unaryExpressionNotPlusMinus2457);
-                    unaryExpressionNotPlusMinus184=unaryExpressionNotPlusMinus();
+                    pushFollow(FOLLOW_unaryExpressionNotPlusMinus_in_unaryExpressionNotPlusMinus2520);
+                    unaryExpressionNotPlusMinus183=unaryExpressionNotPlusMinus();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, unaryExpressionNotPlusMinus184.getTree());
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, unaryExpressionNotPlusMinus183.getTree());
 
                     }
                     break;
                 case 4 :
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:346:9: NEW creator
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:348:9: NEW creator
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    NEW185=(Token)match(input,NEW,FOLLOW_NEW_in_unaryExpressionNotPlusMinus2467); if (state.failed) return retval;
+                    NEW184=(Token)match(input,NEW,FOLLOW_NEW_in_unaryExpressionNotPlusMinus2530); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    NEW185_tree = (Object)adaptor.create(NEW185);
-                    adaptor.addChild(root_0, NEW185_tree);
+                    NEW184_tree = (Object)adaptor.create(NEW184);
+                    adaptor.addChild(root_0, NEW184_tree);
                     }
-                    pushFollow(FOLLOW_creator_in_unaryExpressionNotPlusMinus2469);
-                    creator186=creator();
+                    pushFollow(FOLLOW_creator_in_unaryExpressionNotPlusMinus2532);
+                    creator185=creator();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, creator186.getTree());
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, creator185.getTree());
 
                     }
                     break;
                 case 5 :
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:347:9: primary ( selector )* ( '++' | '--' )?
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:349:9: primary ( selector )* ( '++' | '--' )?
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_primary_in_unaryExpressionNotPlusMinus2479);
-                    primary187=primary();
+                    pushFollow(FOLLOW_primary_in_unaryExpressionNotPlusMinus2542);
+                    primary186=primary();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, primary187.getTree());
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:347:26: ( selector )*
-                    loop47:
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, primary186.getTree());
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:349:26: ( selector )*
+                    loop48:
                     do {
-                        int alt47=2;
-                        int LA47_0 = input.LA(1);
+                        int alt48=2;
+                        int LA48_0 = input.LA(1);
 
-                        if ( (LA47_0==79||LA47_0==96) ) {
-                            alt47=1;
+                        if ( (LA48_0==79||LA48_0==96) ) {
+                            alt48=1;
                         }
 
 
-                        switch (alt47) {
+                        switch (alt48) {
                     	case 1 :
-                    	    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:347:26: selector
+                    	    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:349:26: selector
                     	    {
-                    	    pushFollow(FOLLOW_selector_in_unaryExpressionNotPlusMinus2482);
-                    	    selector188=selector();
+                    	    pushFollow(FOLLOW_selector_in_unaryExpressionNotPlusMinus2545);
+                    	    selector187=selector();
 
                     	    state._fsp--;
                     	    if (state.failed) return retval;
-                    	    if ( state.backtracking==0 ) root_0 = (Object)adaptor.becomeRoot(selector188.getTree(), root_0);
+                    	    if ( state.backtracking==0 ) root_0 = (Object)adaptor.becomeRoot(selector187.getTree(), root_0);
 
                     	    }
                     	    break;
 
                     	default :
-                    	    break loop47;
+                    	    break loop48;
                         }
                     } while (true);
 
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:347:29: ( '++' | '--' )?
-                    int alt48=2;
-                    int LA48_0 = input.LA(1);
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:349:29: ( '++' | '--' )?
+                    int alt49=2;
+                    int LA49_0 = input.LA(1);
 
-                    if ( ((LA48_0>=93 && LA48_0<=94)) ) {
-                        alt48=1;
+                    if ( ((LA49_0>=93 && LA49_0<=94)) ) {
+                        alt49=1;
                     }
-                    switch (alt48) {
+                    switch (alt49) {
                         case 1 :
                             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:
                             {
-                            set189=(Token)input.LT(1);
+                            set188=(Token)input.LT(1);
                             if ( (input.LA(1)>=93 && input.LA(1)<=94) ) {
                                 input.consume();
-                                if ( state.backtracking==0 ) adaptor.addChild(root_0, (Object)adaptor.create(set189));
+                                if ( state.backtracking==0 ) adaptor.addChild(root_0, (Object)adaptor.create(set188));
                                 state.errorRecovery=false;state.failed=false;
                             }
                             else {
@@ -6007,62 +6119,62 @@ public class JaParser extends Parser {
     };
 
     // $ANTLR start "primary"
-    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:354:1: primary : ( parExpression | THIS | SUPER superMemberAccess | literal | IDENTIFIER | ( IDENTIFIER -> IDENTIFIER ) ( '[' ']' -> ^( ARRAYTYPE $primary) )+ ( '.' CLASS -> ^( DOTCLASS $primary) ) | IDENTIFIER arguments -> ^( METHODCALL IDENTIFIER arguments THIS ) | IDENTIFIER '.' CLASS -> ^( DOTCLASS IDENTIFIER ) | ( primitiveType -> primitiveType ) ( '[' ']' -> ^( ARRAYTYPE $primary) )* ( '.' CLASS -> ^( DOTCLASS $primary) ) | VOID '.' CLASS -> ^( DOTCLASS VOID ) );
+    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:356:1: primary : ( parExpression | THIS | SUPER superMemberAccess | literal | IDENTIFIER | ( IDENTIFIER -> IDENTIFIER ) ( '[' ']' -> ^( ARRAYTYPE $primary) )+ ( '.' CLASS -> ^( DOTCLASS $primary) ) | IDENTIFIER arguments -> ^( METHODCALL IDENTIFIER arguments THIS ) | IDENTIFIER '.' CLASS -> ^( DOTCLASS IDENTIFIER ) | ( primitiveType -> primitiveType ) ( '[' ']' -> ^( ARRAYTYPE $primary) )* ( '.' CLASS -> ^( DOTCLASS $primary) ) | VOID '.' CLASS -> ^( DOTCLASS VOID ) );
     public final JaParser.primary_return primary() throws RecognitionException {
         JaParser.primary_return retval = new JaParser.primary_return();
         retval.start = input.LT(1);
 
         Object root_0 = null;
 
-        Token THIS191=null;
-        Token SUPER192=null;
+        Token THIS190=null;
+        Token SUPER191=null;
+        Token IDENTIFIER194=null;
         Token IDENTIFIER195=null;
-        Token IDENTIFIER196=null;
+        Token char_literal196=null;
         Token char_literal197=null;
         Token char_literal198=null;
-        Token char_literal199=null;
-        Token CLASS200=null;
-        Token IDENTIFIER201=null;
-        Token IDENTIFIER203=null;
-        Token char_literal204=null;
-        Token CLASS205=null;
+        Token CLASS199=null;
+        Token IDENTIFIER200=null;
+        Token IDENTIFIER202=null;
+        Token char_literal203=null;
+        Token CLASS204=null;
+        Token char_literal206=null;
         Token char_literal207=null;
         Token char_literal208=null;
-        Token char_literal209=null;
-        Token CLASS210=null;
-        Token VOID211=null;
-        Token char_literal212=null;
-        Token CLASS213=null;
-        JaParser.parExpression_return parExpression190 = null;
+        Token CLASS209=null;
+        Token VOID210=null;
+        Token char_literal211=null;
+        Token CLASS212=null;
+        JaParser.parExpression_return parExpression189 = null;
 
-        JaParser.superMemberAccess_return superMemberAccess193 = null;
+        JaParser.superMemberAccess_return superMemberAccess192 = null;
 
-        JaParser.literal_return literal194 = null;
+        JaParser.literal_return literal193 = null;
 
-        JaParser.arguments_return arguments202 = null;
+        JaParser.arguments_return arguments201 = null;
 
-        JaParser.primitiveType_return primitiveType206 = null;
+        JaParser.primitiveType_return primitiveType205 = null;
 
 
-        Object THIS191_tree=null;
-        Object SUPER192_tree=null;
+        Object THIS190_tree=null;
+        Object SUPER191_tree=null;
+        Object IDENTIFIER194_tree=null;
         Object IDENTIFIER195_tree=null;
-        Object IDENTIFIER196_tree=null;
+        Object char_literal196_tree=null;
         Object char_literal197_tree=null;
         Object char_literal198_tree=null;
-        Object char_literal199_tree=null;
-        Object CLASS200_tree=null;
-        Object IDENTIFIER201_tree=null;
-        Object IDENTIFIER203_tree=null;
-        Object char_literal204_tree=null;
-        Object CLASS205_tree=null;
+        Object CLASS199_tree=null;
+        Object IDENTIFIER200_tree=null;
+        Object IDENTIFIER202_tree=null;
+        Object char_literal203_tree=null;
+        Object CLASS204_tree=null;
+        Object char_literal206_tree=null;
         Object char_literal207_tree=null;
         Object char_literal208_tree=null;
-        Object char_literal209_tree=null;
-        Object CLASS210_tree=null;
-        Object VOID211_tree=null;
-        Object char_literal212_tree=null;
-        Object CLASS213_tree=null;
+        Object CLASS209_tree=null;
+        Object VOID210_tree=null;
+        Object char_literal211_tree=null;
+        Object CLASS212_tree=null;
         RewriteRuleTokenStream stream_79=new RewriteRuleTokenStream(adaptor,"token 79");
         RewriteRuleTokenStream stream_96=new RewriteRuleTokenStream(adaptor,"token 96");
         RewriteRuleTokenStream stream_CLASS=new RewriteRuleTokenStream(adaptor,"token CLASS");
@@ -6072,91 +6184,91 @@ public class JaParser extends Parser {
         RewriteRuleSubtreeStream stream_arguments=new RewriteRuleSubtreeStream(adaptor,"rule arguments");
         RewriteRuleSubtreeStream stream_primitiveType=new RewriteRuleSubtreeStream(adaptor,"rule primitiveType");
         try {
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:355:5: ( parExpression | THIS | SUPER superMemberAccess | literal | IDENTIFIER | ( IDENTIFIER -> IDENTIFIER ) ( '[' ']' -> ^( ARRAYTYPE $primary) )+ ( '.' CLASS -> ^( DOTCLASS $primary) ) | IDENTIFIER arguments -> ^( METHODCALL IDENTIFIER arguments THIS ) | IDENTIFIER '.' CLASS -> ^( DOTCLASS IDENTIFIER ) | ( primitiveType -> primitiveType ) ( '[' ']' -> ^( ARRAYTYPE $primary) )* ( '.' CLASS -> ^( DOTCLASS $primary) ) | VOID '.' CLASS -> ^( DOTCLASS VOID ) )
-            int alt52=10;
-            alt52 = dfa52.predict(input);
-            switch (alt52) {
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:357:5: ( parExpression | THIS | SUPER superMemberAccess | literal | IDENTIFIER | ( IDENTIFIER -> IDENTIFIER ) ( '[' ']' -> ^( ARRAYTYPE $primary) )+ ( '.' CLASS -> ^( DOTCLASS $primary) ) | IDENTIFIER arguments -> ^( METHODCALL IDENTIFIER arguments THIS ) | IDENTIFIER '.' CLASS -> ^( DOTCLASS IDENTIFIER ) | ( primitiveType -> primitiveType ) ( '[' ']' -> ^( ARRAYTYPE $primary) )* ( '.' CLASS -> ^( DOTCLASS $primary) ) | VOID '.' CLASS -> ^( DOTCLASS VOID ) )
+            int alt53=10;
+            alt53 = dfa53.predict(input);
+            switch (alt53) {
                 case 1 :
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:355:9: parExpression
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:357:9: parExpression
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_parExpression_in_primary2546);
-                    parExpression190=parExpression();
+                    pushFollow(FOLLOW_parExpression_in_primary2609);
+                    parExpression189=parExpression();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, parExpression190.getTree());
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, parExpression189.getTree());
 
                     }
                     break;
                 case 2 :
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:356:9: THIS
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:358:9: THIS
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    THIS191=(Token)match(input,THIS,FOLLOW_THIS_in_primary2556); if (state.failed) return retval;
+                    THIS190=(Token)match(input,THIS,FOLLOW_THIS_in_primary2619); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    THIS191_tree = (Object)adaptor.create(THIS191);
-                    adaptor.addChild(root_0, THIS191_tree);
+                    THIS190_tree = (Object)adaptor.create(THIS190);
+                    adaptor.addChild(root_0, THIS190_tree);
                     }
 
                     }
                     break;
                 case 3 :
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:357:9: SUPER superMemberAccess
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:359:9: SUPER superMemberAccess
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    SUPER192=(Token)match(input,SUPER,FOLLOW_SUPER_in_primary2567); if (state.failed) return retval;
+                    SUPER191=(Token)match(input,SUPER,FOLLOW_SUPER_in_primary2630); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    SUPER192_tree = (Object)adaptor.create(SUPER192);
-                    root_0 = (Object)adaptor.becomeRoot(SUPER192_tree, root_0);
+                    SUPER191_tree = (Object)adaptor.create(SUPER191);
+                    root_0 = (Object)adaptor.becomeRoot(SUPER191_tree, root_0);
                     }
-                    pushFollow(FOLLOW_superMemberAccess_in_primary2570);
-                    superMemberAccess193=superMemberAccess();
+                    pushFollow(FOLLOW_superMemberAccess_in_primary2633);
+                    superMemberAccess192=superMemberAccess();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, superMemberAccess193.getTree());
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, superMemberAccess192.getTree());
 
                     }
                     break;
                 case 4 :
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:358:9: literal
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:360:9: literal
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_literal_in_primary2580);
-                    literal194=literal();
+                    pushFollow(FOLLOW_literal_in_primary2643);
+                    literal193=literal();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, literal194.getTree());
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, literal193.getTree());
 
                     }
                     break;
                 case 5 :
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:359:9: IDENTIFIER
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:361:9: IDENTIFIER
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    IDENTIFIER195=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_primary2590); if (state.failed) return retval;
+                    IDENTIFIER194=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_primary2653); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    IDENTIFIER195_tree = (Object)adaptor.create(IDENTIFIER195);
-                    adaptor.addChild(root_0, IDENTIFIER195_tree);
+                    IDENTIFIER194_tree = (Object)adaptor.create(IDENTIFIER194);
+                    adaptor.addChild(root_0, IDENTIFIER194_tree);
                     }
 
                     }
                     break;
                 case 6 :
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:360:9: ( IDENTIFIER -> IDENTIFIER ) ( '[' ']' -> ^( ARRAYTYPE $primary) )+ ( '.' CLASS -> ^( DOTCLASS $primary) )
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:362:9: ( IDENTIFIER -> IDENTIFIER ) ( '[' ']' -> ^( ARRAYTYPE $primary) )+ ( '.' CLASS -> ^( DOTCLASS $primary) )
                     {
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:360:9: ( IDENTIFIER -> IDENTIFIER )
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:360:10: IDENTIFIER
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:362:9: ( IDENTIFIER -> IDENTIFIER )
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:362:10: IDENTIFIER
                     {
-                    IDENTIFIER196=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_primary2601); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_IDENTIFIER.add(IDENTIFIER196);
+                    IDENTIFIER195=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_primary2664); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_IDENTIFIER.add(IDENTIFIER195);
 
 
 
@@ -6172,7 +6284,7 @@ public class JaParser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 360:21: -> IDENTIFIER
+                    // 362:21: -> IDENTIFIER
                     {
                         adaptor.addChild(root_0, stream_IDENTIFIER.nextNode());
 
@@ -6181,27 +6293,27 @@ public class JaParser extends Parser {
                     retval.tree = root_0;}
                     }
 
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:360:36: ( '[' ']' -> ^( ARRAYTYPE $primary) )+
-                    int cnt50=0;
-                    loop50:
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:362:36: ( '[' ']' -> ^( ARRAYTYPE $primary) )+
+                    int cnt51=0;
+                    loop51:
                     do {
-                        int alt50=2;
-                        int LA50_0 = input.LA(1);
+                        int alt51=2;
+                        int LA51_0 = input.LA(1);
 
-                        if ( (LA50_0==79) ) {
-                            alt50=1;
+                        if ( (LA51_0==79) ) {
+                            alt51=1;
                         }
 
 
-                        switch (alt50) {
+                        switch (alt51) {
                     	case 1 :
-                    	    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:360:37: '[' ']'
+                    	    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:362:37: '[' ']'
                     	    {
-                    	    char_literal197=(Token)match(input,79,FOLLOW_79_in_primary2609); if (state.failed) return retval; 
-                    	    if ( state.backtracking==0 ) stream_79.add(char_literal197);
+                    	    char_literal196=(Token)match(input,79,FOLLOW_79_in_primary2672); if (state.failed) return retval; 
+                    	    if ( state.backtracking==0 ) stream_79.add(char_literal196);
 
-                    	    char_literal198=(Token)match(input,80,FOLLOW_80_in_primary2611); if (state.failed) return retval; 
-                    	    if ( state.backtracking==0 ) stream_80.add(char_literal198);
+                    	    char_literal197=(Token)match(input,80,FOLLOW_80_in_primary2674); if (state.failed) return retval; 
+                    	    if ( state.backtracking==0 ) stream_80.add(char_literal197);
 
 
 
@@ -6217,9 +6329,9 @@ public class JaParser extends Parser {
                     	    RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     	    root_0 = (Object)adaptor.nil();
-                    	    // 360:45: -> ^( ARRAYTYPE $primary)
+                    	    // 362:45: -> ^( ARRAYTYPE $primary)
                     	    {
-                    	        // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:360:48: ^( ARRAYTYPE $primary)
+                    	        // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:362:48: ^( ARRAYTYPE $primary)
                     	        {
                     	        Object root_1 = (Object)adaptor.nil();
                     	        root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(ARRAYTYPE, "ARRAYTYPE"), root_1);
@@ -6236,23 +6348,23 @@ public class JaParser extends Parser {
                     	    break;
 
                     	default :
-                    	    if ( cnt50 >= 1 ) break loop50;
+                    	    if ( cnt51 >= 1 ) break loop51;
                     	    if (state.backtracking>0) {state.failed=true; return retval;}
                                 EarlyExitException eee =
-                                    new EarlyExitException(50, input);
+                                    new EarlyExitException(51, input);
                                 throw eee;
                         }
-                        cnt50++;
+                        cnt51++;
                     } while (true);
 
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:360:72: ( '.' CLASS -> ^( DOTCLASS $primary) )
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:360:73: '.' CLASS
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:362:72: ( '.' CLASS -> ^( DOTCLASS $primary) )
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:362:73: '.' CLASS
                     {
-                    char_literal199=(Token)match(input,96,FOLLOW_96_in_primary2625); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_96.add(char_literal199);
+                    char_literal198=(Token)match(input,96,FOLLOW_96_in_primary2688); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_96.add(char_literal198);
 
-                    CLASS200=(Token)match(input,CLASS,FOLLOW_CLASS_in_primary2627); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_CLASS.add(CLASS200);
+                    CLASS199=(Token)match(input,CLASS,FOLLOW_CLASS_in_primary2690); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_CLASS.add(CLASS199);
 
 
 
@@ -6268,9 +6380,9 @@ public class JaParser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 360:83: -> ^( DOTCLASS $primary)
+                    // 362:83: -> ^( DOTCLASS $primary)
                     {
-                        // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:360:86: ^( DOTCLASS $primary)
+                        // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:362:86: ^( DOTCLASS $primary)
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(DOTCLASS, "DOTCLASS"), root_1);
@@ -6289,17 +6401,17 @@ public class JaParser extends Parser {
                     }
                     break;
                 case 7 :
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:361:8: IDENTIFIER arguments
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:363:8: IDENTIFIER arguments
                     {
-                    IDENTIFIER201=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_primary2646); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_IDENTIFIER.add(IDENTIFIER201);
+                    IDENTIFIER200=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_primary2709); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_IDENTIFIER.add(IDENTIFIER200);
 
-                    pushFollow(FOLLOW_arguments_in_primary2649);
-                    arguments202=arguments();
+                    pushFollow(FOLLOW_arguments_in_primary2712);
+                    arguments201=arguments();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) stream_arguments.add(arguments202.getTree());
+                    if ( state.backtracking==0 ) stream_arguments.add(arguments201.getTree());
 
 
                     // AST REWRITE
@@ -6314,9 +6426,9 @@ public class JaParser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 361:30: -> ^( METHODCALL IDENTIFIER arguments THIS )
+                    // 363:30: -> ^( METHODCALL IDENTIFIER arguments THIS )
                     {
-                        // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:361:33: ^( METHODCALL IDENTIFIER arguments THIS )
+                        // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:363:33: ^( METHODCALL IDENTIFIER arguments THIS )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(METHODCALL, "METHODCALL"), root_1);
@@ -6334,16 +6446,16 @@ public class JaParser extends Parser {
                     }
                     break;
                 case 8 :
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:362:7: IDENTIFIER '.' CLASS
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:364:7: IDENTIFIER '.' CLASS
                     {
-                    IDENTIFIER203=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_primary2669); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_IDENTIFIER.add(IDENTIFIER203);
+                    IDENTIFIER202=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_primary2732); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_IDENTIFIER.add(IDENTIFIER202);
 
-                    char_literal204=(Token)match(input,96,FOLLOW_96_in_primary2671); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_96.add(char_literal204);
+                    char_literal203=(Token)match(input,96,FOLLOW_96_in_primary2734); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_96.add(char_literal203);
 
-                    CLASS205=(Token)match(input,CLASS,FOLLOW_CLASS_in_primary2673); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_CLASS.add(CLASS205);
+                    CLASS204=(Token)match(input,CLASS,FOLLOW_CLASS_in_primary2736); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_CLASS.add(CLASS204);
 
 
 
@@ -6359,9 +6471,9 @@ public class JaParser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 362:28: -> ^( DOTCLASS IDENTIFIER )
+                    // 364:28: -> ^( DOTCLASS IDENTIFIER )
                     {
-                        // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:362:31: ^( DOTCLASS IDENTIFIER )
+                        // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:364:31: ^( DOTCLASS IDENTIFIER )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(DOTCLASS, "DOTCLASS"), root_1);
@@ -6377,17 +6489,17 @@ public class JaParser extends Parser {
                     }
                     break;
                 case 9 :
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:363:9: ( primitiveType -> primitiveType ) ( '[' ']' -> ^( ARRAYTYPE $primary) )* ( '.' CLASS -> ^( DOTCLASS $primary) )
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:365:9: ( primitiveType -> primitiveType ) ( '[' ']' -> ^( ARRAYTYPE $primary) )* ( '.' CLASS -> ^( DOTCLASS $primary) )
                     {
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:363:9: ( primitiveType -> primitiveType )
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:363:10: primitiveType
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:365:9: ( primitiveType -> primitiveType )
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:365:10: primitiveType
                     {
-                    pushFollow(FOLLOW_primitiveType_in_primary2692);
-                    primitiveType206=primitiveType();
+                    pushFollow(FOLLOW_primitiveType_in_primary2755);
+                    primitiveType205=primitiveType();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) stream_primitiveType.add(primitiveType206.getTree());
+                    if ( state.backtracking==0 ) stream_primitiveType.add(primitiveType205.getTree());
 
 
                     // AST REWRITE
@@ -6402,7 +6514,7 @@ public class JaParser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 363:24: -> primitiveType
+                    // 365:24: -> primitiveType
                     {
                         adaptor.addChild(root_0, stream_primitiveType.nextTree());
 
@@ -6411,26 +6523,26 @@ public class JaParser extends Parser {
                     retval.tree = root_0;}
                     }
 
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:363:42: ( '[' ']' -> ^( ARRAYTYPE $primary) )*
-                    loop51:
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:365:42: ( '[' ']' -> ^( ARRAYTYPE $primary) )*
+                    loop52:
                     do {
-                        int alt51=2;
-                        int LA51_0 = input.LA(1);
+                        int alt52=2;
+                        int LA52_0 = input.LA(1);
 
-                        if ( (LA51_0==79) ) {
-                            alt51=1;
+                        if ( (LA52_0==79) ) {
+                            alt52=1;
                         }
 
 
-                        switch (alt51) {
+                        switch (alt52) {
                     	case 1 :
-                    	    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:363:43: '[' ']'
+                    	    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:365:43: '[' ']'
                     	    {
-                    	    char_literal207=(Token)match(input,79,FOLLOW_79_in_primary2700); if (state.failed) return retval; 
-                    	    if ( state.backtracking==0 ) stream_79.add(char_literal207);
+                    	    char_literal206=(Token)match(input,79,FOLLOW_79_in_primary2763); if (state.failed) return retval; 
+                    	    if ( state.backtracking==0 ) stream_79.add(char_literal206);
 
-                    	    char_literal208=(Token)match(input,80,FOLLOW_80_in_primary2702); if (state.failed) return retval; 
-                    	    if ( state.backtracking==0 ) stream_80.add(char_literal208);
+                    	    char_literal207=(Token)match(input,80,FOLLOW_80_in_primary2765); if (state.failed) return retval; 
+                    	    if ( state.backtracking==0 ) stream_80.add(char_literal207);
 
 
 
@@ -6446,9 +6558,9 @@ public class JaParser extends Parser {
                     	    RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     	    root_0 = (Object)adaptor.nil();
-                    	    // 363:51: -> ^( ARRAYTYPE $primary)
+                    	    // 365:51: -> ^( ARRAYTYPE $primary)
                     	    {
-                    	        // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:363:54: ^( ARRAYTYPE $primary)
+                    	        // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:365:54: ^( ARRAYTYPE $primary)
                     	        {
                     	        Object root_1 = (Object)adaptor.nil();
                     	        root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(ARRAYTYPE, "ARRAYTYPE"), root_1);
@@ -6465,18 +6577,18 @@ public class JaParser extends Parser {
                     	    break;
 
                     	default :
-                    	    break loop51;
+                    	    break loop52;
                         }
                     } while (true);
 
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:363:78: ( '.' CLASS -> ^( DOTCLASS $primary) )
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:363:79: '.' CLASS
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:365:78: ( '.' CLASS -> ^( DOTCLASS $primary) )
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:365:79: '.' CLASS
                     {
-                    char_literal209=(Token)match(input,96,FOLLOW_96_in_primary2716); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_96.add(char_literal209);
+                    char_literal208=(Token)match(input,96,FOLLOW_96_in_primary2779); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_96.add(char_literal208);
 
-                    CLASS210=(Token)match(input,CLASS,FOLLOW_CLASS_in_primary2718); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_CLASS.add(CLASS210);
+                    CLASS209=(Token)match(input,CLASS,FOLLOW_CLASS_in_primary2781); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_CLASS.add(CLASS209);
 
 
 
@@ -6492,9 +6604,9 @@ public class JaParser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 363:89: -> ^( DOTCLASS $primary)
+                    // 365:89: -> ^( DOTCLASS $primary)
                     {
-                        // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:363:92: ^( DOTCLASS $primary)
+                        // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:365:92: ^( DOTCLASS $primary)
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(DOTCLASS, "DOTCLASS"), root_1);
@@ -6513,16 +6625,16 @@ public class JaParser extends Parser {
                     }
                     break;
                 case 10 :
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:364:9: VOID '.' CLASS
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:366:9: VOID '.' CLASS
                     {
-                    VOID211=(Token)match(input,VOID,FOLLOW_VOID_in_primary2738); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_VOID.add(VOID211);
+                    VOID210=(Token)match(input,VOID,FOLLOW_VOID_in_primary2801); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_VOID.add(VOID210);
 
-                    char_literal212=(Token)match(input,96,FOLLOW_96_in_primary2740); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_96.add(char_literal212);
+                    char_literal211=(Token)match(input,96,FOLLOW_96_in_primary2803); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_96.add(char_literal211);
 
-                    CLASS213=(Token)match(input,CLASS,FOLLOW_CLASS_in_primary2742); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_CLASS.add(CLASS213);
+                    CLASS212=(Token)match(input,CLASS,FOLLOW_CLASS_in_primary2805); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_CLASS.add(CLASS212);
 
 
 
@@ -6538,9 +6650,9 @@ public class JaParser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 364:24: -> ^( DOTCLASS VOID )
+                    // 366:24: -> ^( DOTCLASS VOID )
                     {
-                        // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:364:27: ^( DOTCLASS VOID )
+                        // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:366:27: ^( DOTCLASS VOID )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(DOTCLASS, "DOTCLASS"), root_1);
@@ -6583,30 +6695,30 @@ public class JaParser extends Parser {
     };
 
     // $ANTLR start "selector"
-    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:367:1: selector : ( '.' IDENTIFIER -> ^( FIELDACCESS IDENTIFIER ) | '.' IDENTIFIER arguments -> ^( METHODCALL IDENTIFIER ( arguments )? ) | '[' expression ']' -> ^( ARRAYACCESS expression ) );
+    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:369:1: selector : ( '.' IDENTIFIER -> ^( FIELDACCESS IDENTIFIER ) | '.' IDENTIFIER arguments -> ^( METHODCALL IDENTIFIER ( arguments )? ) | '[' expression ']' -> ^( ARRAYACCESS expression ) );
     public final JaParser.selector_return selector() throws RecognitionException {
         JaParser.selector_return retval = new JaParser.selector_return();
         retval.start = input.LT(1);
 
         Object root_0 = null;
 
-        Token char_literal214=null;
-        Token IDENTIFIER215=null;
-        Token char_literal216=null;
-        Token IDENTIFIER217=null;
-        Token char_literal219=null;
-        Token char_literal221=null;
-        JaParser.arguments_return arguments218 = null;
+        Token char_literal213=null;
+        Token IDENTIFIER214=null;
+        Token char_literal215=null;
+        Token IDENTIFIER216=null;
+        Token char_literal218=null;
+        Token char_literal220=null;
+        JaParser.arguments_return arguments217 = null;
 
-        JaParser.expression_return expression220 = null;
+        JaParser.expression_return expression219 = null;
 
 
-        Object char_literal214_tree=null;
-        Object IDENTIFIER215_tree=null;
-        Object char_literal216_tree=null;
-        Object IDENTIFIER217_tree=null;
-        Object char_literal219_tree=null;
-        Object char_literal221_tree=null;
+        Object char_literal213_tree=null;
+        Object IDENTIFIER214_tree=null;
+        Object char_literal215_tree=null;
+        Object IDENTIFIER216_tree=null;
+        Object char_literal218_tree=null;
+        Object char_literal220_tree=null;
         RewriteRuleTokenStream stream_79=new RewriteRuleTokenStream(adaptor,"token 79");
         RewriteRuleTokenStream stream_96=new RewriteRuleTokenStream(adaptor,"token 96");
         RewriteRuleTokenStream stream_80=new RewriteRuleTokenStream(adaptor,"token 80");
@@ -6614,26 +6726,26 @@ public class JaParser extends Parser {
         RewriteRuleSubtreeStream stream_expression=new RewriteRuleSubtreeStream(adaptor,"rule expression");
         RewriteRuleSubtreeStream stream_arguments=new RewriteRuleSubtreeStream(adaptor,"rule arguments");
         try {
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:368:5: ( '.' IDENTIFIER -> ^( FIELDACCESS IDENTIFIER ) | '.' IDENTIFIER arguments -> ^( METHODCALL IDENTIFIER ( arguments )? ) | '[' expression ']' -> ^( ARRAYACCESS expression ) )
-            int alt53=3;
-            int LA53_0 = input.LA(1);
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:370:5: ( '.' IDENTIFIER -> ^( FIELDACCESS IDENTIFIER ) | '.' IDENTIFIER arguments -> ^( METHODCALL IDENTIFIER ( arguments )? ) | '[' expression ']' -> ^( ARRAYACCESS expression ) )
+            int alt54=3;
+            int LA54_0 = input.LA(1);
 
-            if ( (LA53_0==96) ) {
-                int LA53_1 = input.LA(2);
+            if ( (LA54_0==96) ) {
+                int LA54_1 = input.LA(2);
 
-                if ( (LA53_1==IDENTIFIER) ) {
-                    int LA53_3 = input.LA(3);
+                if ( (LA54_1==IDENTIFIER) ) {
+                    int LA54_3 = input.LA(3);
 
-                    if ( (LA53_3==81) ) {
-                        alt53=2;
+                    if ( (LA54_3==81) ) {
+                        alt54=2;
                     }
-                    else if ( (LA53_3==EOF||(LA53_3>=INSTANCEOF && LA53_3<=COMPAREOP)||(LA53_3>=EQ && LA53_3<=SLASH)||LA53_3==75||(LA53_3>=77 && LA53_3<=80)||LA53_3==82||(LA53_3>=84 && LA53_3<=94)||LA53_3==96) ) {
-                        alt53=1;
+                    else if ( (LA54_3==EOF||(LA54_3>=INSTANCEOF && LA54_3<=COMPAREOP)||(LA54_3>=EQ && LA54_3<=SLASH)||LA54_3==75||(LA54_3>=77 && LA54_3<=80)||LA54_3==82||(LA54_3>=84 && LA54_3<=94)||LA54_3==96) ) {
+                        alt54=1;
                     }
                     else {
                         if (state.backtracking>0) {state.failed=true; return retval;}
                         NoViableAltException nvae =
-                            new NoViableAltException("", 53, 3, input);
+                            new NoViableAltException("", 54, 3, input);
 
                         throw nvae;
                     }
@@ -6641,30 +6753,30 @@ public class JaParser extends Parser {
                 else {
                     if (state.backtracking>0) {state.failed=true; return retval;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 53, 1, input);
+                        new NoViableAltException("", 54, 1, input);
 
                     throw nvae;
                 }
             }
-            else if ( (LA53_0==79) ) {
-                alt53=3;
+            else if ( (LA54_0==79) ) {
+                alt54=3;
             }
             else {
                 if (state.backtracking>0) {state.failed=true; return retval;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 53, 0, input);
+                    new NoViableAltException("", 54, 0, input);
 
                 throw nvae;
             }
-            switch (alt53) {
+            switch (alt54) {
                 case 1 :
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:368:9: '.' IDENTIFIER
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:370:9: '.' IDENTIFIER
                     {
-                    char_literal214=(Token)match(input,96,FOLLOW_96_in_selector2773); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_96.add(char_literal214);
+                    char_literal213=(Token)match(input,96,FOLLOW_96_in_selector2836); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_96.add(char_literal213);
 
-                    IDENTIFIER215=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_selector2775); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_IDENTIFIER.add(IDENTIFIER215);
+                    IDENTIFIER214=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_selector2838); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_IDENTIFIER.add(IDENTIFIER214);
 
 
 
@@ -6680,9 +6792,9 @@ public class JaParser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 368:24: -> ^( FIELDACCESS IDENTIFIER )
+                    // 370:24: -> ^( FIELDACCESS IDENTIFIER )
                     {
-                        // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:368:27: ^( FIELDACCESS IDENTIFIER )
+                        // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:370:27: ^( FIELDACCESS IDENTIFIER )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(FIELDACCESS, "FIELDACCESS"), root_1);
@@ -6698,20 +6810,20 @@ public class JaParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:369:7: '.' IDENTIFIER arguments
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:371:7: '.' IDENTIFIER arguments
                     {
-                    char_literal216=(Token)match(input,96,FOLLOW_96_in_selector2791); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_96.add(char_literal216);
+                    char_literal215=(Token)match(input,96,FOLLOW_96_in_selector2854); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_96.add(char_literal215);
 
-                    IDENTIFIER217=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_selector2793); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_IDENTIFIER.add(IDENTIFIER217);
+                    IDENTIFIER216=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_selector2856); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_IDENTIFIER.add(IDENTIFIER216);
 
-                    pushFollow(FOLLOW_arguments_in_selector2795);
-                    arguments218=arguments();
+                    pushFollow(FOLLOW_arguments_in_selector2858);
+                    arguments217=arguments();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) stream_arguments.add(arguments218.getTree());
+                    if ( state.backtracking==0 ) stream_arguments.add(arguments217.getTree());
 
 
                     // AST REWRITE
@@ -6726,15 +6838,15 @@ public class JaParser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 369:32: -> ^( METHODCALL IDENTIFIER ( arguments )? )
+                    // 371:32: -> ^( METHODCALL IDENTIFIER ( arguments )? )
                     {
-                        // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:369:35: ^( METHODCALL IDENTIFIER ( arguments )? )
+                        // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:371:35: ^( METHODCALL IDENTIFIER ( arguments )? )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(METHODCALL, "METHODCALL"), root_1);
 
                         adaptor.addChild(root_1, stream_IDENTIFIER.nextNode());
-                        // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:369:59: ( arguments )?
+                        // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:371:59: ( arguments )?
                         if ( stream_arguments.hasNext() ) {
                             adaptor.addChild(root_1, stream_arguments.nextTree());
 
@@ -6750,19 +6862,19 @@ public class JaParser extends Parser {
                     }
                     break;
                 case 3 :
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:372:9: '[' expression ']'
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:374:9: '[' expression ']'
                     {
-                    char_literal219=(Token)match(input,79,FOLLOW_79_in_selector2826); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_79.add(char_literal219);
+                    char_literal218=(Token)match(input,79,FOLLOW_79_in_selector2889); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_79.add(char_literal218);
 
-                    pushFollow(FOLLOW_expression_in_selector2828);
-                    expression220=expression();
+                    pushFollow(FOLLOW_expression_in_selector2891);
+                    expression219=expression();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) stream_expression.add(expression220.getTree());
-                    char_literal221=(Token)match(input,80,FOLLOW_80_in_selector2830); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_80.add(char_literal221);
+                    if ( state.backtracking==0 ) stream_expression.add(expression219.getTree());
+                    char_literal220=(Token)match(input,80,FOLLOW_80_in_selector2893); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_80.add(char_literal220);
 
 
 
@@ -6778,9 +6890,9 @@ public class JaParser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 372:27: -> ^( ARRAYACCESS expression )
+                    // 374:27: -> ^( ARRAYACCESS expression )
                     {
-                        // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:372:30: ^( ARRAYACCESS expression )
+                        // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:374:30: ^( ARRAYACCESS expression )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(ARRAYACCESS, "ARRAYACCESS"), root_1);
@@ -6823,143 +6935,143 @@ public class JaParser extends Parser {
     };
 
     // $ANTLR start "identifierSuffix"
-    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:375:1: identifierSuffix : ( ( '[' ']' )+ '.' CLASS | arguments | '.' CLASS );
+    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:377:1: identifierSuffix : ( ( '[' ']' )+ '.' CLASS | arguments | '.' CLASS );
     public final JaParser.identifierSuffix_return identifierSuffix() throws RecognitionException {
         JaParser.identifierSuffix_return retval = new JaParser.identifierSuffix_return();
         retval.start = input.LT(1);
 
         Object root_0 = null;
 
+        Token char_literal221=null;
         Token char_literal222=null;
         Token char_literal223=null;
-        Token char_literal224=null;
-        Token CLASS225=null;
-        Token char_literal227=null;
-        Token CLASS228=null;
-        JaParser.arguments_return arguments226 = null;
+        Token CLASS224=null;
+        Token char_literal226=null;
+        Token CLASS227=null;
+        JaParser.arguments_return arguments225 = null;
 
 
+        Object char_literal221_tree=null;
         Object char_literal222_tree=null;
         Object char_literal223_tree=null;
-        Object char_literal224_tree=null;
-        Object CLASS225_tree=null;
-        Object char_literal227_tree=null;
-        Object CLASS228_tree=null;
+        Object CLASS224_tree=null;
+        Object char_literal226_tree=null;
+        Object CLASS227_tree=null;
 
         try {
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:376:5: ( ( '[' ']' )+ '.' CLASS | arguments | '.' CLASS )
-            int alt55=3;
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:378:5: ( ( '[' ']' )+ '.' CLASS | arguments | '.' CLASS )
+            int alt56=3;
             switch ( input.LA(1) ) {
             case 79:
                 {
-                alt55=1;
+                alt56=1;
                 }
                 break;
             case 81:
                 {
-                alt55=2;
+                alt56=2;
                 }
                 break;
             case 96:
                 {
-                alt55=3;
+                alt56=3;
                 }
                 break;
             default:
                 if (state.backtracking>0) {state.failed=true; return retval;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 55, 0, input);
+                    new NoViableAltException("", 56, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt55) {
+            switch (alt56) {
                 case 1 :
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:376:9: ( '[' ']' )+ '.' CLASS
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:378:9: ( '[' ']' )+ '.' CLASS
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:376:9: ( '[' ']' )+
-                    int cnt54=0;
-                    loop54:
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:378:9: ( '[' ']' )+
+                    int cnt55=0;
+                    loop55:
                     do {
-                        int alt54=2;
-                        int LA54_0 = input.LA(1);
+                        int alt55=2;
+                        int LA55_0 = input.LA(1);
 
-                        if ( (LA54_0==79) ) {
-                            alt54=1;
+                        if ( (LA55_0==79) ) {
+                            alt55=1;
                         }
 
 
-                        switch (alt54) {
+                        switch (alt55) {
                     	case 1 :
-                    	    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:376:10: '[' ']'
+                    	    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:378:10: '[' ']'
                     	    {
-                    	    char_literal222=(Token)match(input,79,FOLLOW_79_in_identifierSuffix2857); if (state.failed) return retval;
+                    	    char_literal221=(Token)match(input,79,FOLLOW_79_in_identifierSuffix2920); if (state.failed) return retval;
+                    	    if ( state.backtracking==0 ) {
+                    	    char_literal221_tree = (Object)adaptor.create(char_literal221);
+                    	    adaptor.addChild(root_0, char_literal221_tree);
+                    	    }
+                    	    char_literal222=(Token)match(input,80,FOLLOW_80_in_identifierSuffix2922); if (state.failed) return retval;
                     	    if ( state.backtracking==0 ) {
                     	    char_literal222_tree = (Object)adaptor.create(char_literal222);
                     	    adaptor.addChild(root_0, char_literal222_tree);
-                    	    }
-                    	    char_literal223=(Token)match(input,80,FOLLOW_80_in_identifierSuffix2859); if (state.failed) return retval;
-                    	    if ( state.backtracking==0 ) {
-                    	    char_literal223_tree = (Object)adaptor.create(char_literal223);
-                    	    adaptor.addChild(root_0, char_literal223_tree);
                     	    }
 
                     	    }
                     	    break;
 
                     	default :
-                    	    if ( cnt54 >= 1 ) break loop54;
+                    	    if ( cnt55 >= 1 ) break loop55;
                     	    if (state.backtracking>0) {state.failed=true; return retval;}
                                 EarlyExitException eee =
-                                    new EarlyExitException(54, input);
+                                    new EarlyExitException(55, input);
                                 throw eee;
                         }
-                        cnt54++;
+                        cnt55++;
                     } while (true);
 
-                    char_literal224=(Token)match(input,96,FOLLOW_96_in_identifierSuffix2863); if (state.failed) return retval;
+                    char_literal223=(Token)match(input,96,FOLLOW_96_in_identifierSuffix2926); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    char_literal224_tree = (Object)adaptor.create(char_literal224);
-                    adaptor.addChild(root_0, char_literal224_tree);
+                    char_literal223_tree = (Object)adaptor.create(char_literal223);
+                    adaptor.addChild(root_0, char_literal223_tree);
                     }
-                    CLASS225=(Token)match(input,CLASS,FOLLOW_CLASS_in_identifierSuffix2865); if (state.failed) return retval;
+                    CLASS224=(Token)match(input,CLASS,FOLLOW_CLASS_in_identifierSuffix2928); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    CLASS225_tree = (Object)adaptor.create(CLASS225);
-                    adaptor.addChild(root_0, CLASS225_tree);
+                    CLASS224_tree = (Object)adaptor.create(CLASS224);
+                    adaptor.addChild(root_0, CLASS224_tree);
                     }
 
                     }
                     break;
                 case 2 :
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:378:9: arguments
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:380:9: arguments
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_arguments_in_identifierSuffix2880);
-                    arguments226=arguments();
+                    pushFollow(FOLLOW_arguments_in_identifierSuffix2943);
+                    arguments225=arguments();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, arguments226.getTree());
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, arguments225.getTree());
 
                     }
                     break;
                 case 3 :
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:379:9: '.' CLASS
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:381:9: '.' CLASS
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    char_literal227=(Token)match(input,96,FOLLOW_96_in_identifierSuffix2890); if (state.failed) return retval;
+                    char_literal226=(Token)match(input,96,FOLLOW_96_in_identifierSuffix2953); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    char_literal227_tree = (Object)adaptor.create(char_literal227);
-                    adaptor.addChild(root_0, char_literal227_tree);
+                    char_literal226_tree = (Object)adaptor.create(char_literal226);
+                    adaptor.addChild(root_0, char_literal226_tree);
                     }
-                    CLASS228=(Token)match(input,CLASS,FOLLOW_CLASS_in_identifierSuffix2892); if (state.failed) return retval;
+                    CLASS227=(Token)match(input,CLASS,FOLLOW_CLASS_in_identifierSuffix2955); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    CLASS228_tree = (Object)adaptor.create(CLASS228);
-                    adaptor.addChild(root_0, CLASS228_tree);
+                    CLASS227_tree = (Object)adaptor.create(CLASS227);
+                    adaptor.addChild(root_0, CLASS227_tree);
                     }
 
                     }
@@ -6992,72 +7104,72 @@ public class JaParser extends Parser {
     };
 
     // $ANTLR start "creator"
-    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:384:1: creator : createdName ( arrayCreatorRest | classCreatorRest ) ;
+    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:386:1: creator : createdName ( arrayCreatorRest | classCreatorRest ) ;
     public final JaParser.creator_return creator() throws RecognitionException {
         JaParser.creator_return retval = new JaParser.creator_return();
         retval.start = input.LT(1);
 
         Object root_0 = null;
 
-        JaParser.createdName_return createdName229 = null;
+        JaParser.createdName_return createdName228 = null;
 
-        JaParser.arrayCreatorRest_return arrayCreatorRest230 = null;
+        JaParser.arrayCreatorRest_return arrayCreatorRest229 = null;
 
-        JaParser.classCreatorRest_return classCreatorRest231 = null;
+        JaParser.classCreatorRest_return classCreatorRest230 = null;
 
 
 
         try {
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:385:5: ( createdName ( arrayCreatorRest | classCreatorRest ) )
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:385:8: createdName ( arrayCreatorRest | classCreatorRest )
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:387:5: ( createdName ( arrayCreatorRest | classCreatorRest ) )
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:387:8: createdName ( arrayCreatorRest | classCreatorRest )
             {
             root_0 = (Object)adaptor.nil();
 
-            pushFollow(FOLLOW_createdName_in_creator2920);
-            createdName229=createdName();
+            pushFollow(FOLLOW_createdName_in_creator2983);
+            createdName228=createdName();
 
             state._fsp--;
             if (state.failed) return retval;
-            if ( state.backtracking==0 ) adaptor.addChild(root_0, createdName229.getTree());
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:385:20: ( arrayCreatorRest | classCreatorRest )
-            int alt56=2;
-            int LA56_0 = input.LA(1);
+            if ( state.backtracking==0 ) adaptor.addChild(root_0, createdName228.getTree());
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:387:20: ( arrayCreatorRest | classCreatorRest )
+            int alt57=2;
+            int LA57_0 = input.LA(1);
 
-            if ( (LA56_0==79) ) {
-                alt56=1;
+            if ( (LA57_0==79) ) {
+                alt57=1;
             }
-            else if ( (LA56_0==81) ) {
-                alt56=2;
+            else if ( (LA57_0==81) ) {
+                alt57=2;
             }
             else {
                 if (state.backtracking>0) {state.failed=true; return retval;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 56, 0, input);
+                    new NoViableAltException("", 57, 0, input);
 
                 throw nvae;
             }
-            switch (alt56) {
+            switch (alt57) {
                 case 1 :
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:385:21: arrayCreatorRest
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:387:21: arrayCreatorRest
                     {
-                    pushFollow(FOLLOW_arrayCreatorRest_in_creator2923);
-                    arrayCreatorRest230=arrayCreatorRest();
+                    pushFollow(FOLLOW_arrayCreatorRest_in_creator2986);
+                    arrayCreatorRest229=arrayCreatorRest();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, arrayCreatorRest230.getTree());
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, arrayCreatorRest229.getTree());
 
                     }
                     break;
                 case 2 :
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:385:40: classCreatorRest
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:387:40: classCreatorRest
                     {
-                    pushFollow(FOLLOW_classCreatorRest_in_creator2927);
-                    classCreatorRest231=classCreatorRest();
+                    pushFollow(FOLLOW_classCreatorRest_in_creator2990);
+                    classCreatorRest230=classCreatorRest();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, classCreatorRest231.getTree());
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, classCreatorRest230.getTree());
 
                     }
                     break;
@@ -7093,63 +7205,63 @@ public class JaParser extends Parser {
     };
 
     // $ANTLR start "createdName"
-    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:388:1: createdName : ( classType | primitiveType );
+    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:390:1: createdName : ( classType | primitiveType );
     public final JaParser.createdName_return createdName() throws RecognitionException {
         JaParser.createdName_return retval = new JaParser.createdName_return();
         retval.start = input.LT(1);
 
         Object root_0 = null;
 
-        JaParser.classType_return classType232 = null;
+        JaParser.classType_return classType231 = null;
 
-        JaParser.primitiveType_return primitiveType233 = null;
+        JaParser.primitiveType_return primitiveType232 = null;
 
 
 
         try {
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:389:5: ( classType | primitiveType )
-            int alt57=2;
-            int LA57_0 = input.LA(1);
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:391:5: ( classType | primitiveType )
+            int alt58=2;
+            int LA58_0 = input.LA(1);
 
-            if ( (LA57_0==IDENTIFIER) ) {
-                alt57=1;
+            if ( (LA58_0==IDENTIFIER) ) {
+                alt58=1;
             }
-            else if ( ((LA57_0>=CHAR && LA57_0<=DOUBLE)) ) {
-                alt57=2;
+            else if ( ((LA58_0>=CHAR && LA58_0<=DOUBLE)) ) {
+                alt58=2;
             }
             else {
                 if (state.backtracking>0) {state.failed=true; return retval;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 57, 0, input);
+                    new NoViableAltException("", 58, 0, input);
 
                 throw nvae;
             }
-            switch (alt57) {
+            switch (alt58) {
                 case 1 :
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:389:9: classType
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:391:9: classType
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_classType_in_createdName2947);
-                    classType232=classType();
+                    pushFollow(FOLLOW_classType_in_createdName3010);
+                    classType231=classType();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, classType232.getTree());
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, classType231.getTree());
 
                     }
                     break;
                 case 2 :
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:390:9: primitiveType
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:392:9: primitiveType
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_primitiveType_in_createdName2957);
-                    primitiveType233=primitiveType();
+                    pushFollow(FOLLOW_primitiveType_in_createdName3020);
+                    primitiveType232=primitiveType();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, primitiveType233.getTree());
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, primitiveType232.getTree());
 
                     }
                     break;
@@ -7181,55 +7293,55 @@ public class JaParser extends Parser {
     };
 
     // $ANTLR start "arrayCreatorRest"
-    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:393:1: arrayCreatorRest : ( '[' ']' ( '[' ']' )* arrayInitializer | '[' expression ']' ( '[' expression ']' )* );
+    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:395:1: arrayCreatorRest : ( '[' ']' ( '[' ']' )* arrayInitializer | '[' expression ']' ( '[' expression ']' )* );
     public final JaParser.arrayCreatorRest_return arrayCreatorRest() throws RecognitionException {
         JaParser.arrayCreatorRest_return retval = new JaParser.arrayCreatorRest_return();
         retval.start = input.LT(1);
 
         Object root_0 = null;
 
+        Token char_literal233=null;
         Token char_literal234=null;
         Token char_literal235=null;
         Token char_literal236=null;
-        Token char_literal237=null;
-        Token char_literal239=null;
+        Token char_literal238=null;
+        Token char_literal240=null;
         Token char_literal241=null;
-        Token char_literal242=null;
-        Token char_literal244=null;
-        JaParser.arrayInitializer_return arrayInitializer238 = null;
+        Token char_literal243=null;
+        JaParser.arrayInitializer_return arrayInitializer237 = null;
 
-        JaParser.expression_return expression240 = null;
+        JaParser.expression_return expression239 = null;
 
-        JaParser.expression_return expression243 = null;
+        JaParser.expression_return expression242 = null;
 
 
+        Object char_literal233_tree=null;
         Object char_literal234_tree=null;
         Object char_literal235_tree=null;
         Object char_literal236_tree=null;
-        Object char_literal237_tree=null;
-        Object char_literal239_tree=null;
+        Object char_literal238_tree=null;
+        Object char_literal240_tree=null;
         Object char_literal241_tree=null;
-        Object char_literal242_tree=null;
-        Object char_literal244_tree=null;
+        Object char_literal243_tree=null;
 
         try {
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:394:5: ( '[' ']' ( '[' ']' )* arrayInitializer | '[' expression ']' ( '[' expression ']' )* )
-            int alt60=2;
-            int LA60_0 = input.LA(1);
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:396:5: ( '[' ']' ( '[' ']' )* arrayInitializer | '[' expression ']' ( '[' expression ']' )* )
+            int alt61=2;
+            int LA61_0 = input.LA(1);
 
-            if ( (LA60_0==79) ) {
-                int LA60_1 = input.LA(2);
+            if ( (LA61_0==79) ) {
+                int LA61_1 = input.LA(2);
 
-                if ( (LA60_1==80) ) {
-                    alt60=1;
+                if ( (LA61_1==80) ) {
+                    alt61=1;
                 }
-                else if ( (LA60_1==IDENTIFIER||LA60_1==VOID||(LA60_1>=CHAR && LA60_1<=NULLLITERAL)||LA60_1==NEW||(LA60_1>=PLUS && LA60_1<=MINUS)||LA60_1==81||(LA60_1>=93 && LA60_1<=95)) ) {
-                    alt60=2;
+                else if ( (LA61_1==IDENTIFIER||LA61_1==VOID||(LA61_1>=CHAR && LA61_1<=NULLLITERAL)||LA61_1==NEW||(LA61_1>=PLUS && LA61_1<=MINUS)||LA61_1==81||(LA61_1>=93 && LA61_1<=95)) ) {
+                    alt61=2;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return retval;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 60, 1, input);
+                        new NoViableAltException("", 61, 1, input);
 
                     throw nvae;
                 }
@@ -7237,91 +7349,27 @@ public class JaParser extends Parser {
             else {
                 if (state.backtracking>0) {state.failed=true; return retval;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 60, 0, input);
+                    new NoViableAltException("", 61, 0, input);
 
                 throw nvae;
             }
-            switch (alt60) {
+            switch (alt61) {
                 case 1 :
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:394:9: '[' ']' ( '[' ']' )* arrayInitializer
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:396:9: '[' ']' ( '[' ']' )* arrayInitializer
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    char_literal234=(Token)match(input,79,FOLLOW_79_in_arrayCreatorRest2980); if (state.failed) return retval;
+                    char_literal233=(Token)match(input,79,FOLLOW_79_in_arrayCreatorRest3043); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) {
+                    char_literal233_tree = (Object)adaptor.create(char_literal233);
+                    adaptor.addChild(root_0, char_literal233_tree);
+                    }
+                    char_literal234=(Token)match(input,80,FOLLOW_80_in_arrayCreatorRest3044); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     char_literal234_tree = (Object)adaptor.create(char_literal234);
                     adaptor.addChild(root_0, char_literal234_tree);
                     }
-                    char_literal235=(Token)match(input,80,FOLLOW_80_in_arrayCreatorRest2981); if (state.failed) return retval;
-                    if ( state.backtracking==0 ) {
-                    char_literal235_tree = (Object)adaptor.create(char_literal235);
-                    adaptor.addChild(root_0, char_literal235_tree);
-                    }
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:394:16: ( '[' ']' )*
-                    loop58:
-                    do {
-                        int alt58=2;
-                        int LA58_0 = input.LA(1);
-
-                        if ( (LA58_0==79) ) {
-                            alt58=1;
-                        }
-
-
-                        switch (alt58) {
-                    	case 1 :
-                    	    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:394:17: '[' ']'
-                    	    {
-                    	    char_literal236=(Token)match(input,79,FOLLOW_79_in_arrayCreatorRest2984); if (state.failed) return retval;
-                    	    if ( state.backtracking==0 ) {
-                    	    char_literal236_tree = (Object)adaptor.create(char_literal236);
-                    	    adaptor.addChild(root_0, char_literal236_tree);
-                    	    }
-                    	    char_literal237=(Token)match(input,80,FOLLOW_80_in_arrayCreatorRest2986); if (state.failed) return retval;
-                    	    if ( state.backtracking==0 ) {
-                    	    char_literal237_tree = (Object)adaptor.create(char_literal237);
-                    	    adaptor.addChild(root_0, char_literal237_tree);
-                    	    }
-
-                    	    }
-                    	    break;
-
-                    	default :
-                    	    break loop58;
-                        }
-                    } while (true);
-
-                    pushFollow(FOLLOW_arrayInitializer_in_arrayCreatorRest2990);
-                    arrayInitializer238=arrayInitializer();
-
-                    state._fsp--;
-                    if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, arrayInitializer238.getTree());
-
-                    }
-                    break;
-                case 2 :
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:395:7: '[' expression ']' ( '[' expression ']' )*
-                    {
-                    root_0 = (Object)adaptor.nil();
-
-                    char_literal239=(Token)match(input,79,FOLLOW_79_in_arrayCreatorRest2998); if (state.failed) return retval;
-                    if ( state.backtracking==0 ) {
-                    char_literal239_tree = (Object)adaptor.create(char_literal239);
-                    adaptor.addChild(root_0, char_literal239_tree);
-                    }
-                    pushFollow(FOLLOW_expression_in_arrayCreatorRest3000);
-                    expression240=expression();
-
-                    state._fsp--;
-                    if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, expression240.getTree());
-                    char_literal241=(Token)match(input,80,FOLLOW_80_in_arrayCreatorRest3002); if (state.failed) return retval;
-                    if ( state.backtracking==0 ) {
-                    char_literal241_tree = (Object)adaptor.create(char_literal241);
-                    adaptor.addChild(root_0, char_literal241_tree);
-                    }
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:395:26: ( '[' expression ']' )*
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:396:16: ( '[' ']' )*
                     loop59:
                     do {
                         int alt59=2;
@@ -7334,23 +7382,17 @@ public class JaParser extends Parser {
 
                         switch (alt59) {
                     	case 1 :
-                    	    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:395:27: '[' expression ']'
+                    	    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:396:17: '[' ']'
                     	    {
-                    	    char_literal242=(Token)match(input,79,FOLLOW_79_in_arrayCreatorRest3005); if (state.failed) return retval;
+                    	    char_literal235=(Token)match(input,79,FOLLOW_79_in_arrayCreatorRest3047); if (state.failed) return retval;
                     	    if ( state.backtracking==0 ) {
-                    	    char_literal242_tree = (Object)adaptor.create(char_literal242);
-                    	    adaptor.addChild(root_0, char_literal242_tree);
+                    	    char_literal235_tree = (Object)adaptor.create(char_literal235);
+                    	    adaptor.addChild(root_0, char_literal235_tree);
                     	    }
-                    	    pushFollow(FOLLOW_expression_in_arrayCreatorRest3007);
-                    	    expression243=expression();
-
-                    	    state._fsp--;
-                    	    if (state.failed) return retval;
-                    	    if ( state.backtracking==0 ) adaptor.addChild(root_0, expression243.getTree());
-                    	    char_literal244=(Token)match(input,80,FOLLOW_80_in_arrayCreatorRest3009); if (state.failed) return retval;
+                    	    char_literal236=(Token)match(input,80,FOLLOW_80_in_arrayCreatorRest3049); if (state.failed) return retval;
                     	    if ( state.backtracking==0 ) {
-                    	    char_literal244_tree = (Object)adaptor.create(char_literal244);
-                    	    adaptor.addChild(root_0, char_literal244_tree);
+                    	    char_literal236_tree = (Object)adaptor.create(char_literal236);
+                    	    adaptor.addChild(root_0, char_literal236_tree);
                     	    }
 
                     	    }
@@ -7358,6 +7400,76 @@ public class JaParser extends Parser {
 
                     	default :
                     	    break loop59;
+                        }
+                    } while (true);
+
+                    pushFollow(FOLLOW_arrayInitializer_in_arrayCreatorRest3053);
+                    arrayInitializer237=arrayInitializer();
+
+                    state._fsp--;
+                    if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, arrayInitializer237.getTree());
+
+                    }
+                    break;
+                case 2 :
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:397:7: '[' expression ']' ( '[' expression ']' )*
+                    {
+                    root_0 = (Object)adaptor.nil();
+
+                    char_literal238=(Token)match(input,79,FOLLOW_79_in_arrayCreatorRest3061); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) {
+                    char_literal238_tree = (Object)adaptor.create(char_literal238);
+                    adaptor.addChild(root_0, char_literal238_tree);
+                    }
+                    pushFollow(FOLLOW_expression_in_arrayCreatorRest3063);
+                    expression239=expression();
+
+                    state._fsp--;
+                    if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, expression239.getTree());
+                    char_literal240=(Token)match(input,80,FOLLOW_80_in_arrayCreatorRest3065); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) {
+                    char_literal240_tree = (Object)adaptor.create(char_literal240);
+                    adaptor.addChild(root_0, char_literal240_tree);
+                    }
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:397:26: ( '[' expression ']' )*
+                    loop60:
+                    do {
+                        int alt60=2;
+                        int LA60_0 = input.LA(1);
+
+                        if ( (LA60_0==79) ) {
+                            alt60=1;
+                        }
+
+
+                        switch (alt60) {
+                    	case 1 :
+                    	    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:397:27: '[' expression ']'
+                    	    {
+                    	    char_literal241=(Token)match(input,79,FOLLOW_79_in_arrayCreatorRest3068); if (state.failed) return retval;
+                    	    if ( state.backtracking==0 ) {
+                    	    char_literal241_tree = (Object)adaptor.create(char_literal241);
+                    	    adaptor.addChild(root_0, char_literal241_tree);
+                    	    }
+                    	    pushFollow(FOLLOW_expression_in_arrayCreatorRest3070);
+                    	    expression242=expression();
+
+                    	    state._fsp--;
+                    	    if (state.failed) return retval;
+                    	    if ( state.backtracking==0 ) adaptor.addChild(root_0, expression242.getTree());
+                    	    char_literal243=(Token)match(input,80,FOLLOW_80_in_arrayCreatorRest3072); if (state.failed) return retval;
+                    	    if ( state.backtracking==0 ) {
+                    	    char_literal243_tree = (Object)adaptor.create(char_literal243);
+                    	    adaptor.addChild(root_0, char_literal243_tree);
+                    	    }
+
+                    	    }
+                    	    break;
+
+                    	default :
+                    	    break loop60;
                         }
                     } while (true);
 
@@ -7392,29 +7504,29 @@ public class JaParser extends Parser {
     };
 
     // $ANTLR start "classCreatorRest"
-    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:398:1: classCreatorRest : arguments ;
+    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:400:1: classCreatorRest : arguments ;
     public final JaParser.classCreatorRest_return classCreatorRest() throws RecognitionException {
         JaParser.classCreatorRest_return retval = new JaParser.classCreatorRest_return();
         retval.start = input.LT(1);
 
         Object root_0 = null;
 
-        JaParser.arguments_return arguments245 = null;
+        JaParser.arguments_return arguments244 = null;
 
 
 
         try {
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:399:5: ( arguments )
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:399:9: arguments
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:401:5: ( arguments )
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:401:9: arguments
             {
             root_0 = (Object)adaptor.nil();
 
-            pushFollow(FOLLOW_arguments_in_classCreatorRest3032);
-            arguments245=arguments();
+            pushFollow(FOLLOW_arguments_in_classCreatorRest3095);
+            arguments244=arguments();
 
             state._fsp--;
             if (state.failed) return retval;
-            if ( state.backtracking==0 ) adaptor.addChild(root_0, arguments245.getTree());
+            if ( state.backtracking==0 ) adaptor.addChild(root_0, arguments244.getTree());
 
             }
 
@@ -7444,54 +7556,54 @@ public class JaParser extends Parser {
     };
 
     // $ANTLR start "superMemberAccess"
-    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:402:1: superMemberAccess : '.' IDENTIFIER ( arguments )? ;
+    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:404:1: superMemberAccess : '.' IDENTIFIER ( arguments )? ;
     public final JaParser.superMemberAccess_return superMemberAccess() throws RecognitionException {
         JaParser.superMemberAccess_return retval = new JaParser.superMemberAccess_return();
         retval.start = input.LT(1);
 
         Object root_0 = null;
 
-        Token char_literal246=null;
-        Token IDENTIFIER247=null;
-        JaParser.arguments_return arguments248 = null;
+        Token char_literal245=null;
+        Token IDENTIFIER246=null;
+        JaParser.arguments_return arguments247 = null;
 
 
-        Object char_literal246_tree=null;
-        Object IDENTIFIER247_tree=null;
+        Object char_literal245_tree=null;
+        Object IDENTIFIER246_tree=null;
 
         try {
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:403:2: ( '.' IDENTIFIER ( arguments )? )
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:404:2: '.' IDENTIFIER ( arguments )?
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:405:2: ( '.' IDENTIFIER ( arguments )? )
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:406:2: '.' IDENTIFIER ( arguments )?
             {
             root_0 = (Object)adaptor.nil();
 
-            char_literal246=(Token)match(input,96,FOLLOW_96_in_superMemberAccess3054); if (state.failed) return retval;
+            char_literal245=(Token)match(input,96,FOLLOW_96_in_superMemberAccess3117); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            char_literal246_tree = (Object)adaptor.create(char_literal246);
-            adaptor.addChild(root_0, char_literal246_tree);
+            char_literal245_tree = (Object)adaptor.create(char_literal245);
+            adaptor.addChild(root_0, char_literal245_tree);
             }
-            IDENTIFIER247=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_superMemberAccess3056); if (state.failed) return retval;
+            IDENTIFIER246=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_superMemberAccess3119); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            IDENTIFIER247_tree = (Object)adaptor.create(IDENTIFIER247);
-            adaptor.addChild(root_0, IDENTIFIER247_tree);
+            IDENTIFIER246_tree = (Object)adaptor.create(IDENTIFIER246);
+            adaptor.addChild(root_0, IDENTIFIER246_tree);
             }
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:404:17: ( arguments )?
-            int alt61=2;
-            int LA61_0 = input.LA(1);
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:406:17: ( arguments )?
+            int alt62=2;
+            int LA62_0 = input.LA(1);
 
-            if ( (LA61_0==81) ) {
-                alt61=1;
+            if ( (LA62_0==81) ) {
+                alt62=1;
             }
-            switch (alt61) {
+            switch (alt62) {
                 case 1 :
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:404:17: arguments
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:406:17: arguments
                     {
-                    pushFollow(FOLLOW_arguments_in_superMemberAccess3058);
-                    arguments248=arguments();
+                    pushFollow(FOLLOW_arguments_in_superMemberAccess3121);
+                    arguments247=arguments();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, arguments248.getTree());
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, arguments247.getTree());
 
                     }
                     break;
@@ -7527,52 +7639,52 @@ public class JaParser extends Parser {
     };
 
     // $ANTLR start "arguments"
-    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:407:1: arguments : '(' ( expressionList )? ')' ;
+    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:409:1: arguments : '(' ( expressionList )? ')' ;
     public final JaParser.arguments_return arguments() throws RecognitionException {
         JaParser.arguments_return retval = new JaParser.arguments_return();
         retval.start = input.LT(1);
 
         Object root_0 = null;
 
-        Token char_literal249=null;
-        Token char_literal251=null;
-        JaParser.expressionList_return expressionList250 = null;
+        Token char_literal248=null;
+        Token char_literal250=null;
+        JaParser.expressionList_return expressionList249 = null;
 
 
-        Object char_literal249_tree=null;
-        Object char_literal251_tree=null;
+        Object char_literal248_tree=null;
+        Object char_literal250_tree=null;
 
         try {
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:408:5: ( '(' ( expressionList )? ')' )
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:408:9: '(' ( expressionList )? ')'
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:410:5: ( '(' ( expressionList )? ')' )
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:410:9: '(' ( expressionList )? ')'
             {
             root_0 = (Object)adaptor.nil();
 
-            char_literal249=(Token)match(input,81,FOLLOW_81_in_arguments3076); if (state.failed) return retval;
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:408:14: ( expressionList )?
-            int alt62=2;
-            int LA62_0 = input.LA(1);
+            char_literal248=(Token)match(input,81,FOLLOW_81_in_arguments3139); if (state.failed) return retval;
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:410:14: ( expressionList )?
+            int alt63=2;
+            int LA63_0 = input.LA(1);
 
-            if ( (LA62_0==IDENTIFIER||LA62_0==VOID||(LA62_0>=CHAR && LA62_0<=NULLLITERAL)||LA62_0==NEW||(LA62_0>=PLUS && LA62_0<=MINUS)||LA62_0==81||(LA62_0>=93 && LA62_0<=95)) ) {
-                alt62=1;
+            if ( (LA63_0==IDENTIFIER||LA63_0==VOID||(LA63_0>=CHAR && LA63_0<=NULLLITERAL)||LA63_0==NEW||(LA63_0>=PLUS && LA63_0<=MINUS)||LA63_0==81||(LA63_0>=93 && LA63_0<=95)) ) {
+                alt63=1;
             }
-            switch (alt62) {
+            switch (alt63) {
                 case 1 :
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:408:14: expressionList
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:410:14: expressionList
                     {
-                    pushFollow(FOLLOW_expressionList_in_arguments3079);
-                    expressionList250=expressionList();
+                    pushFollow(FOLLOW_expressionList_in_arguments3142);
+                    expressionList249=expressionList();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, expressionList250.getTree());
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, expressionList249.getTree());
 
                     }
                     break;
 
             }
 
-            char_literal251=(Token)match(input,82,FOLLOW_82_in_arguments3082); if (state.failed) return retval;
+            char_literal250=(Token)match(input,82,FOLLOW_82_in_arguments3145); if (state.failed) return retval;
 
             }
 
@@ -7598,10 +7710,10 @@ public class JaParser extends Parser {
 
     // $ANTLR start synpred2_Ja
     public final void synpred2_Ja_fragment() throws RecognitionException {   
-        // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:252:2: ( ELSE )
-        // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:252:3: ELSE
+        // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:254:2: ( ELSE )
+        // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:254:3: ELSE
         {
-        match(input,ELSE,FOLLOW_ELSE_in_synpred2_Ja1657); if (state.failed) return ;
+        match(input,ELSE,FOLLOW_ELSE_in_synpred2_Ja1720); if (state.failed) return ;
 
         }
     }
@@ -7609,16 +7721,16 @@ public class JaParser extends Parser {
 
     // $ANTLR start synpred3_Ja
     public final void synpred3_Ja_fragment() throws RecognitionException {   
-        // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:343:9: ( '(' primitiveType ')' )
-        // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:343:10: '(' primitiveType ')'
+        // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:345:9: ( '(' primitiveType ')' )
+        // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:345:10: '(' primitiveType ')'
         {
-        match(input,81,FOLLOW_81_in_synpred3_Ja2406); if (state.failed) return ;
-        pushFollow(FOLLOW_primitiveType_in_synpred3_Ja2408);
+        match(input,81,FOLLOW_81_in_synpred3_Ja2469); if (state.failed) return ;
+        pushFollow(FOLLOW_primitiveType_in_synpred3_Ja2471);
         primitiveType();
 
         state._fsp--;
         if (state.failed) return ;
-        match(input,82,FOLLOW_82_in_synpred3_Ja2410); if (state.failed) return ;
+        match(input,82,FOLLOW_82_in_synpred3_Ja2473); if (state.failed) return ;
 
         }
     }
@@ -7626,17 +7738,17 @@ public class JaParser extends Parser {
 
     // $ANTLR start synpred4_Ja
     public final void synpred4_Ja_fragment() throws RecognitionException {   
-        // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:345:9: ( '(' nonPrimitiveType ')' unaryExpressionNotPlusMinus )
-        // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:345:10: '(' nonPrimitiveType ')' unaryExpressionNotPlusMinus
+        // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:347:9: ( '(' nonPrimitiveType ')' unaryExpressionNotPlusMinus )
+        // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:347:10: '(' nonPrimitiveType ')' unaryExpressionNotPlusMinus
         {
-        match(input,81,FOLLOW_81_in_synpred4_Ja2438); if (state.failed) return ;
-        pushFollow(FOLLOW_nonPrimitiveType_in_synpred4_Ja2440);
+        match(input,81,FOLLOW_81_in_synpred4_Ja2501); if (state.failed) return ;
+        pushFollow(FOLLOW_nonPrimitiveType_in_synpred4_Ja2503);
         nonPrimitiveType();
 
         state._fsp--;
         if (state.failed) return ;
-        match(input,82,FOLLOW_82_in_synpred4_Ja2443); if (state.failed) return ;
-        pushFollow(FOLLOW_unaryExpressionNotPlusMinus_in_synpred4_Ja2445);
+        match(input,82,FOLLOW_82_in_synpred4_Ja2506); if (state.failed) return ;
+        pushFollow(FOLLOW_unaryExpressionNotPlusMinus_in_synpred4_Ja2508);
         unaryExpressionNotPlusMinus();
 
         state._fsp--;
@@ -7692,25 +7804,25 @@ public class JaParser extends Parser {
     }
 
 
-    protected DFA16 dfa16 = new DFA16(this);
-    protected DFA23 dfa23 = new DFA23(this);
-    protected DFA27 dfa27 = new DFA27(this);
-    protected DFA35 dfa35 = new DFA35(this);
-    protected DFA49 dfa49 = new DFA49(this);
-    protected DFA52 dfa52 = new DFA52(this);
-    static final String DFA16_eotS =
+    protected DFA17 dfa17 = new DFA17(this);
+    protected DFA24 dfa24 = new DFA24(this);
+    protected DFA28 dfa28 = new DFA28(this);
+    protected DFA36 dfa36 = new DFA36(this);
+    protected DFA50 dfa50 = new DFA50(this);
+    protected DFA53 dfa53 = new DFA53(this);
+    static final String DFA17_eotS =
         "\12\uffff";
-    static final String DFA16_eofS =
+    static final String DFA17_eofS =
         "\2\uffff\7\11\1\uffff";
-    static final String DFA16_minS =
+    static final String DFA17_minS =
         "\1\31\1\uffff\7\31\1\uffff";
-    static final String DFA16_maxS =
+    static final String DFA17_maxS =
         "\1\44\1\uffff\7\133\1\uffff";
-    static final String DFA16_acceptS =
+    static final String DFA17_acceptS =
         "\1\uffff\1\1\7\uffff\1\2";
-    static final String DFA16_specialS =
+    static final String DFA17_specialS =
         "\12\uffff}>";
-    static final String[] DFA16_transitionS = {
+    static final String[] DFA17_transitionS = {
             "\1\1\4\uffff\1\2\1\3\1\4\1\5\1\6\1\7\1\10",
             "",
             "\1\11\52\uffff\1\11\6\uffff\4\11\1\1\1\11\1\uffff\12\11",
@@ -7723,115 +7835,115 @@ public class JaParser extends Parser {
             ""
     };
 
-    static final short[] DFA16_eot = DFA.unpackEncodedString(DFA16_eotS);
-    static final short[] DFA16_eof = DFA.unpackEncodedString(DFA16_eofS);
-    static final char[] DFA16_min = DFA.unpackEncodedStringToUnsignedChars(DFA16_minS);
-    static final char[] DFA16_max = DFA.unpackEncodedStringToUnsignedChars(DFA16_maxS);
-    static final short[] DFA16_accept = DFA.unpackEncodedString(DFA16_acceptS);
-    static final short[] DFA16_special = DFA.unpackEncodedString(DFA16_specialS);
-    static final short[][] DFA16_transition;
+    static final short[] DFA17_eot = DFA.unpackEncodedString(DFA17_eotS);
+    static final short[] DFA17_eof = DFA.unpackEncodedString(DFA17_eofS);
+    static final char[] DFA17_min = DFA.unpackEncodedStringToUnsignedChars(DFA17_minS);
+    static final char[] DFA17_max = DFA.unpackEncodedStringToUnsignedChars(DFA17_maxS);
+    static final short[] DFA17_accept = DFA.unpackEncodedString(DFA17_acceptS);
+    static final short[] DFA17_special = DFA.unpackEncodedString(DFA17_specialS);
+    static final short[][] DFA17_transition;
 
     static {
-        int numStates = DFA16_transitionS.length;
-        DFA16_transition = new short[numStates][];
+        int numStates = DFA17_transitionS.length;
+        DFA17_transition = new short[numStates][];
         for (int i=0; i<numStates; i++) {
-            DFA16_transition[i] = DFA.unpackEncodedString(DFA16_transitionS[i]);
+            DFA17_transition[i] = DFA.unpackEncodedString(DFA17_transitionS[i]);
         }
     }
 
-    class DFA16 extends DFA {
+    class DFA17 extends DFA {
 
-        public DFA16(BaseRecognizer recognizer) {
+        public DFA17(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
-            this.decisionNumber = 16;
-            this.eot = DFA16_eot;
-            this.eof = DFA16_eof;
-            this.min = DFA16_min;
-            this.max = DFA16_max;
-            this.accept = DFA16_accept;
-            this.special = DFA16_special;
-            this.transition = DFA16_transition;
+            this.decisionNumber = 17;
+            this.eot = DFA17_eot;
+            this.eof = DFA17_eof;
+            this.min = DFA17_min;
+            this.max = DFA17_max;
+            this.accept = DFA17_accept;
+            this.special = DFA17_special;
+            this.transition = DFA17_transition;
         }
         public String getDescription() {
-            return "145:1: type returns [Type t] : ( nonPrimitiveType | primitiveType );";
+            return "147:1: type returns [Type t] : ( nonPrimitiveType | primitiveType );";
         }
     }
-    static final String DFA23_eotS =
+    static final String DFA24_eotS =
         "\17\uffff";
-    static final String DFA23_eofS =
+    static final String DFA24_eofS =
         "\17\uffff";
-    static final String DFA23_minS =
+    static final String DFA24_minS =
         "\11\31\1\120\2\uffff\1\120\2\31";
-    static final String DFA23_maxS =
+    static final String DFA24_maxS =
         "\1\44\10\123\1\120\2\uffff\1\120\2\123";
-    static final String DFA23_acceptS =
-        "\12\uffff\1\1\1\2\3\uffff";
-    static final String DFA23_specialS =
+    static final String DFA24_acceptS =
+        "\12\uffff\1\2\1\1\3\uffff";
+    static final String DFA24_specialS =
         "\17\uffff}>";
-    static final String[] DFA23_transitionS = {
+    static final String[] DFA24_transitionS = {
             "\1\1\4\uffff\1\2\1\3\1\4\1\5\1\6\1\7\1\10",
-            "\1\12\65\uffff\1\11\3\uffff\1\13",
-            "\1\12\65\uffff\1\14\3\uffff\1\13",
-            "\1\12\65\uffff\1\14\3\uffff\1\13",
-            "\1\12\65\uffff\1\14\3\uffff\1\13",
-            "\1\12\65\uffff\1\14\3\uffff\1\13",
-            "\1\12\65\uffff\1\14\3\uffff\1\13",
-            "\1\12\65\uffff\1\14\3\uffff\1\13",
-            "\1\12\65\uffff\1\14\3\uffff\1\13",
+            "\1\13\65\uffff\1\11\3\uffff\1\12",
+            "\1\13\65\uffff\1\14\3\uffff\1\12",
+            "\1\13\65\uffff\1\14\3\uffff\1\12",
+            "\1\13\65\uffff\1\14\3\uffff\1\12",
+            "\1\13\65\uffff\1\14\3\uffff\1\12",
+            "\1\13\65\uffff\1\14\3\uffff\1\12",
+            "\1\13\65\uffff\1\14\3\uffff\1\12",
+            "\1\13\65\uffff\1\14\3\uffff\1\12",
             "\1\15",
             "",
             "",
             "\1\16",
-            "\1\12\65\uffff\1\11\3\uffff\1\13",
-            "\1\12\65\uffff\1\14\3\uffff\1\13"
+            "\1\13\65\uffff\1\11\3\uffff\1\12",
+            "\1\13\65\uffff\1\14\3\uffff\1\12"
     };
 
-    static final short[] DFA23_eot = DFA.unpackEncodedString(DFA23_eotS);
-    static final short[] DFA23_eof = DFA.unpackEncodedString(DFA23_eofS);
-    static final char[] DFA23_min = DFA.unpackEncodedStringToUnsignedChars(DFA23_minS);
-    static final char[] DFA23_max = DFA.unpackEncodedStringToUnsignedChars(DFA23_maxS);
-    static final short[] DFA23_accept = DFA.unpackEncodedString(DFA23_acceptS);
-    static final short[] DFA23_special = DFA.unpackEncodedString(DFA23_specialS);
-    static final short[][] DFA23_transition;
+    static final short[] DFA24_eot = DFA.unpackEncodedString(DFA24_eotS);
+    static final short[] DFA24_eof = DFA.unpackEncodedString(DFA24_eofS);
+    static final char[] DFA24_min = DFA.unpackEncodedStringToUnsignedChars(DFA24_minS);
+    static final char[] DFA24_max = DFA.unpackEncodedStringToUnsignedChars(DFA24_maxS);
+    static final short[] DFA24_accept = DFA.unpackEncodedString(DFA24_acceptS);
+    static final short[] DFA24_special = DFA.unpackEncodedString(DFA24_specialS);
+    static final short[][] DFA24_transition;
 
     static {
-        int numStates = DFA23_transitionS.length;
-        DFA23_transition = new short[numStates][];
+        int numStates = DFA24_transitionS.length;
+        DFA24_transition = new short[numStates][];
         for (int i=0; i<numStates; i++) {
-            DFA23_transition[i] = DFA.unpackEncodedString(DFA23_transitionS[i]);
+            DFA24_transition[i] = DFA.unpackEncodedString(DFA24_transitionS[i]);
         }
     }
 
-    class DFA23 extends DFA {
+    class DFA24 extends DFA {
 
-        public DFA23(BaseRecognizer recognizer) {
+        public DFA24(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
-            this.decisionNumber = 23;
-            this.eot = DFA23_eot;
-            this.eof = DFA23_eof;
-            this.min = DFA23_min;
-            this.max = DFA23_max;
-            this.accept = DFA23_accept;
-            this.special = DFA23_special;
-            this.transition = DFA23_transition;
+            this.decisionNumber = 24;
+            this.eot = DFA24_eot;
+            this.eof = DFA24_eof;
+            this.min = DFA24_min;
+            this.max = DFA24_max;
+            this.accept = DFA24_accept;
+            this.special = DFA24_special;
+            this.transition = DFA24_transition;
         }
         public String getDescription() {
-            return "184:1: formalParameterDecls : ( type variableDeclaratorId ( ',' formalParameterDecls )? -> ^( FPARM type variableDeclaratorId ) ( formalParameterDecls )? | type '...' variableDeclaratorId -> ^( FMULTPARM type variableDeclaratorId ) );";
+            return "186:1: formalParameterDecls[ArrayList<Type> args] : ( type variableDeclaratorId ( ',' formalParameterDecls[args] )? -> ^( FPARM type variableDeclaratorId ) ( formalParameterDecls )? | type '...' variableDeclaratorId -> ^( FMULTPARM type variableDeclaratorId ) );";
         }
     }
-    static final String DFA27_eotS =
+    static final String DFA28_eotS =
         "\20\uffff";
-    static final String DFA27_eofS =
+    static final String DFA28_eofS =
         "\20\uffff";
-    static final String DFA27_minS =
+    static final String DFA28_minS =
         "\11\31\1\uffff\1\31\1\uffff\1\120\2\31\1\120";
-    static final String DFA27_maxS =
+    static final String DFA28_maxS =
         "\1\137\10\140\1\uffff\1\137\1\uffff\1\120\2\140\1\120";
-    static final String DFA27_acceptS =
+    static final String DFA28_acceptS =
         "\11\uffff\1\2\1\uffff\1\1\4\uffff";
-    static final String DFA27_specialS =
+    static final String DFA28_specialS =
         "\20\uffff}>";
-    static final String[] DFA27_transitionS = {
+    static final String[] DFA28_transitionS = {
             "\1\1\2\uffff\1\11\1\uffff\1\2\1\3\1\4\1\5\1\6\1\7\1\10\15\11"+
             "\3\uffff\1\11\17\uffff\2\11\4\uffff\2\11\4\uffff\1\11\13\uffff"+
             "\3\11",
@@ -7854,52 +7966,52 @@ public class JaParser extends Parser {
             "\1\15"
     };
 
-    static final short[] DFA27_eot = DFA.unpackEncodedString(DFA27_eotS);
-    static final short[] DFA27_eof = DFA.unpackEncodedString(DFA27_eofS);
-    static final char[] DFA27_min = DFA.unpackEncodedStringToUnsignedChars(DFA27_minS);
-    static final char[] DFA27_max = DFA.unpackEncodedStringToUnsignedChars(DFA27_maxS);
-    static final short[] DFA27_accept = DFA.unpackEncodedString(DFA27_acceptS);
-    static final short[] DFA27_special = DFA.unpackEncodedString(DFA27_specialS);
-    static final short[][] DFA27_transition;
+    static final short[] DFA28_eot = DFA.unpackEncodedString(DFA28_eotS);
+    static final short[] DFA28_eof = DFA.unpackEncodedString(DFA28_eofS);
+    static final char[] DFA28_min = DFA.unpackEncodedStringToUnsignedChars(DFA28_minS);
+    static final char[] DFA28_max = DFA.unpackEncodedStringToUnsignedChars(DFA28_maxS);
+    static final short[] DFA28_accept = DFA.unpackEncodedString(DFA28_acceptS);
+    static final short[] DFA28_special = DFA.unpackEncodedString(DFA28_specialS);
+    static final short[][] DFA28_transition;
 
     static {
-        int numStates = DFA27_transitionS.length;
-        DFA27_transition = new short[numStates][];
+        int numStates = DFA28_transitionS.length;
+        DFA28_transition = new short[numStates][];
         for (int i=0; i<numStates; i++) {
-            DFA27_transition[i] = DFA.unpackEncodedString(DFA27_transitionS[i]);
+            DFA28_transition[i] = DFA.unpackEncodedString(DFA28_transitionS[i]);
         }
     }
 
-    class DFA27 extends DFA {
+    class DFA28 extends DFA {
 
-        public DFA27(BaseRecognizer recognizer) {
+        public DFA28(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
-            this.decisionNumber = 27;
-            this.eot = DFA27_eot;
-            this.eof = DFA27_eof;
-            this.min = DFA27_min;
-            this.max = DFA27_max;
-            this.accept = DFA27_accept;
-            this.special = DFA27_special;
-            this.transition = DFA27_transition;
+            this.decisionNumber = 28;
+            this.eot = DFA28_eot;
+            this.eof = DFA28_eof;
+            this.min = DFA28_min;
+            this.max = DFA28_max;
+            this.accept = DFA28_accept;
+            this.special = DFA28_special;
+            this.transition = DFA28_transition;
         }
         public String getDescription() {
-            return "225:1: blockStatement : ( localVariableDeclarationStatement | statement );";
+            return "227:1: blockStatement : ( localVariableDeclarationStatement | statement );";
         }
     }
-    static final String DFA35_eotS =
+    static final String DFA36_eotS =
         "\20\uffff";
-    static final String DFA35_eofS =
+    static final String DFA36_eofS =
         "\20\uffff";
-    static final String DFA35_minS =
+    static final String DFA36_minS =
         "\11\31\1\uffff\1\31\1\uffff\1\120\2\31\1\120";
-    static final String DFA35_maxS =
+    static final String DFA36_maxS =
         "\1\137\10\140\1\uffff\1\137\1\uffff\1\120\2\140\1\120";
-    static final String DFA35_acceptS =
+    static final String DFA36_acceptS =
         "\11\uffff\1\2\1\uffff\1\1\4\uffff";
-    static final String DFA35_specialS =
+    static final String DFA36_specialS =
         "\20\uffff}>";
-    static final String[] DFA35_transitionS = {
+    static final String[] DFA36_transitionS = {
             "\1\1\2\uffff\1\11\1\uffff\1\2\1\3\1\4\1\5\1\6\1\7\1\10\10\11"+
             "\10\uffff\1\11\17\uffff\2\11\12\uffff\1\11\13\uffff\3\11",
             "\1\13\31\uffff\2\11\17\uffff\5\11\2\uffff\1\11\2\uffff\1\11"+
@@ -7921,56 +8033,56 @@ public class JaParser extends Parser {
             "\1\15"
     };
 
-    static final short[] DFA35_eot = DFA.unpackEncodedString(DFA35_eotS);
-    static final short[] DFA35_eof = DFA.unpackEncodedString(DFA35_eofS);
-    static final char[] DFA35_min = DFA.unpackEncodedStringToUnsignedChars(DFA35_minS);
-    static final char[] DFA35_max = DFA.unpackEncodedStringToUnsignedChars(DFA35_maxS);
-    static final short[] DFA35_accept = DFA.unpackEncodedString(DFA35_acceptS);
-    static final short[] DFA35_special = DFA.unpackEncodedString(DFA35_specialS);
-    static final short[][] DFA35_transition;
+    static final short[] DFA36_eot = DFA.unpackEncodedString(DFA36_eotS);
+    static final short[] DFA36_eof = DFA.unpackEncodedString(DFA36_eofS);
+    static final char[] DFA36_min = DFA.unpackEncodedStringToUnsignedChars(DFA36_minS);
+    static final char[] DFA36_max = DFA.unpackEncodedStringToUnsignedChars(DFA36_maxS);
+    static final short[] DFA36_accept = DFA.unpackEncodedString(DFA36_acceptS);
+    static final short[] DFA36_special = DFA.unpackEncodedString(DFA36_specialS);
+    static final short[][] DFA36_transition;
 
     static {
-        int numStates = DFA35_transitionS.length;
-        DFA35_transition = new short[numStates][];
+        int numStates = DFA36_transitionS.length;
+        DFA36_transition = new short[numStates][];
         for (int i=0; i<numStates; i++) {
-            DFA35_transition[i] = DFA.unpackEncodedString(DFA35_transitionS[i]);
+            DFA36_transition[i] = DFA.unpackEncodedString(DFA36_transitionS[i]);
         }
     }
 
-    class DFA35 extends DFA {
+    class DFA36 extends DFA {
 
-        public DFA35(BaseRecognizer recognizer) {
+        public DFA36(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
-            this.decisionNumber = 35;
-            this.eot = DFA35_eot;
-            this.eof = DFA35_eof;
-            this.min = DFA35_min;
-            this.max = DFA35_max;
-            this.accept = DFA35_accept;
-            this.special = DFA35_special;
-            this.transition = DFA35_transition;
+            this.decisionNumber = 36;
+            this.eot = DFA36_eot;
+            this.eof = DFA36_eof;
+            this.min = DFA36_min;
+            this.max = DFA36_max;
+            this.accept = DFA36_accept;
+            this.special = DFA36_special;
+            this.transition = DFA36_transition;
         }
         public String getDescription() {
-            return "261:1: forInit : ( localVariableDeclaration | expressionList );";
+            return "263:1: forInit : ( localVariableDeclaration | expressionList );";
         }
     }
-    static final String DFA49_eotS =
+    static final String DFA50_eotS =
         "\44\uffff";
-    static final String DFA49_eofS =
+    static final String DFA50_eofS =
         "\16\uffff\1\4\25\uffff";
-    static final String DFA49_minS =
-        "\1\31\1\uffff\1\31\2\uffff\1\63\7\117\2\31\1\uffff\1\120\1\117"+
+    static final String DFA50_minS =
+        "\1\31\1\uffff\1\31\2\uffff\1\63\7\117\2\31\1\120\1\uffff\1\117"+
         "\17\uffff\1\117\1\120\1\uffff";
-    static final String DFA49_maxS =
-        "\1\137\1\uffff\1\137\2\uffff\10\140\1\137\1\140\1\uffff\1\120\1"+
+    static final String DFA50_maxS =
+        "\1\137\1\uffff\1\137\2\uffff\10\140\1\137\1\140\1\120\1\uffff\1"+
         "\140\17\uffff\1\140\1\120\1\uffff";
-    static final String DFA49_acceptS =
-        "\1\uffff\1\1\1\uffff\1\4\1\5\12\uffff\1\2\2\uffff\17\3\2\uffff"+
+    static final String DFA50_acceptS =
+        "\1\uffff\1\1\1\uffff\1\4\1\5\13\uffff\1\2\1\uffff\17\3\2\uffff"+
         "\1\3";
-    static final String DFA49_specialS =
-        "\6\uffff\1\10\1\6\1\0\1\7\1\3\1\2\1\5\1\uffff\1\4\2\uffff\1\11"+
-        "\17\uffff\1\1\2\uffff}>";
-    static final String[] DFA49_transitionS = {
+    static final String DFA50_specialS =
+        "\6\uffff\1\7\1\2\1\10\1\5\1\1\1\11\1\3\1\uffff\1\6\2\uffff\1\0"+
+        "\17\uffff\1\4\2\uffff}>";
+    static final String[] DFA50_transitionS = {
             "\1\4\2\uffff\1\4\1\uffff\17\4\10\uffff\1\3\33\uffff\1\2\15"+
             "\uffff\1\1",
             "",
@@ -7980,20 +8092,20 @@ public class JaParser extends Parser {
             "",
             "\2\4\17\uffff\5\4\6\uffff\1\15\1\uffff\1\4\1\16\1\uffff\13"+
             "\4\1\uffff\1\4",
-            "\1\20\2\uffff\1\17\15\uffff\1\4",
-            "\1\20\2\uffff\1\17\15\uffff\1\4",
-            "\1\20\2\uffff\1\17\15\uffff\1\4",
-            "\1\20\2\uffff\1\17\15\uffff\1\4",
-            "\1\20\2\uffff\1\17\15\uffff\1\4",
-            "\1\20\2\uffff\1\17\15\uffff\1\4",
-            "\1\20\2\uffff\1\17\15\uffff\1\4",
+            "\1\17\2\uffff\1\20\15\uffff\1\4",
+            "\1\17\2\uffff\1\20\15\uffff\1\4",
+            "\1\17\2\uffff\1\20\15\uffff\1\4",
+            "\1\17\2\uffff\1\20\15\uffff\1\4",
+            "\1\17\2\uffff\1\20\15\uffff\1\4",
+            "\1\17\2\uffff\1\20\15\uffff\1\4",
+            "\1\17\2\uffff\1\20\15\uffff\1\4",
             "\1\4\2\uffff\1\4\1\uffff\17\4\10\uffff\1\4\17\uffff\2\4\11"+
             "\uffff\1\21\1\4\13\uffff\3\4",
             "\1\30\2\uffff\1\40\1\uffff\1\31\1\32\1\33\1\34\1\35\1\36\1"+
             "\37\1\25\1\26\6\27\6\uffff\2\4\1\24\16\uffff\5\4\2\uffff\1\4"+
             "\1\uffff\4\4\1\23\1\4\1\uffff\13\4\1\22\1\4",
-            "",
             "\1\41",
+            "",
             "\1\42\2\uffff\1\43\15\uffff\1\4",
             "",
             "",
@@ -8010,314 +8122,314 @@ public class JaParser extends Parser {
             "",
             "",
             "",
-            "\1\20\2\uffff\1\43\15\uffff\1\4",
+            "\1\17\2\uffff\1\43\15\uffff\1\4",
             "\1\21",
             ""
     };
 
-    static final short[] DFA49_eot = DFA.unpackEncodedString(DFA49_eotS);
-    static final short[] DFA49_eof = DFA.unpackEncodedString(DFA49_eofS);
-    static final char[] DFA49_min = DFA.unpackEncodedStringToUnsignedChars(DFA49_minS);
-    static final char[] DFA49_max = DFA.unpackEncodedStringToUnsignedChars(DFA49_maxS);
-    static final short[] DFA49_accept = DFA.unpackEncodedString(DFA49_acceptS);
-    static final short[] DFA49_special = DFA.unpackEncodedString(DFA49_specialS);
-    static final short[][] DFA49_transition;
+    static final short[] DFA50_eot = DFA.unpackEncodedString(DFA50_eotS);
+    static final short[] DFA50_eof = DFA.unpackEncodedString(DFA50_eofS);
+    static final char[] DFA50_min = DFA.unpackEncodedStringToUnsignedChars(DFA50_minS);
+    static final char[] DFA50_max = DFA.unpackEncodedStringToUnsignedChars(DFA50_maxS);
+    static final short[] DFA50_accept = DFA.unpackEncodedString(DFA50_acceptS);
+    static final short[] DFA50_special = DFA.unpackEncodedString(DFA50_specialS);
+    static final short[][] DFA50_transition;
 
     static {
-        int numStates = DFA49_transitionS.length;
-        DFA49_transition = new short[numStates][];
+        int numStates = DFA50_transitionS.length;
+        DFA50_transition = new short[numStates][];
         for (int i=0; i<numStates; i++) {
-            DFA49_transition[i] = DFA.unpackEncodedString(DFA49_transitionS[i]);
+            DFA50_transition[i] = DFA.unpackEncodedString(DFA50_transitionS[i]);
         }
     }
 
-    class DFA49 extends DFA {
+    class DFA50 extends DFA {
 
-        public DFA49(BaseRecognizer recognizer) {
+        public DFA50(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
-            this.decisionNumber = 49;
-            this.eot = DFA49_eot;
-            this.eof = DFA49_eof;
-            this.min = DFA49_min;
-            this.max = DFA49_max;
-            this.accept = DFA49_accept;
-            this.special = DFA49_special;
-            this.transition = DFA49_transition;
+            this.decisionNumber = 50;
+            this.eot = DFA50_eot;
+            this.eof = DFA50_eof;
+            this.min = DFA50_min;
+            this.max = DFA50_max;
+            this.accept = DFA50_accept;
+            this.special = DFA50_special;
+            this.transition = DFA50_transition;
         }
         public String getDescription() {
-            return "341:1: unaryExpressionNotPlusMinus : ( '!' unaryExpression | ( '(' primitiveType ')' )=> '(' primitiveType ')' unaryExpression | ( '(' nonPrimitiveType ')' unaryExpressionNotPlusMinus )=> '(' nonPrimitiveType ')' unaryExpressionNotPlusMinus | NEW creator | primary ( selector )* ( '++' | '--' )? );";
+            return "343:1: unaryExpressionNotPlusMinus : ( '!' unaryExpression | ( '(' primitiveType ')' )=> '(' primitiveType ')' unaryExpression | ( '(' nonPrimitiveType ')' unaryExpressionNotPlusMinus )=> '(' nonPrimitiveType ')' unaryExpressionNotPlusMinus | NEW creator | primary ( selector )* ( '++' | '--' )? );";
         }
         public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
             TokenStream input = (TokenStream)_input;
         	int _s = s;
             switch ( s ) {
                     case 0 : 
-                        int LA49_8 = input.LA(1);
+                        int LA50_17 = input.LA(1);
 
                          
-                        int index49_8 = input.index();
+                        int index50_17 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (LA49_8==79) ) {s = 16;}
+                        if ( (LA50_17==96) ) {s = 4;}
 
-                        else if ( (LA49_8==96) ) {s = 4;}
+                        else if ( (LA50_17==79) ) {s = 34;}
 
-                        else if ( (LA49_8==82) && (synpred3_Ja())) {s = 15;}
+                        else if ( (LA50_17==82) && (synpred4_Ja())) {s = 35;}
 
                          
-                        input.seek(index49_8);
+                        input.seek(index50_17);
                         if ( s>=0 ) return s;
                         break;
                     case 1 : 
-                        int LA49_33 = input.LA(1);
+                        int LA50_10 = input.LA(1);
 
                          
-                        int index49_33 = input.index();
+                        int index50_10 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (LA49_33==96) ) {s = 4;}
+                        if ( (LA50_10==79) ) {s = 15;}
 
-                        else if ( (LA49_33==79) ) {s = 16;}
+                        else if ( (LA50_10==96) ) {s = 4;}
 
-                        else if ( (LA49_33==82) && (synpred4_Ja())) {s = 35;}
+                        else if ( (LA50_10==82) && (synpred3_Ja())) {s = 16;}
 
                          
-                        input.seek(index49_33);
+                        input.seek(index50_10);
                         if ( s>=0 ) return s;
                         break;
                     case 2 : 
-                        int LA49_11 = input.LA(1);
+                        int LA50_7 = input.LA(1);
 
                          
-                        int index49_11 = input.index();
+                        int index50_7 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (LA49_11==82) && (synpred3_Ja())) {s = 15;}
+                        if ( (LA50_7==82) && (synpred3_Ja())) {s = 16;}
 
-                        else if ( (LA49_11==79) ) {s = 16;}
+                        else if ( (LA50_7==79) ) {s = 15;}
 
-                        else if ( (LA49_11==96) ) {s = 4;}
+                        else if ( (LA50_7==96) ) {s = 4;}
 
                          
-                        input.seek(index49_11);
+                        input.seek(index50_7);
                         if ( s>=0 ) return s;
                         break;
                     case 3 : 
-                        int LA49_10 = input.LA(1);
+                        int LA50_12 = input.LA(1);
 
                          
-                        int index49_10 = input.index();
+                        int index50_12 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (LA49_10==82) && (synpred3_Ja())) {s = 15;}
+                        if ( (LA50_12==82) && (synpred3_Ja())) {s = 16;}
 
-                        else if ( (LA49_10==79) ) {s = 16;}
+                        else if ( (LA50_12==79) ) {s = 15;}
 
-                        else if ( (LA49_10==96) ) {s = 4;}
+                        else if ( (LA50_12==96) ) {s = 4;}
 
                          
-                        input.seek(index49_10);
+                        input.seek(index50_12);
                         if ( s>=0 ) return s;
                         break;
                     case 4 : 
-                        int LA49_14 = input.LA(1);
+                        int LA50_33 = input.LA(1);
 
                          
-                        int index49_14 = input.index();
+                        int index50_33 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (LA49_14==95) && (synpred4_Ja())) {s = 18;}
+                        if ( (LA50_33==96) ) {s = 4;}
 
-                        else if ( (LA49_14==81) && (synpred4_Ja())) {s = 19;}
+                        else if ( (LA50_33==79) ) {s = 15;}
 
-                        else if ( (LA49_14==NEW) && (synpred4_Ja())) {s = 20;}
-
-                        else if ( (LA49_14==THIS) && (synpred4_Ja())) {s = 21;}
-
-                        else if ( (LA49_14==SUPER) && (synpred4_Ja())) {s = 22;}
-
-                        else if ( ((LA49_14>=INTLITERAL && LA49_14<=NULLLITERAL)) && (synpred4_Ja())) {s = 23;}
-
-                        else if ( (LA49_14==IDENTIFIER) && (synpred4_Ja())) {s = 24;}
-
-                        else if ( (LA49_14==CHAR) && (synpred4_Ja())) {s = 25;}
-
-                        else if ( (LA49_14==BYTE) && (synpred4_Ja())) {s = 26;}
-
-                        else if ( (LA49_14==SHORT) && (synpred4_Ja())) {s = 27;}
-
-                        else if ( (LA49_14==INT) && (synpred4_Ja())) {s = 28;}
-
-                        else if ( (LA49_14==LONG) && (synpred4_Ja())) {s = 29;}
-
-                        else if ( (LA49_14==FLOAT) && (synpred4_Ja())) {s = 30;}
-
-                        else if ( (LA49_14==DOUBLE) && (synpred4_Ja())) {s = 31;}
-
-                        else if ( (LA49_14==VOID) && (synpred4_Ja())) {s = 32;}
-
-                        else if ( (LA49_14==EOF||(LA49_14>=INSTANCEOF && LA49_14<=COMPAREOP)||(LA49_14>=EQ && LA49_14<=SLASH)||LA49_14==75||(LA49_14>=77 && LA49_14<=80)||LA49_14==82||(LA49_14>=84 && LA49_14<=94)||LA49_14==96) ) {s = 4;}
+                        else if ( (LA50_33==82) && (synpred4_Ja())) {s = 35;}
 
                          
-                        input.seek(index49_14);
+                        input.seek(index50_33);
                         if ( s>=0 ) return s;
                         break;
                     case 5 : 
-                        int LA49_12 = input.LA(1);
+                        int LA50_9 = input.LA(1);
 
                          
-                        int index49_12 = input.index();
+                        int index50_9 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (LA49_12==79) ) {s = 16;}
+                        if ( (LA50_9==79) ) {s = 15;}
 
-                        else if ( (LA49_12==96) ) {s = 4;}
+                        else if ( (LA50_9==96) ) {s = 4;}
 
-                        else if ( (LA49_12==82) && (synpred3_Ja())) {s = 15;}
+                        else if ( (LA50_9==82) && (synpred3_Ja())) {s = 16;}
 
                          
-                        input.seek(index49_12);
+                        input.seek(index50_9);
                         if ( s>=0 ) return s;
                         break;
                     case 6 : 
-                        int LA49_7 = input.LA(1);
+                        int LA50_14 = input.LA(1);
 
                          
-                        int index49_7 = input.index();
+                        int index50_14 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (LA49_7==82) && (synpred3_Ja())) {s = 15;}
+                        if ( (LA50_14==EOF||(LA50_14>=INSTANCEOF && LA50_14<=COMPAREOP)||(LA50_14>=EQ && LA50_14<=SLASH)||LA50_14==75||(LA50_14>=77 && LA50_14<=80)||LA50_14==82||(LA50_14>=84 && LA50_14<=94)||LA50_14==96) ) {s = 4;}
 
-                        else if ( (LA49_7==79) ) {s = 16;}
+                        else if ( (LA50_14==95) && (synpred4_Ja())) {s = 18;}
 
-                        else if ( (LA49_7==96) ) {s = 4;}
+                        else if ( (LA50_14==81) && (synpred4_Ja())) {s = 19;}
+
+                        else if ( (LA50_14==NEW) && (synpred4_Ja())) {s = 20;}
+
+                        else if ( (LA50_14==THIS) && (synpred4_Ja())) {s = 21;}
+
+                        else if ( (LA50_14==SUPER) && (synpred4_Ja())) {s = 22;}
+
+                        else if ( ((LA50_14>=INTLITERAL && LA50_14<=NULLLITERAL)) && (synpred4_Ja())) {s = 23;}
+
+                        else if ( (LA50_14==IDENTIFIER) && (synpred4_Ja())) {s = 24;}
+
+                        else if ( (LA50_14==CHAR) && (synpred4_Ja())) {s = 25;}
+
+                        else if ( (LA50_14==BYTE) && (synpred4_Ja())) {s = 26;}
+
+                        else if ( (LA50_14==SHORT) && (synpred4_Ja())) {s = 27;}
+
+                        else if ( (LA50_14==INT) && (synpred4_Ja())) {s = 28;}
+
+                        else if ( (LA50_14==LONG) && (synpred4_Ja())) {s = 29;}
+
+                        else if ( (LA50_14==FLOAT) && (synpred4_Ja())) {s = 30;}
+
+                        else if ( (LA50_14==DOUBLE) && (synpred4_Ja())) {s = 31;}
+
+                        else if ( (LA50_14==VOID) && (synpred4_Ja())) {s = 32;}
 
                          
-                        input.seek(index49_7);
+                        input.seek(index50_14);
                         if ( s>=0 ) return s;
                         break;
                     case 7 : 
-                        int LA49_9 = input.LA(1);
+                        int LA50_6 = input.LA(1);
 
                          
-                        int index49_9 = input.index();
+                        int index50_6 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (LA49_9==79) ) {s = 16;}
+                        if ( (LA50_6==79) ) {s = 15;}
 
-                        else if ( (LA49_9==96) ) {s = 4;}
+                        else if ( (LA50_6==96) ) {s = 4;}
 
-                        else if ( (LA49_9==82) && (synpred3_Ja())) {s = 15;}
+                        else if ( (LA50_6==82) && (synpred3_Ja())) {s = 16;}
 
                          
-                        input.seek(index49_9);
+                        input.seek(index50_6);
                         if ( s>=0 ) return s;
                         break;
                     case 8 : 
-                        int LA49_6 = input.LA(1);
+                        int LA50_8 = input.LA(1);
 
                          
-                        int index49_6 = input.index();
+                        int index50_8 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (LA49_6==82) && (synpred3_Ja())) {s = 15;}
+                        if ( (LA50_8==82) && (synpred3_Ja())) {s = 16;}
 
-                        else if ( (LA49_6==79) ) {s = 16;}
+                        else if ( (LA50_8==79) ) {s = 15;}
 
-                        else if ( (LA49_6==96) ) {s = 4;}
+                        else if ( (LA50_8==96) ) {s = 4;}
 
                          
-                        input.seek(index49_6);
+                        input.seek(index50_8);
                         if ( s>=0 ) return s;
                         break;
                     case 9 : 
-                        int LA49_17 = input.LA(1);
+                        int LA50_11 = input.LA(1);
 
                          
-                        int index49_17 = input.index();
+                        int index50_11 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (LA49_17==96) ) {s = 4;}
+                        if ( (LA50_11==82) && (synpred3_Ja())) {s = 16;}
 
-                        else if ( (LA49_17==79) ) {s = 34;}
+                        else if ( (LA50_11==79) ) {s = 15;}
 
-                        else if ( (LA49_17==82) && (synpred4_Ja())) {s = 35;}
+                        else if ( (LA50_11==96) ) {s = 4;}
 
                          
-                        input.seek(index49_17);
+                        input.seek(index50_11);
                         if ( s>=0 ) return s;
                         break;
             }
             if (state.backtracking>0) {state.failed=true; return -1;}
             NoViableAltException nvae =
-                new NoViableAltException(getDescription(), 49, _s, input);
+                new NoViableAltException(getDescription(), 50, _s, input);
             error(nvae);
             throw nvae;
         }
     }
-    static final String DFA52_eotS =
+    static final String DFA53_eotS =
         "\16\uffff";
-    static final String DFA52_eofS =
-        "\5\uffff\1\13\10\uffff";
-    static final String DFA52_minS =
-        "\1\31\4\uffff\1\63\2\uffff\1\30\1\uffff\1\31\3\uffff";
-    static final String DFA52_maxS =
-        "\1\121\4\uffff\1\140\2\uffff\1\31\1\uffff\1\137\3\uffff";
-    static final String DFA52_acceptS =
-        "\1\uffff\1\1\1\2\1\3\1\4\1\uffff\1\11\1\12\1\uffff\1\7\1\uffff"+
-        "\1\5\1\10\1\6";
-    static final String DFA52_specialS =
+    static final String DFA53_eofS =
+        "\5\uffff\1\12\10\uffff";
+    static final String DFA53_minS =
+        "\1\31\4\uffff\1\63\2\uffff\1\30\1\31\4\uffff";
+    static final String DFA53_maxS =
+        "\1\121\4\uffff\1\140\2\uffff\1\31\1\137\4\uffff";
+    static final String DFA53_acceptS =
+        "\1\uffff\1\1\1\2\1\3\1\4\1\uffff\1\11\1\12\2\uffff\1\5\1\7\1\10"+
+        "\1\6";
+    static final String DFA53_specialS =
         "\16\uffff}>";
-    static final String[] DFA52_transitionS = {
+    static final String[] DFA53_transitionS = {
             "\1\5\2\uffff\1\7\1\uffff\7\6\1\2\1\3\6\4\44\uffff\1\1",
             "",
             "",
             "",
             "",
-            "\2\13\17\uffff\5\13\2\uffff\1\13\1\uffff\2\13\1\12\1\13\1"+
-            "\11\1\13\1\uffff\13\13\1\uffff\1\10",
+            "\2\12\17\uffff\5\12\2\uffff\1\12\1\uffff\2\12\1\11\1\12\1"+
+            "\13\1\12\1\uffff\13\12\1\uffff\1\10",
             "",
             "",
-            "\1\14\1\13",
+            "\1\14\1\12",
+            "\1\12\2\uffff\1\12\1\uffff\17\12\10\uffff\1\12\17\uffff\2"+
+            "\12\11\uffff\1\15\1\12\13\uffff\3\12",
             "",
-            "\1\13\2\uffff\1\13\1\uffff\17\13\10\uffff\1\13\17\uffff\2"+
-            "\13\11\uffff\1\15\1\13\13\uffff\3\13",
             "",
             "",
             ""
     };
 
-    static final short[] DFA52_eot = DFA.unpackEncodedString(DFA52_eotS);
-    static final short[] DFA52_eof = DFA.unpackEncodedString(DFA52_eofS);
-    static final char[] DFA52_min = DFA.unpackEncodedStringToUnsignedChars(DFA52_minS);
-    static final char[] DFA52_max = DFA.unpackEncodedStringToUnsignedChars(DFA52_maxS);
-    static final short[] DFA52_accept = DFA.unpackEncodedString(DFA52_acceptS);
-    static final short[] DFA52_special = DFA.unpackEncodedString(DFA52_specialS);
-    static final short[][] DFA52_transition;
+    static final short[] DFA53_eot = DFA.unpackEncodedString(DFA53_eotS);
+    static final short[] DFA53_eof = DFA.unpackEncodedString(DFA53_eofS);
+    static final char[] DFA53_min = DFA.unpackEncodedStringToUnsignedChars(DFA53_minS);
+    static final char[] DFA53_max = DFA.unpackEncodedStringToUnsignedChars(DFA53_maxS);
+    static final short[] DFA53_accept = DFA.unpackEncodedString(DFA53_acceptS);
+    static final short[] DFA53_special = DFA.unpackEncodedString(DFA53_specialS);
+    static final short[][] DFA53_transition;
 
     static {
-        int numStates = DFA52_transitionS.length;
-        DFA52_transition = new short[numStates][];
+        int numStates = DFA53_transitionS.length;
+        DFA53_transition = new short[numStates][];
         for (int i=0; i<numStates; i++) {
-            DFA52_transition[i] = DFA.unpackEncodedString(DFA52_transitionS[i]);
+            DFA53_transition[i] = DFA.unpackEncodedString(DFA53_transitionS[i]);
         }
     }
 
-    class DFA52 extends DFA {
+    class DFA53 extends DFA {
 
-        public DFA52(BaseRecognizer recognizer) {
+        public DFA53(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
-            this.decisionNumber = 52;
-            this.eot = DFA52_eot;
-            this.eof = DFA52_eof;
-            this.min = DFA52_min;
-            this.max = DFA52_max;
-            this.accept = DFA52_accept;
-            this.special = DFA52_special;
-            this.transition = DFA52_transition;
+            this.decisionNumber = 53;
+            this.eot = DFA53_eot;
+            this.eof = DFA53_eof;
+            this.min = DFA53_min;
+            this.max = DFA53_max;
+            this.accept = DFA53_accept;
+            this.special = DFA53_special;
+            this.transition = DFA53_transition;
         }
         public String getDescription() {
-            return "354:1: primary : ( parExpression | THIS | SUPER superMemberAccess | literal | IDENTIFIER | ( IDENTIFIER -> IDENTIFIER ) ( '[' ']' -> ^( ARRAYTYPE $primary) )+ ( '.' CLASS -> ^( DOTCLASS $primary) ) | IDENTIFIER arguments -> ^( METHODCALL IDENTIFIER arguments THIS ) | IDENTIFIER '.' CLASS -> ^( DOTCLASS IDENTIFIER ) | ( primitiveType -> primitiveType ) ( '[' ']' -> ^( ARRAYTYPE $primary) )* ( '.' CLASS -> ^( DOTCLASS $primary) ) | VOID '.' CLASS -> ^( DOTCLASS VOID ) );";
+            return "356:1: primary : ( parExpression | THIS | SUPER superMemberAccess | literal | IDENTIFIER | ( IDENTIFIER -> IDENTIFIER ) ( '[' ']' -> ^( ARRAYTYPE $primary) )+ ( '.' CLASS -> ^( DOTCLASS $primary) ) | IDENTIFIER arguments -> ^( METHODCALL IDENTIFIER arguments THIS ) | IDENTIFIER '.' CLASS -> ^( DOTCLASS IDENTIFIER ) | ( primitiveType -> primitiveType ) ( '[' ']' -> ^( ARRAYTYPE $primary) )* ( '.' CLASS -> ^( DOTCLASS $primary) ) | VOID '.' CLASS -> ^( DOTCLASS VOID ) );";
         }
     }
  
@@ -8339,251 +8451,252 @@ public class JaParser extends Parser {
     public static final BitSet FOLLOW_modifier_in_memberDeclaration306 = new BitSet(new long[]{0x0000001FC2000000L});
     public static final BitSet FOLLOW_type_in_memberDeclaration308 = new BitSet(new long[]{0x0000000002000000L});
     public static final BitSet FOLLOW_methodDeclaration_in_memberDeclaration317 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_fieldDeclaration_in_memberDeclaration341 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_modifier_in_memberDeclaration368 = new BitSet(new long[]{0x0000000010000000L});
-    public static final BitSet FOLLOW_VOID_in_memberDeclaration370 = new BitSet(new long[]{0x0000000002000000L});
-    public static final BitSet FOLLOW_IDENTIFIER_in_memberDeclaration372 = new BitSet(new long[]{0x0000000000000000L,0x0000000000020000L});
-    public static final BitSet FOLLOW_voidMethodDeclaratorRest_in_memberDeclaration374 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_modifier_in_memberDeclaration398 = new BitSet(new long[]{0x0000000002000000L});
-    public static final BitSet FOLLOW_IDENTIFIER_in_memberDeclaration408 = new BitSet(new long[]{0x0000000000000000L,0x0000000000020000L});
-    public static final BitSet FOLLOW_formalParameters_in_memberDeclaration410 = new BitSet(new long[]{0x0000000000000000L,0x0000000000001000L});
-    public static final BitSet FOLLOW_constructorBody_in_memberDeclaration412 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_IDENTIFIER_in_methodDeclaration451 = new BitSet(new long[]{0x0000000000000000L,0x0000000000020000L});
-    public static final BitSet FOLLOW_formalParameters_in_methodDeclaration453 = new BitSet(new long[]{0x0000000000000000L,0x0000000000001800L});
-    public static final BitSet FOLLOW_methodBody_in_methodDeclaration467 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_75_in_methodDeclaration481 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_variableDeclarator_in_fieldDeclaration511 = new BitSet(new long[]{0x0000000000000000L,0x0000000000004800L});
-    public static final BitSet FOLLOW_78_in_fieldDeclaration514 = new BitSet(new long[]{0x0000000002000000L});
-    public static final BitSet FOLLOW_variableDeclarator_in_fieldDeclaration516 = new BitSet(new long[]{0x0000000000000000L,0x0000000000004800L});
-    public static final BitSet FOLLOW_75_in_fieldDeclaration520 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_formalParameters_in_voidMethodDeclaratorRest555 = new BitSet(new long[]{0x0000000000000000L,0x0000000000001800L});
-    public static final BitSet FOLLOW_methodBody_in_voidMethodDeclaratorRest569 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_75_in_voidMethodDeclaratorRest583 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_variableDeclaratorId_in_variableDeclarator612 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000010L});
-    public static final BitSet FOLLOW_EQ_in_variableDeclarator615 = new BitSet(new long[]{0x00201FFFD2000000L,0x00000000E0021060L});
-    public static final BitSet FOLLOW_variableInitializer_in_variableDeclarator618 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_IDENTIFIER_in_variableDeclaratorId649 = new BitSet(new long[]{0x0000000000000002L,0x0000000000008000L});
-    public static final BitSet FOLLOW_79_in_variableDeclaratorId654 = new BitSet(new long[]{0x0000000000000000L,0x0000000000010000L});
-    public static final BitSet FOLLOW_80_in_variableDeclaratorId656 = new BitSet(new long[]{0x0000000000000002L,0x0000000000008000L});
-    public static final BitSet FOLLOW_arrayInitializer_in_variableInitializer680 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_expression_in_variableInitializer690 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_76_in_arrayInitializer717 = new BitSet(new long[]{0x00201FFFD2000000L,0x00000000E0023060L});
-    public static final BitSet FOLLOW_variableInitializer_in_arrayInitializer720 = new BitSet(new long[]{0x0000000000000000L,0x0000000000006000L});
-    public static final BitSet FOLLOW_78_in_arrayInitializer723 = new BitSet(new long[]{0x00201FFFD2000000L,0x00000000E0021060L});
-    public static final BitSet FOLLOW_variableInitializer_in_arrayInitializer725 = new BitSet(new long[]{0x0000000000000000L,0x0000000000006000L});
-    public static final BitSet FOLLOW_78_in_arrayInitializer730 = new BitSet(new long[]{0x0000000000000000L,0x0000000000002000L});
-    public static final BitSet FOLLOW_77_in_arrayInitializer737 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_set_in_modifier0 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_IDENTIFIER_in_typeName785 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_nonPrimitiveType_in_type803 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_primitiveType_in_type810 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_classType_in_nonPrimitiveType828 = new BitSet(new long[]{0x0000000000000002L,0x0000000000008000L});
-    public static final BitSet FOLLOW_79_in_nonPrimitiveType833 = new BitSet(new long[]{0x0000000000000000L,0x0000000000010000L});
-    public static final BitSet FOLLOW_80_in_nonPrimitiveType835 = new BitSet(new long[]{0x0000000000000002L,0x0000000000008000L});
-    public static final BitSet FOLLOW_primitiveType_in_nonPrimitiveType844 = new BitSet(new long[]{0x0000000000000000L,0x0000000000008000L});
-    public static final BitSet FOLLOW_79_in_nonPrimitiveType849 = new BitSet(new long[]{0x0000000000000000L,0x0000000000010000L});
-    public static final BitSet FOLLOW_80_in_nonPrimitiveType851 = new BitSet(new long[]{0x0000000000000002L,0x0000000000008000L});
-    public static final BitSet FOLLOW_IDENTIFIER_in_classType870 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_CHAR_in_primitiveType892 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_BYTE_in_primitiveType904 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_SHORT_in_primitiveType916 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_INT_in_primitiveType928 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LONG_in_primitiveType940 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_FLOAT_in_primitiveType952 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_DOUBLE_in_primitiveType964 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_81_in_formalParameters994 = new BitSet(new long[]{0x0000001FC2000000L,0x0000000000040000L});
-    public static final BitSet FOLLOW_formalParameterDecls_in_formalParameters996 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
-    public static final BitSet FOLLOW_82_in_formalParameters1000 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_type_in_formalParameterDecls1049 = new BitSet(new long[]{0x0000000002000000L});
-    public static final BitSet FOLLOW_variableDeclaratorId_in_formalParameterDecls1051 = new BitSet(new long[]{0x0000000000000002L,0x0000000000004000L});
-    public static final BitSet FOLLOW_78_in_formalParameterDecls1054 = new BitSet(new long[]{0x0000001FC2000000L});
-    public static final BitSet FOLLOW_formalParameterDecls_in_formalParameterDecls1056 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_type_in_formalParameterDecls1092 = new BitSet(new long[]{0x0000000000000000L,0x0000000000080000L});
-    public static final BitSet FOLLOW_83_in_formalParameterDecls1094 = new BitSet(new long[]{0x0000000002000000L});
-    public static final BitSet FOLLOW_variableDeclaratorId_in_formalParameterDecls1096 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_block_in_methodBody1129 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_76_in_constructorBody1156 = new BitSet(new long[]{0x0023FFFFD2000000L,0x00000000E0023860L});
-    public static final BitSet FOLLOW_explicitConstructorInvocation_in_constructorBody1158 = new BitSet(new long[]{0x0023FFFFD2000000L,0x00000000E0023860L});
-    public static final BitSet FOLLOW_blockStatement_in_constructorBody1161 = new BitSet(new long[]{0x0023FFFFD2000000L,0x00000000E0023860L});
-    public static final BitSet FOLLOW_77_in_constructorBody1164 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_set_in_explicitConstructorInvocation1183 = new BitSet(new long[]{0x0000000000000000L,0x0000000000020000L});
-    public static final BitSet FOLLOW_arguments_in_explicitConstructorInvocation1191 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000800L});
-    public static final BitSet FOLLOW_75_in_explicitConstructorInvocation1193 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_fieldDeclaration_in_memberDeclaration342 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_modifier_in_memberDeclaration369 = new BitSet(new long[]{0x0000000010000000L});
+    public static final BitSet FOLLOW_VOID_in_memberDeclaration371 = new BitSet(new long[]{0x0000000002000000L});
+    public static final BitSet FOLLOW_IDENTIFIER_in_memberDeclaration373 = new BitSet(new long[]{0x0000000000000000L,0x0000000000020000L});
+    public static final BitSet FOLLOW_voidMethodDeclaratorRest_in_memberDeclaration375 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_modifier_in_memberDeclaration400 = new BitSet(new long[]{0x0000000002000000L});
+    public static final BitSet FOLLOW_IDENTIFIER_in_memberDeclaration410 = new BitSet(new long[]{0x0000000000000000L,0x0000000000020000L});
+    public static final BitSet FOLLOW_formalParameters_in_memberDeclaration412 = new BitSet(new long[]{0x0000000000000000L,0x0000000000001000L});
+    public static final BitSet FOLLOW_constructorBody_in_memberDeclaration414 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_IDENTIFIER_in_methodDeclaration455 = new BitSet(new long[]{0x0000000000000000L,0x0000000000020000L});
+    public static final BitSet FOLLOW_formalParameters_in_methodDeclaration457 = new BitSet(new long[]{0x0000000000000000L,0x0000000000001800L});
+    public static final BitSet FOLLOW_methodBody_in_methodDeclaration473 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_75_in_methodDeclaration487 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_variableDeclarator_in_fieldDeclaration519 = new BitSet(new long[]{0x0000000000000000L,0x0000000000004800L});
+    public static final BitSet FOLLOW_78_in_fieldDeclaration538 = new BitSet(new long[]{0x0000000002000000L});
+    public static final BitSet FOLLOW_variableDeclarator_in_fieldDeclaration542 = new BitSet(new long[]{0x0000000000000000L,0x0000000000004800L});
+    public static final BitSet FOLLOW_75_in_fieldDeclaration548 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_formalParameters_in_voidMethodDeclaratorRest593 = new BitSet(new long[]{0x0000000000000000L,0x0000000000001800L});
+    public static final BitSet FOLLOW_methodBody_in_voidMethodDeclaratorRest609 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_75_in_voidMethodDeclaratorRest623 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_variableDeclaratorId_in_variableDeclarator656 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000010L});
+    public static final BitSet FOLLOW_EQ_in_variableDeclarator661 = new BitSet(new long[]{0x00201FFFD2000000L,0x00000000E0021060L});
+    public static final BitSet FOLLOW_variableInitializer_in_variableDeclarator664 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_IDENTIFIER_in_variableDeclaratorId695 = new BitSet(new long[]{0x0000000000000002L,0x0000000000008000L});
+    public static final BitSet FOLLOW_79_in_variableDeclaratorId700 = new BitSet(new long[]{0x0000000000000000L,0x0000000000010000L});
+    public static final BitSet FOLLOW_80_in_variableDeclaratorId702 = new BitSet(new long[]{0x0000000000000002L,0x0000000000008000L});
+    public static final BitSet FOLLOW_arrayInitializer_in_variableInitializer726 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_expression_in_variableInitializer736 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_76_in_arrayInitializer763 = new BitSet(new long[]{0x00201FFFD2000000L,0x00000000E0023060L});
+    public static final BitSet FOLLOW_variableInitializer_in_arrayInitializer766 = new BitSet(new long[]{0x0000000000000000L,0x0000000000006000L});
+    public static final BitSet FOLLOW_78_in_arrayInitializer769 = new BitSet(new long[]{0x00201FFFD2000000L,0x00000000E0021060L});
+    public static final BitSet FOLLOW_variableInitializer_in_arrayInitializer771 = new BitSet(new long[]{0x0000000000000000L,0x0000000000006000L});
+    public static final BitSet FOLLOW_78_in_arrayInitializer776 = new BitSet(new long[]{0x0000000000000000L,0x0000000000002000L});
+    public static final BitSet FOLLOW_77_in_arrayInitializer783 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_PUBLIC_in_modifier806 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_PRIVATE_in_modifier819 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_IDENTIFIER_in_typeName840 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_nonPrimitiveType_in_type858 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_primitiveType_in_type865 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_classType_in_nonPrimitiveType883 = new BitSet(new long[]{0x0000000000000002L,0x0000000000008000L});
+    public static final BitSet FOLLOW_79_in_nonPrimitiveType888 = new BitSet(new long[]{0x0000000000000000L,0x0000000000010000L});
+    public static final BitSet FOLLOW_80_in_nonPrimitiveType890 = new BitSet(new long[]{0x0000000000000002L,0x0000000000008000L});
+    public static final BitSet FOLLOW_primitiveType_in_nonPrimitiveType899 = new BitSet(new long[]{0x0000000000000000L,0x0000000000008000L});
+    public static final BitSet FOLLOW_79_in_nonPrimitiveType904 = new BitSet(new long[]{0x0000000000000000L,0x0000000000010000L});
+    public static final BitSet FOLLOW_80_in_nonPrimitiveType906 = new BitSet(new long[]{0x0000000000000002L,0x0000000000008000L});
+    public static final BitSet FOLLOW_IDENTIFIER_in_classType925 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_CHAR_in_primitiveType947 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_BYTE_in_primitiveType959 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_SHORT_in_primitiveType971 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_INT_in_primitiveType983 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_LONG_in_primitiveType995 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_FLOAT_in_primitiveType1007 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_DOUBLE_in_primitiveType1019 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_81_in_formalParameters1053 = new BitSet(new long[]{0x0000001FC2000000L,0x0000000000040000L});
+    public static final BitSet FOLLOW_formalParameterDecls_in_formalParameters1055 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
+    public static final BitSet FOLLOW_82_in_formalParameters1059 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_type_in_formalParameterDecls1111 = new BitSet(new long[]{0x0000000002000000L});
+    public static final BitSet FOLLOW_variableDeclaratorId_in_formalParameterDecls1113 = new BitSet(new long[]{0x0000000000000002L,0x0000000000004000L});
+    public static final BitSet FOLLOW_78_in_formalParameterDecls1116 = new BitSet(new long[]{0x0000001FC2000000L});
+    public static final BitSet FOLLOW_formalParameterDecls_in_formalParameterDecls1118 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_type_in_formalParameterDecls1155 = new BitSet(new long[]{0x0000000000000000L,0x0000000000080000L});
+    public static final BitSet FOLLOW_83_in_formalParameterDecls1157 = new BitSet(new long[]{0x0000000002000000L});
+    public static final BitSet FOLLOW_variableDeclaratorId_in_formalParameterDecls1159 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_block_in_methodBody1192 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_76_in_constructorBody1219 = new BitSet(new long[]{0x0023FFFFD2000000L,0x00000000E0023860L});
+    public static final BitSet FOLLOW_explicitConstructorInvocation_in_constructorBody1221 = new BitSet(new long[]{0x0023FFFFD2000000L,0x00000000E0023860L});
+    public static final BitSet FOLLOW_blockStatement_in_constructorBody1224 = new BitSet(new long[]{0x0023FFFFD2000000L,0x00000000E0023860L});
+    public static final BitSet FOLLOW_77_in_constructorBody1227 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_set_in_explicitConstructorInvocation1246 = new BitSet(new long[]{0x0000000000000000L,0x0000000000020000L});
+    public static final BitSet FOLLOW_arguments_in_explicitConstructorInvocation1254 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000800L});
+    public static final BitSet FOLLOW_75_in_explicitConstructorInvocation1256 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_set_in_literal0 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_76_in_block1290 = new BitSet(new long[]{0x0023FFFFD2000000L,0x00000000E0023860L});
-    public static final BitSet FOLLOW_blockStatement_in_block1293 = new BitSet(new long[]{0x0023FFFFD2000000L,0x00000000E0023860L});
-    public static final BitSet FOLLOW_77_in_block1296 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_localVariableDeclarationStatement_in_blockStatement1320 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_statement_in_blockStatement1330 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_localVariableDeclaration_in_localVariableDeclarationStatement1354 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000800L});
-    public static final BitSet FOLLOW_75_in_localVariableDeclarationStatement1356 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_type_in_localVariableDeclaration1376 = new BitSet(new long[]{0x0000000002000000L});
-    public static final BitSet FOLLOW_variableDeclarator_in_localVariableDeclaration1378 = new BitSet(new long[]{0x0000000000000002L,0x0000000000004000L});
-    public static final BitSet FOLLOW_78_in_localVariableDeclaration1381 = new BitSet(new long[]{0x0000000002000000L});
-    public static final BitSet FOLLOW_variableDeclarator_in_localVariableDeclaration1383 = new BitSet(new long[]{0x0000000000000002L,0x0000000000004000L});
-    public static final BitSet FOLLOW_block_in_statement1419 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_IF_in_statement1437 = new BitSet(new long[]{0x0000000000000000L,0x0000000000020000L});
-    public static final BitSet FOLLOW_parExpression_in_statement1439 = new BitSet(new long[]{0x0023FFFFD2000000L,0x00000000E0021860L});
-    public static final BitSet FOLLOW_statement_in_statement1441 = new BitSet(new long[]{0x0004000000000000L});
-    public static final BitSet FOLLOW_elseStmt_in_statement1443 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_FOR_in_statement1474 = new BitSet(new long[]{0x0000000000000000L,0x0000000000020000L});
-    public static final BitSet FOLLOW_81_in_statement1476 = new BitSet(new long[]{0x00201FFFD2000000L,0x00000000E0021860L});
-    public static final BitSet FOLLOW_forInit_in_statement1478 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000800L});
-    public static final BitSet FOLLOW_75_in_statement1481 = new BitSet(new long[]{0x00201FFFD2000000L,0x00000000E0021860L});
-    public static final BitSet FOLLOW_expression_in_statement1483 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000800L});
-    public static final BitSet FOLLOW_75_in_statement1486 = new BitSet(new long[]{0x00201FFFD2000000L,0x00000000E0061060L});
-    public static final BitSet FOLLOW_forUpdate_in_statement1488 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
-    public static final BitSet FOLLOW_82_in_statement1491 = new BitSet(new long[]{0x0023FFFFD2000000L,0x00000000E0021860L});
-    public static final BitSet FOLLOW_statement_in_statement1493 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_WHILE_in_statement1539 = new BitSet(new long[]{0x0000000000000000L,0x0000000000020000L});
-    public static final BitSet FOLLOW_parExpression_in_statement1541 = new BitSet(new long[]{0x0023FFFFD2000000L,0x00000000E0021860L});
-    public static final BitSet FOLLOW_statement_in_statement1543 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_DO_in_statement1567 = new BitSet(new long[]{0x0023FFFFD2000000L,0x00000000E0021860L});
-    public static final BitSet FOLLOW_statement_in_statement1569 = new BitSet(new long[]{0x0000800000000000L});
-    public static final BitSet FOLLOW_WHILE_in_statement1571 = new BitSet(new long[]{0x0000000000000000L,0x0000000000020000L});
-    public static final BitSet FOLLOW_parExpression_in_statement1573 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000800L});
-    public static final BitSet FOLLOW_75_in_statement1575 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RETURN_in_statement1599 = new BitSet(new long[]{0x00201FFFD2000000L,0x00000000E0021860L});
-    public static final BitSet FOLLOW_expression_in_statement1602 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000800L});
-    public static final BitSet FOLLOW_75_in_statement1605 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_75_in_statement1616 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_statementExpression_in_statement1628 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000800L});
-    public static final BitSet FOLLOW_75_in_statement1630 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ELSE_in_elseStmt1662 = new BitSet(new long[]{0x0023FFFFD2000000L,0x00000000E0021860L});
-    public static final BitSet FOLLOW_statement_in_elseStmt1665 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_localVariableDeclaration_in_forInit1690 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_expressionList_in_forInit1700 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_expressionList_in_forUpdate1719 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_81_in_parExpression1740 = new BitSet(new long[]{0x00201FFFD2000000L,0x00000000E0021060L});
-    public static final BitSet FOLLOW_expression_in_parExpression1743 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
-    public static final BitSet FOLLOW_82_in_parExpression1745 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_expression_in_expressionList1769 = new BitSet(new long[]{0x0000000000000002L,0x0000000000004000L});
-    public static final BitSet FOLLOW_78_in_expressionList1772 = new BitSet(new long[]{0x00201FFFD2000000L,0x00000000E0021060L});
-    public static final BitSet FOLLOW_expression_in_expressionList1774 = new BitSet(new long[]{0x0000000000000002L,0x0000000000004000L});
-    public static final BitSet FOLLOW_expression_in_statementExpression1795 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_expression_in_constantExpression1818 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_orExpression_in_expression1840 = new BitSet(new long[]{0x0000000000000002L,0x0000000000F00010L});
-    public static final BitSet FOLLOW_assignmentOperator_in_expression1846 = new BitSet(new long[]{0x00201FFFD2000000L,0x00000000E0021060L});
-    public static final BitSet FOLLOW_expression_in_expression1848 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_EQ_in_assignmentOperator2028 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_84_in_assignmentOperator2041 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_85_in_assignmentOperator2054 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_86_in_assignmentOperator2066 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_87_in_assignmentOperator2078 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_andExpression_in_orExpression2099 = new BitSet(new long[]{0x0000000000000002L,0x0000000001000000L});
-    public static final BitSet FOLLOW_88_in_orExpression2103 = new BitSet(new long[]{0x00201FFFD2000000L,0x00000000E0021060L});
-    public static final BitSet FOLLOW_andExpression_in_orExpression2106 = new BitSet(new long[]{0x0000000000000002L,0x0000000001000000L});
-    public static final BitSet FOLLOW_equalityExpression_in_andExpression2128 = new BitSet(new long[]{0x0000000000000002L,0x0000000002000000L});
-    public static final BitSet FOLLOW_89_in_andExpression2132 = new BitSet(new long[]{0x00201FFFD2000000L,0x00000000E0021060L});
-    public static final BitSet FOLLOW_equalityExpression_in_andExpression2135 = new BitSet(new long[]{0x0000000000000002L,0x0000000002000000L});
-    public static final BitSet FOLLOW_instanceOfExpression_in_equalityExpression2157 = new BitSet(new long[]{0x0000000000000002L,0x000000000C000000L});
-    public static final BitSet FOLLOW_set_in_equalityExpression2161 = new BitSet(new long[]{0x00201FFFD2000000L,0x00000000E0021060L});
-    public static final BitSet FOLLOW_instanceOfExpression_in_equalityExpression2170 = new BitSet(new long[]{0x0000000000000002L,0x000000000C000000L});
-    public static final BitSet FOLLOW_relationalExpression_in_instanceOfExpression2192 = new BitSet(new long[]{0x0008000000000002L});
-    public static final BitSet FOLLOW_INSTANCEOF_in_instanceOfExpression2195 = new BitSet(new long[]{0x0000001FC2000000L});
-    public static final BitSet FOLLOW_type_in_instanceOfExpression2198 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_additiveExpression_in_relationalExpression2219 = new BitSet(new long[]{0x0010000000000002L});
-    public static final BitSet FOLLOW_COMPAREOP_in_relationalExpression2223 = new BitSet(new long[]{0x00201FFFD2000000L,0x00000000E0021060L});
-    public static final BitSet FOLLOW_additiveExpression_in_relationalExpression2226 = new BitSet(new long[]{0x0010000000000002L});
-    public static final BitSet FOLLOW_multiplicativeExpression_in_additiveExpression2248 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000060L});
-    public static final BitSet FOLLOW_set_in_additiveExpression2252 = new BitSet(new long[]{0x00201FFFD2000000L,0x00000000E0021060L});
-    public static final BitSet FOLLOW_multiplicativeExpression_in_additiveExpression2261 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000060L});
-    public static final BitSet FOLLOW_unaryExpression_in_multiplicativeExpression2283 = new BitSet(new long[]{0x0000000000000002L,0x0000000010000180L});
-    public static final BitSet FOLLOW_set_in_multiplicativeExpression2287 = new BitSet(new long[]{0x00201FFFD2000000L,0x00000000E0021060L});
-    public static final BitSet FOLLOW_unaryExpression_in_multiplicativeExpression2302 = new BitSet(new long[]{0x0000000000000002L,0x0000000010000180L});
-    public static final BitSet FOLLOW_PLUS_in_unaryExpression2328 = new BitSet(new long[]{0x00201FFFD2000000L,0x00000000E0021060L});
-    public static final BitSet FOLLOW_unaryExpression_in_unaryExpression2330 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_MINUS_in_unaryExpression2340 = new BitSet(new long[]{0x00201FFFD2000000L,0x00000000E0021060L});
-    public static final BitSet FOLLOW_unaryExpression_in_unaryExpression2342 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_93_in_unaryExpression2352 = new BitSet(new long[]{0x00201FFFD2000000L,0x00000000E0021060L});
-    public static final BitSet FOLLOW_unaryExpression_in_unaryExpression2354 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_94_in_unaryExpression2364 = new BitSet(new long[]{0x00201FFFD2000000L,0x00000000E0021060L});
-    public static final BitSet FOLLOW_unaryExpression_in_unaryExpression2366 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_unaryExpressionNotPlusMinus_in_unaryExpression2376 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_95_in_unaryExpressionNotPlusMinus2393 = new BitSet(new long[]{0x00201FFFD2000000L,0x00000000E0021060L});
-    public static final BitSet FOLLOW_unaryExpression_in_unaryExpressionNotPlusMinus2395 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_81_in_unaryExpressionNotPlusMinus2416 = new BitSet(new long[]{0x0000001FC2000000L});
-    public static final BitSet FOLLOW_primitiveType_in_unaryExpressionNotPlusMinus2418 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
-    public static final BitSet FOLLOW_82_in_unaryExpressionNotPlusMinus2420 = new BitSet(new long[]{0x00201FFFD2000000L,0x00000000E0021060L});
-    public static final BitSet FOLLOW_unaryExpression_in_unaryExpressionNotPlusMinus2422 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_81_in_unaryExpressionNotPlusMinus2450 = new BitSet(new long[]{0x0000001FC2000000L});
-    public static final BitSet FOLLOW_nonPrimitiveType_in_unaryExpressionNotPlusMinus2452 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
-    public static final BitSet FOLLOW_82_in_unaryExpressionNotPlusMinus2455 = new BitSet(new long[]{0x00201FFFD2000000L,0x00000000E0021060L});
-    public static final BitSet FOLLOW_unaryExpressionNotPlusMinus_in_unaryExpressionNotPlusMinus2457 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_NEW_in_unaryExpressionNotPlusMinus2467 = new BitSet(new long[]{0x0000001FC2000000L});
-    public static final BitSet FOLLOW_creator_in_unaryExpressionNotPlusMinus2469 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_primary_in_unaryExpressionNotPlusMinus2479 = new BitSet(new long[]{0x0000000000000002L,0x0000000160008000L});
-    public static final BitSet FOLLOW_selector_in_unaryExpressionNotPlusMinus2482 = new BitSet(new long[]{0x0000000000000002L,0x0000000160008000L});
-    public static final BitSet FOLLOW_set_in_unaryExpressionNotPlusMinus2486 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_parExpression_in_primary2546 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_THIS_in_primary2556 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_SUPER_in_primary2567 = new BitSet(new long[]{0x0000000000000000L,0x0000000100000000L});
-    public static final BitSet FOLLOW_superMemberAccess_in_primary2570 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_literal_in_primary2580 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_IDENTIFIER_in_primary2590 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_IDENTIFIER_in_primary2601 = new BitSet(new long[]{0x0000000000000000L,0x0000000000008000L});
-    public static final BitSet FOLLOW_79_in_primary2609 = new BitSet(new long[]{0x0000000000000000L,0x0000000000010000L});
-    public static final BitSet FOLLOW_80_in_primary2611 = new BitSet(new long[]{0x0000000000000000L,0x0000000100008000L});
-    public static final BitSet FOLLOW_96_in_primary2625 = new BitSet(new long[]{0x0000000001000000L});
-    public static final BitSet FOLLOW_CLASS_in_primary2627 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_IDENTIFIER_in_primary2646 = new BitSet(new long[]{0x0000000000000000L,0x0000000000020000L});
-    public static final BitSet FOLLOW_arguments_in_primary2649 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_IDENTIFIER_in_primary2669 = new BitSet(new long[]{0x0000000000000000L,0x0000000100000000L});
-    public static final BitSet FOLLOW_96_in_primary2671 = new BitSet(new long[]{0x0000000001000000L});
-    public static final BitSet FOLLOW_CLASS_in_primary2673 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_primitiveType_in_primary2692 = new BitSet(new long[]{0x0000000000000000L,0x0000000100008000L});
-    public static final BitSet FOLLOW_79_in_primary2700 = new BitSet(new long[]{0x0000000000000000L,0x0000000000010000L});
-    public static final BitSet FOLLOW_80_in_primary2702 = new BitSet(new long[]{0x0000000000000000L,0x0000000100008000L});
-    public static final BitSet FOLLOW_96_in_primary2716 = new BitSet(new long[]{0x0000000001000000L});
-    public static final BitSet FOLLOW_CLASS_in_primary2718 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_VOID_in_primary2738 = new BitSet(new long[]{0x0000000000000000L,0x0000000100000000L});
-    public static final BitSet FOLLOW_96_in_primary2740 = new BitSet(new long[]{0x0000000001000000L});
-    public static final BitSet FOLLOW_CLASS_in_primary2742 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_96_in_selector2773 = new BitSet(new long[]{0x0000000002000000L});
-    public static final BitSet FOLLOW_IDENTIFIER_in_selector2775 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_96_in_selector2791 = new BitSet(new long[]{0x0000000002000000L});
-    public static final BitSet FOLLOW_IDENTIFIER_in_selector2793 = new BitSet(new long[]{0x0000000000000000L,0x0000000000020000L});
-    public static final BitSet FOLLOW_arguments_in_selector2795 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_79_in_selector2826 = new BitSet(new long[]{0x00201FFFD2000000L,0x00000000E0021060L});
-    public static final BitSet FOLLOW_expression_in_selector2828 = new BitSet(new long[]{0x0000000000000000L,0x0000000000010000L});
-    public static final BitSet FOLLOW_80_in_selector2830 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_79_in_identifierSuffix2857 = new BitSet(new long[]{0x0000000000000000L,0x0000000000010000L});
-    public static final BitSet FOLLOW_80_in_identifierSuffix2859 = new BitSet(new long[]{0x0000000000000000L,0x0000000100008000L});
-    public static final BitSet FOLLOW_96_in_identifierSuffix2863 = new BitSet(new long[]{0x0000000001000000L});
-    public static final BitSet FOLLOW_CLASS_in_identifierSuffix2865 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_arguments_in_identifierSuffix2880 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_96_in_identifierSuffix2890 = new BitSet(new long[]{0x0000000001000000L});
-    public static final BitSet FOLLOW_CLASS_in_identifierSuffix2892 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_createdName_in_creator2920 = new BitSet(new long[]{0x0000000000000000L,0x0000000000028000L});
-    public static final BitSet FOLLOW_arrayCreatorRest_in_creator2923 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_classCreatorRest_in_creator2927 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_classType_in_createdName2947 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_primitiveType_in_createdName2957 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_79_in_arrayCreatorRest2980 = new BitSet(new long[]{0x0000000000000000L,0x0000000000010000L});
-    public static final BitSet FOLLOW_80_in_arrayCreatorRest2981 = new BitSet(new long[]{0x0000000000000000L,0x0000000000009000L});
-    public static final BitSet FOLLOW_79_in_arrayCreatorRest2984 = new BitSet(new long[]{0x0000000000000000L,0x0000000000010000L});
-    public static final BitSet FOLLOW_80_in_arrayCreatorRest2986 = new BitSet(new long[]{0x0000000000000000L,0x0000000000009000L});
-    public static final BitSet FOLLOW_arrayInitializer_in_arrayCreatorRest2990 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_79_in_arrayCreatorRest2998 = new BitSet(new long[]{0x00201FFFD2000000L,0x00000000E0021060L});
-    public static final BitSet FOLLOW_expression_in_arrayCreatorRest3000 = new BitSet(new long[]{0x0000000000000000L,0x0000000000010000L});
-    public static final BitSet FOLLOW_80_in_arrayCreatorRest3002 = new BitSet(new long[]{0x0000000000000002L,0x0000000000008000L});
-    public static final BitSet FOLLOW_79_in_arrayCreatorRest3005 = new BitSet(new long[]{0x00201FFFD2000000L,0x00000000E0021060L});
-    public static final BitSet FOLLOW_expression_in_arrayCreatorRest3007 = new BitSet(new long[]{0x0000000000000000L,0x0000000000010000L});
-    public static final BitSet FOLLOW_80_in_arrayCreatorRest3009 = new BitSet(new long[]{0x0000000000000002L,0x0000000000008000L});
-    public static final BitSet FOLLOW_arguments_in_classCreatorRest3032 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_96_in_superMemberAccess3054 = new BitSet(new long[]{0x0000000002000000L});
-    public static final BitSet FOLLOW_IDENTIFIER_in_superMemberAccess3056 = new BitSet(new long[]{0x0000000000000002L,0x0000000000020000L});
-    public static final BitSet FOLLOW_arguments_in_superMemberAccess3058 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_81_in_arguments3076 = new BitSet(new long[]{0x00201FFFD2000000L,0x00000000E0061060L});
-    public static final BitSet FOLLOW_expressionList_in_arguments3079 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
-    public static final BitSet FOLLOW_82_in_arguments3082 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ELSE_in_synpred2_Ja1657 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_81_in_synpred3_Ja2406 = new BitSet(new long[]{0x0000001FC2000000L});
-    public static final BitSet FOLLOW_primitiveType_in_synpred3_Ja2408 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
-    public static final BitSet FOLLOW_82_in_synpred3_Ja2410 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_81_in_synpred4_Ja2438 = new BitSet(new long[]{0x0000001FC2000000L});
-    public static final BitSet FOLLOW_nonPrimitiveType_in_synpred4_Ja2440 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
-    public static final BitSet FOLLOW_82_in_synpred4_Ja2443 = new BitSet(new long[]{0x00201FFFD2000000L,0x00000000E0021060L});
-    public static final BitSet FOLLOW_unaryExpressionNotPlusMinus_in_synpred4_Ja2445 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_76_in_block1353 = new BitSet(new long[]{0x0023FFFFD2000000L,0x00000000E0023860L});
+    public static final BitSet FOLLOW_blockStatement_in_block1356 = new BitSet(new long[]{0x0023FFFFD2000000L,0x00000000E0023860L});
+    public static final BitSet FOLLOW_77_in_block1359 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_localVariableDeclarationStatement_in_blockStatement1383 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_statement_in_blockStatement1393 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_localVariableDeclaration_in_localVariableDeclarationStatement1417 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000800L});
+    public static final BitSet FOLLOW_75_in_localVariableDeclarationStatement1419 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_type_in_localVariableDeclaration1439 = new BitSet(new long[]{0x0000000002000000L});
+    public static final BitSet FOLLOW_variableDeclarator_in_localVariableDeclaration1441 = new BitSet(new long[]{0x0000000000000002L,0x0000000000004000L});
+    public static final BitSet FOLLOW_78_in_localVariableDeclaration1444 = new BitSet(new long[]{0x0000000002000000L});
+    public static final BitSet FOLLOW_variableDeclarator_in_localVariableDeclaration1446 = new BitSet(new long[]{0x0000000000000002L,0x0000000000004000L});
+    public static final BitSet FOLLOW_block_in_statement1482 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_IF_in_statement1500 = new BitSet(new long[]{0x0000000000000000L,0x0000000000020000L});
+    public static final BitSet FOLLOW_parExpression_in_statement1502 = new BitSet(new long[]{0x0023FFFFD2000000L,0x00000000E0021860L});
+    public static final BitSet FOLLOW_statement_in_statement1504 = new BitSet(new long[]{0x0004000000000000L});
+    public static final BitSet FOLLOW_elseStmt_in_statement1506 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_FOR_in_statement1537 = new BitSet(new long[]{0x0000000000000000L,0x0000000000020000L});
+    public static final BitSet FOLLOW_81_in_statement1539 = new BitSet(new long[]{0x00201FFFD2000000L,0x00000000E0021860L});
+    public static final BitSet FOLLOW_forInit_in_statement1541 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000800L});
+    public static final BitSet FOLLOW_75_in_statement1544 = new BitSet(new long[]{0x00201FFFD2000000L,0x00000000E0021860L});
+    public static final BitSet FOLLOW_expression_in_statement1546 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000800L});
+    public static final BitSet FOLLOW_75_in_statement1549 = new BitSet(new long[]{0x00201FFFD2000000L,0x00000000E0061060L});
+    public static final BitSet FOLLOW_forUpdate_in_statement1551 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
+    public static final BitSet FOLLOW_82_in_statement1554 = new BitSet(new long[]{0x0023FFFFD2000000L,0x00000000E0021860L});
+    public static final BitSet FOLLOW_statement_in_statement1556 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_WHILE_in_statement1602 = new BitSet(new long[]{0x0000000000000000L,0x0000000000020000L});
+    public static final BitSet FOLLOW_parExpression_in_statement1604 = new BitSet(new long[]{0x0023FFFFD2000000L,0x00000000E0021860L});
+    public static final BitSet FOLLOW_statement_in_statement1606 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_DO_in_statement1630 = new BitSet(new long[]{0x0023FFFFD2000000L,0x00000000E0021860L});
+    public static final BitSet FOLLOW_statement_in_statement1632 = new BitSet(new long[]{0x0000800000000000L});
+    public static final BitSet FOLLOW_WHILE_in_statement1634 = new BitSet(new long[]{0x0000000000000000L,0x0000000000020000L});
+    public static final BitSet FOLLOW_parExpression_in_statement1636 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000800L});
+    public static final BitSet FOLLOW_75_in_statement1638 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RETURN_in_statement1662 = new BitSet(new long[]{0x00201FFFD2000000L,0x00000000E0021860L});
+    public static final BitSet FOLLOW_expression_in_statement1665 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000800L});
+    public static final BitSet FOLLOW_75_in_statement1668 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_75_in_statement1679 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_statementExpression_in_statement1691 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000800L});
+    public static final BitSet FOLLOW_75_in_statement1693 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ELSE_in_elseStmt1725 = new BitSet(new long[]{0x0023FFFFD2000000L,0x00000000E0021860L});
+    public static final BitSet FOLLOW_statement_in_elseStmt1728 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_localVariableDeclaration_in_forInit1753 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_expressionList_in_forInit1763 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_expressionList_in_forUpdate1782 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_81_in_parExpression1803 = new BitSet(new long[]{0x00201FFFD2000000L,0x00000000E0021060L});
+    public static final BitSet FOLLOW_expression_in_parExpression1806 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
+    public static final BitSet FOLLOW_82_in_parExpression1808 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_expression_in_expressionList1832 = new BitSet(new long[]{0x0000000000000002L,0x0000000000004000L});
+    public static final BitSet FOLLOW_78_in_expressionList1835 = new BitSet(new long[]{0x00201FFFD2000000L,0x00000000E0021060L});
+    public static final BitSet FOLLOW_expression_in_expressionList1837 = new BitSet(new long[]{0x0000000000000002L,0x0000000000004000L});
+    public static final BitSet FOLLOW_expression_in_statementExpression1858 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_expression_in_constantExpression1881 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_orExpression_in_expression1903 = new BitSet(new long[]{0x0000000000000002L,0x0000000000F00010L});
+    public static final BitSet FOLLOW_assignmentOperator_in_expression1909 = new BitSet(new long[]{0x00201FFFD2000000L,0x00000000E0021060L});
+    public static final BitSet FOLLOW_expression_in_expression1911 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_EQ_in_assignmentOperator2091 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_84_in_assignmentOperator2104 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_85_in_assignmentOperator2117 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_86_in_assignmentOperator2129 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_87_in_assignmentOperator2141 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_andExpression_in_orExpression2162 = new BitSet(new long[]{0x0000000000000002L,0x0000000001000000L});
+    public static final BitSet FOLLOW_88_in_orExpression2166 = new BitSet(new long[]{0x00201FFFD2000000L,0x00000000E0021060L});
+    public static final BitSet FOLLOW_andExpression_in_orExpression2169 = new BitSet(new long[]{0x0000000000000002L,0x0000000001000000L});
+    public static final BitSet FOLLOW_equalityExpression_in_andExpression2191 = new BitSet(new long[]{0x0000000000000002L,0x0000000002000000L});
+    public static final BitSet FOLLOW_89_in_andExpression2195 = new BitSet(new long[]{0x00201FFFD2000000L,0x00000000E0021060L});
+    public static final BitSet FOLLOW_equalityExpression_in_andExpression2198 = new BitSet(new long[]{0x0000000000000002L,0x0000000002000000L});
+    public static final BitSet FOLLOW_instanceOfExpression_in_equalityExpression2220 = new BitSet(new long[]{0x0000000000000002L,0x000000000C000000L});
+    public static final BitSet FOLLOW_set_in_equalityExpression2224 = new BitSet(new long[]{0x00201FFFD2000000L,0x00000000E0021060L});
+    public static final BitSet FOLLOW_instanceOfExpression_in_equalityExpression2233 = new BitSet(new long[]{0x0000000000000002L,0x000000000C000000L});
+    public static final BitSet FOLLOW_relationalExpression_in_instanceOfExpression2255 = new BitSet(new long[]{0x0008000000000002L});
+    public static final BitSet FOLLOW_INSTANCEOF_in_instanceOfExpression2258 = new BitSet(new long[]{0x0000001FC2000000L});
+    public static final BitSet FOLLOW_type_in_instanceOfExpression2261 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_additiveExpression_in_relationalExpression2282 = new BitSet(new long[]{0x0010000000000002L});
+    public static final BitSet FOLLOW_COMPAREOP_in_relationalExpression2286 = new BitSet(new long[]{0x00201FFFD2000000L,0x00000000E0021060L});
+    public static final BitSet FOLLOW_additiveExpression_in_relationalExpression2289 = new BitSet(new long[]{0x0010000000000002L});
+    public static final BitSet FOLLOW_multiplicativeExpression_in_additiveExpression2311 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000060L});
+    public static final BitSet FOLLOW_set_in_additiveExpression2315 = new BitSet(new long[]{0x00201FFFD2000000L,0x00000000E0021060L});
+    public static final BitSet FOLLOW_multiplicativeExpression_in_additiveExpression2324 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000060L});
+    public static final BitSet FOLLOW_unaryExpression_in_multiplicativeExpression2346 = new BitSet(new long[]{0x0000000000000002L,0x0000000010000180L});
+    public static final BitSet FOLLOW_set_in_multiplicativeExpression2350 = new BitSet(new long[]{0x00201FFFD2000000L,0x00000000E0021060L});
+    public static final BitSet FOLLOW_unaryExpression_in_multiplicativeExpression2365 = new BitSet(new long[]{0x0000000000000002L,0x0000000010000180L});
+    public static final BitSet FOLLOW_PLUS_in_unaryExpression2391 = new BitSet(new long[]{0x00201FFFD2000000L,0x00000000E0021060L});
+    public static final BitSet FOLLOW_unaryExpression_in_unaryExpression2393 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_MINUS_in_unaryExpression2403 = new BitSet(new long[]{0x00201FFFD2000000L,0x00000000E0021060L});
+    public static final BitSet FOLLOW_unaryExpression_in_unaryExpression2405 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_93_in_unaryExpression2415 = new BitSet(new long[]{0x00201FFFD2000000L,0x00000000E0021060L});
+    public static final BitSet FOLLOW_unaryExpression_in_unaryExpression2417 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_94_in_unaryExpression2427 = new BitSet(new long[]{0x00201FFFD2000000L,0x00000000E0021060L});
+    public static final BitSet FOLLOW_unaryExpression_in_unaryExpression2429 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_unaryExpressionNotPlusMinus_in_unaryExpression2439 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_95_in_unaryExpressionNotPlusMinus2456 = new BitSet(new long[]{0x00201FFFD2000000L,0x00000000E0021060L});
+    public static final BitSet FOLLOW_unaryExpression_in_unaryExpressionNotPlusMinus2458 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_81_in_unaryExpressionNotPlusMinus2479 = new BitSet(new long[]{0x0000001FC2000000L});
+    public static final BitSet FOLLOW_primitiveType_in_unaryExpressionNotPlusMinus2481 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
+    public static final BitSet FOLLOW_82_in_unaryExpressionNotPlusMinus2483 = new BitSet(new long[]{0x00201FFFD2000000L,0x00000000E0021060L});
+    public static final BitSet FOLLOW_unaryExpression_in_unaryExpressionNotPlusMinus2485 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_81_in_unaryExpressionNotPlusMinus2513 = new BitSet(new long[]{0x0000001FC2000000L});
+    public static final BitSet FOLLOW_nonPrimitiveType_in_unaryExpressionNotPlusMinus2515 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
+    public static final BitSet FOLLOW_82_in_unaryExpressionNotPlusMinus2518 = new BitSet(new long[]{0x00201FFFD2000000L,0x00000000E0021060L});
+    public static final BitSet FOLLOW_unaryExpressionNotPlusMinus_in_unaryExpressionNotPlusMinus2520 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_NEW_in_unaryExpressionNotPlusMinus2530 = new BitSet(new long[]{0x0000001FC2000000L});
+    public static final BitSet FOLLOW_creator_in_unaryExpressionNotPlusMinus2532 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_primary_in_unaryExpressionNotPlusMinus2542 = new BitSet(new long[]{0x0000000000000002L,0x0000000160008000L});
+    public static final BitSet FOLLOW_selector_in_unaryExpressionNotPlusMinus2545 = new BitSet(new long[]{0x0000000000000002L,0x0000000160008000L});
+    public static final BitSet FOLLOW_set_in_unaryExpressionNotPlusMinus2549 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parExpression_in_primary2609 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_THIS_in_primary2619 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_SUPER_in_primary2630 = new BitSet(new long[]{0x0000000000000000L,0x0000000100000000L});
+    public static final BitSet FOLLOW_superMemberAccess_in_primary2633 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_literal_in_primary2643 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_IDENTIFIER_in_primary2653 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_IDENTIFIER_in_primary2664 = new BitSet(new long[]{0x0000000000000000L,0x0000000000008000L});
+    public static final BitSet FOLLOW_79_in_primary2672 = new BitSet(new long[]{0x0000000000000000L,0x0000000000010000L});
+    public static final BitSet FOLLOW_80_in_primary2674 = new BitSet(new long[]{0x0000000000000000L,0x0000000100008000L});
+    public static final BitSet FOLLOW_96_in_primary2688 = new BitSet(new long[]{0x0000000001000000L});
+    public static final BitSet FOLLOW_CLASS_in_primary2690 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_IDENTIFIER_in_primary2709 = new BitSet(new long[]{0x0000000000000000L,0x0000000000020000L});
+    public static final BitSet FOLLOW_arguments_in_primary2712 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_IDENTIFIER_in_primary2732 = new BitSet(new long[]{0x0000000000000000L,0x0000000100000000L});
+    public static final BitSet FOLLOW_96_in_primary2734 = new BitSet(new long[]{0x0000000001000000L});
+    public static final BitSet FOLLOW_CLASS_in_primary2736 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_primitiveType_in_primary2755 = new BitSet(new long[]{0x0000000000000000L,0x0000000100008000L});
+    public static final BitSet FOLLOW_79_in_primary2763 = new BitSet(new long[]{0x0000000000000000L,0x0000000000010000L});
+    public static final BitSet FOLLOW_80_in_primary2765 = new BitSet(new long[]{0x0000000000000000L,0x0000000100008000L});
+    public static final BitSet FOLLOW_96_in_primary2779 = new BitSet(new long[]{0x0000000001000000L});
+    public static final BitSet FOLLOW_CLASS_in_primary2781 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_VOID_in_primary2801 = new BitSet(new long[]{0x0000000000000000L,0x0000000100000000L});
+    public static final BitSet FOLLOW_96_in_primary2803 = new BitSet(new long[]{0x0000000001000000L});
+    public static final BitSet FOLLOW_CLASS_in_primary2805 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_96_in_selector2836 = new BitSet(new long[]{0x0000000002000000L});
+    public static final BitSet FOLLOW_IDENTIFIER_in_selector2838 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_96_in_selector2854 = new BitSet(new long[]{0x0000000002000000L});
+    public static final BitSet FOLLOW_IDENTIFIER_in_selector2856 = new BitSet(new long[]{0x0000000000000000L,0x0000000000020000L});
+    public static final BitSet FOLLOW_arguments_in_selector2858 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_79_in_selector2889 = new BitSet(new long[]{0x00201FFFD2000000L,0x00000000E0021060L});
+    public static final BitSet FOLLOW_expression_in_selector2891 = new BitSet(new long[]{0x0000000000000000L,0x0000000000010000L});
+    public static final BitSet FOLLOW_80_in_selector2893 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_79_in_identifierSuffix2920 = new BitSet(new long[]{0x0000000000000000L,0x0000000000010000L});
+    public static final BitSet FOLLOW_80_in_identifierSuffix2922 = new BitSet(new long[]{0x0000000000000000L,0x0000000100008000L});
+    public static final BitSet FOLLOW_96_in_identifierSuffix2926 = new BitSet(new long[]{0x0000000001000000L});
+    public static final BitSet FOLLOW_CLASS_in_identifierSuffix2928 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_arguments_in_identifierSuffix2943 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_96_in_identifierSuffix2953 = new BitSet(new long[]{0x0000000001000000L});
+    public static final BitSet FOLLOW_CLASS_in_identifierSuffix2955 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_createdName_in_creator2983 = new BitSet(new long[]{0x0000000000000000L,0x0000000000028000L});
+    public static final BitSet FOLLOW_arrayCreatorRest_in_creator2986 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_classCreatorRest_in_creator2990 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_classType_in_createdName3010 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_primitiveType_in_createdName3020 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_79_in_arrayCreatorRest3043 = new BitSet(new long[]{0x0000000000000000L,0x0000000000010000L});
+    public static final BitSet FOLLOW_80_in_arrayCreatorRest3044 = new BitSet(new long[]{0x0000000000000000L,0x0000000000009000L});
+    public static final BitSet FOLLOW_79_in_arrayCreatorRest3047 = new BitSet(new long[]{0x0000000000000000L,0x0000000000010000L});
+    public static final BitSet FOLLOW_80_in_arrayCreatorRest3049 = new BitSet(new long[]{0x0000000000000000L,0x0000000000009000L});
+    public static final BitSet FOLLOW_arrayInitializer_in_arrayCreatorRest3053 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_79_in_arrayCreatorRest3061 = new BitSet(new long[]{0x00201FFFD2000000L,0x00000000E0021060L});
+    public static final BitSet FOLLOW_expression_in_arrayCreatorRest3063 = new BitSet(new long[]{0x0000000000000000L,0x0000000000010000L});
+    public static final BitSet FOLLOW_80_in_arrayCreatorRest3065 = new BitSet(new long[]{0x0000000000000002L,0x0000000000008000L});
+    public static final BitSet FOLLOW_79_in_arrayCreatorRest3068 = new BitSet(new long[]{0x00201FFFD2000000L,0x00000000E0021060L});
+    public static final BitSet FOLLOW_expression_in_arrayCreatorRest3070 = new BitSet(new long[]{0x0000000000000000L,0x0000000000010000L});
+    public static final BitSet FOLLOW_80_in_arrayCreatorRest3072 = new BitSet(new long[]{0x0000000000000002L,0x0000000000008000L});
+    public static final BitSet FOLLOW_arguments_in_classCreatorRest3095 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_96_in_superMemberAccess3117 = new BitSet(new long[]{0x0000000002000000L});
+    public static final BitSet FOLLOW_IDENTIFIER_in_superMemberAccess3119 = new BitSet(new long[]{0x0000000000000002L,0x0000000000020000L});
+    public static final BitSet FOLLOW_arguments_in_superMemberAccess3121 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_81_in_arguments3139 = new BitSet(new long[]{0x00201FFFD2000000L,0x00000000E0061060L});
+    public static final BitSet FOLLOW_expressionList_in_arguments3142 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
+    public static final BitSet FOLLOW_82_in_arguments3145 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ELSE_in_synpred2_Ja1720 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_81_in_synpred3_Ja2469 = new BitSet(new long[]{0x0000001FC2000000L});
+    public static final BitSet FOLLOW_primitiveType_in_synpred3_Ja2471 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
+    public static final BitSet FOLLOW_82_in_synpred3_Ja2473 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_81_in_synpred4_Ja2501 = new BitSet(new long[]{0x0000001FC2000000L});
+    public static final BitSet FOLLOW_nonPrimitiveType_in_synpred4_Ja2503 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
+    public static final BitSet FOLLOW_82_in_synpred4_Ja2506 = new BitSet(new long[]{0x00201FFFD2000000L,0x00000000E0021060L});
+    public static final BitSet FOLLOW_unaryExpressionNotPlusMinus_in_synpred4_Ja2508 = new BitSet(new long[]{0x0000000000000002L});
 
 }

@@ -1,4 +1,4 @@
-// $ANTLR 3.2 Sep 23, 2009 12:02:23 C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g 2010-07-04 17:41:31
+// $ANTLR 3.2 Sep 23, 2009 12:02:23 C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g 2010-07-04 20:21:18
 
 	package jagrammar;
 
@@ -571,7 +571,7 @@ public class JaLexer extends Lexer {
     // $ANTLR start "IntegerNumber"
     public final void mIntegerNumber() throws RecognitionException {
         try {
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:415:5: ( '0' | '1' .. '9' ( Digit )* )
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:417:5: ( '0' | '1' .. '9' ( Digit )* )
             int alt2=2;
             int LA2_0 = input.LA(1);
 
@@ -589,17 +589,17 @@ public class JaLexer extends Lexer {
             }
             switch (alt2) {
                 case 1 :
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:415:9: '0'
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:417:9: '0'
                     {
                     match('0'); 
 
                     }
                     break;
                 case 2 :
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:416:9: '1' .. '9' ( Digit )*
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:418:9: '1' .. '9' ( Digit )*
                     {
                     matchRange('1','9'); 
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:416:18: ( Digit )*
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:418:18: ( Digit )*
                     loop1:
                     do {
                         int alt1=2;
@@ -612,7 +612,7 @@ public class JaLexer extends Lexer {
 
                         switch (alt1) {
                     	case 1 :
-                    	    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:416:18: Digit
+                    	    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:418:18: Digit
                     	    {
                     	    mDigit(); 
 
@@ -638,8 +638,8 @@ public class JaLexer extends Lexer {
     // $ANTLR start "Digit"
     public final void mDigit() throws RecognitionException {
         try {
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:421:5: ( '0' .. '9' )
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:421:7: '0' .. '9'
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:423:5: ( '0' .. '9' )
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:423:7: '0' .. '9'
             {
             matchRange('0','9'); 
 
@@ -654,7 +654,7 @@ public class JaLexer extends Lexer {
     // $ANTLR start "LongSuffix"
     public final void mLongSuffix() throws RecognitionException {
         try {
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:427:5: ( 'l' | 'L' )
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:429:5: ( 'l' | 'L' )
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:
             {
             if ( input.LA(1)=='L'||input.LA(1)=='l' ) {
@@ -680,8 +680,8 @@ public class JaLexer extends Lexer {
         try {
             int _type = INTLITERAL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:431:5: ( IntegerNumber )
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:431:9: IntegerNumber
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:433:5: ( IntegerNumber )
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:433:9: IntegerNumber
             {
             mIntegerNumber(); 
 
@@ -700,8 +700,8 @@ public class JaLexer extends Lexer {
         try {
             int _type = LONGLITERAL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:435:5: ( IntegerNumber LongSuffix )
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:435:9: IntegerNumber LongSuffix
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:437:5: ( IntegerNumber LongSuffix )
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:437:9: IntegerNumber LongSuffix
             {
             mIntegerNumber(); 
             mLongSuffix(); 
@@ -719,14 +719,14 @@ public class JaLexer extends Lexer {
     // $ANTLR start "FloatingPointLiteral"
     public final void mFloatingPointLiteral() throws RecognitionException {
         try {
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:440:5: ( ( Digit )+ '.' ( Digit )* ( Exponent )? | ( '.' )? ( Digit )+ ( Exponent )? )
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:442:5: ( ( Digit )+ '.' ( Digit )* ( Exponent )? | ( '.' )? ( Digit )+ ( Exponent )? )
             int alt9=2;
             alt9 = dfa9.predict(input);
             switch (alt9) {
                 case 1 :
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:440:9: ( Digit )+ '.' ( Digit )* ( Exponent )?
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:442:9: ( Digit )+ '.' ( Digit )* ( Exponent )?
                     {
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:440:9: ( Digit )+
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:442:9: ( Digit )+
                     int cnt3=0;
                     loop3:
                     do {
@@ -740,7 +740,7 @@ public class JaLexer extends Lexer {
 
                         switch (alt3) {
                     	case 1 :
-                    	    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:440:9: Digit
+                    	    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:442:9: Digit
                     	    {
                     	    mDigit(); 
 
@@ -757,7 +757,7 @@ public class JaLexer extends Lexer {
                     } while (true);
 
                     match('.'); 
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:440:20: ( Digit )*
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:442:20: ( Digit )*
                     loop4:
                     do {
                         int alt4=2;
@@ -770,7 +770,7 @@ public class JaLexer extends Lexer {
 
                         switch (alt4) {
                     	case 1 :
-                    	    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:440:20: Digit
+                    	    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:442:20: Digit
                     	    {
                     	    mDigit(); 
 
@@ -782,7 +782,7 @@ public class JaLexer extends Lexer {
                         }
                     } while (true);
 
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:440:27: ( Exponent )?
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:442:27: ( Exponent )?
                     int alt5=2;
                     int LA5_0 = input.LA(1);
 
@@ -791,7 +791,7 @@ public class JaLexer extends Lexer {
                     }
                     switch (alt5) {
                         case 1 :
-                            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:440:27: Exponent
+                            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:442:27: Exponent
                             {
                             mExponent(); 
 
@@ -804,9 +804,9 @@ public class JaLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:441:9: ( '.' )? ( Digit )+ ( Exponent )?
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:443:9: ( '.' )? ( Digit )+ ( Exponent )?
                     {
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:441:9: ( '.' )?
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:443:9: ( '.' )?
                     int alt6=2;
                     int LA6_0 = input.LA(1);
 
@@ -815,7 +815,7 @@ public class JaLexer extends Lexer {
                     }
                     switch (alt6) {
                         case 1 :
-                            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:441:10: '.'
+                            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:443:10: '.'
                             {
                             match('.'); 
 
@@ -824,7 +824,7 @@ public class JaLexer extends Lexer {
 
                     }
 
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:441:16: ( Digit )+
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:443:16: ( Digit )+
                     int cnt7=0;
                     loop7:
                     do {
@@ -838,7 +838,7 @@ public class JaLexer extends Lexer {
 
                         switch (alt7) {
                     	case 1 :
-                    	    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:441:16: Digit
+                    	    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:443:16: Digit
                     	    {
                     	    mDigit(); 
 
@@ -854,7 +854,7 @@ public class JaLexer extends Lexer {
                         cnt7++;
                     } while (true);
 
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:441:23: ( Exponent )?
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:443:23: ( Exponent )?
                     int alt8=2;
                     int LA8_0 = input.LA(1);
 
@@ -863,7 +863,7 @@ public class JaLexer extends Lexer {
                     }
                     switch (alt8) {
                         case 1 :
-                            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:441:23: Exponent
+                            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:443:23: Exponent
                             {
                             mExponent(); 
 
@@ -886,8 +886,8 @@ public class JaLexer extends Lexer {
     // $ANTLR start "Exponent"
     public final void mExponent() throws RecognitionException {
         try {
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:446:5: ( ( 'e' | 'E' ) ( '+' | '-' )? ( Digit )+ )
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:446:9: ( 'e' | 'E' ) ( '+' | '-' )? ( Digit )+
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:448:5: ( ( 'e' | 'E' ) ( '+' | '-' )? ( Digit )+ )
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:448:9: ( 'e' | 'E' ) ( '+' | '-' )? ( Digit )+
             {
             if ( input.LA(1)=='E'||input.LA(1)=='e' ) {
                 input.consume();
@@ -898,7 +898,7 @@ public class JaLexer extends Lexer {
                 recover(mse);
                 throw mse;}
 
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:446:23: ( '+' | '-' )?
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:448:23: ( '+' | '-' )?
             int alt10=2;
             int LA10_0 = input.LA(1);
 
@@ -924,7 +924,7 @@ public class JaLexer extends Lexer {
 
             }
 
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:446:38: ( Digit )+
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:448:38: ( Digit )+
             int cnt11=0;
             loop11:
             do {
@@ -938,7 +938,7 @@ public class JaLexer extends Lexer {
 
                 switch (alt11) {
             	case 1 :
-            	    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:446:38: Digit
+            	    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:448:38: Digit
             	    {
             	    mDigit(); 
 
@@ -966,7 +966,7 @@ public class JaLexer extends Lexer {
     // $ANTLR start "FloatSuffix"
     public final void mFloatSuffix() throws RecognitionException {
         try {
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:451:5: ( 'f' | 'F' )
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:453:5: ( 'f' | 'F' )
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:
             {
             if ( input.LA(1)=='F'||input.LA(1)=='f' ) {
@@ -990,7 +990,7 @@ public class JaLexer extends Lexer {
     // $ANTLR start "DoubleSuffix"
     public final void mDoubleSuffix() throws RecognitionException {
         try {
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:456:5: ( 'd' | 'D' )
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:458:5: ( 'd' | 'D' )
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:
             {
             if ( input.LA(1)=='D'||input.LA(1)=='d' ) {
@@ -1016,8 +1016,8 @@ public class JaLexer extends Lexer {
         try {
             int _type = FLOATLITERAL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:460:5: ( FloatingPointLiteral FloatSuffix )
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:460:9: FloatingPointLiteral FloatSuffix
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:462:5: ( FloatingPointLiteral FloatSuffix )
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:462:9: FloatingPointLiteral FloatSuffix
             {
             mFloatingPointLiteral(); 
             mFloatSuffix(); 
@@ -1037,11 +1037,11 @@ public class JaLexer extends Lexer {
         try {
             int _type = DOUBLELITERAL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:464:5: ( FloatingPointLiteral ( DoubleSuffix )? )
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:464:9: FloatingPointLiteral ( DoubleSuffix )?
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:466:5: ( FloatingPointLiteral ( DoubleSuffix )? )
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:466:9: FloatingPointLiteral ( DoubleSuffix )?
             {
             mFloatingPointLiteral(); 
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:464:30: ( DoubleSuffix )?
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:466:30: ( DoubleSuffix )?
             int alt12=2;
             int LA12_0 = input.LA(1);
 
@@ -1050,7 +1050,7 @@ public class JaLexer extends Lexer {
             }
             switch (alt12) {
                 case 1 :
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:464:30: DoubleSuffix
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:466:30: DoubleSuffix
                     {
                     mDoubleSuffix(); 
 
@@ -1075,11 +1075,11 @@ public class JaLexer extends Lexer {
         try {
             int _type = CHARLITERAL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:468:5: ( '\\'' ( EscapeSequence | ~ ( '\\'' | '\\\\' | '\\r' | '\\n' ) ) '\\'' )
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:468:9: '\\'' ( EscapeSequence | ~ ( '\\'' | '\\\\' | '\\r' | '\\n' ) ) '\\''
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:470:5: ( '\\'' ( EscapeSequence | ~ ( '\\'' | '\\\\' | '\\r' | '\\n' ) ) '\\'' )
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:470:9: '\\'' ( EscapeSequence | ~ ( '\\'' | '\\\\' | '\\r' | '\\n' ) ) '\\''
             {
             match('\''); 
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:469:9: ( EscapeSequence | ~ ( '\\'' | '\\\\' | '\\r' | '\\n' ) )
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:471:9: ( EscapeSequence | ~ ( '\\'' | '\\\\' | '\\r' | '\\n' ) )
             int alt13=2;
             int LA13_0 = input.LA(1);
 
@@ -1097,14 +1097,14 @@ public class JaLexer extends Lexer {
             }
             switch (alt13) {
                 case 1 :
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:469:13: EscapeSequence
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:471:13: EscapeSequence
                     {
                     mEscapeSequence(); 
 
                     }
                     break;
                 case 2 :
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:470:13: ~ ( '\\'' | '\\\\' | '\\r' | '\\n' )
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:472:13: ~ ( '\\'' | '\\\\' | '\\r' | '\\n' )
                     {
                     if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='&')||(input.LA(1)>='(' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                         input.consume();
@@ -1138,11 +1138,11 @@ public class JaLexer extends Lexer {
         try {
             int _type = STRINGLITERAL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:476:5: ( '\"' ( EscapeSequence | ~ ( '\\\\' | '\"' | '\\r' | '\\n' ) )* '\"' )
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:476:9: '\"' ( EscapeSequence | ~ ( '\\\\' | '\"' | '\\r' | '\\n' ) )* '\"'
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:478:5: ( '\"' ( EscapeSequence | ~ ( '\\\\' | '\"' | '\\r' | '\\n' ) )* '\"' )
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:478:9: '\"' ( EscapeSequence | ~ ( '\\\\' | '\"' | '\\r' | '\\n' ) )* '\"'
             {
             match('\"'); 
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:477:9: ( EscapeSequence | ~ ( '\\\\' | '\"' | '\\r' | '\\n' ) )*
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:479:9: ( EscapeSequence | ~ ( '\\\\' | '\"' | '\\r' | '\\n' ) )*
             loop14:
             do {
                 int alt14=3;
@@ -1158,14 +1158,14 @@ public class JaLexer extends Lexer {
 
                 switch (alt14) {
             	case 1 :
-            	    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:477:13: EscapeSequence
+            	    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:479:13: EscapeSequence
             	    {
             	    mEscapeSequence(); 
 
             	    }
             	    break;
             	case 2 :
-            	    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:478:13: ~ ( '\\\\' | '\"' | '\\r' | '\\n' )
+            	    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:480:13: ~ ( '\\\\' | '\"' | '\\r' | '\\n' )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -1200,8 +1200,8 @@ public class JaLexer extends Lexer {
     // $ANTLR start "EscapeSequence"
     public final void mEscapeSequence() throws RecognitionException {
         try {
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:485:5: ( '\\\\' ( 't' | 'n' | 'r' | '\\\"' | '\\'' | '\\\\' ) )
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:485:9: '\\\\' ( 't' | 'n' | 'r' | '\\\"' | '\\'' | '\\\\' )
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:487:5: ( '\\\\' ( 't' | 'n' | 'r' | '\\\"' | '\\'' | '\\\\' ) )
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:487:9: '\\\\' ( 't' | 'n' | 'r' | '\\\"' | '\\'' | '\\\\' )
             {
             match('\\'); 
             if ( input.LA(1)=='\"'||input.LA(1)=='\''||input.LA(1)=='\\'||input.LA(1)=='n'||input.LA(1)=='r'||input.LA(1)=='t' ) {
@@ -1227,7 +1227,7 @@ public class JaLexer extends Lexer {
         try {
             int _type = BOOLEANLITERAL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:497:2: ( 'true' | 'false' )
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:499:2: ( 'true' | 'false' )
             int alt15=2;
             int LA15_0 = input.LA(1);
 
@@ -1245,7 +1245,7 @@ public class JaLexer extends Lexer {
             }
             switch (alt15) {
                 case 1 :
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:497:4: 'true'
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:499:4: 'true'
                     {
                     match("true"); 
 
@@ -1253,7 +1253,7 @@ public class JaLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:498:4: 'false'
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:500:4: 'false'
                     {
                     match("false"); 
 
@@ -1275,8 +1275,8 @@ public class JaLexer extends Lexer {
         try {
             int _type = NULLLITERAL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:501:5: ( 'null' )
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:501:9: 'null'
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:503:5: ( 'null' )
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:503:9: 'null'
             {
             match("null"); 
 
@@ -1296,8 +1296,8 @@ public class JaLexer extends Lexer {
         try {
             int _type = BOOLEAN;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:506:5: ( 'boolean' )
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:506:9: 'boolean'
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:508:5: ( 'boolean' )
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:508:9: 'boolean'
             {
             match("boolean"); 
 
@@ -1317,8 +1317,8 @@ public class JaLexer extends Lexer {
         try {
             int _type = BYTE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:510:5: ( 'byte' )
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:510:9: 'byte'
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:512:5: ( 'byte' )
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:512:9: 'byte'
             {
             match("byte"); 
 
@@ -1338,8 +1338,8 @@ public class JaLexer extends Lexer {
         try {
             int _type = CHAR;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:514:5: ( 'char' )
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:514:9: 'char'
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:516:5: ( 'char' )
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:516:9: 'char'
             {
             match("char"); 
 
@@ -1359,8 +1359,8 @@ public class JaLexer extends Lexer {
         try {
             int _type = SHORT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:518:5: ( 'short' )
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:518:9: 'short'
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:520:5: ( 'short' )
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:520:9: 'short'
             {
             match("short"); 
 
@@ -1380,8 +1380,8 @@ public class JaLexer extends Lexer {
         try {
             int _type = INT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:522:5: ( 'int' )
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:522:9: 'int'
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:524:5: ( 'int' )
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:524:9: 'int'
             {
             match("int"); 
 
@@ -1401,8 +1401,8 @@ public class JaLexer extends Lexer {
         try {
             int _type = LONG;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:526:5: ( 'long' )
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:526:9: 'long'
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:528:5: ( 'long' )
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:528:9: 'long'
             {
             match("long"); 
 
@@ -1422,8 +1422,8 @@ public class JaLexer extends Lexer {
         try {
             int _type = FLOAT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:530:5: ( 'float' )
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:530:9: 'float'
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:532:5: ( 'float' )
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:532:9: 'float'
             {
             match("float"); 
 
@@ -1443,8 +1443,8 @@ public class JaLexer extends Lexer {
         try {
             int _type = DOUBLE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:534:5: ( 'double' )
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:534:9: 'double'
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:536:5: ( 'double' )
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:536:9: 'double'
             {
             match("double"); 
 
@@ -1464,8 +1464,8 @@ public class JaLexer extends Lexer {
         try {
             int _type = VOID;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:538:5: ( 'void' )
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:538:9: 'void'
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:540:5: ( 'void' )
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:540:9: 'void'
             {
             match("void"); 
 
@@ -1485,8 +1485,8 @@ public class JaLexer extends Lexer {
         try {
             int _type = WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:543:5: ( ( ' ' | '\\r' | '\\t' | '\\n' ) )
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:543:9: ( ' ' | '\\r' | '\\t' | '\\n' )
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:545:5: ( ( ' ' | '\\r' | '\\t' | '\\n' ) )
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:545:9: ( ' ' | '\\r' | '\\t' | '\\n' )
             {
             if ( (input.LA(1)>='\t' && input.LA(1)<='\n')||input.LA(1)=='\r'||input.LA(1)==' ' ) {
                 input.consume();
@@ -1514,12 +1514,12 @@ public class JaLexer extends Lexer {
         try {
             int _type = COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:553:5: ( '/*' ( options {greedy=false; } : . )* '*/' )
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:553:9: '/*' ( options {greedy=false; } : . )* '*/'
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:555:5: ( '/*' ( options {greedy=false; } : . )* '*/' )
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:555:9: '/*' ( options {greedy=false; } : . )* '*/'
             {
             match("/*"); 
 
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:554:9: ( options {greedy=false; } : . )*
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:556:9: ( options {greedy=false; } : . )*
             loop16:
             do {
                 int alt16=2;
@@ -1544,7 +1544,7 @@ public class JaLexer extends Lexer {
 
                 switch (alt16) {
             	case 1 :
-            	    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:554:36: .
+            	    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:556:36: .
             	    {
             	    matchAny(); 
 
@@ -1575,12 +1575,12 @@ public class JaLexer extends Lexer {
         try {
             int _type = LINE_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:560:5: ( '//' (~ ( '\\n' | '\\r' ) )* )
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:560:7: '//' (~ ( '\\n' | '\\r' ) )*
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:562:5: ( '//' (~ ( '\\n' | '\\r' ) )* )
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:562:7: '//' (~ ( '\\n' | '\\r' ) )*
             {
             match("//"); 
 
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:560:12: (~ ( '\\n' | '\\r' ) )*
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:562:12: (~ ( '\\n' | '\\r' ) )*
             loop17:
             do {
                 int alt17=2;
@@ -1593,7 +1593,7 @@ public class JaLexer extends Lexer {
 
                 switch (alt17) {
             	case 1 :
-            	    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:560:12: ~ ( '\\n' | '\\r' )
+            	    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:562:12: ~ ( '\\n' | '\\r' )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -1630,8 +1630,8 @@ public class JaLexer extends Lexer {
         try {
             int _type = CLASS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:565:5: ( 'class' )
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:565:9: 'class'
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:567:5: ( 'class' )
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:567:9: 'class'
             {
             match("class"); 
 
@@ -1651,8 +1651,8 @@ public class JaLexer extends Lexer {
         try {
             int _type = EXTENDS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:569:5: ( 'extends' )
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:569:9: 'extends'
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:571:5: ( 'extends' )
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:571:9: 'extends'
             {
             match("extends"); 
 
@@ -1672,8 +1672,8 @@ public class JaLexer extends Lexer {
         try {
             int _type = FOR;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:573:5: ( 'for' )
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:573:9: 'for'
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:575:5: ( 'for' )
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:575:9: 'for'
             {
             match("for"); 
 
@@ -1693,8 +1693,8 @@ public class JaLexer extends Lexer {
         try {
             int _type = DO;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:577:5: ( 'do' )
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:577:9: 'do'
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:579:5: ( 'do' )
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:579:9: 'do'
             {
             match("do"); 
 
@@ -1714,8 +1714,8 @@ public class JaLexer extends Lexer {
         try {
             int _type = WHILE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:581:5: ( 'while' )
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:581:9: 'while'
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:583:5: ( 'while' )
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:583:9: 'while'
             {
             match("while"); 
 
@@ -1735,8 +1735,8 @@ public class JaLexer extends Lexer {
         try {
             int _type = IF;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:585:5: ( 'if' )
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:585:9: 'if'
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:587:5: ( 'if' )
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:587:9: 'if'
             {
             match("if"); 
 
@@ -1756,8 +1756,8 @@ public class JaLexer extends Lexer {
         try {
             int _type = ELSE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:589:5: ( 'else' )
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:589:9: 'else'
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:591:5: ( 'else' )
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:591:9: 'else'
             {
             match("else"); 
 
@@ -1777,8 +1777,8 @@ public class JaLexer extends Lexer {
         try {
             int _type = INSTANCEOF;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:593:5: ( 'instanceof' )
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:593:9: 'instanceof'
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:595:5: ( 'instanceof' )
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:595:9: 'instanceof'
             {
             match("instanceof"); 
 
@@ -1798,8 +1798,8 @@ public class JaLexer extends Lexer {
         try {
             int _type = NEW;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:597:5: ( 'new' )
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:597:9: 'new'
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:599:5: ( 'new' )
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:599:9: 'new'
             {
             match("new"); 
 
@@ -1819,8 +1819,8 @@ public class JaLexer extends Lexer {
         try {
             int _type = PRIVATE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:601:5: ( 'private' )
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:601:9: 'private'
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:603:5: ( 'private' )
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:603:9: 'private'
             {
             match("private"); 
 
@@ -1840,8 +1840,8 @@ public class JaLexer extends Lexer {
         try {
             int _type = PUBLIC;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:605:5: ( 'public' )
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:605:9: 'public'
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:607:5: ( 'public' )
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:607:9: 'public'
             {
             match("public"); 
 
@@ -1861,8 +1861,8 @@ public class JaLexer extends Lexer {
         try {
             int _type = RETURN;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:609:5: ( 'return' )
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:609:9: 'return'
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:611:5: ( 'return' )
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:611:9: 'return'
             {
             match("return"); 
 
@@ -1882,8 +1882,8 @@ public class JaLexer extends Lexer {
         try {
             int _type = SUPER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:613:5: ( 'super' )
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:613:9: 'super'
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:615:5: ( 'super' )
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:615:9: 'super'
             {
             match("super"); 
 
@@ -1903,8 +1903,8 @@ public class JaLexer extends Lexer {
         try {
             int _type = THIS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:617:5: ( 'this' )
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:617:9: 'this'
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:619:5: ( 'this' )
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:619:9: 'this'
             {
             match("this"); 
 
@@ -1924,8 +1924,8 @@ public class JaLexer extends Lexer {
         try {
             int _type = EQ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:621:5: ( '=' )
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:621:9: '='
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:623:5: ( '=' )
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:623:9: '='
             {
             match('='); 
 
@@ -1944,8 +1944,8 @@ public class JaLexer extends Lexer {
         try {
             int _type = PLUS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:625:5: ( '+' )
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:625:9: '+'
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:627:5: ( '+' )
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:627:9: '+'
             {
             match('+'); 
 
@@ -1964,8 +1964,8 @@ public class JaLexer extends Lexer {
         try {
             int _type = MINUS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:629:5: ( '-' )
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:629:9: '-'
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:631:5: ( '-' )
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:631:9: '-'
             {
             match('-'); 
 
@@ -1984,8 +1984,8 @@ public class JaLexer extends Lexer {
         try {
             int _type = STAR;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:633:5: ( '*' )
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:633:9: '*'
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:635:5: ( '*' )
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:635:9: '*'
             {
             match('*'); 
 
@@ -2004,8 +2004,8 @@ public class JaLexer extends Lexer {
         try {
             int _type = SLASH;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:637:5: ( '/' )
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:637:9: '/'
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:639:5: ( '/' )
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:639:9: '/'
             {
             match('/'); 
 
@@ -2024,7 +2024,7 @@ public class JaLexer extends Lexer {
         try {
             int _type = COMPAREOP;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:642:5: ( '>' | '<' | '>=' | '<=' )
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:644:5: ( '>' | '<' | '>=' | '<=' )
             int alt18=4;
             int LA18_0 = input.LA(1);
 
@@ -2054,21 +2054,21 @@ public class JaLexer extends Lexer {
             }
             switch (alt18) {
                 case 1 :
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:642:8: '>'
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:644:8: '>'
                     {
                     match('>'); 
 
                     }
                     break;
                 case 2 :
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:643:8: '<'
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:645:8: '<'
                     {
                     match('<'); 
 
                     }
                     break;
                 case 3 :
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:644:8: '>='
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:646:8: '>='
                     {
                     match(">="); 
 
@@ -2076,7 +2076,7 @@ public class JaLexer extends Lexer {
                     }
                     break;
                 case 4 :
-                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:645:8: '<='
+                    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:647:8: '<='
                     {
                     match("<="); 
 
@@ -2098,10 +2098,10 @@ public class JaLexer extends Lexer {
         try {
             int _type = IDENTIFIER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:649:5: ( ( Letter | Currency | '_' ) ( Digit | Letter | Currency | '_' )* )
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:649:8: ( Letter | Currency | '_' ) ( Digit | Letter | Currency | '_' )*
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:651:5: ( ( Letter | Currency | '_' ) ( Digit | Letter | Currency | '_' )* )
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:651:8: ( Letter | Currency | '_' ) ( Digit | Letter | Currency | '_' )*
             {
-            if ( input.LA(1)=='$'||(input.LA(1)>='A' && input.LA(1)<='Z')||input.LA(1)=='_'||(input.LA(1)>='a' && input.LA(1)<='z')||input.LA(1)=='\u00A3' ) {
+            if ( input.LA(1)=='$'||(input.LA(1)>='A' && input.LA(1)<='Z')||input.LA(1)=='_'||(input.LA(1)>='a' && input.LA(1)<='z') ) {
                 input.consume();
 
             }
@@ -2110,13 +2110,13 @@ public class JaLexer extends Lexer {
                 recover(mse);
                 throw mse;}
 
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:653:3: ( Digit | Letter | Currency | '_' )*
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:655:3: ( Digit | Letter | Currency | '_' )*
             loop19:
             do {
                 int alt19=2;
                 int LA19_0 = input.LA(1);
 
-                if ( (LA19_0=='$'||(LA19_0>='0' && LA19_0<='9')||(LA19_0>='A' && LA19_0<='Z')||LA19_0=='_'||(LA19_0>='a' && LA19_0<='z')||LA19_0=='\u00A3') ) {
+                if ( (LA19_0=='$'||(LA19_0>='0' && LA19_0<='9')||(LA19_0>='A' && LA19_0<='Z')||LA19_0=='_'||(LA19_0>='a' && LA19_0<='z')) ) {
                     alt19=1;
                 }
 
@@ -2125,7 +2125,7 @@ public class JaLexer extends Lexer {
             	case 1 :
             	    // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:
             	    {
-            	    if ( input.LA(1)=='$'||(input.LA(1)>='0' && input.LA(1)<='9')||(input.LA(1)>='A' && input.LA(1)<='Z')||input.LA(1)=='_'||(input.LA(1)>='a' && input.LA(1)<='z')||input.LA(1)=='\u00A3' ) {
+            	    if ( input.LA(1)=='$'||(input.LA(1)>='0' && input.LA(1)<='9')||(input.LA(1)>='A' && input.LA(1)<='Z')||input.LA(1)=='_'||(input.LA(1)>='a' && input.LA(1)<='z') ) {
             	        input.consume();
 
             	    }
@@ -2157,7 +2157,7 @@ public class JaLexer extends Lexer {
     // $ANTLR start "Letter"
     public final void mLetter() throws RecognitionException {
         try {
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:663:5: ( 'a' .. 'z' | 'A' .. 'Z' )
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:665:5: ( 'a' .. 'z' | 'A' .. 'Z' )
             // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:
             {
             if ( (input.LA(1)>='A' && input.LA(1)<='Z')||(input.LA(1)>='a' && input.LA(1)<='z') ) {
@@ -2181,18 +2181,10 @@ public class JaLexer extends Lexer {
     // $ANTLR start "Currency"
     public final void mCurrency() throws RecognitionException {
         try {
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:670:5: ( '$' | '£' )
-            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:672:5: ( '$' )
+            // C:\\Documents and Settings\\Gerardo\\Desktop\\jagrammar\\antlr\\Ja.g:672:9: '$'
             {
-            if ( input.LA(1)=='$'||input.LA(1)=='\u00A3' ) {
-                input.consume();
-
-            }
-            else {
-                MismatchedSetException mse = new MismatchedSetException(null,input);
-                recover(mse);
-                throw mse;}
-
+            match('$'); 
 
             }
 
@@ -2705,7 +2697,7 @@ public class JaLexer extends Lexer {
             this.transition = DFA9_transition;
         }
         public String getDescription() {
-            return "438:1: fragment FloatingPointLiteral : ( ( Digit )+ '.' ( Digit )* ( Exponent )? | ( '.' )? ( Digit )+ ( Exponent )? );";
+            return "440:1: fragment FloatingPointLiteral : ( ( Digit )+ '.' ( Digit )* ( Exponent )? | ( '.' )? ( Digit )+ ( Exponent )? );";
         }
     }
     static final String DFA20_eotS =
@@ -2738,20 +2730,20 @@ public class JaLexer extends Lexer {
         "\1\145\3\44\1\145\1\uffff\2\44\3\uffff\1\157\2\uffff\1\146\1\44"+
         "\1\uffff";
     static final String DFA20_maxS =
-        "\1\u00a3\10\uffff\1\71\4\75\2\uffff\2\75\1\uffff\2\154\2\uffff"+
-        "\1\162\1\157\1\165\1\171\1\154\1\165\1\156\3\157\1\uffff\1\170\1"+
-        "\150\1\165\1\145\3\uffff\1\146\22\uffff\2\146\1\71\3\uffff\1\154"+
-        "\1\165\1\151\1\154\1\157\1\162\1\154\1\167\1\157\1\164\2\141\1\157"+
-        "\1\160\1\164\1\u00a3\1\156\1\u00a3\1\151\1\164\1\163\2\151\1\142"+
-        "\1\164\1\146\2\71\1\146\1\145\2\163\1\141\1\u00a3\1\154\1\u00a3"+
-        "\1\154\1\145\1\162\1\163\1\162\1\145\1\u00a3\1\164\1\uffff\1\147"+
-        "\1\142\1\uffff\1\144\2\145\1\154\1\166\1\154\1\165\1\71\1\146\2"+
-        "\u00a3\1\145\1\164\1\uffff\1\u00a3\1\uffff\1\145\2\u00a3\1\163\1"+
-        "\164\1\162\1\uffff\1\141\1\u00a3\1\154\1\u00a3\1\156\1\u00a3\1\145"+
-        "\1\141\1\151\1\162\2\uffff\2\u00a3\1\uffff\1\141\2\uffff\3\u00a3"+
-        "\1\156\1\uffff\1\145\1\uffff\1\144\1\uffff\1\u00a3\1\164\1\143\1"+
-        "\156\1\uffff\1\156\3\uffff\1\143\1\u00a3\1\163\1\uffff\1\145\3\u00a3"+
-        "\1\145\1\uffff\2\u00a3\3\uffff\1\157\2\uffff\1\146\1\u00a3\1\uffff";
+        "\1\175\10\uffff\1\71\4\75\2\uffff\2\75\1\uffff\2\154\2\uffff\1"+
+        "\162\1\157\1\165\1\171\1\154\1\165\1\156\3\157\1\uffff\1\170\1\150"+
+        "\1\165\1\145\3\uffff\1\146\22\uffff\2\146\1\71\3\uffff\1\154\1\165"+
+        "\1\151\1\154\1\157\1\162\1\154\1\167\1\157\1\164\2\141\1\157\1\160"+
+        "\1\164\1\172\1\156\1\172\1\151\1\164\1\163\2\151\1\142\1\164\1\146"+
+        "\2\71\1\146\1\145\2\163\1\141\1\172\1\154\1\172\1\154\1\145\1\162"+
+        "\1\163\1\162\1\145\1\172\1\164\1\uffff\1\147\1\142\1\uffff\1\144"+
+        "\2\145\1\154\1\166\1\154\1\165\1\71\1\146\2\172\1\145\1\164\1\uffff"+
+        "\1\172\1\uffff\1\145\2\172\1\163\1\164\1\162\1\uffff\1\141\1\172"+
+        "\1\154\1\172\1\156\1\172\1\145\1\141\1\151\1\162\2\uffff\2\172\1"+
+        "\uffff\1\141\2\uffff\3\172\1\156\1\uffff\1\145\1\uffff\1\144\1\uffff"+
+        "\1\172\1\164\1\143\1\156\1\uffff\1\156\3\uffff\1\143\1\172\1\163"+
+        "\1\uffff\1\145\3\172\1\145\1\uffff\2\172\3\uffff\1\157\2\uffff\1"+
+        "\146\1\172\1\uffff";
     static final String DFA20_acceptS =
         "\1\uffff\1\1\1\2\1\3\1\4\1\5\1\6\1\7\1\10\5\uffff\1\16\1\17\2\uffff"+
         "\1\22\2\uffff\1\33\1\34\12\uffff\1\50\4\uffff\1\76\1\77\1\11\1\uffff"+
@@ -2769,7 +2761,7 @@ public class JaLexer extends Lexer {
             "\1\uffff\1\1\1\46\1\20\1\46\2\uffff\32\47\1\5\1\uffff\1\6\1"+
             "\uffff\1\47\1\uffff\1\47\1\32\1\33\1\37\1\42\1\30\2\47\1\35"+
             "\2\47\1\36\1\47\1\31\1\47\1\44\1\47\1\45\1\34\1\27\1\47\1\40"+
-            "\1\43\3\47\1\2\1\16\1\3\45\uffff\1\47",
+            "\1\43\3\47\1\2\1\16\1\3",
             "",
             "",
             "",
@@ -2854,10 +2846,10 @@ public class JaLexer extends Lexer {
             "\1\153",
             "\1\155\1\154",
             "\1\47\13\uffff\12\47\7\uffff\32\47\4\uffff\1\47\1\uffff\32"+
-            "\47\50\uffff\1\47",
+            "\47",
             "\1\157",
             "\1\47\13\uffff\12\47\7\uffff\32\47\4\uffff\1\47\1\uffff\24"+
-            "\47\1\160\5\47\50\uffff\1\47",
+            "\47\1\160\5\47",
             "\1\162",
             "\1\163",
             "\1\164",
@@ -2874,10 +2866,10 @@ public class JaLexer extends Lexer {
             "\1\175",
             "\1\176",
             "\1\47\13\uffff\12\47\7\uffff\32\47\4\uffff\1\47\1\uffff\32"+
-            "\47\50\uffff\1\47",
+            "\47",
             "\1\u0080",
             "\1\47\13\uffff\12\47\7\uffff\32\47\4\uffff\1\47\1\uffff\32"+
-            "\47\50\uffff\1\47",
+            "\47",
             "\1\u0082",
             "\1\u0083",
             "\1\u0084",
@@ -2885,7 +2877,7 @@ public class JaLexer extends Lexer {
             "\1\u0086",
             "\1\u0087",
             "\1\47\13\uffff\12\47\7\uffff\32\47\4\uffff\1\47\1\uffff\32"+
-            "\47\50\uffff\1\47",
+            "\47",
             "\1\u0089",
             "",
             "\1\u008a",
@@ -2901,33 +2893,33 @@ public class JaLexer extends Lexer {
             "\12\172",
             "\12\172\14\uffff\1\77\37\uffff\1\77",
             "\1\47\13\uffff\12\47\7\uffff\32\47\4\uffff\1\47\1\uffff\32"+
-            "\47\50\uffff\1\47",
+            "\47",
             "\1\47\13\uffff\12\47\7\uffff\32\47\4\uffff\1\47\1\uffff\32"+
-            "\47\50\uffff\1\47",
+            "\47",
             "\1\u0095",
             "\1\u0096",
             "",
             "\1\47\13\uffff\12\47\7\uffff\32\47\4\uffff\1\47\1\uffff\32"+
-            "\47\50\uffff\1\47",
+            "\47",
             "",
             "\1\u0098",
             "\1\47\13\uffff\12\47\7\uffff\32\47\4\uffff\1\47\1\uffff\32"+
-            "\47\50\uffff\1\47",
+            "\47",
             "\1\47\13\uffff\12\47\7\uffff\32\47\4\uffff\1\47\1\uffff\32"+
-            "\47\50\uffff\1\47",
+            "\47",
             "\1\u009b",
             "\1\u009c",
             "\1\u009d",
             "",
             "\1\u009e",
             "\1\47\13\uffff\12\47\7\uffff\32\47\4\uffff\1\47\1\uffff\32"+
-            "\47\50\uffff\1\47",
+            "\47",
             "\1\u00a0",
             "\1\47\13\uffff\12\47\7\uffff\32\47\4\uffff\1\47\1\uffff\32"+
-            "\47\50\uffff\1\47",
+            "\47",
             "\1\u00a2",
             "\1\47\13\uffff\12\47\7\uffff\32\47\4\uffff\1\47\1\uffff\32"+
-            "\47\50\uffff\1\47",
+            "\47",
             "\1\u00a4",
             "\1\u00a5",
             "\1\u00a6",
@@ -2935,19 +2927,19 @@ public class JaLexer extends Lexer {
             "",
             "",
             "\1\47\13\uffff\12\47\7\uffff\32\47\4\uffff\1\47\1\uffff\32"+
-            "\47\50\uffff\1\47",
+            "\47",
             "\1\47\13\uffff\12\47\7\uffff\32\47\4\uffff\1\47\1\uffff\32"+
-            "\47\50\uffff\1\47",
+            "\47",
             "",
             "\1\u00a9",
             "",
             "",
             "\1\47\13\uffff\12\47\7\uffff\32\47\4\uffff\1\47\1\uffff\32"+
-            "\47\50\uffff\1\47",
+            "\47",
             "\1\47\13\uffff\12\47\7\uffff\32\47\4\uffff\1\47\1\uffff\32"+
-            "\47\50\uffff\1\47",
+            "\47",
             "\1\47\13\uffff\12\47\7\uffff\32\47\4\uffff\1\47\1\uffff\32"+
-            "\47\50\uffff\1\47",
+            "\47",
             "\1\u00ad",
             "",
             "\1\u00ae",
@@ -2955,7 +2947,7 @@ public class JaLexer extends Lexer {
             "\1\u00af",
             "",
             "\1\47\13\uffff\12\47\7\uffff\32\47\4\uffff\1\47\1\uffff\32"+
-            "\47\50\uffff\1\47",
+            "\47",
             "\1\u00b1",
             "\1\u00b2",
             "\1\u00b3",
@@ -2966,22 +2958,22 @@ public class JaLexer extends Lexer {
             "",
             "\1\u00b5",
             "\1\47\13\uffff\12\47\7\uffff\32\47\4\uffff\1\47\1\uffff\32"+
-            "\47\50\uffff\1\47",
+            "\47",
             "\1\u00b7",
             "",
             "\1\u00b8",
             "\1\47\13\uffff\12\47\7\uffff\32\47\4\uffff\1\47\1\uffff\32"+
-            "\47\50\uffff\1\47",
+            "\47",
             "\1\47\13\uffff\12\47\7\uffff\32\47\4\uffff\1\47\1\uffff\32"+
-            "\47\50\uffff\1\47",
+            "\47",
             "\1\47\13\uffff\12\47\7\uffff\32\47\4\uffff\1\47\1\uffff\32"+
-            "\47\50\uffff\1\47",
+            "\47",
             "\1\u00bc",
             "",
             "\1\47\13\uffff\12\47\7\uffff\32\47\4\uffff\1\47\1\uffff\32"+
-            "\47\50\uffff\1\47",
+            "\47",
             "\1\47\13\uffff\12\47\7\uffff\32\47\4\uffff\1\47\1\uffff\32"+
-            "\47\50\uffff\1\47",
+            "\47",
             "",
             "",
             "",
@@ -2990,7 +2982,7 @@ public class JaLexer extends Lexer {
             "",
             "\1\u00c0",
             "\1\47\13\uffff\12\47\7\uffff\32\47\4\uffff\1\47\1\uffff\32"+
-            "\47\50\uffff\1\47",
+            "\47",
             ""
     };
 
