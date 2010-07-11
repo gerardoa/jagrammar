@@ -33,7 +33,7 @@ public class JaDriver {
 //        for (String s : args) {
 //            q.add(s);
 //        }
-        q.add("testja/A");
+        q.add("testja/TestArray");
 
 
 
