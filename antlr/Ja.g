@@ -24,11 +24,11 @@ tokens {
 	private Map<String, ReferenceType> cTab;
 	private ReferenceType rt;
 	
-	public void setQueue(Queue<String> q){
+	public void setQueue(Queue<String> q) {
         	todo = q;
     	}
     	
-    	public void setClassTable(Map<String, ReferenceType> m){
+    	public void setClassTable(Map<String, ReferenceType> m) {
         	cTab = m;
     	}
     	
@@ -36,12 +36,12 @@ tokens {
     		return rt;
     	}
     	
-    	private ComplexType createArrayType(Type t, int dim) {
+    	// ritorna un Type perche' potrebbe non restituire un ComplexType se dim e' uguale a 0
+    	private Type createArrayType(Type t, int dim) {
     		for(int i=0; i < dim; i++) {
     			t = new ArrayType(t);
     		}
-    		// siamo sicuri che per BasicType dim  > 0 dunque entra nel for
-    		return (ComplexType)t;
+    		return t;
     	}
 }
 
@@ -53,33 +53,30 @@ compilationUnit
     
 classDeclaration
     :   classModifier! CLASS^ IDENTIFIER { if(cTab.containsKey($IDENTIFIER.text)) {
-    						 rt = cTab.get($IDENTIFIER.text);
+    				    	   	rt = cTab.get($IDENTIFIER.text);
     					   } else {
     					   	rt = new ReferenceType($IDENTIFIER.text);
     					   	cTab.put($IDENTIFIER.text, rt);
     					   }
     					 }
-	        (EXTENDS! type {if(cTab.containsKey($type.text)) {
-	        			rt.addSuperType(cTab.get($type.text));
-        			} else {
-        				ReferenceType superRt = new ReferenceType($type.text);
-        				rt.addSuperType(superRt);
-        				cTab.put($type.text, superRt);
-        				todo.add($type.text);	
-        			}
-        		})?
-        classBody
+        (EXTENDS! type 			 { if(cTab.containsKey($type.text)) {
+		        		   	rt.addSuperType(cTab.get($type.text));
+		       			   } else {
+		       			   	ReferenceType superRt = new ReferenceType($type.text);
+		       				rt.addSuperType(superRt);
+		       				cTab.put($type.text, superRt);
+		       				todo.add($type.text);	
+		       			   }
+       		 		         }
+    	)?
+    	classBody
     ;
 
 classModifier
     :  
         PUBLIC
     ;
-    
-/*typeList
-    :   type (',' type)*
-    ;
-*/    
+  
 classBody
     :   '{'! classBodyDeclaration* '}'!
     ;
@@ -90,40 +87,43 @@ classBodyDeclaration
     ;
     
 memberDeclaration
-    :   (modifier type -> modifier type)(methodDeclaration[$modifier.pub, $type.t] -> ^(METHOD $memberDeclaration methodDeclaration)
-    					| fieldDeclaration[(CommonTree)$memberDeclaration.tree, $modifier.pub, $type.t] -> fieldDeclaration //^(FIELD $memberDeclaration fieldDeclaration)
-    					)
-    |   modifier VOID IDENTIFIER voidMethodDeclaratorRest[$modifier.pub, VoidType.TYPE, $IDENTIFIER.text] -> ^(METHOD modifier VOID IDENTIFIER voidMethodDeclaratorRest)
-    |   modifier (IDENTIFIER formalParameters) => IDENTIFIER formalParameters constructorBody { rt.addConstructor($modifier.pub, $formalParameters.args); }
+    :   (modifier type -> modifier type)
+    		( methodDeclaration[$modifier.pub, $type.t] -> ^(METHOD $memberDeclaration methodDeclaration)
+    		| fieldDeclaration[(CommonTree)$modifier.tree, (CommonTree)$type.tree, $modifier.pub, $type.t] -> fieldDeclaration // FIELD non e' stato riscritto qui per la molteplicita' delle dichiarazioni
+    		)
+    		
+    |   modifier VOID IDENTIFIER voidMethodDeclaratorRest[$modifier.pub, VoidType.TYPE, $IDENTIFIER.text] 
+    	-> ^(METHOD modifier VOID IDENTIFIER voidMethodDeclaratorRest)
+    	
+    |   modifier (IDENTIFIER formalParameters) => IDENTIFIER formalParameters constructorBody 
+    	{ rt.addConstructor($modifier.pub, $formalParameters.args); }
     	-> ^(CONSTR modifier IDENTIFIER formalParameters constructorBody)
     ;
 
 methodDeclaration[boolean pub, Type t]
-    :   IDENTIFIER formalParameters { rt.addMethod($pub, $t, $IDENTIFIER.text, $formalParameters.args); }
-        (   methodBody
-        |   ';'
-        )// -> ^(FPARM formalParameters methodBody?)
+    :   IDENTIFIER formalParameters methodBody { rt.addMethod($pub, $t, $IDENTIFIER.text, $formalParameters.args); }
+    	// -> ^(FPARM formalParameters methodBody?)
     ;
 
-fieldDeclaration[CommonTree modAndTyp, boolean pub, Type t]
-    :   v1=variableDeclarator      { rt.addField($v1.varName, t, pub); } 
-        (',' v2=variableDeclarator { rt.addField($v2.varName, t, pub); })* ';' 
-        -> ^(FIELD {$modAndTyp} variableDeclarator)+ 
+fieldDeclaration[CommonTree mod, CommonTree typ, boolean pub, Type t]
+    :   v1=variableDeclarator[$typ]      { rt.addField($v1.varName, t, pub); } 
+        (',' v2=variableDeclarator[$typ] { rt.addField($v2.varName, t, pub); } 
+        )* ';' 
+        -> ^(FIELD {$mod} variableDeclarator)+ 
     ;
     
 voidMethodDeclaratorRest[boolean pub, Type t, String methodName]
-    :   formalParameters { rt.addMethod($pub, $t, $methodName, $formalParameters.args); }
-        (   methodBody
-        |   ';'
-        )
+    :	formalParameters methodBody { rt.addMethod($pub, $t, $methodName, $formalParameters.args); }
     ;
 
-variableDeclarator returns [String varName]
-    :   variableDeclaratorId { $varName = $variableDeclaratorId.text; } ('='! variableInitializer)? //-> variableDeclaratorId ^(INIT variableInitializer)?
+variableDeclarator[CommonTree typ] returns [String varName]
+    :   variableDeclaratorId[$typ] { $varName = $variableDeclaratorId.text; } ('='! variableInitializer)? //-> variableDeclaratorId ^(INIT variableInitializer)?
     ;
     
-variableDeclaratorId  returns [int arrayDim]
-    :   IDENTIFIER (l+='[' ']')* {if($l != null) $arrayDim = $l.size();} 
+variableDeclaratorId[CommonTree typ]  returns [int arrayDim]
+    :   (IDENTIFIER -> {$typ}) ( l+='[' ']' -> ^(ARRAYTYPE $variableDeclaratorId) )* 
+    	{ if($l != null) $arrayDim = $l.size(); } 
+    	->  $variableDeclaratorId IDENTIFIER
     ;
 
 variableInitializer
@@ -145,34 +145,37 @@ typeName
     ;
 
 type returns [Type t]
-	:	nonPrimitiveType {$t=$nonPrimitiveType.t;}
-	|	primitiveType {$t=$primitiveType.bs;}
-	;
+    :	nonPrimitiveType { $t = $nonPrimitiveType.t; }
+    |	primitiveType 	 { $t = $primitiveType.bs;   }
+    ;
 	
 nonPrimitiveType returns [ComplexType t]
-	:	classType (l+='[' ']')* {if($l != null) $t = createArrayType($classType.t, $l.size());}
-	|	primitiveType (l+='[' ']')+ {if($l != null) $t = createArrayType($primitiveType.bs, $l.size());}
-	;
+    :	(classType     -> classType    ) ( l+='[' ']' -> ^(ARRAYTYPE $nonPrimitiveType) )* 
+	{ if($l != null) $t = (ComplexType)createArrayType($classType.t,      $l.size()); }
+			
+    |	(primitiveType -> primitiveType) ( l+='[' ']' -> ^(ARRAYTYPE $nonPrimitiveType) )+ 
+	{ if($l != null) $t = (ComplexType)createArrayType($primitiveType.bs, $l.size()); }
+    ;
 
 classType returns [ReferenceType t]
-	:	IDENTIFIER { if(cTab.containsKey($IDENTIFIER.text)) {
-	        			$t = cTab.get($IDENTIFIER.text);
-        			} else {
-        				$t = new ReferenceType($IDENTIFIER.text);
-        				cTab.put($IDENTIFIER.text, $t);
-        				todo.add($IDENTIFIER.text);	
-        			}
-        		  }
-	;
+    :	IDENTIFIER { if(cTab.containsKey($IDENTIFIER.text)) {
+        	     	$t = cTab.get($IDENTIFIER.text);
+       		     } else {
+		     	$t = new ReferenceType($IDENTIFIER.text);
+			cTab.put($IDENTIFIER.text, $t);
+			todo.add($IDENTIFIER.text);	
+       		     }
+       		   }
+    ;
 
 primitiveType returns [BasicType bs]
-    :   CHAR {$bs=BasicType.CHAR;}
-    |   BYTE {$bs=BasicType.BYTE;}
-    |   SHORT {$bs=BasicType.SHORT;}
-    |   INT {$bs=BasicType.INT;}
-    |   LONG {$bs=BasicType.LONG;}
-    |   FLOAT {$bs=BasicType.FLOAT;}
-    |   DOUBLE {$bs=BasicType.DOUBLE;}
+    :   CHAR   { $bs = BasicType.CHAR;   }
+    |   BYTE   { $bs = BasicType.BYTE;   }
+    |   SHORT  { $bs = BasicType.SHORT;  }
+    |   INT    { $bs = BasicType.INT;    }
+    |   LONG   { $bs = BasicType.LONG;   }
+    |   FLOAT  { $bs = BasicType.FLOAT;  }
+    |   DOUBLE { $bs = BasicType.DOUBLE; }
     ;
     
 formalParameters returns [ArrayList<Type> args]
@@ -180,23 +183,19 @@ formalParameters returns [ArrayList<Type> args]
 	ArrayList<Type> args = new ArrayList<Type>();
 }
     :   '(' formalParameterDecls[args]? ')' {$args = args;} -> {$formalParameterDecls.tree != null}? ^(FPARMS formalParameterDecls?)
-    				      ->
+    							    -> //else della rewrite rule
     ;
     
 formalParameterDecls[ArrayList<Type> args]
-    :  type variableDeclaratorId (',' formalParameterDecls[args])? {if($variableDeclaratorId.arrayDim > 0) {
-    								 $args.add(createArrayType($type.t, $variableDeclaratorId.arrayDim));
-    								} else {
-    								 $args.add($type.t);
-    								}
-    							     }
-    
-     -> ^(FPARM type variableDeclaratorId) formalParameterDecls?
-    |  type '...' variableDeclaratorId -> ^(FMULTPARM type variableDeclaratorId)
+    :	type variableDeclaratorId[(CommonTree)$type.tree] (',' formalParameterDecls[args])? 
+    	{ $args.add(createArrayType($type.t, $variableDeclaratorId.arrayDim)); }
+    	-> ^(FPARM variableDeclaratorId) formalParameterDecls?
+    	
+    |  type '...' variableDeclaratorId[(CommonTree)$type.tree] -> ^(FMULTPARM variableDeclaratorId)
     ;
     
 methodBody
-    :   block -> ^(MBODY block)
+    :   block -> ^(MBODY block?)
     ;
 
 constructorBody
@@ -217,7 +216,6 @@ literal
     |   NULLLITERAL
     ;
 
-
 // STATEMENTS / BLOCKS
 
 block
@@ -230,11 +228,12 @@ blockStatement
     ;
     
 localVariableDeclarationStatement
-    :    localVariableDeclaration ';'!
+    :	localVariableDeclaration ';'!
     ;
 
 localVariableDeclaration
-    : 	 type variableDeclarator (',' variableDeclarator)* -> ^(VARDECL type variableDeclarator)+
+    :	type variableDeclarator[(CommonTree)$type.tree] (',' variableDeclarator[(CommonTree)$type.tree])* 
+    	-> ^(VARDECL variableDeclarator)+
     ;
    
 
@@ -243,6 +242,7 @@ statement
     |   IF parExpression statement elseStmt -> ^(IF ^(CONDITION parExpression) ^(THEN statement) elseStmt?)
     |   FOR '(' forInit? ';' expression? ';' forUpdate? ')' statement 
     	-> ^(FOR ^(INIT forInit)? ^(CONDITION expression)? ^(UPDATE forUpdate)? statement )
+    	
     |   WHILE parExpression statement -> ^(WHILE ^(CONDITION parExpression) statement)
     |   DO statement WHILE parExpression ';' -> ^(DOWHILE ^(CONDITION parExpression) statement)
     |   RETURN^ expression? ';'!
@@ -250,16 +250,11 @@ statement
     |   statementExpression ';' -> ^(STMT statementExpression)
     ;
     
-elseStmt:	
-	(ELSE) => ELSE^ statement
-	|
-	;
-    
-/*    
-forControl
-    :
+elseStmt
+    :	(ELSE) => ELSE^ statement
+    |
     ;
-*/
+
 forInit
     :   localVariableDeclaration
     |   expressionList
@@ -268,8 +263,6 @@ forInit
 forUpdate
     :   expressionList
     ;
-
-// EXPRESSIONS
 
 parExpression
     :   '('! expression ')'!
@@ -297,11 +290,11 @@ expression
     ;
     
 assignmentOperator returns [char c]
-    :   '=' {$c = '='; } //-> ^('=' {$orExp})
-    |   '+=' {$c = '+';} //-> ^('+=' {$orExp})
-    |   '-=' {$c = '-';}//-> ^('-=' {$orExp})
-    |   '*=' {$c = '*';}//-> ^('*=' {$orExp})
-    |   '/=' {$c = '/';}//-> ^('=' {$orExp})
+    :   '='  { $c = '='; }
+    |   '+=' { $c = '+'; }
+    |   '-=' { $c = '-'; }
+    |   '*=' { $c = '*'; }
+    |   '/=' { $c = '/'; }
     ;
 
 orExpression
@@ -384,7 +377,7 @@ identifierSuffix
     ;
 
 creator
-    :  createdName (arrayCreatorRest | classCreatorRest)
+    :	createdName (arrayCreatorRest | classCreatorRest)
     ;
 
 createdName
@@ -402,9 +395,8 @@ classCreatorRest
     ;   
    
 superMemberAccess
-	:
-	'.' IDENTIFIER arguments?	
-	;
+    :	'.' IDENTIFIER arguments?	
+    ;
 
 arguments
     :   '('! expressionList? ')'!
@@ -464,7 +456,7 @@ FLOATLITERAL
     
 DOUBLELITERAL
     :   FloatingPointLiteral DoubleSuffix?
-    ;
+        ;
 
 CHARLITERAL
     :   '\'' 
@@ -481,28 +473,27 @@ STRINGLITERAL
         )* 
         '"' 
     ;
-
+        
 fragment
 EscapeSequence 
-    :   '\\' (
-                 't' 
-             |   'n' 
-             |   'r' 
-             |   '\"' 
-             |   '\'' 
-             |   '\\'
-             )          
-;     
+    :   '\\' 
+    	( 't' 
+        | 'n' 
+        | 'r' 
+        | '\"' 
+        | '\'' 
+        | '\\'
+        )          
+    ;     
 	
-
 BOOLEANLITERAL
-	: 'true'
-	| 'false'
-	;
+    : 'true'
+    | 'false'
+    ;
+    
 NULLLITERAL
     :   'null'
     ;
-
 
 BOOLEAN
     :   'boolean'
@@ -539,28 +530,26 @@ DOUBLE
 VOID
     :   'void'
     ;	
-
 	
 WS  
-    :   (
-             ' '
-        |    '\r'
-        |    '\t'
-        |    '\n'
+    :   ( ' '
+        | '\r'
+        | '\t'
+        | '\n'
         ) 
-			{ $channel=HIDDEN; }          
-;
+	{ $channel = HIDDEN; }          
+    ;
 
 COMMENT
     :   '/*'
         (options {greedy=false;} : . )* // ~('*/')
         '*/'
-            { $channel=HIDDEN; }
+        { $channel = HIDDEN; }
     ;
 
 LINE_COMMENT
     :	'//' ~('\n'|'\r')*
-            { $channel=HIDDEN; }
+        { $channel = HIDDEN; }
     ;   
         
 CLASS
@@ -637,38 +626,34 @@ STAR
 
 SLASH
     :   '/'
-    ;
-    
+    ;    
 
 COMPAREOP
-    :	 '>'
-    	| '<'
-    	| '>='
-    	| '<='    	
+    :	'>'
+    |	'<'
+    |	'>='
+    |	'<='    	
     ;    
 
 IDENTIFIER
-    :  (
-		Letter 
-		|   Currency 
-		|	'_') 
-		(
-			Digit 
-		| 	Letter 
-		| 	Currency 
-		|	'_'
-		)*
+    :	( Letter 
+    	| Currency 
+	| '_'
+	)
+	( Digit 
+	| Letter 
+	| Currency 
+	| '_'
+	)*
     ;    			
    
 fragment
 Letter
-    : 	 'a'..'z' 
-	| 'A'..'Z'
-	
+    :	'a'..'z' 
+    |	'A'..'Z'
     ;
    
 fragment 
 Currency
-    : 	 '$'    	
+    :	'$'    	
     ;
-    
