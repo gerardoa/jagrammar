@@ -1,2 +1,0 @@
-1- overlap tra classTye e (EXTENDS! type
-2- ritornare direttamente typ e non arrayDim da variableDeclaratorId
