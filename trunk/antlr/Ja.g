@@ -3,7 +3,7 @@ options {language = Java;
 	 output = AST;
 }
 tokens {
-	METHODCALL; FIELDACCESS; ARRAYACCESS; DOTCLASS;ARRAYTYPE; METHOD; FIELD; CONSTR; FPARMS; FPARM; FMULTPARM; MBODY;
+	METHODCALL; CONSTRCALL; FIELDACCESS; ARRAYACCESS; DOTCLASS;ARRAYTYPE; METHOD; FIELD; CONSTR; FPARMS; ARGUMENTS; FPARM; FMULTPARM; MBODY; CBODY;
 	VARDECL; BLOCK; STMT; INIT; CONDITION; UPDATE; DOWHILE; THEN;
 }
 
@@ -59,16 +59,7 @@ classDeclaration
     					   	cTab.put($IDENTIFIER.text, rt);
     					   }
     					 }
-        (EXTENDS! type 			 { if(cTab.containsKey($type.text)) {
-		        		   	rt.addSuperType(cTab.get($type.text));
-		       			   } else {
-		       			   	ReferenceType superRt = new ReferenceType($type.text);
-		       				rt.addSuperType(superRt);
-		       				cTab.put($type.text, superRt);
-		       				todo.add($type.text);	
-		       			   }
-       		 		         }
-    	)?
+        (EXTENDS! classType)?		 { rt.addSuperType($classType.t); }    	
     	classBody
     ;
 
@@ -97,7 +88,7 @@ memberDeclaration
     	
     |   modifier (IDENTIFIER formalParameters) => IDENTIFIER formalParameters constructorBody 
     	{ rt.addConstructor($modifier.pub, $formalParameters.args); }
-    	-> ^(CONSTR modifier IDENTIFIER formalParameters constructorBody)
+    	-> ^(CONSTR modifier IDENTIFIER formalParameters? constructorBody?)
     ;
 
 methodDeclaration[boolean pub, Type t]
@@ -106,8 +97,8 @@ methodDeclaration[boolean pub, Type t]
     ;
 
 fieldDeclaration[CommonTree mod, CommonTree typ, boolean pub, Type t]
-    :   v1=variableDeclarator[$typ]      { rt.addField($v1.varName, t, pub); } 
-        (',' v2=variableDeclarator[$typ] { rt.addField($v2.varName, t, pub); } 
+    :   v1=variableDeclarator[$typ]      { rt.addField($v1.varName, createArrayType($t, $v1.arrayDim), $pub); } 
+        (',' v2=variableDeclarator[$typ] { rt.addField($v2.varName, createArrayType($t, $v2.arrayDim), $pub); } 
         )* ';' 
         -> ^(FIELD {$mod} variableDeclarator)+ 
     ;
@@ -116,8 +107,8 @@ voidMethodDeclaratorRest[boolean pub, Type t, String methodName]
     :	formalParameters methodBody { rt.addMethod($pub, $t, $methodName, $formalParameters.args); }
     ;
 
-variableDeclarator[CommonTree typ] returns [String varName]
-    :   variableDeclaratorId[$typ] { $varName = $variableDeclaratorId.text; } ('='! variableInitializer)? //-> variableDeclaratorId ^(INIT variableInitializer)?
+variableDeclarator[CommonTree typ] returns [String varName, int arrayDim]
+    :   variableDeclaratorId[$typ] { $varName = $variableDeclaratorId.text; $arrayDim = $variableDeclaratorId.arrayDim; } ('='! variableInitializer)? //-> variableDeclaratorId ^(INIT variableInitializer)?
     ;
     
 variableDeclaratorId[CommonTree typ]  returns [int arrayDim]
@@ -199,11 +190,11 @@ methodBody
     ;
 
 constructorBody
-    :   '{' explicitConstructorInvocation? blockStatement* '}'
+    :	   '{' explicitConstructorInvocation? blockStatement* '}' -> ^(CBODY explicitConstructorInvocation? blockStatement*)
     ;
 
 explicitConstructorInvocation
-    :   (THIS | SUPER) arguments ';'
+    :   ((THIS -> THIS) | (SUPER -> SUPER)) arguments ';' -> ^(CONSTRCALL $explicitConstructorInvocation arguments)
     //|   primary '.'  'super' arguments ';'
     ;
 
@@ -269,7 +260,7 @@ parExpression
     ;
     
 expressionList
-    :   expression (',' expression)*
+    :   expression (','! expression)*
     ;
 
 statementExpression
@@ -338,7 +329,7 @@ unaryExpressionNotPlusMinus
     |  	('(' primitiveType ')')  => '(' primitiveType ')' unaryExpression
     // possibile ottimizzazione su unaryExpressionNotPlusMinus
     |   ('(' nonPrimitiveType  ')' unaryExpressionNotPlusMinus) => '(' nonPrimitiveType  ')' unaryExpressionNotPlusMinus
-    |   NEW creator
+    |   NEW^ creator
     |   primary  selector^* ('++' | '--')? //-> {$s1.tree != null}? ^(selector '++'? '--'?)+ //^($s2 '++'? '--'?)+  //se ce selector primary viene incluso nel sottoalbero di selector
     						//	    	    -> ^(primary '++'? '--'?)
     						     /* {$selector.tree != null}? ^(selector '--'?)
@@ -353,7 +344,7 @@ primary
     |   literal
     |   IDENTIFIER
     |   (IDENTIFIER -> IDENTIFIER) ('[' ']' -> ^(ARRAYTYPE $primary))+ ('.' CLASS -> ^(DOTCLASS $primary))
-    | 	IDENTIFIER  arguments -> ^(METHODCALL IDENTIFIER arguments THIS)
+    | 	IDENTIFIER  arguments -> ^(METHODCALL IDENTIFIER arguments? THIS)
     |	IDENTIFIER '.' CLASS -> ^(DOTCLASS IDENTIFIER)
     |   (primitiveType -> primitiveType) ('[' ']' -> ^(ARRAYTYPE $primary))* ('.' CLASS -> ^(DOTCLASS $primary))
     |   VOID '.' CLASS -> ^(DOTCLASS VOID)
@@ -399,7 +390,8 @@ superMemberAccess
     ;
 
 arguments
-    :   '('! expressionList? ')'!
+    :   '(' expressionList? ')' -> {$expressionList.tree != null}? ^(ARGUMENTS expressionList?)
+    				->
     ;
     
 // LEXER
