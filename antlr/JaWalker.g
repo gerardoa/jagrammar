@@ -29,21 +29,15 @@ memberDeclaration
     ;
 
 methodDeclaration
-    :   IDENTIFIER formalParameters
-        (   methodBody
-        |   ';'
-        )
+    :   IDENTIFIER formalParameters methodBody
     ;
 
-fieldDeclaration[CommonTree modAndTyp]
+fieldDeclaration
     :   variableDeclarator (',' variableDeclarator)* ';' -> 
     ;
     
 voidMethodDeclaratorRest
-    :   formalParameters
-        (   methodBody
-        |   ';'
-        )
+    :   formalParameters methodBody
     ;
 
 variableDeclarator
@@ -73,25 +67,26 @@ typeName
     ;
 
 type returns [Type t]
-	:	nonPrimitiveType {t=$nonPrimitiveType.t;}
-	|	primitiveType {t=$primitiveType.bs;}
-	;
+    :	nonPrimitiveType {t=$nonPrimitiveType.t;}
+    |	primitiveType {t=$primitiveType.bs;}
+    ;
 	
 nonPrimitiveType returns [ComplexType t]
-	:	classType (l+='[' ']')* {t = createArrayType($classType.t, l.size());}
-	|	primitiveType (l+='[' ']')+ {t = createArrayType($primitiveType.t, l.size());}
-	;
+    :	classType (l+='[' ']')* {t = createArrayType($classType.t, l.size());}
+    |	primitiveType (l+='[' ']')+ {t = createArrayType($primitiveType.t, l.size());}
+    ;
+    
 
 classType returns [ReferenceType t]
-	:	IDENTIFIER { if(cTab.containsKey($IDENTIFIER.text)) {
-	        			t = cTab.get($IDENTIFIER.text);
-        			} else {
-        				t = new ReferenceType($IDENTIFIER.text);
-        				cTab.put($IDENTIFIER.text, t);
-        				todo.add($IDENTIFIER.text);	
-        			}
-        		  }
-	;
+    :	IDENTIFIER { if(cTab.containsKey($IDENTIFIER.text)) {
+        			t = cTab.get($IDENTIFIER.text);
+       			} else {
+       				t = new ReferenceType($IDENTIFIER.text);
+       				cTab.put($IDENTIFIER.text, t);
+       				todo.add($IDENTIFIER.text);	
+       			}
+       		  }
+    ;
 
 primitiveType returns [BasicType bs]
     :   CHAR {bs=BacisType.CHAR;}
