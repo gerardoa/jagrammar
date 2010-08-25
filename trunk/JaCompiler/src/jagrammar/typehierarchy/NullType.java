@@ -42,6 +42,7 @@ public class NullType implements Type{
 	}
 	
 	public boolean isAssignableTo(Type t){
+		//possibile semplificazione: è vero solo se t è un ComplexType
 		if (t.isBasic()) return false;
 		if (t.isNull()) return false;
 		if (t.isVoid()) return false;
