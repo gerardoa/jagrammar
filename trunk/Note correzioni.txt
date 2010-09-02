@@ -1,2 +1,0 @@
-1. in primary verificare che accetti: this() super()
-
