@@ -12,6 +12,8 @@ tokens {
 	
 	import jagrammar.typehierarchy.*;
 	import java.util.Queue;
+	import java.util.LinkedList;
+	import java.util.HashMap;
 	//import java.util.Map; importato da antlr
 }
 
@@ -20,8 +22,8 @@ tokens {
 }
 
 @members {        
-	private Queue<String> todo;
-	private Map<String, ReferenceType> cTab;
+	private Queue<String> todo = new LinkedList<String>(); // inizializzazione per ANTLRWORKS
+	private Map<String, ReferenceType> cTab = new HashMap<String, ReferenceType>(); // inizializzazione per ANTLRWORKS
 	private ReferenceType rt;
 	
 	public void setQueue(Queue<String> q) {
