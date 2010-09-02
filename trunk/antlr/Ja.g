@@ -358,6 +358,8 @@ selector
     |   '[' expression ']'-> ^(ARRAYACCESS expression)
     ;
 
+/* NON UTILIZZATO
+
 identifierSuffix
     :   ('[' ']')+ '.' CLASS
     //|   ('[' expression ']')+ // can also be matched by selector, but do here
@@ -366,6 +368,7 @@ identifierSuffix
     //|   '.' 'this'
     //|   '.' 'super' arguments
     ;
+*/
 
 creator
     :	createdName (arrayCreatorRest | classCreatorRest)

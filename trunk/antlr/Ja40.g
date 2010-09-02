@@ -4,7 +4,7 @@ options {language = Java;
 }
 tokens {
 	METHODCALL; CONSTRCALL; FIELDACCESS; ARRAYACCESS; DOTCLASS;ARRAYTYPE; METHOD; FIELD; CONSTR; FPARMS; ARGUMENTS; FPARM; FMULTPARM; MBODY; CBODY;
-	VARDECL; BLOCK; STMT; INIT; CONDITION; UPDATE; DOWHILE; THEN;
+	VARDECL; BLOCK; STMT; INIT; CONDITION; UPDATE; DOWHILE; THEN; ARRAYINIT;
 }
 
 @header{
@@ -113,7 +113,7 @@ variableInitializer
     ;
         
 arrayInitializer
-    :   '{' (variableInitializer (',' variableInitializer)* (',')? )? '}'
+    :   '{'( variableInitializer (',' variableInitializer)* (',')? )? '}' -> ^(ARRAYINIT variableInitializer+)
     ;
 
 modifier
@@ -367,12 +367,13 @@ classCreatorRest
    
 superMemberAccess
 	:
-	'.' IDENTIFIER arguments?	
+	'.' IDENTIFIER arguments? -> {$arguments.tree == null}? ^(FIELDACCESS SUPER IDENTIFIER)	
+				  -> ^(METHODCALL IDENTIFIER arguments? SUPER) //aggiustare: perde il caso di chiamata senza argumenti
 	;
 
 arguments
     :   '(' expressionList? ')' -> {$expressionList.tree != null}? ^(ARGUMENTS expressionList?)
-    				->
+    				-> 
     ;
     
 // LEXER

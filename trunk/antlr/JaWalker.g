@@ -59,7 +59,10 @@ variableInitializer
     :   arrayInitializer
     |   expression
     ;
-        
+
+arrayInitializer
+    :   '{' (variableInitializer (',' variableInitializer)* (',')? )? '}'
+    ;        
 
 modifier
     :   PUBLIC
@@ -198,13 +201,7 @@ expression
     |	^(COMPAREOP expression expression)
     |   ^('!='  expression expression)
     |   ^('%'   expression expression)
-    |   unaryExpression    
-    ;
-    
-
-
-unaryExpression
-    :	'+' expression
+    |	'+' expression
     |   '-' expression
     |   '++' expression
     |   '--' expression
@@ -213,7 +210,7 @@ unaryExpression
     |   '(' nonPrimitiveType  ')' expression
     |   ^(NEW creator)
     |   primary  selector^* ('++' | '--')? 
-    
+    ;    
 primary
     :   parExpression
     |   THIS 
@@ -235,17 +232,16 @@ selector
     |   '[' expression ']'-> ^(ARRAYACCESS expression)
     ;
 
+/* SERVE??
 identifierSuffix
     :   ('[' ']')+ '.' CLASS
-    //|   ('[' expression ']')+ // can also be matched by selector, but do here
     |   arguments
     |   '.' CLASS
-    //|   '.' 'this'
-    //|   '.' 'super' arguments
     ;
-
+*/
 creator
-    :	createdName (arrayCreatorRest | classCreatorRest)
+    :	createdName arrayCreatorRest 
+    |	createdName classCreatorRest
     ;
 
 createdName
