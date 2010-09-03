@@ -3,8 +3,10 @@ options {language = Java;
 	 output = AST;
 }
 tokens {
-	METHODCALL; CONSTRCALL; FIELDACCESS; ARRAYACCESS; DOTCLASS;ARRAYTYPE; METHOD; FIELD; CONSTR; FPARMS; ARGUMENTS; FPARM; FMULTPARM; MBODY; CBODY;
-	VARDECL; BLOCK; STMT; INIT; CONDITION; UPDATE; DOWHILE; THEN;
+	METHODCALL; CONSTRCALL; FIELDACCESS; ARRAYACCESS; DOTCLASS; ARRAYTYPE; 
+	METHOD; FIELD; CONSTR; FPARMS; ARGUMENTS; FPARM; FMULTPARM; MBODY; CBODY;
+	VARDECL; BLOCK; STMT; INIT; CONDITION; UPDATE; DOWHILE; THEN; ARRAYINIT;
+	//SUPERMETHODCALL; SUPERFIELDACCESS;   Per uniformitˆ viene preferito   ^(METHODCALL SUPER ...) e ^(FIELDACCESS SUPER ...)
 }
 
 @header{
@@ -125,7 +127,7 @@ variableInitializer
     ;
         
 arrayInitializer
-    :   '{' (variableInitializer (',' variableInitializer)* (',')? )? '}'
+    :   '{' (variableInitializer (',' variableInitializer)* (',')? )? '}' -> ^(ARRAYINIT variableInitializer (variableInitializer)*) 
     ;
 
 modifier returns [boolean pub]
@@ -196,13 +198,15 @@ constructorBody
     ;
 
 explicitConstructorInvocation
-    :   ((THIS -> THIS) | (SUPER -> SUPER)) arguments ';' -> ^(CONSTRCALL $explicitConstructorInvocation arguments)
+    :   ((THIS -> THIS) | (SUPER -> SUPER)) arguments ';' -> ^(CONSTRCALL $explicitConstructorInvocation arguments?)
     //|   primary '.'  'super' arguments ';'
     ;
 
 literal 
     :   INTLITERAL
-    |   FloatingPointLiteral
+    |	LONGLITERAL
+    |   FLOATLITERAL
+    |	DOUBLELITERAL
     |   CHARLITERAL
     |   STRINGLITERAL
     |   BOOLEANLITERAL
@@ -342,7 +346,7 @@ unaryExpressionNotPlusMinus
 primary
     :   parExpression
     |   THIS //arguments? 
-    |   SUPER^ superMemberAccess
+    |   SUPER! superMemberAccess
     |   literal
     |   IDENTIFIER
     |   (IDENTIFIER -> IDENTIFIER) ('[' ']' -> ^(ARRAYTYPE $primary))+ ('.' CLASS -> ^(DOTCLASS $primary))
@@ -373,7 +377,7 @@ identifierSuffix
 */
 
 creator
-    :	createdName (arrayCreatorRest | classCreatorRest)
+    :	createdName! (arrayCreatorRest[(CommonTree)$createdName.tree] | classCreatorRest[(CommonTree)$createdName.tree]) 
     ;
 
 createdName
@@ -381,17 +385,19 @@ createdName
     |   primitiveType
     ;
     
-arrayCreatorRest
-    :   '['']' ('[' ']')* arrayInitializer
+arrayCreatorRest[CommonTree type]
+    :   ('['']' -> ^(ARRAYTYPE  {$type})) ( ('[' ']') -> ^(ARRAYTYPE $arrayCreatorRest) )* 
+    		(arrayInitializer  -> $arrayCreatorRest arrayInitializer)    
     |	'[' expression ']' ('[' expression ']')* 
     ; 
 
-classCreatorRest
-    :   arguments 
+classCreatorRest[CommonTree type]
+    :   arguments -> {$type} arguments
     ;   
    
-superMemberAccess
-    :	'.' IDENTIFIER arguments?	
+superMemberAccess 
+    :	'.' IDENTIFIER arguments? -> {$arguments.tree != null}? ^( METHODCALL SUPER IDENTIFIER arguments)
+    				  -> ^(FIELDACCESS SUPER IDENTIFIER)
     ;
 
 arguments
