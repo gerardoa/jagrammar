@@ -1,4 +1,4 @@
-1. Vari regoli di inizializzazione, come ad es. ArrayInitializier
-2.arrayCreatorRest
-3.superMamberAccess
-4. in primary verificare che accetti: this() super()
+1. Vari regoli di inizializzazione, come ad es. ArrayInitializier OK
+2.arrayCreatorRest OK
+3.superMamberAccess OK
+4. in primary verificare che accetti: this() super() OK
