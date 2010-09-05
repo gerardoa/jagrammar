@@ -6,7 +6,7 @@ tokens {
 	METHODCALL; CONSTRCALL; FIELDACCESS; ARRAYACCESS; DOTCLASS; ARRAYTYPE; 
 	METHOD; FIELD; CONSTR; FPARMS; ARGUMENTS; FPARM; FMULTPARM; MBODY; CBODY;
 	VARDECL; BLOCK; STMT; INIT; CONDITION; UPDATE; DOWHILE; THEN; ARRAYINIT;
-	//SUPERMETHODCALL; SUPERFIELDACCESS;   Per uniformitˆ viene preferito   ^(METHODCALL SUPER ...) e ^(FIELDACCESS SUPER ...)
+	//SUPERMETHODCALL; SUPERFIELDACCESS;   Per uniformita' viene preferito   ^(METHODCALL SUPER ...) e ^(FIELDACCESS SUPER ...)
 }
 
 @header{
@@ -367,8 +367,7 @@ selector
 /* NON UTILIZZATO
 
 identifierSuffix
-    :   ('[' ']')+ '.' CLASS
-    //|   ('[' expression ']')+ // can also be matched by selector, but do here
+    :   ('[' ']')+ '.' CLASS    //|   ('[' expression ']')+ // can also be matched by selector, but do here
     |   arguments
     |   '.' CLASS
     //|   '.' 'this'
@@ -392,7 +391,7 @@ arrayCreatorRest[CommonTree type]
     ; 
 
 classCreatorRest[CommonTree type]
-    :   arguments -> {$type} arguments
+    :   arguments -> {$type} arguments?
     ;   
    
 superMemberAccess 

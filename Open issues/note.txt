@@ -1,0 +1,10 @@
+1. fornire un esempio per la definizione di "molteplicità delle dichiarazioni": int a,b;
+2. perchè la dichiarazione di un metodo VOID richiede una regola a parte?
+
+
+
+
+COMMENTI:
+
+1. Ci sono due possibilità per aggiungere campi, e metodi ad una classe: da java implementare dei metodi che vengono richiamati sequenzialmente,
+oppure passare gli argomenti verso l'alto e verso il basso nelle regole della grammatica e richiamare un solo metodo java.
