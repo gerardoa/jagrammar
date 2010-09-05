@@ -108,9 +108,9 @@ PostfixOp:
 
 Selector: 
 	. Identifier [Arguments]
-	. this // delete
-	. super SuperSuffix // delete
-	. new InnerCreator // delete
+	. this // delete, es: OuterClass.this.outerField
+	. super SuperSuffix // delete es: OuterClass.super.outerBaseClassField
+	. new InnerCreator // delete  es: OuterClass o = new OuterClass(); OuterClass.InnerClass ic = o.new InnerClass();
 	[ Expression ]
 
 SuperSuffix: 

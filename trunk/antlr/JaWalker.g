@@ -1,10 +1,10 @@
-//g ammar JaWalker;
+tree grammar JaWalker;
 
-/*options {
+options {
   tokenVocab=Ja; // import tokens from Ja.g
   ASTLabelType=CommonTree;
 }
-*/
+
 
 compilationUnit
     :  classDeclaration // bisogno di ^ per togliere nil?
