@@ -1,10 +1,10 @@
-tree grammar JaWalker;
+/*tree grammar JaWalker;
 
 options {
   tokenVocab=Ja; // import tokens from Ja.g
   ASTLabelType=CommonTree;
 }
-
+*/
 
 compilationUnit
     :  classDeclaration // bisogno di ^ per togliere nil?
@@ -61,7 +61,7 @@ variableInitializer
     ;
 
 arrayInitializer
-    :   '{' (variableInitializer (',' variableInitializer)* (',')? )? '}'
+    :   ^(ARRAYINIT variableInitializer (variableInitializer)*) 
     ;        
 
 modifier
@@ -79,8 +79,9 @@ type
     ;
 	
 nonPrimitiveType
-    :	classType      ^(ARRAYTYPE $nonPrimitiveType)* 			
-    |	primitiveType  ^(ARRAYTYPE $nonPrimitiveType)+ 
+    :	^(ARRAYTYPE nonPrimitiveType)
+    |   classType       			
+    |	^(ARRAYTYPE primitiveType)
     ;
 
 classType
@@ -116,8 +117,8 @@ constructorBody
     ;
 
 explicitConstructorInvocation
-    :   ^(CONSTRCALL THIS  arguments)
-    |	^(CONSTRCALL SUPER arguments)
+    :   ^(CONSTRCALL THIS  arguments?)
+    |	^(CONSTRCALL SUPER arguments?)
     ;
 
 literal 
@@ -197,69 +198,71 @@ expression
     |   ^('||'  expression expression) 	 
     |   ^('&&'  expression expression)
     |   ^('=='  expression expression)
+    |   ^('!='  expression expression)
     |	^(INSTANCEOF expression type)
     |	^(COMPAREOP expression expression)
-    |   ^('!='  expression expression)
     |   ^('%'   expression expression)
-    |	'+' expression
-    |   '-' expression
-    |   '++' expression
-    |   '--' expression
-    |	'!' expression
-    |   '(' primitiveType ')' expression
-    |   '(' nonPrimitiveType  ')' expression
+    |	^(UNARYPLUS  unaryExpression) 
+    |   ^(UNARYMINUS unaryExpression)
+    |   ^(PREINC unaryExpression)
+    |   ^(PREDEC unaryExpression)
+    |	^('!' expression)
+    |   ^(CAST primitiveType expression)
+    |   ^(CAST nonPrimitiveType expression)
     |   ^(NEW creator)
-    |   primary  selector^* ('++' | '--')? 
+    |	^(POSTINC ps)
+    |   ^(POSTDEC ps)
+    |   ps 
     ;    
+
+ps 
+	:  	^(selector ps)
+	|  primary
+	;    
+    
 primary
     :   parExpression
     |   THIS 
-    |   SUPER^ superMemberAccess
+    |   superMemberAccess
     |   literal
     |   IDENTIFIER
     |   (IDENTIFIER -> IDENTIFIER) ('[' ']' -> ^(ARRAYTYPE $primary))+ ('.' CLASS -> ^(DOTCLASS $primary))
-    | 	IDENTIFIER  arguments -> ^(METHODCALL IDENTIFIER arguments? THIS)
-    |	IDENTIFIER '.' CLASS -> ^(DOTCLASS IDENTIFIER)
+    |   ^(METHODCALL IDENTIFIER arguments? THIS)
+    |	^(DOTCLASS IDENTIFIER)
     |   (primitiveType -> primitiveType) ('[' ']' -> ^(ARRAYTYPE $primary))* ('.' CLASS -> ^(DOTCLASS $primary))
     |    ^(DOTCLASS VOID)
     ;
     
 selector
-    :   '.' IDENTIFIER -> ^(FIELDACCESS IDENTIFIER)
-    |	'.' IDENTIFIER arguments -> ^(METHODCALL IDENTIFIER arguments?)
-    //|   '.' 'this'
-    //|   '.' 'super' superSuffix
-    |   '[' expression ']'-> ^(ARRAYACCESS expression)
+    :   '.' IDENTIFIER -> ^(FIELDACCESS {$primary} IDENTIFIER)
+    |	'.' IDENTIFIER arguments -> ^(METHODCALL {$primary} IDENTIFIER arguments?)
+    |   '[' expression ']'-> ^(ARRAYACCESS {$primary} expression)
     ;
 
-/* SERVE??
-identifierSuffix
-    :   ('[' ']')+ '.' CLASS
-    |   arguments
-    |   '.' CLASS
-    ;
-*/
 creator
-    :	createdName arrayCreatorRest 
-    |	createdName classCreatorRest
+    :    arrayCreatorRest 
+    |    classCreatorRest 
     ;
+
 
 createdName
     :   classType
     |   primitiveType
     ;
     
-arrayCreatorRest
-    :   '['']' ('[' ']')* arrayInitializer
-    |	'[' expression ']' ('[' expression ']')* 
+arrayCreatorRest[CommonTree type]
+    :   ('['']' -> ^(ARRAYTYPE  {$type})) ( ('[' ']') -> ^(ARRAYTYPE $arrayCreatorRest) )* 
+    		(arrayInitializer  -> $arrayCreatorRest arrayInitializer)    
+    |	('[' expression ']' -> ^(ARRAYTYPE  {$type} expression)) ( ('[' expression ']') -> ^(ARRAYTYPE $arrayCreatorRest expression) )*  
     ; 
 
-classCreatorRest
-    :   arguments 
+classCreatorRest[CommonTree type]
+    :   arguments -> {$type} arguments
     ;   
    
-superMemberAccess
-    :	'.' IDENTIFIER arguments?	
+superMemberAccess 
+    :	'.' IDENTIFIER arguments? -> {$arguments.tree != null}? ^( METHODCALL SUPER IDENTIFIER arguments)
+    				  -> ^(FIELDACCESS SUPER IDENTIFIER)
     ;
 
 arguments
