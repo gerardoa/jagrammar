@@ -6,7 +6,8 @@ tokens {
 	METHODCALL; CONSTRCALL; FIELDACCESS; ARRAYACCESS; DOTCLASS; ARRAYTYPE; 
 	METHOD; FIELD; CONSTR; FPARMS; ARGUMENTS; FPARM; FMULTPARM; MBODY; CBODY;
 	VARDECL; BLOCK; STMT; INIT; CONDITION; UPDATE; DOWHILE; THEN; ARRAYINIT;
-	//SUPERMETHODCALL; SUPERFIELDACCESS;   Per uniformita' viene preferito   ^(METHODCALL SUPER ...) e ^(FIELDACCESS SUPER ...)
+	PREINC; POSTINC; PREDEC; POSTDEC; UNARYPLUS; UNARYMINUS; CAST;
+	//SUPERMETHODCALL; SUPERFIELDACCESS;   Per uniformitˆ viene preferito   ^(METHODCALL SUPER ...) e ^(FIELDACCESS SUPER ...)
 }
 
 @header{
@@ -68,8 +69,7 @@ classDeclaration
     ;
 
 classModifier
-    :  
-        PUBLIC
+    :   PUBLIC
     ;
   
 classBody
@@ -238,8 +238,7 @@ statement
     :   block -> ^(BLOCK block)
     |   IF parExpression statement elseStmt -> ^(IF ^(CONDITION parExpression) ^(THEN statement) elseStmt?)
     |   FOR '(' forInit? ';' expression? ';' forUpdate? ')' statement 
-    	-> ^(FOR ^(INIT forInit)? ^(CONDITION expression)? ^(UPDATE forUpdate)? statement )
-    	
+    		-> ^(FOR ^(INIT forInit)? ^(CONDITION expression)? ^(UPDATE forUpdate)? statement )   	
     |   WHILE parExpression statement -> ^(WHILE ^(CONDITION parExpression) statement)
     |   DO statement WHILE parExpression ';' -> ^(DOWHILE ^(CONDITION parExpression) statement)
     |   RETURN^ expression? ';'!
@@ -323,23 +322,23 @@ multiplicativeExpression
     ;
     
 unaryExpression
-    :   '+' unaryExpression
-    |   '-' unaryExpression
-    |   '++' unaryExpression
-    |   '--' unaryExpression
+    :   '+' unaryExpression -> ^(UNARYPLUS  unaryExpression) 
+    |   '-' unaryExpression -> ^(UNARYMINUS unaryExpression)
+    |   '++' unaryExpression -> ^(PREINC unaryExpression)
+    |   '--' unaryExpression -> ^(PREDEC unaryExpression)
     |   unaryExpressionNotPlusMinus
     ;
 
 unaryExpressionNotPlusMinus
-    :	'!' unaryExpression
+    :	'!'^ unaryExpression
     |  	('(' primitiveType ')')  => '(' primitiveType ')' unaryExpression
+    		-> ^(CAST primitiveType unaryExpression)
     // possibile ottimizzazione su unaryExpressionNotPlusMinus
     |   ('(' nonPrimitiveType  ')' unaryExpressionNotPlusMinus) => '(' nonPrimitiveType  ')' unaryExpressionNotPlusMinus
+    		-> ^(CAST nonPrimitiveType unaryExpressionNotPlusMinus)
     |   NEW^ creator
-    |   primary  selector^* ('++' | '--')? //-> {$s1.tree != null}? ^(selector '++'? '--'?)+ //^($s2 '++'? '--'?)+  //se ce selector primary viene incluso nel sottoalbero di selector
-    						//	    	    -> ^(primary '++'? '--'?)
-    						     /* {$selector.tree != null}? ^(selector '--'?)
-    							   -> ^(primary '--'?)*/
+    |   (primary -> primary)  (selector[(CommonTree)$unaryExpressionNotPlusMinus.tree] -> selector)* 
+    		('++' -> ^(POSTINC $unaryExpressionNotPlusMinus) | '--' -> ^(POSTDEC $unaryExpressionNotPlusMinus) )? 
     ;
 
     
@@ -356,18 +355,19 @@ primary
     |   VOID '.' CLASS -> ^(DOTCLASS VOID)
     ;
     
-selector
-    :   '.' IDENTIFIER -> ^(FIELDACCESS IDENTIFIER)
-    |	'.' IDENTIFIER arguments -> ^(METHODCALL IDENTIFIER arguments?)
+selector [CommonTree primary]
+    :   '.' IDENTIFIER -> ^(FIELDACCESS {$primary} IDENTIFIER)
+    |	'.' IDENTIFIER arguments -> ^(METHODCALL {$primary} IDENTIFIER arguments?)
     //|   '.' 'this'
     //|   '.' 'super' superSuffix
-    |   '[' expression ']'-> ^(ARRAYACCESS expression)
+    |   '[' expression ']'-> ^(ARRAYACCESS {$primary} expression)
     ;
 
 /* NON UTILIZZATO
 
 identifierSuffix
-    :   ('[' ']')+ '.' CLASS    //|   ('[' expression ']')+ // can also be matched by selector, but do here
+    :   ('[' ']')+ '.' CLASS
+    //|   ('[' expression ']')+ // can also be matched by selector, but do here
     |   arguments
     |   '.' CLASS
     //|   '.' 'this'
@@ -387,11 +387,11 @@ createdName
 arrayCreatorRest[CommonTree type]
     :   ('['']' -> ^(ARRAYTYPE  {$type})) ( ('[' ']') -> ^(ARRAYTYPE $arrayCreatorRest) )* 
     		(arrayInitializer  -> $arrayCreatorRest arrayInitializer)    
-    |	'[' expression ']' ('[' expression ']')* 
+    |	('[' expression ']' -> ^(ARRAYTYPE  {$type} expression)) ( ('[' expression ']') -> ^(ARRAYTYPE $arrayCreatorRest expression) )*  
     ; 
 
 classCreatorRest[CommonTree type]
-    :   arguments -> {$type} arguments?
+    :   arguments -> {$type} arguments
     ;   
    
 superMemberAccess 
