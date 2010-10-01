@@ -1,4 +1,4 @@
-/*tree grammar JaWalker;
+/*t ee grammar JaWalker;
 
 options {
   tokenVocab=Ja; // import tokens from Ja.g
@@ -216,9 +216,9 @@ expression
     ;    
 
 ps 
-	:  	^(selector ps)
-	|  primary
-	;    
+    :  	selector
+    |   primary
+    ;    
     
 primary
     :   parExpression
@@ -226,17 +226,27 @@ primary
     |   superMemberAccess
     |   literal
     |   IDENTIFIER
-    |   (IDENTIFIER -> IDENTIFIER) ('[' ']' -> ^(ARRAYTYPE $primary))+ ('.' CLASS -> ^(DOTCLASS $primary))
+    |   ^(DOTCLASS ^(ARRAYTYPE arrayClass))  
     |   ^(METHODCALL IDENTIFIER arguments? THIS)
     |	^(DOTCLASS IDENTIFIER)
-    |   (primitiveType -> primitiveType) ('[' ']' -> ^(ARRAYTYPE $primary))* ('.' CLASS -> ^(DOTCLASS $primary))
-    |    ^(DOTCLASS VOID)
+    |   ^(DOTCLASS primitiveArrayClass)
+    |   ^(DOTCLASS VOID)
     ;
     
+arrayClass
+    :    ^(ARRAYTYPE arrayClass)
+    |    IDENTIFIER
+    ;	
+    
+primitiveArrayClass
+    :    ^(ARRAYTYPE primitiveArrayClass)
+    |    primitiveType
+    ;	        
+    
 selector
-    :   '.' IDENTIFIER -> ^(FIELDACCESS {$primary} IDENTIFIER)
-    |	'.' IDENTIFIER arguments -> ^(METHODCALL {$primary} IDENTIFIER arguments?)
-    |   '[' expression ']'-> ^(ARRAYACCESS {$primary} expression)
+    :   ^(FIELDACCESS ps IDENTIFIER)
+    |	^(METHODCALL ps IDENTIFIER arguments?)
+    |   ^(ARRAYACCESS ps expression)
     ;
 
 creator
@@ -250,22 +260,25 @@ createdName
     |   primitiveType
     ;
     
-arrayCreatorRest[CommonTree type]
-    :   ('['']' -> ^(ARRAYTYPE  {$type})) ( ('[' ']') -> ^(ARRAYTYPE $arrayCreatorRest) )* 
-    		(arrayInitializer  -> $arrayCreatorRest arrayInitializer)    
-    |	('[' expression ']' -> ^(ARRAYTYPE  {$type} expression)) ( ('[' expression ']') -> ^(ARRAYTYPE $arrayCreatorRest expression) )*  
+arrayCreatorRest
+    :   (^(ARRAYTYPE  arrayOrType) arrayInitializer)   
+    |	 ^(ARRAYTYPE  arrayCreatorExpr expression)   
     ; 
+    
+arrayCreatorExpr
+    :	^(ARRAYTYPE arrayCreatorExpr expression)
+    | 	type 
+    ;    
 
-classCreatorRest[CommonTree type]
-    :   arguments -> {$type} arguments
+classCreatorRest
+    :   type arguments
     ;   
    
 superMemberAccess 
-    :	'.' IDENTIFIER arguments? -> {$arguments.tree != null}? ^( METHODCALL SUPER IDENTIFIER arguments)
-    				  -> ^(FIELDACCESS SUPER IDENTIFIER)
+    :	^(METHODCALL SUPER IDENTIFIER arguments)
+    |   ^(FIELDACCESS SUPER IDENTIFIER)
     ;
 
 arguments
-    :   '(' expressionList? ')' -> {$expressionList.tree != null}? ^(ARGUMENTS expressionList?)
-    				->
+    :  ^(ARGUMENTS expressionList)
     ;
