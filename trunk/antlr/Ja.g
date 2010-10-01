@@ -395,13 +395,13 @@ classCreatorRest[CommonTree type]
     ;   
    
 superMemberAccess 
-    :	'.' IDENTIFIER arguments? -> {$arguments.tree != null}? ^( METHODCALL SUPER IDENTIFIER arguments)
-    				  -> ^(FIELDACCESS SUPER IDENTIFIER)
+    :	'.' IDENTIFIER -> ^(FIELDACCESS SUPER IDENTIFIER)
+    |   '.' IDENTIFIER arguments -> ^( METHODCALL SUPER IDENTIFIER arguments?)
     ;
 
 arguments
-    :   '(' expressionList? ')' -> {$expressionList.tree != null}? ^(ARGUMENTS expressionList?)
-    				->
+    :   '('!')'!
+    |	'(' expressionList ')' -> ^(ARGUMENTS expressionList)   
     ;
     
 // LEXER
