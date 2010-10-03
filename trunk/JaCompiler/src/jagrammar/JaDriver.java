@@ -14,6 +14,8 @@ import java.util.Queue;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.antlr.runtime.*;
+import org.antlr.runtime.tree.CommonTree;
+import org.antlr.runtime.tree.CommonTreeNodeStream;
 import org.antlr.runtime.tree.Tree;
 
 /**
@@ -33,7 +35,7 @@ public class JaDriver {
 //        for (String s : args) {
 //            q.add(s);
 //        }
-        q.add("testja/TestArray");
+        q.add("testja/Test");
 
 
 
@@ -69,7 +71,26 @@ public class JaDriver {
             } catch (RecognitionException ex) {
                 Logger.getLogger(JaDriver.class.getName()).log(Level.SEVERE, null, ex);
             }
+            ReferenceType rt = parser.getReferenceType();
+
+            CommonTree t = (CommonTree)cuTree.getTree();
+            System.out.println(t.toStringTree());
+            CommonTreeNodeStream nodes = new CommonTreeNodeStream(t);
+            nodes.setTokenStream(tokens);
+            //TODO: Spostare fuori in un secondo ciclo
+            JaWalker walker = new JaWalker(nodes);
+            walker.setClassTable(myclasses);
+            walker.setReferenceType(rt);
+            try {
+                System.out.println("Enter tree parsing...");
+                walker.compilationUnit();
+                System.out.println("END");
+            } catch (RecognitionException ex) {
+                Logger.getLogger(JaDriver.class.getName()).log(Level.SEVERE, null, ex);
+            }
+       
+            
         }
-        System.out.println(((Tree) cuTree.getTree()).toStringTree());
+        
     }
 }

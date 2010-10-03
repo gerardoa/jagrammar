@@ -13,7 +13,7 @@ public class UnacceptableConstructorException extends RuntimeException{
 
         @Override
 	public String getMessage(){
-		return "an attempt was made to add an alrady defined constructor to a class";
+		return "an attempt was made to add an already defined constructor to a class";
 	}
 	
 }
