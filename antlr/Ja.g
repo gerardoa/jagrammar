@@ -7,13 +7,14 @@ tokens {
 	METHOD; FIELD; CONSTR; FPARMS; ARGUMENTS; FPARM; FMULTPARM; MBODY; CBODY;
 	VARDECL; BLOCK; STMT; INIT; CONDITION; UPDATE; DOWHILE; THEN; ARRAYINIT;
 	PREINC; POSTINC; PREDEC; POSTDEC; UNARYPLUS; UNARYMINUS; CAST;
-	//SUPERMETHODCALL; SUPERFIELDACCESS;   Per uniformitˆ viene preferito   ^(METHODCALL SUPER ...) e ^(FIELDACCESS SUPER ...)
+	//SUPERMETHODCALL; SUPERFIELDACCESS;   Per uniformita' viene preferito   ^(METHODCALL SUPER ...) e ^(FIELDACCESS SUPER ...)
 }
 
 @header{
 	package jagrammar;
 	
 	import jagrammar.typehierarchy.*;
+	import jagrammar.util.ParserHelper;
 	import java.util.Queue;
 	import java.util.LinkedList;
 	import java.util.HashMap;
@@ -39,14 +40,6 @@ tokens {
     	
     	public ReferenceType getReferenceType() {
     		return rt;
-    	}
-    	
-    	// ritorna un Type perche' potrebbe non restituire un ComplexType se dim e' uguale a 0
-    	private Type createArrayType(Type t, int dim) {
-    		for(int i=0; i < dim; i++) {
-    			t = new ArrayType(t);
-    		}
-    		return t;
     	}
 }
 
@@ -101,8 +94,8 @@ methodDeclaration[boolean pub, Type t]
     ;
 
 fieldDeclaration[CommonTree mod, CommonTree typ, boolean pub, Type t]
-    :   v1=variableDeclarator[$typ]      { rt.addField($v1.varName, createArrayType($t, $v1.arrayDim), $pub); } 
-        (',' v2=variableDeclarator[$typ] { rt.addField($v2.varName, createArrayType($t, $v2.arrayDim), $pub); } 
+    :   v1=variableDeclarator[$typ]      { rt.addField($v1.varName, ParserHelper.createArrayType($t, $v1.arrayDim), $pub); } 
+        (',' v2=variableDeclarator[$typ] { rt.addField($v2.varName, ParserHelper.createArrayType($t, $v2.arrayDim), $pub); } 
         )* ';' 
         -> ^(FIELD {$mod} variableDeclarator)+ 
     ;
@@ -135,10 +128,6 @@ modifier returns [boolean pub]
     |   PRIVATE { $pub = false; }
     ;
 
-typeName
-    :   IDENTIFIER
-    ;
-
 type returns [Type t]
     :	nonPrimitiveType { $t = $nonPrimitiveType.t; }
     |	primitiveType 	 { $t = $primitiveType.bs;   }
@@ -146,10 +135,12 @@ type returns [Type t]
 	
 nonPrimitiveType returns [ComplexType t]
     :	(classType     -> classType    ) ( l+='[' ']' -> ^(ARRAYTYPE $nonPrimitiveType) )* 
-	{ if($l != null) $t = (ComplexType)createArrayType($classType.t,      $l.size()); }
+	{ if($l != null) $t = (ComplexType)ParserHelper.createArrayType($classType.t,      $l.size());
+	  else $t = $classType.t;
+	}
 			
     |	(primitiveType -> primitiveType) ( l+='[' ']' -> ^(ARRAYTYPE $nonPrimitiveType) )+ 
-	{ if($l != null) $t = (ComplexType)createArrayType($primitiveType.bs, $l.size()); }
+	{ $t = (ComplexType)ParserHelper.createArrayType($primitiveType.bs, $l.size()); }
     ;
 
 classType returns [ReferenceType t]
@@ -183,14 +174,14 @@ formalParameters returns [ArrayList<Type> args]
     
 formalParameterDecls[ArrayList<Type> args]
     :	type variableDeclaratorId[(CommonTree)$type.tree] (',' formalParameterDecls[args])? 
-    	{ $args.add(createArrayType($type.t, $variableDeclaratorId.arrayDim)); }
+    	{ $args.add(ParserHelper.createArrayType($type.t, $variableDeclaratorId.arrayDim)); }
     	-> ^(FPARM variableDeclaratorId) formalParameterDecls?
     	
     |  type '...' variableDeclaratorId[(CommonTree)$type.tree] -> ^(FMULTPARM variableDeclaratorId)
     ;
     
 methodBody
-    :   block -> ^(MBODY block?)
+    :   block -> ^(MBODY block?) // block può essere il nodo NIL
     ;
 
 constructorBody
@@ -344,12 +335,12 @@ unaryExpressionNotPlusMinus
     
 primary
     :   parExpression
-    |   THIS //arguments? 
+    |   THIS //arguments 
     |   SUPER! superMemberAccess
     |   literal
     |   IDENTIFIER
     |   (IDENTIFIER -> IDENTIFIER) ('[' ']' -> ^(ARRAYTYPE $primary))+ ('.' CLASS -> ^(DOTCLASS $primary))
-    | 	IDENTIFIER  arguments -> ^(METHODCALL IDENTIFIER arguments? THIS)
+    | 	IDENTIFIER  arguments -> ^(METHODCALL THIS IDENTIFIER arguments?)
     |	IDENTIFIER '.' CLASS -> ^(DOTCLASS IDENTIFIER)
     |   (primitiveType -> primitiveType) ('[' ']' -> ^(ARRAYTYPE $primary))* ('.' CLASS -> ^(DOTCLASS $primary))
     |   VOID '.' CLASS -> ^(DOTCLASS VOID)
@@ -376,7 +367,8 @@ identifierSuffix
 */
 
 creator
-    :	createdName! (arrayCreatorRest[(CommonTree)$createdName.tree] | classCreatorRest[(CommonTree)$createdName.tree]) 
+    :	createdName ( arrayCreatorRest[(CommonTree)$createdName.tree] -> arrayCreatorRest
+    	            | classCreatorRest -> createdName classCreatorRest? ) 
     ;
 
 createdName
@@ -384,14 +376,14 @@ createdName
     |   primitiveType
     ;
     
-arrayCreatorRest[CommonTree type]
-    :   ('['']' -> ^(ARRAYTYPE  {$type})) ( ('[' ']') -> ^(ARRAYTYPE $arrayCreatorRest) )* 
+arrayCreatorRest[CommonTree createdName]
+    :   ('['']' -> ^(ARRAYTYPE  {$createdName})) ( ('[' ']') -> ^(ARRAYTYPE $arrayCreatorRest) )* 
     		(arrayInitializer  -> $arrayCreatorRest arrayInitializer)    
-    |	('[' expression ']' -> ^(ARRAYTYPE  {$type} expression)) ( ('[' expression ']') -> ^(ARRAYTYPE $arrayCreatorRest expression) )*  
+    |	('[' expression ']' -> ^(ARRAYTYPE  {$createdName} expression)) ( ('[' expression ']') -> ^(ARRAYTYPE $arrayCreatorRest expression) )*  
     ; 
 
-classCreatorRest[CommonTree type]
-    :   arguments -> {$type} arguments
+classCreatorRest
+    :   arguments
     ;   
    
 superMemberAccess 

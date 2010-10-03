@@ -1,5 +1,5 @@
 
-public class TestAST extends TestArray {
+public class TestAST  {
 
     public A field1;
     public B field2, field3;

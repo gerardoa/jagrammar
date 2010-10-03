@@ -1,17 +1,43 @@
-/*t ee grammar JaWalker;
+tree grammar JaWalker;
 
 options {
   tokenVocab=Ja; // import tokens from Ja.g
   ASTLabelType=CommonTree;
 }
-*/
+
+scope JaScope {
+	Map<String, Type> symbols;
+}
+
+@header{
+	package jagrammar;
+	
+	import jagrammar.typehierarchy.*;
+	import jagrammar.util.ParserHelper;
+	import java.util.Map;
+	import java.util.HashMap;
+}
+
+@members { 
+	private Map<String, ReferenceType> cTab = new HashMap<String, ReferenceType>(); // inizializzazione per ANTLRWORKS
+	private ReferenceType rt;	
+		
+	public void setClassTable(Map<String, ReferenceType> m) {
+        	cTab = m;
+    	}
+    	
+	public void setReferenceType(ReferenceType rt) {
+    		this.rt = rt;
+    	}
+}
+
 
 compilationUnit
     :  classDeclaration // bisogno di ^ per togliere nil?
     ;
     
 classDeclaration
-    :   ^(CLASS IDENTIFIER classType? classBody)
+    :   ^(CLASS IDENTIFIER classType? classBody) { System.out.println("Class Declaration in Tree grammar"); }
     ;
      
 classBody
@@ -34,7 +60,7 @@ methodDeclaration
     ;
 
 fieldDeclaration
-    :   ^(FIELD modifier variableDeclarator)+ 
+    :   ^(FIELD modifier variableDeclarator) // il + è assorbito dalla * di classBodyDeclaration*
     ;
     
 voidMethodDeclaratorRest
@@ -45,16 +71,11 @@ variableDeclarator
     :   variableDeclaratorId (variableInitializer)?
     ;
     
-variableDeclaratorId 
-    :	  arrayOrType IDENTIFIER
+variableDeclaratorId
+    :	  type IDENTIFIER { if($JaScope::symbols.put($IDENTIFIER.text, $type.t) != null) 
+    				throw new UnacceptableLocalVariableException($IDENTIFIER.text); }
     ;
     
-arrayOrType
-    :	^(ARRAYTYPE arrayOrType)
-    | 	type
-    ;	
-  
-
 variableInitializer
     :   arrayInitializer
     |   expression
@@ -69,38 +90,40 @@ modifier
     |   PRIVATE
     ;
 
-typeName
-    :   IDENTIFIER
-    ;
-
-type
-    :	nonPrimitiveType
-    |	primitiveType
+type returns [Type t]
+    :	nonPrimitiveType { $t = $nonPrimitiveType.t; }
+    |	primitiveType    { $t = $primitiveType.bs;   }
     ;
 	
-nonPrimitiveType
-    :	^(ARRAYTYPE nonPrimitiveType)
-    |   classType       			
-    |	^(ARRAYTYPE primitiveType)
+nonPrimitiveType returns [ComplexType t]
+    :	^(ARRAYTYPE npt=nonPrimitiveType) { $t = (ComplexType)ParserHelper.createArrayType($npt.t, 1); }
+    |   classType  	  	          { $t = $classType.t; }     			
+    |	^(ARRAYTYPE primitiveType)        { $t = (ComplexType)ParserHelper.createArrayType($primitiveType.bs, 1); }
     ;
 
-classType
-    :	IDENTIFIER 
+classType returns [ReferenceType t]
+    :	IDENTIFIER { $t = cTab.get($IDENTIFIER.text); }
     ;
 
-primitiveType
-    :   CHAR
-    |   BYTE
-    |   SHORT
-    |   INT
-    |   LONG
-    |   FLOAT
-    |   DOUBLE
+primitiveType returns [BasicType bs]
+    :   CHAR   { $bs = BasicType.CHAR;   }
+    |   BYTE   { $bs = BasicType.BYTE;   }
+    |   SHORT  { $bs = BasicType.SHORT;  }
+    |   INT    { $bs = BasicType.INT;    }
+    |   LONG   { $bs = BasicType.LONG;   }
+    |   FLOAT  { $bs = BasicType.FLOAT;  }
+    |   DOUBLE { $bs = BasicType.DOUBLE; }
     ;
     
 formalParameters
-    :   ^(FPARMS formalParameterDecls?)
-    |	
+scope JaScope;
+@init {
+	$JaScope::symbols = new HashMap<String, Type>();
+}
+@after {
+	System.out.println("formalParameters: " + $JaScope::symbols);
+}
+    :   ^(FPARMS formalParameterDecls?)	
     ;
     
 formalParameterDecls
@@ -109,7 +132,8 @@ formalParameterDecls
     ;
     
 methodBody
-    :   ^(MBODY block?)
+    :   ^(MBODY block) // il nodo NIL è ottenuto dallo * di blockStatement*
+                       // di conseguenza abbiamo tolto il ? 
     ;
 
 constructorBody
@@ -133,6 +157,13 @@ literal
 // STATEMENTS / BLOCKS
 
 block
+scope JaScope;
+@init {
+	$JaScope::symbols = new HashMap<String, Type>();
+}
+@after {
+	System.out.println("block: " + $JaScope::symbols);
+}
     :   blockStatement*
     ;
     
@@ -146,16 +177,16 @@ localVariableDeclarationStatement
     ;
 
 localVariableDeclaration
-    :	^(VARDECL variableDeclarator)+
+    :	^(VARDECL variableDeclarator) // il + della grammatica è assorbito da blockStatement*
     ;
    
 
 statement
     :   ^(BLOCK block)
-    |   ^(IF ^(CONDITION parExpression) ^(THEN statement) elseStmt?)
-    |   ^(FOR ^(INIT forInit)? ^(CONDITION expression)? ^(UPDATE forUpdate)? statement )
-    |   ^(WHILE ^(CONDITION parExpression) statement)
-    |   ^(DOWHILE ^(CONDITION parExpression) statement)
+    |   ^(IF ^(CONDITION expression) ^(THEN statement) elseStmt?)
+    |   ^(FOR (^(INIT forInit))? (^(CONDITION expression))? (^(UPDATE forUpdate))? statement )
+    |   ^(WHILE ^(CONDITION expression) statement)
+    |   ^(DOWHILE ^(CONDITION expression) statement)
     |   ^(RETURN expression?) 
     |   ^(STMT statementExpression)
     ;
@@ -173,10 +204,10 @@ forUpdate
     :   expressionList
     ;
 
-parExpression
+/*parExpression
     :   expression
     ;
-    
+*/    
 expressionList
     :   expression (expression)*
     ;
@@ -202,56 +233,42 @@ expression
     |	^(INSTANCEOF expression type)
     |	^(COMPAREOP expression expression)
     |   ^('%'   expression expression)
-    |	^(UNARYPLUS  unaryExpression) 
-    |   ^(UNARYMINUS unaryExpression)
-    |   ^(PREINC unaryExpression)
-    |   ^(PREDEC unaryExpression)
+    |	^(UNARYPLUS  expression) 
+    |   ^(UNARYMINUS expression)
+    |   ^(PREINC expression)
+    |   ^(PREDEC expression)  
     |	^('!' expression)
     |   ^(CAST primitiveType expression)
     |   ^(CAST nonPrimitiveType expression)
     |   ^(NEW creator)
-    |	^(POSTINC ps)
-    |   ^(POSTDEC ps)
-    |   ps 
-    ;    
-
-ps 
-    :  	selector
-    |   primary
-    ;    
+    |	^(POSTINC (selector | primary))
+    |   ^(POSTDEC (selector | primary))
+    |   selector
+    |   primary 
+    ;        
     
 primary
-    :   parExpression
-    |   THIS 
+    //:   expression
+    :	THIS 
     |   superMemberAccess
     |   literal
     |   IDENTIFIER
-    |   ^(DOTCLASS ^(ARRAYTYPE arrayClass))  
-    |   ^(METHODCALL IDENTIFIER arguments? THIS)
+    |   ^(DOTCLASS ^(ARRAYTYPE type))  
+    //|   ^(METHODCALL THIS IDENTIFIER arguments? ) riconosciuto in selector
     |	^(DOTCLASS IDENTIFIER)
-    |   ^(DOTCLASS primitiveArrayClass)
+    |   ^(DOTCLASS primitiveType)
     |   ^(DOTCLASS VOID)
     ;
     
-arrayClass
-    :    ^(ARRAYTYPE arrayClass)
-    |    IDENTIFIER
-    ;	
-    
-primitiveArrayClass
-    :    ^(ARRAYTYPE primitiveArrayClass)
-    |    primitiveType
-    ;	        
-    
 selector
-    :   ^(FIELDACCESS ps IDENTIFIER)
-    |	^(METHODCALL ps IDENTIFIER arguments?)
-    |   ^(ARRAYACCESS ps expression)
+    :   ^(FIELDACCESS expression IDENTIFIER)
+    |	^(METHODCALL expression IDENTIFIER arguments?)
+    |   ^(ARRAYACCESS expression expression)
     ;
 
 creator
     :    arrayCreatorRest 
-    |    classCreatorRest 
+    |    createdName classCreatorRest? 
     ;
 
 
@@ -261,17 +278,17 @@ createdName
     ;
     
 arrayCreatorRest
-    :   (^(ARRAYTYPE  arrayOrType) arrayInitializer)   
+    :   (^(ARRAYTYPE  createdName) arrayInitializer)   
     |	 ^(ARRAYTYPE  arrayCreatorExpr expression)   
     ; 
     
 arrayCreatorExpr
     :	^(ARRAYTYPE arrayCreatorExpr expression)
-    | 	type 
+    | 	createdName 
     ;    
 
 classCreatorRest
-    :   type arguments
+    :   arguments
     ;   
    
 superMemberAccess 

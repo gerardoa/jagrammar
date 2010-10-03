@@ -56,8 +56,21 @@ public class ReferenceType extends ComplexType {
         return superClass;
     }
 
-    public void setSuperClass(ReferenceType r) {
-        superClass = r;
+    /**
+     * Ricerca la presenza di un campo nella classe, e nelle sue superclassi.
+     * Restituisce il tipo del campo se lo trova, null altrimenti.
+     * @param fieldName Nome del campo
+     * @return Tipo del campo
+     */
+    public Type getField(String fieldName) {
+        Field f = fields.get(fieldName);
+        if (f != null) {
+            return f.type;
+        }
+        if (superClass != null) {
+            return superClass.getField(fieldName);
+        }
+        return null;
     }
 
     /*
@@ -452,6 +465,10 @@ public class ReferenceType extends ComplexType {
                 return false;
             }
             Constructor c = (Constructor) obj;
+            // controllo costruttore senza argomenti
+            if (c.arguments.isEmpty()) {
+                return (this.arguments.isEmpty());
+            }
             int i = 0;
             for (Type t : c) {
                 if (!t.equals(arguments.get(i++))) {
