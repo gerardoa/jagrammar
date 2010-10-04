@@ -9,4 +9,8 @@
          '+', '-' (unari), '++', '--' -> abbiamo utilizzato token virtuali\
 	! - ?\
 \
-2. Riflettere l'annidamento di ARRAYTYPE, come viene riconosciuto nella tree grammar. }
+2. Riflettere l'annidamento di ARRAYTYPE, come viene riconosciuto nella tree grammar. \
+\
+3. Gestione errori di compilazione: lanciare un'eccezione e arrestare il processo, oppure continuare?\
+\
+4.Possibile ottimizzazione: Utilizzare una lista per i param. formali ed una mappa per le var. locali?}

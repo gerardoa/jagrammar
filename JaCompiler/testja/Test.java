@@ -9,10 +9,16 @@
  */
 public class Test {
 
-   
+    public Test(int i) {
+       //int i;
+        {
+            //int i;
+            i++;
+        }
+    }
     public Test metodoProlisso(Test b) {}
 
-    public Test metodoProlisso(int i1, int i2, int[] ia1, int[] ia2, char s) {
+    public Test metodoProlisso(int i1, int i2, int[][] ia1, int[] ia2, char s, Test t) {
         int iL0;
         int iL0;
         {

@@ -1,10 +1,9 @@
 package jagrammar.typehierarchy;
 
-public class UnacceptableFieldException extends RuntimeException{
+public class UnacceptableFieldException extends JaCompileException {
 
-        @Override
-	public String getMessage(){
-		return "an attempt was made to add an already defined field to a class";
-	}
-	
+    @Override
+    public String getMessage() {
+        return "an attempt was made to add an already defined field to a class";
+    }
 }

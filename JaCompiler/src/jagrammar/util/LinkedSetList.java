@@ -8,15 +8,22 @@ import java.util.LinkedList;
 
 /**
  *
- * @author IlianaPetrova
+ * @author Gerardo Adelizzi
  */
-public class LinkedSetList extends LinkedList<String> {
+public class LinkedSetList<T> extends LinkedList<T> {
 
     @Override
-    public boolean add(String e) {
+    public boolean add(T e) {
         if (!contains(e)) {
             return super.add(e);
         }
         return false;
+    }
+
+    public static void main(String[] args) {
+        LinkedSetList<Variable> lv = new  LinkedSetList<Variable>();
+        lv.add(new Variable("i", null));
+        String s = "i";
+        System.out.println(""+lv.contains(new Variable(s, null)));
     }
 }
