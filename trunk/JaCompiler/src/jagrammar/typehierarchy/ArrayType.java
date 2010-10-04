@@ -67,6 +67,11 @@ public class ArrayType extends ComplexType {
         return other.hostType.equals(hostType);
     }
 
+    @Override
+    public String toString() {
+        return hostType + "[]";
+    }
+
     
     private final Type hostType;
 }

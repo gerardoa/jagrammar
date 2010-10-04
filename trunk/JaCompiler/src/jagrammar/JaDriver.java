@@ -4,6 +4,7 @@
  */
 package jagrammar;
 
+import jagrammar.typehierarchy.JaCompileException;
 import jagrammar.typehierarchy.ReferenceType;
 import jagrammar.util.LinkedSetList;
 import java.io.FileInputStream;
@@ -31,7 +32,7 @@ public class JaDriver {
         JaParser.compilationUnit_return cuTree = null;
         System.out.println("Start...");
         Map<String, ReferenceType> myclasses = new HashMap<String, ReferenceType>();
-        Queue<String> q = new LinkedSetList();
+        Queue<String> q = new LinkedSetList<String>();
 //        for (String s : args) {
 //            q.add(s);
 //        }
@@ -87,6 +88,8 @@ public class JaDriver {
                 System.out.println("END");
             } catch (RecognitionException ex) {
                 Logger.getLogger(JaDriver.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (JaCompileException ex ) {
+                System.err.println(ex.getMessage());
             }
        
             

@@ -9,7 +9,7 @@
  */
 package jagrammar.typehierarchy;
 
-public class UnacceptableConstructorException extends RuntimeException{
+public class UnacceptableConstructorException extends JaCompileException{
 
         @Override
 	public String getMessage(){

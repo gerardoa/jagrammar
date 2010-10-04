@@ -1,19 +1,23 @@
 tree grammar JaWalker;
 
 options {
-  tokenVocab=Ja; // import tokens from Ja.g
+  tokenVocab=Ja; // import tokens from Ja.tokens
   ASTLabelType=CommonTree;
 }
 
 scope JaScope {
-	Map<String, Type> symbols;
+	String name;
+	
+	// Viene utilizzata una lista per mantenere l'ordine dei parametri formali dei metodi e costruttori,
+	// in quanto la loro firma viene utilizzata per la corretta visualizzazione degi messaggi di errore.
+	LinkedSetList<Variable> symbols;
 }
 
 @header{
 	package jagrammar;
 	
 	import jagrammar.typehierarchy.*;
-	import jagrammar.util.ParserHelper;
+	import jagrammar.util.*;
 	import java.util.Map;
 	import java.util.HashMap;
 }
@@ -29,6 +33,23 @@ scope JaScope {
 	public void setReferenceType(ReferenceType rt) {
     		this.rt = rt;
     	}
+    	
+    	/** Verifica se v e' definito in JaScope. Analizza lo stack dall'alto verso il basso
+    	 *  controllando la presenza di v ad ogni livello.
+ 	 */
+	private boolean isDefined(Variable v) {
+	    for (int s=$JaScope.size()-1; s>=0; s--) {
+	        if ( $JaScope[s]::symbols.contains(v) ) {
+	            return true;
+	        }
+	    }
+	    return false;
+	}
+	
+	private String getMethodSignature() {
+	    String list = $JaScope[0]::symbols.toString();
+	    return $JaScope[0]::name + '(' + list.substring(1, list.length()-1) + ')';
+	}
 }
 
 
@@ -49,18 +70,30 @@ classBodyDeclaration
     ;
     
 memberDeclaration
-    :   ^(METHOD  modifier type  methodDeclaration)
-    |	fieldDeclaration			
-    |   ^(METHOD modifier VOID IDENTIFIER voidMethodDeclaratorRest)
-    |   ^(CONSTR modifier IDENTIFIER formalParameters? constructorBody?)
+    :   fieldDeclaration
+    |	methodAndConstructorDeclaration
     ;
     
+methodAndConstructorDeclaration
+scope JaScope;
+@init {
+	$JaScope::symbols = new LinkedSetList<Variable>();
+}
+@after {
+	System.out.println("methodAndConstructorDeclaration: " + getMethodSignature());
+}
+    :   ^(METHOD  modifier type  methodDeclaration)			
+    |   ^(METHOD modifier VOID IDENTIFIER { $JaScope::name = $IDENTIFIER.text; } voidMethodDeclaratorRest) 	 
+    |   ^(CONSTR modifier IDENTIFIER { $JaScope::name = $IDENTIFIER.text; } formalParameters? constructorBody?) 
+    ;
+    
+    
 methodDeclaration
-    :   IDENTIFIER formalParameters methodBody
+    :   IDENTIFIER { $JaScope::name = $IDENTIFIER.text; } formalParameters methodBody
     ;
 
 fieldDeclaration
-    :   ^(FIELD modifier variableDeclarator) // il + è assorbito dalla * di classBodyDeclaration*
+    :   ^(FIELD modifier variableDeclarator) // il + e' assorbito dalla * di classBodyDeclaration*
     ;
     
 voidMethodDeclaratorRest
@@ -72,8 +105,12 @@ variableDeclarator
     ;
     
 variableDeclaratorId
-    :	  type IDENTIFIER { if($JaScope::symbols.put($IDENTIFIER.text, $type.t) != null) 
-    				throw new UnacceptableLocalVariableException($IDENTIFIER.text); }
+    :	  type IDENTIFIER { Variable v = new Variable($IDENTIFIER.text, $type.t);
+    			    if(!isDefined(v)) 
+    			    	$JaScope::symbols.add(v);
+    			    else
+    			    	throw new UnacceptableLocalVariableException($IDENTIFIER.text, getMethodSignature(), $IDENTIFIER.line, $IDENTIFIER.pos); 
+    			  }
     ;
     
 variableInitializer
@@ -116,13 +153,6 @@ primitiveType returns [BasicType bs]
     ;
     
 formalParameters
-scope JaScope;
-@init {
-	$JaScope::symbols = new HashMap<String, Type>();
-}
-@after {
-	System.out.println("formalParameters: " + $JaScope::symbols);
-}
     :   ^(FPARMS formalParameterDecls?)	
     ;
     
@@ -137,6 +167,13 @@ methodBody
     ;
 
 constructorBody
+scope JaScope;
+@init {
+	$JaScope::symbols = new LinkedSetList<Variable>();
+}
+@after {
+	System.out.println("constructorBody: " + getMethodSignature());
+}
     :	^(CBODY explicitConstructorInvocation? blockStatement*)
     ;
 
@@ -159,7 +196,7 @@ literal
 block
 scope JaScope;
 @init {
-	$JaScope::symbols = new HashMap<String, Type>();
+	$JaScope::symbols = new LinkedSetList<Variable>();
 }
 @after {
 	System.out.println("block: " + $JaScope::symbols);

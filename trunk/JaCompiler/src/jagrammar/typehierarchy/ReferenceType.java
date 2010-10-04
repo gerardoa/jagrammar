@@ -9,6 +9,9 @@
  */
 package jagrammar.typehierarchy;
 
+import jagrammar.typehierarchy.UnacceptableConstructorException;
+import jagrammar.typehierarchy.UnacceptableFieldException;
+import jagrammar.typehierarchy.UnacceptableMethodException;
 import java.util.Map;
 import java.util.Set;
 import java.util.HashSet;
@@ -542,13 +545,18 @@ public class ReferenceType extends ComplexType {
         }
         throw new EarlyBindingException(/*name,args*/);
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
     
     private final String name;
     private ReferenceType superClass;
     private Map<String, Set<Method>> methods;
     private Map<String, Field> fields;
     private List<Constructor> constructors;
-    //i referenceType di String ed Object hanno particolare dignit�,
+    //i referenceType di String ed Object hanno particolare dignita',
     //quindi divengono delle costanti di classe
     public static final ReferenceType OBJECT = new ReferenceType("Object");
     public static final ReferenceType STRING = new ReferenceType("String");
