@@ -10,7 +10,7 @@ scope JaScope {
 	
 	// Viene utilizzata una lista per mantenere l'ordine dei parametri formali dei metodi e costruttori,
 	// in quanto la loro firma viene utilizzata per la corretta visualizzazione degi messaggi di errore.
-	LinkedSetList<Variable> symbols;
+	Map<String, Type> symbols;
 }
 
 @header{
@@ -20,6 +20,7 @@ scope JaScope {
 	import jagrammar.util.*;
 	import java.util.Map;
 	import java.util.HashMap;
+	import java.util.LinkedList;
 }
 
 @members { 
@@ -34,22 +35,62 @@ scope JaScope {
     		this.rt = rt;
     	}
     	
-    	/** Verifica se v e' definito in JaScope. Analizza lo stack dall'alto verso il basso
-    	 *  controllando la presenza di v ad ogni livello.
+    	private List<String> formalParameters;
+    	
+    	/** Verifica se id e' definito in JaScope. Analizza lo stack dall'alto verso il basso
+    	 *  controllando la presenza di id ad ogni livello.
  	 */
-	private boolean isDefined(Variable v) {
+	private boolean isDefined(String id) {
 	    for (int s=$JaScope.size()-1; s>=0; s--) {
-	        if ( $JaScope[s]::symbols.contains(v) ) {
+	        if ( $JaScope[s]::symbols.containsKey(id) ) {
 	            return true;
 	        }
 	    }
 	    return false;
 	}
 	
-	private String getMethodSignature() {
-	    String list = $JaScope[0]::symbols.toString();
-	    return $JaScope[0]::name + '(' + list.substring(1, list.length()-1) + ')';
+	private Type getVariableType(String id) {
+	    for (int s=$JaScope.size()-1; s>=0; s--) {
+	        if ( $JaScope[s]::symbols.containsKey(id) ) {
+	            return $JaScope[s]::symbols.get(id);
+	        }
+	    }
+	    return rt.getField(true, id);
 	}
+	
+	private String getMethodSignature() {
+	    StringBuilder list = new StringBuilder("");
+	    for(String id : formalParameters) {
+	    	list.append($JaScope[0]::symbols.get(id) + " " + id + ", ");
+	    }
+	    return $JaScope[0]::name + '(' + list.substring(0, list.length() - 2) + ')';
+	}
+	
+	private List<Type> getFormalParametersList() {
+	    List types = new LinkedList<Type>();
+	    for(String id : formalParameters) {
+	    	types.add($JaScope[0]::symbols.get(id));
+	    }
+	    return types;
+	}
+	
+	private String printArguments(ArrayList<Type> args) {
+		if (args == null)
+			return "";
+		String list = args.toString();
+		return list.substring(1, list.length() - 1);
+	}
+	
+	private void addVariableToScope(CommonTree identifier, Type t) { 
+	    String id = identifier.getText();
+	    int line = identifier.getLine();
+	    int pos = identifier.getCharPositionInLine();
+	    if(!isDefined(id))
+    	    	$JaScope::symbols.put(id, t);
+    	    else
+    		throw new UnacceptableLocalVariableException(id, getMethodSignature(), line, pos, rt); 
+    	}
+    			 
 }
 
 
@@ -77,12 +118,13 @@ memberDeclaration
 methodAndConstructorDeclaration
 scope JaScope;
 @init {
-	$JaScope::symbols = new LinkedSetList<Variable>();
+	$JaScope::symbols = new HashMap<String, Type>();
+	formalParameters = new LinkedList<String>();
 }
 @after {
 	System.out.println("methodAndConstructorDeclaration: " + getMethodSignature());
 }
-    :   ^(METHOD  modifier type  methodDeclaration)			
+    :   ^(METHOD modifier type  methodDeclaration)			
     |   ^(METHOD modifier VOID IDENTIFIER { $JaScope::name = $IDENTIFIER.text; } voidMethodDeclaratorRest) 	 
     |   ^(CONSTR modifier IDENTIFIER { $JaScope::name = $IDENTIFIER.text; } formalParameters? constructorBody?) 
     ;
@@ -100,17 +142,12 @@ voidMethodDeclaratorRest
     :	formalParameters methodBody
     ;
 
-variableDeclarator
-    :   variableDeclaratorId (variableInitializer)?
+variableDeclarator returns [CommonTree id, Type t]
+    :   variableDeclaratorId { $id = $variableDeclaratorId.id; $t = $variableDeclaratorId.t; } (variableInitializer)?
     ;
     
-variableDeclaratorId
-    :	  type IDENTIFIER { Variable v = new Variable($IDENTIFIER.text, $type.t);
-    			    if(!isDefined(v)) 
-    			    	$JaScope::symbols.add(v);
-    			    else
-    			    	throw new UnacceptableLocalVariableException($IDENTIFIER.text, getMethodSignature(), $IDENTIFIER.line, $IDENTIFIER.pos); 
-    			  }
+variableDeclaratorId returns [CommonTree id, Type t]
+    :	  type IDENTIFIER { $id = $IDENTIFIER; $t = $type.t; }
     ;
     
 variableInitializer
@@ -157,8 +194,8 @@ formalParameters
     ;
     
 formalParameterDecls
-    :	^(FPARM variableDeclaratorId) formalParameterDecls?
-    |	^(FMULTPARM variableDeclaratorId)
+    :	^(FPARM variableDeclaratorId) { formalParameters.add($variableDeclaratorId.id.getText()); addVariableToScope($variableDeclaratorId.id, $variableDeclaratorId.t); } formalParameterDecls?
+    |	^(FMULTPARM variableDeclaratorId) { formalParameters.add($variableDeclaratorId.id.getText()); addVariableToScope($variableDeclaratorId.id, $variableDeclaratorId.t);}
     ;
     
 methodBody
@@ -169,10 +206,10 @@ methodBody
 constructorBody
 scope JaScope;
 @init {
-	$JaScope::symbols = new LinkedSetList<Variable>();
+	$JaScope::symbols = new HashMap<String, Type>();
 }
 @after {
-	System.out.println("constructorBody: " + getMethodSignature());
+	System.out.println("constructorBody: " + getMethodSignature() + " Scope: " + $JaScope::symbols);
 }
     :	^(CBODY explicitConstructorInvocation? blockStatement*)
     ;
@@ -182,13 +219,23 @@ explicitConstructorInvocation
     |	^(CONSTRCALL SUPER arguments?)
     ;
 
-literal 
-    :   INTLITERAL
-    |   FloatingPointLiteral
-    |   CHARLITERAL
-    |   STRINGLITERAL
-    |   BOOLEANLITERAL
-    |   NULLLITERAL
+literal returns [Type t]
+    :   INTLITERAL     { int literal = Integer.parseInt($INTLITERAL.text);
+    			 if ((literal >= -128) &&( literal <= 127)) 
+    			 	{ $t = BasicType.BYTE; } 
+    			 else 
+    			 	if ((literal >= -32.768) &&( literal <= 32.767)) 
+    			 		{ $t = BasicType.SHORT; } 
+    			 	else
+    			 		{ $t = BasicType.INT; }
+    		       }
+    |   LONGLITERAL    { $t = BasicType.LONG;       }
+    |   FLOATLITERAL   { $t = BasicType.FLOAT;      }
+    |	DOUBLELITERAL  { $t = BasicType.DOUBLE;     }
+    |   CHARLITERAL    { $t = BasicType.CHAR;       }
+    |   STRINGLITERAL  { $t = ReferenceType.STRING; }
+    |   BOOLEANLITERAL { $t = BasicType.BOOLEAN;    }
+    |   NULLLITERAL    { $t = NullType.TYPE;        }
     ;
 
 // STATEMENTS / BLOCKS
@@ -196,7 +243,7 @@ literal
 block
 scope JaScope;
 @init {
-	$JaScope::symbols = new LinkedSetList<Variable>();
+	$JaScope::symbols = new HashMap<String, Type>();
 }
 @after {
 	System.out.println("block: " + $JaScope::symbols);
@@ -214,7 +261,8 @@ localVariableDeclarationStatement
     ;
 
 localVariableDeclaration
-    :	^(VARDECL variableDeclarator) // il + della grammatica è assorbito da blockStatement*
+    :	^(VARDECL variableDeclarator) // il + della grammatica e' assorbito da blockStatement*
+        { addVariableToScope($variableDeclarator.id, $variableDeclarator.t); } 
     ;
    
 
@@ -245,8 +293,11 @@ forUpdate
     :   expression
     ;
 */    
-expressionList
-    :   expression (expression)*
+expressionList returns [ArrayList<Type> types]
+@init {
+	$types = new ArrayList<Type>();
+}
+    :   (expression { $types.add($expression.t); })+
     ;
 
 statementExpression
@@ -257,7 +308,7 @@ constantExpression
     :   expression
     ;
     
-expression
+expression returns [Type t]
     :   ^(EQ    expression expression)
     |	^(PLUS  expression expression)
     |	^(MINUS expression expression)
@@ -280,16 +331,18 @@ expression
     |   ^(NEW creator)
     |	^(POSTINC (selector | primary))
     |   ^(POSTDEC (selector | primary))
-    |   selector
-    |   primary 
+    |   selector { $t = $selector.t; }
+    |   primary  { $t = $primary.t; }
     ;        
     
-primary
+primary returns [Type t]
     //:   expression
-    :	THIS 
-    |   superMemberAccess
-    |   literal
-    |   IDENTIFIER
+    :	THIS { $t = rt; }
+    |   superMemberAccess { $t = $superMemberAccess.t; }
+    |   literal { $t = $literal.t; }
+    |   IDENTIFIER { $t = getVariableType($IDENTIFIER.text); 
+    		     if ($t == null) throw new CannotFindSymbolException(("variable " + $IDENTIFIER.text), getMethodSignature(), $IDENTIFIER.line, $IDENTIFIER.pos, rt);
+    		   }
     |   ^(DOTCLASS ^(ARRAYTYPE type))  
     //|   ^(METHODCALL THIS IDENTIFIER arguments? ) riconosciuto in selector
     |	^(DOTCLASS IDENTIFIER)
@@ -297,9 +350,34 @@ primary
     |   ^(DOTCLASS VOID)
     ;
     
-selector
-    :   ^(FIELDACCESS expression IDENTIFIER)
+selector returns [Type t]
+    :   ^(FIELDACCESS expression IDENTIFIER) 
+    	{ if (!($expression.t instanceof ReferenceType))
+    	  	throw new CannotBeDereferencedException($expression.t, $IDENTIFIER.line, $IDENTIFIER.pos, rt); 
+    	  ReferenceType expt = (ReferenceType)$expression.t;
+    	  Type ft;
+    	  if (expt.getName() == rt.getName()) 
+    	  	ft = expt.getField(true, $IDENTIFIER.text);
+    	  else  
+    		ft = expt.getField(false, $IDENTIFIER.text);
+	  if (ft == null) 
+		throw new CannotFindSymbolException(("field " + $IDENTIFIER.text), expt.getName(), $IDENTIFIER.line, $IDENTIFIER.pos, rt);
+    	} 
     |	^(METHODCALL expression IDENTIFIER arguments?)
+    	{ if (!($expression.t instanceof ReferenceType))
+    	  	throw new CannotBeDereferencedException($expression.t, $IDENTIFIER.line, $IDENTIFIER.pos, rt); 
+    	  ReferenceType expt = (ReferenceType)$expression.t;
+    	  Type mt;
+    	  ArrayList<Type> argTypes = $arguments.types; //($arguments.tree == null)?null:$arguments.types;
+    	  try {
+	    	if (expt.getName() == rt.getName()) 
+	    		mt = expt.bindMethod(true, $IDENTIFIER.text, argTypes);
+	    	else  
+	    		mt = expt.bindMethod(false, $IDENTIFIER.text, argTypes);
+    	  } catch (EarlyBindingException ex) {
+    	  	throw new CannotFindSymbolException(("method " + $IDENTIFIER.text + '(' + printArguments(argTypes) + ')'), expt.getName(), $IDENTIFIER.line, $IDENTIFIER.pos, rt);
+    	  }
+    	}
     |   ^(ARRAYACCESS expression expression)
     ;
 
@@ -328,11 +406,11 @@ classCreatorRest
     :   arguments
     ;   
    
-superMemberAccess 
-    :	^(METHODCALL SUPER IDENTIFIER arguments)
-    |   ^(FIELDACCESS SUPER IDENTIFIER)
+superMemberAccess returns [Type t]
+    :	^(METHODCALL SUPER IDENTIFIER arguments) { $t = rt.getSuperClass().bindMethod(false, $IDENTIFIER.text, $arguments.types); }
+    |   ^(FIELDACCESS SUPER IDENTIFIER)          { $t = rt.getSuperClass().getField(false, $IDENTIFIER.text); }
     ;
 
-arguments
-    :  ^(ARGUMENTS expressionList)
+arguments returns [ArrayList<Type> types]
+    :  ^(ARGUMENTS expressionList) { $types = $expressionList.types; }
     ;

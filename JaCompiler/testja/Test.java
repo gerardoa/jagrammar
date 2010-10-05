@@ -8,19 +8,22 @@
  * @author Gerardo
  */
 public class Test {
-
+    private int a;
     public Test(int i) {
+        int d = a-2;
        //int i;
-        {
-            //int i;
-            i++;
-        }
+
     }
-    public Test metodoProlisso(Test b) {}
+
+    public void MetodoProlisso(Test b) {}
+
+    public void metodoProlisso(Test b) {}
 
     public Test metodoProlisso(int i1, int i2, int[][] ia1, int[] ia2, char s, Test t) {
+
         int iL0;
-        int iL0;
+        Test o = null;
+        a = o.g();
         {
             int iL1;
             {

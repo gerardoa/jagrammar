@@ -9,9 +9,6 @@
  */
 package jagrammar.typehierarchy;
 
-import jagrammar.typehierarchy.UnacceptableConstructorException;
-import jagrammar.typehierarchy.UnacceptableFieldException;
-import jagrammar.typehierarchy.UnacceptableMethodException;
 import java.util.Map;
 import java.util.Set;
 import java.util.HashSet;
@@ -59,20 +56,27 @@ public class ReferenceType extends ComplexType {
         return superClass;
     }
 
+     public String getName() {
+        return name;
+    }
+
     /**
      * Ricerca la presenza di un campo nella classe, e nelle sue superclassi.
      * Restituisce il tipo del campo se lo trova, null altrimenti.
      * @param fieldName Nome del campo
      * @return Tipo del campo
      */
-    public Type getField(String fieldName) {
+    public Type getField(boolean isSameClass, String fieldName) {
         Field f = fields.get(fieldName);
-        if (f != null) {
+
+        if (f != null && (isSameClass || f.isPublic)) {
             return f.type;
         }
+
         if (superClass != null) {
-            return superClass.getField(fieldName);
+            return superClass.getField(false, fieldName);
         }
+
         return null;
     }
 
@@ -301,10 +305,11 @@ public class ReferenceType extends ComplexType {
      * @param args ArrayList dei tipi degli argomenti della chiamata. Deve
      *              essere necessatiamente un ArrayList perché si necessita
      *              dell'accesso posizionale. Deve essere sempre istanziata
+     * @return tipo di ritorno della firma candidata più specifica
      * @throws EarlyBindingException se non ci sono firme candidate, oppure
      *          se non esiste una firma candidata più specifica delle altre
      */
-    public void bindMethod(boolean isSameClass, String name, ArrayList<Type> args) {
+    public Type bindMethod(boolean isSameClass, String name, ArrayList<Type> args) {
         //genero la lista delle firme candidate
         //se c'è una firma più specifica delle altre ritorno.
         //altrimenti lancio un'eccezione
@@ -317,7 +322,7 @@ public class ReferenceType extends ComplexType {
             throw new EarlyBindingException(/*name,args*/);
         }
         if (candL.size() == 1) {
-            return;
+            return candL.get(0).returnType;
         }
         //CASO GENERICO:
         Method[] candA = (Method[]) candL.toArray();
@@ -340,7 +345,7 @@ public class ReferenceType extends ComplexType {
                 //condizione che esprime il test
                 //di avvenuta ricerca di una firma più specifica delle altre
                 if (j == (candA.length - 1)) {
-                    return;
+                    return candA[i].returnType;
                 }
             }
         }
@@ -550,7 +555,6 @@ public class ReferenceType extends ComplexType {
     public String toString() {
         return name;
     }
-    
     private final String name;
     private ReferenceType superClass;
     private Map<String, Set<Method>> methods;

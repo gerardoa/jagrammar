@@ -450,7 +450,7 @@ FLOATLITERAL
     
 DOUBLELITERAL
     :   FloatingPointLiteral DoubleSuffix?
-        ;
+    ;
 
 CHARLITERAL
     :   '\'' 
