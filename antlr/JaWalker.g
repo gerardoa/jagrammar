@@ -7,9 +7,6 @@ options {
 
 scope JaScope {
 	String name;
-	
-	// Viene utilizzata una lista per mantenere l'ordine dei parametri formali dei metodi e costruttori,
-	// in quanto la loro firma viene utilizzata per la corretta visualizzazione degi messaggi di errore.
 	Map<String, Type> symbols;
 }
 
@@ -199,7 +196,7 @@ formalParameterDecls
     ;
     
 methodBody
-    :   ^(MBODY block) // il nodo NIL è ottenuto dallo * di blockStatement*
+    :   ^(MBODY block) // il nodo NIL e' ottenuto dallo * di blockStatement*
                        // di conseguenza abbiamo tolto il ? 
     ;
 
@@ -343,9 +340,9 @@ primary returns [Type t]
     |   IDENTIFIER { $t = getVariableType($IDENTIFIER.text); 
     		     if ($t == null) throw new CannotFindSymbolException(("variable " + $IDENTIFIER.text), getMethodSignature(), $IDENTIFIER.line, $IDENTIFIER.pos, rt);
     		   }
-    |   ^(DOTCLASS ^(ARRAYTYPE type))  
     //|   ^(METHODCALL THIS IDENTIFIER arguments? ) riconosciuto in selector
-    |	^(DOTCLASS IDENTIFIER)
+    |   ^(DOTCLASS ^(ARRAYTYPE type))  
+    |	^(DOTCLASS IDENTIFIER) { $t = new ReferenceType("Class"); }
     |   ^(DOTCLASS primitiveType)
     |   ^(DOTCLASS VOID)
     ;
@@ -378,7 +375,11 @@ selector returns [Type t]
     	  	throw new CannotFindSymbolException(("method " + $IDENTIFIER.text + '(' + printArguments(argTypes) + ')'), expt.getName(), $IDENTIFIER.line, $IDENTIFIER.pos, rt);
     	  }
     	}
-    |   ^(ARRAYACCESS expression expression)
+    |   ^(ARRAYACCESS e1= expression e2= expression) 
+    	{ /*
+    	  if (($e2.t != BasicType.BYTE) && ($e2.t != BasicType.SHORT) && 
+    	      ($e2.t != BasicType.CHAR) && ($e2.t != BasicType.INT)) throw new IncompatibleTypesException(); */  
+    	}
     ;
 
 creator
@@ -387,9 +388,9 @@ creator
     ;
 
 
-createdName
-    :   classType
-    |   primitiveType
+createdName returns [Type t]
+    :   classType     { $t= $classType.t;     }
+    |   primitiveType { $t= $primitiveType.bs; }
     ;
     
 arrayCreatorRest
