@@ -19,11 +19,4 @@ public class LinkedSetList<T> extends LinkedList<T> {
         }
         return false;
     }
-
-    public static void main(String[] args) {
-        LinkedSetList<Variable> lv = new  LinkedSetList<Variable>();
-        lv.add(new Variable("i", null));
-        String s = "i";
-        System.out.println(""+lv.contains(new Variable(s, null)));
-    }
 }
