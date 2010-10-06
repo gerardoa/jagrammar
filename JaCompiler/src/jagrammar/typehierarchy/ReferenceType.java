@@ -562,6 +562,14 @@ public class ReferenceType extends ComplexType {
     private List<Constructor> constructors;
     //i referenceType di String ed Object hanno particolare dignita',
     //quindi divengono delle costanti di classe
-    public static final ReferenceType OBJECT = new ReferenceType("Object");
-    public static final ReferenceType STRING = new ReferenceType("String");
+    public static final ReferenceType OBJECT;
+    public static final ReferenceType STRING;
+    public static final ReferenceType CLASS;
+    static {
+        OBJECT = new ReferenceType("Object");
+        STRING = new ReferenceType("String");
+        STRING.addSuperType(OBJECT);
+        CLASS = new ReferenceType("Class");
+        CLASS.addSuperType(OBJECT);
+    }
 }

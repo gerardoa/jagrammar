@@ -14,6 +14,7 @@ scope JaScope {
 	package jagrammar;
 	
 	import jagrammar.typehierarchy.*;
+	import jagrammar.exception.*;
 	import jagrammar.util.*;
 	import java.util.Map;
 	import java.util.HashMap;
@@ -87,6 +88,37 @@ scope JaScope {
     	    else
     		throw new UnacceptableLocalVariableException(id, getMethodSignature(), line, pos, rt); 
     	}
+    	
+    	
+	private Type plusOperation(CommonTree operator, Type op1, Type op2 ) {
+	    if (op1 == ReferenceType.STRING || op2 == ReferenceType.STRING) {
+	        return ReferenceType.STRING;
+	    }
+	    return arithmeticOperation(operator, op1, op2);
+	}
+
+	private  Type arithmeticOperation(CommonTree operator, Type op1, Type op2) {
+	    // controllo che siano numerici o char
+	    if ( !(op1.isNumeric() && op2.isNumeric()) ) {
+	        throw new CannotBeAppliedToException(operator.getText(), op1.toString(), op2.toString(), operator.getLine(), operator.getCharPositionInLine(), rt);
+	    }
+	    // promozioni
+	    if (op1.isAssignableTo(BasicType.INT)) {
+	        op1 = BasicType.INT;
+	    }
+	    if (op2.isAssignableTo(BasicType.INT)) {
+	        op2 = BasicType.INT;
+	    }
+	    return (op1.isAssignableTo(op2)) ? op2 : op1;	   
+	}
+	
+	private  Type booleanOperation(CommonTree operator, Type op1, Type op2) {
+	    // controllo che siano entrambi boolean
+	    if ( !(op1 == BasicType.BOOLEAN && op2 == BasicType.BOOLEAN) ) {
+	        throw new CannotBeAppliedToException(operator.getText(), op1.toString(), op2.toString(), operator.getLine(), operator.getCharPositionInLine(), rt);
+	    }
+	    return BasicType.BOOLEAN;
+	}
     			 
 }
 
@@ -177,13 +209,14 @@ classType returns [ReferenceType t]
     ;
 
 primitiveType returns [BasicType bs]
-    :   CHAR   { $bs = BasicType.CHAR;   }
-    |   BYTE   { $bs = BasicType.BYTE;   }
-    |   SHORT  { $bs = BasicType.SHORT;  }
-    |   INT    { $bs = BasicType.INT;    }
-    |   LONG   { $bs = BasicType.LONG;   }
-    |   FLOAT  { $bs = BasicType.FLOAT;  }
-    |   DOUBLE { $bs = BasicType.DOUBLE; }
+    :   CHAR    { $bs = BasicType.CHAR;    }
+    |   BYTE    { $bs = BasicType.BYTE;    }
+    |   SHORT   { $bs = BasicType.SHORT;   }
+    |   INT     { $bs = BasicType.INT;     }
+    |   LONG    { $bs = BasicType.LONG;    }
+    |   FLOAT   { $bs = BasicType.FLOAT;   }
+    |   DOUBLE  { $bs = BasicType.DOUBLE;  }
+    |   BOOLEAN { $bs = BasicType.BOOLEAN; }
     ;
     
 formalParameters
@@ -306,17 +339,27 @@ constantExpression
     ;
     
 expression returns [Type t]
-    :   ^(EQ    expression expression)
-    |	^(PLUS  expression expression)
-    |	^(MINUS expression expression)
-    |	^(STAR  expression expression)
-    |	^(SLASH expression expression)
-    |   ^('||'  expression expression) 	 
-    |   ^('&&'  expression expression)
-    |   ^('=='  expression expression)
-    |   ^('!='  expression expression)
-    |	^(INSTANCEOF expression type)
-    |	^(COMPAREOP expression expression)
+    :   ^(EQ    e1=expression e2=expression)  
+    |	^(PLUS  e1=expression e2=expression)  { $t = plusOperation($PLUS, $e1.t, $e2.t);        }
+    |	^(MINUS e1=expression e2=expression)  { $t = arithmeticOperation($MINUS, $e1.t, $e2.t); }
+    |	^(STAR  e1=expression e2=expression)  { $t = arithmeticOperation($STAR, $e1.t, $e2.t);  }
+    |	^(SLASH e1=expression e2=expression)  { $t = arithmeticOperation($SLASH, $e1.t, $e2.t); }
+    |   ^(or='||'  e1=expression e2=expression)  { $t = booleanOperation($or, $e1.t, $e2.t);  }
+    |   ^(and='&&'  e1=expression e2=expression) { $t = booleanOperation($and, $e1.t, $e2.t); }
+    |   ^(eq='=='  e1=expression e2=expression)  { $t = booleanOperation($eq, $e1.t, $e2.t);  }
+    |   ^(nq='!='  expression expression)        { $t = booleanOperation($nq, $e1.t, $e2.t);  }
+    |	^(INSTANCEOF e=expression type)
+        { if ( !($e.t.isComplexType() || $e.t.isNull()) ) throw new UnexpectedTypeException("reference", $e.t.toString(), $INSTANCEOF.line, $INSTANCEOF.pos, rt);
+          if (!$type.t.isComplexType()) throw new UnexpectedTypeException("class or array", $type.t.toString(), $INSTANCEOF.line, $INSTANCEOF.pos, rt);
+          if (!$e.t.isCastableTo($type.t)) throw new InconvertibleTypesException($type.t.toString(), $e.t.toString(), $INSTANCEOF.line, $INSTANCEOF.pos, rt);
+          $t = BasicType.BOOLEAN; 
+        }
+    |	^(COMPAREOP e1=expression e2=expression)
+    	{  if ( !($e1.t.isNumeric() && $e2.t.isNumeric()) ) {
+	        throw new CannotBeAppliedToException($COMPAREOP.text, $e1.t.toString(), $e2.t.toString(), $COMPAREOP.line, $COMPAREOP.pos, rt);
+	    }
+    	   $t = BasicType.BOOLEAN; 
+    	}
     |   ^('%'   expression expression)
     |	^(UNARYPLUS  expression) 
     |   ^(UNARYMINUS expression)
@@ -341,44 +384,48 @@ primary returns [Type t]
     		     if ($t == null) throw new CannotFindSymbolException(("variable " + $IDENTIFIER.text), getMethodSignature(), $IDENTIFIER.line, $IDENTIFIER.pos, rt);
     		   }
     //|   ^(METHODCALL THIS IDENTIFIER arguments? ) riconosciuto in selector
-    |   ^(DOTCLASS ^(ARRAYTYPE type))  
-    |	^(DOTCLASS IDENTIFIER) { $t = new ReferenceType("Class"); }
-    |   ^(DOTCLASS primitiveType)
-    |   ^(DOTCLASS VOID)
+    |   ^(DOTCLASS ^(ARRAYTYPE type)) { $t = ReferenceType.CLASS; }  
+    |	^(DOTCLASS IDENTIFIER)        { $t = ReferenceType.CLASS; }
+    |   ^(DOTCLASS primitiveType)     { $t = ReferenceType.CLASS; }
+    |   ^(DOTCLASS VOID)              { $t = ReferenceType.CLASS; }
     ;
     
 selector returns [Type t]
     :   ^(FIELDACCESS expression IDENTIFIER) 
-    	{ if (!($expression.t instanceof ReferenceType))
+    	{ if (!$expression.t.isReference())
     	  	throw new CannotBeDereferencedException($expression.t, $IDENTIFIER.line, $IDENTIFIER.pos, rt); 
     	  ReferenceType expt = (ReferenceType)$expression.t;
-    	  Type ft;
     	  if (expt.getName() == rt.getName()) 
-    	  	ft = expt.getField(true, $IDENTIFIER.text);
+    	  	$t = expt.getField(true, $IDENTIFIER.text);
     	  else  
-    		ft = expt.getField(false, $IDENTIFIER.text);
-	  if (ft == null) 
+    		$t = expt.getField(false, $IDENTIFIER.text);
+	  if ($t == null) 
 		throw new CannotFindSymbolException(("field " + $IDENTIFIER.text), expt.getName(), $IDENTIFIER.line, $IDENTIFIER.pos, rt);
     	} 
     |	^(METHODCALL expression IDENTIFIER arguments?)
-    	{ if (!($expression.t instanceof ReferenceType))
+    	{ if (!$expression.t.isReference())
     	  	throw new CannotBeDereferencedException($expression.t, $IDENTIFIER.line, $IDENTIFIER.pos, rt); 
     	  ReferenceType expt = (ReferenceType)$expression.t;
-    	  Type mt;
     	  ArrayList<Type> argTypes = $arguments.types; //($arguments.tree == null)?null:$arguments.types;
     	  try {
 	    	if (expt.getName() == rt.getName()) 
-	    		mt = expt.bindMethod(true, $IDENTIFIER.text, argTypes);
+	    		$t = expt.bindMethod(true, $IDENTIFIER.text, argTypes);
 	    	else  
-	    		mt = expt.bindMethod(false, $IDENTIFIER.text, argTypes);
+	    		$t = expt.bindMethod(false, $IDENTIFIER.text, argTypes);
     	  } catch (EarlyBindingException ex) {
     	  	throw new CannotFindSymbolException(("method " + $IDENTIFIER.text + '(' + printArguments(argTypes) + ')'), expt.getName(), $IDENTIFIER.line, $IDENTIFIER.pos, rt);
     	  }
     	}
-    |   ^(ARRAYACCESS e1= expression e2= expression) 
-    	{ /*
-    	  if (($e2.t != BasicType.BYTE) && ($e2.t != BasicType.SHORT) && 
-    	      ($e2.t != BasicType.CHAR) && ($e2.t != BasicType.INT)) throw new IncompatibleTypesException(); */  
+    |   ^(ARRAYACCESS e1=expression e2=expression) 
+    	{ if (!$e1.t.isArray()) throw new ArrayRequiredException($e1.t.toString(), $ARRAYACCESS.line, $ARRAYACCESS.pos, rt);
+    	  if (!$e2.t.isAssignableTo(BasicType.INT)) {
+    	  	if ($e2.t.isCastableTo(	BasicType.INT)) {
+    	  		throw new PossibleLossOfPrecisionException(BasicType.INT.toString(), $e2.t.toString(), $ARRAYACCESS.line, $ARRAYACCESS.pos, rt);
+    	  	} else {
+    	  		throw new IncompatibleTypesException(BasicType.INT.toString(), $e2.t.toString(), $ARRAYACCESS.line, $ARRAYACCESS.pos, rt);
+    	  	}    	       
+    	  }
+    	  $t = ((ArrayType)$e1.t).getHostType(); 
     	}
     ;
 
