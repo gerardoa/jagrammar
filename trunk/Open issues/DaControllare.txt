@@ -2,3 +2,5 @@
 2.arrayCreatorRest OK
 3.superMamberAccess OK
 4. in primary verificare che accetti: this() super() OK
+
+5. EQ[$ap.tree], etc in Ja.g(271)

@@ -155,13 +155,14 @@ classType returns [ReferenceType t]
     ;
 
 primitiveType returns [BasicType bs]
-    :   CHAR   { $bs = BasicType.CHAR;   }
-    |   BYTE   { $bs = BasicType.BYTE;   }
-    |   SHORT  { $bs = BasicType.SHORT;  }
-    |   INT    { $bs = BasicType.INT;    }
-    |   LONG   { $bs = BasicType.LONG;   }
-    |   FLOAT  { $bs = BasicType.FLOAT;  }
-    |   DOUBLE { $bs = BasicType.DOUBLE; }
+    :   CHAR    { $bs = BasicType.CHAR;    }
+    |   BYTE    { $bs = BasicType.BYTE;    }
+    |   SHORT   { $bs = BasicType.SHORT;   }
+    |   INT     { $bs = BasicType.INT;     }
+    |   LONG    { $bs = BasicType.LONG;    }
+    |   FLOAT   { $bs = BasicType.FLOAT;   }
+    |   DOUBLE  { $bs = BasicType.DOUBLE;  }
+    |   BOOLEAN { $bs = BasicType.BOOLEAN; }
     ;
     
 formalParameters returns [ArrayList<Type> args]
@@ -268,20 +269,20 @@ constantExpression
     ;
     
 expression
-    :  orExpression ( ap=assignmentOperator expression)? -> {$ap.c == '='}? ^('=' orExpression expression)
-    							 -> {$ap.c == '+'}? ^(EQ orExpression ^(PLUS  orExpression expression))
-    							 -> {$ap.c == '-'}? ^(EQ orExpression ^(MINUS orExpression expression))
-    							 -> {$ap.c == '*'}? ^(EQ orExpression ^(STAR  orExpression expression))
-    							 -> {$ap.c == '/'}? ^(EQ orExpression ^(SLASH orExpression expression))
+    :  orExpression ( ap=assignmentOperator expression)? -> {$ap.c == '='}? ^(EQ[$ap.tk, "="] orExpression expression)
+    							 -> {$ap.c == '+'}? ^(EQ[$ap.tk, "="] orExpression ^(PLUS[$ap.tk, "+"]  orExpression expression))
+    							 -> {$ap.c == '-'}? ^(EQ[$ap.tk, "="] orExpression ^(MINUS[$ap.tk, "-"] orExpression expression))
+    							 -> {$ap.c == '*'}? ^(EQ[$ap.tk, "="] orExpression ^(STAR[$ap.tk, "*"]  orExpression expression))
+    							 -> {$ap.c == '/'}? ^(EQ[$ap.tk, "="] orExpression ^(SLASH[$ap.tk, "/"] orExpression expression))
     							 ->  orExpression
     ;
     
-assignmentOperator returns [char c]
-    :   '='  { $c = '='; }
-    |   '+=' { $c = '+'; }
-    |   '-=' { $c = '-'; }
-    |   '*=' { $c = '*'; }
-    |   '/=' { $c = '/'; }
+assignmentOperator returns [char c, Token tk]
+    :   t='='  { $c = '='; $tk=$t; }
+    |   t='+=' { $c = '+'; $tk=$t; }
+    |   t='-=' { $c = '-'; $tk=$t; }
+    |   t='*=' { $c = '*'; $tk=$t; }
+    |   t='/=' { $c = '/'; $tk=$t; }
     ;
 
 orExpression
@@ -313,10 +314,10 @@ multiplicativeExpression
     ;
     
 unaryExpression
-    :   '+' unaryExpression -> ^(UNARYPLUS  unaryExpression) 
-    |   '-' unaryExpression -> ^(UNARYMINUS unaryExpression)
-    |   '++' unaryExpression -> ^(PREINC unaryExpression)
-    |   '--' unaryExpression -> ^(PREDEC unaryExpression)
+    :   up='+' unaryExpression -> ^(UNARYPLUS[$up]  unaryExpression) 
+    |   um='-' unaryExpression -> ^(UNARYMINUS[$um] unaryExpression)
+    |   pi='++' unaryExpression -> ^(PREINC[$pi] unaryExpression)
+    |   pd='--' unaryExpression -> ^(PREDEC[$pd] unaryExpression)
     |   unaryExpressionNotPlusMinus
     ;
 
@@ -351,7 +352,7 @@ selector [CommonTree primary]
     |	'.' IDENTIFIER arguments -> ^(METHODCALL {$primary} IDENTIFIER arguments?)
     //|   '.' 'this'
     //|   '.' 'super' superSuffix
-    |   '[' expression ']'-> ^(ARRAYACCESS {$primary} expression)
+    |   lb='[' expression ']'-> ^(ARRAYACCESS[$lb, "ARRAYACCESS"] {$primary} expression)
     ;
 
 /* NON UTILIZZATO

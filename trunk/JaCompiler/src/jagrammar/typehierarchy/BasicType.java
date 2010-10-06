@@ -79,7 +79,7 @@ public enum BasicType implements Type{
 	BOOLEAN	{
 	
 		public boolean isNumeric(){
-			return false;
+			return true;
 		}
 
 		public boolean isAssignableTo(Type t){

@@ -5,7 +5,11 @@
 package jagrammar.util;
 
 import jagrammar.typehierarchy.ArrayType;
+import jagrammar.typehierarchy.BasicType;
+import jagrammar.typehierarchy.CannotBeAppliedToException;
+import jagrammar.typehierarchy.ReferenceType;
 import jagrammar.typehierarchy.Type;
+import org.antlr.runtime.tree.CommonTree;
 
 /**
  *
@@ -24,5 +28,6 @@ public class ParserHelper {
             t = new ArrayType(t);
         }
         return t;
-    }
+    }    
+
 }
