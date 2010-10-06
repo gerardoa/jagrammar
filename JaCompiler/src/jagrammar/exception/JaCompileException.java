@@ -2,8 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package jagrammar.typehierarchy;
+package jagrammar.exception;
 
+import jagrammar.typehierarchy.*;
 /**
  *
  * @author IlianaPetrova
