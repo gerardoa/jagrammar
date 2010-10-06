@@ -1,4 +1,5 @@
-package jagrammar.typehierarchy;
+package jagrammar.exception;
+
 
 public class UnacceptableMethodException extends JaCompileException {
 

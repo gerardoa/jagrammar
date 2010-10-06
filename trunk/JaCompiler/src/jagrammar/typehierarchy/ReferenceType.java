@@ -18,6 +18,8 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Iterator;
 
+import jagrammar.exception.*;
+
 public class ReferenceType extends ComplexType {
 
     public ReferenceType(String n) {

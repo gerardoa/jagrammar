@@ -7,7 +7,8 @@
  *	@version 1.0 11/06/2010
  *
  */
-package jagrammar.typehierarchy;
+package jagrammar.exception;
+
 
 public class UnacceptableConstructorException extends JaCompileException{
 

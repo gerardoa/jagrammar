@@ -4,7 +4,7 @@
  */
 package jagrammar;
 
-import jagrammar.typehierarchy.JaCompileException;
+import jagrammar.exception.*;
 import jagrammar.typehierarchy.ReferenceType;
 import jagrammar.util.LinkedSetList;
 import java.io.FileInputStream;
