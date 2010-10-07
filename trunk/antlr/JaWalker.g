@@ -397,9 +397,14 @@ expression returns [Type t]
     		throw new InconvertibleTypesException($npt.t.toString(), $e.t.toString(), $CAST.line, $CAST.pos, rt);
     	  $t = $npt.t;
     	}
-    |   ^(NEW creator)
-    |	^(POSTINC (selector | primary))
-    |   ^(POSTDEC (selector | primary))
+    |   ^(NEW creator) { $t = $creator.t; }
+    |	^(op=(POSTINC | POSTDEC) (e=selector | e=primary))
+     	{ if (!$e.t.isNumeric()) {
+    	  	throw new CannotBeAppliedToException($op.text, $e.t.toString(), "", $op.line, $op.pos, rt);
+    	  }
+    	  $t = $e.t;
+    	}
+    //|   ^(POSTDEC (selector | primary))
     |   selector { $t = $selector.t; }
     |   primary  { $t = $primary.t; }
     ;        
@@ -458,7 +463,7 @@ selector returns [Type t]
     	}
     ;
 
-creator
+creator returns [Type t]
     :    arrayCreatorRest 
     |    createdName classCreatorRest? 
     ;
