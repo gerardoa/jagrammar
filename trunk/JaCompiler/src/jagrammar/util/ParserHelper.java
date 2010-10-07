@@ -10,6 +10,7 @@ import jagrammar.typehierarchy.ReferenceType;
 import jagrammar.typehierarchy.Type;
 import org.antlr.runtime.tree.CommonTree;
 import jagrammar.exception.*;
+import org.antlr.runtime.Token;
 
 /**
  *
@@ -28,6 +29,11 @@ public class ParserHelper {
             t = new ArrayType(t);
         }
         return t;
-    }    
+    }
+
+    public static void debugCT(CommonTree ct) {
+        Token t = ct.getToken();
+        return;
+    }
 
 }

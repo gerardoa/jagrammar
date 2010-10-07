@@ -20,11 +20,17 @@ public class Test {
     public void metodoProlisso(Test b) {}
 
     public Test metodoProlisso(int i1, int i2, int[][] ia1, int[] ia2, char s, Test t) {
-//Class cl =void.class;
-        int iL0;
-        boolean b = null > 6;
+
+        Test tt;
+        boolean b;
+        int inter = 0;
+  //      int ii = (int) tt;
+        b = true;
+        inter = 3 + 2 * 5;
+        Test a = (Test) b;
+               
         Test o = null;
-        a = o.g();
+        //a = o.g();
         {
             int iL1;
             {
