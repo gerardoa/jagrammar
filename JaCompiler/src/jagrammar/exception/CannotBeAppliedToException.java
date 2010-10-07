@@ -25,6 +25,7 @@ public class CannotBeAppliedToException extends JaCompileException {
 
     @Override
     public String getMessage() {
-        return super.getMessage() + "Operator " + operator + " cannot be applied to " + op1 + ", " + op2;
+        op2 = op2.equals("") ? "" : ", " + op2;
+        return super.getMessage() + "Operator " + operator + " cannot be applied to " + op1 + op2;
     }
 }

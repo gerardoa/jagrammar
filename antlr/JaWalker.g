@@ -21,7 +21,9 @@ scope JaScope {
 	import java.util.LinkedList;
 }
 
-@members { 
+@members {
+
+	private ErrorLogger errorLog = new ErrorLogger(); 
 	private Map<String, ReferenceType> cTab = new HashMap<String, ReferenceType>(); // inizializzazione per ANTLRWORKS
 	private ReferenceType rt;	
 		
@@ -278,11 +280,11 @@ scope JaScope;
 @after {
 	System.out.println("block: " + $JaScope::symbols);
 }
-    :   blockStatement*
+    :   (blockStatement {{ System.out.println("Statement text: " + $blockStatement.text); }})*
     ;
     
 blockStatement
-    :   localVariableDeclarationStatement
+    :   localVariableDeclarationStatement 
     |   statement
     ;
     
@@ -355,19 +357,38 @@ expression returns [Type t]
           $t = BasicType.BOOLEAN; 
         }
     |	^(COMPAREOP e1=expression e2=expression)
-    	{  if ( !($e1.t.isNumeric() && $e2.t.isNumeric()) ) {
-	        throw new CannotBeAppliedToException($COMPAREOP.text, $e1.t.toString(), $e2.t.toString(), $COMPAREOP.line, $COMPAREOP.pos, rt);
-	    }
-    	   $t = BasicType.BOOLEAN; 
+    	{ if ( !($e1.t.isNumeric() && $e2.t.isNumeric()) ) {
+	  	throw new CannotBeAppliedToException($COMPAREOP.text, $e1.t.toString(), $e2.t.toString(), $COMPAREOP.line, $COMPAREOP.pos, rt);
+	  }
+    	  $t = BasicType.BOOLEAN; 
     	}
-    |   ^('%'   expression expression)
-    |	^(UNARYPLUS  expression) 
-    |   ^(UNARYMINUS expression)
-    |   ^(PREINC expression)
-    |   ^(PREDEC expression)  
-    |	^('!' expression)
-    |   ^(CAST primitiveType expression)
-    |   ^(CAST nonPrimitiveType expression)
+    |   ^(mod='%'   e1=expression e2=expression) { $t = arithmeticOperation($mod, $e1.t, $e2.t); }
+    |   ^( op=(UNARYPLUS| UNARYMINUS| PREINC | PREDEC) e=expression) 
+        { if (!$e.t.isNumeric()) {
+    	  	throw new CannotBeAppliedToException($op.text, $e.t.toString(), "", $op.line, $op.pos, rt);
+    	  }
+    	  $t = $e.t;
+    	}
+    //|	  ^(UNARYPLUS  e=expression) 
+    //|   ^(UNARYMINUS e=expression)
+    //|   ^(PREDEC expression)  
+    |	^(op='!' e=expression)
+    	{ if (!($e.t == BasicType.BOOLEAN)) {
+    	  	throw new CannotBeAppliedToException($op.text, $e.t.toString(), "", $op.line, $op.pos, rt);
+    	  }
+    	  $t = BasicType.BOOLEAN;
+    	}
+    |   ^(CAST pt=primitiveType e=expression)
+    	{ System.out.println($CAST.text + "  " + $pt.text + "  " + $e.text); 
+    	  if (!$e.t.isCastableTo($pt.bs))
+    		throw new InconvertibleTypesException($pt.bs.toString(), $e.t.toString(), $CAST.line, $CAST.pos, rt);
+    	  $t = $pt.bs;
+    	}
+    |   ^(CAST npt=nonPrimitiveType e=expression)
+    	{ if (!$e.t.isCastableTo($npt.t))
+    		throw new InconvertibleTypesException($npt.t.toString(), $e.t.toString(), $CAST.line, $CAST.pos, rt);
+    	  $t = $npt.t;
+    	}
     |   ^(NEW creator)
     |	^(POSTINC (selector | primary))
     |   ^(POSTDEC (selector | primary))

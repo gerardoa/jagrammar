@@ -323,11 +323,11 @@ unaryExpression
 
 unaryExpressionNotPlusMinus
     :	'!'^ unaryExpression
-    |  	('(' primitiveType ')')  => '(' primitiveType ')' unaryExpression
-    		-> ^(CAST primitiveType unaryExpression)
+    |  	('(' primitiveType ')')  => lp='(' primitiveType ')' unaryExpression
+    		-> ^(CAST[$lp, "CAST"] primitiveType unaryExpression)
     // possibile ottimizzazione su unaryExpressionNotPlusMinus
-    |   ('(' nonPrimitiveType  ')' unaryExpressionNotPlusMinus) => '(' nonPrimitiveType  ')' unaryExpressionNotPlusMinus
-    		-> ^(CAST nonPrimitiveType unaryExpressionNotPlusMinus)
+    |   ('(' nonPrimitiveType  ')' unaryExpressionNotPlusMinus) => lp='(' nonPrimitiveType  ')' unaryExpressionNotPlusMinus
+    		-> ^(CAST[$lp, "CAST"] nonPrimitiveType unaryExpressionNotPlusMinus)
     |   NEW^ creator
     |   (primary -> primary)  (selector[(CommonTree)$unaryExpressionNotPlusMinus.tree] -> selector)* 
     		('++' -> ^(POSTINC $unaryExpressionNotPlusMinus) | '--' -> ^(POSTDEC $unaryExpressionNotPlusMinus) )? 
