@@ -26,8 +26,9 @@ public class Test {
         int inter = 0;
   //      int ii = (int) tt;
         b = true;
-        inter = 3 + 2 * 5;
+        inter = 3 + "" * 5;
         Test a = (Test) b;
+
                
         Test o = null;
         //a = o.g();
