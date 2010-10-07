@@ -121,6 +121,14 @@ scope JaScope {
 	    }
 	    return BasicType.BOOLEAN;
 	}
+    	
+    	/** Verifica che sia stato assegnato un tipo di ritorno a tutte le sottoregole. 
+    	*/	
+    	private boolean ruleTypeCheck(Type ... rt) {
+    	    for (int i = 0; i < rt.length; i++)
+        	if (rt[i] == null) return false;
+  	    return true;
+    	}
     			 
 }
 
