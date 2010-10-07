@@ -1,4 +1,4 @@
-// $ANTLR 3.2 Sep 23, 2009 12:02:23 /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g 2010-10-07 22:49:55
+// $ANTLR 3.2 Sep 23, 2009 12:02:23 D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g 2010-10-07 23:55:19
 
 	package jagrammar;
 	
@@ -19,111 +19,111 @@ public class JaWalker extends TreeParser {
     public static final String[] tokenNames = new String[] {
         "<invalid>", "<EOR>", "<DOWN>", "<UP>", "METHODCALL", "CONSTRCALL", "FIELDACCESS", "ARRAYACCESS", "DOTCLASS", "ARRAYTYPE", "METHOD", "FIELD", "CONSTR", "FPARMS", "ARGUMENTS", "FPARM", "FMULTPARM", "MBODY", "CBODY", "VARDECL", "BLOCK", "STMT", "INIT", "CONDITION", "UPDATE", "DOWHILE", "THEN", "ARRAYINIT", "PREINC", "POSTINC", "PREDEC", "POSTDEC", "UNARYPLUS", "UNARYMINUS", "CAST", "CLASS", "IDENTIFIER", "EXTENDS", "PUBLIC", "VOID", "PRIVATE", "CHAR", "BYTE", "SHORT", "INT", "LONG", "FLOAT", "DOUBLE", "BOOLEAN", "THIS", "SUPER", "INTLITERAL", "LONGLITERAL", "FLOATLITERAL", "DOUBLELITERAL", "CHARLITERAL", "STRINGLITERAL", "BOOLEANLITERAL", "NULLLITERAL", "IF", "FOR", "WHILE", "DO", "RETURN", "ELSE", "INSTANCEOF", "COMPAREOP", "NEW", "Digit", "IntegerNumber", "LongSuffix", "Exponent", "FloatingPointLiteral", "FloatSuffix", "DoubleSuffix", "EscapeSequence", "WS", "COMMENT", "LINE_COMMENT", "EQ", "PLUS", "MINUS", "STAR", "SLASH", "Letter", "Currency", "';'", "'{'", "'}'", "','", "'['", "']'", "'('", "')'", "'...'", "'+='", "'-='", "'*='", "'/='", "'||'", "'&&'", "'=='", "'!='", "'%'", "'++'", "'--'", "'!'", "'.'"
     };
-    public static final int STMT=21;
-    public static final int CONSTR=12;
-    public static final int MINUS=81;
-    public static final int ARRAYACCESS=7;
-    public static final int UNARYMINUS=33;
-    public static final int DOUBLE=47;
-    public static final int METHOD=10;
-    public static final int THEN=26;
-    public static final int FPARM=15;
-    public static final int IntegerNumber=69;
-    public static final int ARRAYINIT=27;
-    public static final int PREDEC=30;
-    public static final int FIELDACCESS=6;
-    public static final int PRIVATE=40;
-    public static final int Letter=84;
-    public static final int INTLITERAL=51;
-    public static final int CONDITION=23;
-    public static final int PREINC=28;
-    public static final int T__96=96;
-    public static final int MBODY=17;
-    public static final int CBODY=18;
-    public static final int STRINGLITERAL=56;
-    public static final int CHARLITERAL=55;
-    public static final int PLUS=80;
-    public static final int EXTENDS=37;
-    public static final int POSTDEC=31;
-    public static final int UNARYPLUS=32;
-    public static final int DOUBLELITERAL=54;
-    public static final int SUPER=50;
-    public static final int ARGUMENTS=14;
-    public static final int T__89=89;
-    public static final int LongSuffix=70;
-    public static final int WS=76;
-    public static final int CHAR=41;
-    public static final int NEW=67;
-    public static final int EQ=79;
-    public static final int UPDATE=24;
-    public static final int T__92=92;
-    public static final int T__88=88;
-    public static final int LINE_COMMENT=78;
-    public static final int DOTCLASS=8;
-    public static final int FIELD=11;
-    public static final int POSTINC=29;
-    public static final int T__90=90;
-    public static final int BOOLEAN=48;
-    public static final int ELSE=64;
-    public static final int T__91=91;
-    public static final int BOOLEANLITERAL=57;
-    public static final int CONSTRCALL=5;
-    public static final int IDENTIFIER=36;
-    public static final int T__93=93;
-    public static final int SHORT=43;
-    public static final int ARRAYTYPE=9;
-    public static final int VARDECL=19;
-    public static final int PUBLIC=38;
-    public static final int LONG=45;
-    public static final int T__86=86;
-    public static final int T__94=94;
-    public static final int Digit=68;
-    public static final int T__100=100;
-    public static final int T__95=95;
-    public static final int FLOAT=46;
     public static final int CAST=34;
-    public static final int T__101=101;
-    public static final int FLOATLITERAL=53;
-    public static final int INIT=22;
     public static final int FMULTPARM=16;
-    public static final int T__104=104;
-    public static final int T__107=107;
-    public static final int DOWHILE=25;
-    public static final int T__87=87;
-    public static final int BLOCK=20;
-    public static final int T__106=106;
-    public static final int EscapeSequence=75;
-    public static final int INT=44;
-    public static final int COMPAREOP=66;
-    public static final int VOID=39;
-    public static final int INSTANCEOF=65;
-    public static final int LONGLITERAL=52;
-    public static final int NULLLITERAL=58;
-    public static final int FloatingPointLiteral=72;
-    public static final int T__98=98;
-    public static final int DoubleSuffix=74;
-    public static final int Exponent=71;
-    public static final int FloatSuffix=73;
-    public static final int DO=62;
-    public static final int SLASH=83;
-    public static final int WHILE=61;
-    public static final int Currency=85;
-    public static final int T__99=99;
-    public static final int COMMENT=77;
-    public static final int THIS=49;
-    public static final int T__103=103;
-    public static final int CLASS=35;
-    public static final int RETURN=63;
-    public static final int T__97=97;
-    public static final int METHODCALL=4;
-    public static final int BYTE=42;
-    public static final int T__105=105;
-    public static final int IF=59;
-    public static final int FPARMS=13;
-    public static final int EOF=-1;
-    public static final int FOR=60;
     public static final int STAR=82;
+    public static final int WHILE=61;
+    public static final int UNARYMINUS=33;
+    public static final int PREDEC=30;
+    public static final int CHAR=41;
+    public static final int BOOLEANLITERAL=57;
+    public static final int NEW=67;
+    public static final int DO=62;
+    public static final int CONDITION=23;
+    public static final int UNARYPLUS=32;
+    public static final int EOF=-1;
+    public static final int Currency=85;
+    public static final int T__93=93;
+    public static final int T__94=94;
+    public static final int T__91=91;
+    public static final int T__92=92;
+    public static final int T__90=90;
+    public static final int FloatSuffix=73;
+    public static final int RETURN=63;
+    public static final int THIS=49;
+    public static final int CBODY=18;
+    public static final int DOUBLE=47;
+    public static final int VOID=39;
+    public static final int SUPER=50;
+    public static final int EQ=79;
+    public static final int COMMENT=77;
+    public static final int T__99=99;
+    public static final int T__98=98;
+    public static final int T__97=97;
+    public static final int T__96=96;
+    public static final int T__95=95;
+    public static final int ARGUMENTS=14;
+    public static final int LINE_COMMENT=78;
+    public static final int PRIVATE=40;
+    public static final int ELSE=64;
+    public static final int DOUBLELITERAL=54;
+    public static final int INT=44;
+    public static final int INTLITERAL=51;
+    public static final int T__87=87;
+    public static final int T__86=86;
+    public static final int T__89=89;
+    public static final int T__88=88;
+    public static final int LongSuffix=70;
+    public static final int LONGLITERAL=52;
+    public static final int WS=76;
+    public static final int FIELDACCESS=6;
+    public static final int FloatingPointLiteral=72;
+    public static final int CHARLITERAL=55;
+    public static final int FPARM=15;
+    public static final int FIELD=11;
+    public static final int METHODCALL=4;
+    public static final int POSTINC=29;
+    public static final int INIT=22;
+    public static final int Letter=84;
+    public static final int EscapeSequence=75;
+    public static final int POSTDEC=31;
+    public static final int CLASS=35;
+    public static final int STMT=21;
+    public static final int IntegerNumber=69;
+    public static final int MBODY=17;
+    public static final int ARRAYTYPE=9;
+    public static final int UPDATE=24;
+    public static final int Exponent=71;
+    public static final int FOR=60;
+    public static final int FLOAT=46;
+    public static final int VARDECL=19;
+    public static final int DOTCLASS=8;
+    public static final int CONSTR=12;
+    public static final int IF=59;
+    public static final int SLASH=83;
+    public static final int CONSTRCALL=5;
+    public static final int BOOLEAN=48;
+    public static final int THEN=26;
+    public static final int T__107=107;
+    public static final int NULLLITERAL=58;
+    public static final int IDENTIFIER=36;
+    public static final int T__103=103;
+    public static final int ARRAYINIT=27;
+    public static final int PREINC=28;
+    public static final int T__104=104;
+    public static final int T__105=105;
+    public static final int T__106=106;
+    public static final int PLUS=80;
+    public static final int ARRAYACCESS=7;
+    public static final int BYTE=42;
+    public static final int SHORT=43;
     public static final int T__102=102;
+    public static final int INSTANCEOF=65;
+    public static final int T__101=101;
+    public static final int FPARMS=13;
+    public static final int T__100=100;
+    public static final int MINUS=81;
+    public static final int Digit=68;
+    public static final int DoubleSuffix=74;
+    public static final int STRINGLITERAL=56;
+    public static final int BLOCK=20;
+    public static final int LONG=45;
+    public static final int FLOATLITERAL=53;
+    public static final int PUBLIC=38;
+    public static final int EXTENDS=37;
+    public static final int COMPAREOP=66;
+    public static final int METHOD=10;
+    public static final int DOWHILE=25;
 
     // delegates
     // delegators
@@ -145,7 +145,7 @@ public class JaWalker extends TreeParser {
         
 
     public String[] getTokenNames() { return JaWalker.tokenNames; }
-    public String getGrammarFileName() { return "/Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g"; }
+    public String getGrammarFileName() { return "D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g"; }
 
 
 
@@ -214,7 +214,7 @@ public class JaWalker extends TreeParser {
     	    if(!isDefined(id))
         	    	((JaScope_scope)JaScope_stack.peek()).symbols.put(id, t);
         	    else
-        		throw new UnacceptableLocalVariableException(id, getMethodSignature(), line, pos, rt); 
+        		errorLog.add(new UnacceptableLocalVariableException(id, getMethodSignature(), line, pos, rt)); 
         	}
         	
         	
@@ -228,7 +228,7 @@ public class JaWalker extends TreeParser {
     	private  Type arithmeticOperation(CommonTree operator, Type op1, Type op2) {
     	    // controllo che siano numerici o char
     	    if ( !(op1.isNumeric() && op2.isNumeric()) ) {
-    	        throw new CannotBeAppliedToException(operator.getText(), op1.toString(), op2.toString(), operator.getLine(), operator.getCharPositionInLine(), rt);
+    	        errorLog.add(new CannotBeAppliedToException(operator.getText(), op1.toString(), op2.toString(), operator.getLine(), operator.getCharPositionInLine(), rt));
     	    }
     	    // promozioni
     	    if (op1.isAssignableTo(BasicType.INT)) {
@@ -243,7 +243,7 @@ public class JaWalker extends TreeParser {
     	private  Type booleanOperation(CommonTree operator, Type op1, Type op2) {
     	    // controllo che siano entrambi boolean
     	    if ( !(op1 == BasicType.BOOLEAN && op2 == BasicType.BOOLEAN) ) {
-    	        throw new CannotBeAppliedToException(operator.getText(), op1.toString(), op2.toString(), operator.getLine(), operator.getCharPositionInLine(), rt);
+    	        errorLog.add(new CannotBeAppliedToException(operator.getText(), op1.toString(), op2.toString(), operator.getLine(), operator.getCharPositionInLine(), rt));
     	    }
     	    return BasicType.BOOLEAN;
     	}
@@ -260,19 +260,22 @@ public class JaWalker extends TreeParser {
 
 
     // $ANTLR start "compilationUnit"
-    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:136:1: compilationUnit : classDeclaration ;
+    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:136:1: compilationUnit : classDeclaration ;
     public final void compilationUnit() throws RecognitionException {
         try {
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:137:5: ( classDeclaration )
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:137:8: classDeclaration
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:140:5: ( classDeclaration )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:140:8: classDeclaration
             {
-            pushFollow(FOLLOW_classDeclaration_in_compilationUnit56);
+            pushFollow(FOLLOW_classDeclaration_in_compilationUnit61);
             classDeclaration();
 
             state._fsp--;
 
 
             }
+
+
+            	System.out.println("ERROR LOG:" + errorLog);
 
         }
         catch (RecognitionException re) {
@@ -287,17 +290,17 @@ public class JaWalker extends TreeParser {
 
 
     // $ANTLR start "classDeclaration"
-    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:140:1: classDeclaration : ^( CLASS IDENTIFIER ( classType )? classBody ) ;
+    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:143:1: classDeclaration : ^( CLASS IDENTIFIER ( classType )? classBody ) ;
     public final void classDeclaration() throws RecognitionException {
         try {
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:141:5: ( ^( CLASS IDENTIFIER ( classType )? classBody ) )
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:141:9: ^( CLASS IDENTIFIER ( classType )? classBody )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:144:5: ( ^( CLASS IDENTIFIER ( classType )? classBody ) )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:144:9: ^( CLASS IDENTIFIER ( classType )? classBody )
             {
-            match(input,CLASS,FOLLOW_CLASS_in_classDeclaration81); 
+            match(input,CLASS,FOLLOW_CLASS_in_classDeclaration86); 
 
             match(input, Token.DOWN, null); 
-            match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_classDeclaration83); 
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:141:28: ( classType )?
+            match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_classDeclaration88); 
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:144:28: ( classType )?
             int alt1=2;
             int LA1_0 = input.LA(1);
 
@@ -306,9 +309,9 @@ public class JaWalker extends TreeParser {
             }
             switch (alt1) {
                 case 1 :
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:141:28: classType
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:144:28: classType
                     {
-                    pushFollow(FOLLOW_classType_in_classDeclaration85);
+                    pushFollow(FOLLOW_classType_in_classDeclaration90);
                     classType();
 
                     state._fsp--;
@@ -319,7 +322,7 @@ public class JaWalker extends TreeParser {
 
             }
 
-            pushFollow(FOLLOW_classBody_in_classDeclaration88);
+            pushFollow(FOLLOW_classBody_in_classDeclaration93);
             classBody();
 
             state._fsp--;
@@ -343,13 +346,13 @@ public class JaWalker extends TreeParser {
 
 
     // $ANTLR start "classBody"
-    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:144:1: classBody : ( classBodyDeclaration )* ;
+    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:147:1: classBody : ( classBodyDeclaration )* ;
     public final void classBody() throws RecognitionException {
         try {
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:145:5: ( ( classBodyDeclaration )* )
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:145:9: ( classBodyDeclaration )*
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:148:5: ( ( classBodyDeclaration )* )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:148:9: ( classBodyDeclaration )*
             {
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:145:9: ( classBodyDeclaration )*
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:148:9: ( classBodyDeclaration )*
             loop2:
             do {
                 int alt2=2;
@@ -362,9 +365,9 @@ public class JaWalker extends TreeParser {
 
                 switch (alt2) {
             	case 1 :
-            	    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:145:9: classBodyDeclaration
+            	    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:148:9: classBodyDeclaration
             	    {
-            	    pushFollow(FOLLOW_classBodyDeclaration_in_classBody115);
+            	    pushFollow(FOLLOW_classBodyDeclaration_in_classBody120);
             	    classBodyDeclaration();
 
             	    state._fsp--;
@@ -394,13 +397,13 @@ public class JaWalker extends TreeParser {
 
 
     // $ANTLR start "classBodyDeclaration"
-    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:148:1: classBodyDeclaration : memberDeclaration ;
+    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:151:1: classBodyDeclaration : memberDeclaration ;
     public final void classBodyDeclaration() throws RecognitionException {
         try {
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:149:5: ( memberDeclaration )
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:149:9: memberDeclaration
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:152:5: ( memberDeclaration )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:152:9: memberDeclaration
             {
-            pushFollow(FOLLOW_memberDeclaration_in_classBodyDeclaration135);
+            pushFollow(FOLLOW_memberDeclaration_in_classBodyDeclaration140);
             memberDeclaration();
 
             state._fsp--;
@@ -421,10 +424,10 @@ public class JaWalker extends TreeParser {
 
 
     // $ANTLR start "memberDeclaration"
-    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:152:1: memberDeclaration : ( fieldDeclaration | methodAndConstructorDeclaration );
+    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:155:1: memberDeclaration : ( fieldDeclaration | methodAndConstructorDeclaration );
     public final void memberDeclaration() throws RecognitionException {
         try {
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:153:5: ( fieldDeclaration | methodAndConstructorDeclaration )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:156:5: ( fieldDeclaration | methodAndConstructorDeclaration )
             int alt3=2;
             int LA3_0 = input.LA(1);
 
@@ -442,9 +445,9 @@ public class JaWalker extends TreeParser {
             }
             switch (alt3) {
                 case 1 :
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:153:9: fieldDeclaration
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:156:9: fieldDeclaration
                     {
-                    pushFollow(FOLLOW_fieldDeclaration_in_memberDeclaration158);
+                    pushFollow(FOLLOW_fieldDeclaration_in_memberDeclaration163);
                     fieldDeclaration();
 
                     state._fsp--;
@@ -453,9 +456,9 @@ public class JaWalker extends TreeParser {
                     }
                     break;
                 case 2 :
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:154:7: methodAndConstructorDeclaration
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:157:7: methodAndConstructorDeclaration
                     {
-                    pushFollow(FOLLOW_methodAndConstructorDeclaration_in_memberDeclaration166);
+                    pushFollow(FOLLOW_methodAndConstructorDeclaration_in_memberDeclaration171);
                     methodAndConstructorDeclaration();
 
                     state._fsp--;
@@ -478,7 +481,7 @@ public class JaWalker extends TreeParser {
 
 
     // $ANTLR start "methodAndConstructorDeclaration"
-    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:157:1: methodAndConstructorDeclaration : ( ^( METHOD modifier type methodDeclaration ) | ^( METHOD modifier VOID IDENTIFIER voidMethodDeclaratorRest ) | ^( CONSTR modifier IDENTIFIER ( formalParameters )? ( constructorBody )? ) );
+    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:160:1: methodAndConstructorDeclaration : ( ^( METHOD modifier type methodDeclaration ) | ^( METHOD modifier VOID IDENTIFIER voidMethodDeclaratorRest ) | ^( CONSTR modifier IDENTIFIER ( formalParameters )? ( constructorBody )? ) );
     public final void methodAndConstructorDeclaration() throws RecognitionException {
         JaScope_stack.push(new JaScope_scope());
 
@@ -490,7 +493,7 @@ public class JaWalker extends TreeParser {
         	formalParameters = new LinkedList<String>();
 
         try {
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:166:5: ( ^( METHOD modifier type methodDeclaration ) | ^( METHOD modifier VOID IDENTIFIER voidMethodDeclaratorRest ) | ^( CONSTR modifier IDENTIFIER ( formalParameters )? ( constructorBody )? ) )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:169:5: ( ^( METHOD modifier type methodDeclaration ) | ^( METHOD modifier VOID IDENTIFIER voidMethodDeclaratorRest ) | ^( CONSTR modifier IDENTIFIER ( formalParameters )? ( constructorBody )? ) )
             int alt6=3;
             int LA6_0 = input.LA(1);
 
@@ -503,11 +506,11 @@ public class JaWalker extends TreeParser {
                     if ( (LA6_3==PUBLIC||LA6_3==PRIVATE) ) {
                         int LA6_4 = input.LA(4);
 
-                        if ( (LA6_4==ARRAYTYPE||LA6_4==IDENTIFIER||(LA6_4>=CHAR && LA6_4<=BOOLEAN)) ) {
-                            alt6=1;
-                        }
-                        else if ( (LA6_4==VOID) ) {
+                        if ( (LA6_4==VOID) ) {
                             alt6=2;
+                        }
+                        else if ( (LA6_4==ARRAYTYPE||LA6_4==IDENTIFIER||(LA6_4>=CHAR && LA6_4<=BOOLEAN)) ) {
+                            alt6=1;
                         }
                         else {
                             NoViableAltException nvae =
@@ -541,22 +544,22 @@ public class JaWalker extends TreeParser {
             }
             switch (alt6) {
                 case 1 :
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:166:9: ^( METHOD modifier type methodDeclaration )
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:169:9: ^( METHOD modifier type methodDeclaration )
                     {
-                    match(input,METHOD,FOLLOW_METHOD_in_methodAndConstructorDeclaration205); 
+                    match(input,METHOD,FOLLOW_METHOD_in_methodAndConstructorDeclaration210); 
 
                     match(input, Token.DOWN, null); 
-                    pushFollow(FOLLOW_modifier_in_methodAndConstructorDeclaration207);
+                    pushFollow(FOLLOW_modifier_in_methodAndConstructorDeclaration212);
                     modifier();
 
                     state._fsp--;
 
-                    pushFollow(FOLLOW_type_in_methodAndConstructorDeclaration209);
+                    pushFollow(FOLLOW_type_in_methodAndConstructorDeclaration214);
                     type();
 
                     state._fsp--;
 
-                    pushFollow(FOLLOW_methodDeclaration_in_methodAndConstructorDeclaration212);
+                    pushFollow(FOLLOW_methodDeclaration_in_methodAndConstructorDeclaration217);
                     methodDeclaration();
 
                     state._fsp--;
@@ -567,20 +570,20 @@ public class JaWalker extends TreeParser {
                     }
                     break;
                 case 2 :
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:167:9: ^( METHOD modifier VOID IDENTIFIER voidMethodDeclaratorRest )
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:170:9: ^( METHOD modifier VOID IDENTIFIER voidMethodDeclaratorRest )
                     {
-                    match(input,METHOD,FOLLOW_METHOD_in_methodAndConstructorDeclaration227); 
+                    match(input,METHOD,FOLLOW_METHOD_in_methodAndConstructorDeclaration232); 
 
                     match(input, Token.DOWN, null); 
-                    pushFollow(FOLLOW_modifier_in_methodAndConstructorDeclaration229);
+                    pushFollow(FOLLOW_modifier_in_methodAndConstructorDeclaration234);
                     modifier();
 
                     state._fsp--;
 
-                    match(input,VOID,FOLLOW_VOID_in_methodAndConstructorDeclaration231); 
-                    IDENTIFIER1=(CommonTree)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_methodAndConstructorDeclaration233); 
+                    match(input,VOID,FOLLOW_VOID_in_methodAndConstructorDeclaration236); 
+                    IDENTIFIER1=(CommonTree)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_methodAndConstructorDeclaration238); 
                      ((JaScope_scope)JaScope_stack.peek()).name = (IDENTIFIER1!=null?IDENTIFIER1.getText():null); 
-                    pushFollow(FOLLOW_voidMethodDeclaratorRest_in_methodAndConstructorDeclaration237);
+                    pushFollow(FOLLOW_voidMethodDeclaratorRest_in_methodAndConstructorDeclaration242);
                     voidMethodDeclaratorRest();
 
                     state._fsp--;
@@ -591,19 +594,19 @@ public class JaWalker extends TreeParser {
                     }
                     break;
                 case 3 :
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:168:9: ^( CONSTR modifier IDENTIFIER ( formalParameters )? ( constructorBody )? )
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:171:9: ^( CONSTR modifier IDENTIFIER ( formalParameters )? ( constructorBody )? )
                     {
-                    match(input,CONSTR,FOLLOW_CONSTR_in_methodAndConstructorDeclaration252); 
+                    match(input,CONSTR,FOLLOW_CONSTR_in_methodAndConstructorDeclaration257); 
 
                     match(input, Token.DOWN, null); 
-                    pushFollow(FOLLOW_modifier_in_methodAndConstructorDeclaration254);
+                    pushFollow(FOLLOW_modifier_in_methodAndConstructorDeclaration259);
                     modifier();
 
                     state._fsp--;
 
-                    IDENTIFIER2=(CommonTree)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_methodAndConstructorDeclaration256); 
+                    IDENTIFIER2=(CommonTree)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_methodAndConstructorDeclaration261); 
                      ((JaScope_scope)JaScope_stack.peek()).name = (IDENTIFIER2!=null?IDENTIFIER2.getText():null); 
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:168:77: ( formalParameters )?
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:171:77: ( formalParameters )?
                     int alt4=2;
                     int LA4_0 = input.LA(1);
 
@@ -612,9 +615,9 @@ public class JaWalker extends TreeParser {
                     }
                     switch (alt4) {
                         case 1 :
-                            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:168:77: formalParameters
+                            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:171:77: formalParameters
                             {
-                            pushFollow(FOLLOW_formalParameters_in_methodAndConstructorDeclaration260);
+                            pushFollow(FOLLOW_formalParameters_in_methodAndConstructorDeclaration265);
                             formalParameters();
 
                             state._fsp--;
@@ -625,7 +628,7 @@ public class JaWalker extends TreeParser {
 
                     }
 
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:168:95: ( constructorBody )?
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:171:95: ( constructorBody )?
                     int alt5=2;
                     int LA5_0 = input.LA(1);
 
@@ -634,9 +637,9 @@ public class JaWalker extends TreeParser {
                     }
                     switch (alt5) {
                         case 1 :
-                            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:168:95: constructorBody
+                            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:171:95: constructorBody
                             {
-                            pushFollow(FOLLOW_constructorBody_in_methodAndConstructorDeclaration263);
+                            pushFollow(FOLLOW_constructorBody_in_methodAndConstructorDeclaration268);
                             constructorBody();
 
                             state._fsp--;
@@ -672,22 +675,22 @@ public class JaWalker extends TreeParser {
 
 
     // $ANTLR start "methodDeclaration"
-    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:172:1: methodDeclaration : IDENTIFIER formalParameters methodBody ;
+    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:175:1: methodDeclaration : IDENTIFIER formalParameters methodBody ;
     public final void methodDeclaration() throws RecognitionException {
         CommonTree IDENTIFIER3=null;
 
         try {
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:173:5: ( IDENTIFIER formalParameters methodBody )
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:173:9: IDENTIFIER formalParameters methodBody
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:176:5: ( IDENTIFIER formalParameters methodBody )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:176:9: IDENTIFIER formalParameters methodBody
             {
-            IDENTIFIER3=(CommonTree)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_methodDeclaration294); 
+            IDENTIFIER3=(CommonTree)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_methodDeclaration299); 
              ((JaScope_scope)JaScope_stack.peek()).name = (IDENTIFIER3!=null?IDENTIFIER3.getText():null); 
-            pushFollow(FOLLOW_formalParameters_in_methodDeclaration298);
+            pushFollow(FOLLOW_formalParameters_in_methodDeclaration303);
             formalParameters();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_methodBody_in_methodDeclaration300);
+            pushFollow(FOLLOW_methodBody_in_methodDeclaration305);
             methodBody();
 
             state._fsp--;
@@ -708,21 +711,21 @@ public class JaWalker extends TreeParser {
 
 
     // $ANTLR start "fieldDeclaration"
-    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:176:1: fieldDeclaration : ^( FIELD modifier variableDeclarator ) ;
+    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:179:1: fieldDeclaration : ^( FIELD modifier variableDeclarator ) ;
     public final void fieldDeclaration() throws RecognitionException {
         try {
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:177:5: ( ^( FIELD modifier variableDeclarator ) )
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:177:9: ^( FIELD modifier variableDeclarator )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:180:5: ( ^( FIELD modifier variableDeclarator ) )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:180:9: ^( FIELD modifier variableDeclarator )
             {
-            match(input,FIELD,FOLLOW_FIELD_in_fieldDeclaration320); 
+            match(input,FIELD,FOLLOW_FIELD_in_fieldDeclaration325); 
 
             match(input, Token.DOWN, null); 
-            pushFollow(FOLLOW_modifier_in_fieldDeclaration322);
+            pushFollow(FOLLOW_modifier_in_fieldDeclaration327);
             modifier();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_variableDeclarator_in_fieldDeclaration324);
+            pushFollow(FOLLOW_variableDeclarator_in_fieldDeclaration329);
             variableDeclarator();
 
             state._fsp--;
@@ -745,18 +748,18 @@ public class JaWalker extends TreeParser {
 
 
     // $ANTLR start "voidMethodDeclaratorRest"
-    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:180:1: voidMethodDeclaratorRest : formalParameters methodBody ;
+    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:183:1: voidMethodDeclaratorRest : formalParameters methodBody ;
     public final void voidMethodDeclaratorRest() throws RecognitionException {
         try {
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:181:5: ( formalParameters methodBody )
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:181:7: formalParameters methodBody
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:184:5: ( formalParameters methodBody )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:184:7: formalParameters methodBody
             {
-            pushFollow(FOLLOW_formalParameters_in_voidMethodDeclaratorRest347);
+            pushFollow(FOLLOW_formalParameters_in_voidMethodDeclaratorRest352);
             formalParameters();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_methodBody_in_voidMethodDeclaratorRest349);
+            pushFollow(FOLLOW_methodBody_in_voidMethodDeclaratorRest354);
             methodBody();
 
             state._fsp--;
@@ -781,7 +784,7 @@ public class JaWalker extends TreeParser {
     };
 
     // $ANTLR start "variableDeclarator"
-    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:184:1: variableDeclarator returns [CommonTree id, Type t] : variableDeclaratorId ( variableInitializer )? ;
+    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:187:1: variableDeclarator returns [CommonTree id, Type t] : variableDeclaratorId ( variableInitializer )? ;
     public final JaWalker.variableDeclarator_return variableDeclarator() throws RecognitionException {
         JaWalker.variableDeclarator_return retval = new JaWalker.variableDeclarator_return();
         retval.start = input.LT(1);
@@ -790,16 +793,16 @@ public class JaWalker extends TreeParser {
 
 
         try {
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:185:5: ( variableDeclaratorId ( variableInitializer )? )
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:185:9: variableDeclaratorId ( variableInitializer )?
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:188:5: ( variableDeclaratorId ( variableInitializer )? )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:188:9: variableDeclaratorId ( variableInitializer )?
             {
-            pushFollow(FOLLOW_variableDeclaratorId_in_variableDeclarator372);
+            pushFollow(FOLLOW_variableDeclaratorId_in_variableDeclarator377);
             variableDeclaratorId4=variableDeclaratorId();
 
             state._fsp--;
 
              retval.id = (variableDeclaratorId4!=null?variableDeclaratorId4.id:null); retval.t = (variableDeclaratorId4!=null?variableDeclaratorId4.t:null); 
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:185:96: ( variableInitializer )?
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:188:96: ( variableInitializer )?
             int alt7=2;
             int LA7_0 = input.LA(1);
 
@@ -808,9 +811,9 @@ public class JaWalker extends TreeParser {
             }
             switch (alt7) {
                 case 1 :
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:185:97: variableInitializer
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:188:97: variableInitializer
                     {
-                    pushFollow(FOLLOW_variableInitializer_in_variableDeclarator377);
+                    pushFollow(FOLLOW_variableInitializer_in_variableDeclarator382);
                     variableInitializer();
 
                     state._fsp--;
@@ -841,7 +844,7 @@ public class JaWalker extends TreeParser {
     };
 
     // $ANTLR start "variableDeclaratorId"
-    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:188:1: variableDeclaratorId returns [CommonTree id, Type t] : type IDENTIFIER ;
+    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:191:1: variableDeclaratorId returns [CommonTree id, Type t] : type IDENTIFIER ;
     public final JaWalker.variableDeclaratorId_return variableDeclaratorId() throws RecognitionException {
         JaWalker.variableDeclaratorId_return retval = new JaWalker.variableDeclaratorId_return();
         retval.start = input.LT(1);
@@ -851,15 +854,15 @@ public class JaWalker extends TreeParser {
 
 
         try {
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:189:5: ( type IDENTIFIER )
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:189:9: type IDENTIFIER
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:192:5: ( type IDENTIFIER )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:192:9: type IDENTIFIER
             {
-            pushFollow(FOLLOW_type_in_variableDeclaratorId406);
+            pushFollow(FOLLOW_type_in_variableDeclaratorId411);
             type6=type();
 
             state._fsp--;
 
-            IDENTIFIER5=(CommonTree)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_variableDeclaratorId408); 
+            IDENTIFIER5=(CommonTree)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_variableDeclaratorId413); 
              retval.id = IDENTIFIER5; retval.t = type6; 
 
             }
@@ -877,10 +880,10 @@ public class JaWalker extends TreeParser {
 
 
     // $ANTLR start "variableInitializer"
-    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:192:1: variableInitializer : ( arrayInitializer | expression );
+    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:195:1: variableInitializer : ( arrayInitializer | expression );
     public final void variableInitializer() throws RecognitionException {
         try {
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:193:5: ( arrayInitializer | expression )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:196:5: ( arrayInitializer | expression )
             int alt8=2;
             int LA8_0 = input.LA(1);
 
@@ -898,9 +901,9 @@ public class JaWalker extends TreeParser {
             }
             switch (alt8) {
                 case 1 :
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:193:9: arrayInitializer
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:196:9: arrayInitializer
                     {
-                    pushFollow(FOLLOW_arrayInitializer_in_variableInitializer433);
+                    pushFollow(FOLLOW_arrayInitializer_in_variableInitializer438);
                     arrayInitializer();
 
                     state._fsp--;
@@ -909,9 +912,9 @@ public class JaWalker extends TreeParser {
                     }
                     break;
                 case 2 :
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:194:9: expression
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:197:9: expression
                     {
-                    pushFollow(FOLLOW_expression_in_variableInitializer443);
+                    pushFollow(FOLLOW_expression_in_variableInitializer448);
                     expression();
 
                     state._fsp--;
@@ -934,21 +937,21 @@ public class JaWalker extends TreeParser {
 
 
     // $ANTLR start "arrayInitializer"
-    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:197:1: arrayInitializer : ^( ARRAYINIT variableInitializer ( variableInitializer )* ) ;
+    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:200:1: arrayInitializer : ^( ARRAYINIT variableInitializer ( variableInitializer )* ) ;
     public final void arrayInitializer() throws RecognitionException {
         try {
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:198:5: ( ^( ARRAYINIT variableInitializer ( variableInitializer )* ) )
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:198:9: ^( ARRAYINIT variableInitializer ( variableInitializer )* )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:201:5: ( ^( ARRAYINIT variableInitializer ( variableInitializer )* ) )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:201:9: ^( ARRAYINIT variableInitializer ( variableInitializer )* )
             {
-            match(input,ARRAYINIT,FOLLOW_ARRAYINIT_in_arrayInitializer463); 
+            match(input,ARRAYINIT,FOLLOW_ARRAYINIT_in_arrayInitializer468); 
 
             match(input, Token.DOWN, null); 
-            pushFollow(FOLLOW_variableInitializer_in_arrayInitializer465);
+            pushFollow(FOLLOW_variableInitializer_in_arrayInitializer470);
             variableInitializer();
 
             state._fsp--;
 
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:198:41: ( variableInitializer )*
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:201:41: ( variableInitializer )*
             loop9:
             do {
                 int alt9=2;
@@ -961,9 +964,9 @@ public class JaWalker extends TreeParser {
 
                 switch (alt9) {
             	case 1 :
-            	    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:198:42: variableInitializer
+            	    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:201:42: variableInitializer
             	    {
-            	    pushFollow(FOLLOW_variableInitializer_in_arrayInitializer468);
+            	    pushFollow(FOLLOW_variableInitializer_in_arrayInitializer473);
             	    variableInitializer();
 
             	    state._fsp--;
@@ -995,11 +998,11 @@ public class JaWalker extends TreeParser {
 
 
     // $ANTLR start "modifier"
-    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:201:1: modifier : ( PUBLIC | PRIVATE );
+    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:204:1: modifier : ( PUBLIC | PRIVATE );
     public final void modifier() throws RecognitionException {
         try {
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:202:5: ( PUBLIC | PRIVATE )
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:205:5: ( PUBLIC | PRIVATE )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:
             {
             if ( input.LA(1)==PUBLIC||input.LA(1)==PRIVATE ) {
                 input.consume();
@@ -1026,17 +1029,17 @@ public class JaWalker extends TreeParser {
 
 
     // $ANTLR start "type"
-    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:206:1: type returns [Type t] : ( nonPrimitiveType | primitiveType );
+    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:209:1: type returns [Type t] : ( nonPrimitiveType | primitiveType );
     public final Type type() throws RecognitionException {
         Type t = null;
 
         ComplexType nonPrimitiveType7 = null;
 
-        JaWalker.primitiveType_return primitiveType8 = null;
+        BasicType primitiveType8 = null;
 
 
         try {
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:207:5: ( nonPrimitiveType | primitiveType )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:210:5: ( nonPrimitiveType | primitiveType )
             int alt10=2;
             int LA10_0 = input.LA(1);
 
@@ -1054,9 +1057,9 @@ public class JaWalker extends TreeParser {
             }
             switch (alt10) {
                 case 1 :
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:207:7: nonPrimitiveType
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:210:7: nonPrimitiveType
                     {
-                    pushFollow(FOLLOW_nonPrimitiveType_in_type530);
+                    pushFollow(FOLLOW_nonPrimitiveType_in_type535);
                     nonPrimitiveType7=nonPrimitiveType();
 
                     state._fsp--;
@@ -1066,14 +1069,14 @@ public class JaWalker extends TreeParser {
                     }
                     break;
                 case 2 :
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:208:7: primitiveType
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:211:7: primitiveType
                     {
-                    pushFollow(FOLLOW_primitiveType_in_type540);
+                    pushFollow(FOLLOW_primitiveType_in_type545);
                     primitiveType8=primitiveType();
 
                     state._fsp--;
 
-                     t = (primitiveType8!=null?primitiveType8.bs:null);   
+                     t = primitiveType8;   
 
                     }
                     break;
@@ -1092,7 +1095,7 @@ public class JaWalker extends TreeParser {
 
 
     // $ANTLR start "nonPrimitiveType"
-    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:211:1: nonPrimitiveType returns [ComplexType t] : ( ^( ARRAYTYPE npt= nonPrimitiveType ) | classType | ^( ARRAYTYPE primitiveType ) );
+    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:214:1: nonPrimitiveType returns [ComplexType t] : ( ^( ARRAYTYPE npt= nonPrimitiveType ) | classType | ^( ARRAYTYPE primitiveType ) );
     public final ComplexType nonPrimitiveType() throws RecognitionException {
         ComplexType t = null;
 
@@ -1100,11 +1103,11 @@ public class JaWalker extends TreeParser {
 
         ReferenceType classType9 = null;
 
-        JaWalker.primitiveType_return primitiveType10 = null;
+        BasicType primitiveType10 = null;
 
 
         try {
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:212:5: ( ^( ARRAYTYPE npt= nonPrimitiveType ) | classType | ^( ARRAYTYPE primitiveType ) )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:215:5: ( ^( ARRAYTYPE npt= nonPrimitiveType ) | classType | ^( ARRAYTYPE primitiveType ) )
             int alt11=3;
             int LA11_0 = input.LA(1);
 
@@ -1145,12 +1148,12 @@ public class JaWalker extends TreeParser {
             }
             switch (alt11) {
                 case 1 :
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:212:7: ^( ARRAYTYPE npt= nonPrimitiveType )
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:215:7: ^( ARRAYTYPE npt= nonPrimitiveType )
                     {
-                    match(input,ARRAYTYPE,FOLLOW_ARRAYTYPE_in_nonPrimitiveType568); 
+                    match(input,ARRAYTYPE,FOLLOW_ARRAYTYPE_in_nonPrimitiveType573); 
 
                     match(input, Token.DOWN, null); 
-                    pushFollow(FOLLOW_nonPrimitiveType_in_nonPrimitiveType572);
+                    pushFollow(FOLLOW_nonPrimitiveType_in_nonPrimitiveType577);
                     npt=nonPrimitiveType();
 
                     state._fsp--;
@@ -1162,9 +1165,9 @@ public class JaWalker extends TreeParser {
                     }
                     break;
                 case 2 :
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:213:9: classType
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:216:9: classType
                     {
-                    pushFollow(FOLLOW_classType_in_nonPrimitiveType585);
+                    pushFollow(FOLLOW_classType_in_nonPrimitiveType590);
                     classType9=classType();
 
                     state._fsp--;
@@ -1174,19 +1177,19 @@ public class JaWalker extends TreeParser {
                     }
                     break;
                 case 3 :
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:214:7: ^( ARRAYTYPE primitiveType )
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:217:7: ^( ARRAYTYPE primitiveType )
                     {
-                    match(input,ARRAYTYPE,FOLLOW_ARRAYTYPE_in_nonPrimitiveType619); 
+                    match(input,ARRAYTYPE,FOLLOW_ARRAYTYPE_in_nonPrimitiveType624); 
 
                     match(input, Token.DOWN, null); 
-                    pushFollow(FOLLOW_primitiveType_in_nonPrimitiveType621);
+                    pushFollow(FOLLOW_primitiveType_in_nonPrimitiveType626);
                     primitiveType10=primitiveType();
 
                     state._fsp--;
 
 
                     match(input, Token.UP, null); 
-                     t = (ComplexType)ParserHelper.createArrayType((primitiveType10!=null?primitiveType10.bs:null), 1); 
+                     t = (ComplexType)ParserHelper.createArrayType(primitiveType10, 1); 
 
                     }
                     break;
@@ -1205,17 +1208,17 @@ public class JaWalker extends TreeParser {
 
 
     // $ANTLR start "classType"
-    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:217:1: classType returns [ReferenceType t] : IDENTIFIER ;
+    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:220:1: classType returns [ReferenceType t] : IDENTIFIER ;
     public final ReferenceType classType() throws RecognitionException {
         ReferenceType t = null;
 
         CommonTree IDENTIFIER11=null;
 
         try {
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:218:5: ( IDENTIFIER )
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:218:7: IDENTIFIER
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:221:5: ( IDENTIFIER )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:221:7: IDENTIFIER
             {
-            IDENTIFIER11=(CommonTree)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_classType652); 
+            IDENTIFIER11=(CommonTree)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_classType657); 
              t = cTab.get((IDENTIFIER11!=null?IDENTIFIER11.getText():null)); 
 
             }
@@ -1231,18 +1234,14 @@ public class JaWalker extends TreeParser {
     }
     // $ANTLR end "classType"
 
-    public static class primitiveType_return extends TreeRuleReturnScope {
-        public BasicType bs;
-    };
 
     // $ANTLR start "primitiveType"
-    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:221:1: primitiveType returns [BasicType bs] : ( CHAR | BYTE | SHORT | INT | LONG | FLOAT | DOUBLE | BOOLEAN );
-    public final JaWalker.primitiveType_return primitiveType() throws RecognitionException {
-        JaWalker.primitiveType_return retval = new JaWalker.primitiveType_return();
-        retval.start = input.LT(1);
+    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:224:1: primitiveType returns [BasicType bs] : ( CHAR | BYTE | SHORT | INT | LONG | FLOAT | DOUBLE | BOOLEAN );
+    public final BasicType primitiveType() throws RecognitionException {
+        BasicType bs = null;
 
         try {
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:222:5: ( CHAR | BYTE | SHORT | INT | LONG | FLOAT | DOUBLE | BOOLEAN )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:225:5: ( CHAR | BYTE | SHORT | INT | LONG | FLOAT | DOUBLE | BOOLEAN )
             int alt12=8;
             switch ( input.LA(1) ) {
             case CHAR:
@@ -1294,66 +1293,66 @@ public class JaWalker extends TreeParser {
 
             switch (alt12) {
                 case 1 :
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:222:9: CHAR
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:225:9: CHAR
                     {
-                    match(input,CHAR,FOLLOW_CHAR_in_primitiveType677); 
-                     retval.bs = BasicType.CHAR;    
+                    match(input,CHAR,FOLLOW_CHAR_in_primitiveType682); 
+                     bs = BasicType.CHAR;    
 
                     }
                     break;
                 case 2 :
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:223:9: BYTE
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:226:9: BYTE
                     {
-                    match(input,BYTE,FOLLOW_BYTE_in_primitiveType692); 
-                     retval.bs = BasicType.BYTE;    
+                    match(input,BYTE,FOLLOW_BYTE_in_primitiveType697); 
+                     bs = BasicType.BYTE;    
 
                     }
                     break;
                 case 3 :
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:224:9: SHORT
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:227:9: SHORT
                     {
-                    match(input,SHORT,FOLLOW_SHORT_in_primitiveType707); 
-                     retval.bs = BasicType.SHORT;   
+                    match(input,SHORT,FOLLOW_SHORT_in_primitiveType712); 
+                     bs = BasicType.SHORT;   
 
                     }
                     break;
                 case 4 :
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:225:9: INT
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:228:9: INT
                     {
-                    match(input,INT,FOLLOW_INT_in_primitiveType721); 
-                     retval.bs = BasicType.INT;     
+                    match(input,INT,FOLLOW_INT_in_primitiveType726); 
+                     bs = BasicType.INT;     
 
                     }
                     break;
                 case 5 :
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:226:9: LONG
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:229:9: LONG
                     {
-                    match(input,LONG,FOLLOW_LONG_in_primitiveType737); 
-                     retval.bs = BasicType.LONG;    
+                    match(input,LONG,FOLLOW_LONG_in_primitiveType742); 
+                     bs = BasicType.LONG;    
 
                     }
                     break;
                 case 6 :
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:227:9: FLOAT
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:230:9: FLOAT
                     {
-                    match(input,FLOAT,FOLLOW_FLOAT_in_primitiveType752); 
-                     retval.bs = BasicType.FLOAT;   
+                    match(input,FLOAT,FOLLOW_FLOAT_in_primitiveType757); 
+                     bs = BasicType.FLOAT;   
 
                     }
                     break;
                 case 7 :
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:228:9: DOUBLE
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:231:9: DOUBLE
                     {
-                    match(input,DOUBLE,FOLLOW_DOUBLE_in_primitiveType766); 
-                     retval.bs = BasicType.DOUBLE;  
+                    match(input,DOUBLE,FOLLOW_DOUBLE_in_primitiveType771); 
+                     bs = BasicType.DOUBLE;  
 
                     }
                     break;
                 case 8 :
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:229:9: BOOLEAN
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:232:9: BOOLEAN
                     {
-                    match(input,BOOLEAN,FOLLOW_BOOLEAN_in_primitiveType779); 
-                     retval.bs = BasicType.BOOLEAN; 
+                    match(input,BOOLEAN,FOLLOW_BOOLEAN_in_primitiveType784); 
+                     bs = BasicType.BOOLEAN; 
 
                     }
                     break;
@@ -1366,23 +1365,23 @@ public class JaWalker extends TreeParser {
         }
         finally {
         }
-        return retval;
+        return bs;
     }
     // $ANTLR end "primitiveType"
 
 
     // $ANTLR start "formalParameters"
-    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:232:1: formalParameters : ^( FPARMS ( formalParameterDecls )? ) ;
+    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:235:1: formalParameters : ^( FPARMS ( formalParameterDecls )? ) ;
     public final void formalParameters() throws RecognitionException {
         try {
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:233:5: ( ^( FPARMS ( formalParameterDecls )? ) )
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:233:9: ^( FPARMS ( formalParameterDecls )? )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:236:5: ( ^( FPARMS ( formalParameterDecls )? ) )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:236:9: ^( FPARMS ( formalParameterDecls )? )
             {
-            match(input,FPARMS,FOLLOW_FPARMS_in_formalParameters805); 
+            match(input,FPARMS,FOLLOW_FPARMS_in_formalParameters810); 
 
             if ( input.LA(1)==Token.DOWN ) {
                 match(input, Token.DOWN, null); 
-                // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:233:18: ( formalParameterDecls )?
+                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:236:18: ( formalParameterDecls )?
                 int alt13=2;
                 int LA13_0 = input.LA(1);
 
@@ -1391,9 +1390,9 @@ public class JaWalker extends TreeParser {
                 }
                 switch (alt13) {
                     case 1 :
-                        // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:233:18: formalParameterDecls
+                        // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:236:18: formalParameterDecls
                         {
-                        pushFollow(FOLLOW_formalParameterDecls_in_formalParameters807);
+                        pushFollow(FOLLOW_formalParameterDecls_in_formalParameters812);
                         formalParameterDecls();
 
                         state._fsp--;
@@ -1423,7 +1422,7 @@ public class JaWalker extends TreeParser {
 
 
     // $ANTLR start "formalParameterDecls"
-    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:236:1: formalParameterDecls : ( ^( FPARM variableDeclaratorId ) ( formalParameterDecls )? | ^( FMULTPARM variableDeclaratorId ) );
+    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:239:1: formalParameterDecls : ( ^( FPARM variableDeclaratorId ) ( formalParameterDecls )? | ^( FMULTPARM variableDeclaratorId ) );
     public final void formalParameterDecls() throws RecognitionException {
         JaWalker.variableDeclaratorId_return variableDeclaratorId12 = null;
 
@@ -1431,7 +1430,7 @@ public class JaWalker extends TreeParser {
 
 
         try {
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:237:5: ( ^( FPARM variableDeclaratorId ) ( formalParameterDecls )? | ^( FMULTPARM variableDeclaratorId ) )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:240:5: ( ^( FPARM variableDeclaratorId ) ( formalParameterDecls )? | ^( FMULTPARM variableDeclaratorId ) )
             int alt15=2;
             int LA15_0 = input.LA(1);
 
@@ -1449,12 +1448,12 @@ public class JaWalker extends TreeParser {
             }
             switch (alt15) {
                 case 1 :
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:237:7: ^( FPARM variableDeclaratorId ) ( formalParameterDecls )?
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:240:7: ^( FPARM variableDeclaratorId ) ( formalParameterDecls )?
                     {
-                    match(input,FPARM,FOLLOW_FPARM_in_formalParameterDecls832); 
+                    match(input,FPARM,FOLLOW_FPARM_in_formalParameterDecls837); 
 
                     match(input, Token.DOWN, null); 
-                    pushFollow(FOLLOW_variableDeclaratorId_in_formalParameterDecls834);
+                    pushFollow(FOLLOW_variableDeclaratorId_in_formalParameterDecls839);
                     variableDeclaratorId12=variableDeclaratorId();
 
                     state._fsp--;
@@ -1462,7 +1461,7 @@ public class JaWalker extends TreeParser {
 
                     match(input, Token.UP, null); 
                      formalParameters.add((variableDeclaratorId12!=null?variableDeclaratorId12.id:null).getText()); addVariableToScope((variableDeclaratorId12!=null?variableDeclaratorId12.id:null), (variableDeclaratorId12!=null?variableDeclaratorId12.t:null)); 
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:237:170: ( formalParameterDecls )?
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:240:170: ( formalParameterDecls )?
                     int alt14=2;
                     int LA14_0 = input.LA(1);
 
@@ -1471,9 +1470,9 @@ public class JaWalker extends TreeParser {
                     }
                     switch (alt14) {
                         case 1 :
-                            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:237:170: formalParameterDecls
+                            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:240:170: formalParameterDecls
                             {
-                            pushFollow(FOLLOW_formalParameterDecls_in_formalParameterDecls839);
+                            pushFollow(FOLLOW_formalParameterDecls_in_formalParameterDecls844);
                             formalParameterDecls();
 
                             state._fsp--;
@@ -1488,12 +1487,12 @@ public class JaWalker extends TreeParser {
                     }
                     break;
                 case 2 :
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:238:7: ^( FMULTPARM variableDeclaratorId )
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:241:7: ^( FMULTPARM variableDeclaratorId )
                     {
-                    match(input,FMULTPARM,FOLLOW_FMULTPARM_in_formalParameterDecls849); 
+                    match(input,FMULTPARM,FOLLOW_FMULTPARM_in_formalParameterDecls854); 
 
                     match(input, Token.DOWN, null); 
-                    pushFollow(FOLLOW_variableDeclaratorId_in_formalParameterDecls851);
+                    pushFollow(FOLLOW_variableDeclaratorId_in_formalParameterDecls856);
                     variableDeclaratorId13=variableDeclaratorId();
 
                     state._fsp--;
@@ -1519,17 +1518,17 @@ public class JaWalker extends TreeParser {
 
 
     // $ANTLR start "methodBody"
-    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:241:1: methodBody : ^( MBODY block ) ;
+    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:244:1: methodBody : ^( MBODY block ) ;
     public final void methodBody() throws RecognitionException {
         try {
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:242:5: ( ^( MBODY block ) )
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:242:9: ^( MBODY block )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:245:5: ( ^( MBODY block ) )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:245:9: ^( MBODY block )
             {
-            match(input,MBODY,FOLLOW_MBODY_in_methodBody878); 
+            match(input,MBODY,FOLLOW_MBODY_in_methodBody883); 
 
             if ( input.LA(1)==Token.DOWN ) {
                 match(input, Token.DOWN, null); 
-                pushFollow(FOLLOW_block_in_methodBody880);
+                pushFollow(FOLLOW_block_in_methodBody885);
                 block();
 
                 state._fsp--;
@@ -1553,7 +1552,7 @@ public class JaWalker extends TreeParser {
 
 
     // $ANTLR start "constructorBody"
-    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:246:1: constructorBody : ^( CBODY ( explicitConstructorInvocation )? ( blockStatement )* ) ;
+    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:249:1: constructorBody : ^( CBODY ( explicitConstructorInvocation )? ( blockStatement )* ) ;
     public final void constructorBody() throws RecognitionException {
         JaScope_stack.push(new JaScope_scope());
 
@@ -1561,14 +1560,14 @@ public class JaWalker extends TreeParser {
         	((JaScope_scope)JaScope_stack.peek()).symbols = new HashMap<String, Type>();
 
         try {
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:254:5: ( ^( CBODY ( explicitConstructorInvocation )? ( blockStatement )* ) )
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:254:7: ^( CBODY ( explicitConstructorInvocation )? ( blockStatement )* )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:257:5: ( ^( CBODY ( explicitConstructorInvocation )? ( blockStatement )* ) )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:257:7: ^( CBODY ( explicitConstructorInvocation )? ( blockStatement )* )
             {
-            match(input,CBODY,FOLLOW_CBODY_in_constructorBody939); 
+            match(input,CBODY,FOLLOW_CBODY_in_constructorBody944); 
 
             if ( input.LA(1)==Token.DOWN ) {
                 match(input, Token.DOWN, null); 
-                // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:254:15: ( explicitConstructorInvocation )?
+                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:257:15: ( explicitConstructorInvocation )?
                 int alt16=2;
                 int LA16_0 = input.LA(1);
 
@@ -1577,9 +1576,9 @@ public class JaWalker extends TreeParser {
                 }
                 switch (alt16) {
                     case 1 :
-                        // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:254:15: explicitConstructorInvocation
+                        // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:257:15: explicitConstructorInvocation
                         {
-                        pushFollow(FOLLOW_explicitConstructorInvocation_in_constructorBody941);
+                        pushFollow(FOLLOW_explicitConstructorInvocation_in_constructorBody946);
                         explicitConstructorInvocation();
 
                         state._fsp--;
@@ -1590,7 +1589,7 @@ public class JaWalker extends TreeParser {
 
                 }
 
-                // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:254:46: ( blockStatement )*
+                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:257:46: ( blockStatement )*
                 loop17:
                 do {
                     int alt17=2;
@@ -1603,9 +1602,9 @@ public class JaWalker extends TreeParser {
 
                     switch (alt17) {
                 	case 1 :
-                	    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:254:46: blockStatement
+                	    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:257:46: blockStatement
                 	    {
-                	    pushFollow(FOLLOW_blockStatement_in_constructorBody944);
+                	    pushFollow(FOLLOW_blockStatement_in_constructorBody949);
                 	    blockStatement();
 
                 	    state._fsp--;
@@ -1643,10 +1642,10 @@ public class JaWalker extends TreeParser {
 
 
     // $ANTLR start "explicitConstructorInvocation"
-    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:257:1: explicitConstructorInvocation : ( ^( CONSTRCALL THIS ( arguments )? ) | ^( CONSTRCALL SUPER ( arguments )? ) );
+    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:260:1: explicitConstructorInvocation : ( ^( CONSTRCALL THIS ( arguments )? ) | ^( CONSTRCALL SUPER ( arguments )? ) );
     public final void explicitConstructorInvocation() throws RecognitionException {
         try {
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:258:5: ( ^( CONSTRCALL THIS ( arguments )? ) | ^( CONSTRCALL SUPER ( arguments )? ) )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:261:5: ( ^( CONSTRCALL THIS ( arguments )? ) | ^( CONSTRCALL SUPER ( arguments )? ) )
             int alt20=2;
             int LA20_0 = input.LA(1);
 
@@ -1684,13 +1683,13 @@ public class JaWalker extends TreeParser {
             }
             switch (alt20) {
                 case 1 :
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:258:9: ^( CONSTRCALL THIS ( arguments )? )
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:261:9: ^( CONSTRCALL THIS ( arguments )? )
                     {
-                    match(input,CONSTRCALL,FOLLOW_CONSTRCALL_in_explicitConstructorInvocation966); 
+                    match(input,CONSTRCALL,FOLLOW_CONSTRCALL_in_explicitConstructorInvocation971); 
 
                     match(input, Token.DOWN, null); 
-                    match(input,THIS,FOLLOW_THIS_in_explicitConstructorInvocation968); 
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:258:28: ( arguments )?
+                    match(input,THIS,FOLLOW_THIS_in_explicitConstructorInvocation973); 
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:261:28: ( arguments )?
                     int alt18=2;
                     int LA18_0 = input.LA(1);
 
@@ -1699,9 +1698,9 @@ public class JaWalker extends TreeParser {
                     }
                     switch (alt18) {
                         case 1 :
-                            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:258:28: arguments
+                            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:261:28: arguments
                             {
-                            pushFollow(FOLLOW_arguments_in_explicitConstructorInvocation971);
+                            pushFollow(FOLLOW_arguments_in_explicitConstructorInvocation976);
                             arguments();
 
                             state._fsp--;
@@ -1718,13 +1717,13 @@ public class JaWalker extends TreeParser {
                     }
                     break;
                 case 2 :
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:259:7: ^( CONSTRCALL SUPER ( arguments )? )
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:262:7: ^( CONSTRCALL SUPER ( arguments )? )
                     {
-                    match(input,CONSTRCALL,FOLLOW_CONSTRCALL_in_explicitConstructorInvocation982); 
+                    match(input,CONSTRCALL,FOLLOW_CONSTRCALL_in_explicitConstructorInvocation987); 
 
                     match(input, Token.DOWN, null); 
-                    match(input,SUPER,FOLLOW_SUPER_in_explicitConstructorInvocation984); 
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:259:26: ( arguments )?
+                    match(input,SUPER,FOLLOW_SUPER_in_explicitConstructorInvocation989); 
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:262:26: ( arguments )?
                     int alt19=2;
                     int LA19_0 = input.LA(1);
 
@@ -1733,9 +1732,9 @@ public class JaWalker extends TreeParser {
                     }
                     switch (alt19) {
                         case 1 :
-                            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:259:26: arguments
+                            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:262:26: arguments
                             {
-                            pushFollow(FOLLOW_arguments_in_explicitConstructorInvocation986);
+                            pushFollow(FOLLOW_arguments_in_explicitConstructorInvocation991);
                             arguments();
 
                             state._fsp--;
@@ -1766,14 +1765,14 @@ public class JaWalker extends TreeParser {
 
 
     // $ANTLR start "literal"
-    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:262:1: literal returns [Type t] : ( INTLITERAL | LONGLITERAL | FLOATLITERAL | DOUBLELITERAL | CHARLITERAL | STRINGLITERAL | BOOLEANLITERAL | NULLLITERAL );
+    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:265:1: literal returns [Type t] : ( INTLITERAL | LONGLITERAL | FLOATLITERAL | DOUBLELITERAL | CHARLITERAL | STRINGLITERAL | BOOLEANLITERAL | NULLLITERAL );
     public final Type literal() throws RecognitionException {
         Type t = null;
 
         CommonTree INTLITERAL14=null;
 
         try {
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:263:5: ( INTLITERAL | LONGLITERAL | FLOATLITERAL | DOUBLELITERAL | CHARLITERAL | STRINGLITERAL | BOOLEANLITERAL | NULLLITERAL )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:266:5: ( INTLITERAL | LONGLITERAL | FLOATLITERAL | DOUBLELITERAL | CHARLITERAL | STRINGLITERAL | BOOLEANLITERAL | NULLLITERAL )
             int alt21=8;
             switch ( input.LA(1) ) {
             case INTLITERAL:
@@ -1825,9 +1824,9 @@ public class JaWalker extends TreeParser {
 
             switch (alt21) {
                 case 1 :
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:263:9: INTLITERAL
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:266:9: INTLITERAL
                     {
-                    INTLITERAL14=(CommonTree)match(input,INTLITERAL,FOLLOW_INTLITERAL_in_literal1011); 
+                    INTLITERAL14=(CommonTree)match(input,INTLITERAL,FOLLOW_INTLITERAL_in_literal1016); 
                      int literal = Integer.parseInt((INTLITERAL14!=null?INTLITERAL14.getText():null));
                         			 if ((literal >= -128) &&( literal <= 127)) 
                         			 	{ t = BasicType.BYTE; } 
@@ -1841,57 +1840,57 @@ public class JaWalker extends TreeParser {
                     }
                     break;
                 case 2 :
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:272:9: LONGLITERAL
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:275:9: LONGLITERAL
                     {
-                    match(input,LONGLITERAL,FOLLOW_LONGLITERAL_in_literal1027); 
+                    match(input,LONGLITERAL,FOLLOW_LONGLITERAL_in_literal1032); 
                      t = BasicType.LONG;       
 
                     }
                     break;
                 case 3 :
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:273:9: FLOATLITERAL
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:276:9: FLOATLITERAL
                     {
-                    match(input,FLOATLITERAL,FOLLOW_FLOATLITERAL_in_literal1042); 
+                    match(input,FLOATLITERAL,FOLLOW_FLOATLITERAL_in_literal1047); 
                      t = BasicType.FLOAT;      
 
                     }
                     break;
                 case 4 :
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:274:7: DOUBLELITERAL
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:277:7: DOUBLELITERAL
                     {
-                    match(input,DOUBLELITERAL,FOLLOW_DOUBLELITERAL_in_literal1054); 
+                    match(input,DOUBLELITERAL,FOLLOW_DOUBLELITERAL_in_literal1059); 
                      t = BasicType.DOUBLE;     
 
                     }
                     break;
                 case 5 :
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:275:9: CHARLITERAL
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:278:9: CHARLITERAL
                     {
-                    match(input,CHARLITERAL,FOLLOW_CHARLITERAL_in_literal1067); 
+                    match(input,CHARLITERAL,FOLLOW_CHARLITERAL_in_literal1072); 
                      t = BasicType.CHAR;       
 
                     }
                     break;
                 case 6 :
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:276:9: STRINGLITERAL
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:279:9: STRINGLITERAL
                     {
-                    match(input,STRINGLITERAL,FOLLOW_STRINGLITERAL_in_literal1082); 
+                    match(input,STRINGLITERAL,FOLLOW_STRINGLITERAL_in_literal1087); 
                      t = ReferenceType.STRING; 
 
                     }
                     break;
                 case 7 :
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:277:9: BOOLEANLITERAL
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:280:9: BOOLEANLITERAL
                     {
-                    match(input,BOOLEANLITERAL,FOLLOW_BOOLEANLITERAL_in_literal1095); 
+                    match(input,BOOLEANLITERAL,FOLLOW_BOOLEANLITERAL_in_literal1100); 
                      t = BasicType.BOOLEAN;    
 
                     }
                     break;
                 case 8 :
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:278:9: NULLLITERAL
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:281:9: NULLLITERAL
                     {
-                    match(input,NULLLITERAL,FOLLOW_NULLLITERAL_in_literal1107); 
+                    match(input,NULLLITERAL,FOLLOW_NULLLITERAL_in_literal1112); 
                      t = NullType.TYPE;        
 
                     }
@@ -1911,7 +1910,7 @@ public class JaWalker extends TreeParser {
 
 
     // $ANTLR start "block"
-    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:283:1: block : ( blockStatement )* ;
+    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:286:1: block : ( blockStatement )* ;
     public final void block() throws RecognitionException {
         JaScope_stack.push(new JaScope_scope());
 
@@ -1922,10 +1921,10 @@ public class JaWalker extends TreeParser {
         	((JaScope_scope)JaScope_stack.peek()).symbols = new HashMap<String, Type>();
 
         try {
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:291:5: ( ( blockStatement )* )
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:291:9: ( blockStatement )*
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:294:5: ( ( blockStatement )* )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:294:9: ( blockStatement )*
             {
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:291:9: ( blockStatement )*
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:294:9: ( blockStatement )*
             loop22:
             do {
                 int alt22=2;
@@ -1938,9 +1937,9 @@ public class JaWalker extends TreeParser {
 
                 switch (alt22) {
             	case 1 :
-            	    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:291:10: blockStatement
+            	    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:294:10: blockStatement
             	    {
-            	    pushFollow(FOLLOW_blockStatement_in_block1149);
+            	    pushFollow(FOLLOW_blockStatement_in_block1154);
             	    blockStatement15=blockStatement();
 
             	    state._fsp--;
@@ -1980,13 +1979,13 @@ public class JaWalker extends TreeParser {
     };
 
     // $ANTLR start "blockStatement"
-    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:294:1: blockStatement : ( localVariableDeclarationStatement | statement );
+    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:297:1: blockStatement : ( localVariableDeclarationStatement | statement );
     public final JaWalker.blockStatement_return blockStatement() throws RecognitionException {
         JaWalker.blockStatement_return retval = new JaWalker.blockStatement_return();
         retval.start = input.LT(1);
 
         try {
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:295:5: ( localVariableDeclarationStatement | statement )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:298:5: ( localVariableDeclarationStatement | statement )
             int alt23=2;
             int LA23_0 = input.LA(1);
 
@@ -2004,9 +2003,9 @@ public class JaWalker extends TreeParser {
             }
             switch (alt23) {
                 case 1 :
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:295:9: localVariableDeclarationStatement
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:298:9: localVariableDeclarationStatement
                     {
-                    pushFollow(FOLLOW_localVariableDeclarationStatement_in_blockStatement1176);
+                    pushFollow(FOLLOW_localVariableDeclarationStatement_in_blockStatement1181);
                     localVariableDeclarationStatement();
 
                     state._fsp--;
@@ -2015,9 +2014,9 @@ public class JaWalker extends TreeParser {
                     }
                     break;
                 case 2 :
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:296:9: statement
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:299:9: statement
                     {
-                    pushFollow(FOLLOW_statement_in_blockStatement1187);
+                    pushFollow(FOLLOW_statement_in_blockStatement1192);
                     statement();
 
                     state._fsp--;
@@ -2040,13 +2039,13 @@ public class JaWalker extends TreeParser {
 
 
     // $ANTLR start "localVariableDeclarationStatement"
-    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:299:1: localVariableDeclarationStatement : localVariableDeclaration ;
+    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:302:1: localVariableDeclarationStatement : localVariableDeclaration ;
     public final void localVariableDeclarationStatement() throws RecognitionException {
         try {
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:300:5: ( localVariableDeclaration )
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:300:7: localVariableDeclaration
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:303:5: ( localVariableDeclaration )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:303:7: localVariableDeclaration
             {
-            pushFollow(FOLLOW_localVariableDeclaration_in_localVariableDeclarationStatement1208);
+            pushFollow(FOLLOW_localVariableDeclaration_in_localVariableDeclarationStatement1213);
             localVariableDeclaration();
 
             state._fsp--;
@@ -2067,19 +2066,19 @@ public class JaWalker extends TreeParser {
 
 
     // $ANTLR start "localVariableDeclaration"
-    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:303:1: localVariableDeclaration : ^( VARDECL variableDeclarator ) ;
+    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:306:1: localVariableDeclaration : ^( VARDECL variableDeclarator ) ;
     public final void localVariableDeclaration() throws RecognitionException {
         JaWalker.variableDeclarator_return variableDeclarator16 = null;
 
 
         try {
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:304:5: ( ^( VARDECL variableDeclarator ) )
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:304:7: ^( VARDECL variableDeclarator )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:307:5: ( ^( VARDECL variableDeclarator ) )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:307:7: ^( VARDECL variableDeclarator )
             {
-            match(input,VARDECL,FOLLOW_VARDECL_in_localVariableDeclaration1226); 
+            match(input,VARDECL,FOLLOW_VARDECL_in_localVariableDeclaration1231); 
 
             match(input, Token.DOWN, null); 
-            pushFollow(FOLLOW_variableDeclarator_in_localVariableDeclaration1228);
+            pushFollow(FOLLOW_variableDeclarator_in_localVariableDeclaration1233);
             variableDeclarator16=variableDeclarator();
 
             state._fsp--;
@@ -2103,10 +2102,10 @@ public class JaWalker extends TreeParser {
 
 
     // $ANTLR start "statement"
-    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:309:1: statement : ( ^( BLOCK block ) | ^( IF ^( CONDITION expression ) ^( THEN statement ) ( elseStmt )? ) | ^( FOR ( ^( INIT forInit ) )? ( ^( CONDITION expression ) )? ( ^( UPDATE forUpdate ) )? statement ) | ^( WHILE ^( CONDITION expression ) statement ) | ^( DOWHILE ^( CONDITION expression ) statement ) | ^( RETURN ( expression )? ) | ^( STMT statementExpression ) );
+    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:312:1: statement : ( ^( BLOCK block ) | ^( IF ^( CONDITION expression ) ^( THEN statement ) ( elseStmt )? ) | ^( FOR ( ^( INIT forInit ) )? ( ^( CONDITION expression ) )? ( ^( UPDATE forUpdate ) )? statement ) | ^( WHILE ^( CONDITION expression ) statement ) | ^( DOWHILE ^( CONDITION expression ) statement ) | ^( RETURN ( expression )? ) | ^( STMT statementExpression ) );
     public final void statement() throws RecognitionException {
         try {
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:310:5: ( ^( BLOCK block ) | ^( IF ^( CONDITION expression ) ^( THEN statement ) ( elseStmt )? ) | ^( FOR ( ^( INIT forInit ) )? ( ^( CONDITION expression ) )? ( ^( UPDATE forUpdate ) )? statement ) | ^( WHILE ^( CONDITION expression ) statement ) | ^( DOWHILE ^( CONDITION expression ) statement ) | ^( RETURN ( expression )? ) | ^( STMT statementExpression ) )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:313:5: ( ^( BLOCK block ) | ^( IF ^( CONDITION expression ) ^( THEN statement ) ( elseStmt )? ) | ^( FOR ( ^( INIT forInit ) )? ( ^( CONDITION expression ) )? ( ^( UPDATE forUpdate ) )? statement ) | ^( WHILE ^( CONDITION expression ) statement ) | ^( DOWHILE ^( CONDITION expression ) statement ) | ^( RETURN ( expression )? ) | ^( STMT statementExpression ) )
             int alt29=7;
             switch ( input.LA(1) ) {
             case BLOCK:
@@ -2153,13 +2152,13 @@ public class JaWalker extends TreeParser {
 
             switch (alt29) {
                 case 1 :
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:310:9: ^( BLOCK block )
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:313:9: ^( BLOCK block )
                     {
-                    match(input,BLOCK,FOLLOW_BLOCK_in_statement1265); 
+                    match(input,BLOCK,FOLLOW_BLOCK_in_statement1270); 
 
                     if ( input.LA(1)==Token.DOWN ) {
                         match(input, Token.DOWN, null); 
-                        pushFollow(FOLLOW_block_in_statement1267);
+                        pushFollow(FOLLOW_block_in_statement1272);
                         block();
 
                         state._fsp--;
@@ -2171,32 +2170,32 @@ public class JaWalker extends TreeParser {
                     }
                     break;
                 case 2 :
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:311:9: ^( IF ^( CONDITION expression ) ^( THEN statement ) ( elseStmt )? )
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:314:9: ^( IF ^( CONDITION expression ) ^( THEN statement ) ( elseStmt )? )
                     {
-                    match(input,IF,FOLLOW_IF_in_statement1279); 
+                    match(input,IF,FOLLOW_IF_in_statement1284); 
 
                     match(input, Token.DOWN, null); 
-                    match(input,CONDITION,FOLLOW_CONDITION_in_statement1282); 
+                    match(input,CONDITION,FOLLOW_CONDITION_in_statement1287); 
 
                     match(input, Token.DOWN, null); 
-                    pushFollow(FOLLOW_expression_in_statement1284);
+                    pushFollow(FOLLOW_expression_in_statement1289);
                     expression();
 
                     state._fsp--;
 
 
                     match(input, Token.UP, null); 
-                    match(input,THEN,FOLLOW_THEN_in_statement1288); 
+                    match(input,THEN,FOLLOW_THEN_in_statement1293); 
 
                     match(input, Token.DOWN, null); 
-                    pushFollow(FOLLOW_statement_in_statement1290);
+                    pushFollow(FOLLOW_statement_in_statement1295);
                     statement();
 
                     state._fsp--;
 
 
                     match(input, Token.UP, null); 
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:311:56: ( elseStmt )?
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:314:56: ( elseStmt )?
                     int alt24=2;
                     int LA24_0 = input.LA(1);
 
@@ -2205,9 +2204,9 @@ public class JaWalker extends TreeParser {
                     }
                     switch (alt24) {
                         case 1 :
-                            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:311:56: elseStmt
+                            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:314:56: elseStmt
                             {
-                            pushFollow(FOLLOW_elseStmt_in_statement1293);
+                            pushFollow(FOLLOW_elseStmt_in_statement1298);
                             elseStmt();
 
                             state._fsp--;
@@ -2224,12 +2223,12 @@ public class JaWalker extends TreeParser {
                     }
                     break;
                 case 3 :
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:312:9: ^( FOR ( ^( INIT forInit ) )? ( ^( CONDITION expression ) )? ( ^( UPDATE forUpdate ) )? statement )
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:315:9: ^( FOR ( ^( INIT forInit ) )? ( ^( CONDITION expression ) )? ( ^( UPDATE forUpdate ) )? statement )
                     {
-                    match(input,FOR,FOLLOW_FOR_in_statement1306); 
+                    match(input,FOR,FOLLOW_FOR_in_statement1311); 
 
                     match(input, Token.DOWN, null); 
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:312:15: ( ^( INIT forInit ) )?
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:315:15: ( ^( INIT forInit ) )?
                     int alt25=2;
                     int LA25_0 = input.LA(1);
 
@@ -2238,12 +2237,12 @@ public class JaWalker extends TreeParser {
                     }
                     switch (alt25) {
                         case 1 :
-                            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:312:16: ^( INIT forInit )
+                            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:315:16: ^( INIT forInit )
                             {
-                            match(input,INIT,FOLLOW_INIT_in_statement1310); 
+                            match(input,INIT,FOLLOW_INIT_in_statement1315); 
 
                             match(input, Token.DOWN, null); 
-                            pushFollow(FOLLOW_forInit_in_statement1312);
+                            pushFollow(FOLLOW_forInit_in_statement1317);
                             forInit();
 
                             state._fsp--;
@@ -2256,7 +2255,7 @@ public class JaWalker extends TreeParser {
 
                     }
 
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:312:34: ( ^( CONDITION expression ) )?
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:315:34: ( ^( CONDITION expression ) )?
                     int alt26=2;
                     int LA26_0 = input.LA(1);
 
@@ -2265,12 +2264,12 @@ public class JaWalker extends TreeParser {
                     }
                     switch (alt26) {
                         case 1 :
-                            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:312:35: ^( CONDITION expression )
+                            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:315:35: ^( CONDITION expression )
                             {
-                            match(input,CONDITION,FOLLOW_CONDITION_in_statement1319); 
+                            match(input,CONDITION,FOLLOW_CONDITION_in_statement1324); 
 
                             match(input, Token.DOWN, null); 
-                            pushFollow(FOLLOW_expression_in_statement1321);
+                            pushFollow(FOLLOW_expression_in_statement1326);
                             expression();
 
                             state._fsp--;
@@ -2283,7 +2282,7 @@ public class JaWalker extends TreeParser {
 
                     }
 
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:312:61: ( ^( UPDATE forUpdate ) )?
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:315:61: ( ^( UPDATE forUpdate ) )?
                     int alt27=2;
                     int LA27_0 = input.LA(1);
 
@@ -2292,12 +2291,12 @@ public class JaWalker extends TreeParser {
                     }
                     switch (alt27) {
                         case 1 :
-                            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:312:62: ^( UPDATE forUpdate )
+                            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:315:62: ^( UPDATE forUpdate )
                             {
-                            match(input,UPDATE,FOLLOW_UPDATE_in_statement1328); 
+                            match(input,UPDATE,FOLLOW_UPDATE_in_statement1333); 
 
                             match(input, Token.DOWN, null); 
-                            pushFollow(FOLLOW_forUpdate_in_statement1330);
+                            pushFollow(FOLLOW_forUpdate_in_statement1335);
                             forUpdate();
 
                             state._fsp--;
@@ -2310,7 +2309,7 @@ public class JaWalker extends TreeParser {
 
                     }
 
-                    pushFollow(FOLLOW_statement_in_statement1335);
+                    pushFollow(FOLLOW_statement_in_statement1340);
                     statement();
 
                     state._fsp--;
@@ -2321,22 +2320,22 @@ public class JaWalker extends TreeParser {
                     }
                     break;
                 case 4 :
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:313:9: ^( WHILE ^( CONDITION expression ) statement )
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:316:9: ^( WHILE ^( CONDITION expression ) statement )
                     {
-                    match(input,WHILE,FOLLOW_WHILE_in_statement1348); 
+                    match(input,WHILE,FOLLOW_WHILE_in_statement1353); 
 
                     match(input, Token.DOWN, null); 
-                    match(input,CONDITION,FOLLOW_CONDITION_in_statement1351); 
+                    match(input,CONDITION,FOLLOW_CONDITION_in_statement1356); 
 
                     match(input, Token.DOWN, null); 
-                    pushFollow(FOLLOW_expression_in_statement1353);
+                    pushFollow(FOLLOW_expression_in_statement1358);
                     expression();
 
                     state._fsp--;
 
 
                     match(input, Token.UP, null); 
-                    pushFollow(FOLLOW_statement_in_statement1356);
+                    pushFollow(FOLLOW_statement_in_statement1361);
                     statement();
 
                     state._fsp--;
@@ -2347,22 +2346,22 @@ public class JaWalker extends TreeParser {
                     }
                     break;
                 case 5 :
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:314:9: ^( DOWHILE ^( CONDITION expression ) statement )
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:317:9: ^( DOWHILE ^( CONDITION expression ) statement )
                     {
-                    match(input,DOWHILE,FOLLOW_DOWHILE_in_statement1368); 
+                    match(input,DOWHILE,FOLLOW_DOWHILE_in_statement1373); 
 
                     match(input, Token.DOWN, null); 
-                    match(input,CONDITION,FOLLOW_CONDITION_in_statement1371); 
+                    match(input,CONDITION,FOLLOW_CONDITION_in_statement1376); 
 
                     match(input, Token.DOWN, null); 
-                    pushFollow(FOLLOW_expression_in_statement1373);
+                    pushFollow(FOLLOW_expression_in_statement1378);
                     expression();
 
                     state._fsp--;
 
 
                     match(input, Token.UP, null); 
-                    pushFollow(FOLLOW_statement_in_statement1376);
+                    pushFollow(FOLLOW_statement_in_statement1381);
                     statement();
 
                     state._fsp--;
@@ -2373,13 +2372,13 @@ public class JaWalker extends TreeParser {
                     }
                     break;
                 case 6 :
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:315:9: ^( RETURN ( expression )? )
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:318:9: ^( RETURN ( expression )? )
                     {
-                    match(input,RETURN,FOLLOW_RETURN_in_statement1388); 
+                    match(input,RETURN,FOLLOW_RETURN_in_statement1393); 
 
                     if ( input.LA(1)==Token.DOWN ) {
                         match(input, Token.DOWN, null); 
-                        // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:315:18: ( expression )?
+                        // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:318:18: ( expression )?
                         int alt28=2;
                         int LA28_0 = input.LA(1);
 
@@ -2388,9 +2387,9 @@ public class JaWalker extends TreeParser {
                         }
                         switch (alt28) {
                             case 1 :
-                                // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:315:18: expression
+                                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:318:18: expression
                                 {
-                                pushFollow(FOLLOW_expression_in_statement1390);
+                                pushFollow(FOLLOW_expression_in_statement1395);
                                 expression();
 
                                 state._fsp--;
@@ -2408,12 +2407,12 @@ public class JaWalker extends TreeParser {
                     }
                     break;
                 case 7 :
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:316:9: ^( STMT statementExpression )
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:319:9: ^( STMT statementExpression )
                     {
-                    match(input,STMT,FOLLOW_STMT_in_statement1404); 
+                    match(input,STMT,FOLLOW_STMT_in_statement1409); 
 
                     match(input, Token.DOWN, null); 
-                    pushFollow(FOLLOW_statementExpression_in_statement1406);
+                    pushFollow(FOLLOW_statementExpression_in_statement1411);
                     statementExpression();
 
                     state._fsp--;
@@ -2438,16 +2437,16 @@ public class JaWalker extends TreeParser {
 
 
     // $ANTLR start "elseStmt"
-    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:319:1: elseStmt : ^( ELSE statement ) ;
+    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:322:1: elseStmt : ^( ELSE statement ) ;
     public final void elseStmt() throws RecognitionException {
         try {
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:320:5: ( ^( ELSE statement ) )
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:320:7: ^( ELSE statement )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:323:5: ( ^( ELSE statement ) )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:323:7: ^( ELSE statement )
             {
-            match(input,ELSE,FOLLOW_ELSE_in_elseStmt1429); 
+            match(input,ELSE,FOLLOW_ELSE_in_elseStmt1434); 
 
             match(input, Token.DOWN, null); 
-            pushFollow(FOLLOW_statement_in_elseStmt1431);
+            pushFollow(FOLLOW_statement_in_elseStmt1436);
             statement();
 
             state._fsp--;
@@ -2470,10 +2469,10 @@ public class JaWalker extends TreeParser {
 
 
     // $ANTLR start "forInit"
-    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:323:1: forInit : ( localVariableDeclaration | expressionList );
+    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:326:1: forInit : ( localVariableDeclaration | expressionList );
     public final void forInit() throws RecognitionException {
         try {
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:324:5: ( localVariableDeclaration | expressionList )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:327:5: ( localVariableDeclaration | expressionList )
             int alt30=2;
             int LA30_0 = input.LA(1);
 
@@ -2491,9 +2490,9 @@ public class JaWalker extends TreeParser {
             }
             switch (alt30) {
                 case 1 :
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:324:9: localVariableDeclaration
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:327:9: localVariableDeclaration
                     {
-                    pushFollow(FOLLOW_localVariableDeclaration_in_forInit1451);
+                    pushFollow(FOLLOW_localVariableDeclaration_in_forInit1456);
                     localVariableDeclaration();
 
                     state._fsp--;
@@ -2502,9 +2501,9 @@ public class JaWalker extends TreeParser {
                     }
                     break;
                 case 2 :
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:325:9: expressionList
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:328:9: expressionList
                     {
-                    pushFollow(FOLLOW_expressionList_in_forInit1461);
+                    pushFollow(FOLLOW_expressionList_in_forInit1466);
                     expressionList();
 
                     state._fsp--;
@@ -2527,13 +2526,13 @@ public class JaWalker extends TreeParser {
 
 
     // $ANTLR start "forUpdate"
-    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:328:1: forUpdate : expressionList ;
+    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:331:1: forUpdate : expressionList ;
     public final void forUpdate() throws RecognitionException {
         try {
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:329:5: ( expressionList )
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:329:9: expressionList
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:332:5: ( expressionList )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:332:9: expressionList
             {
-            pushFollow(FOLLOW_expressionList_in_forUpdate1480);
+            pushFollow(FOLLOW_expressionList_in_forUpdate1485);
             expressionList();
 
             state._fsp--;
@@ -2554,7 +2553,7 @@ public class JaWalker extends TreeParser {
 
 
     // $ANTLR start "expressionList"
-    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:336:1: expressionList returns [ArrayList<Type> types] : ( expression )+ ;
+    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:339:1: expressionList returns [ArrayList<Type> types] : ( expression )+ ;
     public final ArrayList<Type> expressionList() throws RecognitionException {
         ArrayList<Type> types = null;
 
@@ -2565,10 +2564,10 @@ public class JaWalker extends TreeParser {
         	types = new ArrayList<Type>();
 
         try {
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:340:5: ( ( expression )+ )
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:340:9: ( expression )+
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:343:5: ( ( expression )+ )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:343:9: ( expression )+
             {
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:340:9: ( expression )+
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:343:9: ( expression )+
             int cnt31=0;
             loop31:
             do {
@@ -2582,9 +2581,9 @@ public class JaWalker extends TreeParser {
 
                 switch (alt31) {
             	case 1 :
-            	    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:340:10: expression
+            	    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:343:10: expression
             	    {
-            	    pushFollow(FOLLOW_expression_in_expressionList1515);
+            	    pushFollow(FOLLOW_expression_in_expressionList1520);
             	    expression17=expression();
 
             	    state._fsp--;
@@ -2619,13 +2618,13 @@ public class JaWalker extends TreeParser {
 
 
     // $ANTLR start "statementExpression"
-    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:343:1: statementExpression : expression ;
+    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:346:1: statementExpression : expression ;
     public final void statementExpression() throws RecognitionException {
         try {
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:344:5: ( expression )
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:344:9: expression
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:347:5: ( expression )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:347:9: expression
             {
-            pushFollow(FOLLOW_expression_in_statementExpression1538);
+            pushFollow(FOLLOW_expression_in_statementExpression1543);
             expression();
 
             state._fsp--;
@@ -2646,13 +2645,13 @@ public class JaWalker extends TreeParser {
 
 
     // $ANTLR start "constantExpression"
-    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:347:1: constantExpression : expression ;
+    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:350:1: constantExpression : expression ;
     public final void constantExpression() throws RecognitionException {
         try {
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:348:5: ( expression )
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:348:9: expression
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:351:5: ( expression )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:351:9: expression
             {
-            pushFollow(FOLLOW_expression_in_constantExpression1561);
+            pushFollow(FOLLOW_expression_in_constantExpression1566);
             expression();
 
             state._fsp--;
@@ -2673,21 +2672,21 @@ public class JaWalker extends TreeParser {
 
 
     // $ANTLR start "expression"
-    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:351:1: expression returns [Type t] : ( ^( EQ e1= expression e2= expression ) | ^( PLUS e1= expression e2= expression ) | ^( MINUS e1= expression e2= expression ) | ^( STAR e1= expression e2= expression ) | ^( SLASH e1= expression e2= expression ) | ^(or= '||' e1= expression e2= expression ) | ^(and= '&&' e1= expression e2= expression ) | ^(eq= '==' e1= expression e2= expression ) | ^(nq= '!=' expression expression ) | ^( INSTANCEOF e= expression type ) | ^( COMPAREOP e1= expression e2= expression ) | ^(mod= '%' e1= expression e2= expression ) | ^(op= ( UNARYPLUS | UNARYMINUS | PREINC | PREDEC ) e= expression ) | ^(op= '!' e= expression ) | ^( CAST pt= primitiveType e= expression ) | ^( CAST npt= nonPrimitiveType e= expression ) | ^( NEW creator ) | ^(op= ( POSTINC | POSTDEC ) (e= selector | e= primary ) ) | selector | primary );
+    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:354:1: expression returns [Type t] : ( ^( EQ e1= expression e2= expression ) | ^( PLUS e1= expression e2= expression ) | ^( MINUS e1= expression e2= expression ) | ^( STAR e1= expression e2= expression ) | ^( SLASH e1= expression e2= expression ) | ^(mod= '%' e1= expression e2= expression ) | ^(or= '||' e1= expression e2= expression ) | ^(and= '&&' e1= expression e2= expression ) | ^(eq= '==' e1= expression e2= expression ) | ^(nq= '!=' e1= expression e2= expression ) | ^( INSTANCEOF e= expression type ) | ^( COMPAREOP e1= expression e2= expression ) | ^(op= ( UNARYPLUS | UNARYMINUS | PREINC | PREDEC ) e= expression ) | ^(op= '!' e= expression ) | ^( CAST pt= primitiveType e= expression ) | ^( CAST npt= nonPrimitiveType e= expression ) | ^( NEW creator ) | ^(op= ( POSTINC | POSTDEC ) (e= selector | e= primary ) ) | selector | primary );
     public final Type expression() throws RecognitionException {
         Type t = null;
 
+        CommonTree mod=null;
         CommonTree or=null;
         CommonTree and=null;
         CommonTree eq=null;
         CommonTree nq=null;
-        CommonTree mod=null;
         CommonTree op=null;
         CommonTree PLUS18=null;
         CommonTree MINUS19=null;
         CommonTree STAR20=null;
         CommonTree SLASH21=null;
-        CommonTree INSTANCEOF22=null;
+        CommonTree INSTANCEOF23=null;
         CommonTree COMPAREOP24=null;
         CommonTree CAST25=null;
         CommonTree CAST26=null;
@@ -2695,38 +2694,38 @@ public class JaWalker extends TreeParser {
 
         Type e2 = null;
 
-        JaWalker.primary_return e = null;
+        Type e = null;
 
-        JaWalker.primitiveType_return pt = null;
+        BasicType pt = null;
 
         ComplexType npt = null;
 
-        Type type23 = null;
+        Type type22 = null;
 
         Type creator27 = null;
 
         Type selector28 = null;
 
-        JaWalker.primary_return primary29 = null;
+        Type primary29 = null;
 
 
         try {
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:352:5: ( ^( EQ e1= expression e2= expression ) | ^( PLUS e1= expression e2= expression ) | ^( MINUS e1= expression e2= expression ) | ^( STAR e1= expression e2= expression ) | ^( SLASH e1= expression e2= expression ) | ^(or= '||' e1= expression e2= expression ) | ^(and= '&&' e1= expression e2= expression ) | ^(eq= '==' e1= expression e2= expression ) | ^(nq= '!=' expression expression ) | ^( INSTANCEOF e= expression type ) | ^( COMPAREOP e1= expression e2= expression ) | ^(mod= '%' e1= expression e2= expression ) | ^(op= ( UNARYPLUS | UNARYMINUS | PREINC | PREDEC ) e= expression ) | ^(op= '!' e= expression ) | ^( CAST pt= primitiveType e= expression ) | ^( CAST npt= nonPrimitiveType e= expression ) | ^( NEW creator ) | ^(op= ( POSTINC | POSTDEC ) (e= selector | e= primary ) ) | selector | primary )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:355:5: ( ^( EQ e1= expression e2= expression ) | ^( PLUS e1= expression e2= expression ) | ^( MINUS e1= expression e2= expression ) | ^( STAR e1= expression e2= expression ) | ^( SLASH e1= expression e2= expression ) | ^(mod= '%' e1= expression e2= expression ) | ^(or= '||' e1= expression e2= expression ) | ^(and= '&&' e1= expression e2= expression ) | ^(eq= '==' e1= expression e2= expression ) | ^(nq= '!=' e1= expression e2= expression ) | ^( INSTANCEOF e= expression type ) | ^( COMPAREOP e1= expression e2= expression ) | ^(op= ( UNARYPLUS | UNARYMINUS | PREINC | PREDEC ) e= expression ) | ^(op= '!' e= expression ) | ^( CAST pt= primitiveType e= expression ) | ^( CAST npt= nonPrimitiveType e= expression ) | ^( NEW creator ) | ^(op= ( POSTINC | POSTDEC ) (e= selector | e= primary ) ) | selector | primary )
             int alt33=20;
             alt33 = dfa33.predict(input);
             switch (alt33) {
                 case 1 :
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:352:9: ^( EQ e1= expression e2= expression )
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:355:9: ^( EQ e1= expression e2= expression )
                     {
-                    match(input,EQ,FOLLOW_EQ_in_expression1589); 
+                    match(input,EQ,FOLLOW_EQ_in_expression1594); 
 
                     match(input, Token.DOWN, null); 
-                    pushFollow(FOLLOW_expression_in_expression1596);
+                    pushFollow(FOLLOW_expression_in_expression1598);
                     e1=expression();
 
                     state._fsp--;
 
-                    pushFollow(FOLLOW_expression_in_expression1600);
+                    pushFollow(FOLLOW_expression_in_expression1602);
                     e2=expression();
 
                     state._fsp--;
@@ -2737,257 +2736,259 @@ public class JaWalker extends TreeParser {
                     }
                     break;
                 case 2 :
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:353:7: ^( PLUS e1= expression e2= expression )
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:356:7: ^( PLUS e1= expression e2= expression )
                     {
-                    PLUS18=(CommonTree)match(input,PLUS,FOLLOW_PLUS_in_expression1612); 
+                    PLUS18=(CommonTree)match(input,PLUS,FOLLOW_PLUS_in_expression1614); 
 
                     match(input, Token.DOWN, null); 
-                    pushFollow(FOLLOW_expression_in_expression1617);
+                    pushFollow(FOLLOW_expression_in_expression1621);
                     e1=expression();
 
                     state._fsp--;
 
-                    pushFollow(FOLLOW_expression_in_expression1621);
+                    pushFollow(FOLLOW_expression_in_expression1625);
                     e2=expression();
 
                     state._fsp--;
 
 
                     match(input, Token.UP, null); 
-                     t = plusOperation(PLUS18, e1, e2);        
+                     if(ruleTypeCheck(e1, e2)) t = plusOperation(PLUS18, e1, e2); 
 
                     }
                     break;
                 case 3 :
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:354:7: ^( MINUS e1= expression e2= expression )
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:357:7: ^( MINUS e1= expression e2= expression )
                     {
-                    MINUS19=(CommonTree)match(input,MINUS,FOLLOW_MINUS_in_expression1634); 
+                    MINUS19=(CommonTree)match(input,MINUS,FOLLOW_MINUS_in_expression1637); 
 
                     match(input, Token.DOWN, null); 
-                    pushFollow(FOLLOW_expression_in_expression1638);
+                    pushFollow(FOLLOW_expression_in_expression1643);
                     e1=expression();
 
                     state._fsp--;
 
-                    pushFollow(FOLLOW_expression_in_expression1642);
+                    pushFollow(FOLLOW_expression_in_expression1647);
                     e2=expression();
 
                     state._fsp--;
 
 
                     match(input, Token.UP, null); 
-                     t = arithmeticOperation(MINUS19, e1, e2); 
+                     if(ruleTypeCheck(e1, e2)) t = arithmeticOperation(MINUS19, e1, e2); 
 
                     }
                     break;
                 case 4 :
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:355:7: ^( STAR e1= expression e2= expression )
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:358:7: ^( STAR e1= expression e2= expression )
                     {
-                    STAR20=(CommonTree)match(input,STAR,FOLLOW_STAR_in_expression1655); 
+                    STAR20=(CommonTree)match(input,STAR,FOLLOW_STAR_in_expression1659); 
 
                     match(input, Token.DOWN, null); 
-                    pushFollow(FOLLOW_expression_in_expression1660);
+                    pushFollow(FOLLOW_expression_in_expression1666);
                     e1=expression();
 
                     state._fsp--;
 
-                    pushFollow(FOLLOW_expression_in_expression1664);
+                    pushFollow(FOLLOW_expression_in_expression1670);
                     e2=expression();
 
                     state._fsp--;
 
 
                     match(input, Token.UP, null); 
-                     t = arithmeticOperation(STAR20, e1, e2);  
+                     if(ruleTypeCheck(e1, e2)) t = arithmeticOperation(STAR20,  e1, e2); 
 
                     }
                     break;
                 case 5 :
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:356:7: ^( SLASH e1= expression e2= expression )
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:359:7: ^( SLASH e1= expression e2= expression )
                     {
-                    SLASH21=(CommonTree)match(input,SLASH,FOLLOW_SLASH_in_expression1677); 
+                    SLASH21=(CommonTree)match(input,SLASH,FOLLOW_SLASH_in_expression1682); 
 
                     match(input, Token.DOWN, null); 
-                    pushFollow(FOLLOW_expression_in_expression1681);
+                    pushFollow(FOLLOW_expression_in_expression1688);
                     e1=expression();
 
                     state._fsp--;
 
-                    pushFollow(FOLLOW_expression_in_expression1685);
+                    pushFollow(FOLLOW_expression_in_expression1692);
                     e2=expression();
 
                     state._fsp--;
 
 
                     match(input, Token.UP, null); 
-                     t = arithmeticOperation(SLASH21, e1, e2); 
+                     if(ruleTypeCheck(e1, e2)) t = arithmeticOperation(SLASH21, e1, e2); 
 
                     }
                     break;
                 case 6 :
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:357:9: ^(or= '||' e1= expression e2= expression )
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:360:9: ^(mod= '%' e1= expression e2= expression )
                     {
-                    or=(CommonTree)match(input,99,FOLLOW_99_in_expression1702); 
+                    mod=(CommonTree)match(input,103,FOLLOW_103_in_expression1708); 
 
                     match(input, Token.DOWN, null); 
-                    pushFollow(FOLLOW_expression_in_expression1707);
+                    pushFollow(FOLLOW_expression_in_expression1712);
                     e1=expression();
 
                     state._fsp--;
 
-                    pushFollow(FOLLOW_expression_in_expression1711);
+                    pushFollow(FOLLOW_expression_in_expression1716);
                     e2=expression();
 
                     state._fsp--;
 
 
                     match(input, Token.UP, null); 
-                     t = booleanOperation(or, e1, e2);  
+                     if(ruleTypeCheck(e1, e2)) t = arithmeticOperation(mod,   e1, e2); 
 
                     }
                     break;
                 case 7 :
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:358:9: ^(and= '&&' e1= expression e2= expression )
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:361:9: ^(or= '||' e1= expression e2= expression )
                     {
-                    and=(CommonTree)match(input,100,FOLLOW_100_in_expression1728); 
+                    or=(CommonTree)match(input,99,FOLLOW_99_in_expression1732); 
 
                     match(input, Token.DOWN, null); 
-                    pushFollow(FOLLOW_expression_in_expression1733);
+                    pushFollow(FOLLOW_expression_in_expression1737);
                     e1=expression();
 
                     state._fsp--;
 
-                    pushFollow(FOLLOW_expression_in_expression1737);
+                    pushFollow(FOLLOW_expression_in_expression1741);
                     e2=expression();
 
                     state._fsp--;
 
 
                     match(input, Token.UP, null); 
-                     t = booleanOperation(and, e1, e2); 
+                     if(ruleTypeCheck(e1, e2)) t = booleanOperation(or,  e1, e2); 
 
                     }
                     break;
                 case 8 :
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:359:9: ^(eq= '==' e1= expression e2= expression )
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:362:9: ^(and= '&&' e1= expression e2= expression )
                     {
-                    eq=(CommonTree)match(input,101,FOLLOW_101_in_expression1753); 
+                    and=(CommonTree)match(input,100,FOLLOW_100_in_expression1757); 
 
                     match(input, Token.DOWN, null); 
-                    pushFollow(FOLLOW_expression_in_expression1758);
+                    pushFollow(FOLLOW_expression_in_expression1761);
                     e1=expression();
 
                     state._fsp--;
 
-                    pushFollow(FOLLOW_expression_in_expression1762);
+                    pushFollow(FOLLOW_expression_in_expression1765);
                     e2=expression();
 
                     state._fsp--;
 
 
                     match(input, Token.UP, null); 
-                     t = booleanOperation(eq, e1, e2);  
+                     if(ruleTypeCheck(e1, e2)) t = booleanOperation(and, e1, e2); 
 
                     }
                     break;
                 case 9 :
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:360:9: ^(nq= '!=' expression expression )
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:363:9: ^(eq= '==' e1= expression e2= expression )
                     {
-                    nq=(CommonTree)match(input,102,FOLLOW_102_in_expression1779); 
+                    eq=(CommonTree)match(input,101,FOLLOW_101_in_expression1781); 
 
                     match(input, Token.DOWN, null); 
-                    pushFollow(FOLLOW_expression_in_expression1782);
-                    expression();
+                    pushFollow(FOLLOW_expression_in_expression1786);
+                    e1=expression();
 
                     state._fsp--;
 
-                    pushFollow(FOLLOW_expression_in_expression1784);
-                    expression();
+                    pushFollow(FOLLOW_expression_in_expression1790);
+                    e2=expression();
 
                     state._fsp--;
 
 
                     match(input, Token.UP, null); 
-                     t = booleanOperation(nq, e1, e2);  
+                     if(ruleTypeCheck(e1, e2)) t = booleanOperation(eq,  e1, e2); 
 
                     }
                     break;
                 case 10 :
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:361:7: ^( INSTANCEOF e= expression type )
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:364:9: ^(nq= '!=' e1= expression e2= expression )
                     {
-                    INSTANCEOF22=(CommonTree)match(input,INSTANCEOF,FOLLOW_INSTANCEOF_in_expression1803); 
+                    nq=(CommonTree)match(input,102,FOLLOW_102_in_expression1806); 
 
                     match(input, Token.DOWN, null); 
-                    pushFollow(FOLLOW_expression_in_expression1807);
-                    e=expression();
+                    pushFollow(FOLLOW_expression_in_expression1811);
+                    e1=expression();
 
                     state._fsp--;
 
-                    pushFollow(FOLLOW_type_in_expression1809);
-                    type23=type();
+                    pushFollow(FOLLOW_expression_in_expression1815);
+                    e2=expression();
 
                     state._fsp--;
 
 
                     match(input, Token.UP, null); 
-                     if ( !((e!=null?e.t:null).isComplexType() || (e!=null?e.t:null).isNull()) ) throw new UnexpectedTypeException("reference", (e!=null?e.t:null).toString(), (INSTANCEOF22!=null?INSTANCEOF22.getLine():0), (INSTANCEOF22!=null?INSTANCEOF22.getCharPositionInLine():0), rt);
-                              if (!type23.isComplexType()) throw new UnexpectedTypeException("class or array", type23.toString(), (INSTANCEOF22!=null?INSTANCEOF22.getLine():0), (INSTANCEOF22!=null?INSTANCEOF22.getCharPositionInLine():0), rt);
-                              if (!(e!=null?e.t:null).isCastableTo(type23)) throw new InconvertibleTypesException(type23.toString(), (e!=null?e.t:null).toString(), (INSTANCEOF22!=null?INSTANCEOF22.getLine():0), (INSTANCEOF22!=null?INSTANCEOF22.getCharPositionInLine():0), rt);
-                              t = BasicType.BOOLEAN; 
-                            
+                     if(ruleTypeCheck(e1, e2)) t = booleanOperation(nq,  e1, e2); 
 
                     }
                     break;
                 case 11 :
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:367:7: ^( COMPAREOP e1= expression e2= expression )
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:365:7: ^( INSTANCEOF e= expression type )
                     {
-                    COMPAREOP24=(CommonTree)match(input,COMPAREOP,FOLLOW_COMPAREOP_in_expression1829); 
+                    INSTANCEOF23=(CommonTree)match(input,INSTANCEOF,FOLLOW_INSTANCEOF_in_expression1827); 
 
                     match(input, Token.DOWN, null); 
-                    pushFollow(FOLLOW_expression_in_expression1833);
-                    e1=expression();
+                    pushFollow(FOLLOW_expression_in_expression1831);
+                    e=expression();
 
                     state._fsp--;
 
-                    pushFollow(FOLLOW_expression_in_expression1837);
-                    e2=expression();
+                    pushFollow(FOLLOW_type_in_expression1833);
+                    type22=type();
 
                     state._fsp--;
 
 
                     match(input, Token.UP, null); 
-                     if ( !(e1.isNumeric() && e2.isNumeric()) ) {
-                    	  	throw new CannotBeAppliedToException((COMPAREOP24!=null?COMPAREOP24.getText():null), e1.toString(), e2.toString(), (COMPAREOP24!=null?COMPAREOP24.getLine():0), (COMPAREOP24!=null?COMPAREOP24.getCharPositionInLine():0), rt);
-                    	  }
-                        	  t = BasicType.BOOLEAN; 
-                        	
+                     if(ruleTypeCheck(e, type22)) { 
+                    	          if ( !(e.isComplexType() || e.isNull()) ) errorLog.add(new UnexpectedTypeException("reference", e.toString(), (INSTANCEOF23!=null?INSTANCEOF23.getLine():0), (INSTANCEOF23!=null?INSTANCEOF23.getCharPositionInLine():0), rt));
+                    	          if (!type22.isComplexType()) errorLog.add(new UnexpectedTypeException("class or array", type22.toString(), (INSTANCEOF23!=null?INSTANCEOF23.getLine():0), (INSTANCEOF23!=null?INSTANCEOF23.getCharPositionInLine():0), rt));
+                    	          if (!e.isCastableTo(type22)) errorLog.add(new InconvertibleTypesException(type22.toString(), e.toString(), (INSTANCEOF23!=null?INSTANCEOF23.getLine():0), (INSTANCEOF23!=null?INSTANCEOF23.getCharPositionInLine():0), rt));
+                    	          t = BasicType.BOOLEAN;
+                              } 
+                            
 
                     }
                     break;
                 case 12 :
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:373:9: ^(mod= '%' e1= expression e2= expression )
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:373:7: ^( COMPAREOP e1= expression e2= expression )
                     {
-                    mod=(CommonTree)match(input,103,FOLLOW_103_in_expression1858); 
+                    COMPAREOP24=(CommonTree)match(input,COMPAREOP,FOLLOW_COMPAREOP_in_expression1853); 
 
                     match(input, Token.DOWN, null); 
-                    pushFollow(FOLLOW_expression_in_expression1864);
+                    pushFollow(FOLLOW_expression_in_expression1857);
                     e1=expression();
 
                     state._fsp--;
 
-                    pushFollow(FOLLOW_expression_in_expression1868);
+                    pushFollow(FOLLOW_expression_in_expression1861);
                     e2=expression();
 
                     state._fsp--;
 
 
                     match(input, Token.UP, null); 
-                     t = arithmeticOperation(mod, e1, e2); 
+                     if(ruleTypeCheck(e1, e2)) { 
+                    	    	  if ( !(e1.isNumeric() && e2.isNumeric()) ) errorLog.add(new CannotBeAppliedToException((COMPAREOP24!=null?COMPAREOP24.getText():null), e1.toString(), e2.toString(), (COMPAREOP24!=null?COMPAREOP24.getLine():0), (COMPAREOP24!=null?COMPAREOP24.getCharPositionInLine():0), rt));
+                    	    	  t = BasicType.BOOLEAN;
+                        	  } 
+                        	
 
                     }
                     break;
                 case 13 :
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:374:9: ^(op= ( UNARYPLUS | UNARYMINUS | PREINC | PREDEC ) e= expression )
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:379:9: ^(op= ( UNARYPLUS | UNARYMINUS | PREINC | PREDEC ) e= expression )
                     {
                     op=(CommonTree)input.LT(1);
                     if ( input.LA(1)==PREINC||input.LA(1)==PREDEC||(input.LA(1)>=UNARYPLUS && input.LA(1)<=UNARYMINUS) ) {
@@ -3001,104 +3002,101 @@ public class JaWalker extends TreeParser {
 
 
                     match(input, Token.DOWN, null); 
-                    pushFollow(FOLLOW_expression_in_expression1901);
+                    pushFollow(FOLLOW_expression_in_expression1899);
                     e=expression();
 
                     state._fsp--;
 
 
                     match(input, Token.UP, null); 
-                     if (!(e!=null?e.t:null).isNumeric()) {
-                        	  	throw new CannotBeAppliedToException((op!=null?op.getText():null), (e!=null?e.t:null).toString(), "", (op!=null?op.getLine():0), (op!=null?op.getCharPositionInLine():0), rt);
+                     if(ruleTypeCheck(e)) { 
+                    	          if (!e.isNumeric()) errorLog.add(new CannotBeAppliedToException((op!=null?op.getText():null), e.toString(), "", (op!=null?op.getLine():0), (op!=null?op.getCharPositionInLine():0), rt));
+                    	    	  t = e;
                         	  }
-                        	  t = (e!=null?e.t:null);
                         	
 
                     }
                     break;
                 case 14 :
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:383:7: ^(op= '!' e= expression )
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:388:7: ^(op= '!' e= expression )
                     {
-                    op=(CommonTree)match(input,106,FOLLOW_106_in_expression1939); 
+                    op=(CommonTree)match(input,106,FOLLOW_106_in_expression1937); 
 
                     match(input, Token.DOWN, null); 
-                    pushFollow(FOLLOW_expression_in_expression1943);
+                    pushFollow(FOLLOW_expression_in_expression1941);
                     e=expression();
 
                     state._fsp--;
 
 
                     match(input, Token.UP, null); 
-                     if (!((e!=null?e.t:null) == BasicType.BOOLEAN)) {
-                        	  	throw new CannotBeAppliedToException((op!=null?op.getText():null), (e!=null?e.t:null).toString(), "", (op!=null?op.getLine():0), (op!=null?op.getCharPositionInLine():0), rt);
+                     if(ruleTypeCheck(e)) {
+                    	    	  if (!(e == BasicType.BOOLEAN)) errorLog.add(new CannotBeAppliedToException((op!=null?op.getText():null), e.toString(), "", (op!=null?op.getLine():0), (op!=null?op.getCharPositionInLine():0), rt));
+                    	    	  t = BasicType.BOOLEAN;
                         	  }
-                        	  t = BasicType.BOOLEAN;
                         	
 
                     }
                     break;
                 case 15 :
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:389:9: ^( CAST pt= primitiveType e= expression )
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:394:9: ^( CAST pt= primitiveType e= expression )
                     {
-                    CAST25=(CommonTree)match(input,CAST,FOLLOW_CAST_in_expression1962); 
+                    CAST25=(CommonTree)match(input,CAST,FOLLOW_CAST_in_expression1960); 
 
                     match(input, Token.DOWN, null); 
-                    pushFollow(FOLLOW_primitiveType_in_expression1966);
+                    pushFollow(FOLLOW_primitiveType_in_expression1964);
                     pt=primitiveType();
 
                     state._fsp--;
 
-                    pushFollow(FOLLOW_expression_in_expression1970);
+                    pushFollow(FOLLOW_expression_in_expression1968);
                     e=expression();
 
                     state._fsp--;
 
 
                     match(input, Token.UP, null); 
-                     System.out.println((CAST25!=null?CAST25.getText():null) + "  " + (pt!=null?(input.getTokenStream().toString(
-                      input.getTreeAdaptor().getTokenStartIndex(pt.start),
-                      input.getTreeAdaptor().getTokenStopIndex(pt.start))):null) + "  " + (e!=null?(input.getTokenStream().toString(
-                      input.getTreeAdaptor().getTokenStartIndex(e.start),
-                      input.getTreeAdaptor().getTokenStopIndex(e.start))):null)); 
-                        	  if (!(e!=null?e.t:null).isCastableTo((pt!=null?pt.bs:null)))
-                        		throw new InconvertibleTypesException((pt!=null?pt.bs:null).toString(), (e!=null?e.t:null).toString(), (CAST25!=null?CAST25.getLine():0), (CAST25!=null?CAST25.getCharPositionInLine():0), rt);
-                        	  t = (pt!=null?pt.bs:null);
+                     if(ruleTypeCheck(pt, e)) {
+                    	    	  if (!e.isCastableTo(pt)) errorLog.add(new InconvertibleTypesException(pt.toString(), e.toString(), (CAST25!=null?CAST25.getLine():0), (CAST25!=null?CAST25.getCharPositionInLine():0), rt));
+                    	    	  t = pt;
+                        	  }
                         	
 
                     }
                     break;
                 case 16 :
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:395:9: ^( CAST npt= nonPrimitiveType e= expression )
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:400:9: ^( CAST npt= nonPrimitiveType e= expression )
                     {
-                    CAST26=(CommonTree)match(input,CAST,FOLLOW_CAST_in_expression1989); 
+                    CAST26=(CommonTree)match(input,CAST,FOLLOW_CAST_in_expression1987); 
 
                     match(input, Token.DOWN, null); 
-                    pushFollow(FOLLOW_nonPrimitiveType_in_expression1993);
+                    pushFollow(FOLLOW_nonPrimitiveType_in_expression1991);
                     npt=nonPrimitiveType();
 
                     state._fsp--;
 
-                    pushFollow(FOLLOW_expression_in_expression1997);
+                    pushFollow(FOLLOW_expression_in_expression1995);
                     e=expression();
 
                     state._fsp--;
 
 
                     match(input, Token.UP, null); 
-                     if (!(e!=null?e.t:null).isCastableTo(npt))
-                        		throw new InconvertibleTypesException(npt.toString(), (e!=null?e.t:null).toString(), (CAST26!=null?CAST26.getLine():0), (CAST26!=null?CAST26.getCharPositionInLine():0), rt);
-                        	  t = npt;
+                     if(ruleTypeCheck(npt, e)) {
+                    	    	  if (!e.isCastableTo(npt)) errorLog.add(new InconvertibleTypesException(npt.toString(), e.toString(), (CAST26!=null?CAST26.getLine():0), (CAST26!=null?CAST26.getCharPositionInLine():0), rt));
+                    	    	  t = npt;
+                        	  }
                         	
 
                     }
                     break;
                 case 17 :
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:400:9: ^( NEW creator )
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:406:9: ^( NEW creator )
                     {
-                    match(input,NEW,FOLLOW_NEW_in_expression2016); 
+                    match(input,NEW,FOLLOW_NEW_in_expression2014); 
 
                     match(input, Token.DOWN, null); 
-                    pushFollow(FOLLOW_creator_in_expression2018);
+                    pushFollow(FOLLOW_creator_in_expression2016);
                     creator27=creator();
 
                     state._fsp--;
@@ -3110,7 +3108,7 @@ public class JaWalker extends TreeParser {
                     }
                     break;
                 case 18 :
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:401:7: ^(op= ( POSTINC | POSTDEC ) (e= selector | e= primary ) )
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:407:7: ^(op= ( POSTINC | POSTDEC ) (e= selector | e= primary ) )
                     {
                     op=(CommonTree)input.LT(1);
                     if ( input.LA(1)==POSTINC||input.LA(1)==POSTDEC ) {
@@ -3124,7 +3122,7 @@ public class JaWalker extends TreeParser {
 
 
                     match(input, Token.DOWN, null); 
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:401:32: (e= selector | e= primary )
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:407:32: (e= selector | e= primary )
                     int alt32=2;
                     switch ( input.LA(1) ) {
                     case FIELDACCESS:
@@ -3212,9 +3210,9 @@ public class JaWalker extends TreeParser {
 
                     switch (alt32) {
                         case 1 :
-                            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:401:33: e= selector
+                            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:407:33: e= selector
                             {
-                            pushFollow(FOLLOW_selector_in_expression2043);
+                            pushFollow(FOLLOW_selector_in_expression2041);
                             e=selector();
 
                             state._fsp--;
@@ -3223,9 +3221,9 @@ public class JaWalker extends TreeParser {
                             }
                             break;
                         case 2 :
-                            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:401:46: e= primary
+                            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:407:46: e= primary
                             {
-                            pushFollow(FOLLOW_primary_in_expression2049);
+                            pushFollow(FOLLOW_primary_in_expression2047);
                             e=primary();
 
                             state._fsp--;
@@ -3238,18 +3236,18 @@ public class JaWalker extends TreeParser {
 
 
                     match(input, Token.UP, null); 
-                     if (!(e!=null?e.t:null).isNumeric()) {
-                        	  	throw new CannotBeAppliedToException((op!=null?op.getText():null), (e!=null?e.t:null).toString(), "", (op!=null?op.getLine():0), (op!=null?op.getCharPositionInLine():0), rt);
+                     if (!e.isNumeric()) {
+                        	  	throw new CannotBeAppliedToException((op!=null?op.getText():null), e.toString(), "", (op!=null?op.getLine():0), (op!=null?op.getCharPositionInLine():0), rt);
                         	  }
-                        	  t = (e!=null?e.t:null);
+                        	  t = e;
                         	
 
                     }
                     break;
                 case 19 :
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:408:9: selector
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:414:9: selector
                     {
-                    pushFollow(FOLLOW_selector_in_expression2074);
+                    pushFollow(FOLLOW_selector_in_expression2072);
                     selector28=selector();
 
                     state._fsp--;
@@ -3259,14 +3257,14 @@ public class JaWalker extends TreeParser {
                     }
                     break;
                 case 20 :
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:409:9: primary
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:415:9: primary
                     {
-                    pushFollow(FOLLOW_primary_in_expression2086);
+                    pushFollow(FOLLOW_primary_in_expression2084);
                     primary29=primary();
 
                     state._fsp--;
 
-                     t = (primary29!=null?primary29.t:null); 
+                     t = primary29; 
 
                     }
                     break;
@@ -3283,15 +3281,11 @@ public class JaWalker extends TreeParser {
     }
     // $ANTLR end "expression"
 
-    public static class primary_return extends TreeRuleReturnScope {
-        public Type t;
-    };
 
     // $ANTLR start "primary"
-    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:412:1: primary returns [Type t] : ( THIS | superMemberAccess | literal | IDENTIFIER | ^( DOTCLASS ^( ARRAYTYPE type ) ) | ^( DOTCLASS IDENTIFIER ) | ^( DOTCLASS primitiveType ) | ^( DOTCLASS VOID ) );
-    public final JaWalker.primary_return primary() throws RecognitionException {
-        JaWalker.primary_return retval = new JaWalker.primary_return();
-        retval.start = input.LT(1);
+    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:418:1: primary returns [Type t] : ( THIS | superMemberAccess | literal | IDENTIFIER | ^( DOTCLASS ^( ARRAYTYPE type ) ) | ^( DOTCLASS IDENTIFIER ) | ^( DOTCLASS primitiveType ) | ^( DOTCLASS VOID ) );
+    public final Type primary() throws RecognitionException {
+        Type t = null;
 
         CommonTree IDENTIFIER32=null;
         Type superMemberAccess30 = null;
@@ -3300,62 +3294,62 @@ public class JaWalker extends TreeParser {
 
 
         try {
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:414:5: ( THIS | superMemberAccess | literal | IDENTIFIER | ^( DOTCLASS ^( ARRAYTYPE type ) ) | ^( DOTCLASS IDENTIFIER ) | ^( DOTCLASS primitiveType ) | ^( DOTCLASS VOID ) )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:420:5: ( THIS | superMemberAccess | literal | IDENTIFIER | ^( DOTCLASS ^( ARRAYTYPE type ) ) | ^( DOTCLASS IDENTIFIER ) | ^( DOTCLASS primitiveType ) | ^( DOTCLASS VOID ) )
             int alt34=8;
             alt34 = dfa34.predict(input);
             switch (alt34) {
                 case 1 :
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:414:7: THIS
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:420:7: THIS
                     {
-                    match(input,THIS,FOLLOW_THIS_in_primary2127); 
-                     retval.t = rt; 
+                    match(input,THIS,FOLLOW_THIS_in_primary2125); 
+                     t = rt; 
 
                     }
                     break;
                 case 2 :
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:415:9: superMemberAccess
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:421:9: superMemberAccess
                     {
-                    pushFollow(FOLLOW_superMemberAccess_in_primary2139);
+                    pushFollow(FOLLOW_superMemberAccess_in_primary2137);
                     superMemberAccess30=superMemberAccess();
 
                     state._fsp--;
 
-                     retval.t = superMemberAccess30; 
+                     t = superMemberAccess30; 
 
                     }
                     break;
                 case 3 :
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:416:9: literal
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:422:9: literal
                     {
-                    pushFollow(FOLLOW_literal_in_primary2151);
+                    pushFollow(FOLLOW_literal_in_primary2149);
                     literal31=literal();
 
                     state._fsp--;
 
-                     retval.t = literal31; 
+                     t = literal31; 
 
                     }
                     break;
                 case 4 :
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:417:9: IDENTIFIER
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:423:9: IDENTIFIER
                     {
-                    IDENTIFIER32=(CommonTree)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_primary2163); 
-                     retval.t = getVariableType((IDENTIFIER32!=null?IDENTIFIER32.getText():null)); 
-                        		     if (retval.t == null) throw new CannotFindSymbolException(("variable " + (IDENTIFIER32!=null?IDENTIFIER32.getText():null)), getMethodSignature(), (IDENTIFIER32!=null?IDENTIFIER32.getLine():0), (IDENTIFIER32!=null?IDENTIFIER32.getCharPositionInLine():0), rt);
+                    IDENTIFIER32=(CommonTree)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_primary2161); 
+                     t = getVariableType((IDENTIFIER32!=null?IDENTIFIER32.getText():null)); 
+                        		     if (t == null) errorLog.add(new CannotFindSymbolException(("variable " + (IDENTIFIER32!=null?IDENTIFIER32.getText():null)), getMethodSignature(), (IDENTIFIER32!=null?IDENTIFIER32.getLine():0), (IDENTIFIER32!=null?IDENTIFIER32.getCharPositionInLine():0), rt));
                         		   
 
                     }
                     break;
                 case 5 :
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:421:9: ^( DOTCLASS ^( ARRAYTYPE type ) )
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:427:9: ^( DOTCLASS ^( ARRAYTYPE type ) )
                     {
-                    match(input,DOTCLASS,FOLLOW_DOTCLASS_in_primary2181); 
+                    match(input,DOTCLASS,FOLLOW_DOTCLASS_in_primary2179); 
 
                     match(input, Token.DOWN, null); 
-                    match(input,ARRAYTYPE,FOLLOW_ARRAYTYPE_in_primary2184); 
+                    match(input,ARRAYTYPE,FOLLOW_ARRAYTYPE_in_primary2182); 
 
                     match(input, Token.DOWN, null); 
-                    pushFollow(FOLLOW_type_in_primary2186);
+                    pushFollow(FOLLOW_type_in_primary2184);
                     type();
 
                     state._fsp--;
@@ -3364,50 +3358,50 @@ public class JaWalker extends TreeParser {
                     match(input, Token.UP, null); 
 
                     match(input, Token.UP, null); 
-                     retval.t = ReferenceType.CLASS; 
+                     t = ReferenceType.CLASS; 
 
                     }
                     break;
                 case 6 :
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:422:7: ^( DOTCLASS IDENTIFIER )
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:428:7: ^( DOTCLASS IDENTIFIER )
                     {
-                    match(input,DOTCLASS,FOLLOW_DOTCLASS_in_primary2201); 
+                    match(input,DOTCLASS,FOLLOW_DOTCLASS_in_primary2199); 
 
                     match(input, Token.DOWN, null); 
-                    match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_primary2203); 
+                    match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_primary2201); 
 
                     match(input, Token.UP, null); 
-                     retval.t = ReferenceType.CLASS; 
+                     t = ReferenceType.CLASS; 
 
                     }
                     break;
                 case 7 :
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:423:9: ^( DOTCLASS primitiveType )
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:429:9: ^( DOTCLASS primitiveType )
                     {
-                    match(input,DOTCLASS,FOLLOW_DOTCLASS_in_primary2224); 
+                    match(input,DOTCLASS,FOLLOW_DOTCLASS_in_primary2222); 
 
                     match(input, Token.DOWN, null); 
-                    pushFollow(FOLLOW_primitiveType_in_primary2226);
+                    pushFollow(FOLLOW_primitiveType_in_primary2224);
                     primitiveType();
 
                     state._fsp--;
 
 
                     match(input, Token.UP, null); 
-                     retval.t = ReferenceType.CLASS; 
+                     t = ReferenceType.CLASS; 
 
                     }
                     break;
                 case 8 :
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:424:9: ^( DOTCLASS VOID )
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:430:9: ^( DOTCLASS VOID )
                     {
-                    match(input,DOTCLASS,FOLLOW_DOTCLASS_in_primary2244); 
+                    match(input,DOTCLASS,FOLLOW_DOTCLASS_in_primary2242); 
 
                     match(input, Token.DOWN, null); 
-                    match(input,VOID,FOLLOW_VOID_in_primary2246); 
+                    match(input,VOID,FOLLOW_VOID_in_primary2244); 
 
                     match(input, Token.UP, null); 
-                     retval.t = ReferenceType.CLASS; 
+                     t = ReferenceType.CLASS; 
 
                     }
                     break;
@@ -3420,18 +3414,18 @@ public class JaWalker extends TreeParser {
         }
         finally {
         }
-        return retval;
+        return t;
     }
     // $ANTLR end "primary"
 
 
     // $ANTLR start "selector"
-    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:427:1: selector returns [Type t] : ( ^( FIELDACCESS expression IDENTIFIER ) | ^( METHODCALL expression IDENTIFIER ( arguments )? ) | ^( ARRAYACCESS e1= expression e2= expression ) );
+    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:433:1: selector returns [Type t] : ( ^( FIELDACCESS expression IDENTIFIER ) | ^( METHODCALL expression IDENTIFIER ( arguments )? ) | ^( ARRAYACCESS e1= expression e2= expression ) );
     public final Type selector() throws RecognitionException {
         Type t = null;
 
         CommonTree IDENTIFIER34=null;
-        CommonTree IDENTIFIER36=null;
+        CommonTree IDENTIFIER37=null;
         CommonTree ARRAYACCESS38=null;
         Type e1 = null;
 
@@ -3441,11 +3435,11 @@ public class JaWalker extends TreeParser {
 
         Type expression35 = null;
 
-        JaWalker.arguments_return arguments37 = null;
+        JaWalker.arguments_return arguments36 = null;
 
 
         try {
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:428:5: ( ^( FIELDACCESS expression IDENTIFIER ) | ^( METHODCALL expression IDENTIFIER ( arguments )? ) | ^( ARRAYACCESS e1= expression e2= expression ) )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:434:5: ( ^( FIELDACCESS expression IDENTIFIER ) | ^( METHODCALL expression IDENTIFIER ( arguments )? ) | ^( ARRAYACCESS e1= expression e2= expression ) )
             int alt36=3;
             switch ( input.LA(1) ) {
             case FIELDACCESS:
@@ -3472,45 +3466,44 @@ public class JaWalker extends TreeParser {
 
             switch (alt36) {
                 case 1 :
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:428:9: ^( FIELDACCESS expression IDENTIFIER )
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:434:9: ^( FIELDACCESS expression IDENTIFIER )
                     {
-                    match(input,FIELDACCESS,FOLLOW_FIELDACCESS_in_selector2290); 
+                    match(input,FIELDACCESS,FOLLOW_FIELDACCESS_in_selector2288); 
 
                     match(input, Token.DOWN, null); 
-                    pushFollow(FOLLOW_expression_in_selector2292);
+                    pushFollow(FOLLOW_expression_in_selector2290);
                     expression33=expression();
 
                     state._fsp--;
 
-                    IDENTIFIER34=(CommonTree)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_selector2294); 
+                    IDENTIFIER34=(CommonTree)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_selector2292); 
 
                     match(input, Token.UP, null); 
-                     if (!expression33.isReference())
-                        	  	throw new CannotBeDereferencedException(expression33, (IDENTIFIER34!=null?IDENTIFIER34.getLine():0), (IDENTIFIER34!=null?IDENTIFIER34.getCharPositionInLine():0), rt); 
-                        	  ReferenceType expt = (ReferenceType)expression33;
-                        	  if (expt.getName() == rt.getName()) 
-                        	  	t = expt.getField(true, (IDENTIFIER34!=null?IDENTIFIER34.getText():null));
-                        	  else  
-                        		t = expt.getField(false, (IDENTIFIER34!=null?IDENTIFIER34.getText():null));
-                    	  if (t == null) 
-                    		throw new CannotFindSymbolException(("field " + (IDENTIFIER34!=null?IDENTIFIER34.getText():null)), expt.getName(), (IDENTIFIER34!=null?IDENTIFIER34.getLine():0), (IDENTIFIER34!=null?IDENTIFIER34.getCharPositionInLine():0), rt);
+                     if(ruleTypeCheck(expression33)) {
+                    	    	  if (!expression33.isReference())
+                    	    	  	errorLog.add(new CannotBeDereferencedException(expression33, (IDENTIFIER34!=null?IDENTIFIER34.getLine():0), (IDENTIFIER34!=null?IDENTIFIER34.getCharPositionInLine():0), rt)); 
+                    	    	  ReferenceType expt = (ReferenceType)expression33;
+                    	    	  boolean isSameClass = (expt.getName() == rt.getName()); 
+                    	    	  t = expt.getField(isSameClass, (IDENTIFIER34!=null?IDENTIFIER34.getText():null));
+                    		  if (t == null) errorLog.add(new CannotFindSymbolException(("field " + (IDENTIFIER34!=null?IDENTIFIER34.getText():null)), expt.getName(), (IDENTIFIER34!=null?IDENTIFIER34.getLine():0), (IDENTIFIER34!=null?IDENTIFIER34.getCharPositionInLine():0), rt));
+                        	  }
                         	
 
                     }
                     break;
                 case 2 :
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:439:7: ^( METHODCALL expression IDENTIFIER ( arguments )? )
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:444:7: ^( METHODCALL expression IDENTIFIER ( arguments )? )
                     {
-                    match(input,METHODCALL,FOLLOW_METHODCALL_in_selector2313); 
+                    match(input,METHODCALL,FOLLOW_METHODCALL_in_selector2311); 
 
                     match(input, Token.DOWN, null); 
-                    pushFollow(FOLLOW_expression_in_selector2315);
+                    pushFollow(FOLLOW_expression_in_selector2313);
                     expression35=expression();
 
                     state._fsp--;
 
-                    IDENTIFIER36=(CommonTree)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_selector2317); 
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:439:42: ( arguments )?
+                    IDENTIFIER37=(CommonTree)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_selector2315); 
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:444:42: ( arguments )?
                     int alt35=2;
                     int LA35_0 = input.LA(1);
 
@@ -3519,10 +3512,10 @@ public class JaWalker extends TreeParser {
                     }
                     switch (alt35) {
                         case 1 :
-                            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:439:42: arguments
+                            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:444:42: arguments
                             {
-                            pushFollow(FOLLOW_arguments_in_selector2319);
-                            arguments37=arguments();
+                            pushFollow(FOLLOW_arguments_in_selector2317);
+                            arguments36=arguments();
 
                             state._fsp--;
 
@@ -3534,49 +3527,51 @@ public class JaWalker extends TreeParser {
 
 
                     match(input, Token.UP, null); 
-                     if (!expression35.isReference())
-                        	  	throw new CannotBeDereferencedException(expression35, (IDENTIFIER36!=null?IDENTIFIER36.getLine():0), (IDENTIFIER36!=null?IDENTIFIER36.getCharPositionInLine():0), rt); 
-                        	  ReferenceType expt = (ReferenceType)expression35;
-                        	  ArrayList<Type> argTypes = (arguments37!=null?arguments37.types:null); //((arguments37!=null?((CommonTree)arguments37.tree):null) == null)?null:(arguments37!=null?arguments37.types:null);
-                        	  try {
-                    	    	if (expt.getName() == rt.getName()) 
-                    	    		t = expt.bindMethod(true, (IDENTIFIER36!=null?IDENTIFIER36.getText():null), argTypes);
-                    	    	else  
-                    	    		t = expt.bindMethod(false, (IDENTIFIER36!=null?IDENTIFIER36.getText():null), argTypes);
-                        	  } catch (EarlyBindingException ex) {
-                        	  	throw new CannotFindSymbolException(("method " + (IDENTIFIER36!=null?IDENTIFIER36.getText():null) + '(' + printArguments(argTypes) + ')'), expt.getName(), (IDENTIFIER36!=null?IDENTIFIER36.getLine():0), (IDENTIFIER36!=null?IDENTIFIER36.getCharPositionInLine():0), rt);
+                     // Se ci sono argomenti, bisogna richiamare ruleTypeCheck su di essi
+                              if( ruleTypeCheck(expression35) && ((arguments36!=null?arguments36.types:null) == null || ruleTypeCheck((Type[])(arguments36!=null?arguments36.types:null).toArray())) ) {
+                    	    	  if (!expression35.isReference())
+                    	    	  	errorLog.add(new CannotBeDereferencedException(expression35, (IDENTIFIER37!=null?IDENTIFIER37.getLine():0), (IDENTIFIER37!=null?IDENTIFIER37.getCharPositionInLine():0), rt)); 
+                    	    	  ReferenceType expt = (ReferenceType)expression35;
+                    	    	  ArrayList<Type> argTypes = (arguments36!=null?arguments36.types:null); //((arguments36!=null?((CommonTree)arguments36.tree):null) == null)?null:(arguments36!=null?arguments36.types:null);
+                    	    	  try {
+                    		    	boolean isSameClass = (expt.getName() == rt.getName()); 
+                    		    	t = expt.bindMethod(isSameClass, (IDENTIFIER37!=null?IDENTIFIER37.getText():null), argTypes);
+                    	    	  } catch (EarlyBindingException ex) {
+                    	    	  	errorLog.add(new CannotFindSymbolException(("method " + (IDENTIFIER37!=null?IDENTIFIER37.getText():null) + '(' + printArguments(argTypes) + ')'), expt.getName(), (IDENTIFIER37!=null?IDENTIFIER37.getLine():0), (IDENTIFIER37!=null?IDENTIFIER37.getCharPositionInLine():0), rt));
+                    	    	  }
                         	  }
                         	
 
                     }
                     break;
                 case 3 :
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:453:9: ^( ARRAYACCESS e1= expression e2= expression )
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:459:9: ^( ARRAYACCESS e1= expression e2= expression )
                     {
-                    ARRAYACCESS38=(CommonTree)match(input,ARRAYACCESS,FOLLOW_ARRAYACCESS_in_selector2339); 
+                    ARRAYACCESS38=(CommonTree)match(input,ARRAYACCESS,FOLLOW_ARRAYACCESS_in_selector2340); 
 
                     match(input, Token.DOWN, null); 
-                    pushFollow(FOLLOW_expression_in_selector2343);
+                    pushFollow(FOLLOW_expression_in_selector2344);
                     e1=expression();
 
                     state._fsp--;
 
-                    pushFollow(FOLLOW_expression_in_selector2347);
+                    pushFollow(FOLLOW_expression_in_selector2348);
                     e2=expression();
 
                     state._fsp--;
 
 
                     match(input, Token.UP, null); 
-                     if (!e1.isArray()) throw new ArrayRequiredException(e1.toString(), (ARRAYACCESS38!=null?ARRAYACCESS38.getLine():0), (ARRAYACCESS38!=null?ARRAYACCESS38.getCharPositionInLine():0), rt);
-                        	  if (!e2.isAssignableTo(BasicType.INT)) {
-                        	  	if (e2.isCastableTo(	BasicType.INT)) {
-                        	  		throw new PossibleLossOfPrecisionException(BasicType.INT.toString(), e2.toString(), (ARRAYACCESS38!=null?ARRAYACCESS38.getLine():0), (ARRAYACCESS38!=null?ARRAYACCESS38.getCharPositionInLine():0), rt);
-                        	  	} else {
-                        	  		throw new IncompatibleTypesException(BasicType.INT.toString(), e2.toString(), (ARRAYACCESS38!=null?ARRAYACCESS38.getLine():0), (ARRAYACCESS38!=null?ARRAYACCESS38.getCharPositionInLine():0), rt);
-                        	  	}    	       
+                     if (ruleTypeCheck(e1, e2)) {
+                    	    	  if (!e1.isArray()) errorLog.add(new ArrayRequiredException(e1.toString(), (ARRAYACCESS38!=null?ARRAYACCESS38.getLine():0), (ARRAYACCESS38!=null?ARRAYACCESS38.getCharPositionInLine():0), rt));
+                    	    	  if (!e2.isAssignableTo(BasicType.INT)) {
+                    	    	  	if (e2.isCastableTo(	BasicType.INT))
+                    	    	  		errorLog.add(new PossibleLossOfPrecisionException(BasicType.INT.toString(), e2.toString(), (ARRAYACCESS38!=null?ARRAYACCESS38.getLine():0), (ARRAYACCESS38!=null?ARRAYACCESS38.getCharPositionInLine():0), rt));
+                    	    	  	else 
+                    	    	  		errorLog.add(new IncompatibleTypesException(BasicType.INT.toString(), e2.toString(), (ARRAYACCESS38!=null?ARRAYACCESS38.getLine():0), (ARRAYACCESS38!=null?ARRAYACCESS38.getCharPositionInLine():0), rt));    	       
+                    	    	  }
+                    	    	  t = ((ArrayType)e1).getHostType(); 
                         	  }
-                        	  t = ((ArrayType)e1).getHostType(); 
                         	
 
                     }
@@ -3596,12 +3591,12 @@ public class JaWalker extends TreeParser {
 
 
     // $ANTLR start "creator"
-    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:466:1: creator returns [Type t] : ( arrayCreatorRest | createdName ( classCreatorRest )? );
+    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:473:1: creator returns [Type t] : ( arrayCreatorRest | createdName ( classCreatorRest )? );
     public final Type creator() throws RecognitionException {
         Type t = null;
 
         try {
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:467:5: ( arrayCreatorRest | createdName ( classCreatorRest )? )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:474:5: ( arrayCreatorRest | createdName ( classCreatorRest )? )
             int alt38=2;
             int LA38_0 = input.LA(1);
 
@@ -3619,9 +3614,9 @@ public class JaWalker extends TreeParser {
             }
             switch (alt38) {
                 case 1 :
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:467:10: arrayCreatorRest
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:474:10: arrayCreatorRest
                     {
-                    pushFollow(FOLLOW_arrayCreatorRest_in_creator2380);
+                    pushFollow(FOLLOW_arrayCreatorRest_in_creator2381);
                     arrayCreatorRest();
 
                     state._fsp--;
@@ -3630,14 +3625,14 @@ public class JaWalker extends TreeParser {
                     }
                     break;
                 case 2 :
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:468:10: createdName ( classCreatorRest )?
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:475:10: createdName ( classCreatorRest )?
                     {
-                    pushFollow(FOLLOW_createdName_in_creator2392);
+                    pushFollow(FOLLOW_createdName_in_creator2393);
                     createdName();
 
                     state._fsp--;
 
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:468:22: ( classCreatorRest )?
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:475:22: ( classCreatorRest )?
                     int alt37=2;
                     int LA37_0 = input.LA(1);
 
@@ -3646,9 +3641,9 @@ public class JaWalker extends TreeParser {
                     }
                     switch (alt37) {
                         case 1 :
-                            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:468:22: classCreatorRest
+                            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:475:22: classCreatorRest
                             {
-                            pushFollow(FOLLOW_classCreatorRest_in_creator2394);
+                            pushFollow(FOLLOW_classCreatorRest_in_creator2395);
                             classCreatorRest();
 
                             state._fsp--;
@@ -3677,17 +3672,17 @@ public class JaWalker extends TreeParser {
 
 
     // $ANTLR start "createdName"
-    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:472:1: createdName returns [Type t] : ( classType | primitiveType );
+    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:479:1: createdName returns [Type t] : ( classType | primitiveType );
     public final Type createdName() throws RecognitionException {
         Type t = null;
 
         ReferenceType classType39 = null;
 
-        JaWalker.primitiveType_return primitiveType40 = null;
+        BasicType primitiveType40 = null;
 
 
         try {
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:473:5: ( classType | primitiveType )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:480:5: ( classType | primitiveType )
             int alt39=2;
             int LA39_0 = input.LA(1);
 
@@ -3705,26 +3700,26 @@ public class JaWalker extends TreeParser {
             }
             switch (alt39) {
                 case 1 :
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:473:9: classType
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:480:9: classType
                     {
-                    pushFollow(FOLLOW_classType_in_createdName2420);
+                    pushFollow(FOLLOW_classType_in_createdName2421);
                     classType39=classType();
 
                     state._fsp--;
 
-                     t = classType39;     
+                     t = classType39;      
 
                     }
                     break;
                 case 2 :
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:474:9: primitiveType
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:481:9: primitiveType
                     {
-                    pushFollow(FOLLOW_primitiveType_in_createdName2436);
+                    pushFollow(FOLLOW_primitiveType_in_createdName2437);
                     primitiveType40=primitiveType();
 
                     state._fsp--;
 
-                     t = (primitiveType40!=null?primitiveType40.bs:null); 
+                     t = primitiveType40; 
 
                     }
                     break;
@@ -3743,30 +3738,30 @@ public class JaWalker extends TreeParser {
 
 
     // $ANTLR start "arrayCreatorRest"
-    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:477:1: arrayCreatorRest : ( ( ^( ARRAYTYPE createdName ) arrayInitializer ) | ^( ARRAYTYPE arrayCreatorExpr expression ) );
+    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:484:1: arrayCreatorRest : ( ( ^( ARRAYTYPE createdName ) arrayInitializer ) | ^( ARRAYTYPE arrayCreatorExpr expression ) );
     public final void arrayCreatorRest() throws RecognitionException {
         try {
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:478:5: ( ( ^( ARRAYTYPE createdName ) arrayInitializer ) | ^( ARRAYTYPE arrayCreatorExpr expression ) )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:485:5: ( ( ^( ARRAYTYPE createdName ) arrayInitializer ) | ^( ARRAYTYPE arrayCreatorExpr expression ) )
             int alt40=2;
             alt40 = dfa40.predict(input);
             switch (alt40) {
                 case 1 :
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:478:9: ( ^( ARRAYTYPE createdName ) arrayInitializer )
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:485:9: ( ^( ARRAYTYPE createdName ) arrayInitializer )
                     {
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:478:9: ( ^( ARRAYTYPE createdName ) arrayInitializer )
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:478:10: ^( ARRAYTYPE createdName ) arrayInitializer
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:485:9: ( ^( ARRAYTYPE createdName ) arrayInitializer )
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:485:10: ^( ARRAYTYPE createdName ) arrayInitializer
                     {
-                    match(input,ARRAYTYPE,FOLLOW_ARRAYTYPE_in_arrayCreatorRest2463); 
+                    match(input,ARRAYTYPE,FOLLOW_ARRAYTYPE_in_arrayCreatorRest2464); 
 
                     match(input, Token.DOWN, null); 
-                    pushFollow(FOLLOW_createdName_in_arrayCreatorRest2466);
+                    pushFollow(FOLLOW_createdName_in_arrayCreatorRest2467);
                     createdName();
 
                     state._fsp--;
 
 
                     match(input, Token.UP, null); 
-                    pushFollow(FOLLOW_arrayInitializer_in_arrayCreatorRest2469);
+                    pushFollow(FOLLOW_arrayInitializer_in_arrayCreatorRest2470);
                     arrayInitializer();
 
                     state._fsp--;
@@ -3778,17 +3773,17 @@ public class JaWalker extends TreeParser {
                     }
                     break;
                 case 2 :
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:479:8: ^( ARRAYTYPE arrayCreatorExpr expression )
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:486:8: ^( ARRAYTYPE arrayCreatorExpr expression )
                     {
-                    match(input,ARRAYTYPE,FOLLOW_ARRAYTYPE_in_arrayCreatorRest2483); 
+                    match(input,ARRAYTYPE,FOLLOW_ARRAYTYPE_in_arrayCreatorRest2484); 
 
                     match(input, Token.DOWN, null); 
-                    pushFollow(FOLLOW_arrayCreatorExpr_in_arrayCreatorRest2486);
+                    pushFollow(FOLLOW_arrayCreatorExpr_in_arrayCreatorRest2487);
                     arrayCreatorExpr();
 
                     state._fsp--;
 
-                    pushFollow(FOLLOW_expression_in_arrayCreatorRest2488);
+                    pushFollow(FOLLOW_expression_in_arrayCreatorRest2489);
                     expression();
 
                     state._fsp--;
@@ -3813,10 +3808,10 @@ public class JaWalker extends TreeParser {
 
 
     // $ANTLR start "arrayCreatorExpr"
-    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:482:1: arrayCreatorExpr : ( ^( ARRAYTYPE arrayCreatorExpr expression ) | createdName );
+    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:489:1: arrayCreatorExpr : ( ^( ARRAYTYPE arrayCreatorExpr expression ) | createdName );
     public final void arrayCreatorExpr() throws RecognitionException {
         try {
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:483:5: ( ^( ARRAYTYPE arrayCreatorExpr expression ) | createdName )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:490:5: ( ^( ARRAYTYPE arrayCreatorExpr expression ) | createdName )
             int alt41=2;
             int LA41_0 = input.LA(1);
 
@@ -3834,17 +3829,17 @@ public class JaWalker extends TreeParser {
             }
             switch (alt41) {
                 case 1 :
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:483:7: ^( ARRAYTYPE arrayCreatorExpr expression )
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:490:7: ^( ARRAYTYPE arrayCreatorExpr expression )
                     {
-                    match(input,ARRAYTYPE,FOLLOW_ARRAYTYPE_in_arrayCreatorExpr2515); 
+                    match(input,ARRAYTYPE,FOLLOW_ARRAYTYPE_in_arrayCreatorExpr2516); 
 
                     match(input, Token.DOWN, null); 
-                    pushFollow(FOLLOW_arrayCreatorExpr_in_arrayCreatorExpr2517);
+                    pushFollow(FOLLOW_arrayCreatorExpr_in_arrayCreatorExpr2518);
                     arrayCreatorExpr();
 
                     state._fsp--;
 
-                    pushFollow(FOLLOW_expression_in_arrayCreatorExpr2519);
+                    pushFollow(FOLLOW_expression_in_arrayCreatorExpr2520);
                     expression();
 
                     state._fsp--;
@@ -3855,9 +3850,9 @@ public class JaWalker extends TreeParser {
                     }
                     break;
                 case 2 :
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:484:8: createdName
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:491:8: createdName
                     {
-                    pushFollow(FOLLOW_createdName_in_arrayCreatorExpr2529);
+                    pushFollow(FOLLOW_createdName_in_arrayCreatorExpr2530);
                     createdName();
 
                     state._fsp--;
@@ -3880,13 +3875,13 @@ public class JaWalker extends TreeParser {
 
 
     // $ANTLR start "classCreatorRest"
-    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:487:1: classCreatorRest : arguments ;
+    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:494:1: classCreatorRest : arguments ;
     public final void classCreatorRest() throws RecognitionException {
         try {
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:488:5: ( arguments )
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:488:9: arguments
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:495:5: ( arguments )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:495:9: arguments
             {
-            pushFollow(FOLLOW_arguments_in_classCreatorRest2553);
+            pushFollow(FOLLOW_arguments_in_classCreatorRest2554);
             arguments();
 
             state._fsp--;
@@ -3907,17 +3902,17 @@ public class JaWalker extends TreeParser {
 
 
     // $ANTLR start "superMemberAccess"
-    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:491:1: superMemberAccess returns [Type t] : ( ^( METHODCALL SUPER IDENTIFIER arguments ) | ^( FIELDACCESS SUPER IDENTIFIER ) );
+    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:498:1: superMemberAccess returns [Type t] : ( ^( METHODCALL SUPER IDENTIFIER arguments ) | ^( FIELDACCESS SUPER IDENTIFIER ) );
     public final Type superMemberAccess() throws RecognitionException {
         Type t = null;
 
-        CommonTree IDENTIFIER41=null;
+        CommonTree IDENTIFIER42=null;
         CommonTree IDENTIFIER43=null;
-        JaWalker.arguments_return arguments42 = null;
+        JaWalker.arguments_return arguments41 = null;
 
 
         try {
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:492:5: ( ^( METHODCALL SUPER IDENTIFIER arguments ) | ^( FIELDACCESS SUPER IDENTIFIER ) )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:499:5: ( ^( METHODCALL SUPER IDENTIFIER arguments ) | ^( FIELDACCESS SUPER IDENTIFIER ) )
             int alt42=2;
             int LA42_0 = input.LA(1);
 
@@ -3935,35 +3930,44 @@ public class JaWalker extends TreeParser {
             }
             switch (alt42) {
                 case 1 :
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:492:7: ^( METHODCALL SUPER IDENTIFIER arguments )
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:499:7: ^( METHODCALL SUPER IDENTIFIER arguments )
                     {
-                    match(input,METHODCALL,FOLLOW_METHODCALL_in_superMemberAccess2581); 
+                    match(input,METHODCALL,FOLLOW_METHODCALL_in_superMemberAccess2582); 
 
                     match(input, Token.DOWN, null); 
-                    match(input,SUPER,FOLLOW_SUPER_in_superMemberAccess2583); 
-                    IDENTIFIER41=(CommonTree)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_superMemberAccess2585); 
-                    pushFollow(FOLLOW_arguments_in_superMemberAccess2587);
-                    arguments42=arguments();
+                    match(input,SUPER,FOLLOW_SUPER_in_superMemberAccess2584); 
+                    IDENTIFIER42=(CommonTree)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_superMemberAccess2586); 
+                    pushFollow(FOLLOW_arguments_in_superMemberAccess2588);
+                    arguments41=arguments();
 
                     state._fsp--;
 
 
                     match(input, Token.UP, null); 
-                     t = rt.getSuperClass().bindMethod(false, (IDENTIFIER41!=null?IDENTIFIER41.getText():null), (arguments42!=null?arguments42.types:null)); 
+                     if( (arguments41!=null?arguments41.types:null) == null || ruleTypeCheck((Type[])(arguments41!=null?arguments41.types:null).toArray()) ) {
+                    	    	  try {
+                    	          	t = rt.getSuperClass().bindMethod(false, (IDENTIFIER42!=null?IDENTIFIER42.getText():null), (arguments41!=null?arguments41.types:null));
+                    		  } catch (EarlyBindingException ex) {
+                    		   	errorLog.add(new CannotFindSymbolException(("method " + (IDENTIFIER42!=null?IDENTIFIER42.getText():null) + '(' + printArguments((arguments41!=null?arguments41.types:null)) + ')'), rt.getSuperClass().getName(), (IDENTIFIER42!=null?IDENTIFIER42.getLine():0), (IDENTIFIER42!=null?IDENTIFIER42.getCharPositionInLine():0), rt));
+                    		  }
+                    	  }
+                        	
 
                     }
                     break;
                 case 2 :
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:493:9: ^( FIELDACCESS SUPER IDENTIFIER )
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:508:9: ^( FIELDACCESS SUPER IDENTIFIER )
                     {
-                    match(input,FIELDACCESS,FOLLOW_FIELDACCESS_in_superMemberAccess2601); 
+                    match(input,FIELDACCESS,FOLLOW_FIELDACCESS_in_superMemberAccess2608); 
 
                     match(input, Token.DOWN, null); 
-                    match(input,SUPER,FOLLOW_SUPER_in_superMemberAccess2603); 
-                    IDENTIFIER43=(CommonTree)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_superMemberAccess2605); 
+                    match(input,SUPER,FOLLOW_SUPER_in_superMemberAccess2610); 
+                    IDENTIFIER43=(CommonTree)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_superMemberAccess2612); 
 
                     match(input, Token.UP, null); 
-                     t = rt.getSuperClass().getField(false, (IDENTIFIER43!=null?IDENTIFIER43.getText():null)); 
+                     t = rt.getSuperClass().getField(false, (IDENTIFIER43!=null?IDENTIFIER43.getText():null));
+                    	  if (t == null) errorLog.add(new CannotFindSymbolException(("field " + (IDENTIFIER43!=null?IDENTIFIER43.getText():null)), rt.getSuperClass().getName(), (IDENTIFIER43!=null?IDENTIFIER43.getLine():0), (IDENTIFIER43!=null?IDENTIFIER43.getCharPositionInLine():0), rt)); 
+                    	
 
                     }
                     break;
@@ -3985,7 +3989,7 @@ public class JaWalker extends TreeParser {
     };
 
     // $ANTLR start "arguments"
-    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:496:1: arguments returns [ArrayList<Type> types] : ^( ARGUMENTS expressionList ) ;
+    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:514:1: arguments returns [ArrayList<Type> types] : ^( ARGUMENTS expressionList ) ;
     public final JaWalker.arguments_return arguments() throws RecognitionException {
         JaWalker.arguments_return retval = new JaWalker.arguments_return();
         retval.start = input.LT(1);
@@ -3994,13 +3998,13 @@ public class JaWalker extends TreeParser {
 
 
         try {
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:497:5: ( ^( ARGUMENTS expressionList ) )
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/JaWalker.g:497:8: ^( ARGUMENTS expressionList )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:515:5: ( ^( ARGUMENTS expressionList ) )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:515:8: ^( ARGUMENTS expressionList )
             {
-            match(input,ARGUMENTS,FOLLOW_ARGUMENTS_in_arguments2640); 
+            match(input,ARGUMENTS,FOLLOW_ARGUMENTS_in_arguments2653); 
 
             match(input, Token.DOWN, null); 
-            pushFollow(FOLLOW_expressionList_in_arguments2642);
+            pushFollow(FOLLOW_expressionList_in_arguments2655);
             expressionList44=expressionList();
 
             state._fsp--;
@@ -4044,8 +4048,8 @@ public class JaWalker extends TreeParser {
     static final String[] DFA33_transitionS = {
             "\1\23\1\uffff\1\22\1\24\1\25\23\uffff\1\15\1\21\1\15\1\21\2"+
             "\15\1\17\1\uffff\1\25\14\uffff\1\25\1\uffff\10\25\6\uffff\1"+
-            "\12\1\13\1\20\13\uffff\1\1\1\2\1\3\1\4\1\5\17\uffff\1\6\1\7"+
-            "\1\10\1\11\1\14\2\uffff\1\16",
+            "\13\1\14\1\20\13\uffff\1\1\1\2\1\3\1\4\1\5\17\uffff\1\7\1\10"+
+            "\1\11\1\12\1\6\2\uffff\1\16",
             "",
             "",
             "",
@@ -4108,7 +4112,7 @@ public class JaWalker extends TreeParser {
             this.transition = DFA33_transition;
         }
         public String getDescription() {
-            return "351:1: expression returns [Type t] : ( ^( EQ e1= expression e2= expression ) | ^( PLUS e1= expression e2= expression ) | ^( MINUS e1= expression e2= expression ) | ^( STAR e1= expression e2= expression ) | ^( SLASH e1= expression e2= expression ) | ^(or= '||' e1= expression e2= expression ) | ^(and= '&&' e1= expression e2= expression ) | ^(eq= '==' e1= expression e2= expression ) | ^(nq= '!=' expression expression ) | ^( INSTANCEOF e= expression type ) | ^( COMPAREOP e1= expression e2= expression ) | ^(mod= '%' e1= expression e2= expression ) | ^(op= ( UNARYPLUS | UNARYMINUS | PREINC | PREDEC ) e= expression ) | ^(op= '!' e= expression ) | ^( CAST pt= primitiveType e= expression ) | ^( CAST npt= nonPrimitiveType e= expression ) | ^( NEW creator ) | ^(op= ( POSTINC | POSTDEC ) (e= selector | e= primary ) ) | selector | primary );";
+            return "354:1: expression returns [Type t] : ( ^( EQ e1= expression e2= expression ) | ^( PLUS e1= expression e2= expression ) | ^( MINUS e1= expression e2= expression ) | ^( STAR e1= expression e2= expression ) | ^( SLASH e1= expression e2= expression ) | ^(mod= '%' e1= expression e2= expression ) | ^(or= '||' e1= expression e2= expression ) | ^(and= '&&' e1= expression e2= expression ) | ^(eq= '==' e1= expression e2= expression ) | ^(nq= '!=' e1= expression e2= expression ) | ^( INSTANCEOF e= expression type ) | ^( COMPAREOP e1= expression e2= expression ) | ^(op= ( UNARYPLUS | UNARYMINUS | PREINC | PREDEC ) e= expression ) | ^(op= '!' e= expression ) | ^( CAST pt= primitiveType e= expression ) | ^( CAST npt= nonPrimitiveType e= expression ) | ^( NEW creator ) | ^(op= ( POSTINC | POSTDEC ) (e= selector | e= primary ) ) | selector | primary );";
         }
     }
     static final String DFA34_eotS =
@@ -4168,7 +4172,7 @@ public class JaWalker extends TreeParser {
             this.transition = DFA34_transition;
         }
         public String getDescription() {
-            return "412:1: primary returns [Type t] : ( THIS | superMemberAccess | literal | IDENTIFIER | ^( DOTCLASS ^( ARRAYTYPE type ) ) | ^( DOTCLASS IDENTIFIER ) | ^( DOTCLASS primitiveType ) | ^( DOTCLASS VOID ) );";
+            return "418:1: primary returns [Type t] : ( THIS | superMemberAccess | literal | IDENTIFIER | ^( DOTCLASS ^( ARRAYTYPE type ) ) | ^( DOTCLASS IDENTIFIER ) | ^( DOTCLASS primitiveType ) | ^( DOTCLASS VOID ) );";
         }
     }
     static final String DFA40_eotS =
@@ -4176,46 +4180,46 @@ public class JaWalker extends TreeParser {
     static final String DFA40_eofS =
         "\16\uffff";
     static final String DFA40_minS =
-        "\1\11\1\2\1\11\1\uffff\11\3\1\uffff";
+        "\1\11\1\2\1\11\11\3\2\uffff";
     static final String DFA40_maxS =
-        "\1\11\1\2\1\60\1\uffff\11\152\1\uffff";
+        "\1\11\1\2\1\60\11\152\2\uffff";
     static final String DFA40_acceptS =
-        "\3\uffff\1\2\11\uffff\1\1";
+        "\14\uffff\1\2\1\1";
     static final String DFA40_specialS =
         "\16\uffff}>";
     static final String[] DFA40_transitionS = {
             "\1\1",
             "\1\2",
-            "\1\3\32\uffff\1\4\4\uffff\1\5\1\6\1\7\1\10\1\11\1\12\1\13\1"+
-            "\14",
+            "\1\14\32\uffff\1\3\4\uffff\1\4\1\5\1\6\1\7\1\10\1\11\1\12"+
+            "\1\13",
+            "\1\15\1\14\1\uffff\3\14\23\uffff\7\14\1\uffff\1\14\14\uffff"+
+            "\1\14\1\uffff\10\14\6\uffff\3\14\13\uffff\5\14\17\uffff\5\14"+
+            "\2\uffff\1\14",
+            "\1\15\1\14\1\uffff\3\14\23\uffff\7\14\1\uffff\1\14\14\uffff"+
+            "\1\14\1\uffff\10\14\6\uffff\3\14\13\uffff\5\14\17\uffff\5\14"+
+            "\2\uffff\1\14",
+            "\1\15\1\14\1\uffff\3\14\23\uffff\7\14\1\uffff\1\14\14\uffff"+
+            "\1\14\1\uffff\10\14\6\uffff\3\14\13\uffff\5\14\17\uffff\5\14"+
+            "\2\uffff\1\14",
+            "\1\15\1\14\1\uffff\3\14\23\uffff\7\14\1\uffff\1\14\14\uffff"+
+            "\1\14\1\uffff\10\14\6\uffff\3\14\13\uffff\5\14\17\uffff\5\14"+
+            "\2\uffff\1\14",
+            "\1\15\1\14\1\uffff\3\14\23\uffff\7\14\1\uffff\1\14\14\uffff"+
+            "\1\14\1\uffff\10\14\6\uffff\3\14\13\uffff\5\14\17\uffff\5\14"+
+            "\2\uffff\1\14",
+            "\1\15\1\14\1\uffff\3\14\23\uffff\7\14\1\uffff\1\14\14\uffff"+
+            "\1\14\1\uffff\10\14\6\uffff\3\14\13\uffff\5\14\17\uffff\5\14"+
+            "\2\uffff\1\14",
+            "\1\15\1\14\1\uffff\3\14\23\uffff\7\14\1\uffff\1\14\14\uffff"+
+            "\1\14\1\uffff\10\14\6\uffff\3\14\13\uffff\5\14\17\uffff\5\14"+
+            "\2\uffff\1\14",
+            "\1\15\1\14\1\uffff\3\14\23\uffff\7\14\1\uffff\1\14\14\uffff"+
+            "\1\14\1\uffff\10\14\6\uffff\3\14\13\uffff\5\14\17\uffff\5\14"+
+            "\2\uffff\1\14",
+            "\1\15\1\14\1\uffff\3\14\23\uffff\7\14\1\uffff\1\14\14\uffff"+
+            "\1\14\1\uffff\10\14\6\uffff\3\14\13\uffff\5\14\17\uffff\5\14"+
+            "\2\uffff\1\14",
             "",
-            "\1\15\1\3\1\uffff\3\3\23\uffff\7\3\1\uffff\1\3\14\uffff\1\3"+
-            "\1\uffff\10\3\6\uffff\3\3\13\uffff\5\3\17\uffff\5\3\2\uffff"+
-            "\1\3",
-            "\1\15\1\3\1\uffff\3\3\23\uffff\7\3\1\uffff\1\3\14\uffff\1\3"+
-            "\1\uffff\10\3\6\uffff\3\3\13\uffff\5\3\17\uffff\5\3\2\uffff"+
-            "\1\3",
-            "\1\15\1\3\1\uffff\3\3\23\uffff\7\3\1\uffff\1\3\14\uffff\1\3"+
-            "\1\uffff\10\3\6\uffff\3\3\13\uffff\5\3\17\uffff\5\3\2\uffff"+
-            "\1\3",
-            "\1\15\1\3\1\uffff\3\3\23\uffff\7\3\1\uffff\1\3\14\uffff\1\3"+
-            "\1\uffff\10\3\6\uffff\3\3\13\uffff\5\3\17\uffff\5\3\2\uffff"+
-            "\1\3",
-            "\1\15\1\3\1\uffff\3\3\23\uffff\7\3\1\uffff\1\3\14\uffff\1\3"+
-            "\1\uffff\10\3\6\uffff\3\3\13\uffff\5\3\17\uffff\5\3\2\uffff"+
-            "\1\3",
-            "\1\15\1\3\1\uffff\3\3\23\uffff\7\3\1\uffff\1\3\14\uffff\1\3"+
-            "\1\uffff\10\3\6\uffff\3\3\13\uffff\5\3\17\uffff\5\3\2\uffff"+
-            "\1\3",
-            "\1\15\1\3\1\uffff\3\3\23\uffff\7\3\1\uffff\1\3\14\uffff\1\3"+
-            "\1\uffff\10\3\6\uffff\3\3\13\uffff\5\3\17\uffff\5\3\2\uffff"+
-            "\1\3",
-            "\1\15\1\3\1\uffff\3\3\23\uffff\7\3\1\uffff\1\3\14\uffff\1\3"+
-            "\1\uffff\10\3\6\uffff\3\3\13\uffff\5\3\17\uffff\5\3\2\uffff"+
-            "\1\3",
-            "\1\15\1\3\1\uffff\3\3\23\uffff\7\3\1\uffff\1\3\14\uffff\1\3"+
-            "\1\uffff\10\3\6\uffff\3\3\13\uffff\5\3\17\uffff\5\3\2\uffff"+
-            "\1\3",
             ""
     };
 
@@ -4249,236 +4253,236 @@ public class JaWalker extends TreeParser {
             this.transition = DFA40_transition;
         }
         public String getDescription() {
-            return "477:1: arrayCreatorRest : ( ( ^( ARRAYTYPE createdName ) arrayInitializer ) | ^( ARRAYTYPE arrayCreatorExpr expression ) );";
+            return "484:1: arrayCreatorRest : ( ( ^( ARRAYTYPE createdName ) arrayInitializer ) | ^( ARRAYTYPE arrayCreatorExpr expression ) );";
         }
     }
  
 
-    public static final BitSet FOLLOW_classDeclaration_in_compilationUnit56 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_CLASS_in_classDeclaration81 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_IDENTIFIER_in_classDeclaration83 = new BitSet(new long[]{0x0000001000001C08L});
-    public static final BitSet FOLLOW_classType_in_classDeclaration85 = new BitSet(new long[]{0x0000000000001C08L});
-    public static final BitSet FOLLOW_classBody_in_classDeclaration88 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_classBodyDeclaration_in_classBody115 = new BitSet(new long[]{0x0000000000001C02L});
-    public static final BitSet FOLLOW_memberDeclaration_in_classBodyDeclaration135 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_fieldDeclaration_in_memberDeclaration158 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_methodAndConstructorDeclaration_in_memberDeclaration166 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_METHOD_in_methodAndConstructorDeclaration205 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_modifier_in_methodAndConstructorDeclaration207 = new BitSet(new long[]{0x0001FE1000000200L});
-    public static final BitSet FOLLOW_type_in_methodAndConstructorDeclaration209 = new BitSet(new long[]{0x0000001000000000L});
-    public static final BitSet FOLLOW_methodDeclaration_in_methodAndConstructorDeclaration212 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_METHOD_in_methodAndConstructorDeclaration227 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_modifier_in_methodAndConstructorDeclaration229 = new BitSet(new long[]{0x0000008000000000L});
-    public static final BitSet FOLLOW_VOID_in_methodAndConstructorDeclaration231 = new BitSet(new long[]{0x0000001000000000L});
-    public static final BitSet FOLLOW_IDENTIFIER_in_methodAndConstructorDeclaration233 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_voidMethodDeclaratorRest_in_methodAndConstructorDeclaration237 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_CONSTR_in_methodAndConstructorDeclaration252 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_modifier_in_methodAndConstructorDeclaration254 = new BitSet(new long[]{0x0000001000000000L});
-    public static final BitSet FOLLOW_IDENTIFIER_in_methodAndConstructorDeclaration256 = new BitSet(new long[]{0x0000000000042008L});
-    public static final BitSet FOLLOW_formalParameters_in_methodAndConstructorDeclaration260 = new BitSet(new long[]{0x0000000000040008L});
-    public static final BitSet FOLLOW_constructorBody_in_methodAndConstructorDeclaration263 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_IDENTIFIER_in_methodDeclaration294 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_formalParameters_in_methodDeclaration298 = new BitSet(new long[]{0x0000000000020000L});
-    public static final BitSet FOLLOW_methodBody_in_methodDeclaration300 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_FIELD_in_fieldDeclaration320 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_modifier_in_fieldDeclaration322 = new BitSet(new long[]{0x0001FE1000000200L});
-    public static final BitSet FOLLOW_variableDeclarator_in_fieldDeclaration324 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_formalParameters_in_voidMethodDeclaratorRest347 = new BitSet(new long[]{0x0000000000020000L});
-    public static final BitSet FOLLOW_methodBody_in_voidMethodDeclaratorRest349 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_variableDeclaratorId_in_variableDeclarator372 = new BitSet(new long[]{0x07FA0017F80001D2L,0x000004F8000F800EL});
-    public static final BitSet FOLLOW_variableInitializer_in_variableDeclarator377 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_type_in_variableDeclaratorId406 = new BitSet(new long[]{0x0000001000000000L});
-    public static final BitSet FOLLOW_IDENTIFIER_in_variableDeclaratorId408 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_arrayInitializer_in_variableInitializer433 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_expression_in_variableInitializer443 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ARRAYINIT_in_arrayInitializer463 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_variableInitializer_in_arrayInitializer465 = new BitSet(new long[]{0x07FA0017F80001D8L,0x000004F8000F800EL});
-    public static final BitSet FOLLOW_variableInitializer_in_arrayInitializer468 = new BitSet(new long[]{0x07FA0017F80001D8L,0x000004F8000F800EL});
+    public static final BitSet FOLLOW_classDeclaration_in_compilationUnit61 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_CLASS_in_classDeclaration86 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_IDENTIFIER_in_classDeclaration88 = new BitSet(new long[]{0x0000001000001C08L});
+    public static final BitSet FOLLOW_classType_in_classDeclaration90 = new BitSet(new long[]{0x0000000000001C08L});
+    public static final BitSet FOLLOW_classBody_in_classDeclaration93 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_classBodyDeclaration_in_classBody120 = new BitSet(new long[]{0x0000000000001C02L});
+    public static final BitSet FOLLOW_memberDeclaration_in_classBodyDeclaration140 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_fieldDeclaration_in_memberDeclaration163 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_methodAndConstructorDeclaration_in_memberDeclaration171 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_METHOD_in_methodAndConstructorDeclaration210 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_modifier_in_methodAndConstructorDeclaration212 = new BitSet(new long[]{0x0001FE1000000200L});
+    public static final BitSet FOLLOW_type_in_methodAndConstructorDeclaration214 = new BitSet(new long[]{0x0000001000000000L});
+    public static final BitSet FOLLOW_methodDeclaration_in_methodAndConstructorDeclaration217 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_METHOD_in_methodAndConstructorDeclaration232 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_modifier_in_methodAndConstructorDeclaration234 = new BitSet(new long[]{0x0000008000000000L});
+    public static final BitSet FOLLOW_VOID_in_methodAndConstructorDeclaration236 = new BitSet(new long[]{0x0000001000000000L});
+    public static final BitSet FOLLOW_IDENTIFIER_in_methodAndConstructorDeclaration238 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_voidMethodDeclaratorRest_in_methodAndConstructorDeclaration242 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_CONSTR_in_methodAndConstructorDeclaration257 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_modifier_in_methodAndConstructorDeclaration259 = new BitSet(new long[]{0x0000001000000000L});
+    public static final BitSet FOLLOW_IDENTIFIER_in_methodAndConstructorDeclaration261 = new BitSet(new long[]{0x0000000000042008L});
+    public static final BitSet FOLLOW_formalParameters_in_methodAndConstructorDeclaration265 = new BitSet(new long[]{0x0000000000040008L});
+    public static final BitSet FOLLOW_constructorBody_in_methodAndConstructorDeclaration268 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_IDENTIFIER_in_methodDeclaration299 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_formalParameters_in_methodDeclaration303 = new BitSet(new long[]{0x0000000000020000L});
+    public static final BitSet FOLLOW_methodBody_in_methodDeclaration305 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_FIELD_in_fieldDeclaration325 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_modifier_in_fieldDeclaration327 = new BitSet(new long[]{0x0001FE1000000200L});
+    public static final BitSet FOLLOW_variableDeclarator_in_fieldDeclaration329 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_formalParameters_in_voidMethodDeclaratorRest352 = new BitSet(new long[]{0x0000000000020000L});
+    public static final BitSet FOLLOW_methodBody_in_voidMethodDeclaratorRest354 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_variableDeclaratorId_in_variableDeclarator377 = new BitSet(new long[]{0x07FA0017F80001D2L,0x000004F8000F800EL});
+    public static final BitSet FOLLOW_variableInitializer_in_variableDeclarator382 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_type_in_variableDeclaratorId411 = new BitSet(new long[]{0x0000001000000000L});
+    public static final BitSet FOLLOW_IDENTIFIER_in_variableDeclaratorId413 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_arrayInitializer_in_variableInitializer438 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_expression_in_variableInitializer448 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ARRAYINIT_in_arrayInitializer468 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_variableInitializer_in_arrayInitializer470 = new BitSet(new long[]{0x07FA0017F80001D8L,0x000004F8000F800EL});
+    public static final BitSet FOLLOW_variableInitializer_in_arrayInitializer473 = new BitSet(new long[]{0x07FA0017F80001D8L,0x000004F8000F800EL});
     public static final BitSet FOLLOW_set_in_modifier0 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_nonPrimitiveType_in_type530 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_primitiveType_in_type540 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ARRAYTYPE_in_nonPrimitiveType568 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_nonPrimitiveType_in_nonPrimitiveType572 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_classType_in_nonPrimitiveType585 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ARRAYTYPE_in_nonPrimitiveType619 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_primitiveType_in_nonPrimitiveType621 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_IDENTIFIER_in_classType652 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_CHAR_in_primitiveType677 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_BYTE_in_primitiveType692 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_SHORT_in_primitiveType707 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_INT_in_primitiveType721 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LONG_in_primitiveType737 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_FLOAT_in_primitiveType752 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_DOUBLE_in_primitiveType766 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_BOOLEAN_in_primitiveType779 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_FPARMS_in_formalParameters805 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_formalParameterDecls_in_formalParameters807 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_FPARM_in_formalParameterDecls832 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_variableDeclaratorId_in_formalParameterDecls834 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_formalParameterDecls_in_formalParameterDecls839 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_FMULTPARM_in_formalParameterDecls849 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_variableDeclaratorId_in_formalParameterDecls851 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_MBODY_in_methodBody878 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_block_in_methodBody880 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_CBODY_in_constructorBody939 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_explicitConstructorInvocation_in_constructorBody941 = new BitSet(new long[]{0xB800000002380008L});
-    public static final BitSet FOLLOW_blockStatement_in_constructorBody944 = new BitSet(new long[]{0xB800000002380008L});
-    public static final BitSet FOLLOW_CONSTRCALL_in_explicitConstructorInvocation966 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_THIS_in_explicitConstructorInvocation968 = new BitSet(new long[]{0x0000000000004008L});
-    public static final BitSet FOLLOW_arguments_in_explicitConstructorInvocation971 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_CONSTRCALL_in_explicitConstructorInvocation982 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_SUPER_in_explicitConstructorInvocation984 = new BitSet(new long[]{0x0000000000004008L});
-    public static final BitSet FOLLOW_arguments_in_explicitConstructorInvocation986 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_INTLITERAL_in_literal1011 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LONGLITERAL_in_literal1027 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_FLOATLITERAL_in_literal1042 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_DOUBLELITERAL_in_literal1054 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_CHARLITERAL_in_literal1067 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_STRINGLITERAL_in_literal1082 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_BOOLEANLITERAL_in_literal1095 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_NULLLITERAL_in_literal1107 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_blockStatement_in_block1149 = new BitSet(new long[]{0xB800000002380002L});
-    public static final BitSet FOLLOW_localVariableDeclarationStatement_in_blockStatement1176 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_statement_in_blockStatement1187 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_localVariableDeclaration_in_localVariableDeclarationStatement1208 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_VARDECL_in_localVariableDeclaration1226 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_variableDeclarator_in_localVariableDeclaration1228 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_BLOCK_in_statement1265 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_block_in_statement1267 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_IF_in_statement1279 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_CONDITION_in_statement1282 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_expression_in_statement1284 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_THEN_in_statement1288 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_statement_in_statement1290 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_elseStmt_in_statement1293 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_FOR_in_statement1306 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_INIT_in_statement1310 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_forInit_in_statement1312 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_CONDITION_in_statement1319 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_expression_in_statement1321 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_UPDATE_in_statement1328 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_forUpdate_in_statement1330 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_statement_in_statement1335 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_WHILE_in_statement1348 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_CONDITION_in_statement1351 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_expression_in_statement1353 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_statement_in_statement1356 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_DOWHILE_in_statement1368 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_CONDITION_in_statement1371 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_expression_in_statement1373 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_statement_in_statement1376 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_RETURN_in_statement1388 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_expression_in_statement1390 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_STMT_in_statement1404 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_statementExpression_in_statement1406 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_ELSE_in_elseStmt1429 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_statement_in_elseStmt1431 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_localVariableDeclaration_in_forInit1451 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_expressionList_in_forInit1461 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_expressionList_in_forUpdate1480 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_expression_in_expressionList1515 = new BitSet(new long[]{0x07FA0017F80001D2L,0x000004F8000F800EL});
-    public static final BitSet FOLLOW_expression_in_statementExpression1538 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_expression_in_constantExpression1561 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_EQ_in_expression1589 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_expression_in_expression1596 = new BitSet(new long[]{0x07FA0017F80001D0L,0x000004F8000F800EL});
-    public static final BitSet FOLLOW_expression_in_expression1600 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_PLUS_in_expression1612 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_expression_in_expression1617 = new BitSet(new long[]{0x07FA0017F80001D0L,0x000004F8000F800EL});
-    public static final BitSet FOLLOW_expression_in_expression1621 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_MINUS_in_expression1634 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_expression_in_expression1638 = new BitSet(new long[]{0x07FA0017F80001D0L,0x000004F8000F800EL});
-    public static final BitSet FOLLOW_expression_in_expression1642 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_STAR_in_expression1655 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_expression_in_expression1660 = new BitSet(new long[]{0x07FA0017F80001D0L,0x000004F8000F800EL});
-    public static final BitSet FOLLOW_expression_in_expression1664 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_SLASH_in_expression1677 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_expression_in_expression1681 = new BitSet(new long[]{0x07FA0017F80001D0L,0x000004F8000F800EL});
-    public static final BitSet FOLLOW_expression_in_expression1685 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_99_in_expression1702 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_expression_in_expression1707 = new BitSet(new long[]{0x07FA0017F80001D0L,0x000004F8000F800EL});
-    public static final BitSet FOLLOW_expression_in_expression1711 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_100_in_expression1728 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_expression_in_expression1733 = new BitSet(new long[]{0x07FA0017F80001D0L,0x000004F8000F800EL});
-    public static final BitSet FOLLOW_expression_in_expression1737 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_101_in_expression1753 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_expression_in_expression1758 = new BitSet(new long[]{0x07FA0017F80001D0L,0x000004F8000F800EL});
-    public static final BitSet FOLLOW_expression_in_expression1762 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_102_in_expression1779 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_expression_in_expression1782 = new BitSet(new long[]{0x07FA0017F80001D0L,0x000004F8000F800EL});
-    public static final BitSet FOLLOW_expression_in_expression1784 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_INSTANCEOF_in_expression1803 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_expression_in_expression1807 = new BitSet(new long[]{0x0001FE1000000200L});
-    public static final BitSet FOLLOW_type_in_expression1809 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_COMPAREOP_in_expression1829 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_expression_in_expression1833 = new BitSet(new long[]{0x07FA0017F80001D0L,0x000004F8000F800EL});
-    public static final BitSet FOLLOW_expression_in_expression1837 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_103_in_expression1858 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_expression_in_expression1864 = new BitSet(new long[]{0x07FA0017F80001D0L,0x000004F8000F800EL});
-    public static final BitSet FOLLOW_expression_in_expression1868 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_set_in_expression1885 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_expression_in_expression1901 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_106_in_expression1939 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_expression_in_expression1943 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_CAST_in_expression1962 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_primitiveType_in_expression1966 = new BitSet(new long[]{0x07FA0017F80001D0L,0x000004F8000F800EL});
-    public static final BitSet FOLLOW_expression_in_expression1970 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_CAST_in_expression1989 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_nonPrimitiveType_in_expression1993 = new BitSet(new long[]{0x07FA0017F80001D0L,0x000004F8000F800EL});
-    public static final BitSet FOLLOW_expression_in_expression1997 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_NEW_in_expression2016 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_creator_in_expression2018 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_set_in_expression2032 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_selector_in_expression2043 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_primary_in_expression2049 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_selector_in_expression2074 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_primary_in_expression2086 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_THIS_in_primary2127 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_superMemberAccess_in_primary2139 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_literal_in_primary2151 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_IDENTIFIER_in_primary2163 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_DOTCLASS_in_primary2181 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_ARRAYTYPE_in_primary2184 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_type_in_primary2186 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_DOTCLASS_in_primary2201 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_IDENTIFIER_in_primary2203 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_DOTCLASS_in_primary2224 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_primitiveType_in_primary2226 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_DOTCLASS_in_primary2244 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_VOID_in_primary2246 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_FIELDACCESS_in_selector2290 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_expression_in_selector2292 = new BitSet(new long[]{0x0000001000000000L});
-    public static final BitSet FOLLOW_IDENTIFIER_in_selector2294 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_METHODCALL_in_selector2313 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_expression_in_selector2315 = new BitSet(new long[]{0x0000001000000000L});
-    public static final BitSet FOLLOW_IDENTIFIER_in_selector2317 = new BitSet(new long[]{0x0000000000004008L});
-    public static final BitSet FOLLOW_arguments_in_selector2319 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_ARRAYACCESS_in_selector2339 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_expression_in_selector2343 = new BitSet(new long[]{0x07FA0017F80001D0L,0x000004F8000F800EL});
-    public static final BitSet FOLLOW_expression_in_selector2347 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_arrayCreatorRest_in_creator2380 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_createdName_in_creator2392 = new BitSet(new long[]{0x0000000000004002L});
-    public static final BitSet FOLLOW_classCreatorRest_in_creator2394 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_classType_in_createdName2420 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_primitiveType_in_createdName2436 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ARRAYTYPE_in_arrayCreatorRest2463 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_createdName_in_arrayCreatorRest2466 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_arrayInitializer_in_arrayCreatorRest2469 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ARRAYTYPE_in_arrayCreatorRest2483 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_arrayCreatorExpr_in_arrayCreatorRest2486 = new BitSet(new long[]{0x07FA0017F80001D0L,0x000004F8000F800EL});
-    public static final BitSet FOLLOW_expression_in_arrayCreatorRest2488 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_ARRAYTYPE_in_arrayCreatorExpr2515 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_arrayCreatorExpr_in_arrayCreatorExpr2517 = new BitSet(new long[]{0x07FA0017F80001D0L,0x000004F8000F800EL});
-    public static final BitSet FOLLOW_expression_in_arrayCreatorExpr2519 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_createdName_in_arrayCreatorExpr2529 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_arguments_in_classCreatorRest2553 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_METHODCALL_in_superMemberAccess2581 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_SUPER_in_superMemberAccess2583 = new BitSet(new long[]{0x0000001000000000L});
-    public static final BitSet FOLLOW_IDENTIFIER_in_superMemberAccess2585 = new BitSet(new long[]{0x0000000000004000L});
-    public static final BitSet FOLLOW_arguments_in_superMemberAccess2587 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_FIELDACCESS_in_superMemberAccess2601 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_SUPER_in_superMemberAccess2603 = new BitSet(new long[]{0x0000001000000000L});
-    public static final BitSet FOLLOW_IDENTIFIER_in_superMemberAccess2605 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_ARGUMENTS_in_arguments2640 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_expressionList_in_arguments2642 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_nonPrimitiveType_in_type535 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_primitiveType_in_type545 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ARRAYTYPE_in_nonPrimitiveType573 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_nonPrimitiveType_in_nonPrimitiveType577 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_classType_in_nonPrimitiveType590 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ARRAYTYPE_in_nonPrimitiveType624 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_primitiveType_in_nonPrimitiveType626 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_IDENTIFIER_in_classType657 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_CHAR_in_primitiveType682 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_BYTE_in_primitiveType697 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_SHORT_in_primitiveType712 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_INT_in_primitiveType726 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_LONG_in_primitiveType742 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_FLOAT_in_primitiveType757 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_DOUBLE_in_primitiveType771 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_BOOLEAN_in_primitiveType784 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_FPARMS_in_formalParameters810 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_formalParameterDecls_in_formalParameters812 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_FPARM_in_formalParameterDecls837 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_variableDeclaratorId_in_formalParameterDecls839 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_formalParameterDecls_in_formalParameterDecls844 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_FMULTPARM_in_formalParameterDecls854 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_variableDeclaratorId_in_formalParameterDecls856 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_MBODY_in_methodBody883 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_block_in_methodBody885 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_CBODY_in_constructorBody944 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_explicitConstructorInvocation_in_constructorBody946 = new BitSet(new long[]{0xB800000002380008L});
+    public static final BitSet FOLLOW_blockStatement_in_constructorBody949 = new BitSet(new long[]{0xB800000002380008L});
+    public static final BitSet FOLLOW_CONSTRCALL_in_explicitConstructorInvocation971 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_THIS_in_explicitConstructorInvocation973 = new BitSet(new long[]{0x0000000000004008L});
+    public static final BitSet FOLLOW_arguments_in_explicitConstructorInvocation976 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_CONSTRCALL_in_explicitConstructorInvocation987 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_SUPER_in_explicitConstructorInvocation989 = new BitSet(new long[]{0x0000000000004008L});
+    public static final BitSet FOLLOW_arguments_in_explicitConstructorInvocation991 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_INTLITERAL_in_literal1016 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_LONGLITERAL_in_literal1032 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_FLOATLITERAL_in_literal1047 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_DOUBLELITERAL_in_literal1059 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_CHARLITERAL_in_literal1072 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_STRINGLITERAL_in_literal1087 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_BOOLEANLITERAL_in_literal1100 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_NULLLITERAL_in_literal1112 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_blockStatement_in_block1154 = new BitSet(new long[]{0xB800000002380002L});
+    public static final BitSet FOLLOW_localVariableDeclarationStatement_in_blockStatement1181 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_statement_in_blockStatement1192 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_localVariableDeclaration_in_localVariableDeclarationStatement1213 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_VARDECL_in_localVariableDeclaration1231 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_variableDeclarator_in_localVariableDeclaration1233 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_BLOCK_in_statement1270 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_block_in_statement1272 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_IF_in_statement1284 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_CONDITION_in_statement1287 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_expression_in_statement1289 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_THEN_in_statement1293 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_statement_in_statement1295 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_elseStmt_in_statement1298 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_FOR_in_statement1311 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_INIT_in_statement1315 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_forInit_in_statement1317 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_CONDITION_in_statement1324 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_expression_in_statement1326 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_UPDATE_in_statement1333 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_forUpdate_in_statement1335 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_statement_in_statement1340 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_WHILE_in_statement1353 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_CONDITION_in_statement1356 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_expression_in_statement1358 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_statement_in_statement1361 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_DOWHILE_in_statement1373 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_CONDITION_in_statement1376 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_expression_in_statement1378 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_statement_in_statement1381 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_RETURN_in_statement1393 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_expression_in_statement1395 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_STMT_in_statement1409 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_statementExpression_in_statement1411 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_ELSE_in_elseStmt1434 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_statement_in_elseStmt1436 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_localVariableDeclaration_in_forInit1456 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_expressionList_in_forInit1466 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_expressionList_in_forUpdate1485 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_expression_in_expressionList1520 = new BitSet(new long[]{0x07FA0017F80001D2L,0x000004F8000F800EL});
+    public static final BitSet FOLLOW_expression_in_statementExpression1543 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_expression_in_constantExpression1566 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_EQ_in_expression1594 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_expression_in_expression1598 = new BitSet(new long[]{0x07FA0017F80001D0L,0x000004F8000F800EL});
+    public static final BitSet FOLLOW_expression_in_expression1602 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_PLUS_in_expression1614 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_expression_in_expression1621 = new BitSet(new long[]{0x07FA0017F80001D0L,0x000004F8000F800EL});
+    public static final BitSet FOLLOW_expression_in_expression1625 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_MINUS_in_expression1637 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_expression_in_expression1643 = new BitSet(new long[]{0x07FA0017F80001D0L,0x000004F8000F800EL});
+    public static final BitSet FOLLOW_expression_in_expression1647 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_STAR_in_expression1659 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_expression_in_expression1666 = new BitSet(new long[]{0x07FA0017F80001D0L,0x000004F8000F800EL});
+    public static final BitSet FOLLOW_expression_in_expression1670 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_SLASH_in_expression1682 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_expression_in_expression1688 = new BitSet(new long[]{0x07FA0017F80001D0L,0x000004F8000F800EL});
+    public static final BitSet FOLLOW_expression_in_expression1692 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_103_in_expression1708 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_expression_in_expression1712 = new BitSet(new long[]{0x07FA0017F80001D0L,0x000004F8000F800EL});
+    public static final BitSet FOLLOW_expression_in_expression1716 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_99_in_expression1732 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_expression_in_expression1737 = new BitSet(new long[]{0x07FA0017F80001D0L,0x000004F8000F800EL});
+    public static final BitSet FOLLOW_expression_in_expression1741 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_100_in_expression1757 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_expression_in_expression1761 = new BitSet(new long[]{0x07FA0017F80001D0L,0x000004F8000F800EL});
+    public static final BitSet FOLLOW_expression_in_expression1765 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_101_in_expression1781 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_expression_in_expression1786 = new BitSet(new long[]{0x07FA0017F80001D0L,0x000004F8000F800EL});
+    public static final BitSet FOLLOW_expression_in_expression1790 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_102_in_expression1806 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_expression_in_expression1811 = new BitSet(new long[]{0x07FA0017F80001D0L,0x000004F8000F800EL});
+    public static final BitSet FOLLOW_expression_in_expression1815 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_INSTANCEOF_in_expression1827 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_expression_in_expression1831 = new BitSet(new long[]{0x0001FE1000000200L});
+    public static final BitSet FOLLOW_type_in_expression1833 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_COMPAREOP_in_expression1853 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_expression_in_expression1857 = new BitSet(new long[]{0x07FA0017F80001D0L,0x000004F8000F800EL});
+    public static final BitSet FOLLOW_expression_in_expression1861 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_set_in_expression1883 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_expression_in_expression1899 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_106_in_expression1937 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_expression_in_expression1941 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_CAST_in_expression1960 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_primitiveType_in_expression1964 = new BitSet(new long[]{0x07FA0017F80001D0L,0x000004F8000F800EL});
+    public static final BitSet FOLLOW_expression_in_expression1968 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_CAST_in_expression1987 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_nonPrimitiveType_in_expression1991 = new BitSet(new long[]{0x07FA0017F80001D0L,0x000004F8000F800EL});
+    public static final BitSet FOLLOW_expression_in_expression1995 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_NEW_in_expression2014 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_creator_in_expression2016 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_set_in_expression2030 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_selector_in_expression2041 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_primary_in_expression2047 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_selector_in_expression2072 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_primary_in_expression2084 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_THIS_in_primary2125 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_superMemberAccess_in_primary2137 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_literal_in_primary2149 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_IDENTIFIER_in_primary2161 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_DOTCLASS_in_primary2179 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_ARRAYTYPE_in_primary2182 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_type_in_primary2184 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_DOTCLASS_in_primary2199 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_IDENTIFIER_in_primary2201 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_DOTCLASS_in_primary2222 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_primitiveType_in_primary2224 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_DOTCLASS_in_primary2242 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_VOID_in_primary2244 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_FIELDACCESS_in_selector2288 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_expression_in_selector2290 = new BitSet(new long[]{0x0000001000000000L});
+    public static final BitSet FOLLOW_IDENTIFIER_in_selector2292 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_METHODCALL_in_selector2311 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_expression_in_selector2313 = new BitSet(new long[]{0x0000001000000000L});
+    public static final BitSet FOLLOW_IDENTIFIER_in_selector2315 = new BitSet(new long[]{0x0000000000004008L});
+    public static final BitSet FOLLOW_arguments_in_selector2317 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_ARRAYACCESS_in_selector2340 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_expression_in_selector2344 = new BitSet(new long[]{0x07FA0017F80001D0L,0x000004F8000F800EL});
+    public static final BitSet FOLLOW_expression_in_selector2348 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_arrayCreatorRest_in_creator2381 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_createdName_in_creator2393 = new BitSet(new long[]{0x0000000000004002L});
+    public static final BitSet FOLLOW_classCreatorRest_in_creator2395 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_classType_in_createdName2421 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_primitiveType_in_createdName2437 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ARRAYTYPE_in_arrayCreatorRest2464 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_createdName_in_arrayCreatorRest2467 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_arrayInitializer_in_arrayCreatorRest2470 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ARRAYTYPE_in_arrayCreatorRest2484 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_arrayCreatorExpr_in_arrayCreatorRest2487 = new BitSet(new long[]{0x07FA0017F80001D0L,0x000004F8000F800EL});
+    public static final BitSet FOLLOW_expression_in_arrayCreatorRest2489 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_ARRAYTYPE_in_arrayCreatorExpr2516 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_arrayCreatorExpr_in_arrayCreatorExpr2518 = new BitSet(new long[]{0x07FA0017F80001D0L,0x000004F8000F800EL});
+    public static final BitSet FOLLOW_expression_in_arrayCreatorExpr2520 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_createdName_in_arrayCreatorExpr2530 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_arguments_in_classCreatorRest2554 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_METHODCALL_in_superMemberAccess2582 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_SUPER_in_superMemberAccess2584 = new BitSet(new long[]{0x0000001000000000L});
+    public static final BitSet FOLLOW_IDENTIFIER_in_superMemberAccess2586 = new BitSet(new long[]{0x0000000000004000L});
+    public static final BitSet FOLLOW_arguments_in_superMemberAccess2588 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_FIELDACCESS_in_superMemberAccess2608 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_SUPER_in_superMemberAccess2610 = new BitSet(new long[]{0x0000001000000000L});
+    public static final BitSet FOLLOW_IDENTIFIER_in_superMemberAccess2612 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_ARGUMENTS_in_arguments2653 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_expressionList_in_arguments2655 = new BitSet(new long[]{0x0000000000000008L});
 
 }
