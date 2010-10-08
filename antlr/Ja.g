@@ -380,7 +380,7 @@ createdName
 arrayCreatorRest[CommonTree createdName]
     :   (lb='['']' -> ^(ARRAYTYPE[$lb, "ARRAYTYPE"]  {$createdName})) ( (lb='[' ']') -> ^(ARRAYTYPE[$lb, "ARRAYTYPE"] $arrayCreatorRest) )* 
     		(arrayInitializer  -> $arrayCreatorRest arrayInitializer)    
-    |	(lb='[' expression ']' -> ^(ARRAYTYPE[$lb, "ARRAYTYPE"]  {$createdName} expression)) ( (lb='[' expression ']') -> ^(ARRAYTYPE[$lb, "ARRAYTYPE"] $arrayCreatorRest expression) )*  
+    |	(lb='[' expression ']' -> ^(ARRAYTYPE[$lb, "ARRAYTYPE"] expression {$createdName})) ( (lb='[' expression ']') -> ^(ARRAYTYPE[$lb, "ARRAYTYPE"] expression $arrayCreatorRest ) )*  
     		( (lb='['']') -> ^(ARRAYTYPE[$lb, "ARRAYTYPE"] $arrayCreatorRest) )*
     ; 
 

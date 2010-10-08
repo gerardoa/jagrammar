@@ -1,4 +1,4 @@
-// $ANTLR 3.2 Sep 23, 2009 12:02:23 /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g 2010-10-08 18:08:36
+// $ANTLR 3.2 Sep 23, 2009 12:02:23 /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g 2010-10-08 23:57:00
 
 	package jagrammar;
 	
@@ -761,7 +761,7 @@ public class JaParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: modifier, type
+                    // elements: type, modifier
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -823,7 +823,7 @@ public class JaParser extends Parser {
 
 
                             // AST REWRITE
-                            // elements: memberDeclaration, methodDeclaration
+                            // elements: methodDeclaration, memberDeclaration
                             // token labels: 
                             // rule labels: retval
                             // token list labels: 
@@ -914,7 +914,7 @@ public class JaParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: voidMethodDeclaratorRest, modifier, VOID, IDENTIFIER
+                    // elements: voidMethodDeclaratorRest, IDENTIFIER, modifier, VOID
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -975,7 +975,7 @@ public class JaParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: IDENTIFIER, modifier, constructorBody, formalParameters
+                    // elements: formalParameters, constructorBody, modifier, IDENTIFIER
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -1518,7 +1518,7 @@ public class JaParser extends Parser {
 
 
             // AST REWRITE
-            // elements: IDENTIFIER, variableDeclaratorId
+            // elements: variableDeclaratorId, IDENTIFIER
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -3204,7 +3204,7 @@ public class JaParser extends Parser {
 
 
             // AST REWRITE
-            // elements: explicitConstructorInvocation, arguments
+            // elements: arguments, explicitConstructorInvocation
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -3890,7 +3890,7 @@ public class JaParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: parExpression, elseStmt, IF, statement
+                    // elements: elseStmt, statement, parExpression, IF
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -4037,7 +4037,7 @@ public class JaParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: statement, forUpdate, expression, forInit, FOR
+                    // elements: forInit, forUpdate, expression, FOR, statement
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -4128,7 +4128,7 @@ public class JaParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: statement, parExpression, WHILE
+                    // elements: statement, WHILE, parExpression
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -4880,7 +4880,7 @@ public class JaParser extends Parser {
 
 
             // AST REWRITE
-            // elements: expression, orExpression, orExpression, orExpression, expression, orExpression, orExpression, expression, orExpression, orExpression, expression, orExpression, orExpression, orExpression, expression
+            // elements: orExpression, orExpression, orExpression, orExpression, expression, orExpression, expression, orExpression, orExpression, expression, expression, expression, orExpression, orExpression, orExpression
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -6843,7 +6843,7 @@ public class JaParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: IDENTIFIER, arguments
+                    // elements: arguments, IDENTIFIER
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -7261,7 +7261,7 @@ public class JaParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: arguments, IDENTIFIER
+                    // elements: IDENTIFIER, arguments
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -7460,7 +7460,7 @@ public class JaParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: createdName, classCreatorRest
+                    // elements: classCreatorRest, createdName
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -7606,7 +7606,7 @@ public class JaParser extends Parser {
     };
 
     // $ANTLR start "arrayCreatorRest"
-    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:380:1: arrayCreatorRest[CommonTree createdName] : ( (lb= '[' ']' -> ^( ARRAYTYPE[$lb, \"ARRAYTYPE\"] ) ) ( (lb= '[' ']' ) -> ^( ARRAYTYPE[$lb, \"ARRAYTYPE\"] $arrayCreatorRest) )* ( arrayInitializer -> $arrayCreatorRest arrayInitializer ) | (lb= '[' expression ']' -> ^( ARRAYTYPE[$lb, \"ARRAYTYPE\"] expression ) ) ( (lb= '[' expression ']' ) -> ^( ARRAYTYPE[$lb, \"ARRAYTYPE\"] $arrayCreatorRest expression ) )* ( (lb= '[' ']' ) -> ^( ARRAYTYPE[$lb, \"ARRAYTYPE\"] $arrayCreatorRest) )* );
+    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:380:1: arrayCreatorRest[CommonTree createdName] : ( (lb= '[' ']' -> ^( ARRAYTYPE[$lb, \"ARRAYTYPE\"] ) ) ( (lb= '[' ']' ) -> ^( ARRAYTYPE[$lb, \"ARRAYTYPE\"] $arrayCreatorRest) )* ( arrayInitializer -> $arrayCreatorRest arrayInitializer ) | (lb= '[' expression ']' -> ^( ARRAYTYPE[$lb, \"ARRAYTYPE\"] expression ) ) ( (lb= '[' expression ']' ) -> ^( ARRAYTYPE[$lb, \"ARRAYTYPE\"] expression $arrayCreatorRest) )* ( (lb= '[' ']' ) -> ^( ARRAYTYPE[$lb, \"ARRAYTYPE\"] $arrayCreatorRest) )* );
     public final JaParser.arrayCreatorRest_return arrayCreatorRest(CommonTree createdName) throws RecognitionException {
         JaParser.arrayCreatorRest_return retval = new JaParser.arrayCreatorRest_return();
         retval.start = input.LT(1);
@@ -7637,7 +7637,7 @@ public class JaParser extends Parser {
         RewriteRuleSubtreeStream stream_arrayInitializer=new RewriteRuleSubtreeStream(adaptor,"rule arrayInitializer");
         RewriteRuleSubtreeStream stream_expression=new RewriteRuleSubtreeStream(adaptor,"rule expression");
         try {
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:381:5: ( (lb= '[' ']' -> ^( ARRAYTYPE[$lb, \"ARRAYTYPE\"] ) ) ( (lb= '[' ']' ) -> ^( ARRAYTYPE[$lb, \"ARRAYTYPE\"] $arrayCreatorRest) )* ( arrayInitializer -> $arrayCreatorRest arrayInitializer ) | (lb= '[' expression ']' -> ^( ARRAYTYPE[$lb, \"ARRAYTYPE\"] expression ) ) ( (lb= '[' expression ']' ) -> ^( ARRAYTYPE[$lb, \"ARRAYTYPE\"] $arrayCreatorRest expression ) )* ( (lb= '[' ']' ) -> ^( ARRAYTYPE[$lb, \"ARRAYTYPE\"] $arrayCreatorRest) )* )
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:381:5: ( (lb= '[' ']' -> ^( ARRAYTYPE[$lb, \"ARRAYTYPE\"] ) ) ( (lb= '[' ']' ) -> ^( ARRAYTYPE[$lb, \"ARRAYTYPE\"] $arrayCreatorRest) )* ( arrayInitializer -> $arrayCreatorRest arrayInitializer ) | (lb= '[' expression ']' -> ^( ARRAYTYPE[$lb, \"ARRAYTYPE\"] expression ) ) ( (lb= '[' expression ']' ) -> ^( ARRAYTYPE[$lb, \"ARRAYTYPE\"] expression $arrayCreatorRest) )* ( (lb= '[' ']' ) -> ^( ARRAYTYPE[$lb, \"ARRAYTYPE\"] $arrayCreatorRest) )* )
             int alt58=2;
             int LA58_0 = input.LA(1);
 
@@ -7810,7 +7810,7 @@ public class JaParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:383:7: (lb= '[' expression ']' -> ^( ARRAYTYPE[$lb, \"ARRAYTYPE\"] expression ) ) ( (lb= '[' expression ']' ) -> ^( ARRAYTYPE[$lb, \"ARRAYTYPE\"] $arrayCreatorRest expression ) )* ( (lb= '[' ']' ) -> ^( ARRAYTYPE[$lb, \"ARRAYTYPE\"] $arrayCreatorRest) )*
+                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:383:7: (lb= '[' expression ']' -> ^( ARRAYTYPE[$lb, \"ARRAYTYPE\"] expression ) ) ( (lb= '[' expression ']' ) -> ^( ARRAYTYPE[$lb, \"ARRAYTYPE\"] expression $arrayCreatorRest) )* ( (lb= '[' ']' ) -> ^( ARRAYTYPE[$lb, \"ARRAYTYPE\"] $arrayCreatorRest) )*
                     {
                     // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:383:7: (lb= '[' expression ']' -> ^( ARRAYTYPE[$lb, \"ARRAYTYPE\"] expression ) )
                     // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:383:8: lb= '[' expression ']'
@@ -7848,8 +7848,8 @@ public class JaParser extends Parser {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(ARRAYTYPE, lb, "ARRAYTYPE"), root_1);
 
-                        adaptor.addChild(root_1, createdName);
                         adaptor.addChild(root_1, stream_expression.nextTree());
+                        adaptor.addChild(root_1, createdName);
 
                         adaptor.addChild(root_0, root_1);
                         }
@@ -7859,7 +7859,7 @@ public class JaParser extends Parser {
                     retval.tree = root_0;}
                     }
 
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:383:92: ( (lb= '[' expression ']' ) -> ^( ARRAYTYPE[$lb, \"ARRAYTYPE\"] $arrayCreatorRest expression ) )*
+                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:383:91: ( (lb= '[' expression ']' ) -> ^( ARRAYTYPE[$lb, \"ARRAYTYPE\"] expression $arrayCreatorRest) )*
                     loop56:
                     do {
                         int alt56=2;
@@ -7878,21 +7878,21 @@ public class JaParser extends Parser {
 
                         switch (alt56) {
                     	case 1 :
-                    	    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:383:94: (lb= '[' expression ']' )
+                    	    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:383:93: (lb= '[' expression ']' )
                     	    {
-                    	    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:383:94: (lb= '[' expression ']' )
-                    	    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:383:95: lb= '[' expression ']'
+                    	    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:383:93: (lb= '[' expression ']' )
+                    	    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:383:94: lb= '[' expression ']'
                     	    {
-                    	    lb=(Token)match(input,90,FOLLOW_90_in_arrayCreatorRest3423); if (state.failed) return retval; 
+                    	    lb=(Token)match(input,90,FOLLOW_90_in_arrayCreatorRest3422); if (state.failed) return retval; 
                     	    if ( state.backtracking==0 ) stream_90.add(lb);
 
-                    	    pushFollow(FOLLOW_expression_in_arrayCreatorRest3425);
+                    	    pushFollow(FOLLOW_expression_in_arrayCreatorRest3424);
                     	    expression215=expression();
 
                     	    state._fsp--;
                     	    if (state.failed) return retval;
                     	    if ( state.backtracking==0 ) stream_expression.add(expression215.getTree());
-                    	    char_literal216=(Token)match(input,91,FOLLOW_91_in_arrayCreatorRest3427); if (state.failed) return retval; 
+                    	    char_literal216=(Token)match(input,91,FOLLOW_91_in_arrayCreatorRest3426); if (state.failed) return retval; 
                     	    if ( state.backtracking==0 ) stream_91.add(char_literal216);
 
 
@@ -7912,15 +7912,15 @@ public class JaParser extends Parser {
                     	    RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     	    root_0 = (Object)adaptor.nil();
-                    	    // 383:118: -> ^( ARRAYTYPE[$lb, \"ARRAYTYPE\"] $arrayCreatorRest expression )
+                    	    // 383:117: -> ^( ARRAYTYPE[$lb, \"ARRAYTYPE\"] expression $arrayCreatorRest)
                     	    {
-                    	        // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:383:121: ^( ARRAYTYPE[$lb, \"ARRAYTYPE\"] $arrayCreatorRest expression )
+                    	        // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:383:120: ^( ARRAYTYPE[$lb, \"ARRAYTYPE\"] expression $arrayCreatorRest)
                     	        {
                     	        Object root_1 = (Object)adaptor.nil();
                     	        root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(ARRAYTYPE, lb, "ARRAYTYPE"), root_1);
 
-                    	        adaptor.addChild(root_1, stream_retval.nextTree());
                     	        adaptor.addChild(root_1, stream_expression.nextTree());
+                    	        adaptor.addChild(root_1, stream_retval.nextTree());
 
                     	        adaptor.addChild(root_0, root_1);
                     	        }
@@ -9327,9 +9327,9 @@ public class JaParser extends Parser {
     public static final BitSet FOLLOW_90_in_arrayCreatorRest3399 = new BitSet(new long[]{0x07FFFE9000000000L,0x0000038010830008L});
     public static final BitSet FOLLOW_expression_in_arrayCreatorRest3401 = new BitSet(new long[]{0x0000000000000000L,0x0000000008000000L});
     public static final BitSet FOLLOW_91_in_arrayCreatorRest3403 = new BitSet(new long[]{0x0000000000000002L,0x0000000004000000L});
-    public static final BitSet FOLLOW_90_in_arrayCreatorRest3423 = new BitSet(new long[]{0x07FFFE9000000000L,0x0000038010830008L});
-    public static final BitSet FOLLOW_expression_in_arrayCreatorRest3425 = new BitSet(new long[]{0x0000000000000000L,0x0000000008000000L});
-    public static final BitSet FOLLOW_91_in_arrayCreatorRest3427 = new BitSet(new long[]{0x0000000000000002L,0x0000000004000000L});
+    public static final BitSet FOLLOW_90_in_arrayCreatorRest3422 = new BitSet(new long[]{0x07FFFE9000000000L,0x0000038010830008L});
+    public static final BitSet FOLLOW_expression_in_arrayCreatorRest3424 = new BitSet(new long[]{0x0000000000000000L,0x0000000008000000L});
+    public static final BitSet FOLLOW_91_in_arrayCreatorRest3426 = new BitSet(new long[]{0x0000000000000002L,0x0000000004000000L});
     public static final BitSet FOLLOW_90_in_arrayCreatorRest3458 = new BitSet(new long[]{0x0000000000000000L,0x0000000008000000L});
     public static final BitSet FOLLOW_91_in_arrayCreatorRest3459 = new BitSet(new long[]{0x0000000000000002L,0x0000000004000000L});
     public static final BitSet FOLLOW_arguments_in_classCreatorRest3493 = new BitSet(new long[]{0x0000000000000002L});

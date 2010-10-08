@@ -10,8 +10,10 @@
 public class Test {
 
     public Test metodoProlisso() {
-        //int[] i = new int[] {1};
-        (3+3) = 3;
+        int[][] i = new int[][] {{1}, {6,9}};
+        int[][] i2 = new int[6][];
+   //     Test ta = new Test();
+
         return null;
     }
 }
