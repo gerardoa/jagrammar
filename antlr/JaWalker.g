@@ -507,7 +507,7 @@ selector returns [Type t]
     ;
 
 creator returns [Type t]
-    :    (arrayCreatorRest) => acr=arrayCreatorRest arrayInitializer[$acr.t]?
+    :    acr=arrayCreatorRest arrayInitializer[$acr.t]?
     |    createdName classCreatorRest? 
     ;
 
@@ -520,21 +520,17 @@ createdName returns [Type t]
 arrayCreatorRest returns [Type t]
     :  ^(ARRAYTYPE acr=arrayCreatorRest) 
        { if (ruleTypeCheck($acr.t)) $t = (ComplexType)ParserHelper.createArrayType($acr.t, 1); }
-    |	createdName { if (ruleTypeCheck($createdName.t)) $t = $createdName.t; }
+    |	^(ARRAYTYPE createdName) { if (ruleTypeCheck($createdName.t)) $t = (ComplexType)ParserHelper.createArrayType($createdName.t, 1); }
     |   ^(ARRAYTYPE e=expression acre=arrayCreatorRestExpr) 
-    	{ if (ruleTypeCheck($acre.t, $e.t)) {
-       		$t = (ComplexType)ParserHelper.createArrayType($acre.t, 1); 
-    	  	arrayExprCheck($ARRAYTYPE, $e.t);
-    	  }
+    	{ if (ruleTypeCheck($acre.t)) $t = (ComplexType)ParserHelper.createArrayType($acre.t, 1); 
+    	  if (ruleTypeCheck($e.t)) arrayExprCheck($ARRAYTYPE, $e.t);
        	}
     ;
 
 arrayCreatorRestExpr returns [Type t]
     :  (^(ARRAYTYPE e=expression acr=arrayCreatorRest))
-       { if (ruleTypeCheck($acr.t, $e.t)) {
-       		$t = (ComplexType)ParserHelper.createArrayType($acr.t, 1); 
-    	  	arrayExprCheck($ARRAYTYPE, $e.t);
-    	 }
+       { if (ruleTypeCheck($acr.t)) $t = (ComplexType)ParserHelper.createArrayType($acr.t, 1); 
+    	 if (ruleTypeCheck($e.t)) arrayExprCheck($ARRAYTYPE, $e.t);
        }
     |  createdName { if (ruleTypeCheck($createdName.t)) $t = $createdName.t; }
     ;
