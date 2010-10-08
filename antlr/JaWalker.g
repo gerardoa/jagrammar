@@ -63,7 +63,8 @@ scope JaScope {
 	    for(String id : formalParameters) {
 	    	list.append($JaScope[0]::symbols.get(id) + " " + id + ", ");
 	    }
-	    return $JaScope[0]::name + '(' + list.substring(0, list.length() - 2) + ')';
+	    String parameters = formalParameters.size() > 0 ? list.substring(0, list.length() - 2) : "";
+	    return $JaScope[0]::name + '(' + parameters + ')';
 	}
 	
 	private List<Type> getFormalParametersList() {
@@ -121,6 +122,25 @@ scope JaScope {
 	    }
 	    return BasicType.BOOLEAN;
 	}
+	
+	private  Type assignOperation(CommonTree equal, Type var, Type expr) {
+	    if (!expr.isAssignableTo(var)) {
+	    	if (expr.isNumeric() && expr.isCastableTo(var))
+			errorLog.add(new PossibleLossOfPrecisionException(var.toString(), expr.toString(), equal.getLine(), equal.getCharPositionInLine(), rt));
+		else 
+			errorLog.add(new IncompatibleTypesException(var.toString(), expr.toString(), equal.getLine(), equal.getCharPositionInLine(), rt));    	       
+	    }
+	    return var;
+	}
+	
+	private void arrayExprCheck(CommonTree bracket, Type expr) {
+	    if (!expr.isAssignableTo(BasicType.INT)) {
+	    	if (expr.isCastableTo(BasicType.INT))
+			errorLog.add(new PossibleLossOfPrecisionException(BasicType.INT.toString(), expr.toString(), bracket.getLine(), bracket.getCharPositionInLine(), rt));
+		else 
+			errorLog.add(new IncompatibleTypesException(BasicType.INT.toString(), expr.toString(), bracket.getLine(), bracket.getCharPositionInLine(), rt));    	       
+	    }
+	}
     	
     	/** Verifica che sia stato assegnato un tipo di ritorno a tutte le sottoregole. 
     	*/	
@@ -173,7 +193,7 @@ scope JaScope;
     
     
 methodDeclaration
-    :   IDENTIFIER { $JaScope::name = $IDENTIFIER.text; } formalParameters methodBody
+    :   IDENTIFIER { $JaScope::name = $IDENTIFIER.text; } formalParameters? methodBody
     ;
 
 fieldDeclaration
@@ -185,20 +205,26 @@ voidMethodDeclaratorRest
     ;
 
 variableDeclarator returns [CommonTree id, Type t]
-    :   variableDeclaratorId { $id = $variableDeclaratorId.id; $t = $variableDeclaratorId.t; } (variableInitializer)?
+    :   variableDeclaratorId { $id = $variableDeclaratorId.id; $t = $variableDeclaratorId.t; } (variableInitializer[$variableDeclaratorId.t])?
     ;
     
 variableDeclaratorId returns [CommonTree id, Type t]
     :	  type IDENTIFIER { $id = $IDENTIFIER; $t = $type.t; }
     ;
     
-variableInitializer
-    :   arrayInitializer
-    |   expression
+variableInitializer [Type tin] returns [Type t]
+    :   arrayInitializer[((ArrayType)$tin).getHostType()] { $t = $arrayInitializer.t; }
+    |   expression { $t = $expression.t; }
     ;
 
-arrayInitializer
-    :   ^(ARRAYINIT variableInitializer (variableInitializer)*) 
+arrayInitializer [Type tin] returns [Type t]
+    :   ^(ARRAYINIT v1=variableInitializer[$tin]  (variableInitializer[$tin])* ) 
+    	{ 
+    	  if (ruleTypeCheck($v1.t)) {
+	        $t = (ComplexType)ParserHelper.createArrayType($tin, 1);
+	     	if( !$t.isAssignableTo(tin)) errorLog.add(new IncompatibleTypesException(tin.toString(), $t.toString(), $ARRAYINIT.line, $ARRAYINIT.pos, rt));
+      	  }	
+       }
     ;        
 
 modifier
@@ -238,7 +264,7 @@ formalParameters
     
 formalParameterDecls
     :	^(FPARM variableDeclaratorId) { formalParameters.add($variableDeclaratorId.id.getText()); addVariableToScope($variableDeclaratorId.id, $variableDeclaratorId.t); } formalParameterDecls?
-    |	^(FMULTPARM variableDeclaratorId) { formalParameters.add($variableDeclaratorId.id.getText()); addVariableToScope($variableDeclaratorId.id, $variableDeclaratorId.t);}
+//    |	^(FMULTPARM variableDeclaratorId) { formalParameters.add($variableDeclaratorId.id.getText()); addVariableToScope($variableDeclaratorId.id, $variableDeclaratorId.t);}
     ;
     
 methodBody
@@ -291,7 +317,7 @@ scope JaScope;
 @after {
 	System.out.println("block: " + $JaScope::symbols);
 }
-    :   (blockStatement {{ System.out.println("Statement text: " + $blockStatement.text); }})*
+    :   (b=blockStatement {{ System.out.println("Statement text: " + $b.text); }})*
     ;
     
 blockStatement
@@ -351,8 +377,16 @@ constantExpression
     :   expression
     ;
     
-expression returns [Type t]
-    :   ^(EQ e1=expression e2=expression)  
+expression returns [Type t, boolean b]
+    :   ^(EQ e1=expression e2=expression) 
+    	{ if(ruleTypeCheck($e1.t, $e2.t)) {
+	  	$t = getVariableType($e1.text);
+	    	if ($t == null) 
+	    		errorLog.add(new UnexpectedTypeException("variable", "value", $EQ.line, $EQ.pos, rt));
+	    	else
+	    	  	$t = assignOperation($EQ, $e1.t, $e2.t);
+	  } 
+    	}
     |	^(PLUS    e1=expression e2=expression) { if(ruleTypeCheck($e1.t, $e2.t)) $t = plusOperation($PLUS, $e1.t, $e2.t); }
     |	^(MINUS   e1=expression e2=expression) { if(ruleTypeCheck($e1.t, $e2.t)) $t = arithmeticOperation($MINUS, $e1.t, $e2.t); }
     |	^(STAR    e1=expression e2=expression) { if(ruleTypeCheck($e1.t, $e2.t)) $t = arithmeticOperation($STAR,  $e1.t, $e2.t); }
@@ -404,11 +438,11 @@ expression returns [Type t]
     	  }
     	}
     |   ^(NEW creator) { $t = $creator.t; }
-    |	^(op=(POSTINC | POSTDEC) (e=selector | e=primary))
-     	{ if (!$e.t.isNumeric()) {
-    	  	throw new CannotBeAppliedToException($op.text, $e.t.toString(), "", $op.line, $op.pos, rt);
+    |	^(op=(POSTINC | POSTDEC) (sp=selector | sp=primary))
+     	{ if (!$sp.t.isNumeric()) {
+    	  	throw new CannotBeAppliedToException($op.text, $sp.t.toString(), "", $op.line, $op.pos, rt);
     	  }
-    	  $t = $e.t;
+    	  $t = $sp.t;
     	}
     //|   ^(POSTDEC (selector | primary))
     |   selector { $t = $selector.t; }
@@ -459,12 +493,7 @@ selector returns [Type t]
     |   ^(ARRAYACCESS e1=expression e2=expression) 
     	{ if (ruleTypeCheck($e1.t, $e2.t)) {
 	    	  if (!$e1.t.isArray()) errorLog.add(new ArrayRequiredException($e1.t.toString(), $ARRAYACCESS.line, $ARRAYACCESS.pos, rt));
-	    	  if (!$e2.t.isAssignableTo(BasicType.INT)) {
-	    	  	if ($e2.t.isCastableTo(	BasicType.INT))
-	    	  		errorLog.add(new PossibleLossOfPrecisionException(BasicType.INT.toString(), $e2.t.toString(), $ARRAYACCESS.line, $ARRAYACCESS.pos, rt));
-	    	  	else 
-	    	  		errorLog.add(new IncompatibleTypesException(BasicType.INT.toString(), $e2.t.toString(), $ARRAYACCESS.line, $ARRAYACCESS.pos, rt));    	       
-	    	  }
+	    	  arrayExprCheck($ARRAYACCESS, $e2.t);
 	    	  $t = ((ArrayType)$e1.t).getHostType(); 
     	  }
     	}
@@ -481,22 +510,25 @@ createdName returns [Type t]
     |   primitiveType { $t = $primitiveType.bs; }
     ;
     
-arrayCreatorRest
-    :   (^(ARRAYTYPE  createdName) arrayInitializer)   
-    |	 ^(ARRAYTYPE  arrayCreatorExpr expression)   
-    ; 
-    
-arrayCreatorExpr
-    :	^(ARRAYTYPE arrayCreatorExpr expression)
-    | 	createdName 
-    ;    
+arrayCreatorRest returns [Type t]
+    :   ^(ARRAYTYPE acr=arrayCreatorRest e=expression?) arrayInitializer[$acr.t]?
+    	{  System.out.println("arrayCreatorRest ->>" + $e.t); 
+    	  if (ruleTypeCheck($acr.t)) $t = (ComplexType)ParserHelper.createArrayType($acr.t, 1); 
+    	  if (ruleTypeCheck($e.t)) arrayExprCheck($ARRAYTYPE, $e.t);
+    	}
+    |	^(ARRAYTYPE cn=createdName e=expression?)
+    	{ if (ruleTypeCheck($cn.t)) 
+	    	  $t = (ComplexType)ParserHelper.createArrayType($cn.t, 1);
+	  if (ruleTypeCheck($e.t)) arrayExprCheck($ARRAYTYPE, $e.t);	  
+    	}
+    ;	
 
-classCreatorRest
-    :   arguments
-    ;   
+classCreatorRest returns [ArrayList<Type> types]
+    :   arguments { $types = $arguments.types; }
+    ;     
    
 superMemberAccess returns [Type t]
-    :	^(METHODCALL SUPER IDENTIFIER arguments) 
+    :	^(METHODCALL SUPER IDENTIFIER arguments?) 
     	{ if( $arguments.types == null || ruleTypeCheck((Type[])$arguments.types.toArray()) ) {
 	    	  try {
 	          	$t = rt.getSuperClass().bindMethod(false, $IDENTIFIER.text, $arguments.types);

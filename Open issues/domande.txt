@@ -13,3 +13,4 @@
 
 6. Controllare se ++/-- vengono applicate solo a variabili?
 
+7. Possiamo accettare un linguaggio più ampio nella tree grammar? Ci semplifica ad esempio le regole nella creazione di array
