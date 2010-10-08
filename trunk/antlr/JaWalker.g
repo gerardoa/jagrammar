@@ -218,13 +218,20 @@ variableInitializer [Type tin] returns [Type t]
     ;
 
 arrayInitializer [Type tin] returns [Type t]
-    :   ^(ARRAYINIT v1=variableInitializer[$tin]  (variableInitializer[$tin])* ) 
+    :   ^(ARRAYINIT v1=variableInitializer[$tin]  
     	{ 
     	  if (ruleTypeCheck($v1.t)) {
-	        $t = (ComplexType)ParserHelper.createArrayType($tin, 1);
-	     	if( !$v1.t.isAssignableTo(tin)) errorLog.add(new IncompatibleTypesException(tin.toString(), $t.toString(), $ARRAYINIT.line, $ARRAYINIT.pos, rt));
+	       $t = $tin; //$t = (ComplexType)ParserHelper.createArrayType($tin, 1);
+	       System.out.println("VT -->" + $v1.t + "  TIN -->" + tin);
+	       if( !$v1.t.isAssignableTo(((ArrayType)$tin).getHostType())) errorLog.add(new IncompatibleTypesException($tin.toString(), $t.toString(), $ARRAYINIT.line, $ARRAYINIT.pos, rt));
       	  }	
        }
+       ( v=variableInitializer[$tin]
+       { if (ruleTypeCheck($v.t)) {
+	       System.out.println("VT -->" + $v1.t + "  TIN -->" + tin);
+	       if( !$v.t.isAssignableTo(((ArrayType)$tin).getHostType())) errorLog.add(new IncompatibleTypesException($tin.toString(), $t.toString(), $ARRAYINIT.line, $ARRAYINIT.pos, rt));
+      	 }
+       } )* ) 
     ;        
 
 modifier
@@ -500,8 +507,7 @@ selector returns [Type t]
     ;
 
 creator returns [Type t]
-    :    (acr=arrayCreatorRest arrayInitializer[$acr.t]) => acr=arrayCreatorRest arrayInitializer[$acr.t]
-    |	 (arrayCreatorRestExpr) => arrayCreatorRestExpr { $t = $arrayCreatorRestExpr.t; }
+    :    (arrayCreatorRest) => acr=arrayCreatorRest arrayInitializer[$acr.t]?
     |    createdName classCreatorRest? 
     ;
 
@@ -515,21 +521,22 @@ arrayCreatorRest returns [Type t]
     :  ^(ARRAYTYPE acr=arrayCreatorRest) 
        { if (ruleTypeCheck($acr.t)) $t = (ComplexType)ParserHelper.createArrayType($acr.t, 1); }
     |	createdName { if (ruleTypeCheck($createdName.t)) $t = $createdName.t; }
+    |   ^(ARRAYTYPE e=expression acre=arrayCreatorRestExpr) 
+    	{ if (ruleTypeCheck($acre.t, $e.t)) {
+       		$t = (ComplexType)ParserHelper.createArrayType($acre.t, 1); 
+    	  	arrayExprCheck($ARRAYTYPE, $e.t);
+    	  }
+       	}
     ;
 
 arrayCreatorRestExpr returns [Type t]
-    :  (^(ARRAYTYPE acr=arrayCreatorRest e=expression)) =>  ^(ARRAYTYPE acr=arrayCreatorRest expression)
+    :  (^(ARRAYTYPE e=expression acr=arrayCreatorRest))
        { if (ruleTypeCheck($acr.t, $e.t)) {
        		$t = (ComplexType)ParserHelper.createArrayType($acr.t, 1); 
     	  	arrayExprCheck($ARRAYTYPE, $e.t);
     	 }
        }
-    |  ^(ARRAYTYPE acre=arrayCreatorRestExpr e=expression)
-       { if (ruleTypeCheck($acre.t, $e.t)) {
-       		$t = (ComplexType)ParserHelper.createArrayType($acre.t, 1); 
-    	  	arrayExprCheck($ARRAYTYPE, $e.t);
-    	 }
-       }
+    |  createdName { if (ruleTypeCheck($createdName.t)) $t = $createdName.t; }
     ;
 
 classCreatorRest returns [ArrayList<Type> types]
