@@ -1,4 +1,4 @@
-// $ANTLR 3.2 Sep 23, 2009 12:02:23 /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g 2010-10-07 22:49:50
+// $ANTLR 3.2 Sep 23, 2009 12:02:23 /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g 2010-10-08 18:08:36
 
 	package jagrammar;
 
@@ -77,7 +77,6 @@ public class JaLexer extends Lexer {
     public static final int INIT=22;
     public static final int FMULTPARM=16;
     public static final int T__104=104;
-    public static final int T__107=107;
     public static final int DOWHILE=25;
     public static final int T__87=87;
     public static final int BLOCK=20;
@@ -293,10 +292,10 @@ public class JaLexer extends Lexer {
         try {
             int _type = T__94;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:19:7: ( '...' )
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:19:9: '...'
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:19:7: ( '+=' )
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:19:9: '+='
             {
-            match("..."); 
+            match("+="); 
 
 
             }
@@ -314,10 +313,10 @@ public class JaLexer extends Lexer {
         try {
             int _type = T__95;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:20:7: ( '+=' )
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:20:9: '+='
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:20:7: ( '-=' )
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:20:9: '-='
             {
-            match("+="); 
+            match("-="); 
 
 
             }
@@ -335,10 +334,10 @@ public class JaLexer extends Lexer {
         try {
             int _type = T__96;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:21:7: ( '-=' )
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:21:9: '-='
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:21:7: ( '*=' )
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:21:9: '*='
             {
-            match("-="); 
+            match("*="); 
 
 
             }
@@ -356,10 +355,10 @@ public class JaLexer extends Lexer {
         try {
             int _type = T__97;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:22:7: ( '*=' )
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:22:9: '*='
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:22:7: ( '/=' )
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:22:9: '/='
             {
-            match("*="); 
+            match("/="); 
 
 
             }
@@ -377,10 +376,10 @@ public class JaLexer extends Lexer {
         try {
             int _type = T__98;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:23:7: ( '/=' )
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:23:9: '/='
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:23:7: ( '||' )
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:23:9: '||'
             {
-            match("/="); 
+            match("||"); 
 
 
             }
@@ -398,10 +397,10 @@ public class JaLexer extends Lexer {
         try {
             int _type = T__99;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:24:7: ( '||' )
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:24:9: '||'
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:24:7: ( '&&' )
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:24:9: '&&'
             {
-            match("||"); 
+            match("&&"); 
 
 
             }
@@ -419,10 +418,10 @@ public class JaLexer extends Lexer {
         try {
             int _type = T__100;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:25:8: ( '&&' )
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:25:10: '&&'
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:25:8: ( '==' )
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:25:10: '=='
             {
-            match("&&"); 
+            match("=="); 
 
 
             }
@@ -440,10 +439,10 @@ public class JaLexer extends Lexer {
         try {
             int _type = T__101;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:26:8: ( '==' )
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:26:10: '=='
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:26:8: ( '!=' )
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:26:10: '!='
             {
-            match("=="); 
+            match("!="); 
 
 
             }
@@ -461,11 +460,10 @@ public class JaLexer extends Lexer {
         try {
             int _type = T__102;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:27:8: ( '!=' )
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:27:10: '!='
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:27:8: ( '%' )
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:27:10: '%'
             {
-            match("!="); 
-
+            match('%'); 
 
             }
 
@@ -482,10 +480,11 @@ public class JaLexer extends Lexer {
         try {
             int _type = T__103;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:28:8: ( '%' )
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:28:10: '%'
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:28:8: ( '++' )
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:28:10: '++'
             {
-            match('%'); 
+            match("++"); 
+
 
             }
 
@@ -502,10 +501,10 @@ public class JaLexer extends Lexer {
         try {
             int _type = T__104;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:29:8: ( '++' )
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:29:10: '++'
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:29:8: ( '--' )
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:29:10: '--'
             {
-            match("++"); 
+            match("--"); 
 
 
             }
@@ -523,11 +522,10 @@ public class JaLexer extends Lexer {
         try {
             int _type = T__105;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:30:8: ( '--' )
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:30:10: '--'
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:30:8: ( '!' )
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:30:10: '!'
             {
-            match("--"); 
-
+            match('!'); 
 
             }
 
@@ -544,28 +542,8 @@ public class JaLexer extends Lexer {
         try {
             int _type = T__106;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:31:8: ( '!' )
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:31:10: '!'
-            {
-            match('!'); 
-
-            }
-
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-        }
-    }
-    // $ANTLR end "T__106"
-
-    // $ANTLR start "T__107"
-    public final void mT__107() throws RecognitionException {
-        try {
-            int _type = T__107;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:32:8: ( '.' )
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:32:10: '.'
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:31:8: ( '.' )
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:31:10: '.'
             {
             match('.'); 
 
@@ -577,12 +555,12 @@ public class JaLexer extends Lexer {
         finally {
         }
     }
-    // $ANTLR end "T__107"
+    // $ANTLR end "T__106"
 
     // $ANTLR start "IntegerNumber"
     public final void mIntegerNumber() throws RecognitionException {
         try {
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:404:5: ( '0' | '1' .. '9' ( Digit )* )
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:405:5: ( '0' | '1' .. '9' ( Digit )* )
             int alt2=2;
             int LA2_0 = input.LA(1);
 
@@ -600,17 +578,17 @@ public class JaLexer extends Lexer {
             }
             switch (alt2) {
                 case 1 :
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:404:9: '0'
+                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:405:9: '0'
                     {
                     match('0'); 
 
                     }
                     break;
                 case 2 :
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:405:9: '1' .. '9' ( Digit )*
+                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:406:9: '1' .. '9' ( Digit )*
                     {
                     matchRange('1','9'); 
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:405:18: ( Digit )*
+                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:406:18: ( Digit )*
                     loop1:
                     do {
                         int alt1=2;
@@ -623,7 +601,7 @@ public class JaLexer extends Lexer {
 
                         switch (alt1) {
                     	case 1 :
-                    	    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:405:18: Digit
+                    	    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:406:18: Digit
                     	    {
                     	    mDigit(); 
 
@@ -649,8 +627,8 @@ public class JaLexer extends Lexer {
     // $ANTLR start "Digit"
     public final void mDigit() throws RecognitionException {
         try {
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:410:5: ( '0' .. '9' )
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:410:7: '0' .. '9'
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:411:5: ( '0' .. '9' )
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:411:7: '0' .. '9'
             {
             matchRange('0','9'); 
 
@@ -665,7 +643,7 @@ public class JaLexer extends Lexer {
     // $ANTLR start "LongSuffix"
     public final void mLongSuffix() throws RecognitionException {
         try {
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:416:5: ( 'l' | 'L' )
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:417:5: ( 'l' | 'L' )
             // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:
             {
             if ( input.LA(1)=='L'||input.LA(1)=='l' ) {
@@ -691,8 +669,8 @@ public class JaLexer extends Lexer {
         try {
             int _type = INTLITERAL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:420:5: ( IntegerNumber )
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:420:9: IntegerNumber
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:421:5: ( IntegerNumber )
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:421:9: IntegerNumber
             {
             mIntegerNumber(); 
 
@@ -711,8 +689,8 @@ public class JaLexer extends Lexer {
         try {
             int _type = LONGLITERAL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:424:5: ( IntegerNumber LongSuffix )
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:424:9: IntegerNumber LongSuffix
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:425:5: ( IntegerNumber LongSuffix )
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:425:9: IntegerNumber LongSuffix
             {
             mIntegerNumber(); 
             mLongSuffix(); 
@@ -730,14 +708,14 @@ public class JaLexer extends Lexer {
     // $ANTLR start "FloatingPointLiteral"
     public final void mFloatingPointLiteral() throws RecognitionException {
         try {
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:429:5: ( ( Digit )+ '.' ( Digit )* ( Exponent )? | ( '.' )? ( Digit )+ ( Exponent )? )
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:430:5: ( ( Digit )+ '.' ( Digit )* ( Exponent )? | ( '.' )? ( Digit )+ ( Exponent )? )
             int alt9=2;
             alt9 = dfa9.predict(input);
             switch (alt9) {
                 case 1 :
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:429:9: ( Digit )+ '.' ( Digit )* ( Exponent )?
+                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:430:9: ( Digit )+ '.' ( Digit )* ( Exponent )?
                     {
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:429:9: ( Digit )+
+                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:430:9: ( Digit )+
                     int cnt3=0;
                     loop3:
                     do {
@@ -751,7 +729,7 @@ public class JaLexer extends Lexer {
 
                         switch (alt3) {
                     	case 1 :
-                    	    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:429:9: Digit
+                    	    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:430:9: Digit
                     	    {
                     	    mDigit(); 
 
@@ -768,7 +746,7 @@ public class JaLexer extends Lexer {
                     } while (true);
 
                     match('.'); 
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:429:20: ( Digit )*
+                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:430:20: ( Digit )*
                     loop4:
                     do {
                         int alt4=2;
@@ -781,7 +759,7 @@ public class JaLexer extends Lexer {
 
                         switch (alt4) {
                     	case 1 :
-                    	    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:429:20: Digit
+                    	    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:430:20: Digit
                     	    {
                     	    mDigit(); 
 
@@ -793,7 +771,7 @@ public class JaLexer extends Lexer {
                         }
                     } while (true);
 
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:429:27: ( Exponent )?
+                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:430:27: ( Exponent )?
                     int alt5=2;
                     int LA5_0 = input.LA(1);
 
@@ -802,7 +780,7 @@ public class JaLexer extends Lexer {
                     }
                     switch (alt5) {
                         case 1 :
-                            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:429:27: Exponent
+                            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:430:27: Exponent
                             {
                             mExponent(); 
 
@@ -815,9 +793,9 @@ public class JaLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:430:9: ( '.' )? ( Digit )+ ( Exponent )?
+                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:431:9: ( '.' )? ( Digit )+ ( Exponent )?
                     {
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:430:9: ( '.' )?
+                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:431:9: ( '.' )?
                     int alt6=2;
                     int LA6_0 = input.LA(1);
 
@@ -826,7 +804,7 @@ public class JaLexer extends Lexer {
                     }
                     switch (alt6) {
                         case 1 :
-                            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:430:10: '.'
+                            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:431:10: '.'
                             {
                             match('.'); 
 
@@ -835,7 +813,7 @@ public class JaLexer extends Lexer {
 
                     }
 
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:430:16: ( Digit )+
+                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:431:16: ( Digit )+
                     int cnt7=0;
                     loop7:
                     do {
@@ -849,7 +827,7 @@ public class JaLexer extends Lexer {
 
                         switch (alt7) {
                     	case 1 :
-                    	    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:430:16: Digit
+                    	    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:431:16: Digit
                     	    {
                     	    mDigit(); 
 
@@ -865,7 +843,7 @@ public class JaLexer extends Lexer {
                         cnt7++;
                     } while (true);
 
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:430:23: ( Exponent )?
+                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:431:23: ( Exponent )?
                     int alt8=2;
                     int LA8_0 = input.LA(1);
 
@@ -874,7 +852,7 @@ public class JaLexer extends Lexer {
                     }
                     switch (alt8) {
                         case 1 :
-                            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:430:23: Exponent
+                            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:431:23: Exponent
                             {
                             mExponent(); 
 
@@ -897,8 +875,8 @@ public class JaLexer extends Lexer {
     // $ANTLR start "Exponent"
     public final void mExponent() throws RecognitionException {
         try {
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:435:5: ( ( 'e' | 'E' ) ( '+' | '-' )? ( Digit )+ )
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:435:9: ( 'e' | 'E' ) ( '+' | '-' )? ( Digit )+
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:436:5: ( ( 'e' | 'E' ) ( '+' | '-' )? ( Digit )+ )
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:436:9: ( 'e' | 'E' ) ( '+' | '-' )? ( Digit )+
             {
             if ( input.LA(1)=='E'||input.LA(1)=='e' ) {
                 input.consume();
@@ -909,7 +887,7 @@ public class JaLexer extends Lexer {
                 recover(mse);
                 throw mse;}
 
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:435:23: ( '+' | '-' )?
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:436:23: ( '+' | '-' )?
             int alt10=2;
             int LA10_0 = input.LA(1);
 
@@ -935,7 +913,7 @@ public class JaLexer extends Lexer {
 
             }
 
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:435:38: ( Digit )+
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:436:38: ( Digit )+
             int cnt11=0;
             loop11:
             do {
@@ -949,7 +927,7 @@ public class JaLexer extends Lexer {
 
                 switch (alt11) {
             	case 1 :
-            	    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:435:38: Digit
+            	    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:436:38: Digit
             	    {
             	    mDigit(); 
 
@@ -977,7 +955,7 @@ public class JaLexer extends Lexer {
     // $ANTLR start "FloatSuffix"
     public final void mFloatSuffix() throws RecognitionException {
         try {
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:440:5: ( 'f' | 'F' )
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:441:5: ( 'f' | 'F' )
             // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:
             {
             if ( input.LA(1)=='F'||input.LA(1)=='f' ) {
@@ -1001,7 +979,7 @@ public class JaLexer extends Lexer {
     // $ANTLR start "DoubleSuffix"
     public final void mDoubleSuffix() throws RecognitionException {
         try {
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:445:5: ( 'd' | 'D' )
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:446:5: ( 'd' | 'D' )
             // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:
             {
             if ( input.LA(1)=='D'||input.LA(1)=='d' ) {
@@ -1027,8 +1005,8 @@ public class JaLexer extends Lexer {
         try {
             int _type = FLOATLITERAL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:449:5: ( FloatingPointLiteral FloatSuffix )
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:449:9: FloatingPointLiteral FloatSuffix
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:450:5: ( FloatingPointLiteral FloatSuffix )
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:450:9: FloatingPointLiteral FloatSuffix
             {
             mFloatingPointLiteral(); 
             mFloatSuffix(); 
@@ -1048,11 +1026,11 @@ public class JaLexer extends Lexer {
         try {
             int _type = DOUBLELITERAL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:453:5: ( FloatingPointLiteral ( DoubleSuffix )? )
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:453:9: FloatingPointLiteral ( DoubleSuffix )?
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:454:5: ( FloatingPointLiteral ( DoubleSuffix )? )
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:454:9: FloatingPointLiteral ( DoubleSuffix )?
             {
             mFloatingPointLiteral(); 
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:453:30: ( DoubleSuffix )?
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:454:30: ( DoubleSuffix )?
             int alt12=2;
             int LA12_0 = input.LA(1);
 
@@ -1061,7 +1039,7 @@ public class JaLexer extends Lexer {
             }
             switch (alt12) {
                 case 1 :
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:453:30: DoubleSuffix
+                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:454:30: DoubleSuffix
                     {
                     mDoubleSuffix(); 
 
@@ -1086,11 +1064,11 @@ public class JaLexer extends Lexer {
         try {
             int _type = CHARLITERAL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:457:5: ( '\\'' ( EscapeSequence | ~ ( '\\'' | '\\\\' | '\\r' | '\\n' ) ) '\\'' )
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:457:9: '\\'' ( EscapeSequence | ~ ( '\\'' | '\\\\' | '\\r' | '\\n' ) ) '\\''
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:458:5: ( '\\'' ( EscapeSequence | ~ ( '\\'' | '\\\\' | '\\r' | '\\n' ) ) '\\'' )
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:458:9: '\\'' ( EscapeSequence | ~ ( '\\'' | '\\\\' | '\\r' | '\\n' ) ) '\\''
             {
             match('\''); 
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:458:9: ( EscapeSequence | ~ ( '\\'' | '\\\\' | '\\r' | '\\n' ) )
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:459:9: ( EscapeSequence | ~ ( '\\'' | '\\\\' | '\\r' | '\\n' ) )
             int alt13=2;
             int LA13_0 = input.LA(1);
 
@@ -1108,14 +1086,14 @@ public class JaLexer extends Lexer {
             }
             switch (alt13) {
                 case 1 :
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:458:13: EscapeSequence
+                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:459:13: EscapeSequence
                     {
                     mEscapeSequence(); 
 
                     }
                     break;
                 case 2 :
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:459:13: ~ ( '\\'' | '\\\\' | '\\r' | '\\n' )
+                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:460:13: ~ ( '\\'' | '\\\\' | '\\r' | '\\n' )
                     {
                     if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='&')||(input.LA(1)>='(' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                         input.consume();
@@ -1149,11 +1127,11 @@ public class JaLexer extends Lexer {
         try {
             int _type = STRINGLITERAL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:465:5: ( '\"' ( EscapeSequence | ~ ( '\\\\' | '\"' | '\\r' | '\\n' ) )* '\"' )
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:465:9: '\"' ( EscapeSequence | ~ ( '\\\\' | '\"' | '\\r' | '\\n' ) )* '\"'
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:466:5: ( '\"' ( EscapeSequence | ~ ( '\\\\' | '\"' | '\\r' | '\\n' ) )* '\"' )
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:466:9: '\"' ( EscapeSequence | ~ ( '\\\\' | '\"' | '\\r' | '\\n' ) )* '\"'
             {
             match('\"'); 
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:466:9: ( EscapeSequence | ~ ( '\\\\' | '\"' | '\\r' | '\\n' ) )*
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:467:9: ( EscapeSequence | ~ ( '\\\\' | '\"' | '\\r' | '\\n' ) )*
             loop14:
             do {
                 int alt14=3;
@@ -1169,14 +1147,14 @@ public class JaLexer extends Lexer {
 
                 switch (alt14) {
             	case 1 :
-            	    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:466:13: EscapeSequence
+            	    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:467:13: EscapeSequence
             	    {
             	    mEscapeSequence(); 
 
             	    }
             	    break;
             	case 2 :
-            	    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:467:13: ~ ( '\\\\' | '\"' | '\\r' | '\\n' )
+            	    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:468:13: ~ ( '\\\\' | '\"' | '\\r' | '\\n' )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -1211,8 +1189,8 @@ public class JaLexer extends Lexer {
     // $ANTLR start "EscapeSequence"
     public final void mEscapeSequence() throws RecognitionException {
         try {
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:474:5: ( '\\\\' ( 't' | 'n' | 'r' | '\\\"' | '\\'' | '\\\\' ) )
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:474:9: '\\\\' ( 't' | 'n' | 'r' | '\\\"' | '\\'' | '\\\\' )
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:475:5: ( '\\\\' ( 't' | 'n' | 'r' | '\\\"' | '\\'' | '\\\\' ) )
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:475:9: '\\\\' ( 't' | 'n' | 'r' | '\\\"' | '\\'' | '\\\\' )
             {
             match('\\'); 
             if ( input.LA(1)=='\"'||input.LA(1)=='\''||input.LA(1)=='\\'||input.LA(1)=='n'||input.LA(1)=='r'||input.LA(1)=='t' ) {
@@ -1238,7 +1216,7 @@ public class JaLexer extends Lexer {
         try {
             int _type = BOOLEANLITERAL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:485:5: ( 'true' | 'false' )
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:486:5: ( 'true' | 'false' )
             int alt15=2;
             int LA15_0 = input.LA(1);
 
@@ -1256,7 +1234,7 @@ public class JaLexer extends Lexer {
             }
             switch (alt15) {
                 case 1 :
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:485:7: 'true'
+                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:486:7: 'true'
                     {
                     match("true"); 
 
@@ -1264,7 +1242,7 @@ public class JaLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:486:7: 'false'
+                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:487:7: 'false'
                     {
                     match("false"); 
 
@@ -1286,8 +1264,8 @@ public class JaLexer extends Lexer {
         try {
             int _type = NULLLITERAL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:490:5: ( 'null' )
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:490:9: 'null'
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:491:5: ( 'null' )
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:491:9: 'null'
             {
             match("null"); 
 
@@ -1307,8 +1285,8 @@ public class JaLexer extends Lexer {
         try {
             int _type = BOOLEAN;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:494:5: ( 'boolean' )
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:494:9: 'boolean'
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:495:5: ( 'boolean' )
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:495:9: 'boolean'
             {
             match("boolean"); 
 
@@ -1328,8 +1306,8 @@ public class JaLexer extends Lexer {
         try {
             int _type = BYTE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:498:5: ( 'byte' )
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:498:9: 'byte'
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:499:5: ( 'byte' )
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:499:9: 'byte'
             {
             match("byte"); 
 
@@ -1349,8 +1327,8 @@ public class JaLexer extends Lexer {
         try {
             int _type = CHAR;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:502:5: ( 'char' )
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:502:9: 'char'
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:503:5: ( 'char' )
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:503:9: 'char'
             {
             match("char"); 
 
@@ -1370,8 +1348,8 @@ public class JaLexer extends Lexer {
         try {
             int _type = SHORT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:506:5: ( 'short' )
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:506:9: 'short'
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:507:5: ( 'short' )
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:507:9: 'short'
             {
             match("short"); 
 
@@ -1391,8 +1369,8 @@ public class JaLexer extends Lexer {
         try {
             int _type = INT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:510:5: ( 'int' )
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:510:9: 'int'
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:511:5: ( 'int' )
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:511:9: 'int'
             {
             match("int"); 
 
@@ -1412,8 +1390,8 @@ public class JaLexer extends Lexer {
         try {
             int _type = LONG;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:514:5: ( 'long' )
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:514:9: 'long'
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:515:5: ( 'long' )
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:515:9: 'long'
             {
             match("long"); 
 
@@ -1433,8 +1411,8 @@ public class JaLexer extends Lexer {
         try {
             int _type = FLOAT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:518:5: ( 'float' )
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:518:9: 'float'
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:519:5: ( 'float' )
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:519:9: 'float'
             {
             match("float"); 
 
@@ -1454,8 +1432,8 @@ public class JaLexer extends Lexer {
         try {
             int _type = DOUBLE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:522:5: ( 'double' )
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:522:9: 'double'
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:523:5: ( 'double' )
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:523:9: 'double'
             {
             match("double"); 
 
@@ -1475,8 +1453,8 @@ public class JaLexer extends Lexer {
         try {
             int _type = VOID;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:526:5: ( 'void' )
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:526:9: 'void'
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:527:5: ( 'void' )
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:527:9: 'void'
             {
             match("void"); 
 
@@ -1496,8 +1474,8 @@ public class JaLexer extends Lexer {
         try {
             int _type = WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:530:5: ( ( ' ' | '\\r' | '\\t' | '\\n' ) )
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:530:9: ( ' ' | '\\r' | '\\t' | '\\n' )
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:531:5: ( ( ' ' | '\\r' | '\\t' | '\\n' ) )
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:531:9: ( ' ' | '\\r' | '\\t' | '\\n' )
             {
             if ( (input.LA(1)>='\t' && input.LA(1)<='\n')||input.LA(1)=='\r'||input.LA(1)==' ' ) {
                 input.consume();
@@ -1525,12 +1503,12 @@ public class JaLexer extends Lexer {
         try {
             int _type = COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:539:5: ( '/*' ( options {greedy=false; } : . )* '*/' )
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:539:9: '/*' ( options {greedy=false; } : . )* '*/'
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:540:5: ( '/*' ( options {greedy=false; } : . )* '*/' )
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:540:9: '/*' ( options {greedy=false; } : . )* '*/'
             {
             match("/*"); 
 
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:540:9: ( options {greedy=false; } : . )*
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:541:9: ( options {greedy=false; } : . )*
             loop16:
             do {
                 int alt16=2;
@@ -1555,7 +1533,7 @@ public class JaLexer extends Lexer {
 
                 switch (alt16) {
             	case 1 :
-            	    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:540:36: .
+            	    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:541:36: .
             	    {
             	    matchAny(); 
 
@@ -1586,12 +1564,12 @@ public class JaLexer extends Lexer {
         try {
             int _type = LINE_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:546:5: ( '//' (~ ( '\\n' | '\\r' ) )* )
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:546:7: '//' (~ ( '\\n' | '\\r' ) )*
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:547:5: ( '//' (~ ( '\\n' | '\\r' ) )* )
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:547:7: '//' (~ ( '\\n' | '\\r' ) )*
             {
             match("//"); 
 
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:546:12: (~ ( '\\n' | '\\r' ) )*
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:547:12: (~ ( '\\n' | '\\r' ) )*
             loop17:
             do {
                 int alt17=2;
@@ -1604,7 +1582,7 @@ public class JaLexer extends Lexer {
 
                 switch (alt17) {
             	case 1 :
-            	    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:546:12: ~ ( '\\n' | '\\r' )
+            	    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:547:12: ~ ( '\\n' | '\\r' )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -1641,8 +1619,8 @@ public class JaLexer extends Lexer {
         try {
             int _type = CLASS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:551:5: ( 'class' )
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:551:9: 'class'
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:552:5: ( 'class' )
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:552:9: 'class'
             {
             match("class"); 
 
@@ -1662,8 +1640,8 @@ public class JaLexer extends Lexer {
         try {
             int _type = EXTENDS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:555:5: ( 'extends' )
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:555:9: 'extends'
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:556:5: ( 'extends' )
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:556:9: 'extends'
             {
             match("extends"); 
 
@@ -1683,8 +1661,8 @@ public class JaLexer extends Lexer {
         try {
             int _type = FOR;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:559:5: ( 'for' )
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:559:9: 'for'
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:560:5: ( 'for' )
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:560:9: 'for'
             {
             match("for"); 
 
@@ -1704,8 +1682,8 @@ public class JaLexer extends Lexer {
         try {
             int _type = DO;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:563:5: ( 'do' )
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:563:9: 'do'
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:564:5: ( 'do' )
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:564:9: 'do'
             {
             match("do"); 
 
@@ -1725,8 +1703,8 @@ public class JaLexer extends Lexer {
         try {
             int _type = WHILE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:567:5: ( 'while' )
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:567:9: 'while'
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:568:5: ( 'while' )
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:568:9: 'while'
             {
             match("while"); 
 
@@ -1746,8 +1724,8 @@ public class JaLexer extends Lexer {
         try {
             int _type = IF;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:571:5: ( 'if' )
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:571:9: 'if'
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:572:5: ( 'if' )
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:572:9: 'if'
             {
             match("if"); 
 
@@ -1767,8 +1745,8 @@ public class JaLexer extends Lexer {
         try {
             int _type = ELSE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:575:5: ( 'else' )
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:575:9: 'else'
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:576:5: ( 'else' )
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:576:9: 'else'
             {
             match("else"); 
 
@@ -1788,8 +1766,8 @@ public class JaLexer extends Lexer {
         try {
             int _type = INSTANCEOF;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:579:5: ( 'instanceof' )
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:579:9: 'instanceof'
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:580:5: ( 'instanceof' )
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:580:9: 'instanceof'
             {
             match("instanceof"); 
 
@@ -1809,8 +1787,8 @@ public class JaLexer extends Lexer {
         try {
             int _type = NEW;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:583:5: ( 'new' )
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:583:9: 'new'
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:584:5: ( 'new' )
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:584:9: 'new'
             {
             match("new"); 
 
@@ -1830,8 +1808,8 @@ public class JaLexer extends Lexer {
         try {
             int _type = PRIVATE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:587:5: ( 'private' )
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:587:9: 'private'
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:588:5: ( 'private' )
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:588:9: 'private'
             {
             match("private"); 
 
@@ -1851,8 +1829,8 @@ public class JaLexer extends Lexer {
         try {
             int _type = PUBLIC;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:591:5: ( 'public' )
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:591:9: 'public'
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:592:5: ( 'public' )
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:592:9: 'public'
             {
             match("public"); 
 
@@ -1872,8 +1850,8 @@ public class JaLexer extends Lexer {
         try {
             int _type = RETURN;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:595:5: ( 'return' )
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:595:9: 'return'
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:596:5: ( 'return' )
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:596:9: 'return'
             {
             match("return"); 
 
@@ -1893,8 +1871,8 @@ public class JaLexer extends Lexer {
         try {
             int _type = SUPER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:599:5: ( 'super' )
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:599:9: 'super'
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:600:5: ( 'super' )
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:600:9: 'super'
             {
             match("super"); 
 
@@ -1914,8 +1892,8 @@ public class JaLexer extends Lexer {
         try {
             int _type = THIS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:603:5: ( 'this' )
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:603:9: 'this'
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:604:5: ( 'this' )
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:604:9: 'this'
             {
             match("this"); 
 
@@ -1935,8 +1913,8 @@ public class JaLexer extends Lexer {
         try {
             int _type = EQ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:607:5: ( '=' )
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:607:9: '='
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:608:5: ( '=' )
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:608:9: '='
             {
             match('='); 
 
@@ -1955,8 +1933,8 @@ public class JaLexer extends Lexer {
         try {
             int _type = PLUS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:611:5: ( '+' )
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:611:9: '+'
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:612:5: ( '+' )
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:612:9: '+'
             {
             match('+'); 
 
@@ -1975,8 +1953,8 @@ public class JaLexer extends Lexer {
         try {
             int _type = MINUS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:615:5: ( '-' )
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:615:9: '-'
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:616:5: ( '-' )
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:616:9: '-'
             {
             match('-'); 
 
@@ -1995,8 +1973,8 @@ public class JaLexer extends Lexer {
         try {
             int _type = STAR;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:619:5: ( '*' )
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:619:9: '*'
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:620:5: ( '*' )
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:620:9: '*'
             {
             match('*'); 
 
@@ -2015,8 +1993,8 @@ public class JaLexer extends Lexer {
         try {
             int _type = SLASH;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:623:5: ( '/' )
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:623:9: '/'
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:624:5: ( '/' )
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:624:9: '/'
             {
             match('/'); 
 
@@ -2035,7 +2013,7 @@ public class JaLexer extends Lexer {
         try {
             int _type = COMPAREOP;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:627:5: ( '>' | '<' | '>=' | '<=' )
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:628:5: ( '>' | '<' | '>=' | '<=' )
             int alt18=4;
             int LA18_0 = input.LA(1);
 
@@ -2065,21 +2043,21 @@ public class JaLexer extends Lexer {
             }
             switch (alt18) {
                 case 1 :
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:627:7: '>'
+                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:628:7: '>'
                     {
                     match('>'); 
 
                     }
                     break;
                 case 2 :
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:628:7: '<'
+                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:629:7: '<'
                     {
                     match('<'); 
 
                     }
                     break;
                 case 3 :
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:629:7: '>='
+                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:630:7: '>='
                     {
                     match(">="); 
 
@@ -2087,7 +2065,7 @@ public class JaLexer extends Lexer {
                     }
                     break;
                 case 4 :
-                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:630:7: '<='
+                    // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:631:7: '<='
                     {
                     match("<="); 
 
@@ -2109,8 +2087,8 @@ public class JaLexer extends Lexer {
         try {
             int _type = IDENTIFIER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:634:5: ( ( Letter | Currency | '_' ) ( Digit | Letter | Currency | '_' )* )
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:634:7: ( Letter | Currency | '_' ) ( Digit | Letter | Currency | '_' )*
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:635:5: ( ( Letter | Currency | '_' ) ( Digit | Letter | Currency | '_' )* )
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:635:7: ( Letter | Currency | '_' ) ( Digit | Letter | Currency | '_' )*
             {
             if ( input.LA(1)=='$'||(input.LA(1)>='A' && input.LA(1)<='Z')||input.LA(1)=='_'||(input.LA(1)>='a' && input.LA(1)<='z') ) {
                 input.consume();
@@ -2121,7 +2099,7 @@ public class JaLexer extends Lexer {
                 recover(mse);
                 throw mse;}
 
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:638:2: ( Digit | Letter | Currency | '_' )*
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:639:2: ( Digit | Letter | Currency | '_' )*
             loop19:
             do {
                 int alt19=2;
@@ -2168,7 +2146,7 @@ public class JaLexer extends Lexer {
     // $ANTLR start "Letter"
     public final void mLetter() throws RecognitionException {
         try {
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:647:5: ( 'a' .. 'z' | 'A' .. 'Z' )
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:648:5: ( 'a' .. 'z' | 'A' .. 'Z' )
             // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:
             {
             if ( (input.LA(1)>='A' && input.LA(1)<='Z')||(input.LA(1)>='a' && input.LA(1)<='z') ) {
@@ -2192,8 +2170,8 @@ public class JaLexer extends Lexer {
     // $ANTLR start "Currency"
     public final void mCurrency() throws RecognitionException {
         try {
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:653:5: ( '$' )
-            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:653:7: '$'
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:654:5: ( '$' )
+            // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:654:7: '$'
             {
             match('$'); 
 
@@ -2206,8 +2184,8 @@ public class JaLexer extends Lexer {
     // $ANTLR end "Currency"
 
     public void mTokens() throws RecognitionException {
-        // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:1:8: ( T__86 | T__87 | T__88 | T__89 | T__90 | T__91 | T__92 | T__93 | T__94 | T__95 | T__96 | T__97 | T__98 | T__99 | T__100 | T__101 | T__102 | T__103 | T__104 | T__105 | T__106 | T__107 | INTLITERAL | LONGLITERAL | FLOATLITERAL | DOUBLELITERAL | CHARLITERAL | STRINGLITERAL | BOOLEANLITERAL | NULLLITERAL | BOOLEAN | BYTE | CHAR | SHORT | INT | LONG | FLOAT | DOUBLE | VOID | WS | COMMENT | LINE_COMMENT | CLASS | EXTENDS | FOR | DO | WHILE | IF | ELSE | INSTANCEOF | NEW | PRIVATE | PUBLIC | RETURN | SUPER | THIS | EQ | PLUS | MINUS | STAR | SLASH | COMPAREOP | IDENTIFIER )
-        int alt20=63;
+        // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:1:8: ( T__86 | T__87 | T__88 | T__89 | T__90 | T__91 | T__92 | T__93 | T__94 | T__95 | T__96 | T__97 | T__98 | T__99 | T__100 | T__101 | T__102 | T__103 | T__104 | T__105 | T__106 | INTLITERAL | LONGLITERAL | FLOATLITERAL | DOUBLELITERAL | CHARLITERAL | STRINGLITERAL | BOOLEANLITERAL | NULLLITERAL | BOOLEAN | BYTE | CHAR | SHORT | INT | LONG | FLOAT | DOUBLE | VOID | WS | COMMENT | LINE_COMMENT | CLASS | EXTENDS | FOR | DO | WHILE | IF | ELSE | INSTANCEOF | NEW | PRIVATE | PUBLIC | RETURN | SUPER | THIS | EQ | PLUS | MINUS | STAR | SLASH | COMPAREOP | IDENTIFIER )
+        int alt20=62;
         alt20 = dfa20.predict(input);
         switch (alt20) {
             case 1 :
@@ -2358,294 +2336,287 @@ public class JaLexer extends Lexer {
                 }
                 break;
             case 22 :
-                // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:1:143: T__107
-                {
-                mT__107(); 
-
-                }
-                break;
-            case 23 :
-                // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:1:150: INTLITERAL
+                // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:1:143: INTLITERAL
                 {
                 mINTLITERAL(); 
 
                 }
                 break;
-            case 24 :
-                // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:1:161: LONGLITERAL
+            case 23 :
+                // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:1:154: LONGLITERAL
                 {
                 mLONGLITERAL(); 
 
                 }
                 break;
-            case 25 :
-                // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:1:173: FLOATLITERAL
+            case 24 :
+                // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:1:166: FLOATLITERAL
                 {
                 mFLOATLITERAL(); 
 
                 }
                 break;
-            case 26 :
-                // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:1:186: DOUBLELITERAL
+            case 25 :
+                // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:1:179: DOUBLELITERAL
                 {
                 mDOUBLELITERAL(); 
 
                 }
                 break;
-            case 27 :
-                // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:1:200: CHARLITERAL
+            case 26 :
+                // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:1:193: CHARLITERAL
                 {
                 mCHARLITERAL(); 
 
                 }
                 break;
-            case 28 :
-                // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:1:212: STRINGLITERAL
+            case 27 :
+                // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:1:205: STRINGLITERAL
                 {
                 mSTRINGLITERAL(); 
 
                 }
                 break;
-            case 29 :
-                // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:1:226: BOOLEANLITERAL
+            case 28 :
+                // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:1:219: BOOLEANLITERAL
                 {
                 mBOOLEANLITERAL(); 
 
                 }
                 break;
-            case 30 :
-                // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:1:241: NULLLITERAL
+            case 29 :
+                // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:1:234: NULLLITERAL
                 {
                 mNULLLITERAL(); 
 
                 }
                 break;
-            case 31 :
-                // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:1:253: BOOLEAN
+            case 30 :
+                // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:1:246: BOOLEAN
                 {
                 mBOOLEAN(); 
 
                 }
                 break;
-            case 32 :
-                // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:1:261: BYTE
+            case 31 :
+                // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:1:254: BYTE
                 {
                 mBYTE(); 
 
                 }
                 break;
-            case 33 :
-                // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:1:266: CHAR
+            case 32 :
+                // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:1:259: CHAR
                 {
                 mCHAR(); 
 
                 }
                 break;
-            case 34 :
-                // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:1:271: SHORT
+            case 33 :
+                // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:1:264: SHORT
                 {
                 mSHORT(); 
 
                 }
                 break;
-            case 35 :
-                // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:1:277: INT
+            case 34 :
+                // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:1:270: INT
                 {
                 mINT(); 
 
                 }
                 break;
-            case 36 :
-                // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:1:281: LONG
+            case 35 :
+                // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:1:274: LONG
                 {
                 mLONG(); 
 
                 }
                 break;
-            case 37 :
-                // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:1:286: FLOAT
+            case 36 :
+                // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:1:279: FLOAT
                 {
                 mFLOAT(); 
 
                 }
                 break;
-            case 38 :
-                // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:1:292: DOUBLE
+            case 37 :
+                // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:1:285: DOUBLE
                 {
                 mDOUBLE(); 
 
                 }
                 break;
-            case 39 :
-                // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:1:299: VOID
+            case 38 :
+                // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:1:292: VOID
                 {
                 mVOID(); 
 
                 }
                 break;
-            case 40 :
-                // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:1:304: WS
+            case 39 :
+                // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:1:297: WS
                 {
                 mWS(); 
 
                 }
                 break;
-            case 41 :
-                // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:1:307: COMMENT
+            case 40 :
+                // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:1:300: COMMENT
                 {
                 mCOMMENT(); 
 
                 }
                 break;
-            case 42 :
-                // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:1:315: LINE_COMMENT
+            case 41 :
+                // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:1:308: LINE_COMMENT
                 {
                 mLINE_COMMENT(); 
 
                 }
                 break;
-            case 43 :
-                // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:1:328: CLASS
+            case 42 :
+                // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:1:321: CLASS
                 {
                 mCLASS(); 
 
                 }
                 break;
-            case 44 :
-                // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:1:334: EXTENDS
+            case 43 :
+                // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:1:327: EXTENDS
                 {
                 mEXTENDS(); 
 
                 }
                 break;
-            case 45 :
-                // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:1:342: FOR
+            case 44 :
+                // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:1:335: FOR
                 {
                 mFOR(); 
 
                 }
                 break;
-            case 46 :
-                // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:1:346: DO
+            case 45 :
+                // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:1:339: DO
                 {
                 mDO(); 
 
                 }
                 break;
-            case 47 :
-                // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:1:349: WHILE
+            case 46 :
+                // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:1:342: WHILE
                 {
                 mWHILE(); 
 
                 }
                 break;
-            case 48 :
-                // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:1:355: IF
+            case 47 :
+                // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:1:348: IF
                 {
                 mIF(); 
 
                 }
                 break;
-            case 49 :
-                // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:1:358: ELSE
+            case 48 :
+                // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:1:351: ELSE
                 {
                 mELSE(); 
 
                 }
                 break;
-            case 50 :
-                // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:1:363: INSTANCEOF
+            case 49 :
+                // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:1:356: INSTANCEOF
                 {
                 mINSTANCEOF(); 
 
                 }
                 break;
-            case 51 :
-                // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:1:374: NEW
+            case 50 :
+                // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:1:367: NEW
                 {
                 mNEW(); 
 
                 }
                 break;
-            case 52 :
-                // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:1:378: PRIVATE
+            case 51 :
+                // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:1:371: PRIVATE
                 {
                 mPRIVATE(); 
 
                 }
                 break;
-            case 53 :
-                // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:1:386: PUBLIC
+            case 52 :
+                // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:1:379: PUBLIC
                 {
                 mPUBLIC(); 
 
                 }
                 break;
-            case 54 :
-                // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:1:393: RETURN
+            case 53 :
+                // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:1:386: RETURN
                 {
                 mRETURN(); 
 
                 }
                 break;
-            case 55 :
-                // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:1:400: SUPER
+            case 54 :
+                // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:1:393: SUPER
                 {
                 mSUPER(); 
 
                 }
                 break;
-            case 56 :
-                // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:1:406: THIS
+            case 55 :
+                // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:1:399: THIS
                 {
                 mTHIS(); 
 
                 }
                 break;
-            case 57 :
-                // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:1:411: EQ
+            case 56 :
+                // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:1:404: EQ
                 {
                 mEQ(); 
 
                 }
                 break;
-            case 58 :
-                // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:1:414: PLUS
+            case 57 :
+                // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:1:407: PLUS
                 {
                 mPLUS(); 
 
                 }
                 break;
-            case 59 :
-                // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:1:419: MINUS
+            case 58 :
+                // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:1:412: MINUS
                 {
                 mMINUS(); 
 
                 }
                 break;
-            case 60 :
-                // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:1:425: STAR
+            case 59 :
+                // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:1:418: STAR
                 {
                 mSTAR(); 
 
                 }
                 break;
-            case 61 :
-                // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:1:430: SLASH
+            case 60 :
+                // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:1:423: SLASH
                 {
                 mSLASH(); 
 
                 }
                 break;
-            case 62 :
-                // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:1:436: COMPAREOP
+            case 61 :
+                // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:1:429: COMPAREOP
                 {
                 mCOMPAREOP(); 
 
                 }
                 break;
-            case 63 :
-                // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:1:446: IDENTIFIER
+            case 62 :
+                // /Users/IlianaPetrova/Desktop/JaSVN/antlr/Ja.g:1:439: IDENTIFIER
                 {
                 mIDENTIFIER(); 
 
@@ -2708,72 +2679,71 @@ public class JaLexer extends Lexer {
             this.transition = DFA9_transition;
         }
         public String getDescription() {
-            return "427:1: fragment FloatingPointLiteral : ( ( Digit )+ '.' ( Digit )* ( Exponent )? | ( '.' )? ( Digit )+ ( Exponent )? );";
+            return "428:1: fragment FloatingPointLiteral : ( ( Digit )+ '.' ( Digit )* ( Exponent )? | ( '.' )? ( Digit )+ ( Exponent )? );";
         }
     }
     static final String DFA20_eotS =
-        "\11\uffff\1\52\1\55\1\60\1\62\1\66\2\uffff\1\70\1\72\1\uffff\2\73"+
-        "\2\uffff\12\47\1\uffff\4\47\3\uffff\1\100\24\uffff\2\100\2\uffff"+
-        "\1\73\16\47\1\156\1\47\1\161\7\47\1\uffff\2\100\1\uffff\4\47\1\177"+
-        "\1\47\1\u0081\6\47\1\u0088\1\47\1\uffff\2\47\1\uffff\7\47\1\uffff"+
-        "\1\100\1\u0093\1\u0094\2\47\1\uffff\1\u0097\1\uffff\1\47\1\u0099"+
-        "\1\u009a\3\47\1\uffff\1\47\1\u009f\1\47\1\u00a1\1\47\1\u00a3\4\47"+
-        "\2\uffff\1\u0093\1\u00a8\1\uffff\1\47\2\uffff\1\u00aa\1\u00ab\1"+
-        "\u00ac\1\47\1\uffff\1\47\1\uffff\1\47\1\uffff\1\u00b0\3\47\1\uffff"+
-        "\1\47\3\uffff\1\47\1\u00b6\1\47\1\uffff\1\47\1\u00b9\1\u00ba\1\u00bb"+
-        "\1\47\1\uffff\1\u00bd\1\u00be\3\uffff\1\47\2\uffff\1\47\1\u00c1"+
+        "\11\uffff\1\52\1\55\1\57\1\63\2\uffff\1\65\1\67\1\uffff\1\70\2\72"+
+        "\2\uffff\12\47\1\uffff\4\47\23\uffff\1\76\1\uffff\2\76\4\uffff\1"+
+        "\72\16\47\1\155\1\47\1\160\7\47\1\76\2\uffff\1\76\4\47\1\176\1\47"+
+        "\1\u0080\6\47\1\u0087\1\47\1\uffff\2\47\1\uffff\7\47\1\uffff\1\76"+
+        "\1\u0092\1\u0093\2\47\1\uffff\1\u0096\1\uffff\1\47\1\u0098\1\u0099"+
+        "\3\47\1\uffff\1\47\1\u009e\1\47\1\u00a0\1\47\1\u00a2\4\47\2\uffff"+
+        "\1\u0092\1\u00a7\1\uffff\1\47\2\uffff\1\u00a9\1\u00aa\1\u00ab\1"+
+        "\47\1\uffff\1\47\1\uffff\1\47\1\uffff\1\u00af\3\47\1\uffff\1\47"+
+        "\3\uffff\1\47\1\u00b5\1\47\1\uffff\1\47\1\u00b8\1\u00b9\1\u00ba"+
+        "\1\47\1\uffff\1\u00bc\1\u00bd\3\uffff\1\47\2\uffff\1\47\1\u00c0"+
         "\1\uffff";
     static final String DFA20_eofS =
-        "\u00c2\uffff";
+        "\u00c1\uffff";
     static final String DFA20_minS =
-        "\1\11\10\uffff\1\56\1\53\1\55\1\75\1\52\2\uffff\2\75\1\uffff\2\56"+
+        "\1\11\10\uffff\1\53\1\55\1\75\1\52\2\uffff\2\75\1\uffff\1\60\2\56"+
         "\2\uffff\1\150\1\141\1\145\1\157\2\150\1\146\3\157\1\uffff\1\154"+
-        "\1\150\1\162\1\145\3\uffff\1\60\22\uffff\1\53\1\uffff\1\56\1\60"+
-        "\2\uffff\1\56\1\165\1\151\1\154\1\157\1\162\1\154\1\167\1\157\1"+
-        "\164\2\141\1\157\1\160\1\163\1\44\1\156\1\44\1\151\1\164\1\163\2"+
-        "\151\1\142\1\164\3\60\1\53\1\145\2\163\1\141\1\44\1\154\1\44\1\154"+
-        "\1\145\1\162\1\163\1\162\1\145\1\44\1\164\1\uffff\1\147\1\142\1"+
-        "\uffff\1\144\2\145\1\154\1\166\1\154\1\165\2\60\2\44\1\145\1\164"+
-        "\1\uffff\1\44\1\uffff\1\145\2\44\1\163\1\164\1\162\1\uffff\1\141"+
-        "\1\44\1\154\1\44\1\156\1\44\1\145\1\141\1\151\1\162\2\uffff\2\44"+
-        "\1\uffff\1\141\2\uffff\3\44\1\156\1\uffff\1\145\1\uffff\1\144\1"+
-        "\uffff\1\44\1\164\1\143\1\156\1\uffff\1\156\3\uffff\1\143\1\44\1"+
-        "\163\1\uffff\1\145\3\44\1\145\1\uffff\2\44\3\uffff\1\157\2\uffff"+
-        "\1\146\1\44\1\uffff";
+        "\1\150\1\162\1\145\23\uffff\1\60\1\uffff\1\60\1\56\1\53\3\uffff"+
+        "\1\56\1\165\1\151\1\154\1\157\1\162\1\154\1\167\1\157\1\164\2\141"+
+        "\1\157\1\160\1\163\1\44\1\156\1\44\1\151\1\164\1\163\2\151\1\142"+
+        "\1\164\1\60\1\53\2\60\1\145\2\163\1\141\1\44\1\154\1\44\1\154\1"+
+        "\145\1\162\1\163\1\162\1\145\1\44\1\164\1\uffff\1\147\1\142\1\uffff"+
+        "\1\144\2\145\1\154\1\166\1\154\1\165\2\60\2\44\1\145\1\164\1\uffff"+
+        "\1\44\1\uffff\1\145\2\44\1\163\1\164\1\162\1\uffff\1\141\1\44\1"+
+        "\154\1\44\1\156\1\44\1\145\1\141\1\151\1\162\2\uffff\2\44\1\uffff"+
+        "\1\141\2\uffff\3\44\1\156\1\uffff\1\145\1\uffff\1\144\1\uffff\1"+
+        "\44\1\164\1\143\1\156\1\uffff\1\156\3\uffff\1\143\1\44\1\163\1\uffff"+
+        "\1\145\3\44\1\145\1\uffff\2\44\3\uffff\1\157\2\uffff\1\146\1\44"+
+        "\1\uffff";
     static final String DFA20_maxS =
-        "\1\175\10\uffff\1\71\4\75\2\uffff\2\75\1\uffff\2\154\2\uffff\1\162"+
+        "\1\175\10\uffff\4\75\2\uffff\2\75\1\uffff\1\71\2\154\2\uffff\1\162"+
         "\1\157\1\165\1\171\1\154\1\165\1\156\3\157\1\uffff\1\170\1\150\1"+
-        "\165\1\145\3\uffff\1\146\22\uffff\1\71\1\uffff\2\146\2\uffff\1\154"+
-        "\1\165\1\151\1\154\1\157\1\162\1\154\1\167\1\157\1\164\2\141\1\157"+
-        "\1\160\1\164\1\172\1\156\1\172\1\151\1\164\1\163\2\151\1\142\1\164"+
-        "\1\71\2\146\1\71\1\145\2\163\1\141\1\172\1\154\1\172\1\154\1\145"+
-        "\1\162\1\163\1\162\1\145\1\172\1\164\1\uffff\1\147\1\142\1\uffff"+
-        "\1\144\2\145\1\154\1\166\1\154\1\165\1\71\1\146\2\172\1\145\1\164"+
-        "\1\uffff\1\172\1\uffff\1\145\2\172\1\163\1\164\1\162\1\uffff\1\141"+
-        "\1\172\1\154\1\172\1\156\1\172\1\145\1\141\1\151\1\162\2\uffff\2"+
-        "\172\1\uffff\1\141\2\uffff\3\172\1\156\1\uffff\1\145\1\uffff\1\144"+
-        "\1\uffff\1\172\1\164\1\143\1\156\1\uffff\1\156\3\uffff\1\143\1\172"+
-        "\1\163\1\uffff\1\145\3\172\1\145\1\uffff\2\172\3\uffff\1\157\2\uffff"+
-        "\1\146\1\172\1\uffff";
+        "\165\1\145\23\uffff\1\146\1\uffff\2\146\1\71\3\uffff\1\154\1\165"+
+        "\1\151\1\154\1\157\1\162\1\154\1\167\1\157\1\164\2\141\1\157\1\160"+
+        "\1\164\1\172\1\156\1\172\1\151\1\164\1\163\2\151\1\142\1\164\1\146"+
+        "\2\71\1\146\1\145\2\163\1\141\1\172\1\154\1\172\1\154\1\145\1\162"+
+        "\1\163\1\162\1\145\1\172\1\164\1\uffff\1\147\1\142\1\uffff\1\144"+
+        "\2\145\1\154\1\166\1\154\1\165\1\71\1\146\2\172\1\145\1\164\1\uffff"+
+        "\1\172\1\uffff\1\145\2\172\1\163\1\164\1\162\1\uffff\1\141\1\172"+
+        "\1\154\1\172\1\156\1\172\1\145\1\141\1\151\1\162\2\uffff\2\172\1"+
+        "\uffff\1\141\2\uffff\3\172\1\156\1\uffff\1\145\1\uffff\1\144\1\uffff"+
+        "\1\172\1\164\1\143\1\156\1\uffff\1\156\3\uffff\1\143\1\172\1\163"+
+        "\1\uffff\1\145\3\172\1\145\1\uffff\2\172\3\uffff\1\157\2\uffff\1"+
+        "\146\1\172\1\uffff";
     static final String DFA20_acceptS =
-        "\1\uffff\1\1\1\2\1\3\1\4\1\5\1\6\1\7\1\10\5\uffff\1\16\1\17\2\uffff"+
-        "\1\22\2\uffff\1\33\1\34\12\uffff\1\50\4\uffff\1\76\1\77\1\11\1\uffff"+
-        "\1\26\1\12\1\23\1\72\1\13\1\24\1\73\1\14\1\74\1\15\1\51\1\52\1\75"+
-        "\1\20\1\71\1\21\1\25\1\27\1\uffff\1\31\2\uffff\1\32\1\30\54\uffff"+
-        "\1\60\2\uffff\1\56\15\uffff\1\55\1\uffff\1\63\6\uffff\1\43\12\uffff"+
-        "\1\35\1\70\2\uffff\1\36\1\uffff\1\40\1\41\4\uffff\1\44\1\uffff\1"+
-        "\47\1\uffff\1\61\4\uffff\1\45\1\uffff\1\53\1\42\1\67\3\uffff\1\57"+
-        "\5\uffff\1\46\2\uffff\1\65\1\66\1\37\1\uffff\1\54\1\64\2\uffff\1"+
-        "\62";
+        "\1\uffff\1\1\1\2\1\3\1\4\1\5\1\6\1\7\1\10\4\uffff\1\15\1\16\2\uffff"+
+        "\1\21\3\uffff\1\32\1\33\12\uffff\1\47\4\uffff\1\75\1\76\1\11\1\22"+
+        "\1\71\1\12\1\23\1\72\1\13\1\73\1\14\1\50\1\51\1\74\1\17\1\70\1\20"+
+        "\1\24\1\25\1\uffff\1\26\3\uffff\1\31\1\30\1\27\54\uffff\1\57\2\uffff"+
+        "\1\55\15\uffff\1\54\1\uffff\1\62\6\uffff\1\42\12\uffff\1\34\1\67"+
+        "\2\uffff\1\35\1\uffff\1\37\1\40\4\uffff\1\43\1\uffff\1\46\1\uffff"+
+        "\1\60\4\uffff\1\44\1\uffff\1\52\1\41\1\66\3\uffff\1\56\5\uffff\1"+
+        "\45\2\uffff\1\64\1\65\1\36\1\uffff\1\53\1\63\2\uffff\1\61";
     static final String DFA20_specialS =
-        "\u00c2\uffff}>";
+        "\u00c1\uffff}>";
     static final String[] DFA20_transitionS = {
-            "\2\41\2\uffff\1\41\22\uffff\1\41\1\21\1\26\1\uffff\1\47\1\22"+
-            "\1\17\1\25\1\7\1\10\1\14\1\12\1\4\1\13\1\11\1\15\1\23\11\24"+
-            "\1\uffff\1\1\1\46\1\20\1\46\2\uffff\32\47\1\5\1\uffff\1\6\1"+
+            "\2\41\2\uffff\1\41\22\uffff\1\41\1\20\1\26\1\uffff\1\47\1\21"+
+            "\1\16\1\25\1\7\1\10\1\13\1\11\1\4\1\12\1\22\1\14\1\23\11\24"+
+            "\1\uffff\1\1\1\46\1\17\1\46\2\uffff\32\47\1\5\1\uffff\1\6\1"+
             "\uffff\1\47\1\uffff\1\47\1\32\1\33\1\37\1\42\1\30\2\47\1\35"+
             "\2\47\1\36\1\47\1\31\1\47\1\44\1\47\1\45\1\34\1\27\1\47\1\40"+
-            "\1\43\3\47\1\2\1\16\1\3",
+            "\1\43\3\47\1\2\1\15\1\3",
             "",
             "",
             "",
@@ -2782,41 +2752,37 @@ public class JaLexer extends Lexer {
             "",
             "",
             "",
-            "\1\50\1\uffff\12\51",
-            "\1\54\21\uffff\1\53",
-            "\1\57\17\uffff\1\56",
-            "\1\61",
-            "\1\64\4\uffff\1\65\15\uffff\1\63",
+            "\1\51\21\uffff\1\50",
+            "\1\54\17\uffff\1\53",
+            "\1\56",
+            "\1\61\4\uffff\1\62\15\uffff\1\60",
             "",
             "",
-            "\1\67",
-            "\1\71",
+            "\1\64",
+            "\1\66",
             "",
-            "\1\77\1\uffff\12\76\12\uffff\1\100\1\74\1\75\5\uffff\1\101"+
-            "\27\uffff\1\100\1\74\1\75\5\uffff\1\101",
-            "\1\77\1\uffff\12\102\12\uffff\1\100\1\74\1\75\5\uffff\1\101"+
-            "\27\uffff\1\100\1\74\1\75\5\uffff\1\101",
+            "\12\71",
+            "\1\73\1\uffff\12\74\12\uffff\1\76\1\75\1\77\5\uffff\1\100\27"+
+            "\uffff\1\76\1\75\1\77\5\uffff\1\100",
+            "\1\73\1\uffff\12\101\12\uffff\1\76\1\75\1\77\5\uffff\1\100"+
+            "\27\uffff\1\76\1\75\1\77\5\uffff\1\100",
             "",
             "",
-            "\1\104\11\uffff\1\103",
-            "\1\105\12\uffff\1\106\2\uffff\1\107",
-            "\1\111\17\uffff\1\110",
-            "\1\112\11\uffff\1\113",
-            "\1\114\3\uffff\1\115",
-            "\1\116\14\uffff\1\117",
-            "\1\121\7\uffff\1\120",
+            "\1\103\11\uffff\1\102",
+            "\1\104\12\uffff\1\105\2\uffff\1\106",
+            "\1\110\17\uffff\1\107",
+            "\1\111\11\uffff\1\112",
+            "\1\113\3\uffff\1\114",
+            "\1\115\14\uffff\1\116",
+            "\1\120\7\uffff\1\117",
+            "\1\121",
             "\1\122",
             "\1\123",
-            "\1\124",
             "",
-            "\1\126\13\uffff\1\125",
-            "\1\127",
-            "\1\130\2\uffff\1\131",
-            "\1\132",
-            "",
-            "",
-            "",
-            "\12\51\13\uffff\1\74\1\75\36\uffff\1\74\1\75",
+            "\1\125\13\uffff\1\124",
+            "\1\126",
+            "\1\127\2\uffff\1\130",
+            "\1\131",
             "",
             "",
             "",
@@ -2835,14 +2801,18 @@ public class JaLexer extends Lexer {
             "",
             "",
             "",
-            "\1\133\1\uffff\1\133\2\uffff\12\134",
             "",
-            "\1\77\1\uffff\12\76\13\uffff\1\74\1\75\36\uffff\1\74\1\75",
-            "\12\135\13\uffff\1\136\1\75\36\uffff\1\136\1\75",
+            "\12\71\13\uffff\1\75\1\77\36\uffff\1\75\1\77",
+            "",
+            "\12\132\13\uffff\1\133\1\77\36\uffff\1\133\1\77",
+            "\1\73\1\uffff\12\74\13\uffff\1\75\1\77\36\uffff\1\75\1\77",
+            "\1\134\1\uffff\1\134\2\uffff\12\135",
             "",
             "",
-            "\1\77\1\uffff\12\102\12\uffff\1\100\1\74\1\75\5\uffff\1\101"+
-            "\27\uffff\1\100\1\74\1\75\5\uffff\1\101",
+            "",
+            "\1\73\1\uffff\12\101\12\uffff\1\76\1\75\1\77\5\uffff\1\100"+
+            "\27\uffff\1\76\1\75\1\77\5\uffff\1\100",
+            "\1\136",
             "\1\137",
             "\1\140",
             "\1\141",
@@ -2855,87 +2825,86 @@ public class JaLexer extends Lexer {
             "\1\150",
             "\1\151",
             "\1\152",
-            "\1\153",
-            "\1\155\1\154",
+            "\1\154\1\153",
             "\1\47\13\uffff\12\47\7\uffff\32\47\4\uffff\1\47\1\uffff\32"+
             "\47",
-            "\1\157",
+            "\1\156",
             "\1\47\13\uffff\12\47\7\uffff\32\47\4\uffff\1\47\1\uffff\24"+
-            "\47\1\160\5\47",
+            "\47\1\157\5\47",
+            "\1\161",
             "\1\162",
             "\1\163",
             "\1\164",
             "\1\165",
             "\1\166",
             "\1\167",
-            "\1\170",
-            "\12\134",
-            "\12\134\14\uffff\1\75\37\uffff\1\75",
-            "\12\135\13\uffff\1\136\1\75\36\uffff\1\136\1\75",
-            "\1\171\1\uffff\1\171\2\uffff\12\172",
+            "\12\132\13\uffff\1\133\1\77\36\uffff\1\133\1\77",
+            "\1\170\1\uffff\1\170\2\uffff\12\171",
+            "\12\135",
+            "\12\135\14\uffff\1\77\37\uffff\1\77",
+            "\1\172",
             "\1\173",
             "\1\174",
             "\1\175",
-            "\1\176",
             "\1\47\13\uffff\12\47\7\uffff\32\47\4\uffff\1\47\1\uffff\32"+
             "\47",
-            "\1\u0080",
+            "\1\177",
             "\1\47\13\uffff\12\47\7\uffff\32\47\4\uffff\1\47\1\uffff\32"+
             "\47",
+            "\1\u0081",
             "\1\u0082",
             "\1\u0083",
             "\1\u0084",
             "\1\u0085",
             "\1\u0086",
-            "\1\u0087",
             "\1\47\13\uffff\12\47\7\uffff\32\47\4\uffff\1\47\1\uffff\32"+
             "\47",
+            "\1\u0088",
+            "",
             "\1\u0089",
-            "",
             "\1\u008a",
-            "\1\u008b",
             "",
+            "\1\u008b",
             "\1\u008c",
             "\1\u008d",
             "\1\u008e",
             "\1\u008f",
             "\1\u0090",
             "\1\u0091",
-            "\1\u0092",
-            "\12\172",
-            "\12\172\14\uffff\1\75\37\uffff\1\75",
+            "\12\171",
+            "\12\171\14\uffff\1\77\37\uffff\1\77",
             "\1\47\13\uffff\12\47\7\uffff\32\47\4\uffff\1\47\1\uffff\32"+
             "\47",
             "\1\47\13\uffff\12\47\7\uffff\32\47\4\uffff\1\47\1\uffff\32"+
             "\47",
+            "\1\u0094",
             "\1\u0095",
-            "\1\u0096",
             "",
             "\1\47\13\uffff\12\47\7\uffff\32\47\4\uffff\1\47\1\uffff\32"+
             "\47",
             "",
-            "\1\u0098",
+            "\1\u0097",
             "\1\47\13\uffff\12\47\7\uffff\32\47\4\uffff\1\47\1\uffff\32"+
             "\47",
             "\1\47\13\uffff\12\47\7\uffff\32\47\4\uffff\1\47\1\uffff\32"+
             "\47",
+            "\1\u009a",
             "\1\u009b",
             "\1\u009c",
-            "\1\u009d",
             "",
-            "\1\u009e",
+            "\1\u009d",
             "\1\47\13\uffff\12\47\7\uffff\32\47\4\uffff\1\47\1\uffff\32"+
             "\47",
-            "\1\u00a0",
+            "\1\u009f",
             "\1\47\13\uffff\12\47\7\uffff\32\47\4\uffff\1\47\1\uffff\32"+
             "\47",
-            "\1\u00a2",
+            "\1\u00a1",
             "\1\47\13\uffff\12\47\7\uffff\32\47\4\uffff\1\47\1\uffff\32"+
             "\47",
+            "\1\u00a3",
             "\1\u00a4",
             "\1\u00a5",
             "\1\u00a6",
-            "\1\u00a7",
             "",
             "",
             "\1\47\13\uffff\12\47\7\uffff\32\47\4\uffff\1\47\1\uffff\32"+
@@ -2943,7 +2912,7 @@ public class JaLexer extends Lexer {
             "\1\47\13\uffff\12\47\7\uffff\32\47\4\uffff\1\47\1\uffff\32"+
             "\47",
             "",
-            "\1\u00a9",
+            "\1\u00a8",
             "",
             "",
             "\1\47\13\uffff\12\47\7\uffff\32\47\4\uffff\1\47\1\uffff\32"+
@@ -2952,47 +2921,47 @@ public class JaLexer extends Lexer {
             "\47",
             "\1\47\13\uffff\12\47\7\uffff\32\47\4\uffff\1\47\1\uffff\32"+
             "\47",
+            "\1\u00ac",
+            "",
             "\1\u00ad",
             "",
             "\1\u00ae",
             "",
-            "\1\u00af",
-            "",
             "\1\47\13\uffff\12\47\7\uffff\32\47\4\uffff\1\47\1\uffff\32"+
             "\47",
+            "\1\u00b0",
             "\1\u00b1",
             "\1\u00b2",
+            "",
             "\1\u00b3",
             "",
+            "",
+            "",
             "\1\u00b4",
-            "",
-            "",
-            "",
-            "\1\u00b5",
             "\1\47\13\uffff\12\47\7\uffff\32\47\4\uffff\1\47\1\uffff\32"+
             "\47",
+            "\1\u00b6",
+            "",
             "\1\u00b7",
-            "",
-            "\1\u00b8",
             "\1\47\13\uffff\12\47\7\uffff\32\47\4\uffff\1\47\1\uffff\32"+
             "\47",
             "\1\47\13\uffff\12\47\7\uffff\32\47\4\uffff\1\47\1\uffff\32"+
             "\47",
             "\1\47\13\uffff\12\47\7\uffff\32\47\4\uffff\1\47\1\uffff\32"+
             "\47",
-            "\1\u00bc",
+            "\1\u00bb",
             "",
             "\1\47\13\uffff\12\47\7\uffff\32\47\4\uffff\1\47\1\uffff\32"+
             "\47",
             "\1\47\13\uffff\12\47\7\uffff\32\47\4\uffff\1\47\1\uffff\32"+
             "\47",
             "",
+            "",
+            "",
+            "\1\u00be",
             "",
             "",
             "\1\u00bf",
-            "",
-            "",
-            "\1\u00c0",
             "\1\47\13\uffff\12\47\7\uffff\32\47\4\uffff\1\47\1\uffff\32"+
             "\47",
             ""
@@ -3028,7 +2997,7 @@ public class JaLexer extends Lexer {
             this.transition = DFA20_transition;
         }
         public String getDescription() {
-            return "1:1: Tokens : ( T__86 | T__87 | T__88 | T__89 | T__90 | T__91 | T__92 | T__93 | T__94 | T__95 | T__96 | T__97 | T__98 | T__99 | T__100 | T__101 | T__102 | T__103 | T__104 | T__105 | T__106 | T__107 | INTLITERAL | LONGLITERAL | FLOATLITERAL | DOUBLELITERAL | CHARLITERAL | STRINGLITERAL | BOOLEANLITERAL | NULLLITERAL | BOOLEAN | BYTE | CHAR | SHORT | INT | LONG | FLOAT | DOUBLE | VOID | WS | COMMENT | LINE_COMMENT | CLASS | EXTENDS | FOR | DO | WHILE | IF | ELSE | INSTANCEOF | NEW | PRIVATE | PUBLIC | RETURN | SUPER | THIS | EQ | PLUS | MINUS | STAR | SLASH | COMPAREOP | IDENTIFIER );";
+            return "1:1: Tokens : ( T__86 | T__87 | T__88 | T__89 | T__90 | T__91 | T__92 | T__93 | T__94 | T__95 | T__96 | T__97 | T__98 | T__99 | T__100 | T__101 | T__102 | T__103 | T__104 | T__105 | T__106 | INTLITERAL | LONGLITERAL | FLOATLITERAL | DOUBLELITERAL | CHARLITERAL | STRINGLITERAL | BOOLEANLITERAL | NULLLITERAL | BOOLEAN | BYTE | CHAR | SHORT | INT | LONG | FLOAT | DOUBLE | VOID | WS | COMMENT | LINE_COMMENT | CLASS | EXTENDS | FOR | DO | WHILE | IF | ELSE | INSTANCEOF | NEW | PRIVATE | PUBLIC | RETURN | SUPER | THIS | EQ | PLUS | MINUS | STAR | SLASH | COMPAREOP | IDENTIFIER );";
         }
     }
  

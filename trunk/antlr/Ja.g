@@ -120,7 +120,7 @@ variableInitializer
     ;
         
 arrayInitializer
-    :   '{' (variableInitializer (',' variableInitializer)* (',')? )? '}' -> ^(ARRAYINIT variableInitializer (variableInitializer)*) 
+    :   lc='{' (variableInitializer (',' variableInitializer)* (',')? )? '}' -> ^(ARRAYINIT[$lc, "ARRAYINIT"] variableInitializer (variableInitializer)*) 
     ;
 
 modifier returns [boolean pub]
@@ -169,7 +169,7 @@ formalParameters returns [ArrayList<Type> args]
 @init {
 	ArrayList<Type> args = new ArrayList<Type>();
 }
-    :   '(' formalParameterDecls[args]? ')' {$args = args;} -> {$formalParameterDecls.tree != null}? ^(FPARMS formalParameterDecls?)
+    :   '(' formalParameterDecls[args]? ')' {$args = args;} -> {$formalParameterDecls.tree != null}? ^(FPARMS formalParameterDecls)
     							    -> //else della rewrite rule
     ;
     
@@ -178,7 +178,7 @@ formalParameterDecls[ArrayList<Type> args]
     	{ $args.add(ParserHelper.createArrayType($type.t, $variableDeclaratorId.arrayDim)); }
     	-> ^(FPARM variableDeclaratorId) formalParameterDecls?
     	
-    |  type '...' variableDeclaratorId[(CommonTree)$type.tree] -> ^(FMULTPARM variableDeclaratorId)
+//    |  type '...' variableDeclaratorId[(CommonTree)$type.tree] -> ^(FMULTPARM variableDeclaratorId)
     ;
     
 methodBody
@@ -378,9 +378,10 @@ createdName
     ;
     
 arrayCreatorRest[CommonTree createdName]
-    :   ('['']' -> ^(ARRAYTYPE  {$createdName})) ( ('[' ']') -> ^(ARRAYTYPE $arrayCreatorRest) )* 
+    :   (lb='['']' -> ^(ARRAYTYPE[$lb, "ARRAYTYPE"]  {$createdName})) ( (lb='[' ']') -> ^(ARRAYTYPE[$lb, "ARRAYTYPE"] $arrayCreatorRest) )* 
     		(arrayInitializer  -> $arrayCreatorRest arrayInitializer)    
-    |	('[' expression ']' -> ^(ARRAYTYPE  {$createdName} expression)) ( ('[' expression ']') -> ^(ARRAYTYPE $arrayCreatorRest expression) )*  
+    |	(lb='[' expression ']' -> ^(ARRAYTYPE[$lb, "ARRAYTYPE"]  {$createdName} expression)) ( (lb='[' expression ']') -> ^(ARRAYTYPE[$lb, "ARRAYTYPE"] $arrayCreatorRest expression) )*  
+    		( (lb='['']') -> ^(ARRAYTYPE[$lb, "ARRAYTYPE"] $arrayCreatorRest) )*
     ; 
 
 classCreatorRest
