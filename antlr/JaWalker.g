@@ -2,7 +2,7 @@ tree grammar JaWalker;
 
 options {
   tokenVocab=Ja; // import tokens from Ja.tokens
-  ASTLabelType=CommonTree;
+  ASTLabelType=CommonTree;  
 }
 
 scope JaScope {
@@ -222,7 +222,7 @@ arrayInitializer [Type tin] returns [Type t]
     	{ 
     	  if (ruleTypeCheck($v1.t)) {
 	        $t = (ComplexType)ParserHelper.createArrayType($tin, 1);
-	     	if( !$t.isAssignableTo(tin)) errorLog.add(new IncompatibleTypesException(tin.toString(), $t.toString(), $ARRAYINIT.line, $ARRAYINIT.pos, rt));
+	     	if( !$v1.t.isAssignableTo(tin)) errorLog.add(new IncompatibleTypesException(tin.toString(), $t.toString(), $ARRAYINIT.line, $ARRAYINIT.pos, rt));
       	  }	
        }
     ;        
@@ -500,7 +500,8 @@ selector returns [Type t]
     ;
 
 creator returns [Type t]
-    :    arrayCreatorRest 
+    :    (acr=arrayCreatorRest arrayInitializer[$acr.t]) => acr=arrayCreatorRest arrayInitializer[$acr.t]
+    |	 (arrayCreatorRestExpr) => arrayCreatorRestExpr { $t = $arrayCreatorRestExpr.t; }
     |    createdName classCreatorRest? 
     ;
 
@@ -511,17 +512,25 @@ createdName returns [Type t]
     ;
     
 arrayCreatorRest returns [Type t]
-    :   ^(ARRAYTYPE acr=arrayCreatorRest e=expression?) arrayInitializer[$acr.t]?
-    	{  System.out.println("arrayCreatorRest ->>" + $e.t); 
-    	  if (ruleTypeCheck($acr.t)) $t = (ComplexType)ParserHelper.createArrayType($acr.t, 1); 
-    	  if (ruleTypeCheck($e.t)) arrayExprCheck($ARRAYTYPE, $e.t);
-    	}
-    |	^(ARRAYTYPE cn=createdName e=expression?)
-    	{ if (ruleTypeCheck($cn.t)) 
-	    	  $t = (ComplexType)ParserHelper.createArrayType($cn.t, 1);
-	  if (ruleTypeCheck($e.t)) arrayExprCheck($ARRAYTYPE, $e.t);	  
-    	}
-    ;	
+    :  ^(ARRAYTYPE acr=arrayCreatorRest) 
+       { if (ruleTypeCheck($acr.t)) $t = (ComplexType)ParserHelper.createArrayType($acr.t, 1); }
+    |	createdName { if (ruleTypeCheck($createdName.t)) $t = $createdName.t; }
+    ;
+
+arrayCreatorRestExpr returns [Type t]
+    :  (^(ARRAYTYPE acr=arrayCreatorRest e=expression)) =>  ^(ARRAYTYPE acr=arrayCreatorRest expression)
+       { if (ruleTypeCheck($acr.t, $e.t)) {
+       		$t = (ComplexType)ParserHelper.createArrayType($acr.t, 1); 
+    	  	arrayExprCheck($ARRAYTYPE, $e.t);
+    	 }
+       }
+    |  ^(ARRAYTYPE acre=arrayCreatorRestExpr e=expression)
+       { if (ruleTypeCheck($acre.t, $e.t)) {
+       		$t = (ComplexType)ParserHelper.createArrayType($acre.t, 1); 
+    	  	arrayExprCheck($ARRAYTYPE, $e.t);
+    	 }
+       }
+    ;
 
 classCreatorRest returns [ArrayList<Type> types]
     :   arguments { $types = $arguments.types; }
