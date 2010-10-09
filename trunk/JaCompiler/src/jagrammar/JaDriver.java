@@ -9,6 +9,7 @@ import jagrammar.typehierarchy.ReferenceType;
 import jagrammar.util.LinkedSetList;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Queue;
@@ -17,7 +18,7 @@ import java.util.logging.Logger;
 import org.antlr.runtime.*;
 import org.antlr.runtime.tree.CommonTree;
 import org.antlr.runtime.tree.CommonTreeNodeStream;
-import org.antlr.runtime.tree.Tree;
+import sun.awt.windows.ThemeReader;
 
 /**
  *
@@ -25,75 +26,84 @@ import org.antlr.runtime.tree.Tree;
  */
 public class JaDriver {
 
+
+    private static class TreeTokensPair {
+        private TreeTokensPair(CommonTree t, CommonTokenStream tokens) {
+            this.t = t;
+            this.tokens = tokens;
+        }
+        private CommonTree t;
+        private CommonTokenStream tokens;
+    }
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        args = new String[]{"Test"}; //DEBUG purpose
+        String pathname = "testja";
         JaParser.compilationUnit_return cuTree = null;
-        System.out.println("Start...");
+        System.out.println("Start compilation...");
+        // Mappa delle classi, con chiave il nome della classe
         Map<String, ReferenceType> myclasses = new HashMap<String, ReferenceType>();
-        Queue<String> q = new LinkedSetList<String>();
-//        for (String s : args) {
-//            q.add(s);
-//        }
-        q.add("testja/Test");
+        // Mappa degli AST generati con chiave il nome della classe
+        Map<String, TreeTokensPair> myASTs = new HashMap<String, TreeTokensPair>();
+        // Coda contenente i percorsi ai file delle classi da analizzare
+        Queue<String> todo = new LinkedSetList<String>();
+        todo.addAll(Arrays.asList(args));
 
-
-
-        while (!q.isEmpty()) {
-
-            String pathname = q.remove();
-            // create a CharStream that reads from standard input
+        // PRIMA FASE: ciclo per il recupero delle interfaccie
+        while (!todo.isEmpty()) {
+            String className = todo.remove();
+            // Crea un CharStream che legge da un fileInputStream
             ANTLRInputStream input = null;
             try {
-
-                input = new ANTLRInputStream(new FileInputStream(pathname+".java"));
+                input = new ANTLRInputStream(new FileInputStream(pathname + "/" + className + ".java"));
             } catch (IOException ex) {
-                Logger.getLogger(JaDriver.class.getName()).log(Level.SEVERE, null, ex);
+                //Logger.getLogger(JaDriver.class.getName()).log(Level.SEVERE, null, ex);
+                System.err.println(ex.getMessage());
+                return;
             }
 
-            // create a lexer that feeds off of input CharStream
+            // Crea il lexer
             JaLexer lexer = new JaLexer(input);
-
-            // create a buffer of tokens pulled from the lexer
+            // Crea un buffer di token dal lexer
             CommonTokenStream tokens = new CommonTokenStream(lexer);
-
-            // create a parser that feeds off the tokens buffer
+            // Crea il parser passandogli il buffer di tokens
             JaParser parser = new JaParser(tokens);
-            parser.setQueue(q);
+            parser.setQueue(todo);
             parser.setClassTable(myclasses);
-            /*String className = pathname.substring(0, pathname.lastIndexOf('.'));
-            ReferenceType rt = new ReferenceType(className);*/
-            //parser.setReferenceType(rt);
             try {
-                // begin parsing at rule r
+                // Inizia il parsing alla regola compilationUnit
                 cuTree = parser.compilationUnit();
-                //gia aggiunto nel parser myclasses.put(className, rt);
             } catch (RecognitionException ex) {
                 Logger.getLogger(JaDriver.class.getName()).log(Level.SEVERE, null, ex);
             }
-            ReferenceType rt = parser.getReferenceType();
-
-            CommonTree t = (CommonTree)cuTree.getTree();
+            // recupero e stampa dell'AST
+            CommonTree t = (CommonTree) cuTree.getTree();
             System.out.println(t.toStringTree());
-            CommonTreeNodeStream nodes = new CommonTreeNodeStream(t);
-            nodes.setTokenStream(tokens);
-            //TODO: Spostare fuori in un secondo ciclo
+            myASTs.put(className, new TreeTokensPair(t, tokens));
+        }
+
+        // SECONDA FASE: analisi degli AST generati dalla prima fase; type checking
+        for(String className : myASTs.keySet()) {
+            ReferenceType rt = myclasses.get(className);
+            TreeTokensPair pair = myASTs.get(className);
+            CommonTreeNodeStream nodes = new CommonTreeNodeStream(pair.t);
+            nodes.setTokenStream(pair.tokens);
+
             JaWalker walker = new JaWalker(nodes);
             walker.setClassTable(myclasses);
             walker.setReferenceType(rt);
             try {
-                System.out.println("Enter tree parsing...");
+                System.out.println("----------Tree parsing for class " + className + "----------");
                 walker.compilationUnit();
-                System.out.println("END");
+                System.out.println("----------End Tree Parsing for class " + className + "----------");
             } catch (RecognitionException ex) {
                 Logger.getLogger(JaDriver.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (JaCompileException ex ) {
+            } catch (JaCompileException ex) {
                 System.err.println(ex.getMessage());
             }
-       
-            
         }
-        
+        System.out.println("----------End compilation----------");
     }
 }

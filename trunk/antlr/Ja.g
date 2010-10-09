@@ -50,14 +50,16 @@ compilationUnit
     ;
     
 classDeclaration
-    :   classModifier! CLASS^ IDENTIFIER { if(cTab.containsKey($IDENTIFIER.text)) {
+    :   classModifier! CLASS^ IDENTIFIER { // Potrebbe già esistere l'istanza prima che abbia analizzato il file .java
+    					   // Aggiunta effettuata dalla regola classType per recuperare subito l'istanza della classe anche se priva di interfaccia
+    					   if(cTab.containsKey($IDENTIFIER.text)) {
     				    	   	rt = cTab.get($IDENTIFIER.text);
-    					   } else {
+    					   } else { // crea una nuova istanza per la classe e la aggiunge alla tabella
     					   	rt = new ReferenceType($IDENTIFIER.text);
     					   	cTab.put($IDENTIFIER.text, rt);
     					   }
     					 }
-        (EXTENDS! classType)?		 { rt.addSuperType($classType.t); }    	
+        (EXTENDS! classType { rt.addSuperType($classType.t); } )?		    	
     	classBody
     ;
 
@@ -120,7 +122,7 @@ variableInitializer
     ;
         
 arrayInitializer
-    :   lc='{' (variableInitializer (',' variableInitializer)* (',')? )? '}' -> ^(ARRAYINIT[$lc, "ARRAYINIT"] variableInitializer (variableInitializer)*) 
+    :   lc='{' (variableInitializer (',' variableInitializer)* (',')? )? '}' -> ^(ARRAYINIT[$lc, "ARRAYINIT"] variableInitializer*) 
     ;
 
 modifier returns [boolean pub]

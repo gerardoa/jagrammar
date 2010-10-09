@@ -9,11 +9,11 @@
  */
 public class Test {
 
-    public Test metodoProlisso() {
-        int[][] i = new int[][] {{1}, {6,9}};
-        int[][] i2 = new int[6][];
-        Test ta = new Test();
-
+    public Test metodoProlisso(int[] a, float b, int a) {
+                A aclass = new A();
+		int b = 4l;
+                int b;
+		int ia[][][] = new int[][][]{{{2l}}};
         return null;
     }
 }
