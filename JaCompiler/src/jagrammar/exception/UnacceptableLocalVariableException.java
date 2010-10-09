@@ -25,6 +25,6 @@ public class UnacceptableLocalVariableException extends JaCompileException {
 
         @Override
 	public String getMessage(){
-            return super.getMessage() + "Local variable " + variableName + " is already defined in " + methodName + ".";
+            return super.getMessage() + variableName + " is already defined in " + methodName + ".";
 	}
 }

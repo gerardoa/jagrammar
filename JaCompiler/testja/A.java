@@ -4,6 +4,7 @@ public class A{
 	public int field2, field3;
 	
 	public void printA(int x) {
-		System.out.println("A");
+		//TestAST t;
+            printA(3);
 	}
 }

@@ -58,12 +58,9 @@ scope JaScope {
 	    return rt.getField(true, id);
 	}
 	
-	private String getMethodSignature() {
-	    StringBuilder list = new StringBuilder("");
-	    for(String id : formalParameters) {
-	    	list.append($JaScope[0]::symbols.get(id) + " " + id + ", ");
-	    }
-	    String parameters = formalParameters.size() > 0 ? list.substring(0, list.length() - 2) : "";
+	private String getMethodSignature() {	
+	    String parameters = formalParameters.toString();
+	    parameters = formalParameters.size() > 0 ? parameters.substring(1, parameters.length() - 1) : "";
 	    return $JaScope[0]::name + '(' + parameters + ')';
 	}
 	
@@ -155,13 +152,23 @@ scope JaScope {
 
 compilationUnit
 @after {
-	System.out.println("ERROR LOG:" + errorLog);
+	System.out.flush();
+	try {
+            Thread.sleep(100);
+        } catch (InterruptedException ex) {
+        }
+	System.err.println("ERROR LOG:\n" + errorLog);
+	System.err.flush();
+	 try {
+            Thread.sleep(100);
+        } catch (InterruptedException ex) {
+        }
 }
-    :  classDeclaration // bisogno di ^ per togliere nil?
+    :  classDeclaration
     ;
     
 classDeclaration
-    :   ^(CLASS IDENTIFIER classType? classBody) { System.out.println("Class Declaration in Tree grammar"); }
+    :   ^(CLASS IDENTIFIER classType? classBody)
     ;
      
 classBody
@@ -205,33 +212,32 @@ voidMethodDeclaratorRest
     ;
 
 variableDeclarator returns [CommonTree id, Type t]
-    :   variableDeclaratorId { $id = $variableDeclaratorId.id; $t = $variableDeclaratorId.t; } (variableInitializer[$variableDeclaratorId.t])?
+    :   variableDeclaratorId { $id = $variableDeclaratorId.id; $t = $variableDeclaratorId.t; } (variableInitializer[$variableDeclaratorId.t, $variableDeclaratorId.id])?
     ;
     
 variableDeclaratorId returns [CommonTree id, Type t]
     :	  type IDENTIFIER { $id = $IDENTIFIER; $t = $type.t; }
     ;
     
-variableInitializer [Type tin] returns [Type t]
-    :   arrayInitializer[((ArrayType)$tin).getHostType()] { $t = $arrayInitializer.t; }
-    |   expression { $t = $expression.t; }
+variableInitializer [Type tin, CommonTree token] 
+    :   { if($tin.isArray()) {
+    	  	$tin = ((ArrayType)$tin).getHostType();
+    	  } else {
+    	  	errorLog.add(new IllegalArrayInitializerException($tin.toString(), token.getLine(), token.getCharPositionInLine(), rt));
+    	  }
+    	} 
+    	arrayInitializer[$tin]
+    	
+    |   e=expression 
+        { System.out.println("ESPRESSIONE ARRAY INIT:  -> " + $e.t); 
+          if (ruleTypeCheck($e.t)) {
+	  	assignOperation(token, $tin, $e.t);
+      	  }
+        } 
     ;
 
-arrayInitializer [Type tin] returns [Type t]
-    :   ^(ARRAYINIT v1=variableInitializer[$tin]  
-    	{ 
-    	  if (ruleTypeCheck($v1.t)) {
-	       $t = $tin; //$t = (ComplexType)ParserHelper.createArrayType($tin, 1);
-	       System.out.println("VT -->" + $v1.t + "  TIN -->" + tin);
-	       if( !$v1.t.isAssignableTo(((ArrayType)$tin).getHostType())) errorLog.add(new IncompatibleTypesException($tin.toString(), $t.toString(), $ARRAYINIT.line, $ARRAYINIT.pos, rt));
-      	  }	
-       }
-       ( v=variableInitializer[$tin]
-       { if (ruleTypeCheck($v.t)) {
-	       System.out.println("VT -->" + $v1.t + "  TIN -->" + tin);
-	       if( !$v.t.isAssignableTo(((ArrayType)$tin).getHostType())) errorLog.add(new IncompatibleTypesException($tin.toString(), $t.toString(), $ARRAYINIT.line, $ARRAYINIT.pos, rt));
-      	 }
-       } )* ) 
+arrayInitializer [Type tin]
+    :   ^(ARRAYINIT variableInitializer[$tin, $ARRAYINIT]*)
     ;        
 
 modifier
@@ -270,7 +276,7 @@ formalParameters
     ;
     
 formalParameterDecls
-    :	^(FPARM variableDeclaratorId) { formalParameters.add($variableDeclaratorId.id.getText()); addVariableToScope($variableDeclaratorId.id, $variableDeclaratorId.t); } formalParameterDecls?
+    :	^(FPARM variableDeclaratorId) { formalParameters.add($variableDeclaratorId.t.toString()); addVariableToScope($variableDeclaratorId.id, $variableDeclaratorId.t); } formalParameterDecls?
 //    |	^(FMULTPARM variableDeclaratorId) { formalParameters.add($variableDeclaratorId.id.getText()); addVariableToScope($variableDeclaratorId.id, $variableDeclaratorId.t);}
     ;
     
@@ -384,7 +390,7 @@ constantExpression
     :   expression
     ;
     
-expression returns [Type t, boolean b]
+expression returns [Type t]
     :   ^(EQ e1=expression e2=expression) 
     	{ if(ruleTypeCheck($e1.t, $e2.t)) {
 	  	$t = getVariableType($e1.text);
@@ -477,20 +483,21 @@ selector returns [Type t]
 	    	  if (!$expression.t.isReference())
 	    	  	errorLog.add(new CannotBeDereferencedException($expression.t, $IDENTIFIER.line, $IDENTIFIER.pos, rt)); 
 	    	  ReferenceType expt = (ReferenceType)$expression.t;
-	    	  boolean isSameClass = (expt.getName() == rt.getName()); 
+	    	  boolean isSameClass = (expt.getName().equals(rt.getName())); 
 	    	  $t = expt.getField(isSameClass, $IDENTIFIER.text);
 		  if ($t == null) errorLog.add(new CannotFindSymbolException(("field " + $IDENTIFIER.text), expt.getName(), $IDENTIFIER.line, $IDENTIFIER.pos, rt));
     	  }
     	} 
     |	^(METHODCALL expression IDENTIFIER arguments?)
-        { // Se ci sono argomenti, bisogna richiamare ruleTypeCheck su di essi
-          if( ruleTypeCheck($expression.t) && ($arguments.types == null || ruleTypeCheck((Type[])$arguments.types.toArray())) ) {
+        { Type[] args;
+          // Se ci sono argomenti, bisogna richiamare ruleTypeCheck su di essi
+          if( ruleTypeCheck($expression.t) && ($arguments.types == null || ruleTypeCheck($arguments.types.toArray(args = new Type[$arguments.types.size()]))) ) {
 	    	  if (!$expression.t.isReference())
 	    	  	errorLog.add(new CannotBeDereferencedException($expression.t, $IDENTIFIER.line, $IDENTIFIER.pos, rt)); 
 	    	  ReferenceType expt = (ReferenceType)$expression.t;
 	    	  ArrayList<Type> argTypes = $arguments.types; //($arguments.tree == null)?null:$arguments.types;
 	    	  try {
-		    	boolean isSameClass = (expt.getName() == rt.getName()); 
+		    	boolean isSameClass = (expt.getName().equals(rt.getName())); 
 		    	$t = expt.bindMethod(isSameClass, $IDENTIFIER.text, argTypes);
 	    	  } catch (EarlyBindingException ex) {
 	    	  	errorLog.add(new CannotFindSymbolException(("method " + $IDENTIFIER.text + '(' + printArguments(argTypes) + ')'), expt.getName(), $IDENTIFIER.line, $IDENTIFIER.pos, rt));
@@ -507,7 +514,7 @@ selector returns [Type t]
     ;
 
 creator returns [Type t]
-    :    acr=arrayCreatorRest arrayInitializer[$acr.t]?
+    :    acr=arrayCreatorRest arrayInitializer[$acr.t.getHostType()]?
     |    createdName classCreatorRest? 
     ;
 
@@ -517,12 +524,12 @@ createdName returns [Type t]
     |   primitiveType { $t = $primitiveType.bs; }
     ;
     
-arrayCreatorRest returns [Type t]
+arrayCreatorRest returns [ArrayType t]
     :  ^(ARRAYTYPE acr=arrayCreatorRest) 
-       { if (ruleTypeCheck($acr.t)) $t = (ComplexType)ParserHelper.createArrayType($acr.t, 1); }
-    |	^(ARRAYTYPE createdName) { if (ruleTypeCheck($createdName.t)) $t = (ComplexType)ParserHelper.createArrayType($createdName.t, 1); }
+       { if (ruleTypeCheck($acr.t)) $t = (ArrayType)ParserHelper.createArrayType($acr.t, 1); }
+    |	^(ARRAYTYPE createdName) { if (ruleTypeCheck($createdName.t)) $t = (ArrayType)ParserHelper.createArrayType($createdName.t, 1); }
     |   ^(ARRAYTYPE e=expression acre=arrayCreatorRestExpr) 
-    	{ if (ruleTypeCheck($acre.t)) $t = (ComplexType)ParserHelper.createArrayType($acre.t, 1); 
+    	{ if (ruleTypeCheck($acre.t)) $t = (ArrayType)ParserHelper.createArrayType($acre.t, 1); 
     	  if (ruleTypeCheck($e.t)) arrayExprCheck($ARRAYTYPE, $e.t);
        	}
     ;
