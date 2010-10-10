@@ -5,22 +5,20 @@
 
 package jagrammar.exception;
 
-import jagrammar.typehierarchy.*;
-
 /**
  *
  * @author IlianaPetrova
  */
 public class CannotBeDereferencedException extends JaCompileException{
-        private Type variableType;
+        private String variableType;
 
-        public CannotBeDereferencedException(Type variableType, int line, int pos, ReferenceType rt) {
-            super(line, pos, rt);
+        public CannotBeDereferencedException(String variableType, int line, int pos) {
+            super(line, pos);
             this.variableType = variableType;
         }
 
         @Override
 	public String getMessage(){
-            return super.getMessage() + variableType  + " cannot be dereferenced";
+            return variableType  + " cannot be dereferenced";
 	}
 }

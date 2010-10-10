@@ -1,7 +1,7 @@
-package jagrammar.exception;
+package jagrammar.typehierarchy.exception;
 
 
-public class UnacceptableMethodException extends JaCompileException {
+public class UnacceptableMethodException extends RuntimeException {
 
         @Override
 	public String getMessage(){

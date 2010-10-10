@@ -15,13 +15,17 @@ public class Test{
                 A aclass = new A();
 		int i = 6;
 		int ia[][][] = new int[][][]{{{2}}};
+                b = 3+2+u;
+                while(j) {
+                    int ii = 0;
+                }
+
+                for(k;f;o) {
+                }
         return null;
     }
 
     private void m(){
-        t = null;
-        double ld = d;
-        metodoProlisso(null, 8, null);
 
     }
 }

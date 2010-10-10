@@ -8,7 +8,7 @@
  */
 package jagrammar.typehierarchy;
 
-import jagrammar.exception.*;
+import jagrammar.typehierarchy.exception.BadHostTypeException;
 
 public class ArrayType extends ComplexType {
 

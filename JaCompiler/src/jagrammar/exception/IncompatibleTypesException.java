@@ -5,8 +5,6 @@
 
 package jagrammar.exception;
 
-import jagrammar.typehierarchy.*;
-
 /**
  *
  * @author Gerardo
@@ -15,14 +13,14 @@ public class IncompatibleTypesException extends JaCompileException {
         private String required;
         private String found;
 
-        public IncompatibleTypesException(String required, String found, int line, int pos, ReferenceType rt) {
-            super(line, pos, rt);
+        public IncompatibleTypesException(String required, String found, int line, int pos) {
+            super(line, pos);
             this.required = required;
             this.found = found;
         }
 
         @Override
 	public String getMessage(){
-            return super.getMessage() + "Incompatible Types. Required: " + required + "; Found: " + found;
+            return "Incompatible Types. Required: " + required + "; Found: " + found;
 	}
 }

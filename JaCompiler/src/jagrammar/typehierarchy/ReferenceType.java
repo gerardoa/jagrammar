@@ -9,6 +9,12 @@
  */
 package jagrammar.typehierarchy;
 
+import jagrammar.typehierarchy.exception.UnacceptableMethodException;
+import jagrammar.typehierarchy.exception.UnacceptableConstructorException;
+import jagrammar.typehierarchy.exception.UnacceptableFieldException;
+import jagrammar.typehierarchy.exception.EarlyBindingException;
+import jagrammar.typehierarchy.exception.ReturnTypeOverridingException;
+import jagrammar.typehierarchy.exception.VisibilityOverridingException;
 import java.util.Map;
 import java.util.Set;
 import java.util.HashSet;
@@ -18,7 +24,6 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Iterator;
 
-import jagrammar.exception.*;
 
 public class ReferenceType extends ComplexType {
 

@@ -5,8 +5,6 @@
 
 package jagrammar.exception;
 
-import jagrammar.typehierarchy.*;
-
 /**
  *
  * @author IlianaPetrova
@@ -17,14 +15,14 @@ public class CannotFindSymbolException extends JaCompileException {
         private String symbol;
         private String location;
 
-        public CannotFindSymbolException(String symbol, String location, int line, int pos, ReferenceType rt) {
-            super(line, pos, rt);
+        public CannotFindSymbolException(String symbol, String location, int line, int pos) {
+            super(line, pos);
             this.symbol = symbol;
             this.location = location;
         }
 
         @Override
 	public String getMessage(){
-            return super.getMessage() + "Cannot find symbol " + symbol + " in " + location;
+            return "Cannot find symbol " + symbol + " in " + location;
 	}
 }
