@@ -50,7 +50,7 @@ compilationUnit
     ;
     
 classDeclaration
-    :   classModifier! CLASS^ IDENTIFIER { // Potrebbe già esistere l'istanza prima che abbia analizzato il file .java
+    :   classModifier! CLASS^ IDENTIFIER { // Potrebbe gia' esistere l'istanza prima che abbia analizzato il file .java
     					   // Aggiunta effettuata dalla regola classType per recuperare subito l'istanza della classe anche se priva di interfaccia
     					   if(cTab.containsKey($IDENTIFIER.text)) {
     				    	   	rt = cTab.get($IDENTIFIER.text);

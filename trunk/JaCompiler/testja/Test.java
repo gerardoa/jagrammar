@@ -7,13 +7,21 @@
  *
  * @author Gerardo
  */
-public class Test {
+public class Test{
+    private Test t;
+    private double d = 0;
 
-    public Test metodoProlisso(int[] a, float b, int a) {
+    public Test metodoProlisso(int[] a, float b, Test t) {
                 A aclass = new A();
-		int b = 4l;
-                int b;
-		int ia[][][] = new int[][][]{{{2l}}};
+		int i = 6;
+		int ia[][][] = new int[][][]{{{2}}};
         return null;
+    }
+
+    private void m(){
+        t = null;
+        double ld = d;
+        metodoProlisso(null, 8, null);
+
     }
 }
