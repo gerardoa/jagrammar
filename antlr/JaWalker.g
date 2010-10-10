@@ -130,6 +130,8 @@ scope JaScope {
 	    return var;
 	}
 	
+	/** Controlla che le dimensioni degli array sono specificati correttamente, ovvero con un numero di tipo intero
+	*/
 	private void arrayExprCheck(CommonTree bracket, Type expr) {
 	    if (!expr.isAssignableTo(BasicType.INT)) {
 	    	if (expr.isCastableTo(BasicType.INT))
@@ -208,7 +210,7 @@ fieldDeclaration
     ;
     
 voidMethodDeclaratorRest
-    :	formalParameters methodBody
+    :	formalParameters? methodBody
     ;
 
 variableDeclarator returns [CommonTree id, Type t]
@@ -229,8 +231,7 @@ variableInitializer [Type tin, CommonTree token]
     	arrayInitializer[$tin]
     	
     |   e=expression 
-        { System.out.println("ESPRESSIONE ARRAY INIT:  -> " + $e.t); 
-          if (ruleTypeCheck($e.t)) {
+        { if (ruleTypeCheck($e.t)) {
 	  	assignOperation(token, $tin, $e.t);
       	  }
         } 
@@ -297,7 +298,7 @@ scope JaScope;
     ;
 
 explicitConstructorInvocation
-    :   ^(CONSTRCALL THIS  arguments?)
+    :   ^(CONSTRCALL THIS  arguments?) 
     |	^(CONSTRCALL SUPER arguments?)
     ;
 

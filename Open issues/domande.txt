@@ -16,3 +16,5 @@
 7. Possiamo accettare un linguaggio più ampio nella tree grammar? Ci semplifica ad esempio le regole nella creazione di array
 
 8. gestione degli errori, quanto dettagliati?
+
+9. Se incontriamo la dichiarazione di un campo (variabile, extends) di una classe non esistente è preferibile segnalare l'errore ancora al momento della raccolta delle interfacce oppure visualizzare un errore a compile time (Cannot find symbol class X)?
