@@ -7,7 +7,7 @@
  *	@version 1.0 11/06/2010
  *      @see VisibilityOverridingException
  */
-package jagrammar.exception;
+package jagrammar.typehierarchy.exception;
 
 
 public class ReturnTypeOverridingException extends RuntimeException{

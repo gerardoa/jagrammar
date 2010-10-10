@@ -5,8 +5,6 @@
 
 package jagrammar.exception;
 
-import jagrammar.typehierarchy.*;
-
 /**
  *
  * @author Gerardo
@@ -15,14 +13,14 @@ public class UnexpectedTypeException  extends JaCompileException {
         private String required;
         private String found;
 
-        public UnexpectedTypeException(String required, String found, int line, int pos, ReferenceType rt) {
-            super(line, pos, rt);
+        public UnexpectedTypeException(String required, String found, int line, int pos) {
+            super(line, pos);
             this.required = required;
             this.found = found;
         }
 
         @Override
 	public String getMessage(){
-            return super.getMessage() + "Unexpected type. Required: " + required + "; Found: " + found;
+            return "Unexpected type. Required: " + required + "; Found: " + found;
 	}
 }

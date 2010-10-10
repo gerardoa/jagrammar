@@ -4,8 +4,6 @@
  */
 package jagrammar.exception;
 
-import jagrammar.typehierarchy.*;
-
 /**
  *
  * @author Gerardo
@@ -15,14 +13,14 @@ public class InconvertibleTypesException extends JaCompileException {
     private String required;
     private String found;
 
-    public InconvertibleTypesException(String required, String found, int line, int pos, ReferenceType rt) {
-        super(line, pos, rt);
+    public InconvertibleTypesException(String required, String found, int line, int pos) {
+        super(line, pos);
         this.required = required;
         this.found = found;
     }
 
     @Override
     public String getMessage() {
-        return super.getMessage() + "Inconvertible types. Required: " + required + "; Found: " + found;
+        return "Inconvertible types. Required: " + required + "; Found: " + found;
     }
 }

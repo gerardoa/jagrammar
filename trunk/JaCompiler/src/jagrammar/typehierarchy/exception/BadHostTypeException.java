@@ -5,16 +5,18 @@
  *
  *      @author Gaetano Pellegrino
  *	@version 1.0 11/06/2010
- *
+ *	
  */
-package jagrammar.exception;
+package jagrammar.typehierarchy.exception;
 
 
-public class UnacceptableConstructorException extends JaCompileException{
-
+public class BadHostTypeException extends RuntimeException{
+	
         @Override
 	public String getMessage(){
-		return "an attempt was made to add an already defined constructor to a class";
+		return "invalid Array host type." +
+				"Expected one of: ReferenceType, " +
+				"ArrayType, BasicType";
 	}
 	
 }

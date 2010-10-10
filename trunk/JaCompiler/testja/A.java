@@ -6,5 +6,12 @@ public class A{
 	public void printA(int x) {
 		//TestAST t;
             printA(3);
+            printA(3);
+            while((true || false)) {
+                int a;
+                a = 1;
+                a = 2;
+                a++;
+            }
 	}
 }

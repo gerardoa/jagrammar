@@ -15,6 +15,7 @@ scope JaScope {
 	
 	import jagrammar.typehierarchy.*;
 	import jagrammar.exception.*;
+	import jagrammar.typehierarchy.exception.EarlyBindingException;
 	import jagrammar.util.*;
 	import java.util.Map;
 	import java.util.HashMap;
@@ -23,7 +24,7 @@ scope JaScope {
 
 @members {
 
-	private ErrorLogger errorLog = new ErrorLogger(); 
+	private ErrorLogger errorLog;
 	private Map<String, ReferenceType> cTab = new HashMap<String, ReferenceType>(); // inizializzazione per ANTLRWORKS
 	private ReferenceType rt;	
 		
@@ -86,7 +87,7 @@ scope JaScope {
 	    if(!isDefined(id))
     	    	$JaScope::symbols.put(id, t);
     	    else
-    		errorLog.add(new UnacceptableLocalVariableException(id, getMethodSignature(), line, pos, rt)); 
+    		errorLog.add(new UnacceptableLocalVariableException(id, getMethodSignature(), line, pos)); 
     	}
     	
     	
@@ -100,7 +101,7 @@ scope JaScope {
 	private  Type arithmeticOperation(CommonTree operator, Type op1, Type op2) {
 	    // controllo che siano numerici o char
 	    if ( !(op1.isNumeric() && op2.isNumeric()) ) {
-	        errorLog.add(new CannotBeAppliedToException(operator.getText(), op1.toString(), op2.toString(), operator.getLine(), operator.getCharPositionInLine(), rt));
+	        errorLog.add(new CannotBeAppliedToException(operator.getText(), op1.toString(), op2.toString(), operator.getLine(), operator.getCharPositionInLine()));
 	    }
 	    // promozioni
 	    if (op1.isAssignableTo(BasicType.INT)) {
@@ -115,7 +116,7 @@ scope JaScope {
 	private  Type booleanOperation(CommonTree operator, Type op1, Type op2) {
 	    // controllo che siano entrambi boolean
 	    if ( !(op1 == BasicType.BOOLEAN && op2 == BasicType.BOOLEAN) ) {
-	        errorLog.add(new CannotBeAppliedToException(operator.getText(), op1.toString(), op2.toString(), operator.getLine(), operator.getCharPositionInLine(), rt));
+	        errorLog.add(new CannotBeAppliedToException(operator.getText(), op1.toString(), op2.toString(), operator.getLine(), operator.getCharPositionInLine()));
 	    }
 	    return BasicType.BOOLEAN;
 	}
@@ -123,9 +124,9 @@ scope JaScope {
 	private  Type assignOperation(CommonTree equal, Type var, Type expr) {
 	    if (!expr.isAssignableTo(var)) {
 	    	if (expr.isNumeric() && expr.isCastableTo(var))
-			errorLog.add(new PossibleLossOfPrecisionException(var.toString(), expr.toString(), equal.getLine(), equal.getCharPositionInLine(), rt));
+			errorLog.add(new PossibleLossOfPrecisionException(var.toString(), expr.toString(), equal.getLine(), equal.getCharPositionInLine()));
 		else 
-			errorLog.add(new IncompatibleTypesException(var.toString(), expr.toString(), equal.getLine(), equal.getCharPositionInLine(), rt));    	       
+			errorLog.add(new IncompatibleTypesException(var.toString(), expr.toString(), equal.getLine(), equal.getCharPositionInLine()));    	       
 	    }
 	    return var;
 	}
@@ -135,9 +136,9 @@ scope JaScope {
 	private void arrayExprCheck(CommonTree bracket, Type expr) {
 	    if (!expr.isAssignableTo(BasicType.INT)) {
 	    	if (expr.isCastableTo(BasicType.INT))
-			errorLog.add(new PossibleLossOfPrecisionException(BasicType.INT.toString(), expr.toString(), bracket.getLine(), bracket.getCharPositionInLine(), rt));
+			errorLog.add(new PossibleLossOfPrecisionException(BasicType.INT.toString(), expr.toString(), bracket.getLine(), bracket.getCharPositionInLine()));
 		else 
-			errorLog.add(new IncompatibleTypesException(BasicType.INT.toString(), expr.toString(), bracket.getLine(), bracket.getCharPositionInLine(), rt));    	       
+			errorLog.add(new IncompatibleTypesException(BasicType.INT.toString(), expr.toString(), bracket.getLine(), bracket.getCharPositionInLine()));    	       
 	    }
 	}
     	
@@ -170,7 +171,7 @@ compilationUnit
     ;
     
 classDeclaration
-    :   ^(CLASS IDENTIFIER classType? classBody)
+    :   ^(CLASS IDENTIFIER { errorLog= new ErrorLogger($IDENTIFIER.text); } classType? classBody)
     ;
      
 classBody
@@ -225,7 +226,7 @@ variableInitializer [Type tin, CommonTree token]
     :   { if($tin.isArray()) {
     	  	$tin = ((ArrayType)$tin).getHostType();
     	  } else {
-    	  	errorLog.add(new IllegalArrayInitializerException($tin.toString(), token.getLine(), token.getCharPositionInLine(), rt));
+    	  	errorLog.add(new IllegalArrayInitializerException($tin.toString(), token.getLine(), token.getCharPositionInLine()));
     	  }
     	} 
     	arrayInitializer[$tin]
@@ -329,9 +330,9 @@ scope JaScope;
 	$JaScope::symbols = new HashMap<String, Type>();
 }
 @after {
-	System.out.println("block: " + $JaScope::symbols);
+	System.out.println("block symbols: " + $JaScope::symbols);
 }
-    :   (b=blockStatement {{ System.out.println("Statement text: " + $b.text); }})*
+    :   blockStatement*
     ;
     
 blockStatement
@@ -386,17 +387,17 @@ expressionList returns [ArrayList<Type> types]
 statementExpression
     :   expression
     ;
-    
+/* orfano    
 constantExpression
     :   expression
     ;
-    
+*/   
 expression returns [Type t]
     :   ^(EQ e1=expression e2=expression) 
     	{ if(ruleTypeCheck($e1.t, $e2.t)) {
 	  	$t = getVariableType($e1.text);
 	    	if ($t == null) 
-	    		errorLog.add(new UnexpectedTypeException("variable", "value", $EQ.line, $EQ.pos, rt));
+	    		errorLog.add(new UnexpectedTypeException("variable", "value", $EQ.line, $EQ.pos));
 	    	else
 	    	  	$t = assignOperation($EQ, $e1.t, $e2.t);
 	  } 
@@ -412,21 +413,21 @@ expression returns [Type t]
     |   ^(nq='!='  e1=expression e2=expression) { if(ruleTypeCheck($e1.t, $e2.t)) $t = booleanOperation($nq,  $e1.t, $e2.t); }
     |	^(INSTANCEOF e=expression type)
         { if(ruleTypeCheck($e.t, $type.t)) { 
-	          if ( !($e.t.isComplexType() || $e.t.isNull()) ) errorLog.add(new UnexpectedTypeException("reference", $e.t.toString(), $INSTANCEOF.line, $INSTANCEOF.pos, rt));
-	          if (!$type.t.isComplexType()) errorLog.add(new UnexpectedTypeException("class or array", $type.t.toString(), $INSTANCEOF.line, $INSTANCEOF.pos, rt));
-	          if (!$e.t.isCastableTo($type.t)) errorLog.add(new InconvertibleTypesException($type.t.toString(), $e.t.toString(), $INSTANCEOF.line, $INSTANCEOF.pos, rt));
+	          if ( !($e.t.isComplexType() || $e.t.isNull()) ) errorLog.add(new UnexpectedTypeException("reference", $e.t.toString(), $INSTANCEOF.line, $INSTANCEOF.pos));
+	          if (!$type.t.isComplexType()) errorLog.add(new UnexpectedTypeException("class or array", $type.t.toString(), $INSTANCEOF.line, $INSTANCEOF.pos));
+	          if (!$e.t.isCastableTo($type.t)) errorLog.add(new InconvertibleTypesException($type.t.toString(), $e.t.toString(), $INSTANCEOF.line, $INSTANCEOF.pos));
 	          $t = BasicType.BOOLEAN;
           } 
         }
     |	^(COMPAREOP e1=expression e2=expression)
     	{ if(ruleTypeCheck($e1.t, $e2.t)) { 
-	    	  if ( !($e1.t.isNumeric() && $e2.t.isNumeric()) ) errorLog.add(new CannotBeAppliedToException($COMPAREOP.text, $e1.t.toString(), $e2.t.toString(), $COMPAREOP.line, $COMPAREOP.pos, rt));
+	    	  if ( !($e1.t.isNumeric() && $e2.t.isNumeric()) ) errorLog.add(new CannotBeAppliedToException($COMPAREOP.text, $e1.t.toString(), $e2.t.toString(), $COMPAREOP.line, $COMPAREOP.pos));
 	    	  $t = BasicType.BOOLEAN;
     	  } 
     	}
     |   ^( op=(UNARYPLUS| UNARYMINUS| PREINC | PREDEC) e=expression) 
         { if(ruleTypeCheck($e.t)) { 
-	          if (!$e.t.isNumeric()) errorLog.add(new CannotBeAppliedToException($op.text, $e.t.toString(), "", $op.line, $op.pos, rt));
+	          if (!$e.t.isNumeric()) errorLog.add(new CannotBeAppliedToException($op.text, $e.t.toString(), "", $op.line, $op.pos));
 	    	  $t = $e.t;
     	  }
     	}
@@ -435,26 +436,26 @@ expression returns [Type t]
     //|   ^(PREDEC expression)  
     |	^(op='!' e=expression)
     	{ if(ruleTypeCheck($e.t)) {
-	    	  if (!($e.t == BasicType.BOOLEAN)) errorLog.add(new CannotBeAppliedToException($op.text, $e.t.toString(), "", $op.line, $op.pos, rt));
+	    	  if (!($e.t == BasicType.BOOLEAN)) errorLog.add(new CannotBeAppliedToException($op.text, $e.t.toString(), "", $op.line, $op.pos));
 	    	  $t = BasicType.BOOLEAN;
     	  }
     	}
     |   ^(CAST pt=primitiveType e=expression)
     	{ if(ruleTypeCheck($pt.bs, $e.t)) {
-	    	  if (!$e.t.isCastableTo($pt.bs)) errorLog.add(new InconvertibleTypesException($pt.bs.toString(), $e.t.toString(), $CAST.line, $CAST.pos, rt));
+	    	  if (!$e.t.isCastableTo($pt.bs)) errorLog.add(new InconvertibleTypesException($pt.bs.toString(), $e.t.toString(), $CAST.line, $CAST.pos));
 	    	  $t = $pt.bs;
     	  }
     	}
     |   ^(CAST npt=nonPrimitiveType e=expression)
     	{ if(ruleTypeCheck($npt.t, $e.t)) {
-	    	  if (!$e.t.isCastableTo($npt.t)) errorLog.add(new InconvertibleTypesException($npt.t.toString(), $e.t.toString(), $CAST.line, $CAST.pos, rt));
+	    	  if (!$e.t.isCastableTo($npt.t)) errorLog.add(new InconvertibleTypesException($npt.t.toString(), $e.t.toString(), $CAST.line, $CAST.pos));
 	    	  $t = $npt.t;
     	  }
     	}
     |   ^(NEW creator) { $t = $creator.t; }
     |	^(op=(POSTINC | POSTDEC) (sp=selector | sp=primary))
      	{ if (!$sp.t.isNumeric()) {
-    	  	throw new CannotBeAppliedToException($op.text, $sp.t.toString(), "", $op.line, $op.pos, rt);
+    	  	throw new CannotBeAppliedToException($op.text, $sp.t.toString(), "", $op.line, $op.pos);
     	  }
     	  $t = $sp.t;
     	}
@@ -469,7 +470,7 @@ primary returns [Type t]
     |   superMemberAccess { $t = $superMemberAccess.t; }
     |   literal { $t = $literal.t; }
     |   IDENTIFIER { $t = getVariableType($IDENTIFIER.text); 
-    		     if ($t == null) errorLog.add(new CannotFindSymbolException(("variable " + $IDENTIFIER.text), getMethodSignature(), $IDENTIFIER.line, $IDENTIFIER.pos, rt));
+    		     if ($t == null) errorLog.add(new CannotFindSymbolException(("variable " + $IDENTIFIER.text), getMethodSignature(), $IDENTIFIER.line, $IDENTIFIER.pos));
     		   }
     //|   ^(METHODCALL THIS IDENTIFIER arguments? ) riconosciuto in selector
     |   ^(DOTCLASS ^(ARRAYTYPE type)) { $t = ReferenceType.CLASS; }  
@@ -482,11 +483,11 @@ selector returns [Type t]
     :   ^(FIELDACCESS expression IDENTIFIER) 
     	{ if(ruleTypeCheck($expression.t)) {
 	    	  if (!$expression.t.isReference())
-	    	  	errorLog.add(new CannotBeDereferencedException($expression.t, $IDENTIFIER.line, $IDENTIFIER.pos, rt)); 
+	    	  	errorLog.add(new CannotBeDereferencedException($expression.t.toString(), $IDENTIFIER.line, $IDENTIFIER.pos)); 
 	    	  ReferenceType expt = (ReferenceType)$expression.t;
 	    	  boolean isSameClass = (expt.getName().equals(rt.getName())); 
 	    	  $t = expt.getField(isSameClass, $IDENTIFIER.text);
-		  if ($t == null) errorLog.add(new CannotFindSymbolException(("field " + $IDENTIFIER.text), expt.getName(), $IDENTIFIER.line, $IDENTIFIER.pos, rt));
+		  if ($t == null) errorLog.add(new CannotFindSymbolException(("field " + $IDENTIFIER.text), expt.getName(), $IDENTIFIER.line, $IDENTIFIER.pos));
     	  }
     	} 
     |	^(METHODCALL expression IDENTIFIER arguments?)
@@ -494,20 +495,20 @@ selector returns [Type t]
           // Se ci sono argomenti, bisogna richiamare ruleTypeCheck su di essi
           if( ruleTypeCheck($expression.t) && ($arguments.types == null || ruleTypeCheck($arguments.types.toArray(args = new Type[$arguments.types.size()]))) ) {
 	    	  if (!$expression.t.isReference())
-	    	  	errorLog.add(new CannotBeDereferencedException($expression.t, $IDENTIFIER.line, $IDENTIFIER.pos, rt)); 
+	    	  	errorLog.add(new CannotBeDereferencedException($expression.t.toString(), $IDENTIFIER.line, $IDENTIFIER.pos)); 
 	    	  ReferenceType expt = (ReferenceType)$expression.t;
 	    	  ArrayList<Type> argTypes = $arguments.types; //($arguments.tree == null)?null:$arguments.types;
 	    	  try {
 		    	boolean isSameClass = (expt.getName().equals(rt.getName())); 
 		    	$t = expt.bindMethod(isSameClass, $IDENTIFIER.text, argTypes);
 	    	  } catch (EarlyBindingException ex) {
-	    	  	errorLog.add(new CannotFindSymbolException(("method " + $IDENTIFIER.text + '(' + printArguments(argTypes) + ')'), expt.getName(), $IDENTIFIER.line, $IDENTIFIER.pos, rt));
+	    	  	errorLog.add(new CannotFindSymbolException(("method " + $IDENTIFIER.text + '(' + printArguments(argTypes) + ')'), expt.getName(), $IDENTIFIER.line, $IDENTIFIER.pos));
 	    	  }
     	  }
     	}
     |   ^(ARRAYACCESS e1=expression e2=expression) 
     	{ if (ruleTypeCheck($e1.t, $e2.t)) {
-	    	  if (!$e1.t.isArray()) errorLog.add(new ArrayRequiredException($e1.t.toString(), $ARRAYACCESS.line, $ARRAYACCESS.pos, rt));
+	    	  if (!$e1.t.isArray()) errorLog.add(new ArrayRequiredException($e1.t.toString(), $ARRAYACCESS.line, $ARRAYACCESS.pos));
 	    	  arrayExprCheck($ARRAYACCESS, $e2.t);
 	    	  $t = ((ArrayType)$e1.t).getHostType(); 
     	  }
@@ -553,13 +554,13 @@ superMemberAccess returns [Type t]
 	    	  try {
 	          	$t = rt.getSuperClass().bindMethod(false, $IDENTIFIER.text, $arguments.types);
 		  } catch (EarlyBindingException ex) {
-		   	errorLog.add(new CannotFindSymbolException(("method " + $IDENTIFIER.text + '(' + printArguments($arguments.types) + ')'), rt.getSuperClass().getName(), $IDENTIFIER.line, $IDENTIFIER.pos, rt));
+		   	errorLog.add(new CannotFindSymbolException(("method " + $IDENTIFIER.text + '(' + printArguments($arguments.types) + ')'), rt.getSuperClass().getName(), $IDENTIFIER.line, $IDENTIFIER.pos));
 		  }
 	  }
     	}
     |   ^(FIELDACCESS SUPER IDENTIFIER)          
     	{ $t = rt.getSuperClass().getField(false, $IDENTIFIER.text);
-	  if ($t == null) errorLog.add(new CannotFindSymbolException(("field " + $IDENTIFIER.text), rt.getSuperClass().getName(), $IDENTIFIER.line, $IDENTIFIER.pos, rt)); 
+	  if ($t == null) errorLog.add(new CannotFindSymbolException(("field " + $IDENTIFIER.text), rt.getSuperClass().getName(), $IDENTIFIER.line, $IDENTIFIER.pos)); 
 	}
     ;
 
