@@ -387,11 +387,7 @@ expressionList returns [ArrayList<Type> types]
 statementExpression
     :   expression
     ;
-/* orfano    
-constantExpression
-    :   expression
-    ;
-*/   
+ 
 expression returns [Type t]
     :   ^(EQ e1=expression e2=expression) 
     	{ if(ruleTypeCheck($e1.t, $e2.t)) {
