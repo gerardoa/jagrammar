@@ -265,11 +265,7 @@ expressionList
 statementExpression
     :   expression
     ;
-/*    orfano
-constantExpression
-    :   expression
-    ;
-*/    
+ 
 expression
     :  orExpression ( ap=assignmentOperator expression)? -> {$ap.c == '='}? ^(EQ[$ap.tk, "="] orExpression expression)
     							 -> {$ap.c == '+'}? ^(EQ[$ap.tk, "="] orExpression ^(PLUS[$ap.tk, "+"]  orExpression expression))
