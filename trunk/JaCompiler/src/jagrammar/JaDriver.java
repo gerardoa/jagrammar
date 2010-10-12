@@ -25,8 +25,8 @@ import org.antlr.runtime.tree.CommonTreeNodeStream;
  */
 public class JaDriver {
 
-
     private static class TreeTokensPair {
+
         private TreeTokensPair(CommonTree t, CommonTokenStream tokens) {
             this.t = t;
             this.tokens = tokens;
@@ -34,6 +34,7 @@ public class JaDriver {
         private CommonTree t;
         private CommonTokenStream tokens;
     }
+
     /**
      * @param args the command line arguments
      */
@@ -57,34 +58,38 @@ public class JaDriver {
             ANTLRInputStream input = null;
             try {
                 input = new ANTLRInputStream(new FileInputStream(pathname + "/" + className + ".java"));
+
+                // Crea il lexer
+                JaLexer lexer = new JaLexer(input);
+                // Crea un buffer di token dal lexer
+                CommonTokenStream tokens = new CommonTokenStream(lexer);
+                // Crea il parser passandogli il buffer di tokens
+                JaParser parser = new JaParser(tokens);
+                parser.setQueue(todo);
+                parser.setClassTable(myclasses);
+                try {
+                    // Inizia il parsing alla regola compilationUnit
+                    cuTree = parser.compilationUnit();
+                } catch (RecognitionException ex) {
+                    Logger.getLogger(JaDriver.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                // recupero e stampa dell'AST
+                CommonTree t = (CommonTree) cuTree.getTree();
+                System.out.println(t.toStringTree());
+                myASTs.put(className, new TreeTokensPair(t, tokens));
+
             } catch (IOException ex) {
                 //Logger.getLogger(JaDriver.class.getName()).log(Level.SEVERE, null, ex);
                 System.err.println(ex.getMessage());
-                return;
+                /* istanza che rappresenta la classe viene rimossa dalla tabella
+                   delle interfaccie in quanto tale file risulta inesistente */
+                myclasses.remove(className);
             }
-
-            // Crea il lexer
-            JaLexer lexer = new JaLexer(input);
-            // Crea un buffer di token dal lexer
-            CommonTokenStream tokens = new CommonTokenStream(lexer);
-            // Crea il parser passandogli il buffer di tokens
-            JaParser parser = new JaParser(tokens);
-            parser.setQueue(todo);
-            parser.setClassTable(myclasses);
-            try {
-                // Inizia il parsing alla regola compilationUnit
-                cuTree = parser.compilationUnit();
-            } catch (RecognitionException ex) {
-                Logger.getLogger(JaDriver.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            // recupero e stampa dell'AST
-            CommonTree t = (CommonTree) cuTree.getTree();
-            System.out.println(t.toStringTree());
-            myASTs.put(className, new TreeTokensPair(t, tokens));
         }
 
+
         // SECONDA FASE: analisi degli AST generati dalla prima fase; type checking
-        for(String className : myASTs.keySet()) {
+        for (String className : myASTs.keySet()) {
             ReferenceType rt = myclasses.get(className);
             TreeTokensPair pair = myASTs.get(className);
             CommonTreeNodeStream nodes = new CommonTreeNodeStream(pair.t);

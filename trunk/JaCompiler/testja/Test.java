@@ -7,9 +7,13 @@
  *
  * @author Gerardo
  */
-public class Test{
-    private Test t;
+public class Test extends C{
+    private T t;
     private double d = 0;
+
+    public Test(){
+        super(d);
+    }
 
     public Test metodoProlisso(int[] a, float b, Test t) {
                 A aclass = new A();
@@ -20,7 +24,7 @@ public class Test{
                     int ii = 0;
                 }
 
-                for(k;f;o) {
+                for(k;4;o) {
                 }
         return null;
     }
