@@ -259,7 +259,10 @@ nonPrimitiveType returns [ComplexType t]
     ;
 
 classType returns [ReferenceType t]
-    :	IDENTIFIER { $t = cTab.get($IDENTIFIER.text); }
+    :	IDENTIFIER 
+    	{ $t = cTab.get($IDENTIFIER.text); 
+    	  if ($t == null) errorLog.add(new CannotFindSymbolException(("class " + $IDENTIFIER.text), "class " + rt.toString(), $IDENTIFIER.line, $IDENTIFIER.pos));
+    	}
     ;
 
 primitiveType returns [BasicType bs]
@@ -299,8 +302,28 @@ scope JaScope;
     ;
 
 explicitConstructorInvocation
-    :   ^(CONSTRCALL THIS  arguments?) 
+    :   ^(CONSTRCALL THIS  arguments?)
+        { Type[] args;
+          if($arguments.types == null || ruleTypeCheck($arguments.types.toArray(args = new Type[$arguments.types.size()]))) {
+	    	  try {
+		    	rt.bindConstructor($arguments.types);
+	    	  } catch (EarlyBindingException ex) {
+	    	  	//errorLog.add(new ...); 
+	    	  	System.out.println("costruttore THIS inesistente");
+	    	  }
+    	  } 
+    	}
     |	^(CONSTRCALL SUPER arguments?)
+    	{ Type[] args;
+    	  if( $arguments.types == null || ruleTypeCheck($arguments.types.toArray(args = new Type[$arguments.types.size()])) ) {
+	    	  try {
+	          	rt.getSuperClass().bindConstructor($arguments.types);
+		  } catch (EarlyBindingException ex) {
+		  	System.out.println("costruttore SUPER inesistente");
+		   	//.add(new ...);
+		  }
+	  }
+    	}
     ;
 
 literal returns [Type t]
@@ -385,7 +408,7 @@ expressionList returns [ArrayList<Type> types]
     ;
 
 statementExpression
-    :   expression
+    :   expression 
     ;
  
 expression returns [Type t]
