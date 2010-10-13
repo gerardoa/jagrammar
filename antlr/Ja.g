@@ -230,11 +230,11 @@ localVariableDeclaration
 
 statement
     :   block -> ^(BLOCK block?)
-    |   IF parExpression statement elseStmt -> ^(IF ^(CONDITION parExpression) ^(THEN statement) elseStmt?)
-    |   FOR '(' forInit? ';' expression? ';' forUpdate? ')' statement 
-    		-> ^(FOR ^(INIT forInit)? ^(CONDITION expression)? ^(UPDATE forUpdate)? statement )   	
-    |   WHILE parExpression statement -> ^(WHILE ^(CONDITION parExpression) statement)
-    |   DO statement WHILE parExpression ';' -> ^(DOWHILE ^(CONDITION parExpression) statement)
+    |   tk=IF parExpression statement elseStmt -> ^(IF ^(CONDITION[$tk, "CONDITION"] parExpression) (^(THEN statement))? elseStmt?)
+    |   FOR lp='(' forInit? ';' expression? ';' forUpdate? ')' statement 
+    		-> ^(FOR ^(INIT forInit)? ^(CONDITION[$lp, "CONDITION"] expression)? ^(UPDATE forUpdate)? statement )   	
+    |   tk=WHILE parExpression statement -> ^(WHILE ^(CONDITION[$tk, "CONDITION"] parExpression) statement)
+    |   DO statement tk=WHILE parExpression ';' -> ^(DOWHILE ^(CONDITION[$tk, "CONDITION"] parExpression) statement)
     |   RETURN^ expression? ';'!
     |   ';'! 
     |   statementExpression ';' -> ^(STMT statementExpression)

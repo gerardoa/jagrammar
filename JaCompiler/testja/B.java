@@ -8,5 +8,5 @@
  * @author Gerardo
  */
 public class B {
-
+    public B(){};
 }

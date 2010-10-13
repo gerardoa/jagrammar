@@ -7,12 +7,16 @@
  *
  * @author Gerardo
  */
-public class Test extends C{
+public class Test extends B{
     private T t;
     private double d = 0;
 
+     public Test(int i, int j){
+         this();
+     }
+
     public Test(){
-        super(d);
+       
     }
 
     public Test metodoProlisso(int[] a, float b, Test t) {
@@ -24,8 +28,10 @@ public class Test extends C{
                     int ii = 0;
                 }
 
-                for(k;4;o) {
+                for(;i;) {
                 }
+
+                if(aclass);
         return null;
     }
 
