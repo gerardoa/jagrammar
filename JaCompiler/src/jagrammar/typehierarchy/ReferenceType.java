@@ -185,6 +185,11 @@ public class ReferenceType extends ComplexType {
             if (call.isEmpty()) {
                 return (arguments.isEmpty());
             }
+
+            if(call.size() != arguments.size()) {
+                return false;
+            }
+
             int i = 0;
             for (Type t : call) {
                 if (!t.isAssignableTo(arguments.get(i++)))//assignableTo deve essere riflessivo
@@ -251,7 +256,7 @@ public class ReferenceType extends ComplexType {
         }
         for (Method am : l) {
             if (am.equals(m)) {
-                //verifica le visibilit�
+                //verifica le visibilita'
                 if ((am.isPublic) && (!m.isPublic)) {
                     throw new VisibilityOverridingException();
                 }
@@ -259,7 +264,7 @@ public class ReferenceType extends ComplexType {
                 if (!m.returnType.isSubtypeOf(am.returnType)) {
                     throw new ReturnTypeOverridingException();
                 }
-                //mi posso fermare perch� in una classe non ci possono essere altri
+                //mi posso fermare percha' in una classe non ci possono essere altri
                 //metodi con questa firma
                 return;
             }
@@ -311,7 +316,7 @@ public class ReferenceType extends ComplexType {
      * @param name nome del metodo
      * @param args ArrayList dei tipi degli argomenti della chiamata. Deve
      *              essere necessatiamente un ArrayList perché si necessita
-     *              dell'accesso posizionale. Deve essere sempre istanziata
+     *              dell'accesso posizionale. 
      * @return tipo di ritorno della firma candidata più specifica
      * @throws EarlyBindingException se non ci sono firme candidate, oppure
      *          se non esiste una firma candidata più specifica delle altre
@@ -320,6 +325,7 @@ public class ReferenceType extends ComplexType {
         //genero la lista delle firme candidate
         //se c'è una firma più specifica delle altre ritorno.
         //altrimenti lancio un'eccezione
+        args = (args == null)? new ArrayList<Type>() : args;
         List<Method> candL = getCandidateSignatures(isSameClass, name, args);
         //OTTIMIZZAZIONI:
         //se la lista è vuota o ha un solo elemento siamo in un caso base
@@ -484,9 +490,11 @@ public class ReferenceType extends ComplexType {
             if (c.arguments.isEmpty()) {
                 return (this.arguments.isEmpty());
             }
-            if (arguments.isEmpty()) {
+
+            if (c.arguments.size() != this.arguments.size()) {
                 return false;
             }
+
             int i = 0;
             for (Type t : c) {
                 if (!t.equals(arguments.get(i++))) {
@@ -509,15 +517,13 @@ public class ReferenceType extends ComplexType {
          * @return TRUE se il costruttore this è compatibile con la chiamata call. FALSE altrimenti
          */
         private boolean isCompatibleWith(List<Type> call) {
-            if (call == null) {
-                return (arguments == null);
+            if (call.isEmpty()) {
+                return (arguments.isEmpty());
             }
 
             if (call.size() != arguments.size()) {
                 return false;
             }
-
-            System.out.println("call --> " + call.size() + "   args --> " + arguments.size());
 
             int i = 0;
             for (Type t : call) {
@@ -561,6 +567,7 @@ public class ReferenceType extends ComplexType {
      */
     public void bindConstructor(List<Type> call) {
         for (Constructor c : constructors) {
+            call = (call == null)? new ArrayList<Type>() : call;
             if (c.isCompatibleWith(call)) {
                 return;
             }

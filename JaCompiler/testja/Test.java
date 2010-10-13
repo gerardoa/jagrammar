@@ -16,7 +16,7 @@ public class Test extends B{
      }
 
     public Test(){
-       
+       super();
     }
 
     public Test metodoProlisso(int[] a, float b, Test t) {
@@ -30,6 +30,8 @@ public class Test extends B{
 
                 for(;i;) {
                 }
+
+               i= (i>5)? i++ : i--;
 
                 if(aclass);
         return null;
