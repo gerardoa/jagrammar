@@ -306,7 +306,7 @@ explicitConstructorInvocation
         { Type[] args;
           if($arguments.types == null || ruleTypeCheck($arguments.types.toArray(args = new Type[$arguments.types.size()]))) {
 	    	  try {
-		    	rt.bindConstructor($arguments.types);
+			rt.bindConstructor($arguments.types);
 	    	  } catch (EarlyBindingException ex) {
 	    	  	errorLog.add(new CannotFindSymbolException(("constructor " + rt.toString() + '(' + printArguments($arguments.types) + ')'), "class " + rt.toString(), $THIS.line, $THIS.pos));
 	    	  }
@@ -317,7 +317,7 @@ explicitConstructorInvocation
     	  ReferenceType sc = rt.getSuperClass();
     	  if( $arguments.types == null || ruleTypeCheck($arguments.types.toArray(args = new Type[$arguments.types.size()])) ) {
 	    	  try {
-	          	sc.bindConstructor($arguments.types);
+			 sc.bindConstructor($arguments.types);
 		  } catch (EarlyBindingException ex) {
 			errorLog.add(new CannotFindSymbolException(("constructor " + sc.toString() + '(' + printArguments($arguments.types) + ')'), "class " + sc.toString(), $SUPER.line, $SUPER.pos));
 		  }
