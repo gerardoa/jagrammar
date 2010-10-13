@@ -484,6 +484,9 @@ public class ReferenceType extends ComplexType {
             if (c.arguments.isEmpty()) {
                 return (this.arguments.isEmpty());
             }
+            if (arguments.isEmpty()) {
+                return false;
+            }
             int i = 0;
             for (Type t : c) {
                 if (!t.equals(arguments.get(i++))) {
@@ -509,6 +512,13 @@ public class ReferenceType extends ComplexType {
             if (call == null) {
                 return (arguments == null);
             }
+
+            if (call.size() != arguments.size()) {
+                return false;
+            }
+
+            System.out.println("call --> " + call.size() + "   args --> " + arguments.size());
+
             int i = 0;
             for (Type t : call) {
                 if (!t.isAssignableTo(arguments.get(i++))) {

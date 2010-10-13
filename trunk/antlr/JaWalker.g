@@ -308,19 +308,18 @@ explicitConstructorInvocation
 	    	  try {
 		    	rt.bindConstructor($arguments.types);
 	    	  } catch (EarlyBindingException ex) {
-	    	  	//errorLog.add(new ...); 
-	    	  	System.out.println("costruttore THIS inesistente");
+	    	  	errorLog.add(new CannotFindSymbolException(("constructor " + rt.toString() + '(' + printArguments($arguments.types) + ')'), "class " + rt.toString(), $THIS.line, $THIS.pos));
 	    	  }
     	  } 
     	}
     |	^(CONSTRCALL SUPER arguments?)
     	{ Type[] args;
+    	  ReferenceType sc = rt.getSuperClass();
     	  if( $arguments.types == null || ruleTypeCheck($arguments.types.toArray(args = new Type[$arguments.types.size()])) ) {
 	    	  try {
-	          	rt.getSuperClass().bindConstructor($arguments.types);
+	          	sc.bindConstructor($arguments.types);
 		  } catch (EarlyBindingException ex) {
-		  	System.out.println("costruttore SUPER inesistente");
-		   	//.add(new ...);
+			errorLog.add(new CannotFindSymbolException(("constructor " + sc.toString() + '(' + printArguments($arguments.types) + ')'), "class " + sc.toString(), $SUPER.line, $SUPER.pos));
 		  }
 	  }
     	}
@@ -375,12 +374,20 @@ localVariableDeclaration
 
 statement
     :   ^(BLOCK block)
-    |   ^(IF ^(CONDITION expression) ^(THEN statement) elseStmt?)
-    |   ^(FOR (^(INIT forInit))? (^(CONDITION expression))? (^(UPDATE forUpdate))? statement )
-    |   ^(WHILE ^(CONDITION expression) statement)
-    |   ^(DOWHILE ^(CONDITION expression) statement)
+    |   ^(IF condition (^(THEN statement))? elseStmt?)
+    |   ^(FOR (^(INIT forInit))? condition? (^(UPDATE forUpdate))? statement )
+    |   ^(WHILE condition statement)
+    |   ^(DOWHILE condition statement)
     |   ^(RETURN expression?) 
     |   ^(STMT statementExpression)
+    ;
+    
+condition
+    :	^(CONDITION expression)
+        { if (ruleTypeCheck($expression.t)) {
+    	  	if (!($expression.t == BasicType.BOOLEAN)) errorLog.add(new IncompatibleTypesException(BasicType.BOOLEAN.toString(), $expression.t.toString(), $CONDITION.line, $CONDITION.pos));
+    	  }	
+    	}
     ;
     
 elseStmt
