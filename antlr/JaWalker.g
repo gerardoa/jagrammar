@@ -6,7 +6,6 @@ options {
 }
 
 scope JaScope {
-	String name;
 	Map<String, Type> symbols;
 }
 
@@ -59,10 +58,13 @@ scope JaScope {
 	    return rt.getField(true, id);
 	}
 	
+	private String methodName;
+	private Type methodReturn;
+	
 	private String getMethodSignature() {	
 	    String parameters = formalParameters.toString();
 	    parameters = formalParameters.size() > 0 ? parameters.substring(1, parameters.length() - 1) : "";
-	    return $JaScope[0]::name + '(' + parameters + ')';
+	    return methodName + '(' + parameters + ')';
 	}
 	
 	private List<Type> getFormalParametersList() {
@@ -193,17 +195,14 @@ scope JaScope;
 	$JaScope::symbols = new HashMap<String, Type>();
 	formalParameters = new LinkedList<String>();
 }
-@after {
-	System.out.println("methodAndConstructorDeclaration: " + getMethodSignature());
-}
-    :   ^(METHOD modifier type  methodDeclaration)			
-    |   ^(METHOD modifier VOID IDENTIFIER { $JaScope::name = $IDENTIFIER.text; } voidMethodDeclaratorRest) 	 
-    |   ^(CONSTR modifier IDENTIFIER { $JaScope::name = $IDENTIFIER.text; } formalParameters? constructorBody?) 
+    :   ^(METHOD modifier type { methodReturn = $type.t; } methodDeclaration)			
+    |   ^(METHOD modifier VOID IDENTIFIER { methodName = $IDENTIFIER.text; methodReturn = VoidType.TYPE; } voidMethodDeclaratorRest) 	 
+    |   ^(CONSTR modifier IDENTIFIER { methodName = $IDENTIFIER.text; } formalParameters? constructorBody?) 
     ;
     
     
 methodDeclaration
-    :   IDENTIFIER { $JaScope::name = $IDENTIFIER.text; } formalParameters? methodBody
+    :   IDENTIFIER { methodName = $IDENTIFIER.text; } formalParameters? methodBody
     ;
 
 fieldDeclaration
@@ -303,8 +302,7 @@ scope JaScope;
 
 explicitConstructorInvocation
     :   ^(CONSTRCALL THIS  arguments?)
-        { Type[] args;
-          if($arguments.types == null || ruleTypeCheck($arguments.types.toArray(args = new Type[$arguments.types.size()]))) {
+        { if($arguments.types == null || ruleTypeCheck($arguments.types.toArray(new Type[$arguments.types.size()]))) {
 	    	  try {
 			rt.bindConstructor($arguments.types);
 	    	  } catch (EarlyBindingException ex) {
@@ -313,9 +311,8 @@ explicitConstructorInvocation
     	  } 
     	}
     |	^(CONSTRCALL SUPER arguments?)
-    	{ Type[] args;
-    	  ReferenceType sc = rt.getSuperClass();
-    	  if( $arguments.types == null || ruleTypeCheck($arguments.types.toArray(args = new Type[$arguments.types.size()])) ) {
+    	{ ReferenceType sc = rt.getSuperClass();
+    	  if( $arguments.types == null || ruleTypeCheck($arguments.types.toArray(new Type[$arguments.types.size()])) ) {
 	    	  try {
 			 sc.bindConstructor($arguments.types);
 		  } catch (EarlyBindingException ex) {
@@ -351,9 +348,6 @@ scope JaScope;
 @init {
 	$JaScope::symbols = new HashMap<String, Type>();
 }
-@after {
-	System.out.println("block symbols: " + $JaScope::symbols);
-}
     :   blockStatement*
     ;
     
@@ -378,7 +372,13 @@ statement
     |   ^(FOR (^(INIT forInit))? condition? (^(UPDATE forUpdate))? statement )
     |   ^(WHILE condition statement)
     |   ^(DOWHILE condition statement)
-    |   ^(RETURN expression?) 
+    |   ^(RETURN expression) 
+    	{ if(methodReturn.isVoid())
+    		errorLog.add(new ReturnFromVoidMethodException($RETURN.line, $RETURN.pos));    		
+    	  else if (ruleTypeCheck($expression.t))
+    	  	assignOperation($RETURN, methodReturn, $expression.t);
+    	}    
+    |   RETURN { if(!methodReturn.isVoid()) errorLog.add(new MissingReturnValueException($RETURN.line, $RETURN.pos)); }
     |   ^(STMT statementExpression)
     ;
     
@@ -418,15 +418,12 @@ statementExpression
     :   expression 
     ;
  
-expression returns [Type t]
+expression returns [Type t, boolean isVar]
     :   ^(EQ e1=expression e2=expression) 
-    	{ if(ruleTypeCheck($e1.t, $e2.t)) {
-	  	$t = getVariableType($e1.text);
-	    	if ($t == null) 
-	    		errorLog.add(new UnexpectedTypeException("variable", "value", $EQ.line, $EQ.pos));
-	    	else
-	    	  	$t = assignOperation($EQ, $e1.t, $e2.t);
-	  } 
+    	{ if (!$e1.isVar) 
+	  	errorLog.add(new UnexpectedTypeException("variable", "value", $EQ.line, $EQ.pos));
+	  else
+	    	if(ruleTypeCheck($e1.t, $e2.t)) $t = assignOperation($EQ, $e1.t, $e2.t);
     	}
     |	^(PLUS    e1=expression e2=expression) { if(ruleTypeCheck($e1.t, $e2.t)) $t = plusOperation($PLUS, $e1.t, $e2.t); }
     |	^(MINUS   e1=expression e2=expression) { if(ruleTypeCheck($e1.t, $e2.t)) $t = arithmeticOperation($MINUS, $e1.t, $e2.t); }
@@ -451,15 +448,29 @@ expression returns [Type t]
 	    	  $t = BasicType.BOOLEAN;
     	  } 
     	}
-    |   ^( op=(UNARYPLUS| UNARYMINUS| PREINC | PREDEC) e=expression) 
+    |   ^( op=(UNARYPLUS| UNARYMINUS) e=expression) 
         { if(ruleTypeCheck($e.t)) { 
-	          if (!$e.t.isNumeric()) errorLog.add(new CannotBeAppliedToException($op.text, $e.t.toString(), "", $op.line, $op.pos));
-	    	  $t = $e.t;
+        	  $t = $e.t;
+	          if (!$e.t.isNumeric()) {
+	          	errorLog.add(new CannotBeAppliedToException($op.text, $e.t.toString(), "", $op.line, $op.pos));
+	          	$t = NullType.TYPE;
+	          }
+	    	  
     	  }
     	}
-    //|	  ^(UNARYPLUS  e=expression) 
-    //|   ^(UNARYMINUS e=expression)
-    //|   ^(PREDEC expression)  
+    |   ^( op=(PREINC | PREDEC) e=expression)
+        { if (!$e.isVar) {
+     	  	errorLog.add(new UnexpectedTypeException("variable", "value", $op.line, $op.pos));
+     	  } else {
+	     	  if (ruleTypeCheck($e.t)) {
+	     	  	  $t = $e.t;
+		     	  if (!$e.t.isNumeric()) {
+		     	  	errorLog.add(new CannotBeAppliedToException($op.text, $e.t.toString(), "", $op.line, $op.pos));
+		     	  	$t = NullType.TYPE;
+		     	  }		    	  
+	    	  }
+    	  } 
+    	}  
     |	^(op='!' e=expression)
     	{ if(ruleTypeCheck($e.t)) {
 	    	  if (!($e.t == BasicType.BOOLEAN)) errorLog.add(new CannotBeAppliedToException($op.text, $e.t.toString(), "", $op.line, $op.pos));
@@ -479,25 +490,40 @@ expression returns [Type t]
     	  }
     	}
     |   ^(NEW creator) { $t = $creator.t; }
-    |	^(op=(POSTINC | POSTDEC) (sp=selector | sp=primary))
-     	{ if (!$sp.t.isNumeric()) {
-    	  	throw new CannotBeAppliedToException($op.text, $sp.t.toString(), "", $op.line, $op.pos);
-    	  }
-    	  $t = $sp.t;
+    |	^(op=(POSTINC | POSTDEC) (s=selector | p=primary))
+     	{ Type t = null;
+     	  boolean isVar = false;
+     	  // Recupero i dati dalla regola che è stata applicata
+     	  if( s != null ) { t = $s.t; isVar = $s.isVar; }
+     	  if( p != null ) { t = $p.t; isVar = $p.isVar; }  
+     	  
+     	  if (!isVar) {
+     	  	errorLog.add(new UnexpectedTypeException("variable", "value", $op.line, $op.pos));
+     	  } else {
+	     	  if (ruleTypeCheck(t)) {
+	     	  	  $t = t;
+		     	  if (!t.isNumeric()) {
+		     	  	errorLog.add(new CannotBeAppliedToException($op.text, t.toString(), "", $op.line, $op.pos));
+		     	  	$t = NullType.TYPE;
+		     	  }		    	  
+	    	  }
+    	  }    	  
     	}
     //|   ^(POSTDEC (selector | primary))
-    |   selector { $t = $selector.t; }
-    |   primary  { $t = $primary.t; }
+    |   selector { $t = $selector.t; $isVar = $selector.isVar; }
+    |   primary  { $t = $primary.t;  $isVar = $primary.isVar;}
     ;        
     
-primary returns [Type t]
+primary returns [Type t, boolean isVar]
     //:   expression
     :	THIS { $t = rt; }
     |   superMemberAccess { $t = $superMemberAccess.t; }
     |   literal { $t = $literal.t; }
-    |   IDENTIFIER { $t = getVariableType($IDENTIFIER.text); 
-    		     if ($t == null) errorLog.add(new CannotFindSymbolException(("variable " + $IDENTIFIER.text), getMethodSignature(), $IDENTIFIER.line, $IDENTIFIER.pos));
-    		   }
+    |   IDENTIFIER 
+    	{ $isVar = true;
+    	  $t = getVariableType($IDENTIFIER.text); 
+    	  if ($t == null) errorLog.add(new CannotFindSymbolException(("variable " + $IDENTIFIER.text), getMethodSignature(), $IDENTIFIER.line, $IDENTIFIER.pos));
+    	}
     //|   ^(METHODCALL THIS IDENTIFIER arguments? ) riconosciuto in selector
     |   ^(DOTCLASS ^(ARRAYTYPE type)) { $t = ReferenceType.CLASS; }  
     |	^(DOTCLASS IDENTIFIER)        { $t = ReferenceType.CLASS; }
@@ -505,9 +531,10 @@ primary returns [Type t]
     |   ^(DOTCLASS VOID)              { $t = ReferenceType.CLASS; }
     ;
     
-selector returns [Type t]
+selector returns [Type t, boolean isVar]
     :   ^(FIELDACCESS expression IDENTIFIER) 
-    	{ if(ruleTypeCheck($expression.t)) {
+    	{ $isVar = true;
+    	  if(ruleTypeCheck($expression.t)) {
 	    	  if (!$expression.t.isReference())
 	    	  	errorLog.add(new CannotBeDereferencedException($expression.t.toString(), $IDENTIFIER.line, $IDENTIFIER.pos)); 
 	    	  ReferenceType expt = (ReferenceType)$expression.t;
@@ -517,9 +544,8 @@ selector returns [Type t]
     	  }
     	} 
     |	^(METHODCALL expression IDENTIFIER arguments?)
-        { Type[] args;
-          // Se ci sono argomenti, bisogna richiamare ruleTypeCheck su di essi
-          if( ruleTypeCheck($expression.t) && ($arguments.types == null || ruleTypeCheck($arguments.types.toArray(args = new Type[$arguments.types.size()]))) ) {
+        { // Se ci sono argomenti, bisogna richiamare ruleTypeCheck su di essi
+          if( ruleTypeCheck($expression.t) && ($arguments.types == null || ruleTypeCheck($arguments.types.toArray(new Type[$arguments.types.size()]))) ) {
 	    	  if (!$expression.t.isReference())
 	    	  	errorLog.add(new CannotBeDereferencedException($expression.t.toString(), $IDENTIFIER.line, $IDENTIFIER.pos)); 
 	    	  ReferenceType expt = (ReferenceType)$expression.t;
@@ -576,7 +602,7 @@ classCreatorRest returns [ArrayList<Type> types]
    
 superMemberAccess returns [Type t]
     :	^(METHODCALL SUPER IDENTIFIER arguments?) 
-    	{ if( $arguments.types == null || ruleTypeCheck((Type[])$arguments.types.toArray()) ) {
+    	{ if( $arguments.types == null || ruleTypeCheck($arguments.types.toArray(new Type[$arguments.types.size()])) ) {
 	    	  try {
 	          	$t = rt.getSuperClass().bindMethod(false, $IDENTIFIER.text, $arguments.types);
 		  } catch (EarlyBindingException ex) {

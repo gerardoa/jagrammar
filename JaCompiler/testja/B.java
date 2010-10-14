@@ -8,5 +8,10 @@
  * @author Gerardo
  */
 public class B {
-    public B(){};
+    public B(int i) {}
+    public B() {}
+
+    private int f() {
+        return;
+    }
 }
