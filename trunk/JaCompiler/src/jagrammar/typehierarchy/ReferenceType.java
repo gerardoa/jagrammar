@@ -566,8 +566,15 @@ public class ReferenceType extends ComplexType {
      *          associabile alla chiamata call
      */
     public void bindConstructor(List<Type> call) {
+        call = (call == null)? new ArrayList<Type>() : call;
+        // Costruttore implicito di default
+        if (constructors.isEmpty()) {
+            if( call.isEmpty())
+                return;
+            else
+                throw new EarlyBindingException(/*name,args*/);
+        }
         for (Constructor c : constructors) {
-            call = (call == null)? new ArrayList<Type>() : call;
             if (c.isCompatibleWith(call)) {
                 return;
             }
