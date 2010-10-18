@@ -31,6 +31,7 @@ public class ReferenceType extends ComplexType {
         methods = new HashMap<String, Set<Method>>();
         fields = new HashMap<String, Field>();
         constructors = new LinkedList<Constructor>();
+        superClass = OBJECT;
     }
 
     public void addSuperType(ReferenceType sClass) {

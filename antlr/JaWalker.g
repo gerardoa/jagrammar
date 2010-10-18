@@ -501,7 +501,7 @@ expression returns [Type t, boolean isVar]
      	  } else {
 	     	  if (ruleTypeCheck(t)) {
 		     	  if (!t.isNumeric())
-		     	  	errorLog.add(new CannotBeAppliedToException($op.text, t.toString(), "", $op.line, $op.pos));+
+		     	  	errorLog.add(new CannotBeAppliedToException($op.text, t.toString(), "", $op.line, $op.pos));
 		     	  else
 		     	  	$t = t;    	  
 	    	  }
