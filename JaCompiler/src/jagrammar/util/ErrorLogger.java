@@ -59,7 +59,7 @@ public class ErrorLogger {
 //            if (i > st.exEnd) {
 //                st = iterator.next();
 //            }
-            exList.append(classFileName).append(":").append(ex.getLine()).append(":").append(ex.getPosition()).append(" ").append(ex.getMessage()).append("\n");
+            exList.append("\n").append(classFileName).append(":").append(ex.getLine()).append(":").append(ex.getPosition()).append(" ").append(ex.getMessage());
             //i++;
         }
         return exList.toString();

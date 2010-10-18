@@ -14,4 +14,26 @@ public class Test{
         int i = 0;
         g = i = j = o;
     }
+
+    public Test metodoProlisso(int[] a, float b, Test t) {
+                A aclass = new A();
+		int i = 6;
+		int ia[][][] = new int[][][]{{{2}}};
+    
+                while(j) {
+                }
+
+                for(;i;) {
+                }
+
+                if(true){};
+        return null;
+    }
+
+    private void m(){
+        float i;
+        Test t;
+        i = +"s" + 3;
+
+    }
 }

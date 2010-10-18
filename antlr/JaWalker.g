@@ -162,7 +162,7 @@ compilationUnit
             Thread.sleep(100);
         } catch (InterruptedException ex) {
         }
-	System.err.println("ERROR LOG:\n" + errorLog);
+	System.err.println("ERROR LOG:" + errorLog);
 	System.err.flush();
 	 try {
             Thread.sleep(100);
@@ -449,12 +449,11 @@ expression returns [Type t, boolean isVar]
     	  } 
     	}
     |   ^( op=(UNARYPLUS| UNARYMINUS) e=expression) 
-        { if(ruleTypeCheck($e.t)) { 
-        	  $t = $e.t;
-	          if (!$e.t.isNumeric()) {
+        { if(ruleTypeCheck($e.t)) {
+	          if (!$e.t.isNumeric())
 	          	errorLog.add(new CannotBeAppliedToException($op.text, $e.t.toString(), "", $op.line, $op.pos));
-	          	$t = NullType.TYPE;
-	          }
+	          else
+	          	$t = $e.t;
 	    	  
     	  }
     	}
@@ -463,11 +462,10 @@ expression returns [Type t, boolean isVar]
      	  	errorLog.add(new UnexpectedTypeException("variable", "value", $op.line, $op.pos));
      	  } else {
 	     	  if (ruleTypeCheck($e.t)) {
-	     	  	  $t = $e.t;
-		     	  if (!$e.t.isNumeric()) {
+		     	  if (!$e.t.isNumeric()) 
 		     	  	errorLog.add(new CannotBeAppliedToException($op.text, $e.t.toString(), "", $op.line, $op.pos));
-		     	  	$t = NullType.TYPE;
-		     	  }		    	  
+		     	  else	 
+		     	  	$t = $e.t;   	  
 	    	  }
     	  } 
     	}  
@@ -493,7 +491,7 @@ expression returns [Type t, boolean isVar]
     |	^(op=(POSTINC | POSTDEC) (s=selector | p=primary))
      	{ Type t = null;
      	  boolean isVar = false;
-     	  // Recupero i dati dalla regola che è stata applicata
+     	  // Recupero i dati dalla regola che e' stata applicata
      	  if( s != null ) { t = $s.t; isVar = $s.isVar; }
      	  if( p != null ) { t = $p.t; isVar = $p.isVar; }  
      	  
@@ -501,11 +499,10 @@ expression returns [Type t, boolean isVar]
      	  	errorLog.add(new UnexpectedTypeException("variable", "value", $op.line, $op.pos));
      	  } else {
 	     	  if (ruleTypeCheck(t)) {
-	     	  	  $t = t;
-		     	  if (!t.isNumeric()) {
-		     	  	errorLog.add(new CannotBeAppliedToException($op.text, t.toString(), "", $op.line, $op.pos));
-		     	  	$t = NullType.TYPE;
-		     	  }		    	  
+		     	  if (!t.isNumeric())
+		     	  	errorLog.add(new CannotBeAppliedToException($op.text, t.toString(), "", $op.line, $op.pos));+
+		     	  else
+		     	  	$t = t;    	  
 	    	  }
     	  }    	  
     	}
