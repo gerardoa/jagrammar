@@ -1,4 +1,4 @@
-// $ANTLR 3.2 Sep 23, 2009 12:02:23 D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g 2010-10-18 21:25:00
+// $ANTLR 3.2 Sep 23, 2009 12:02:23 D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g 2010-10-18 22:35:22
 
 	package jagrammar;
 	
@@ -836,7 +836,7 @@ public class JaParser extends Parser {
 
 
                             // AST REWRITE
-                            // elements: modifier, methodDeclaration, type
+                            // elements: type, modifier, methodDeclaration
                             // token labels: 
                             // rule labels: retval
                             // token list labels: 
@@ -928,7 +928,7 @@ public class JaParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: IDENTIFIER, VOID, voidMethodDeclaratorRest, modifier
+                    // elements: voidMethodDeclaratorRest, IDENTIFIER, VOID, modifier
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -989,7 +989,7 @@ public class JaParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: constructorBody, modifier, IDENTIFIER, formalParameters
+                    // elements: IDENTIFIER, constructorBody, modifier, formalParameters
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -2807,7 +2807,7 @@ public class JaParser extends Parser {
 
 
             // AST REWRITE
-            // elements: formalParameterDecls, variableDeclaratorId
+            // elements: variableDeclaratorId, formalParameterDecls
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -3239,7 +3239,7 @@ public class JaParser extends Parser {
 
 
             // AST REWRITE
-            // elements: explicitConstructorInvocation, arguments
+            // elements: arguments, explicitConstructorInvocation
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -3926,7 +3926,7 @@ public class JaParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: elseStmt, statement, IF, parExpression
+                    // elements: parExpression, IF, statement, elseStmt
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -4078,7 +4078,7 @@ public class JaParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: FOR, expression, forUpdate, statement, forInit
+                    // elements: forInit, FOR, statement, forUpdate, expression
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -4233,7 +4233,7 @@ public class JaParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: parExpression, statement
+                    // elements: statement, parExpression
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -4869,7 +4869,7 @@ public class JaParser extends Parser {
 
 
             // AST REWRITE
-            // elements: expression, expression, orExpression, expression, orExpression, orExpression, orExpression, orExpression, expression, orExpression, orExpression, orExpression, orExpression, expression, orExpression
+            // elements: orExpression, orExpression, expression, orExpression, orExpression, orExpression, expression, orExpression, expression, expression, orExpression, orExpression, expression, orExpression, orExpression
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -6235,7 +6235,7 @@ public class JaParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: primitiveType, unaryExpression
+                    // elements: unaryExpression, primitiveType
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -6288,7 +6288,7 @@ public class JaParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: nonPrimitiveType, unaryExpressionNotPlusMinus
+                    // elements: unaryExpressionNotPlusMinus, nonPrimitiveType
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -7456,7 +7456,7 @@ public class JaParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: classCreatorRest, createdName
+                    // elements: createdName, classCreatorRest
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -7781,7 +7781,7 @@ public class JaParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: arrayInitializer, arrayCreatorRest
+                    // elements: arrayCreatorRest, arrayInitializer
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 

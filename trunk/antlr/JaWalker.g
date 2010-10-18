@@ -156,20 +156,22 @@ scope JaScope {
 
 
 compilationUnit
-@after {
-	System.out.flush();
-	try {
-            Thread.sleep(100);
-        } catch (InterruptedException ex) {
-        }
-	System.err.println("ERROR LOG:" + errorLog);
-	System.err.flush();
-	 try {
-            Thread.sleep(100);
-        } catch (InterruptedException ex) {
-        }
-}
     :  classDeclaration
+       {
+       	if(!errorLog.isEmpty()) {
+	   System.out.flush();
+	   try {
+	   	Thread.sleep(100);
+	   } catch (InterruptedException ex) {
+	   }
+	   System.err.println("ERROR LOG:" + errorLog);
+           System.err.flush();
+	   try {
+	   	Thread.sleep(100);
+	   } catch (InterruptedException ex) {
+	   }
+        }
+       }
     |  ';'
     ;
     
