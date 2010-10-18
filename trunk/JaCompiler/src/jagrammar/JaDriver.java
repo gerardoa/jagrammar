@@ -42,7 +42,7 @@ public class JaDriver {
         args = new String[]{"Test"}; //DEBUG purpose
         String pathname = "testja";
         JaParser.compilationUnit_return cuTree = null;
-        System.out.println("Start compilation...");
+        System.out.println("Start compilation...\n");
         // Mappa delle classi, con chiave il nome della classe
         Map<String, ReferenceType> myclasses = new HashMap<String, ReferenceType>();
         // Mappa degli AST generati con chiave il nome della classe
@@ -99,15 +99,15 @@ public class JaDriver {
             walker.setClassTable(myclasses);
             walker.setReferenceType(rt);
             try {
-                System.out.println("----------Tree parsing for class " + className + "----------");
+                System.out.println("\n------------Tree parsing for class " + className + "------------");
                 walker.compilationUnit();
-                System.out.println("----------End Tree Parsing for class " + className + "----------");
+                System.out.println("----------End Tree Parsing for class " + className + "----------\n");
             } catch (RecognitionException ex) {
                 Logger.getLogger(JaDriver.class.getName()).log(Level.SEVERE, null, ex);
             } catch (JaCompileException ex) {
                 System.err.println(ex.getMessage());
             }
         }
-        System.out.println("----------End compilation----------");
+        System.out.println("-----------------End compilation-----------------");
     }
 }

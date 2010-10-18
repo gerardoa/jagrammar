@@ -50,15 +50,16 @@ compilationUnit
     ;
     
 classDeclaration
-    :   classModifier! CLASS^ IDENTIFIER { // Potrebbe gia' esistere l'istanza prima che abbia analizzato il file .java
-    					   // Aggiunta effettuata dalla regola classType per recuperare subito l'istanza della classe anche se priva di interfaccia
-    					   if(cTab.containsKey($IDENTIFIER.text)) {
-    				    	   	rt = cTab.get($IDENTIFIER.text);
-    					   } else { // crea una nuova istanza per la classe e la aggiunge alla tabella
-    					   	rt = new ReferenceType($IDENTIFIER.text);
-    					   	cTab.put($IDENTIFIER.text, rt);
-    					   }
-    					 }
+    :   classModifier! CLASS^ IDENTIFIER 
+    	{ // Potrebbe gia' esistere l'istanza prima che abbia analizzato il file .java
+    	  // Aggiunta effettuata dalla regola classType per recuperare subito l'istanza della classe anche se priva di interfaccia
+	  if(cTab.containsKey($IDENTIFIER.text)) {
+	  	rt = cTab.get($IDENTIFIER.text);
+	  } else { // crea una nuova istanza per la classe e la aggiunge alla tabella
+	  	rt = new ReferenceType($IDENTIFIER.text);
+	  	cTab.put($IDENTIFIER.text, rt);
+	  }
+	}
         (EXTENDS! classType { rt.addSuperType($classType.t); } )?		    	
     	classBody
     ;
@@ -85,7 +86,7 @@ memberDeclaration
     |   modifier VOID IDENTIFIER voidMethodDeclaratorRest[$modifier.pub, VoidType.TYPE, $IDENTIFIER.text] 
     	-> ^(METHOD modifier VOID IDENTIFIER voidMethodDeclaratorRest)
     	
-    |   modifier (IDENTIFIER formalParameters) => IDENTIFIER formalParameters constructorBody 
+    |   modifier IDENTIFIER formalParameters constructorBody 
     	{ rt.addConstructor($modifier.pub, $formalParameters.args); }
     	-> ^(CONSTR modifier IDENTIFIER formalParameters? constructorBody?)
     ;
@@ -179,8 +180,6 @@ formalParameterDecls[ArrayList<Type> args]
     :	type variableDeclaratorId[(CommonTree)$type.tree] (',' formalParameterDecls[args])? 
     	{ $args.add(ParserHelper.createArrayType($type.t, $variableDeclaratorId.arrayDim)); }
     	-> ^(FPARM variableDeclaratorId) formalParameterDecls?
-    	
-//    |  type '...' variableDeclaratorId[(CommonTree)$type.tree] -> ^(FMULTPARM variableDeclaratorId)
     ;
     
 methodBody
@@ -188,12 +187,11 @@ methodBody
     ;
 
 constructorBody
-    :	   '{' explicitConstructorInvocation? blockStatement* '}' -> ^(CBODY explicitConstructorInvocation? blockStatement*)
+    :	'{' explicitConstructorInvocation? blockStatement* '}' -> ^(CBODY explicitConstructorInvocation? blockStatement*)
     ;
 
 explicitConstructorInvocation
     :   ((THIS -> THIS) | (SUPER -> SUPER)) arguments ';' -> ^(CONSTRCALL $explicitConstructorInvocation arguments?)
-    //|   primary '.'  'super' arguments ';'
     ;
 
 literal 
@@ -267,12 +265,13 @@ statementExpression
     ;
  
 expression
-    :  orExpression ( ap=assignmentOperator expression)? -> {$ap.c == '='}? ^(EQ[$ap.tk, "="] orExpression expression)
-    							 -> {$ap.c == '+'}? ^(EQ[$ap.tk, "="] orExpression ^(PLUS[$ap.tk, "+"]  orExpression expression))
-    							 -> {$ap.c == '-'}? ^(EQ[$ap.tk, "="] orExpression ^(MINUS[$ap.tk, "-"] orExpression expression))
-    							 -> {$ap.c == '*'}? ^(EQ[$ap.tk, "="] orExpression ^(STAR[$ap.tk, "*"]  orExpression expression))
-    							 -> {$ap.c == '/'}? ^(EQ[$ap.tk, "="] orExpression ^(SLASH[$ap.tk, "/"] orExpression expression))
-    							 ->  orExpression
+    :  orExpression ( ap=assignmentOperator expression)? 
+       -> {$ap.c == '='}? ^(EQ[$ap.tk, "="] orExpression expression)
+       -> {$ap.c == '+'}? ^(EQ[$ap.tk, "="] orExpression ^(PLUS[$ap.tk, "+"]  orExpression expression))
+       -> {$ap.c == '-'}? ^(EQ[$ap.tk, "="] orExpression ^(MINUS[$ap.tk, "-"] orExpression expression))
+       -> {$ap.c == '*'}? ^(EQ[$ap.tk, "="] orExpression ^(STAR[$ap.tk, "*"]  orExpression expression))
+       -> {$ap.c == '/'}? ^(EQ[$ap.tk, "="] orExpression ^(SLASH[$ap.tk, "/"] orExpression expression))
+       ->  orExpression
     ;
     
 assignmentOperator returns [char c, Token tk]
@@ -312,8 +311,8 @@ multiplicativeExpression
     ;
     
 unaryExpression
-    :   up='+' unaryExpression -> ^(UNARYPLUS[$up]  unaryExpression) 
-    |   um='-' unaryExpression -> ^(UNARYMINUS[$um] unaryExpression)
+    :   up='+'  unaryExpression -> ^(UNARYPLUS[$up]  unaryExpression) 
+    |   um='-'  unaryExpression -> ^(UNARYMINUS[$um] unaryExpression)
     |   pi='++' unaryExpression -> ^(PREINC[$pi] unaryExpression)
     |   pd='--' unaryExpression -> ^(PREDEC[$pd] unaryExpression)
     |   unaryExpressionNotPlusMinus
@@ -321,20 +320,23 @@ unaryExpression
 
 unaryExpressionNotPlusMinus
     :	'!'^ unaryExpression
-    |  	('(' primitiveType ')')  => lp='(' primitiveType ')' unaryExpression
+    
+    |  	lp='(' primitiveType ')' unaryExpression
     		-> ^(CAST[$lp, "CAST"] primitiveType unaryExpression)
-    // possibile ottimizzazione su unaryExpressionNotPlusMinus
-    |   ('(' nonPrimitiveType  ')' unaryExpressionNotPlusMinus) => lp='(' nonPrimitiveType  ')' unaryExpressionNotPlusMinus
+    		
+    |   lp='(' nonPrimitiveType  ')' unaryExpressionNotPlusMinus
     		-> ^(CAST[$lp, "CAST"] nonPrimitiveType unaryExpressionNotPlusMinus)
+    		
     |   NEW^ creator
+    
     |   (primary -> primary)  (selector[(CommonTree)$unaryExpressionNotPlusMinus.tree] -> selector)* 
-    		('++' -> ^(POSTINC $unaryExpressionNotPlusMinus) | '--' -> ^(POSTDEC $unaryExpressionNotPlusMinus) )? 
+    		('++' -> ^(POSTINC $unaryExpressionNotPlusMinus) | '--' -> ^(POSTDEC $unaryExpressionNotPlusMinus) )* 
     ;
 
     
 primary
     :   parExpression
-    |   THIS //arguments 
+    |   THIS 
     |   SUPER! superMemberAccess
     |   literal
     |   IDENTIFIER
@@ -348,26 +350,13 @@ primary
 selector [CommonTree primary]
     :   '.' IDENTIFIER -> ^(FIELDACCESS {$primary} IDENTIFIER)
     |	'.' IDENTIFIER arguments -> ^(METHODCALL {$primary} IDENTIFIER arguments?)
-    //|   '.' 'this'
-    //|   '.' 'super' superSuffix
     |   lb='[' expression ']'-> ^(ARRAYACCESS[$lb, "ARRAYACCESS"] {$primary} expression)
     ;
 
-/* NON UTILIZZATO
-
-identifierSuffix
-    :   ('[' ']')+ '.' CLASS
-    //|   ('[' expression ']')+ // can also be matched by selector, but do here
-    |   arguments
-    |   '.' CLASS
-    //|   '.' 'this'
-    //|   '.' 'super' arguments
-    ;
-*/
-
 creator
     :	createdName ( arrayCreatorRest[(CommonTree)$createdName.tree] -> arrayCreatorRest
-    	            | classCreatorRest -> createdName classCreatorRest? ) 
+    	            | classCreatorRest 				      -> createdName classCreatorRest? 
+    	            ) 
     ;
 
 createdName
