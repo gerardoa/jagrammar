@@ -39,17 +39,44 @@ public class JaDriver {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        args = new String[]{"Test"}; //DEBUG purpose
-        String pathname = "testja";
+        //args = new String[]{"Test"}; //DEBUG purpose
+        String pathname = ".";
+        int fileIndex = 0;
+        if (args[0].equals("-p")) {
+            if(args.length > 2) {
+                pathname = args[1];
+                fileIndex = 2;
+            } else {
+               System.err.println("-p option: Pathname required or missing input files.");
+               return;
+            }
+        }
+        for(int i = fileIndex; i < args.length; i++) {
+            String cName = args[i];
+            if (!cName.matches("^[A-Za-z]+\\.java$")) {
+                System.err.println(cName + " not a valid file name. Must end with .java");
+                return;
+            }
+        }
+        
         JaParser.compilationUnit_return cuTree = null;
         System.out.println("Start compilation...\n");
         // Mappa delle classi, con chiave il nome della classe
         Map<String, ReferenceType> myclasses = new HashMap<String, ReferenceType>();
+        myclasses.put("Object", ReferenceType.OBJECT);
+        myclasses.put("String", ReferenceType.STRING);
+        myclasses.put("Class", ReferenceType.CLASS);
         // Mappa degli AST generati con chiave il nome della classe
         Map<String, TreeTokensPair> myASTs = new HashMap<String, TreeTokensPair>();
         // Coda contenente i percorsi ai file delle classi da analizzare
         Queue<String> todo = new LinkedSetList<String>();
-        todo.addAll(Arrays.asList(args));
+        // Controllo se i file da analizzare non sono Object, String, Class
+        for(int i = fileIndex; i < args.length; i++) {
+            String cName = args[i];
+            cName = cName.substring(0, cName.lastIndexOf("."));
+            if (!myclasses.containsKey(cName))
+                todo.add(cName);
+        }
 
         // PRIMA FASE: ciclo per il recupero delle interfaccie
         while (!todo.isEmpty()) {

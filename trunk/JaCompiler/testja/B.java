@@ -7,11 +7,10 @@
  *
  * @author Gerardo
  */
-public class B {
-    public B(int i) {}
-    public B() {}
+public class B extends A {
 
     private int f() {
-        return;
+        printA(3);
+        return 3;
     }
 }
