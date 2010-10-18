@@ -1,4 +1,4 @@
-// $ANTLR 3.2 Sep 23, 2009 12:02:23 D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g 2010-10-18 21:24:51
+// $ANTLR 3.2 Sep 23, 2009 12:02:23 D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g 2010-10-18 21:31:57
 
 	package jagrammar;
 	
@@ -3355,7 +3355,7 @@ public class JaWalker extends TreeParser {
                          	  } else {
                     	     	  if (ruleTypeCheck(t)) {
                     		     	  if (!t.isNumeric())
-                    		     	  	errorLog.add(new CannotBeAppliedToException((op!=null?op.getText():null), t.toString(), "", (op!=null?op.getLine():0), (op!=null?op.getCharPositionInLine():0)));+
+                    		     	  	errorLog.add(new CannotBeAppliedToException((op!=null?op.getText():null), t.toString(), "", (op!=null?op.getLine():0), (op!=null?op.getCharPositionInLine():0)));
                     		     	  else
                     		     	  	retval.t = t;    	  
                     	    	  }
