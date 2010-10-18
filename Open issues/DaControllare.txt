@@ -4,3 +4,5 @@
 4. in primary verificare che accetti: this() super() OK
 
 5. EQ[$ap.tree], etc in Ja.g(271)
+
+6. I costruttori devono avere lo stesso ID della classe

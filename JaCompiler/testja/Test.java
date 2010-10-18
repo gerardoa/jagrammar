@@ -7,13 +7,18 @@
  *
  * @author Gerardo
  */
-public class Test{
-    private void m(int j){
-        float k = 3f;
-        int g = 0;
-        int i = 0;
-        g = i = j = o;
+public class Test extends Object {
+    private int[] a[] = {};
+    public void m(){
+        
+        int[][] b = { {1, 2}, new int[2]};
+        m(2);
     }
+<<<<<<< .mine
+
+    public void m(int i, int y) {}
+     public void m(byte i){}
+=======
 
     public Test metodoProlisso(int[] a, float b, Test t) {
                 A aclass = new A();
@@ -36,4 +41,5 @@ public class Test{
         i = +"s" + 3;
 
     }
+>>>>>>> .r90
 }

@@ -170,6 +170,7 @@ compilationUnit
         }
 }
     :  classDeclaration
+    |  ';'
     ;
     
 classDeclaration
@@ -177,7 +178,7 @@ classDeclaration
     ;
      
 classBody
-    :   classBodyDeclaration*
+    :   ^(CLASSBODY classBodyDeclaration*)
     ;
 
 classBodyDeclaration

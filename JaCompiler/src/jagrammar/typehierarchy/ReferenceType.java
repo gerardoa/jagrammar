@@ -24,13 +24,9 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Iterator;
 
-
 public class ReferenceType extends ComplexType {
 
     public ReferenceType(String n) {
-        if (!n.equals("Object")) {
-            superClass = OBJECT;
-        }
         name = n;
         methods = new HashMap<String, Set<Method>>();
         fields = new HashMap<String, Field>();
@@ -63,7 +59,7 @@ public class ReferenceType extends ComplexType {
         return superClass;
     }
 
-     public String getName() {
+    public String getName() {
         return name;
     }
 
@@ -186,7 +182,7 @@ public class ReferenceType extends ComplexType {
                 return (arguments.isEmpty());
             }
 
-            if(call.size() != arguments.size()) {
+            if (call.size() != arguments.size()) {
                 return false;
             }
 
@@ -291,12 +287,11 @@ public class ReferenceType extends ComplexType {
     private List<Method> getCandidateSignatures(boolean isSameClass, String name, ArrayList<Type> args) {
         List<Method> ret = new LinkedList<Method>();
         Set<Method> l = methods.get(name);
-        if (l == null) {
-            return ret;
-        }
-        for (Method am : l) {
-            if ((am.isPublic || isSameClass) && (am.isCompatibleWith(args))) {
-                ret.add(am);
+        if (l != null) {
+            for (Method am : l) {
+                if ((am.isPublic || isSameClass) && (am.isCompatibleWith(args))) {
+                    ret.add(am);
+                }
             }
         }
         if (this != OBJECT) {
@@ -325,7 +320,7 @@ public class ReferenceType extends ComplexType {
         //genero la lista delle firme candidate
         //se c'è una firma più specifica delle altre ritorno.
         //altrimenti lancio un'eccezione
-        args = (args == null)? new ArrayList<Type>() : args;
+        args = (args == null) ? new ArrayList<Type>() : args;
         List<Method> candL = getCandidateSignatures(isSameClass, name, args);
         //OTTIMIZZAZIONI:
         //se la lista è vuota o ha un solo elemento siamo in un caso base
@@ -566,13 +561,14 @@ public class ReferenceType extends ComplexType {
      *          associabile alla chiamata call
      */
     public void bindConstructor(List<Type> call) {
-        call = (call == null)? new ArrayList<Type>() : call;
+        call = (call == null) ? new ArrayList<Type>() : call;
         // Costruttore implicito di default
         if (constructors.isEmpty()) {
-            if( call.isEmpty())
+            if (call.isEmpty()) {
                 return;
-            else
+            } else {
                 throw new EarlyBindingException(/*name,args*/);
+            }
         }
         for (Constructor c : constructors) {
             if (c.isCompatibleWith(call)) {
@@ -596,6 +592,7 @@ public class ReferenceType extends ComplexType {
     public static final ReferenceType OBJECT;
     public static final ReferenceType STRING;
     public static final ReferenceType CLASS;
+
     static {
         OBJECT = new ReferenceType("Object");
         STRING = new ReferenceType("String");

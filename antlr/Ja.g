@@ -6,7 +6,7 @@ tokens {
 	METHODCALL; CONSTRCALL; FIELDACCESS; ARRAYACCESS; DOTCLASS; ARRAYTYPE; 
 	METHOD; FIELD; CONSTR; FPARMS; ARGUMENTS; FPARM; FMULTPARM; MBODY; CBODY;
 	VARDECL; BLOCK; STMT; INIT; CONDITION; UPDATE; DOWHILE; THEN; ARRAYINIT;
-	PREINC; POSTINC; PREDEC; POSTDEC; UNARYPLUS; UNARYMINUS; CAST;
+	PREINC; POSTINC; PREDEC; POSTDEC; UNARYPLUS; UNARYMINUS; CAST; CLASSBODY;
 	//SUPERMETHODCALL; SUPERFIELDACCESS;   Per uniformita' viene preferito   ^(METHODCALL SUPER ...) e ^(FIELDACCESS SUPER ...)
 }
 
@@ -69,7 +69,7 @@ classModifier
     ;
   
 classBody
-    :   '{'! classBodyDeclaration* '}'!
+    :   '{' classBodyDeclaration* '}' -> ^(CLASSBODY classBodyDeclaration*)
     ;
 
 classBodyDeclaration
@@ -78,8 +78,8 @@ classBodyDeclaration
     ;
     
 memberDeclaration
-    :   (modifier type -> modifier type)
-    		( methodDeclaration[$modifier.pub, $type.t] -> ^(METHOD $memberDeclaration methodDeclaration)
+    :   modifier type
+    		( methodDeclaration[$modifier.pub, $type.t] -> ^(METHOD modifier type methodDeclaration)
     		| fieldDeclaration[(CommonTree)$modifier.tree, (CommonTree)$type.tree, $modifier.pub, $type.t] -> fieldDeclaration // FIELD non e' stato riscritto qui per la molteplicita' delle dichiarazioni
     		)
     		
@@ -108,12 +108,12 @@ voidMethodDeclaratorRest[boolean pub, Type t, String methodName]
     ;
 
 variableDeclarator[CommonTree typ] returns [String varName, int arrayDim]
-    :   variableDeclaratorId[$typ] { $varName = $variableDeclaratorId.text; $arrayDim = $variableDeclaratorId.arrayDim; } ('='! variableInitializer)? //-> variableDeclaratorId ^(INIT variableInitializer)?
+    :   variableDeclaratorId[$typ] { $varName = $variableDeclaratorId.varName; $arrayDim = $variableDeclaratorId.arrayDim; } ('='! variableInitializer)? //-> variableDeclaratorId ^(INIT variableInitializer)?
     ;
     
-variableDeclaratorId[CommonTree typ]  returns [int arrayDim]
+variableDeclaratorId[CommonTree typ]  returns [String varName, int arrayDim]
     :   (IDENTIFIER -> {$typ}) ( l+='[' ']' -> ^(ARRAYTYPE $variableDeclaratorId) )* 
-    	{ if($l != null) $arrayDim = $l.size(); } 
+    	{ $varName = $IDENTIFIER.text; if($l != null) $arrayDim = $l.size(); } 
     	->  $variableDeclaratorId IDENTIFIER
     ;
 
@@ -138,7 +138,7 @@ type returns [Type t]
 	
 nonPrimitiveType returns [ComplexType t]
     :	(classType     -> classType    ) ( l+='[' ']' -> ^(ARRAYTYPE $nonPrimitiveType) )* 
-	{ if($l != null) $t = (ComplexType)ParserHelper.createArrayType($classType.t,      $l.size());
+	{ if($l != null) $t = (ComplexType)ParserHelper.createArrayType($classType.t, $l.size());
 	  else $t = $classType.t;
 	}
 			
@@ -170,14 +170,14 @@ primitiveType returns [BasicType bs]
     
 formalParameters returns [ArrayList<Type> args]
 @init {
-	ArrayList<Type> args = new ArrayList<Type>();
+	$args = new ArrayList<Type>();
 }
-    :   '(' formalParameterDecls[args]? ')' {$args = args;} -> {$formalParameterDecls.tree != null}? ^(FPARMS formalParameterDecls)
-    							    -> //else della rewrite rule
+    :  '('!')'! 
+    |  '(' formalParameterDecls[$args] ')' -> ^(FPARMS formalParameterDecls)
     ;
     
 formalParameterDecls[ArrayList<Type> args]
-    :	type variableDeclaratorId[(CommonTree)$type.tree] (',' formalParameterDecls[args])? 
+    :	type variableDeclaratorId[(CommonTree)$type.tree] (',' formalParameterDecls[$args])? 
     	{ $args.add(ParserHelper.createArrayType($type.t, $variableDeclaratorId.arrayDim)); }
     	-> ^(FPARM variableDeclaratorId) formalParameterDecls?
     ;
