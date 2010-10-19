@@ -596,6 +596,7 @@ public class ReferenceType extends ComplexType {
 
     static {
         OBJECT = new ReferenceType("Object");
+        OBJECT.addSuperType(null);
         STRING = new ReferenceType("String");
         STRING.addSuperType(OBJECT);
         CLASS = new ReferenceType("Class");

@@ -535,26 +535,30 @@ selector returns [Type t, boolean isVar]
     :   ^(FIELDACCESS expression IDENTIFIER) 
     	{ $isVar = true;
     	  if(ruleTypeCheck($expression.t)) {
-	    	  if (!$expression.t.isReference())
+	    	  if (!$expression.t.isReference()){
 	    	  	errorLog.add(new CannotBeDereferencedException($expression.t.toString(), $IDENTIFIER.line, $IDENTIFIER.pos)); 
-	    	  ReferenceType expt = (ReferenceType)$expression.t;
-	    	  boolean isSameClass = (expt.getName().equals(rt.getName())); 
-	    	  $t = expt.getField(isSameClass, $IDENTIFIER.text);
-		  if ($t == null) errorLog.add(new CannotFindSymbolException(("field " + $IDENTIFIER.text), expt.getName(), $IDENTIFIER.line, $IDENTIFIER.pos));
+	    	  }else{
+	    	  	ReferenceType expt = (ReferenceType)$expression.t;
+	    	  	boolean isSameClass = (expt.getName().equals(rt.getName())); 
+	    	  	$t = expt.getField(isSameClass, $IDENTIFIER.text);
+		  	if ($t == null) errorLog.add(new CannotFindSymbolException(("field " + $IDENTIFIER.text), expt.getName(), $IDENTIFIER.line, $IDENTIFIER.pos));
+    	  	  }
     	  }
     	} 
     |	^(METHODCALL expression IDENTIFIER arguments?)
         { // Se ci sono argomenti, bisogna richiamare ruleTypeCheck su di essi
           if( ruleTypeCheck($expression.t) && ($arguments.types == null || ruleTypeCheck($arguments.types.toArray(new Type[$arguments.types.size()]))) ) {
-	    	  if (!$expression.t.isReference())
+	    	  if (!$expression.t.isReference()){
 	    	  	errorLog.add(new CannotBeDereferencedException($expression.t.toString(), $IDENTIFIER.line, $IDENTIFIER.pos)); 
-	    	  ReferenceType expt = (ReferenceType)$expression.t;
-	    	  ArrayList<Type> argTypes = $arguments.types; //($arguments.tree == null)?null:$arguments.types;
-	    	  try {
-		    	boolean isSameClass = (expt.getName().equals(rt.getName())); 
-		    	$t = expt.bindMethod(isSameClass, $IDENTIFIER.text, argTypes);
-	    	  } catch (EarlyBindingException ex) {
-	    	  	errorLog.add(new CannotFindSymbolException(("method " + $IDENTIFIER.text + '(' + printArguments(argTypes) + ')'), expt.getName(), $IDENTIFIER.line, $IDENTIFIER.pos));
+	    	  }else{
+	    	  	ReferenceType expt = (ReferenceType)$expression.t;
+	    	  	ArrayList<Type> argTypes = $arguments.types; //($arguments.tree == null)?null:$arguments.types;
+	    	  	try {
+		    		boolean isSameClass = (expt.getName().equals(rt.getName())); 
+		    		$t = expt.bindMethod(isSameClass, $IDENTIFIER.text, argTypes);
+	    	  	} catch (EarlyBindingException ex) {
+	    	  		errorLog.add(new CannotFindSymbolException(("method " + $IDENTIFIER.text + '(' + printArguments(argTypes) + ')'), expt.getName(), $IDENTIFIER.line, $IDENTIFIER.pos));
+	    	  	}
 	    	  }
     	  }
     	}
