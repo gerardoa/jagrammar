@@ -1,3 +1,6 @@
+
+import java.lang.reflect.Array;
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -8,6 +11,8 @@
  * @author Gerardo
  */
 public class Test {
+    public Test(int i)
+            { int i; int j;}
     private int[] a[] = {};
     public void m(){
         
@@ -32,6 +37,14 @@ public class Test {
 
                 if(true){};
         return null;
+    }
+
+    public void prova(){
+       Array a; int i;
+
+
+
+
     }
 
 }
