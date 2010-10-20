@@ -6,3 +6,7 @@
 5. EQ[$ap.tree], etc in Ja.g(271)
 
 6. I costruttori devono avere lo stesso ID della classe
+
+7. Anche gli array hanno campi (lenght) e metodi (quelli di object).
+
+8. 3+2; è uno statement ma noi dovremmo occuparci solo del typechecking...
