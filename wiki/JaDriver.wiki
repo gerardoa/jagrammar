@@ -8,7 +8,12 @@ Compito del driver è quello di far interagire tra loro le due fasi della compil
 
 = In dettaglio =
 
-Compito del driver è anche quello di elaborare l'input pr
+Il primo compito del driver è quello di offrire un'interfaccia all'utente ed elaborare l'input fornito, controllandone la correttezza tramite espressioni regolari.
+
+Prima di iniziare la prima fase della compilazione, la tabella contenente le interfacce delle classi, è inizializzata con le classi predefinite del linguaggio: Object, String, Class. In questo modo qualora si presenti l'occorrenza di una delle suddette classi, verrà  utilizzata l'istanza predefinita, senza ricercare un file per la classe. Se ne deduce che non è possibile compilare file con i seguenti nomi: Object.java, String.java, Class.java, giustificato dall'assenza di namespace che renderebbe indistinguibili tali classi dalle classi del linguaggio.
+
+
+
 
 
 = Uso =
