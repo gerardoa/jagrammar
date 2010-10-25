@@ -381,7 +381,7 @@ superMemberAccess
     ;
 
 arguments
-    :   '('!')'!
+    :   '('! ')'!
     |	'(' expressionList ')' -> ^(ARGUMENTS expressionList)   
     ;
     
