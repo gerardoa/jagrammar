@@ -17,7 +17,7 @@ Il compilatore cercherà le classi da verificare ed eventuali classi referenziat
 
 E' possibile lanciare il compilatore da riga di comando digitando:
 
-java -jar JaCompiler.jar -p <classPath> <Classe1.java> <Classe2.java> ...
+`java -jar JaCompiler.jar -p [<classPath>] <Classe1.java> [<Classe2.java> ...]`
 
 classPath: directory dove cercare le classi specificate.
 
