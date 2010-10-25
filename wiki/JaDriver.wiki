@@ -2,8 +2,24 @@
 
 = Introduzione =
 
-Il processo di compilazione è suddiviso in due fasi, che possono essere associate alle due grammatiche scritte utilizzando il Antlr. 
-Antlr genera per ogni grammatica una classe Java che rappresenta il parser utilizzabile da qualunque applicazione Java.
+Il processo di compilazione è suddiviso in due fasi. A ciascuna fase corrisponde una grammatica descritta dal linguaggio di Antlr. 
+Per ogni grammatica, Antlr genera una classe Java, che rappresenta il parser in grado di riconoscere il linguaggio derivabile dalla grammatica. 
 Compito del driver è quello di far interagire tra loro le due fasi della compilazione, passando il risultato della prima fase alla seconda.
 
+= In dettaglio =
+
+Compito del driver è anche quello di elaborare l'input pr
+
+
+= Uso =
+
+Il compilatore cercherà le classi da verificare ed eventuali classi referenziate, all'interno di una singola directory specificata in input. Se non specificata si assume quella corrente. 
+
+E' possibile lanciare il compilatore da riga di comando digitando:
+
+java -jar JaCompiler.jar [-p <classPath>] <Classe1.java> [<Classe2.java> ...]
+
+classPath: directory dove cercare le classi specificate.
+
+Classe#.java: nome del file contenente la classe java da compilare.
 
