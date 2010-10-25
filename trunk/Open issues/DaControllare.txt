@@ -16,3 +16,7 @@
 9. perchè DOTCLASS e non CLASS, vari accorpamenti possibili: utilizzo della regola type . CLASS
 
 10. è accetabile: new int(); 
+
+11. Chiamata senza argomenti di JaCompiler.jar 
+
+12. Gestire eccezioni di Nino

@@ -1,5 +1,4 @@
 
-import java.lang.reflect.Array;
 
 /*
  * To change this template, choose Tools | Templates
@@ -23,6 +22,7 @@ public class Test {
 
     public void m(int i, int y) {}
      public void m(byte i){}
+     public void m(byte i){}
 
     public Test metodoProlisso(int[] a, float b, Test t) {
                 A aclass = new A();
@@ -30,6 +30,7 @@ public class Test {
 		int ia[][][] = new int[][][]{{{2}}};
     
                 while(j) {
+                    Class c = int.class;
                 }
 
                 for(;i;) {
@@ -40,7 +41,7 @@ public class Test {
     }
 
     public void prova(){
-       Array a; int i;
+        int i;
 
 
 
