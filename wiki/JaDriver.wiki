@@ -22,4 +22,3 @@ java -jar JaCompiler.jar [-p <classPath>] <Classe1.java> [<Classe2.java> ...]
 classPath: directory dove cercare le classi specificate.
 
 Classe#.java: nome del file contenente la classe java da compilare.
-
