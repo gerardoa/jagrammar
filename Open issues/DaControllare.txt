@@ -10,3 +10,9 @@
 7. Anche gli array hanno campi (lenght) e metodi (quelli di object).
 
 8. 3+2; è uno statement ma noi dovremmo occuparci solo del typechecking...
+
+8. Non ci sono controlli sui DOTCLASS, IDENTIFIER deve essere un tipo
+
+9. perchè DOTCLASS e non CLASS, vari accorpamenti possibili: utilizzo della regola type . CLASS
+
+10. è accetabile: new int(); 
