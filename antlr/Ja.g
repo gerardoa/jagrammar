@@ -340,10 +340,11 @@ primary
     |   SUPER! superMemberAccess
     |   literal
     |   IDENTIFIER
-    |   (IDENTIFIER -> IDENTIFIER) ('[' ']' -> ^(ARRAYTYPE $primary))+ ('.' CLASS -> ^(DOTCLASS $primary))
+    //|   (IDENTIFIER -> IDENTIFIER) ('[' ']' -> ^(ARRAYTYPE $primary))+ ('.' CLASS -> ^(DOTCLASS $primary))
     | 	IDENTIFIER  arguments -> ^(METHODCALL THIS IDENTIFIER arguments?)
-    |	IDENTIFIER '.' CLASS -> ^(DOTCLASS IDENTIFIER)
-    |   (primitiveType -> primitiveType) ('[' ']' -> ^(ARRAYTYPE $primary))* ('.' CLASS -> ^(DOTCLASS $primary))
+    //|	IDENTIFIER '.' CLASS -> ^(DOTCLASS IDENTIFIER)
+    //|   (primitiveType -> primitiveType) ('[' ']' -> ^(ARRAYTYPE $primary))* ('.' CLASS -> ^(DOTCLASS $primary))
+    |	type '.' CLASS -> ^(DOTCLASS type)
     |   VOID '.' CLASS -> ^(DOTCLASS VOID)
     ;
     

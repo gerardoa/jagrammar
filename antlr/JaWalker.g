@@ -49,6 +49,9 @@ scope JaScope {
 	    return false;
 	}
 	
+	/** Restituisce il tipo di id. 	Controlla se e' definito in JaScope, in caso non viene 
+    	 *  trovato verifica se è un campo dichiarato nella classe.
+ 	 */
 	private Type getVariableType(String id) {
 	    for (int s=$JaScope.size()-1; s>=0; s--) {
 	        if ( $JaScope[s]::symbols.containsKey(id) ) {
@@ -82,6 +85,10 @@ scope JaScope {
 		return list.substring(1, list.length() - 1);
 	}
 	
+	
+	/* Aggiunge una variabile a JaScope. Se essa è stata già definita precedentemente
+	 * viene segnalato un errore.
+	 */
 	private void addVariableToScope(CommonTree identifier, Type t) { 
 	    String id = identifier.getText();
 	    int line = identifier.getLine();
@@ -284,7 +291,6 @@ formalParameters
     
 formalParameterDecls
     :	^(FPARM variableDeclaratorId) { formalParameters.add($variableDeclaratorId.t.toString()); addVariableToScope($variableDeclaratorId.id, $variableDeclaratorId.t); } formalParameterDecls?
-//    |	^(FMULTPARM variableDeclaratorId) { formalParameters.add($variableDeclaratorId.id.getText()); addVariableToScope($variableDeclaratorId.id, $variableDeclaratorId.t);}
     ;
     
 methodBody
@@ -296,9 +302,6 @@ constructorBody
 scope JaScope;
 @init {
 	$JaScope::symbols = new HashMap<String, Type>();
-}
-@after {
-	System.out.println("constructorBody: " + getMethodSignature() + " Scope: " + $JaScope::symbols);
 }
     :	^(CBODY explicitConstructorInvocation? blockStatement*)
     ;
@@ -515,7 +518,6 @@ expression returns [Type t, boolean isVar]
     ;        
     
 primary returns [Type t, boolean isVar]
-    //:   expression
     :	THIS { $t = rt; }
     |   superMemberAccess { $t = $superMemberAccess.t; }
     |   literal { $t = $literal.t; }
@@ -525,10 +527,8 @@ primary returns [Type t, boolean isVar]
     	  if ($t == null) errorLog.add(new CannotFindSymbolException(("variable " + $IDENTIFIER.text), getMethodSignature(), $IDENTIFIER.line, $IDENTIFIER.pos));
     	}
     //|   ^(METHODCALL THIS IDENTIFIER arguments? ) riconosciuto in selector
-    |   ^(DOTCLASS ^(ARRAYTYPE type)) { $t = ReferenceType.CLASS; }  
-    |	^(DOTCLASS IDENTIFIER)        { $t = ReferenceType.CLASS; }
-    |   ^(DOTCLASS primitiveType)     { $t = ReferenceType.CLASS; }
-    |   ^(DOTCLASS VOID)              { $t = ReferenceType.CLASS; }
+    |   ^(DOTCLASS type) { $t = ReferenceType.CLASS; }  
+    |   ^(DOTCLASS VOID) { $t = ReferenceType.CLASS; }
     ;
     
 selector returns [Type t, boolean isVar]
@@ -572,8 +572,8 @@ selector returns [Type t, boolean isVar]
     ;
 
 creator returns [Type t]
-    :    acr=arrayCreatorRest arrayInitializer[$acr.t.getHostType()]?
-    |    createdName classCreatorRest? 
+    :    acr=arrayCreatorRest arrayInitializer[$acr.t.getHostType()]? {$t = $acr.t;} 
+    |    createdName classCreatorRest? {$t = $createdName.t;}
     ;
 
 
