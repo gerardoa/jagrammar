@@ -1,0 +1,9 @@
+#Descrizione del driver per il compilatore Ja
+
+= Introduzione =
+
+Il processo di compilazione è suddiviso in due fasi, che possono essere associate alle due grammatiche scritte utilizzando il Antlr. 
+Antlr genera per ogni grammatica una classe Java che rappresenta il parser utilizzabile da qualunque applicazione Java.
+Compito del driver è quello di far interagire tra loro le due fasi della compilazione, passando il risultato della prima fase alla seconda.
+
+
