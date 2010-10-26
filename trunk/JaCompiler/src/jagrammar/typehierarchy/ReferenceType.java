@@ -68,6 +68,8 @@ public class ReferenceType extends ComplexType {
      * Ricerca la presenza di un campo nella classe, e nelle sue superclassi.
      * Restituisce il tipo del campo se lo trova, null altrimenti.
      * @param fieldName Nome del campo
+	 * @param isSameClass flag valorizzato a TRUE se l'accesso al campo 
+				avviene da un punto all'interno della classe in cui è definito
      * @return Tipo del campo
      */
     public Type getField(boolean isSameClass, String fieldName) {
@@ -202,7 +204,6 @@ public class ReferenceType extends ComplexType {
         private ArrayList<Type> arguments;
     }
 
-    //EDIT: javadoc
 
     /*
      * permette l'aggiunta di un metodo alla classe referenziata da this.
@@ -588,7 +589,7 @@ public class ReferenceType extends ComplexType {
     private Map<String, Set<Method>> methods;
     private Map<String, Field> fields;
     private List<Constructor> constructors;
-    //i referenceType di String ed Object hanno particolare dignita',
+    //i referenceType di String, Object, e Class hanno particolare dignita',
     //quindi divengono delle costanti di classe
     public static final ReferenceType OBJECT;
     public static final ReferenceType STRING;
