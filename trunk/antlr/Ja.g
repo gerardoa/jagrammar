@@ -132,19 +132,18 @@ modifier returns [boolean pub]
     ;
 
 type returns [Type t]
-    :	nonPrimitiveType { $t = $nonPrimitiveType.t; }
-    |	primitiveType 	 { $t = $primitiveType.bs;   }
+    :	primitiveType { $t = $primitiveType.bs; }
+    |	classType     { $t = $classType.t;      }
+    |	arrayType     { $t = $arrayType.t;      }
     ;
 	
-nonPrimitiveType returns [ComplexType t]
-    :	(classType     -> classType    ) ( l+='[' ']' -> ^(ARRAYTYPE $nonPrimitiveType) )* 
-	{ if($l != null) $t = (ComplexType)ParserHelper.createArrayType($classType.t, $l.size());
-	  else $t = $classType.t;
-	}
-			
-    |	(primitiveType -> primitiveType) ( l+='[' ']' -> ^(ARRAYTYPE $nonPrimitiveType) )+ 
-	{ $t = (ComplexType)ParserHelper.createArrayType($primitiveType.bs, $l.size()); }
-    ;
+arrayType returns [ArrayType t]
+    :   (primitiveType -> primitiveType) ( l+='[' ']' -> ^(ARRAYTYPE $arrayType) )+ 
+	{ $t = (ArrayType)ParserHelper.createArrayType($primitiveType.bs, $l.size()); }
+    
+    |   (classType     -> classType    ) ( l+='[' ']' -> ^(ARRAYTYPE $arrayType) )+ 
+	{ $t = (ArrayType)ParserHelper.createArrayType($classType.t, $l.size());      }
+    ;	
 
 classType returns [ReferenceType t]
     :	IDENTIFIER { if(cTab.containsKey($IDENTIFIER.text)) {
@@ -323,9 +322,12 @@ unaryExpressionNotPlusMinus
     
     |  	lp='(' primitiveType ')' unaryExpression
     		-> ^(CAST[$lp, "CAST"] primitiveType unaryExpression)
+    
+    |  	lp='(' arrayType ')' unaryExpression
+    		-> ^(CAST[$lp, "CAST"] arrayType unaryExpression)
     		
-    |   lp='(' nonPrimitiveType  ')' unaryExpressionNotPlusMinus
-    		-> ^(CAST[$lp, "CAST"] nonPrimitiveType unaryExpressionNotPlusMinus)
+    |   lp='(' classType  ')' unaryExpressionNotPlusMinus
+    		-> ^(CAST[$lp, "CAST"] classType unaryExpressionNotPlusMinus)
     		
     |   NEW^ creator
     
@@ -340,10 +342,7 @@ primary
     |   SUPER! superMemberAccess
     |   literal
     |   IDENTIFIER
-    //|   (IDENTIFIER -> IDENTIFIER) ('[' ']' -> ^(ARRAYTYPE $primary))+ ('.' CLASS -> ^(DOTCLASS $primary))
     | 	IDENTIFIER  arguments -> ^(METHODCALL THIS IDENTIFIER arguments?)
-    //|	IDENTIFIER '.' CLASS -> ^(DOTCLASS IDENTIFIER)
-    //|   (primitiveType -> primitiveType) ('[' ']' -> ^(ARRAYTYPE $primary))* ('.' CLASS -> ^(DOTCLASS $primary))
     |	type '.' CLASS -> ^(DOTCLASS type)
     |   VOID '.' CLASS -> ^(DOTCLASS VOID)
     ;
