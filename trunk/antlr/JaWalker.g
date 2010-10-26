@@ -50,7 +50,7 @@ scope JaScope {
 	}
 	
 	/** Restituisce il tipo di id. 	Controlla se e' definito in JaScope, in caso non viene 
-    	 *  trovato verifica se è un campo dichiarato nella classe.
+    	 *  trovato verifica se e' un campo dichiarato nella classe.
  	 */
 	private Type getVariableType(String id) {
 	    for (int s=$JaScope.size()-1; s>=0; s--) {
@@ -86,7 +86,7 @@ scope JaScope {
 	}
 	
 	
-	/* Aggiunge una variabile a JaScope. Se essa è stata già definita precedentemente
+	/* Aggiunge una variabile a JaScope. Se essa e' stata gia' definita precedentemente
 	 * viene segnalato un errore.
 	 */
 	private void addVariableToScope(CommonTree identifier, Type t) { 
