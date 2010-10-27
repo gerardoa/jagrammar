@@ -58,7 +58,7 @@ public class JaDriver {
                 return;
             }
         }
-        
+
         JaParser.compilationUnit_return cuTree = null;
         System.out.println("Start compilation...\n");
         // Mappa delle classi, con chiave il nome della classe

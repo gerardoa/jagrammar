@@ -21,7 +21,7 @@ scope JaScope {
 	import java.util.LinkedList;
 }
 
-@members {
+@members{
 
 	private ErrorLogger errorLog;
 	private Map<String, ReferenceType> cTab = new HashMap<String, ReferenceType>(); // inizializzazione per ANTLRWORKS
@@ -50,7 +50,7 @@ scope JaScope {
 	}
 	
 	/** Restituisce il tipo di id. 	Controlla se e' definito in JaScope, in caso non viene 
-    	 *  trovato verifica se e' un campo dichiarato nella classe.
+    	 *  trovato verifica se è un campo dichiarato nella classe.
  	 */
 	private Type getVariableType(String id) {
 	    for (int s=$JaScope.size()-1; s>=0; s--) {
@@ -107,6 +107,13 @@ scope JaScope {
 	    return arithmeticOperation(operator, op1, op2);
 	}
 
+        /** Effetua i controlli di tipo sugli operandi su cui sono applicati gli operatori aritmetici (somma, 
+	 *  sottrazione, divisione, resto della divisione): entrambi operandi devono essere di tipo numerico. 
+	 *  In caso contrario viene aggiunto un errore di tipo CannotBeAppliedToException al log. 
+	 *  Per determinare il tipo del risultato dell'operazione si esegue una promozione
+	 *  dei tipi degli operandi se essi sono assegnabili a BasicType.INT, dopo di che si 
+	 *  prende il tipo "più grande" tra i due, cioè quello a cui ne sono entrambi assegnabili.   
+	 */
 	private  Type arithmeticOperation(CommonTree operator, Type op1, Type op2) {
 	    // controllo che siano numerici o char
 	    if ( !(op1.isNumeric() && op2.isNumeric()) ) {
@@ -122,6 +129,10 @@ scope JaScope {
 	    return (op1.isAssignableTo(op2)) ? op2 : op1;	   
 	}
 	
+	/** Effetua il controllo di tipo sugli operandi su cui sono applicati gli operatori booleani  
+	 *  (AND, OR, ==, !=): entrambi operandi devono essere di tipo booleano. 
+	 *  In caso contrario viene aggiunto un errore di tipo CannotBeAppliedToException al log. 
+	 */
 	private  Type booleanOperation(CommonTree operator, Type op1, Type op2) {
 	    // controllo che siano entrambi boolean
 	    if ( !(op1 == BasicType.BOOLEAN && op2 == BasicType.BOOLEAN) ) {
@@ -140,7 +151,7 @@ scope JaScope {
 	    return var;
 	}
 	
-	/** Controlla che le dimensioni degli array sono specificati correttamente, ovvero con un numero di tipo intero
+	/** Controlla che le dimensioni degli array sono specificati correttamente, ovvero con un numero di tipo intero.
 	*/
 	private void arrayExprCheck(CommonTree bracket, Type expr) {
 	    if (!expr.isAssignableTo(BasicType.INT)) {
@@ -257,15 +268,17 @@ modifier
     ;
 
 type returns [Type t]
-    :	nonPrimitiveType { $t = $nonPrimitiveType.t; }
-    |	primitiveType    { $t = $primitiveType.bs;   }
+    :	primitiveType { $t = $primitiveType.bs; }
+    |	classType     { $t = $classType.t;      }
+    |	arrayType     { $t = $arrayType.t;      }
     ;
 	
-nonPrimitiveType returns [ComplexType t]
-    :	^(ARRAYTYPE npt=nonPrimitiveType) { $t = (ComplexType)ParserHelper.createArrayType($npt.t, 1); }
-    |   classType  	  	          { $t = $classType.t; }     			
-    |	^(ARRAYTYPE primitiveType)        { $t = (ComplexType)ParserHelper.createArrayType($primitiveType.bs, 1); }
+arrayType returns [ArrayType t]
+    :	^(ARRAYTYPE at=arrayType)  { $t = (ComplexType)ParserHelper.createArrayType($at.t, 1);             }
+    |   ^(ARRAYTYPE classType)     { $t = (ComplexType)ParserHelper.createArrayType($classType.t, 1);      }     			
+    |	^(ARRAYTYPE primitiveType) { $t = (ComplexType)ParserHelper.createArrayType($primitiveType.bs, 1); }
     ;
+      
 
 classType returns [ReferenceType t]
     :	IDENTIFIER 
@@ -487,7 +500,7 @@ expression returns [Type t, boolean isVar]
 	    	  $t = $pt.bs;
     	  }
     	}
-    |   ^(CAST npt=nonPrimitiveType e=expression)
+    |   ^(CAST (npt=arrayType | npt=classType) e=expression)
     	{ if(ruleTypeCheck($npt.t, $e.t)) {
 	    	  if (!$e.t.isCastableTo($npt.t)) errorLog.add(new InconvertibleTypesException($npt.t.toString(), $e.t.toString(), $CAST.line, $CAST.pos));
 	    	  $t = $npt.t;
