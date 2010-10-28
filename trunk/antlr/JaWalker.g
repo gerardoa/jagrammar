@@ -274,9 +274,9 @@ type returns [Type t]
     ;
 	
 arrayType returns [ArrayType t]
-    :	^(ARRAYTYPE at=arrayType)  { $t = (ComplexType)ParserHelper.createArrayType($at.t, 1);             }
-    |   ^(ARRAYTYPE classType)     { $t = (ComplexType)ParserHelper.createArrayType($classType.t, 1);      }     			
-    |	^(ARRAYTYPE primitiveType) { $t = (ComplexType)ParserHelper.createArrayType($primitiveType.bs, 1); }
+    :	^(ARRAYTYPE at=arrayType)  { $t = (ArrayType)ParserHelper.createArrayType($at.t, 1);             }
+    |   ^(ARRAYTYPE classType)     { $t = (ArrayType)ParserHelper.createArrayType($classType.t, 1);      }     			
+    |	^(ARRAYTYPE primitiveType) { $t = (ArrayType)ParserHelper.createArrayType($primitiveType.bs, 1); }
     ;
       
 
@@ -500,12 +500,18 @@ expression returns [Type t, boolean isVar]
 	    	  $t = $pt.bs;
     	  }
     	}
-    |   ^(CAST (npt=arrayType | npt=classType) e=expression)
-    	{ if(ruleTypeCheck($npt.t, $e.t)) {
-	    	  if (!$e.t.isCastableTo($npt.t)) errorLog.add(new InconvertibleTypesException($npt.t.toString(), $e.t.toString(), $CAST.line, $CAST.pos));
-	    	  $t = $npt.t;
+    |   ^(CAST at=arrayType e=expression)
+    	{ if(ruleTypeCheck($at.t, $e.t)) {
+	    	  if (!$e.t.isCastableTo($at.t)) errorLog.add(new InconvertibleTypesException($at.t.toString(), $e.t.toString(), $CAST.line, $CAST.pos));
+	    	  $t = $at.t;
     	  }
     	}
+    |   ^(CAST ct=classType e=expression)
+    	{ if(ruleTypeCheck($ct.t, $e.t)) {
+	    	  if (!$e.t.isCastableTo($ct.t)) errorLog.add(new InconvertibleTypesException($ct.t.toString(), $e.t.toString(), $CAST.line, $CAST.pos));
+	    	  $t = $ct.t;
+    	  }
+    	}	
     |   ^(NEW creator) { $t = $creator.t; }
     |	^(op=(POSTINC | POSTDEC) (s=selector | p=primary))
      	{ Type t = null;
