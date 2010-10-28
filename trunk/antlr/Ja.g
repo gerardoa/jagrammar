@@ -14,7 +14,8 @@ tokens {
 	package jagrammar;
 	
 	import jagrammar.typehierarchy.*;
-	import jagrammar.util.ParserHelper;
+	import jagrammar.typehierarchy.exception.*;
+	import jagrammar.util.*;
 	import java.util.Queue;
 	import java.util.LinkedList;
 	import java.util.HashMap;
@@ -25,7 +26,8 @@ tokens {
 	package jagrammar;
 }
 
-@members {        
+@members {
+	private ErrorLogger errorLog;        
 	private Queue<String> todo = new LinkedList<String>(); // inizializzazione per ANTLRWORKS
 	private Map<String, ReferenceType> cTab = new HashMap<String, ReferenceType>(); // inizializzazione per ANTLRWORKS
 	private ReferenceType rt;
@@ -43,15 +45,31 @@ tokens {
     	}
 }
 
-// starting point for parsing a java file
+// Regola iniziale
 compilationUnit
-    :  classDeclaration^ // toglie nil
-    | ';'
+    :   classDeclaration^ // toglie nil
+    	{
+       	if(!errorLog.isEmpty()) {
+	   System.out.flush();
+	   try {
+	   	Thread.sleep(100);
+	   } catch (InterruptedException ex) {
+	   }
+	   System.err.println("ERROR LOG:" + errorLog);
+           System.err.flush();
+	   try {
+	   	Thread.sleep(100);
+	   } catch (InterruptedException ex) {
+	   }
+        }
+       }
+    |   ';'
     ;
     
 classDeclaration
-    :   classModifier! CLASS^ IDENTIFIER 
-    	{ // Potrebbe gia' esistere l'istanza prima che abbia analizzato il file .java
+    :   PUBLIC! CLASS^ IDENTIFIER 
+    	{ errorLog= new ErrorLogger($IDENTIFIER.text);
+    	  // Potrebbe gia' esistere l'istanza prima che abbia analizzato il file .java
     	  // Aggiunta effettuata dalla regola classType per recuperare subito l'istanza della classe anche se priva di interfaccia
 	  if(cTab.containsKey($IDENTIFIER.text)) {
 	  	rt = cTab.get($IDENTIFIER.text);
@@ -62,10 +80,6 @@ classDeclaration
 	}
         (EXTENDS! classType { rt.addSuperType($classType.t); } )?		    	
     	classBody
-    ;
-
-classModifier
-    :   PUBLIC
     ;
   
 classBody
@@ -78,33 +92,31 @@ classBodyDeclaration
     ;
     
 memberDeclaration
-    :   modifier type
-    		( methodDeclaration[$modifier.pub, $type.t] -> ^(METHOD modifier type methodDeclaration)
-    		| fieldDeclaration[(CommonTree)$modifier.tree, (CommonTree)$type.tree, $modifier.pub, $type.t] -> fieldDeclaration // FIELD non e' stato riscritto qui per la molteplicita' delle dichiarazioni
-    		)
-    		
-    |   modifier VOID IDENTIFIER voidMethodDeclaratorRest[$modifier.pub, VoidType.TYPE, $IDENTIFIER.text] 
-    	-> ^(METHOD modifier VOID IDENTIFIER voidMethodDeclaratorRest)
+    :   m=modifier t=type IDENTIFIER formalParameters bracketsOpt[(CommonTree)$t.tree] methodBody  	
+    	{ Type typ = ParserHelper.createArrayType($t.t, $bracketsOpt.arrayDim);
+    	  try { rt.addMethod($m.pub, typ, $IDENTIFIER.text, $formalParameters.args); } catch(UnacceptableMethodException ex) { errorLog.add(ex, $IDENTIFIER.line, $IDENTIFIER.pos); } 
+    	}
+    	-> ^(METHOD modifier bracketsOpt IDENTIFIER formalParameters? methodBody)
+    	    
+    |   m=modifier! t=type! fieldDeclaration[(CommonTree)$m.tree, (CommonTree)$t.tree, $m.pub, $t.t] // FIELD non e' stato riscritto qui per la molteplicita' delle dichiarazioni
+        		
+    |   m=modifier VOID IDENTIFIER formalParameters methodBody 
+        { try { rt.addMethod($m.pub, VoidType.TYPE, $IDENTIFIER.text, $formalParameters.args); } catch(UnacceptableMethodException ex) { errorLog.add(ex, $IDENTIFIER.line, $IDENTIFIER.pos); } }
+    	-> ^(METHOD modifier VOID IDENTIFIER formalParameters? methodBody)
     	
     |   modifier IDENTIFIER formalParameters constructorBody 
-    	{ rt.addConstructor($modifier.pub, $formalParameters.args); }
+    	{ if(rt.getName().equals($IDENTIFIER.text)) {
+    		try { rt.addConstructor($modifier.pub, $formalParameters.args); } catch(UnacceptableConstructorException ex) { errorLog.add(ex, $IDENTIFIER.line, $IDENTIFIER.pos); } 
+   	  }
+    	}
     	-> ^(CONSTR modifier IDENTIFIER formalParameters? constructorBody?)
     ;
 
-methodDeclaration[boolean pub, Type t]
-    :   IDENTIFIER formalParameters methodBody { rt.addMethod($pub, $t, $IDENTIFIER.text, $formalParameters.args); }
-    	// -> ^(FPARM formalParameters methodBody?)
-    ;
-
 fieldDeclaration[CommonTree mod, CommonTree typ, boolean pub, Type t]
-    :   v1=variableDeclarator[$typ]      { rt.addField($v1.varName, ParserHelper.createArrayType($t, $v1.arrayDim), $pub); } 
-        (',' v2=variableDeclarator[$typ] { rt.addField($v2.varName, ParserHelper.createArrayType($t, $v2.arrayDim), $pub); } 
+    :   v1=variableDeclarator[$typ]      { try { rt.addField($v1.varName, ParserHelper.createArrayType($t, $v1.arrayDim), $pub); } catch(UnacceptableFieldException ex) { errorLog.add(ex, $v1.start.getLine(), $v1.start.getCharPositionInLine()); } } 
+        (',' v2=variableDeclarator[$typ] { try { rt.addField($v2.varName, ParserHelper.createArrayType($t, $v2.arrayDim), $pub); } catch(UnacceptableFieldException ex) { errorLog.add(ex, $v2.start.getLine(), $v2.start.getCharPositionInLine()); } } 
         )* ';' 
         -> ^(FIELD {$mod} variableDeclarator)+ 
-    ;
-    
-voidMethodDeclaratorRest[boolean pub, Type t, String methodName]
-    :	formalParameters methodBody { rt.addMethod($pub, $t, $methodName, $formalParameters.args); }
     ;
 
 variableDeclarator[CommonTree typ] returns [String varName, int arrayDim]
@@ -112,9 +124,9 @@ variableDeclarator[CommonTree typ] returns [String varName, int arrayDim]
     ;
     
 variableDeclaratorId[CommonTree typ]  returns [String varName, int arrayDim]
-    :   (IDENTIFIER -> {$typ}) ( l+='[' ']' -> ^(ARRAYTYPE $variableDeclaratorId) )* 
-    	{ $varName = $IDENTIFIER.text; if($l != null) $arrayDim = $l.size(); } 
-    	->  $variableDeclaratorId IDENTIFIER
+    :   IDENTIFIER bracketsOpt[$typ]
+    	{ $varName = $IDENTIFIER.text; $arrayDim = $bracketsOpt.arrayDim; } 
+    	->  bracketsOpt IDENTIFIER
     ;
 
 variableInitializer
@@ -138,11 +150,11 @@ type returns [Type t]
     ;
 	
 arrayType returns [ArrayType t]
-    :   (primitiveType -> primitiveType) ( l+='[' ']' -> ^(ARRAYTYPE $arrayType) )+ 
-	{ $t = (ArrayType)ParserHelper.createArrayType($primitiveType.bs, $l.size()); }
+    :   primitiveType! brackets[(CommonTree)$primitiveType.tree] 
+	{ $t = (ArrayType)ParserHelper.createArrayType($primitiveType.bs, $brackets.arrayDim); }
     
-    |   (classType     -> classType    ) ( l+='[' ']' -> ^(ARRAYTYPE $arrayType) )+ 
-	{ $t = (ArrayType)ParserHelper.createArrayType($classType.t, $l.size());      }
+    |   classType!     brackets[(CommonTree)$classType.tree] 
+	{ $t = (ArrayType)ParserHelper.createArrayType($classType.t, $brackets.arrayDim);      }
     ;	
 
 classType returns [ReferenceType t]
@@ -190,7 +202,8 @@ constructorBody
     ;
 
 explicitConstructorInvocation
-    :   ((THIS -> THIS) | (SUPER -> SUPER)) arguments ';' -> ^(CONSTRCALL $explicitConstructorInvocation arguments?)
+    :   THIS  arguments ';' -> ^(CONSTRCALL THIS  arguments?)
+    |   SUPER arguments ';' -> ^(CONSTRCALL SUPER arguments?)
     ;
 
 literal 
@@ -227,13 +240,20 @@ localVariableDeclaration
 
 statement
     :   block -> ^(BLOCK block?)
+    
     |   tk=IF parExpression statement elseStmt -> ^(IF ^(CONDITION[$tk, "CONDITION"] parExpression) (^(THEN statement))? elseStmt?)
+    
     |   FOR lp='(' forInit? ';' expression? ';' forUpdate? ')' statement 
-    		-> ^(FOR ^(INIT forInit)? ^(CONDITION[$lp, "CONDITION"] expression)? ^(UPDATE forUpdate)? statement )   	
+    	-> ^(FOR ^(INIT forInit)? ^(CONDITION[$lp, "CONDITION"] expression)? ^(UPDATE forUpdate)? statement ) 
+    		  	
     |   tk=WHILE parExpression statement -> ^(WHILE ^(CONDITION[$tk, "CONDITION"] parExpression) statement)
+    
     |   DO statement tk=WHILE parExpression ';' -> ^(DOWHILE ^(CONDITION[$tk, "CONDITION"] parExpression) statement)
+    
     |   RETURN^ expression? ';'!
+    
     |   ';'! 
+    
     |   statementExpression ';' -> ^(STMT statementExpression)
     ;
     
@@ -348,15 +368,14 @@ primary
     ;
     
 selector [CommonTree primary]
-    :   '.' IDENTIFIER -> ^(FIELDACCESS {$primary} IDENTIFIER)
-    |	'.' IDENTIFIER arguments -> ^(METHODCALL {$primary} IDENTIFIER arguments?)
-    |   lb='[' expression ']'-> ^(ARRAYACCESS[$lb, "ARRAYACCESS"] {$primary} expression)
+    :   '.' IDENTIFIER           -> ^(FIELDACCESS {$primary} IDENTIFIER)
+    |	'.' IDENTIFIER arguments -> ^(METHODCALL  {$primary} IDENTIFIER arguments?)
+    |   lb='[' expression ']'    -> ^(ARRAYACCESS[$lb, "ARRAYACCESS"] {$primary} expression)
     ;
 
 creator
-    :	createdName ( arrayCreatorRest[(CommonTree)$createdName.tree] -> arrayCreatorRest
-    	            | classCreatorRest 				      -> createdName classCreatorRest? 
-    	            ) 
+    :	createdName! arrayCreatorRest[(CommonTree)$createdName.tree]
+    |	createdName  classCreatorRest
     ;
 
 createdName
@@ -365,10 +384,9 @@ createdName
     ;
     
 arrayCreatorRest[CommonTree createdName]
-    :   (lb='['']' -> ^(ARRAYTYPE[$lb, "ARRAYTYPE"]  {$createdName})) ( (lb='[' ']') -> ^(ARRAYTYPE[$lb, "ARRAYTYPE"] $arrayCreatorRest) )* 
-    		(arrayInitializer  -> $arrayCreatorRest arrayInitializer)    
-    |	(lb='[' expression ']' -> ^(ARRAYTYPE[$lb, "ARRAYTYPE"] expression {$createdName})) ( (lb='[' expression ']') -> ^(ARRAYTYPE[$lb, "ARRAYTYPE"] expression $arrayCreatorRest ) )*  
-    		( (lb='['']') -> ^(ARRAYTYPE[$lb, "ARRAYTYPE"] $arrayCreatorRest) )*
+    :   brackets[createdName] arrayInitializer   
+    |	(lb='[' expression ']' -> ^(ARRAYTYPE[$lb, "ARRAYTYPE"] expression {$createdName})) ( lb='[' expression ']' -> ^(ARRAYTYPE[$lb, "ARRAYTYPE"] expression $arrayCreatorRest ) )*  
+    		bracketsOpt[(CommonTree)$arrayCreatorRest.tree] -> bracketsOpt
     ; 
 
 classCreatorRest
@@ -376,15 +394,26 @@ classCreatorRest
     ;   
    
 superMemberAccess 
-    :	'.' IDENTIFIER -> ^(FIELDACCESS SUPER IDENTIFIER)
-    |   '.' IDENTIFIER arguments -> ^( METHODCALL SUPER IDENTIFIER arguments?)
+    :	'.' IDENTIFIER           -> ^(FIELDACCESS SUPER IDENTIFIER)
+    |   '.' IDENTIFIER arguments -> ^(METHODCALL  SUPER IDENTIFIER arguments?)
     ;
 
 arguments
     :   '('! ')'!
     |	'(' expressionList ')' -> ^(ARGUMENTS expressionList)   
     ;
-    
+
+brackets[CommonTree t] returns [int arrayDim]
+    :	lb='['']' bracketsOpt[$t] 
+    	{ $arrayDim = $bracketsOpt.arrayDim + 1; }
+    	-> ^(ARRAYTYPE[$lb, "ARRAYTYPE"] bracketsOpt )
+    	
+    ;
+  
+bracketsOpt[CommonTree t] returns [int arrayDim]
+    :  	(-> {$t})  l +=(lb='['']' -> ^(ARRAYTYPE[$lb, "ARRAYTYPE"] $bracketsOpt ))*
+    	{ if($l != null) $arrayDim = $l.size(); }
+    ;
 // LEXER
     
 fragment
@@ -443,35 +472,24 @@ DOUBLELITERAL
 
 CHARLITERAL
     :   '\'' 
-        (   EscapeSequence 
-        |   ~( '\'' | '\\' | '\r' | '\n' )
-        ) 
+           ( EscapeSequence | ~( '\'' | '\\' | '\r' | '\n' ) ) 
         '\''
     ; 
 
 STRINGLITERAL
     :   '"' 
-        (   EscapeSequence
-        |   ~( '\\' | '"' | '\r' | '\n' )        
-        )* 
-        '"' 
+    	   ( EscapeSequence | ~( '\\' | '"' | '\r' | '\n' ) )*  
+    	'"' 
     ;
         
 fragment
 EscapeSequence 
-    :   '\\' 
-    	( 't' 
-        | 'n' 
-        | 'r' 
-        | '\"' 
-        | '\'' 
-        | '\\'
-        )          
+    :   '\\' ( 't' | 'n' | 'r'  | '\"'  | '\'' | '\\' )          
     ;     
 	
 BOOLEANLITERAL
-    : 'true'
-    | 'false'
+    :   'true'
+    |   'false'
     ;
     
 NULLLITERAL
@@ -515,11 +533,7 @@ VOID
     ;	
 	
 WS  
-    :   ( ' '
-        | '\r'
-        | '\t'
-        | '\n'
-        ) 
+    :   ( ' ' | '\r' | '\t' | '\n' ) 
 	{ $channel = HIDDEN; }          
     ;
 
@@ -619,15 +633,8 @@ COMPAREOP
     ;    
 
 IDENTIFIER
-    :	( Letter 
-    	| Currency 
-	| '_'
-	)
-	( Digit 
-	| Letter 
-	| Currency 
-	| '_'
-	)*
+    :	( Letter | Currency | '_' )
+		( Digit | Letter | Currency | '_' )*
     ;    			
    
 fragment
