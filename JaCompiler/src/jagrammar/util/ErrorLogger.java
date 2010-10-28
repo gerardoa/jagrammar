@@ -25,7 +25,6 @@ public class ErrorLogger {
     }
     private String classFileName;
     private List<JaCompileException> exceptions = new LinkedList<JaCompileException>();
-    private List<StmtText> statements = new LinkedList<StmtText>();
 
     public ErrorLogger(String className) {
         classFileName = className + ".java";
@@ -39,9 +38,6 @@ public class ErrorLogger {
         exceptions.add(ex);
     }
 
-    public void setStmtText(String stmtText) {
-        statements.add(new StmtText(stmtText, exceptions.size()));
-    }
 
     @Override
     public String toString() {
