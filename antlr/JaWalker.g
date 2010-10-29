@@ -50,7 +50,7 @@ scope JaScope {
 	}
 	
 	/** Restituisce il tipo di id. 	Controlla se e' definito in JaScope, in caso non viene 
-    	 *  trovato verifica se è un campo dichiarato nella classe.
+    	 *  trovato verifica se e' un campo dichiarato nella classe.
  	 */
 	private Type getVariableType(String id) {
 	    for (int s=$JaScope.size()-1; s>=0; s--) {
@@ -112,7 +112,7 @@ scope JaScope {
 	 *  In caso contrario viene aggiunto un errore di tipo CannotBeAppliedToException al log. 
 	 *  Per determinare il tipo del risultato dell'operazione si esegue una promozione
 	 *  dei tipi degli operandi se essi sono assegnabili a BasicType.INT, dopo di che si 
-	 *  prende il tipo "più grande" tra i due, cioè quello a cui ne sono entrambi assegnabili.   
+	 *  prende il tipo "piu' grande" tra i due, cioe' quello a cui ne sono entrambi assegnabili.   
 	 */
 	private  Type arithmeticOperation(CommonTree operator, Type op1, Type op2) {
 	    // controllo che siano numerici o char
