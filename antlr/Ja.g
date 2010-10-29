@@ -7,6 +7,7 @@ tokens {
 	METHOD; FIELD; CONSTR; FPARMS; ARGUMENTS; FPARM; FMULTPARM; MBODY; CBODY;
 	VARDECL; BLOCK; STMT; INIT; CONDITION; UPDATE; DOWHILE; THEN; ARRAYINIT;
 	PREINC; POSTINC; PREDEC; POSTDEC; UNARYPLUS; UNARYMINUS; CAST; CLASSBODY;
+	ARRAYALLOC; ARRAYALLOCINIT;
 	//SUPERMETHODCALL; SUPERFIELDACCESS;   Per uniformita' viene preferito   ^(METHODCALL SUPER ...) e ^(FIELDACCESS SUPER ...)
 }
 
@@ -384,9 +385,9 @@ createdName
     ;
     
 arrayCreatorRest[CommonTree createdName]
-    :   brackets[createdName] arrayInitializer   
+    :   brackets[createdName] arrayInitializer -> ^(ARRAYALLOCINIT brackets arrayInitializer)   
     |	(lb='[' expression ']' -> ^(ARRAYTYPE[$lb, "ARRAYTYPE"] expression {$createdName})) ( lb='[' expression ']' -> ^(ARRAYTYPE[$lb, "ARRAYTYPE"] expression $arrayCreatorRest ) )*  
-    		bracketsOpt[(CommonTree)$arrayCreatorRest.tree] -> bracketsOpt
+    		bracketsOpt[(CommonTree)$arrayCreatorRest.tree] -> ^(ARRAYALLOC bracketsOpt)
     ; 
 
 classCreatorRest
