@@ -14,16 +14,8 @@ import java.util.List;
  */
 public class ErrorLogger {
 
-    private static class StmtText {
-
-        private StmtText(String text, int exEnd) {
-            this.text = text;
-            this.exEnd = exEnd;
-        }
-        private String text;
-        private int exEnd;
-    }
     private String classFileName;
+    private StringBuilder exList = new StringBuilder();
     private List<JaCompileException> exceptions = new LinkedList<JaCompileException>();
 
     public ErrorLogger(String className) {
@@ -31,20 +23,19 @@ public class ErrorLogger {
     }
 
     public boolean isEmpty() {
-        return exceptions.isEmpty();
+        return exList.toString().equals("");
     }
 
     public void add(JaCompileException ex) {
-        exceptions.add(ex);
+        exList.append("\n").append(classFileName).append(":").append(ex.getLine()).append(":").append(ex.getPosition()).append(" ").append(ex.getMessage());
     }
 
+    public void add (RuntimeException ex, int line, int pos) {
+         exList.append("\n").append(classFileName).append(":").append(line).append(":").append(pos).append(" ").append(ex.getMessage());
+    }
 
     @Override
     public String toString() {
-        StringBuilder exList = new StringBuilder();
-        for (JaCompileException ex : exceptions) {
-            exList.append("\n").append(classFileName).append(":").append(ex.getLine()).append(":").append(ex.getPosition()).append(" ").append(ex.getMessage());
-        }
         return exList.toString();
     }
 }

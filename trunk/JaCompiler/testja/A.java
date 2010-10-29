@@ -16,4 +16,5 @@ public class A{
             int i;
             i++;
 	}
+        private int m(){ return 0;}
 }

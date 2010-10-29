@@ -218,10 +218,14 @@ public class ReferenceType extends ComplexType {
      */
     public void addMethod(boolean pub, Type ret, String name, ArrayList<Type> args) {
         Method m = new Method(pub, name, ret, args);
-        if (superClass != null) //parto dalla superclasse diretta. Il controllo locale lo faccio dopo
+        /* Non possiamo effettuare questo controllo ora, poichè l'interfaccia della superclasse
+         * potrebbe non essere stata popolata in quanto verrà analizzata solo in seguito
+        if (superClass != null)
         {
             superClass.checksOverriding(m);
         }
+         */
+        // Controllo locale
         Set<Method> s = methods.get(name);
         if (s == null) {
             s = new HashSet<Method>();
@@ -233,6 +237,16 @@ public class ReferenceType extends ComplexType {
             throw new UnacceptableMethodException();
         }
         s.add(m);
+    }
+
+    //TODO: VA FATTO NEL TYPE CHECKING
+    public void checksOverriding() {
+        for(String methodName : methods.keySet()) {
+            Set<Method> overloadings = methods.get(methodName);
+            for(Method method : overloadings) {
+                superClass.checksOverriding(method);
+            }
+        }
     }
 
     /*

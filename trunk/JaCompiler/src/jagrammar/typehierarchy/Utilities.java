@@ -7,8 +7,8 @@ public class Utilities{
 		return (i >> n | i << (32 - n));
 	}
 
-	public static void main(String[] args){
-		System.out.println(cyrcularShift(3,33));
-		System.out.println(cyrcularShift(3,1));
-	}
+//	public static void main(String[] args){
+//		System.out.println(cyrcularShift(3,33));
+//		System.out.println(cyrcularShift(3,1));
+//	}
 }

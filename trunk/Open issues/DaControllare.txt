@@ -20,3 +20,9 @@
 11. Chiamata senza argomenti di JaCompiler.jar 
 
 12. Gestire eccezioni di Nino
+
+13. cyclic inheritance (es. A extends A, o B extends A e A extends B, ma anche indiretti)
+
+14. Spostare la stampa degli error log, fuori, e renderlo metodo di ParserHelper
+
+15. Controlli su visibilità e overriding di metodi richiedono che l'internfaccia della superclasse sia completa, ma non è sempre vero
