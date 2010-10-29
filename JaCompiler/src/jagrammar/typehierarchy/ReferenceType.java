@@ -239,16 +239,6 @@ public class ReferenceType extends ComplexType {
         s.add(m);
     }
 
-    //TODO: VA FATTO NEL TYPE CHECKING
-    public void checksOverriding() {
-        for(String methodName : methods.keySet()) {
-            Set<Method> overloadings = methods.get(methodName);
-            for(Method method : overloadings) {
-                superClass.checksOverriding(method);
-            }
-        }
-    }
-
     /*
      * verifica se non ci sono conflitti di overriding
      * con la firma del metodo m
@@ -315,6 +305,50 @@ public class ReferenceType extends ComplexType {
         }
         return ret;
     }
+
+    /**
+     * verifica se non ci sono conflitti di overriding
+     * con la firma del metodo m
+     *
+     * @param name nome del metodo
+     * @param fparams lista dei parametri formali del metodo
+     *
+     * @throws VisibilityOverridingException se il check fallisce
+     *          per un conflitto di visibilità
+     * @throws ReturnTypeOverridingException se il check fallisce
+     *          per un conflitto sul tipo di ritorno
+     */
+   public void checksOverriding(String name, ArrayList<Type> fparams) {
+        Method m = null;
+        Set<Method> l = methods.get(name);
+
+        for (Method am : l) {
+
+             if (am.arguments.isEmpty() && fparams.isEmpty()) {
+                 m = am;
+                 break;
+             }
+
+            if (am.arguments.size() != fparams.size()) {
+                continue;
+            }
+
+            int i = 0;
+            for (Type t : am) {
+                if (!t.equals(fparams.get(i++))) {
+                    break;
+                }
+            }
+
+            if(i == fparams.size()) {
+                m = am;
+                break;
+            }
+        }
+
+        if (m != null) superClass.checksOverriding(m);
+
+   }
 
 
     /*

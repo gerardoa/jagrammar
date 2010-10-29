@@ -269,9 +269,7 @@ type returns [Type t]
     ;
 	
 arrayType returns [ArrayType t]
-    :	^(ARRAYTYPE at=arrayType)  { $t = (ArrayType)ParserHelper.createArrayType($at.t, 1);             }
-    |   ^(ARRAYTYPE classType)     { $t = (ArrayType)ParserHelper.createArrayType($classType.t, 1);      }     			
-    |	^(ARRAYTYPE primitiveType) { $t = (ArrayType)ParserHelper.createArrayType($primitiveType.bs, 1); }
+    :	brackets { $t = $brackets.t; }
     ;
       
 
@@ -586,8 +584,8 @@ selector returns [Type t, boolean isVar]
     ;
 
 creator returns [Type t]
-    :    acr=arrayCreatorRest arrayInitializer[$acr.t.getHostType()]? {$t = $acr.t;} 
-    |    (createdName) => createdName classCreatorRest? {$t = $createdName.t;}
+    :    arrayCreatorRest 	       {$t = $arrayCreatorRest.t; }
+    |    createdName classCreatorRest? {$t = $createdName.t;}
     ;
 
 
@@ -597,24 +595,11 @@ createdName returns [Type t]
     ;
     
 arrayCreatorRest returns [ArrayType t]
-    :  ^(ARRAYTYPE acr=arrayCreatorRest) 
-       { if (ruleTypeCheck($acr.t)) $t = (ArrayType)ParserHelper.createArrayType($acr.t, 1); }
-  //  |	^(ARRAYTYPE createdName) { if (ruleTypeCheck($createdName.t)) $t = (ArrayType)ParserHelper.createArrayType($createdName.t, 1); }
-  /*  |   ^(ARRAYTYPE e=expression acre=arrayCreatorRestExpr) 
-    	{ if (ruleTypeCheck($acre.t)) $t = (ArrayType)ParserHelper.createArrayType($acre.t, 1); 
-    	  if (ruleTypeCheck($e.t)) arrayExprCheck($ARRAYTYPE, $e.t);
+    :	brackets arrayInitializer[$brackets.t.getHostType()]? { $t = $brackets.t; }
+    |	^(ARRAYTYPE expression bracketsOptExp)
+    	{ if (ruleTypeCheck($bracketsOptExp.t)) $t = (ArrayType)ParserHelper.createArrayType($bracketsOptExp.t, 1); 
+    	  if (ruleTypeCheck($expression.t)) arrayExprCheck($ARRAYTYPE, $expression.t);
        	}
-       	*/
-    | ^(ARRAYTYPE e=expression acre=arrayCreatorRest) 
-    | createdName	
-    ;
-
-arrayCreatorRestExpr returns [Type t]
-    :  (^(ARRAYTYPE e=expression acr=arrayCreatorRest))
-       { if (ruleTypeCheck($acr.t)) $t = (ComplexType)ParserHelper.createArrayType($acr.t, 1); 
-    	 if (ruleTypeCheck($e.t)) arrayExprCheck($ARRAYTYPE, $e.t);
-       }
-    |  createdName { if (ruleTypeCheck($createdName.t)) $t = $createdName.t; }
     ;
 
 classCreatorRest returns [ArrayList<Type> types]
@@ -640,3 +625,20 @@ superMemberAccess returns [Type t]
 arguments returns [ArrayList<Type> types]
     :  ^(ARGUMENTS expressionList) { $types = $expressionList.types; }
     ;
+    
+brackets returns [ArrayType t]
+    :	^(ARRAYTYPE bracketsOpt) { if (ruleTypeCheck($bracketsOpt.t)) $t = (ArrayType)ParserHelper.createArrayType($bracketsOpt.t, 1); }
+    ;
+    
+bracketsOpt returns [Type t]
+    :	createdName 		    { $t = $createdName.t; }
+    |	^(ARRAYTYPE bo=bracketsOpt) { if (ruleTypeCheck($bo.t)) $t = ParserHelper.createArrayType($bo.t, 1); }
+    ;
+    
+bracketsOptExp returns [Type t]
+    :	^(ARRAYTYPE expression boe=bracketsOptExp) 
+    	{ if (ruleTypeCheck($boe.t)) $t = (ArrayType)ParserHelper.createArrayType($boe.t, 1); 
+    	  if (ruleTypeCheck($expression.t)) arrayExprCheck($ARRAYTYPE, $expression.t);
+       	}
+    |	bracketsOpt { $t = $bracketsOpt.t; }
+    ;	
