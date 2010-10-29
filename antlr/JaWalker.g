@@ -35,7 +35,7 @@ scope JaScope {
     		this.rt = rt;
     	}
     	
-    	private List<String> formalParameters;
+    	private ArrayList<Type> formalParameters;
     	
     	/** Verifica se id e' definito in JaScope. Analizza lo stack dall'alto verso il basso
     	 *  controllando la presenza di id ad ogni livello.
@@ -50,7 +50,7 @@ scope JaScope {
 	}
 	
 	/** Restituisce il tipo di id. 	Controlla se e' definito in JaScope, in caso non viene 
-    	 *  trovato verifica se e' un campo dichiarato nella classe.
+    	 *  trovato verifica se è un campo dichiarato nella classe.
  	 */
 	private Type getVariableType(String id) {
 	    for (int s=$JaScope.size()-1; s>=0; s--) {
@@ -68,14 +68,6 @@ scope JaScope {
 	    String parameters = formalParameters.toString();
 	    parameters = formalParameters.size() > 0 ? parameters.substring(1, parameters.length() - 1) : "";
 	    return methodName + '(' + parameters + ')';
-	}
-	
-	private List<Type> getFormalParametersList() {
-	    List types = new LinkedList<Type>();
-	    for(String id : formalParameters) {
-	    	types.add($JaScope[0]::symbols.get(id));
-	    }
-	    return types;
 	}
 	
 	private String printArguments(ArrayList<Type> args) {
@@ -112,7 +104,7 @@ scope JaScope {
 	 *  In caso contrario viene aggiunto un errore di tipo CannotBeAppliedToException al log. 
 	 *  Per determinare il tipo del risultato dell'operazione si esegue una promozione
 	 *  dei tipi degli operandi se essi sono assegnabili a BasicType.INT, dopo di che si 
-	 *  prende il tipo "piu' grande" tra i due, cioe' quello a cui ne sono entrambi assegnabili.   
+	 *  prende il tipo "più grande" tra i due, cioè quello a cui ne sono entrambi assegnabili.   
 	 */
 	private  Type arithmeticOperation(CommonTree operator, Type op1, Type op2) {
 	    // controllo che siano numerici o char
@@ -214,24 +206,27 @@ methodAndConstructorDeclaration
 scope JaScope;
 @init {
 	$JaScope::symbols = new HashMap<String, Type>();
-	formalParameters = new LinkedList<String>();
+	formalParameters = new ArrayList<Type>();
 }
-    :   ^(METHOD modifier type { methodReturn = $type.t; } methodDeclaration)			
-    |   ^(METHOD modifier VOID IDENTIFIER { methodName = $IDENTIFIER.text; methodReturn = VoidType.TYPE; } voidMethodDeclaratorRest) 	 
+    :   ^(METHOD modifier type { methodReturn = $type.t; } IDENTIFIER { methodName = $IDENTIFIER.text; } formalParameters? methodBody)	
+    	{ try { 
+    		rt.checksOverriding(methodName, formalParameters); 
+    	  } catch (RuntimeException ex) {
+    	  	errorLog.add(ex,$IDENTIFIER.line, $IDENTIFIER.pos);
+    	  } 
+    	}		
+    |   ^(METHOD modifier VOID IDENTIFIER { methodName = $IDENTIFIER.text; methodReturn = VoidType.TYPE; } formalParameters? methodBody) 	 
+    	{ try { 
+    		rt.checksOverriding(methodName, formalParameters); 
+    	  } catch (RuntimeException ex) {
+    	  	errorLog.add(ex,$IDENTIFIER.line, $IDENTIFIER.pos);
+    	  } 
+    	}
     |   ^(CONSTR modifier IDENTIFIER { methodName = $IDENTIFIER.text; } formalParameters? constructorBody?) 
     ;
     
-    
-methodDeclaration
-    :   IDENTIFIER { methodName = $IDENTIFIER.text; } formalParameters? methodBody
-    ;
-
 fieldDeclaration
     :   ^(FIELD modifier variableDeclarator) // il + e' assorbito dalla * di classBodyDeclaration*
-    ;
-    
-voidMethodDeclaratorRest
-    :	formalParameters? methodBody
     ;
 
 variableDeclarator returns [CommonTree id, Type t]
@@ -303,7 +298,7 @@ formalParameters
     ;
     
 formalParameterDecls
-    :	^(FPARM variableDeclaratorId) { formalParameters.add($variableDeclaratorId.t.toString()); addVariableToScope($variableDeclaratorId.id, $variableDeclaratorId.t); } formalParameterDecls?
+    :	^(FPARM variableDeclaratorId) { formalParameters.add($variableDeclaratorId.t); addVariableToScope($variableDeclaratorId.id, $variableDeclaratorId.t); } formalParameterDecls?
     ;
     
 methodBody
@@ -592,7 +587,7 @@ selector returns [Type t, boolean isVar]
 
 creator returns [Type t]
     :    acr=arrayCreatorRest arrayInitializer[$acr.t.getHostType()]? {$t = $acr.t;} 
-    |    createdName classCreatorRest? {$t = $createdName.t;}
+    |    (createdName) => createdName classCreatorRest? {$t = $createdName.t;}
     ;
 
 
@@ -604,11 +599,14 @@ createdName returns [Type t]
 arrayCreatorRest returns [ArrayType t]
     :  ^(ARRAYTYPE acr=arrayCreatorRest) 
        { if (ruleTypeCheck($acr.t)) $t = (ArrayType)ParserHelper.createArrayType($acr.t, 1); }
-    |	^(ARRAYTYPE createdName) { if (ruleTypeCheck($createdName.t)) $t = (ArrayType)ParserHelper.createArrayType($createdName.t, 1); }
-    |   ^(ARRAYTYPE e=expression acre=arrayCreatorRestExpr) 
+  //  |	^(ARRAYTYPE createdName) { if (ruleTypeCheck($createdName.t)) $t = (ArrayType)ParserHelper.createArrayType($createdName.t, 1); }
+  /*  |   ^(ARRAYTYPE e=expression acre=arrayCreatorRestExpr) 
     	{ if (ruleTypeCheck($acre.t)) $t = (ArrayType)ParserHelper.createArrayType($acre.t, 1); 
     	  if (ruleTypeCheck($e.t)) arrayExprCheck($ARRAYTYPE, $e.t);
        	}
+       	*/
+    | ^(ARRAYTYPE e=expression acre=arrayCreatorRest) 
+    | createdName	
     ;
 
 arrayCreatorRestExpr returns [Type t]
