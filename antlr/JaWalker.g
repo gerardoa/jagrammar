@@ -35,6 +35,10 @@ scope JaScope {
     		this.rt = rt;
     	}
     	
+    	public void setErrorLogger(ErrorLogger errorLog){
+    		this.errorLog = errorLog;
+    	}
+    	
     	private ArrayList<Type> formalParameters;
     	
     	/** Verifica se id e' definito in JaScope. Analizza lo stack dall'alto verso il basso
@@ -186,7 +190,7 @@ compilationUnit
     ;
     
 classDeclaration
-    :   ^(CLASS IDENTIFIER { errorLog= new ErrorLogger($IDENTIFIER.text); } classType? classBody)
+    :   ^(CLASS IDENTIFIER classType? classBody)
     ;
      
 classBody
@@ -385,12 +389,14 @@ statement
     |   ^(WHILE condition statement)
     |   ^(DOWHILE condition statement)
     |   ^(RETURN expression) 
-    	{ if(methodReturn.isVoid())
-    		errorLog.add(new ReturnFromVoidMethodException($RETURN.line, $RETURN.pos));    		
-    	  else if (ruleTypeCheck($expression.t))
-    	  	assignOperation($RETURN, methodReturn, $expression.t);
+    	{ if ( ruleTypeCheck(methodReturn)) {
+    	  	if(methodReturn.isVoid())
+    			errorLog.add(new ReturnFromVoidMethodException($RETURN.line, $RETURN.pos));    		
+    	  	else if (ruleTypeCheck($expression.t))
+    	  		assignOperation($RETURN, methodReturn, $expression.t);
+    	  }
     	}    
-    |   RETURN { if(!methodReturn.isVoid()) errorLog.add(new MissingReturnValueException($RETURN.line, $RETURN.pos)); }
+    |   RETURN { if((methodReturn==null) || (!methodReturn.isVoid())) errorLog.add(new MissingReturnValueException($RETURN.line, $RETURN.pos)); }
     |   ^(STMT statementExpression)
     ;
     

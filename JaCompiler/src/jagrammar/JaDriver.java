@@ -6,10 +6,9 @@ package jagrammar;
 
 import jagrammar.exception.*;
 import jagrammar.typehierarchy.ReferenceType;
-import jagrammar.util.LinkedSetList;
+import jagrammar.util.*;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Queue;
@@ -27,12 +26,14 @@ public class JaDriver {
 
     private static class TreeTokensPair {
 
-        private TreeTokensPair(CommonTree t, CommonTokenStream tokens) {
+        private TreeTokensPair(CommonTree t, CommonTokenStream tokens, ErrorLogger errorLog) {
             this.t = t;
             this.tokens = tokens;
+            this.errorLog = errorLog;
         }
         private CommonTree t;
         private CommonTokenStream tokens;
+        private ErrorLogger errorLog;
     }
 
     /**
@@ -103,7 +104,7 @@ public class JaDriver {
                 // recupero e stampa dell'AST
                 CommonTree t = (CommonTree) cuTree.getTree();
                 System.out.println(t.toStringTree());
-                myASTs.put(className, new TreeTokensPair(t, tokens));
+                myASTs.put(className, new TreeTokensPair(t, tokens, parser.getErrorLogger()));
 
             } catch (IOException ex) {
                 //Logger.getLogger(JaDriver.class.getName()).log(Level.SEVERE, null, ex);
@@ -125,6 +126,7 @@ public class JaDriver {
             JaWalker walker = new JaWalker(nodes);
             walker.setClassTable(myclasses);
             walker.setReferenceType(rt);
+            walker.setErrorLogger(pair.errorLog);
             try {
                 System.out.println("\n------------Tree parsing for class " + className + "------------");
                 walker.compilationUnit();

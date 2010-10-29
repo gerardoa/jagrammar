@@ -44,26 +44,15 @@ tokens {
     	public ReferenceType getReferenceType() {
     		return rt;
     	}
+    	
+    	public ErrorLogger getErrorLogger() {
+    		return errorLog;
+    	}
 }
 
 // Regola iniziale
 compilationUnit
     :   classDeclaration^ // toglie nil
-    	{
-       	if(!errorLog.isEmpty()) {
-	   System.out.flush();
-	   try {
-	   	Thread.sleep(100);
-	   } catch (InterruptedException ex) {
-	   }
-	   System.err.println("ERROR LOG:" + errorLog);
-           System.err.flush();
-	   try {
-	   	Thread.sleep(100);
-	   } catch (InterruptedException ex) {
-	   }
-        }
-       }
     |   ';'
     ;
     
