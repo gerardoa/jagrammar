@@ -50,7 +50,7 @@ scope JaScope {
 	}
 	
 	/** Restituisce il tipo di id. 	Controlla se e' definito in JaScope, in caso non viene 
-    	 *  trovato verifica se è un campo dichiarato nella classe.
+    	 *  trovato verifica se e' un campo dichiarato nella classe.
  	 */
 	private Type getVariableType(String id) {
 	    for (int s=$JaScope.size()-1; s>=0; s--) {
@@ -104,7 +104,7 @@ scope JaScope {
 	 *  In caso contrario viene aggiunto un errore di tipo CannotBeAppliedToException al log. 
 	 *  Per determinare il tipo del risultato dell'operazione si esegue una promozione
 	 *  dei tipi degli operandi se essi sono assegnabili a BasicType.INT, dopo di che si 
-	 *  prende il tipo "più grande" tra i due, cioè quello a cui ne sono entrambi assegnabili.   
+	 *  prende il tipo "piu' grande" tra i due, cioe' quello a cui ne sono entrambi assegnabili.   
 	 */
 	private  Type arithmeticOperation(CommonTree operator, Type op1, Type op2) {
 	    // controllo che siano numerici o char
@@ -634,7 +634,7 @@ brackets returns [ArrayType t]
 bracketsOpt returns [Type t]
     :	createdName 		    { $t = $createdName.t; }
     |	^(ARRAYTYPE bo=bracketsOpt) { if (ruleTypeCheck($bo.t)) $t = ParserHelper.createArrayType($bo.t, 1); }
-    //|	^(ARRAYTYPE expression boe=bracketsOptExp) 
+    |	^(ARRAYTYPE expression boe=bracketsOptExp) 
     ;
     
 bracketsOptExp returns [Type t]
@@ -642,5 +642,6 @@ bracketsOptExp returns [Type t]
     	{ if (ruleTypeCheck($boe.t)) $t = (ArrayType)ParserHelper.createArrayType($boe.t, 1); 
     	  if (ruleTypeCheck($expression.t)) arrayExprCheck($ARRAYTYPE, $expression.t);
        	}
-    |	bracketsOpt { $t = $bracketsOpt.t; }
+    //|	bracketsOpt { $t = $bracketsOpt.t; }
+    | createdName
     ;	
