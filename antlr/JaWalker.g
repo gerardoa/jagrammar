@@ -596,7 +596,7 @@ createdName returns [Type t]
     
 arrayCreatorRest returns [ArrayType t]
     :	^(ARRAYALLOCINIT brackets arrayInitializer[$brackets.t.getHostType()]?) { $t = $brackets.t; }
-    |   ^(ARRAYALLOC bracketsOpt) { $t = $bracketsOpt.t; }
+    |   ^(ARRAYALLOC bracketsOpt) { $t = (ArrayType)$bracketsOpt.t; }
     ;
 
 classCreatorRest returns [ArrayList<Type> types]
@@ -630,16 +630,9 @@ brackets returns [ArrayType t]
 bracketsOpt returns [Type t]
     :	createdName 		    { $t = $createdName.t; }
     |	^(ARRAYTYPE bo=bracketsOpt) { if (ruleTypeCheck($bo.t)) $t = ParserHelper.createArrayType($bo.t, 1); }
-    |	^(ARRAYTYPE expression bracketsOptExp)
-        { if (ruleTypeCheck($bracketsOptExp.t)) $t = (ArrayType)ParserHelper.createArrayType($bracketsOptExp.t, 1); 
+    |	^(ARRAYTYPE expression bo=bracketsOpt)
+        { if (ruleTypeCheck($bo.t)) $t = ParserHelper.createArrayType($bo.t, 1); 
     	  if (ruleTypeCheck($expression.t)) arrayExprCheck($ARRAYTYPE, $expression.t);
        	} 
     ;
     
-bracketsOptExp returns [Type t]
-    :	createdName { $t = $createdName.t; }
-    |   ^(ARRAYTYPE expression boe=bracketsOptExp) 
-    	{ if (ruleTypeCheck($boe.t)) $t = (ArrayType)ParserHelper.createArrayType($boe.t, 1); 
-    	  if (ruleTypeCheck($expression.t)) arrayExprCheck($ARRAYTYPE, $expression.t);
-       	}
-    ;	

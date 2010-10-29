@@ -16,8 +16,8 @@ public class Test {
     public float m(int k, int j){ return 0;}
     public float m(int k){
         
-        int[][] i = new int[][]{{6},{9}};
-        Test[][] t[][] = new Test[3][6][9][7];
+        int[][] i = new int[][]{{},{}};
+        Test[] t = new Test[6];
         
         return 0;
     }
