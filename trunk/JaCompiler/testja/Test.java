@@ -14,12 +14,15 @@ public class Test {
     public int i,j,k;
     
     public float m(int k, int j){ return 0;}
+    public UFF m(int k, int j){ return 0;}
     public float m(int k){
-        
+
+        double k;
         int[][] i = new int[][]{{},{}};
         Test[] t = new Test[6];
-        
-        return 0;
+
+        return 6.7;
+      
     }
 
 }
