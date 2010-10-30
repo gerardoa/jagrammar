@@ -24,9 +24,9 @@ import org.antlr.runtime.tree.CommonTreeNodeStream;
  */
 public class JaDriver {
 
-    private static class TreeTokensPair {
+    private static class ClassInfo {
 
-        private TreeTokensPair(CommonTree t, CommonTokenStream tokens, ErrorLogger errorLog) {
+        private ClassInfo(CommonTree t, CommonTokenStream tokens, ErrorLogger errorLog) {
             this.t = t;
             this.tokens = tokens;
             this.errorLog = errorLog;
@@ -43,6 +43,11 @@ public class JaDriver {
         //args = new String[]{"Test"}; //DEBUG purpose
         String pathname = ".";
         int fileIndex = 0;
+        if( args.length == 0 ) {
+            System.err.println("Usage: java -jar JaCompiler.jar -p [<classPath>] <Classe1.java> [<Classe2.java> ...]");
+            return;
+        }
+
         if (args[0].equals("-p")) {
             if(args.length > 2) {
                 pathname = args[1];
@@ -68,7 +73,7 @@ public class JaDriver {
         myclasses.put("String", ReferenceType.STRING);
         myclasses.put("Class", ReferenceType.CLASS);
         // Mappa degli AST generati con chiave il nome della classe
-        Map<String, TreeTokensPair> myASTs = new HashMap<String, TreeTokensPair>();
+        Map<String, ClassInfo> myASTs = new HashMap<String, ClassInfo>();
         // Coda contenente i percorsi ai file delle classi da analizzare
         Queue<String> todo = new LinkedSetList<String>();
         // Controllo se i file da analizzare non sono Object, String, Class
@@ -104,7 +109,7 @@ public class JaDriver {
                 // recupero e stampa dell'AST
                 CommonTree t = (CommonTree) cuTree.getTree();
                 System.out.println(t.toStringTree());
-                myASTs.put(className, new TreeTokensPair(t, tokens, parser.getErrorLogger()));
+                myASTs.put(className, new ClassInfo(t, tokens, parser.getErrorLogger()));
 
             } catch (IOException ex) {
                 //Logger.getLogger(JaDriver.class.getName()).log(Level.SEVERE, null, ex);
@@ -119,7 +124,7 @@ public class JaDriver {
         // SECONDA FASE: analisi degli AST generati dalla prima fase; type checking
         for (String className : myASTs.keySet()) {
             ReferenceType rt = myclasses.get(className);
-            TreeTokensPair pair = myASTs.get(className);
+            ClassInfo pair = myASTs.get(className);
             CommonTreeNodeStream nodes = new CommonTreeNodeStream(pair.t);
             nodes.setTokenStream(pair.tokens);
 
