@@ -601,7 +601,7 @@ createdName returns [Type t]
     ;
     
 arrayCreatorRest returns [ArrayType t]
-    :	^(ARRAYALLOCINIT brackets arrayInitializer[$brackets.t.getHostType()]?) { $t = $brackets.t; }
+    :	^(ARRAYALLOCINIT brackets arrayInitializer[$brackets.t.getHostType()]) { $t = $brackets.t; }
     |   ^(ARRAYALLOC bracketsOpt) { $t = (ArrayType)$bracketsOpt.t; }
     ;
 
