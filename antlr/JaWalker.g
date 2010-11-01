@@ -216,14 +216,14 @@ scope JaScope;
     	{ try { 
     		rt.checksOverriding(methodName, formalParameters); 
     	  } catch (RuntimeException ex) {
-    	  	errorLog.add(ex,$IDENTIFIER.line, $IDENTIFIER.pos);
+    	  	errorLog.add(ex, $IDENTIFIER.line, $IDENTIFIER.pos);
     	  } 
     	}		
     |   ^(METHOD modifier VOID IDENTIFIER { methodName = $IDENTIFIER.text; methodReturn = VoidType.TYPE; } formalParameters? methodBody) 	 
     	{ try { 
     		rt.checksOverriding(methodName, formalParameters); 
     	  } catch (RuntimeException ex) {
-    	  	errorLog.add(ex,$IDENTIFIER.line, $IDENTIFIER.pos);
+    	  	errorLog.add(ex, $IDENTIFIER.line, $IDENTIFIER.pos);
     	  } 
     	}
     |   ^(CONSTR modifier IDENTIFIER { methodName = $IDENTIFIER.text; } formalParameters? constructorBody?) 
@@ -512,27 +512,20 @@ expression returns [Type t, boolean isVar]
     	  }
     	}	
     |   ^(NEW creator) { $t = $creator.t; }
-    |	^(op=(POSTINC | POSTDEC) (s=selector | p=primary))
-     	{ Type t = null;
-     	  boolean isVar = false;
-     	  // Recupero i dati dalla regola che e' stata applicata
-     	  if( s != null ) { t = $s.t; isVar = $s.isVar; }
-     	  if( p != null ) { t = $p.t; isVar = $p.isVar; }  
-     	  
-     	  if (!isVar) {
+    |	^(op=(POSTINC | POSTDEC) e=expression)
+     	{ if (!$e.isVar) {
      	  	errorLog.add(new UnexpectedTypeException("variable", "value", $op.line, $op.pos));
      	  } else {
-	     	  if (ruleTypeCheck(t)) {
-		     	  if (!t.isNumeric())
-		     	  	errorLog.add(new CannotBeAppliedToException($op.text, t.toString(), "", $op.line, $op.pos));
-		     	  else
-		     	  	$t = t;    	  
+	     	  if (ruleTypeCheck($e.t)) {
+		     	  if (!$e.t.isNumeric()) 
+		     	  	errorLog.add(new CannotBeAppliedToException($op.text, $e.t.toString(), "", $op.line, $op.pos));
+		     	  else	 
+		     	  	$t = $e.t;   	  
 	    	  }
-    	  }    	  
-    	}
-    //|   ^(POSTDEC (selector | primary))
+    	  } 
+    	}  	  
     |   selector { $t = $selector.t; $isVar = $selector.isVar; }
-    |   primary  { $t = $primary.t;  $isVar = $primary.isVar;}
+    |   primary  { $t = $primary.t;  $isVar = $primary.isVar;  }
     ;        
     
 primary returns [Type t, boolean isVar]

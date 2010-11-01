@@ -17,7 +17,8 @@ public class Test {
     public UFF m(int k, int j){ return 0;}
     public float m(int k){
 
-        double k;
+        double ip=0;
+        ip++++;
         int[][] i = new int[][]{{},{}};
         Test[] t = new Test[6];
 
