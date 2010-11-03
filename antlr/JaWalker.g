@@ -53,7 +53,7 @@ scope JaScope {
 	    return false;
 	}
 	
-	/** Restituisce il tipo di id. 	Controlla se e' definito in JaScope, in caso non viene 
+	/** Restituisce il tipo di id. Controlla se e' definito in JaScope, in caso non viene 
     	 *  trovato verifica se e' un campo dichiarato nella classe.
  	 */
 	private Type getVariableType(String id) {
@@ -68,12 +68,17 @@ scope JaScope {
 	private String methodName;
 	private Type methodReturn;
 	
+	
+	/** Restituisce la firma (nome e la lista dei parametri formali) del metodo correntemente in analisi.  
+	 */  
 	private String getMethodSignature() {	
 	    String parameters = formalParameters.toString();
 	    parameters = formalParameters.size() > 0 ? parameters.substring(1, parameters.length() - 1) : "";
 	    return methodName + '(' + parameters + ')';
 	}
 	
+	/** Stampa la lista dei parametri formali contenuti nella lista args
+	 */
 	private String printArguments(ArrayList<Type> args) {
 		if (args == null)
 			return "";
@@ -83,7 +88,7 @@ scope JaScope {
 	
 	
 	/* Aggiunge una variabile a JaScope. Se essa e' stata gia' definita precedentemente
-	 * viene segnalato un errore.
+	 * registra un errore di tipo UnacceptableLocalVariableException al log.
 	 */
 	private void addVariableToScope(CommonTree identifier, Type t) { 
 	    String id = identifier.getText();
@@ -95,7 +100,11 @@ scope JaScope {
     		errorLog.add(new UnacceptableLocalVariableException(id, getMethodSignature(), line, pos)); 
     	}
     	
-    	
+    	/** Effetua controllo sui tipi degli operandi su cui è applicato l'operatore '+'. Se almeno uno di essi
+    	 *  è di tipo ReferenceType.STRING si deduce che l'operazione da eseguire è una concatenazione, 
+    	 *  ed il risultato sarà quindi di tipo ReferenceType.STRING. Altrimenti l'operazione è considerata
+    	 *  di somma ed è affidata al metodo arithmeticOperation.
+    	 */
 	private Type plusOperation(CommonTree operator, Type op1, Type op2 ) {
 	    if (op1 == ReferenceType.STRING || op2 == ReferenceType.STRING) {
 	        return ReferenceType.STRING;
@@ -105,15 +114,16 @@ scope JaScope {
 
         /** Effetua i controlli di tipo sugli operandi su cui sono applicati gli operatori aritmetici (somma, 
 	 *  sottrazione, divisione, resto della divisione): entrambi operandi devono essere di tipo numerico. 
-	 *  In caso contrario viene aggiunto un errore di tipo CannotBeAppliedToException al log. 
+	 *  In caso contrario registra un errore di tipo CannotBeAppliedToException al log. 
 	 *  Per determinare il tipo del risultato dell'operazione si esegue una promozione
 	 *  dei tipi degli operandi se essi sono assegnabili a BasicType.INT, dopo di che si 
 	 *  prende il tipo "piu' grande" tra i due, cioe' quello a cui ne sono entrambi assegnabili.   
 	 */
-	private  Type arithmeticOperation(CommonTree operator, Type op1, Type op2) {
+	private Type arithmeticOperation(CommonTree operator, Type op1, Type op2) {
 	    // controllo che siano numerici o char
 	    if ( !(op1.isNumeric() && op2.isNumeric()) ) {
 	        errorLog.add(new CannotBeAppliedToException(operator.getText(), op1.toString(), op2.toString(), operator.getLine(), operator.getCharPositionInLine()));
+	    	return null;
 	    }
 	    // promozioni
 	    if (op1.isAssignableTo(BasicType.INT)) {
@@ -129,7 +139,7 @@ scope JaScope {
 	 *  (AND, OR, ==, !=): entrambi operandi devono essere di tipo booleano. 
 	 *  In caso contrario viene aggiunto un errore di tipo CannotBeAppliedToException al log. 
 	 */
-	private  Type booleanOperation(CommonTree operator, Type op1, Type op2) {
+	private Type booleanOperation(CommonTree operator, Type op1, Type op2) {
 	    // controllo che siano entrambi boolean
 	    if ( !(op1 == BasicType.BOOLEAN && op2 == BasicType.BOOLEAN) ) {
 	        errorLog.add(new CannotBeAppliedToException(operator.getText(), op1.toString(), op2.toString(), operator.getLine(), operator.getCharPositionInLine()));
@@ -137,7 +147,13 @@ scope JaScope {
 	    return BasicType.BOOLEAN;
 	}
 	
-	private  Type assignOperation(CommonTree equal, Type var, Type expr) {
+	/** Effetua il controllo di tipo sugli operandi su cui è applicato l'operatore di assegnazione:
+	 *  l'espressione a destra di '=' deve avere un tipo asegnabile al tipo della variabile a sinistra.
+	 *  In caso contrario si possono verificare due tipi di errore:
+	 *	PossibleLossOfPrecisionException, quando l'espressione è di tipo numerico castabile al tipo della variabile; 
+	 *	PossibleLossOfPrecisionException, altrimenti.
+	 */
+	private Type assignOperation(CommonTree equal, Type var, Type expr) {
 	    if (!expr.isAssignableTo(var)) {
 	    	if (expr.isNumeric() && expr.isCastableTo(var))
 			errorLog.add(new PossibleLossOfPrecisionException(var.toString(), expr.toString(), equal.getLine(), equal.getCharPositionInLine()));
@@ -368,7 +384,7 @@ scope JaScope;
     ;
     
 blockStatement
-    :   localVariableDeclarationStatement 
+    :   localVariableDeclarationStatement
     |   statement
     ;
     
@@ -575,9 +591,13 @@ selector returns [Type t, boolean isVar]
     	}
     |   ^(ARRAYACCESS e1=expression e2=expression) 
     	{ if (ruleTypeCheck($e1.t, $e2.t)) {
-	    	  if (!$e1.t.isArray()) errorLog.add(new ArrayRequiredException($e1.t.toString(), $ARRAYACCESS.line, $ARRAYACCESS.pos));
+	    	  if (!$e1.t.isArray()) {
+	    	  	errorLog.add(new ArrayRequiredException($e1.t.toString(), $ARRAYACCESS.line, $ARRAYACCESS.pos));
+	    	  } else {
+	    	  	$t = ((ArrayType)$e1.t).getHostType(); 
+	    	  }	
 	    	  arrayExprCheck($ARRAYACCESS, $e2.t);
-	    	  $t = ((ArrayType)$e1.t).getHostType(); 
+	    	  
     	  }
     	}
     ;
