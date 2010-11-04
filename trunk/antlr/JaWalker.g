@@ -592,8 +592,25 @@ selector returns [Type t, boolean isVar]
     ;
 
 creator returns [Type t]
-    :    arrayCreatorRest 	       {$t = $arrayCreatorRest.t; }
-    |    createdName classCreatorRest? {$t = $createdName.t;}
+    :   arrayCreatorRest {$t = $arrayCreatorRest.t; }
+    |   createdName classCreatorRest? 
+    	{ if(ruleTypeCheck($createdName.t)) {
+    	  	if($createdName.t.isReference()) {
+    	  		if($classCreatorRest.types == null || ruleTypeCheck($classCreatorRest.types.toArray(new Type[$classCreatorRest.types.size()])) ) {
+		    	  try {
+				((ReferenceType)$createdName.t).bindConstructor($classCreatorRest.types);
+				Object o = $createdName.start;
+		    	  } catch (EarlyBindingException ex) {
+		    	  	errorLog.add(new CannotFindSymbolException(("constructor " + rt.toString() + '(' + printArguments($classCreatorRest.types) + ')'), "class " + rt.toString(), 0, 0));
+		    	  }
+		    	 }		    	 
+		   $t = $createdName.t;
+		 } else {
+		   // E' un tipo primitivo, tratto le () come se fossero []
+		   $t =  ParserHelper.createArrayType($createdName.t, 1); 		
+		 }
+    	  } 
+    	}
     ;
 
 
