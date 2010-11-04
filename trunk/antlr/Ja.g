@@ -14,6 +14,7 @@ tokens {
 @header{
 	package jagrammar;
 	
+	import jagrammar.exception.*;
 	import jagrammar.typehierarchy.*;
 	import jagrammar.typehierarchy.exception.*;
 	import jagrammar.util.*;
@@ -28,6 +29,7 @@ tokens {
 }
 
 @members {
+	private String fileName;
 	private ErrorLogger errorLog;        
 	private Queue<String> todo = new LinkedList<String>(); // inizializzazione per ANTLRWORKS
 	private Map<String, ReferenceType> cTab = new HashMap<String, ReferenceType>(); // inizializzazione per ANTLRWORKS
@@ -43,12 +45,23 @@ tokens {
     	
     	public ReferenceType getReferenceType() {
     		return rt;
+    	}    	
+    	
+    	public void setFileName(String fileName) {
+    		this.fileName = fileName;
     	}
     	
-    	public ErrorLogger getErrorLogger() {
-    		return errorLog;
+    	public void setErrorLogger(ErrorLogger el) {
+    		this.errorLog = el;
+    	}
+    	
+    	@Override
+    	public void emitErrorMessage(String msg) {
+		errorLog.add(msg);
     	}
 }
+
+
 
 // Regola iniziale
 compilationUnit
@@ -58,14 +71,16 @@ compilationUnit
     
 classDeclaration
     :   PUBLIC! CLASS^ IDENTIFIER 
-    	{ errorLog= new ErrorLogger($IDENTIFIER.text);
+    	{ if (!fileName.equals($IDENTIFIER.text)) {
+    	  	errorLog.add(new MismatchedClassName($IDENTIFIER.text, $IDENTIFIER.line, $IDENTIFIER.pos));
+    	  }
     	  // Potrebbe gia' esistere l'istanza prima che abbia analizzato il file .java
     	  // Aggiunta effettuata dalla regola classType per recuperare subito l'istanza della classe anche se priva di interfaccia
-	  if(cTab.containsKey($IDENTIFIER.text)) {
-	  	rt = cTab.get($IDENTIFIER.text);
+	  if(cTab.containsKey(fileName)) {
+	  	rt = cTab.get(fileName);
 	  } else { // crea una nuova istanza per la classe e la aggiunge alla tabella
-	  	rt = new ReferenceType($IDENTIFIER.text);
-	  	cTab.put($IDENTIFIER.text, rt);
+	  	rt = new ReferenceType(fileName);
+	  	cTab.put(fileName, rt);
 	  }
 	}
         (EXTENDS! classType { rt.addSuperType($classType.t); } )?		    	

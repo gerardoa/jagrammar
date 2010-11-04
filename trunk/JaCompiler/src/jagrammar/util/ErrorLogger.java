@@ -4,6 +4,7 @@
  */
 package jagrammar.util;
 
+import org.antlr.runtime.RecognitionException;
 import jagrammar.exception.JaCompileException;
 import java.util.LinkedList;
 import java.util.List;
@@ -32,6 +33,14 @@ public class ErrorLogger {
 
     public void add (RuntimeException ex, int line, int pos) {
          exList.append("\n").append(classFileName).append(":").append(line).append(":").append(pos).append(" ").append(ex.getMessage());
+    }
+
+    public void add(RecognitionException ex) {
+        exList.append("\n").append(classFileName).append(":").append(ex.line).append(":").append(ex.charPositionInLine).append(" ").append(ex.getMessage());
+    }
+
+    public void add(String msg) {
+        exList.append("\n").append(classFileName).append(": ANTLR reports: ").append(msg);
     }
 
     @Override
