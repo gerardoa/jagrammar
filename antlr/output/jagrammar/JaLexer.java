@@ -1,4 +1,4 @@
-// $ANTLR 3.2 Sep 23, 2009 12:02:23 D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g 2010-10-29 00:58:51
+// $ANTLR 3.2 Sep 23, 2009 12:02:23 D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g 2010-11-04 15:42:40
 
 	package jagrammar;
 
@@ -11,107 +11,109 @@ import java.util.ArrayList;
 public class JaLexer extends Lexer {
     public static final int CAST=34;
     public static final int FMULTPARM=16;
-    public static final int STAR=83;
-    public static final int WHILE=62;
+    public static final int STAR=85;
+    public static final int WHILE=64;
     public static final int CLASSBODY=35;
     public static final int UNARYMINUS=33;
     public static final int PREDEC=30;
-    public static final int CHAR=42;
-    public static final int BOOLEANLITERAL=58;
-    public static final int NEW=68;
-    public static final int DO=63;
+    public static final int CHAR=44;
+    public static final int BOOLEANLITERAL=60;
+    public static final int NEW=70;
+    public static final int DO=65;
     public static final int CONDITION=23;
     public static final int UNARYPLUS=32;
     public static final int EOF=-1;
-    public static final int Currency=86;
+    public static final int Currency=88;
     public static final int T__93=93;
+    public static final int ARRAYALLOCINIT=37;
     public static final int T__94=94;
     public static final int T__91=91;
     public static final int T__92=92;
     public static final int T__90=90;
-    public static final int FloatSuffix=74;
-    public static final int RETURN=64;
-    public static final int THIS=50;
+    public static final int FloatSuffix=76;
+    public static final int RETURN=66;
+    public static final int THIS=52;
     public static final int CBODY=18;
-    public static final int DOUBLE=48;
-    public static final int VOID=40;
-    public static final int SUPER=51;
-    public static final int EQ=80;
-    public static final int COMMENT=78;
+    public static final int DOUBLE=50;
+    public static final int VOID=42;
+    public static final int SUPER=53;
+    public static final int EQ=82;
+    public static final int COMMENT=80;
     public static final int T__99=99;
     public static final int T__98=98;
     public static final int T__97=97;
     public static final int T__96=96;
     public static final int T__95=95;
     public static final int ARGUMENTS=14;
-    public static final int LINE_COMMENT=79;
-    public static final int PRIVATE=41;
-    public static final int ELSE=65;
-    public static final int DOUBLELITERAL=55;
-    public static final int INT=45;
-    public static final int INTLITERAL=52;
-    public static final int T__87=87;
+    public static final int LINE_COMMENT=81;
+    public static final int PRIVATE=43;
+    public static final int ELSE=67;
+    public static final int DOUBLELITERAL=57;
+    public static final int INT=47;
+    public static final int INTLITERAL=54;
     public static final int T__89=89;
-    public static final int T__88=88;
-    public static final int LongSuffix=71;
-    public static final int LONGLITERAL=53;
-    public static final int WS=77;
+    public static final int LongSuffix=73;
+    public static final int LONGLITERAL=55;
+    public static final int WS=79;
     public static final int FIELDACCESS=6;
-    public static final int FloatingPointLiteral=73;
-    public static final int CHARLITERAL=56;
+    public static final int FloatingPointLiteral=75;
+    public static final int CHARLITERAL=58;
     public static final int FPARM=15;
     public static final int FIELD=11;
     public static final int METHODCALL=4;
     public static final int POSTINC=29;
     public static final int INIT=22;
-    public static final int Letter=85;
-    public static final int EscapeSequence=76;
+    public static final int Letter=87;
+    public static final int EscapeSequence=78;
     public static final int POSTDEC=31;
-    public static final int CLASS=37;
+    public static final int CLASS=39;
     public static final int STMT=21;
-    public static final int IntegerNumber=70;
+    public static final int IntegerNumber=72;
     public static final int MBODY=17;
     public static final int ARRAYTYPE=9;
     public static final int UPDATE=24;
-    public static final int Exponent=72;
-    public static final int FOR=61;
-    public static final int FLOAT=47;
+    public static final int Exponent=74;
+    public static final int FOR=63;
+    public static final int FLOAT=49;
+    public static final int ARRAYALLOC=36;
     public static final int VARDECL=19;
     public static final int DOTCLASS=8;
     public static final int CONSTR=12;
-    public static final int IF=60;
-    public static final int SLASH=84;
+    public static final int IF=62;
+    public static final int SLASH=86;
     public static final int CONSTRCALL=5;
-    public static final int BOOLEAN=49;
+    public static final int BOOLEAN=51;
     public static final int THEN=26;
     public static final int T__107=107;
-    public static final int NULLLITERAL=59;
-    public static final int IDENTIFIER=38;
+    public static final int NULLLITERAL=61;
+    public static final int T__108=108;
+    public static final int T__109=109;
+    public static final int IDENTIFIER=40;
     public static final int T__103=103;
     public static final int ARRAYINIT=27;
     public static final int PREINC=28;
     public static final int T__104=104;
     public static final int T__105=105;
     public static final int T__106=106;
-    public static final int PLUS=81;
+    public static final int PLUS=83;
     public static final int ARRAYACCESS=7;
-    public static final int BYTE=43;
-    public static final int SHORT=44;
+    public static final int BYTE=45;
+    public static final int SHORT=46;
     public static final int T__102=102;
-    public static final int INSTANCEOF=66;
+    public static final int INSTANCEOF=68;
     public static final int T__101=101;
     public static final int FPARMS=13;
     public static final int T__100=100;
-    public static final int MINUS=82;
-    public static final int Digit=69;
-    public static final int DoubleSuffix=75;
-    public static final int STRINGLITERAL=57;
+    public static final int MINUS=84;
+    public static final int Digit=71;
+    public static final int DoubleSuffix=77;
+    public static final int STRINGLITERAL=59;
     public static final int BLOCK=20;
-    public static final int LONG=46;
-    public static final int FLOATLITERAL=54;
-    public static final int EXTENDS=39;
-    public static final int PUBLIC=36;
-    public static final int COMPAREOP=67;
+    public static final int LONG=48;
+    public static final int FLOATLITERAL=56;
+    public static final int EXTENDS=41;
+    public static final int PUBLIC=38;
+    public static final int COMPAREOP=69;
     public static final int METHOD=10;
     public static final int DOWHILE=25;
 
@@ -128,55 +130,15 @@ public class JaLexer extends Lexer {
     }
     public String getGrammarFileName() { return "D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g"; }
 
-    // $ANTLR start "T__87"
-    public final void mT__87() throws RecognitionException {
-        try {
-            int _type = T__87;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:11:7: ( ';' )
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:11:9: ';'
-            {
-            match(';'); 
-
-            }
-
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-        }
-    }
-    // $ANTLR end "T__87"
-
-    // $ANTLR start "T__88"
-    public final void mT__88() throws RecognitionException {
-        try {
-            int _type = T__88;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:12:7: ( '{' )
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:12:9: '{'
-            {
-            match('{'); 
-
-            }
-
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-        }
-    }
-    // $ANTLR end "T__88"
-
     // $ANTLR start "T__89"
     public final void mT__89() throws RecognitionException {
         try {
             int _type = T__89;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:13:7: ( '}' )
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:13:9: '}'
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:11:7: ( ';' )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:11:9: ';'
             {
-            match('}'); 
+            match(';'); 
 
             }
 
@@ -193,10 +155,10 @@ public class JaLexer extends Lexer {
         try {
             int _type = T__90;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:14:7: ( ',' )
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:14:9: ','
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:12:7: ( '{' )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:12:9: '{'
             {
-            match(','); 
+            match('{'); 
 
             }
 
@@ -213,10 +175,10 @@ public class JaLexer extends Lexer {
         try {
             int _type = T__91;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:15:7: ( '(' )
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:15:9: '('
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:13:7: ( '}' )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:13:9: '}'
             {
-            match('('); 
+            match('}'); 
 
             }
 
@@ -233,10 +195,10 @@ public class JaLexer extends Lexer {
         try {
             int _type = T__92;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:16:7: ( ')' )
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:16:9: ')'
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:14:7: ( ',' )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:14:9: ','
             {
-            match(')'); 
+            match(','); 
 
             }
 
@@ -253,11 +215,10 @@ public class JaLexer extends Lexer {
         try {
             int _type = T__93;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:17:7: ( '+=' )
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:17:9: '+='
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:15:7: ( '(' )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:15:9: '('
             {
-            match("+="); 
-
+            match('('); 
 
             }
 
@@ -274,11 +235,10 @@ public class JaLexer extends Lexer {
         try {
             int _type = T__94;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:18:7: ( '-=' )
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:18:9: '-='
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:16:7: ( ')' )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:16:9: ')'
             {
-            match("-="); 
-
+            match(')'); 
 
             }
 
@@ -295,10 +255,10 @@ public class JaLexer extends Lexer {
         try {
             int _type = T__95;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:19:7: ( '*=' )
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:19:9: '*='
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:17:7: ( '+=' )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:17:9: '+='
             {
-            match("*="); 
+            match("+="); 
 
 
             }
@@ -316,10 +276,10 @@ public class JaLexer extends Lexer {
         try {
             int _type = T__96;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:20:7: ( '/=' )
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:20:9: '/='
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:18:7: ( '-=' )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:18:9: '-='
             {
-            match("/="); 
+            match("-="); 
 
 
             }
@@ -337,10 +297,10 @@ public class JaLexer extends Lexer {
         try {
             int _type = T__97;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:21:7: ( '||' )
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:21:9: '||'
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:19:7: ( '*=' )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:19:9: '*='
             {
-            match("||"); 
+            match("*="); 
 
 
             }
@@ -358,10 +318,10 @@ public class JaLexer extends Lexer {
         try {
             int _type = T__98;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:22:7: ( '&&' )
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:22:9: '&&'
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:20:7: ( '/=' )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:20:9: '/='
             {
-            match("&&"); 
+            match("/="); 
 
 
             }
@@ -379,10 +339,10 @@ public class JaLexer extends Lexer {
         try {
             int _type = T__99;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:23:7: ( '==' )
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:23:9: '=='
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:21:7: ( '||' )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:21:9: '||'
             {
-            match("=="); 
+            match("||"); 
 
 
             }
@@ -400,10 +360,10 @@ public class JaLexer extends Lexer {
         try {
             int _type = T__100;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:24:8: ( '!=' )
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:24:10: '!='
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:22:8: ( '&&' )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:22:10: '&&'
             {
-            match("!="); 
+            match("&&"); 
 
 
             }
@@ -421,10 +381,11 @@ public class JaLexer extends Lexer {
         try {
             int _type = T__101;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:25:8: ( '%' )
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:25:10: '%'
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:23:8: ( '==' )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:23:10: '=='
             {
-            match('%'); 
+            match("=="); 
+
 
             }
 
@@ -441,10 +402,10 @@ public class JaLexer extends Lexer {
         try {
             int _type = T__102;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:26:8: ( '++' )
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:26:10: '++'
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:24:8: ( '!=' )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:24:10: '!='
             {
-            match("++"); 
+            match("!="); 
 
 
             }
@@ -462,11 +423,10 @@ public class JaLexer extends Lexer {
         try {
             int _type = T__103;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:27:8: ( '--' )
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:27:10: '--'
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:25:8: ( '%' )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:25:10: '%'
             {
-            match("--"); 
-
+            match('%'); 
 
             }
 
@@ -483,10 +443,11 @@ public class JaLexer extends Lexer {
         try {
             int _type = T__104;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:28:8: ( '!' )
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:28:10: '!'
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:26:8: ( '++' )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:26:10: '++'
             {
-            match('!'); 
+            match("++"); 
+
 
             }
 
@@ -503,10 +464,11 @@ public class JaLexer extends Lexer {
         try {
             int _type = T__105;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:29:8: ( '.' )
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:29:10: '.'
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:27:8: ( '--' )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:27:10: '--'
             {
-            match('.'); 
+            match("--"); 
+
 
             }
 
@@ -523,10 +485,10 @@ public class JaLexer extends Lexer {
         try {
             int _type = T__106;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:30:8: ( '[' )
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:30:10: '['
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:28:8: ( '!' )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:28:10: '!'
             {
-            match('['); 
+            match('!'); 
 
             }
 
@@ -543,6 +505,46 @@ public class JaLexer extends Lexer {
         try {
             int _type = T__107;
             int _channel = DEFAULT_TOKEN_CHANNEL;
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:29:8: ( '.' )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:29:10: '.'
+            {
+            match('.'); 
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "T__107"
+
+    // $ANTLR start "T__108"
+    public final void mT__108() throws RecognitionException {
+        try {
+            int _type = T__108;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:30:8: ( '[' )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:30:10: '['
+            {
+            match('['); 
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "T__108"
+
+    // $ANTLR start "T__109"
+    public final void mT__109() throws RecognitionException {
+        try {
+            int _type = T__109;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
             // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:31:8: ( ']' )
             // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:31:10: ']'
             {
@@ -556,12 +558,12 @@ public class JaLexer extends Lexer {
         finally {
         }
     }
-    // $ANTLR end "T__107"
+    // $ANTLR end "T__109"
 
     // $ANTLR start "IntegerNumber"
     public final void mIntegerNumber() throws RecognitionException {
         try {
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:421:5: ( '0' | '1' .. '9' ( Digit )* )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:414:5: ( '0' | '1' .. '9' ( Digit )* )
             int alt2=2;
             int LA2_0 = input.LA(1);
 
@@ -579,17 +581,17 @@ public class JaLexer extends Lexer {
             }
             switch (alt2) {
                 case 1 :
-                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:421:9: '0'
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:414:9: '0'
                     {
                     match('0'); 
 
                     }
                     break;
                 case 2 :
-                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:422:9: '1' .. '9' ( Digit )*
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:415:9: '1' .. '9' ( Digit )*
                     {
                     matchRange('1','9'); 
-                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:422:18: ( Digit )*
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:415:18: ( Digit )*
                     loop1:
                     do {
                         int alt1=2;
@@ -602,7 +604,7 @@ public class JaLexer extends Lexer {
 
                         switch (alt1) {
                     	case 1 :
-                    	    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:422:18: Digit
+                    	    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:415:18: Digit
                     	    {
                     	    mDigit(); 
 
@@ -628,8 +630,8 @@ public class JaLexer extends Lexer {
     // $ANTLR start "Digit"
     public final void mDigit() throws RecognitionException {
         try {
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:427:5: ( '0' .. '9' )
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:427:7: '0' .. '9'
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:420:5: ( '0' .. '9' )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:420:7: '0' .. '9'
             {
             matchRange('0','9'); 
 
@@ -644,7 +646,7 @@ public class JaLexer extends Lexer {
     // $ANTLR start "LongSuffix"
     public final void mLongSuffix() throws RecognitionException {
         try {
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:433:5: ( 'l' | 'L' )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:426:5: ( 'l' | 'L' )
             // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:
             {
             if ( input.LA(1)=='L'||input.LA(1)=='l' ) {
@@ -670,8 +672,8 @@ public class JaLexer extends Lexer {
         try {
             int _type = INTLITERAL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:437:5: ( IntegerNumber )
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:437:9: IntegerNumber
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:430:5: ( IntegerNumber )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:430:9: IntegerNumber
             {
             mIntegerNumber(); 
 
@@ -690,8 +692,8 @@ public class JaLexer extends Lexer {
         try {
             int _type = LONGLITERAL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:441:5: ( IntegerNumber LongSuffix )
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:441:9: IntegerNumber LongSuffix
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:434:5: ( IntegerNumber LongSuffix )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:434:9: IntegerNumber LongSuffix
             {
             mIntegerNumber(); 
             mLongSuffix(); 
@@ -709,14 +711,14 @@ public class JaLexer extends Lexer {
     // $ANTLR start "FloatingPointLiteral"
     public final void mFloatingPointLiteral() throws RecognitionException {
         try {
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:446:5: ( ( Digit )+ '.' ( Digit )* ( Exponent )? | ( '.' )? ( Digit )+ ( Exponent )? )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:439:5: ( ( Digit )+ '.' ( Digit )* ( Exponent )? | ( '.' )? ( Digit )+ ( Exponent )? )
             int alt9=2;
             alt9 = dfa9.predict(input);
             switch (alt9) {
                 case 1 :
-                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:446:9: ( Digit )+ '.' ( Digit )* ( Exponent )?
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:439:9: ( Digit )+ '.' ( Digit )* ( Exponent )?
                     {
-                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:446:9: ( Digit )+
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:439:9: ( Digit )+
                     int cnt3=0;
                     loop3:
                     do {
@@ -730,7 +732,7 @@ public class JaLexer extends Lexer {
 
                         switch (alt3) {
                     	case 1 :
-                    	    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:446:9: Digit
+                    	    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:439:9: Digit
                     	    {
                     	    mDigit(); 
 
@@ -747,7 +749,7 @@ public class JaLexer extends Lexer {
                     } while (true);
 
                     match('.'); 
-                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:446:20: ( Digit )*
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:439:20: ( Digit )*
                     loop4:
                     do {
                         int alt4=2;
@@ -760,7 +762,7 @@ public class JaLexer extends Lexer {
 
                         switch (alt4) {
                     	case 1 :
-                    	    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:446:20: Digit
+                    	    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:439:20: Digit
                     	    {
                     	    mDigit(); 
 
@@ -772,7 +774,7 @@ public class JaLexer extends Lexer {
                         }
                     } while (true);
 
-                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:446:27: ( Exponent )?
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:439:27: ( Exponent )?
                     int alt5=2;
                     int LA5_0 = input.LA(1);
 
@@ -781,7 +783,7 @@ public class JaLexer extends Lexer {
                     }
                     switch (alt5) {
                         case 1 :
-                            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:446:27: Exponent
+                            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:439:27: Exponent
                             {
                             mExponent(); 
 
@@ -794,9 +796,9 @@ public class JaLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:447:9: ( '.' )? ( Digit )+ ( Exponent )?
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:440:9: ( '.' )? ( Digit )+ ( Exponent )?
                     {
-                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:447:9: ( '.' )?
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:440:9: ( '.' )?
                     int alt6=2;
                     int LA6_0 = input.LA(1);
 
@@ -805,7 +807,7 @@ public class JaLexer extends Lexer {
                     }
                     switch (alt6) {
                         case 1 :
-                            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:447:10: '.'
+                            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:440:10: '.'
                             {
                             match('.'); 
 
@@ -814,7 +816,7 @@ public class JaLexer extends Lexer {
 
                     }
 
-                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:447:16: ( Digit )+
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:440:16: ( Digit )+
                     int cnt7=0;
                     loop7:
                     do {
@@ -828,7 +830,7 @@ public class JaLexer extends Lexer {
 
                         switch (alt7) {
                     	case 1 :
-                    	    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:447:16: Digit
+                    	    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:440:16: Digit
                     	    {
                     	    mDigit(); 
 
@@ -844,7 +846,7 @@ public class JaLexer extends Lexer {
                         cnt7++;
                     } while (true);
 
-                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:447:23: ( Exponent )?
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:440:23: ( Exponent )?
                     int alt8=2;
                     int LA8_0 = input.LA(1);
 
@@ -853,7 +855,7 @@ public class JaLexer extends Lexer {
                     }
                     switch (alt8) {
                         case 1 :
-                            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:447:23: Exponent
+                            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:440:23: Exponent
                             {
                             mExponent(); 
 
@@ -876,8 +878,8 @@ public class JaLexer extends Lexer {
     // $ANTLR start "Exponent"
     public final void mExponent() throws RecognitionException {
         try {
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:452:5: ( ( 'e' | 'E' ) ( '+' | '-' )? ( Digit )+ )
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:452:9: ( 'e' | 'E' ) ( '+' | '-' )? ( Digit )+
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:445:5: ( ( 'e' | 'E' ) ( '+' | '-' )? ( Digit )+ )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:445:9: ( 'e' | 'E' ) ( '+' | '-' )? ( Digit )+
             {
             if ( input.LA(1)=='E'||input.LA(1)=='e' ) {
                 input.consume();
@@ -888,7 +890,7 @@ public class JaLexer extends Lexer {
                 recover(mse);
                 throw mse;}
 
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:452:23: ( '+' | '-' )?
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:445:23: ( '+' | '-' )?
             int alt10=2;
             int LA10_0 = input.LA(1);
 
@@ -914,7 +916,7 @@ public class JaLexer extends Lexer {
 
             }
 
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:452:38: ( Digit )+
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:445:38: ( Digit )+
             int cnt11=0;
             loop11:
             do {
@@ -928,7 +930,7 @@ public class JaLexer extends Lexer {
 
                 switch (alt11) {
             	case 1 :
-            	    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:452:38: Digit
+            	    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:445:38: Digit
             	    {
             	    mDigit(); 
 
@@ -956,7 +958,7 @@ public class JaLexer extends Lexer {
     // $ANTLR start "FloatSuffix"
     public final void mFloatSuffix() throws RecognitionException {
         try {
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:457:5: ( 'f' | 'F' )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:450:5: ( 'f' | 'F' )
             // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:
             {
             if ( input.LA(1)=='F'||input.LA(1)=='f' ) {
@@ -980,7 +982,7 @@ public class JaLexer extends Lexer {
     // $ANTLR start "DoubleSuffix"
     public final void mDoubleSuffix() throws RecognitionException {
         try {
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:462:5: ( 'd' | 'D' )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:455:5: ( 'd' | 'D' )
             // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:
             {
             if ( input.LA(1)=='D'||input.LA(1)=='d' ) {
@@ -1006,8 +1008,8 @@ public class JaLexer extends Lexer {
         try {
             int _type = FLOATLITERAL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:466:5: ( FloatingPointLiteral FloatSuffix )
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:466:9: FloatingPointLiteral FloatSuffix
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:459:5: ( FloatingPointLiteral FloatSuffix )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:459:9: FloatingPointLiteral FloatSuffix
             {
             mFloatingPointLiteral(); 
             mFloatSuffix(); 
@@ -1027,11 +1029,11 @@ public class JaLexer extends Lexer {
         try {
             int _type = DOUBLELITERAL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:470:5: ( FloatingPointLiteral ( DoubleSuffix )? )
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:470:9: FloatingPointLiteral ( DoubleSuffix )?
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:463:5: ( FloatingPointLiteral ( DoubleSuffix )? )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:463:9: FloatingPointLiteral ( DoubleSuffix )?
             {
             mFloatingPointLiteral(); 
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:470:30: ( DoubleSuffix )?
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:463:30: ( DoubleSuffix )?
             int alt12=2;
             int LA12_0 = input.LA(1);
 
@@ -1040,7 +1042,7 @@ public class JaLexer extends Lexer {
             }
             switch (alt12) {
                 case 1 :
-                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:470:30: DoubleSuffix
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:463:30: DoubleSuffix
                     {
                     mDoubleSuffix(); 
 
@@ -1065,11 +1067,11 @@ public class JaLexer extends Lexer {
         try {
             int _type = CHARLITERAL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:474:5: ( '\\'' ( EscapeSequence | ~ ( '\\'' | '\\\\' | '\\r' | '\\n' ) ) '\\'' )
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:474:9: '\\'' ( EscapeSequence | ~ ( '\\'' | '\\\\' | '\\r' | '\\n' ) ) '\\''
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:467:5: ( '\\'' ( EscapeSequence | ~ ( '\\'' | '\\\\' | '\\r' | '\\n' ) ) '\\'' )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:467:9: '\\'' ( EscapeSequence | ~ ( '\\'' | '\\\\' | '\\r' | '\\n' ) ) '\\''
             {
             match('\''); 
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:475:12: ( EscapeSequence | ~ ( '\\'' | '\\\\' | '\\r' | '\\n' ) )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:468:12: ( EscapeSequence | ~ ( '\\'' | '\\\\' | '\\r' | '\\n' ) )
             int alt13=2;
             int LA13_0 = input.LA(1);
 
@@ -1087,14 +1089,14 @@ public class JaLexer extends Lexer {
             }
             switch (alt13) {
                 case 1 :
-                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:475:14: EscapeSequence
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:468:14: EscapeSequence
                     {
                     mEscapeSequence(); 
 
                     }
                     break;
                 case 2 :
-                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:475:31: ~ ( '\\'' | '\\\\' | '\\r' | '\\n' )
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:468:31: ~ ( '\\'' | '\\\\' | '\\r' | '\\n' )
                     {
                     if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='&')||(input.LA(1)>='(' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                         input.consume();
@@ -1128,11 +1130,11 @@ public class JaLexer extends Lexer {
         try {
             int _type = STRINGLITERAL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:480:5: ( '\"' ( EscapeSequence | ~ ( '\\\\' | '\"' | '\\r' | '\\n' ) )* '\"' )
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:480:9: '\"' ( EscapeSequence | ~ ( '\\\\' | '\"' | '\\r' | '\\n' ) )* '\"'
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:473:5: ( '\"' ( EscapeSequence | ~ ( '\\\\' | '\"' | '\\r' | '\\n' ) )* '\"' )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:473:9: '\"' ( EscapeSequence | ~ ( '\\\\' | '\"' | '\\r' | '\\n' ) )* '\"'
             {
             match('\"'); 
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:481:9: ( EscapeSequence | ~ ( '\\\\' | '\"' | '\\r' | '\\n' ) )*
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:474:9: ( EscapeSequence | ~ ( '\\\\' | '\"' | '\\r' | '\\n' ) )*
             loop14:
             do {
                 int alt14=3;
@@ -1148,14 +1150,14 @@ public class JaLexer extends Lexer {
 
                 switch (alt14) {
             	case 1 :
-            	    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:481:11: EscapeSequence
+            	    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:474:11: EscapeSequence
             	    {
             	    mEscapeSequence(); 
 
             	    }
             	    break;
             	case 2 :
-            	    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:481:28: ~ ( '\\\\' | '\"' | '\\r' | '\\n' )
+            	    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:474:28: ~ ( '\\\\' | '\"' | '\\r' | '\\n' )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -1190,8 +1192,8 @@ public class JaLexer extends Lexer {
     // $ANTLR start "EscapeSequence"
     public final void mEscapeSequence() throws RecognitionException {
         try {
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:487:5: ( '\\\\' ( 't' | 'n' | 'r' | '\\\"' | '\\'' | '\\\\' ) )
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:487:9: '\\\\' ( 't' | 'n' | 'r' | '\\\"' | '\\'' | '\\\\' )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:480:5: ( '\\\\' ( 't' | 'n' | 'r' | '\\\"' | '\\'' | '\\\\' ) )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:480:9: '\\\\' ( 't' | 'n' | 'r' | '\\\"' | '\\'' | '\\\\' )
             {
             match('\\'); 
             if ( input.LA(1)=='\"'||input.LA(1)=='\''||input.LA(1)=='\\'||input.LA(1)=='n'||input.LA(1)=='r'||input.LA(1)=='t' ) {
@@ -1217,7 +1219,7 @@ public class JaLexer extends Lexer {
         try {
             int _type = BOOLEANLITERAL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:491:5: ( 'true' | 'false' )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:484:5: ( 'true' | 'false' )
             int alt15=2;
             int LA15_0 = input.LA(1);
 
@@ -1235,7 +1237,7 @@ public class JaLexer extends Lexer {
             }
             switch (alt15) {
                 case 1 :
-                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:491:9: 'true'
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:484:9: 'true'
                     {
                     match("true"); 
 
@@ -1243,7 +1245,7 @@ public class JaLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:492:9: 'false'
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:485:9: 'false'
                     {
                     match("false"); 
 
@@ -1265,8 +1267,8 @@ public class JaLexer extends Lexer {
         try {
             int _type = NULLLITERAL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:496:5: ( 'null' )
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:496:9: 'null'
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:489:5: ( 'null' )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:489:9: 'null'
             {
             match("null"); 
 
@@ -1286,8 +1288,8 @@ public class JaLexer extends Lexer {
         try {
             int _type = BOOLEAN;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:500:5: ( 'boolean' )
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:500:9: 'boolean'
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:493:5: ( 'boolean' )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:493:9: 'boolean'
             {
             match("boolean"); 
 
@@ -1307,8 +1309,8 @@ public class JaLexer extends Lexer {
         try {
             int _type = BYTE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:504:5: ( 'byte' )
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:504:9: 'byte'
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:497:5: ( 'byte' )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:497:9: 'byte'
             {
             match("byte"); 
 
@@ -1328,8 +1330,8 @@ public class JaLexer extends Lexer {
         try {
             int _type = CHAR;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:508:5: ( 'char' )
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:508:9: 'char'
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:501:5: ( 'char' )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:501:9: 'char'
             {
             match("char"); 
 
@@ -1349,8 +1351,8 @@ public class JaLexer extends Lexer {
         try {
             int _type = SHORT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:512:5: ( 'short' )
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:512:9: 'short'
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:505:5: ( 'short' )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:505:9: 'short'
             {
             match("short"); 
 
@@ -1370,8 +1372,8 @@ public class JaLexer extends Lexer {
         try {
             int _type = INT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:516:5: ( 'int' )
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:516:9: 'int'
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:509:5: ( 'int' )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:509:9: 'int'
             {
             match("int"); 
 
@@ -1391,8 +1393,8 @@ public class JaLexer extends Lexer {
         try {
             int _type = LONG;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:520:5: ( 'long' )
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:520:9: 'long'
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:513:5: ( 'long' )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:513:9: 'long'
             {
             match("long"); 
 
@@ -1412,8 +1414,8 @@ public class JaLexer extends Lexer {
         try {
             int _type = FLOAT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:524:5: ( 'float' )
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:524:9: 'float'
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:517:5: ( 'float' )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:517:9: 'float'
             {
             match("float"); 
 
@@ -1433,8 +1435,8 @@ public class JaLexer extends Lexer {
         try {
             int _type = DOUBLE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:528:5: ( 'double' )
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:528:9: 'double'
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:521:5: ( 'double' )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:521:9: 'double'
             {
             match("double"); 
 
@@ -1454,8 +1456,8 @@ public class JaLexer extends Lexer {
         try {
             int _type = VOID;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:532:5: ( 'void' )
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:532:9: 'void'
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:525:5: ( 'void' )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:525:9: 'void'
             {
             match("void"); 
 
@@ -1475,8 +1477,8 @@ public class JaLexer extends Lexer {
         try {
             int _type = WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:536:5: ( ( ' ' | '\\r' | '\\t' | '\\n' ) )
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:536:9: ( ' ' | '\\r' | '\\t' | '\\n' )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:529:5: ( ( ' ' | '\\r' | '\\t' | '\\n' ) )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:529:9: ( ' ' | '\\r' | '\\t' | '\\n' )
             {
             if ( (input.LA(1)>='\t' && input.LA(1)<='\n')||input.LA(1)=='\r'||input.LA(1)==' ' ) {
                 input.consume();
@@ -1504,12 +1506,12 @@ public class JaLexer extends Lexer {
         try {
             int _type = COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:541:5: ( '/*' ( options {greedy=false; } : . )* '*/' )
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:541:9: '/*' ( options {greedy=false; } : . )* '*/'
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:534:5: ( '/*' ( options {greedy=false; } : . )* '*/' )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:534:9: '/*' ( options {greedy=false; } : . )* '*/'
             {
             match("/*"); 
 
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:542:9: ( options {greedy=false; } : . )*
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:535:9: ( options {greedy=false; } : . )*
             loop16:
             do {
                 int alt16=2;
@@ -1534,7 +1536,7 @@ public class JaLexer extends Lexer {
 
                 switch (alt16) {
             	case 1 :
-            	    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:542:36: .
+            	    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:535:36: .
             	    {
             	    matchAny(); 
 
@@ -1565,12 +1567,12 @@ public class JaLexer extends Lexer {
         try {
             int _type = LINE_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:548:5: ( '//' (~ ( '\\n' | '\\r' ) )* )
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:548:7: '//' (~ ( '\\n' | '\\r' ) )*
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:541:5: ( '//' (~ ( '\\n' | '\\r' ) )* )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:541:7: '//' (~ ( '\\n' | '\\r' ) )*
             {
             match("//"); 
 
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:548:12: (~ ( '\\n' | '\\r' ) )*
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:541:12: (~ ( '\\n' | '\\r' ) )*
             loop17:
             do {
                 int alt17=2;
@@ -1583,7 +1585,7 @@ public class JaLexer extends Lexer {
 
                 switch (alt17) {
             	case 1 :
-            	    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:548:12: ~ ( '\\n' | '\\r' )
+            	    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:541:12: ~ ( '\\n' | '\\r' )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -1620,8 +1622,8 @@ public class JaLexer extends Lexer {
         try {
             int _type = CLASS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:553:5: ( 'class' )
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:553:9: 'class'
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:546:5: ( 'class' )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:546:9: 'class'
             {
             match("class"); 
 
@@ -1641,8 +1643,8 @@ public class JaLexer extends Lexer {
         try {
             int _type = EXTENDS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:557:5: ( 'extends' )
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:557:9: 'extends'
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:550:5: ( 'extends' )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:550:9: 'extends'
             {
             match("extends"); 
 
@@ -1662,8 +1664,8 @@ public class JaLexer extends Lexer {
         try {
             int _type = FOR;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:561:5: ( 'for' )
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:561:9: 'for'
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:554:5: ( 'for' )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:554:9: 'for'
             {
             match("for"); 
 
@@ -1683,8 +1685,8 @@ public class JaLexer extends Lexer {
         try {
             int _type = DO;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:565:5: ( 'do' )
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:565:9: 'do'
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:558:5: ( 'do' )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:558:9: 'do'
             {
             match("do"); 
 
@@ -1704,8 +1706,8 @@ public class JaLexer extends Lexer {
         try {
             int _type = WHILE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:569:5: ( 'while' )
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:569:9: 'while'
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:562:5: ( 'while' )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:562:9: 'while'
             {
             match("while"); 
 
@@ -1725,8 +1727,8 @@ public class JaLexer extends Lexer {
         try {
             int _type = IF;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:573:5: ( 'if' )
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:573:9: 'if'
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:566:5: ( 'if' )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:566:9: 'if'
             {
             match("if"); 
 
@@ -1746,8 +1748,8 @@ public class JaLexer extends Lexer {
         try {
             int _type = ELSE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:577:5: ( 'else' )
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:577:9: 'else'
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:570:5: ( 'else' )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:570:9: 'else'
             {
             match("else"); 
 
@@ -1767,8 +1769,8 @@ public class JaLexer extends Lexer {
         try {
             int _type = INSTANCEOF;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:581:5: ( 'instanceof' )
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:581:9: 'instanceof'
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:574:5: ( 'instanceof' )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:574:9: 'instanceof'
             {
             match("instanceof"); 
 
@@ -1788,8 +1790,8 @@ public class JaLexer extends Lexer {
         try {
             int _type = NEW;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:585:5: ( 'new' )
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:585:9: 'new'
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:578:5: ( 'new' )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:578:9: 'new'
             {
             match("new"); 
 
@@ -1809,8 +1811,8 @@ public class JaLexer extends Lexer {
         try {
             int _type = PRIVATE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:589:5: ( 'private' )
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:589:9: 'private'
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:582:5: ( 'private' )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:582:9: 'private'
             {
             match("private"); 
 
@@ -1830,8 +1832,8 @@ public class JaLexer extends Lexer {
         try {
             int _type = PUBLIC;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:593:5: ( 'public' )
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:593:9: 'public'
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:586:5: ( 'public' )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:586:9: 'public'
             {
             match("public"); 
 
@@ -1851,8 +1853,8 @@ public class JaLexer extends Lexer {
         try {
             int _type = RETURN;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:597:5: ( 'return' )
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:597:9: 'return'
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:590:5: ( 'return' )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:590:9: 'return'
             {
             match("return"); 
 
@@ -1872,8 +1874,8 @@ public class JaLexer extends Lexer {
         try {
             int _type = SUPER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:601:5: ( 'super' )
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:601:9: 'super'
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:594:5: ( 'super' )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:594:9: 'super'
             {
             match("super"); 
 
@@ -1893,8 +1895,8 @@ public class JaLexer extends Lexer {
         try {
             int _type = THIS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:605:5: ( 'this' )
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:605:9: 'this'
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:598:5: ( 'this' )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:598:9: 'this'
             {
             match("this"); 
 
@@ -1914,8 +1916,8 @@ public class JaLexer extends Lexer {
         try {
             int _type = EQ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:609:5: ( '=' )
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:609:9: '='
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:602:5: ( '=' )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:602:9: '='
             {
             match('='); 
 
@@ -1934,8 +1936,8 @@ public class JaLexer extends Lexer {
         try {
             int _type = PLUS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:613:5: ( '+' )
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:613:9: '+'
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:606:5: ( '+' )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:606:9: '+'
             {
             match('+'); 
 
@@ -1954,8 +1956,8 @@ public class JaLexer extends Lexer {
         try {
             int _type = MINUS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:617:5: ( '-' )
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:617:9: '-'
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:610:5: ( '-' )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:610:9: '-'
             {
             match('-'); 
 
@@ -1974,8 +1976,8 @@ public class JaLexer extends Lexer {
         try {
             int _type = STAR;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:621:5: ( '*' )
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:621:9: '*'
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:614:5: ( '*' )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:614:9: '*'
             {
             match('*'); 
 
@@ -1994,8 +1996,8 @@ public class JaLexer extends Lexer {
         try {
             int _type = SLASH;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:625:5: ( '/' )
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:625:9: '/'
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:618:5: ( '/' )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:618:9: '/'
             {
             match('/'); 
 
@@ -2014,7 +2016,7 @@ public class JaLexer extends Lexer {
         try {
             int _type = COMPAREOP;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:629:5: ( '>' | '<' | '>=' | '<=' )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:622:5: ( '>' | '<' | '>=' | '<=' )
             int alt18=4;
             int LA18_0 = input.LA(1);
 
@@ -2044,21 +2046,21 @@ public class JaLexer extends Lexer {
             }
             switch (alt18) {
                 case 1 :
-                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:629:7: '>'
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:622:7: '>'
                     {
                     match('>'); 
 
                     }
                     break;
                 case 2 :
-                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:630:7: '<'
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:623:7: '<'
                     {
                     match('<'); 
 
                     }
                     break;
                 case 3 :
-                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:631:7: '>='
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:624:7: '>='
                     {
                     match(">="); 
 
@@ -2066,7 +2068,7 @@ public class JaLexer extends Lexer {
                     }
                     break;
                 case 4 :
-                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:632:7: '<='
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:625:7: '<='
                     {
                     match("<="); 
 
@@ -2088,8 +2090,8 @@ public class JaLexer extends Lexer {
         try {
             int _type = IDENTIFIER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:636:5: ( ( Letter | Currency | '_' ) ( Digit | Letter | Currency | '_' )* )
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:636:7: ( Letter | Currency | '_' ) ( Digit | Letter | Currency | '_' )*
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:629:5: ( ( Letter | Currency | '_' ) ( Digit | Letter | Currency | '_' )* )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:629:7: ( Letter | Currency | '_' ) ( Digit | Letter | Currency | '_' )*
             {
             if ( input.LA(1)=='$'||(input.LA(1)>='A' && input.LA(1)<='Z')||input.LA(1)=='_'||(input.LA(1)>='a' && input.LA(1)<='z') ) {
                 input.consume();
@@ -2100,7 +2102,7 @@ public class JaLexer extends Lexer {
                 recover(mse);
                 throw mse;}
 
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:637:3: ( Digit | Letter | Currency | '_' )*
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:630:3: ( Digit | Letter | Currency | '_' )*
             loop19:
             do {
                 int alt19=2;
@@ -2147,7 +2149,7 @@ public class JaLexer extends Lexer {
     // $ANTLR start "Letter"
     public final void mLetter() throws RecognitionException {
         try {
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:642:5: ( 'a' .. 'z' | 'A' .. 'Z' )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:635:5: ( 'a' .. 'z' | 'A' .. 'Z' )
             // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:
             {
             if ( (input.LA(1)>='A' && input.LA(1)<='Z')||(input.LA(1)>='a' && input.LA(1)<='z') ) {
@@ -2171,8 +2173,8 @@ public class JaLexer extends Lexer {
     // $ANTLR start "Currency"
     public final void mCurrency() throws RecognitionException {
         try {
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:648:5: ( '$' )
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:648:7: '$'
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:641:5: ( '$' )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:641:7: '$'
             {
             match('$'); 
 
@@ -2185,439 +2187,439 @@ public class JaLexer extends Lexer {
     // $ANTLR end "Currency"
 
     public void mTokens() throws RecognitionException {
-        // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:8: ( T__87 | T__88 | T__89 | T__90 | T__91 | T__92 | T__93 | T__94 | T__95 | T__96 | T__97 | T__98 | T__99 | T__100 | T__101 | T__102 | T__103 | T__104 | T__105 | T__106 | T__107 | INTLITERAL | LONGLITERAL | FLOATLITERAL | DOUBLELITERAL | CHARLITERAL | STRINGLITERAL | BOOLEANLITERAL | NULLLITERAL | BOOLEAN | BYTE | CHAR | SHORT | INT | LONG | FLOAT | DOUBLE | VOID | WS | COMMENT | LINE_COMMENT | CLASS | EXTENDS | FOR | DO | WHILE | IF | ELSE | INSTANCEOF | NEW | PRIVATE | PUBLIC | RETURN | SUPER | THIS | EQ | PLUS | MINUS | STAR | SLASH | COMPAREOP | IDENTIFIER )
+        // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:8: ( T__89 | T__90 | T__91 | T__92 | T__93 | T__94 | T__95 | T__96 | T__97 | T__98 | T__99 | T__100 | T__101 | T__102 | T__103 | T__104 | T__105 | T__106 | T__107 | T__108 | T__109 | INTLITERAL | LONGLITERAL | FLOATLITERAL | DOUBLELITERAL | CHARLITERAL | STRINGLITERAL | BOOLEANLITERAL | NULLLITERAL | BOOLEAN | BYTE | CHAR | SHORT | INT | LONG | FLOAT | DOUBLE | VOID | WS | COMMENT | LINE_COMMENT | CLASS | EXTENDS | FOR | DO | WHILE | IF | ELSE | INSTANCEOF | NEW | PRIVATE | PUBLIC | RETURN | SUPER | THIS | EQ | PLUS | MINUS | STAR | SLASH | COMPAREOP | IDENTIFIER )
         int alt20=62;
         alt20 = dfa20.predict(input);
         switch (alt20) {
             case 1 :
-                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:10: T__87
-                {
-                mT__87(); 
-
-                }
-                break;
-            case 2 :
-                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:16: T__88
-                {
-                mT__88(); 
-
-                }
-                break;
-            case 3 :
-                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:22: T__89
+                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:10: T__89
                 {
                 mT__89(); 
 
                 }
                 break;
-            case 4 :
-                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:28: T__90
+            case 2 :
+                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:16: T__90
                 {
                 mT__90(); 
 
                 }
                 break;
-            case 5 :
-                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:34: T__91
+            case 3 :
+                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:22: T__91
                 {
                 mT__91(); 
 
                 }
                 break;
-            case 6 :
-                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:40: T__92
+            case 4 :
+                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:28: T__92
                 {
                 mT__92(); 
 
                 }
                 break;
-            case 7 :
-                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:46: T__93
+            case 5 :
+                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:34: T__93
                 {
                 mT__93(); 
 
                 }
                 break;
-            case 8 :
-                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:52: T__94
+            case 6 :
+                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:40: T__94
                 {
                 mT__94(); 
 
                 }
                 break;
-            case 9 :
-                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:58: T__95
+            case 7 :
+                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:46: T__95
                 {
                 mT__95(); 
 
                 }
                 break;
-            case 10 :
-                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:64: T__96
+            case 8 :
+                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:52: T__96
                 {
                 mT__96(); 
 
                 }
                 break;
-            case 11 :
-                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:70: T__97
+            case 9 :
+                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:58: T__97
                 {
                 mT__97(); 
 
                 }
                 break;
-            case 12 :
-                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:76: T__98
+            case 10 :
+                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:64: T__98
                 {
                 mT__98(); 
 
                 }
                 break;
-            case 13 :
-                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:82: T__99
+            case 11 :
+                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:70: T__99
                 {
                 mT__99(); 
 
                 }
                 break;
-            case 14 :
-                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:88: T__100
+            case 12 :
+                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:76: T__100
                 {
                 mT__100(); 
 
                 }
                 break;
-            case 15 :
-                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:95: T__101
+            case 13 :
+                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:83: T__101
                 {
                 mT__101(); 
 
                 }
                 break;
-            case 16 :
-                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:102: T__102
+            case 14 :
+                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:90: T__102
                 {
                 mT__102(); 
 
                 }
                 break;
-            case 17 :
-                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:109: T__103
+            case 15 :
+                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:97: T__103
                 {
                 mT__103(); 
 
                 }
                 break;
-            case 18 :
-                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:116: T__104
+            case 16 :
+                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:104: T__104
                 {
                 mT__104(); 
 
                 }
                 break;
-            case 19 :
-                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:123: T__105
+            case 17 :
+                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:111: T__105
                 {
                 mT__105(); 
 
                 }
                 break;
-            case 20 :
-                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:130: T__106
+            case 18 :
+                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:118: T__106
                 {
                 mT__106(); 
 
                 }
                 break;
-            case 21 :
-                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:137: T__107
+            case 19 :
+                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:125: T__107
                 {
                 mT__107(); 
 
                 }
                 break;
+            case 20 :
+                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:132: T__108
+                {
+                mT__108(); 
+
+                }
+                break;
+            case 21 :
+                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:139: T__109
+                {
+                mT__109(); 
+
+                }
+                break;
             case 22 :
-                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:144: INTLITERAL
+                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:146: INTLITERAL
                 {
                 mINTLITERAL(); 
 
                 }
                 break;
             case 23 :
-                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:155: LONGLITERAL
+                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:157: LONGLITERAL
                 {
                 mLONGLITERAL(); 
 
                 }
                 break;
             case 24 :
-                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:167: FLOATLITERAL
+                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:169: FLOATLITERAL
                 {
                 mFLOATLITERAL(); 
 
                 }
                 break;
             case 25 :
-                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:180: DOUBLELITERAL
+                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:182: DOUBLELITERAL
                 {
                 mDOUBLELITERAL(); 
 
                 }
                 break;
             case 26 :
-                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:194: CHARLITERAL
+                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:196: CHARLITERAL
                 {
                 mCHARLITERAL(); 
 
                 }
                 break;
             case 27 :
-                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:206: STRINGLITERAL
+                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:208: STRINGLITERAL
                 {
                 mSTRINGLITERAL(); 
 
                 }
                 break;
             case 28 :
-                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:220: BOOLEANLITERAL
+                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:222: BOOLEANLITERAL
                 {
                 mBOOLEANLITERAL(); 
 
                 }
                 break;
             case 29 :
-                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:235: NULLLITERAL
+                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:237: NULLLITERAL
                 {
                 mNULLLITERAL(); 
 
                 }
                 break;
             case 30 :
-                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:247: BOOLEAN
+                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:249: BOOLEAN
                 {
                 mBOOLEAN(); 
 
                 }
                 break;
             case 31 :
-                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:255: BYTE
+                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:257: BYTE
                 {
                 mBYTE(); 
 
                 }
                 break;
             case 32 :
-                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:260: CHAR
+                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:262: CHAR
                 {
                 mCHAR(); 
 
                 }
                 break;
             case 33 :
-                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:265: SHORT
+                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:267: SHORT
                 {
                 mSHORT(); 
 
                 }
                 break;
             case 34 :
-                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:271: INT
+                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:273: INT
                 {
                 mINT(); 
 
                 }
                 break;
             case 35 :
-                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:275: LONG
+                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:277: LONG
                 {
                 mLONG(); 
 
                 }
                 break;
             case 36 :
-                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:280: FLOAT
+                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:282: FLOAT
                 {
                 mFLOAT(); 
 
                 }
                 break;
             case 37 :
-                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:286: DOUBLE
+                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:288: DOUBLE
                 {
                 mDOUBLE(); 
 
                 }
                 break;
             case 38 :
-                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:293: VOID
+                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:295: VOID
                 {
                 mVOID(); 
 
                 }
                 break;
             case 39 :
-                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:298: WS
+                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:300: WS
                 {
                 mWS(); 
 
                 }
                 break;
             case 40 :
-                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:301: COMMENT
+                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:303: COMMENT
                 {
                 mCOMMENT(); 
 
                 }
                 break;
             case 41 :
-                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:309: LINE_COMMENT
+                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:311: LINE_COMMENT
                 {
                 mLINE_COMMENT(); 
 
                 }
                 break;
             case 42 :
-                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:322: CLASS
+                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:324: CLASS
                 {
                 mCLASS(); 
 
                 }
                 break;
             case 43 :
-                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:328: EXTENDS
+                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:330: EXTENDS
                 {
                 mEXTENDS(); 
 
                 }
                 break;
             case 44 :
-                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:336: FOR
+                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:338: FOR
                 {
                 mFOR(); 
 
                 }
                 break;
             case 45 :
-                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:340: DO
+                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:342: DO
                 {
                 mDO(); 
 
                 }
                 break;
             case 46 :
-                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:343: WHILE
+                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:345: WHILE
                 {
                 mWHILE(); 
 
                 }
                 break;
             case 47 :
-                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:349: IF
+                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:351: IF
                 {
                 mIF(); 
 
                 }
                 break;
             case 48 :
-                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:352: ELSE
+                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:354: ELSE
                 {
                 mELSE(); 
 
                 }
                 break;
             case 49 :
-                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:357: INSTANCEOF
+                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:359: INSTANCEOF
                 {
                 mINSTANCEOF(); 
 
                 }
                 break;
             case 50 :
-                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:368: NEW
+                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:370: NEW
                 {
                 mNEW(); 
 
                 }
                 break;
             case 51 :
-                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:372: PRIVATE
+                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:374: PRIVATE
                 {
                 mPRIVATE(); 
 
                 }
                 break;
             case 52 :
-                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:380: PUBLIC
+                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:382: PUBLIC
                 {
                 mPUBLIC(); 
 
                 }
                 break;
             case 53 :
-                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:387: RETURN
+                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:389: RETURN
                 {
                 mRETURN(); 
 
                 }
                 break;
             case 54 :
-                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:394: SUPER
+                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:396: SUPER
                 {
                 mSUPER(); 
 
                 }
                 break;
             case 55 :
-                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:400: THIS
+                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:402: THIS
                 {
                 mTHIS(); 
 
                 }
                 break;
             case 56 :
-                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:405: EQ
+                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:407: EQ
                 {
                 mEQ(); 
 
                 }
                 break;
             case 57 :
-                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:408: PLUS
+                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:410: PLUS
                 {
                 mPLUS(); 
 
                 }
                 break;
             case 58 :
-                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:413: MINUS
+                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:415: MINUS
                 {
                 mMINUS(); 
 
                 }
                 break;
             case 59 :
-                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:419: STAR
+                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:421: STAR
                 {
                 mSTAR(); 
 
                 }
                 break;
             case 60 :
-                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:424: SLASH
+                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:426: SLASH
                 {
                 mSLASH(); 
 
                 }
                 break;
             case 61 :
-                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:430: COMPAREOP
+                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:432: COMPAREOP
                 {
                 mCOMPAREOP(); 
 
                 }
                 break;
             case 62 :
-                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:440: IDENTIFIER
+                // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\Ja.g:1:442: IDENTIFIER
                 {
                 mIDENTIFIER(); 
 
@@ -2680,7 +2682,7 @@ public class JaLexer extends Lexer {
             this.transition = DFA9_transition;
         }
         public String getDescription() {
-            return "444:1: fragment FloatingPointLiteral : ( ( Digit )+ '.' ( Digit )* ( Exponent )? | ( '.' )? ( Digit )+ ( Exponent )? );";
+            return "437:1: fragment FloatingPointLiteral : ( ( Digit )+ '.' ( Digit )* ( Exponent )? | ( '.' )? ( Digit )+ ( Exponent )? );";
         }
     }
     static final String DFA20_eotS =
@@ -2999,7 +3001,7 @@ public class JaLexer extends Lexer {
             this.transition = DFA20_transition;
         }
         public String getDescription() {
-            return "1:1: Tokens : ( T__87 | T__88 | T__89 | T__90 | T__91 | T__92 | T__93 | T__94 | T__95 | T__96 | T__97 | T__98 | T__99 | T__100 | T__101 | T__102 | T__103 | T__104 | T__105 | T__106 | T__107 | INTLITERAL | LONGLITERAL | FLOATLITERAL | DOUBLELITERAL | CHARLITERAL | STRINGLITERAL | BOOLEANLITERAL | NULLLITERAL | BOOLEAN | BYTE | CHAR | SHORT | INT | LONG | FLOAT | DOUBLE | VOID | WS | COMMENT | LINE_COMMENT | CLASS | EXTENDS | FOR | DO | WHILE | IF | ELSE | INSTANCEOF | NEW | PRIVATE | PUBLIC | RETURN | SUPER | THIS | EQ | PLUS | MINUS | STAR | SLASH | COMPAREOP | IDENTIFIER );";
+            return "1:1: Tokens : ( T__89 | T__90 | T__91 | T__92 | T__93 | T__94 | T__95 | T__96 | T__97 | T__98 | T__99 | T__100 | T__101 | T__102 | T__103 | T__104 | T__105 | T__106 | T__107 | T__108 | T__109 | INTLITERAL | LONGLITERAL | FLOATLITERAL | DOUBLELITERAL | CHARLITERAL | STRINGLITERAL | BOOLEANLITERAL | NULLLITERAL | BOOLEAN | BYTE | CHAR | SHORT | INT | LONG | FLOAT | DOUBLE | VOID | WS | COMMENT | LINE_COMMENT | CLASS | EXTENDS | FOR | DO | WHILE | IF | ELSE | INSTANCEOF | NEW | PRIVATE | PUBLIC | RETURN | SUPER | THIS | EQ | PLUS | MINUS | STAR | SLASH | COMPAREOP | IDENTIFIER );";
         }
     }
  

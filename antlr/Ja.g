@@ -104,9 +104,9 @@ memberDeclaration
 
 fieldDeclaration[CommonTree mod, CommonTree typ, boolean pub, Type t]
     :   v1=variableDeclarator[$typ]      { try { rt.addField($v1.varName, ParserHelper.createArrayType($t, $v1.arrayDim), $pub); } catch(UnacceptableFieldException ex) { errorLog.add(ex, $v1.start.getLine(), $v1.start.getCharPositionInLine()); } } 
-        (',' v2=variableDeclarator[$typ] { try { rt.addField($v2.varName, ParserHelper.createArrayType($t, $v2.arrayDim), $pub); } catch(UnacceptableFieldException ex) { errorLog.add(ex, $v2.start.getLine(), $v2.start.getCharPositionInLine()); } } 
+        (',' v2=variableDeclarator[(CommonTree)$typ.dupNode()] { try { rt.addField($v2.varName, ParserHelper.createArrayType($t, $v2.arrayDim), $pub); } catch(UnacceptableFieldException ex) { errorLog.add(ex, $v2.start.getLine(), $v2.start.getCharPositionInLine()); } } 
         )* ';' 
-        -> ^(FIELD {$mod} variableDeclarator)+ 
+        -> ^(FIELD {$mod.dupNode()} variableDeclarator)+ 
     ;
 
 variableDeclarator[CommonTree typ] returns [String varName, int arrayDim]
@@ -223,7 +223,10 @@ localVariableDeclarationStatement
     ;
 
 localVariableDeclaration
-    :	type variableDeclarator[(CommonTree)$type.tree] (',' variableDeclarator[(CommonTree)$type.tree])* 
+@init {
+	CommonTree dupNode = null;
+}
+    :	type variableDeclarator[(CommonTree)$type.tree] (',' variableDeclarator[(CommonTree)((CommonTree)$type.tree).dupNode()])* 
     	-> ^(VARDECL variableDeclarator)+
     ;
    
