@@ -181,27 +181,16 @@ scope JaScope {
         	if (rt[i] == null) return false;
   	    return true;
     	}
-    			 
+    	
+    	@Override
+    	public void emitErrorMessage(String msg) {
+		errorLog.add(msg);
+    	}    			 
 }
 
 
 compilationUnit
     :  classDeclaration
-       {
-       	if(!errorLog.isEmpty()) {
-	   System.out.flush();
-	   try {
-	   	Thread.sleep(100);
-	   } catch (InterruptedException ex) {
-	   }
-	   System.err.println("ERROR LOG:" + errorLog);
-           System.err.flush();
-	   try {
-	   	Thread.sleep(100);
-	   } catch (InterruptedException ex) {
-	   }
-        }
-       }
     |  ';'
     ;
     

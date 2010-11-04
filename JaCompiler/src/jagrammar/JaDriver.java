@@ -43,21 +43,21 @@ public class JaDriver {
         //args = new String[]{"Test"}; //DEBUG purpose
         String pathname = ".";
         int fileIndex = 0;
-        if( args.length == 0 ) {
+        if (args.length == 0) {
             System.err.println("Usage: java -jar JaCompiler.jar -p [<classPath>] <Classe1.java> [<Classe2.java> ...]");
             return;
         }
 
         if (args[0].equals("-p")) {
-            if(args.length > 2) {
+            if (args.length > 2) {
                 pathname = args[1];
                 fileIndex = 2;
             } else {
-               System.err.println("-p option: Pathname required or missing input files.");
-               return;
+                System.err.println("-p option: Pathname required or missing input files.");
+                return;
             }
         }
-        for(int i = fileIndex; i < args.length; i++) {
+        for (int i = fileIndex; i < args.length; i++) {
             String cName = args[i];
             if (!cName.matches("^[A-Za-z]+\\.java$")) {
                 System.err.println(cName + " not a valid file name. Must end with .java");
@@ -77,11 +77,12 @@ public class JaDriver {
         // Coda contenente i percorsi ai file delle classi da analizzare
         Queue<String> todo = new LinkedSetList<String>();
         // Controllo se i file da analizzare non sono Object, String, Class
-        for(int i = fileIndex; i < args.length; i++) {
+        for (int i = fileIndex; i < args.length; i++) {
             String cName = args[i];
             cName = cName.substring(0, cName.lastIndexOf("."));
-            if (!myclasses.containsKey(cName))
+            if (!myclasses.containsKey(cName)) {
                 todo.add(cName);
+            }
         }
 
         // PRIMA FASE: ciclo per il recupero delle interfaccie
@@ -98,24 +99,27 @@ public class JaDriver {
                 CommonTokenStream tokens = new CommonTokenStream(lexer);
                 // Crea il parser passandogli il buffer di tokens
                 JaParser parser = new JaParser(tokens);
+                ErrorLogger errorLog = new ErrorLogger(className);
+                parser.setErrorLogger(errorLog);
+                parser.setFileName(className);
                 parser.setQueue(todo);
                 parser.setClassTable(myclasses);
                 try {
                     // Inizia il parsing alla regola compilationUnit
                     cuTree = parser.compilationUnit();
                 } catch (RecognitionException ex) {
-                    Logger.getLogger(JaDriver.class.getName()).log(Level.SEVERE, null, ex);
+                    parser.reportError(ex);
                 }
                 // recupero e stampa dell'AST
                 CommonTree t = (CommonTree) cuTree.getTree();
                 System.out.println(t.toStringTree());
-                myASTs.put(className, new ClassInfo(t, tokens, parser.getErrorLogger()));
+                myASTs.put(className, new ClassInfo(t, tokens, errorLog));
 
             } catch (IOException ex) {
                 //Logger.getLogger(JaDriver.class.getName()).log(Level.SEVERE, null, ex);
                 System.err.println(ex.getMessage());
                 /* istanza che rappresenta la classe viene rimossa dalla tabella
-                   delle interfaccie in quanto tale file risulta inesistente */
+                delle interfaccie in quanto tale file risulta inesistente */
                 myclasses.remove(className);
             }
         }
@@ -135,13 +139,31 @@ public class JaDriver {
             try {
                 System.out.println("\n------------Tree parsing for class " + className + "------------");
                 walker.compilationUnit();
-                System.out.println("----------End Tree Parsing for class " + className + "----------\n");
             } catch (RecognitionException ex) {
-                Logger.getLogger(JaDriver.class.getName()).log(Level.SEVERE, null, ex);
+                walker.reportError(ex);
             } catch (JaCompileException ex) {
-                System.err.println(ex.getMessage());
+                pair.errorLog.add(ex);
+            } finally {
+                printErrorLogger(pair.errorLog);
+                System.out.println("----------End Tree Parsing for class " + className + "----------\n");
             }
         }
         System.out.println("-----------------End compilation-----------------");
+    }
+
+    private static void printErrorLogger(ErrorLogger el) {
+        if(!el.isEmpty()) {
+	   System.out.flush();
+	   try {
+	   	Thread.sleep(100);
+	   } catch (InterruptedException ex) {
+	   }
+	   System.err.println("ERROR LOG:" + el);
+           System.err.flush();
+	   try {
+	   	Thread.sleep(100);
+	   } catch (InterruptedException ex) {
+	   }
+        }
     }
 }
