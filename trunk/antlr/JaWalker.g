@@ -100,10 +100,10 @@ scope JaScope {
     		errorLog.add(new UnacceptableLocalVariableException(id, getMethodSignature(), line, pos)); 
     	}
     	
-    	/** Effetua controllo sui tipi degli operandi su cui è applicato l'operatore '+'. Se almeno uno di essi
-    	 *  è di tipo ReferenceType.STRING si deduce che l'operazione da eseguire è una concatenazione, 
-    	 *  ed il risultato sarà quindi di tipo ReferenceType.STRING. Altrimenti l'operazione è considerata
-    	 *  di somma ed è affidata al metodo arithmeticOperation.
+    	/** Effetua controllo sui tipi degli operandi su cui e' applicato l'operatore '+'. Se almeno uno di essi
+    	 *  e' di tipo ReferenceType.STRING si deduce che l'operazione da eseguire e' una concatenazione, 
+    	 *  ed il risultato sara' quindi di tipo ReferenceType.STRING. Altrimenti l'operazione e' considerata
+    	 *  di somma ed e' affidata al metodo arithmeticOperation.
     	 */
 	private Type plusOperation(CommonTree operator, Type op1, Type op2 ) {
 	    if (op1 == ReferenceType.STRING || op2 == ReferenceType.STRING) {
@@ -147,10 +147,10 @@ scope JaScope {
 	    return BasicType.BOOLEAN;
 	}
 	
-	/** Effetua il controllo di tipo sugli operandi su cui è applicato l'operatore di assegnazione:
+	/** Effetua il controllo di tipo sugli operandi su cui e' applicato l'operatore di assegnazione:
 	 *  l'espressione a destra di '=' deve avere un tipo asegnabile al tipo della variabile a sinistra.
 	 *  In caso contrario si possono verificare due tipi di errore:
-	 *	PossibleLossOfPrecisionException, quando l'espressione è di tipo numerico castabile al tipo della variabile; 
+	 *	PossibleLossOfPrecisionException, quando l'espressione e' di tipo numerico castabile al tipo della variabile; 
 	 *	PossibleLossOfPrecisionException, altrimenti.
 	 */
 	private Type assignOperation(CommonTree equal, Type var, Type expr) {
@@ -393,8 +393,8 @@ localVariableDeclarationStatement
     ;
 
 localVariableDeclaration
-    :	^(VARDECL variableDeclarator) // il + della grammatica e' assorbito da blockStatement*
-        { addVariableToScope($variableDeclarator.id, $variableDeclarator.t); } 
+    :	^(VARDECL variableDeclarator)   // il + della grammatica e' assorbito da blockStatement*   
+    	{ addVariableToScope($variableDeclarator.id, $variableDeclarator.t); }  
     ;
    
 
