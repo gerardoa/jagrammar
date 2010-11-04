@@ -223,9 +223,6 @@ localVariableDeclarationStatement
     ;
 
 localVariableDeclaration
-@init {
-	CommonTree dupNode = null;
-}
     :	type variableDeclarator[(CommonTree)$type.tree] (',' variableDeclarator[(CommonTree)((CommonTree)$type.tree).dupNode()])* 
     	-> ^(VARDECL variableDeclarator)+
     ;
