@@ -53,7 +53,7 @@ public class ReferenceType extends ComplexType {
         if (!t.isReference()) {
             return false;
         }
-        return superClass.isSubtypeOf(t);
+        return (superClass != null) ? superClass.isSubtypeOf(t) : false;
     }
 
     public ReferenceType getSuperClass() {
