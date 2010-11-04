@@ -72,7 +72,7 @@ compilationUnit
 classDeclaration
     :   PUBLIC! CLASS^ IDENTIFIER 
     	{ if (!fileName.equals($IDENTIFIER.text)) {
-    	  	errorLog.add(new MismatchedClassName($IDENTIFIER.text, $IDENTIFIER.line, $IDENTIFIER.pos));
+    	  	errorLog.add(new MismatchedClassNameException($IDENTIFIER.text, $IDENTIFIER.line, $IDENTIFIER.pos));
     	  }
     	  // Potrebbe gia' esistere l'istanza prima che abbia analizzato il file .java
     	  // Aggiunta effettuata dalla regola classType per recuperare subito l'istanza della classe anche se priva di interfaccia
@@ -110,9 +110,10 @@ memberDeclaration
     	-> ^(METHOD modifier VOID IDENTIFIER formalParameters? methodBody)
     	
     |   modifier IDENTIFIER formalParameters constructorBody 
-    	{ if(rt.getName().equals($IDENTIFIER.text)) {
+    	{ if(rt.getName().equals($IDENTIFIER.text))
     		try { rt.addConstructor($modifier.pub, $formalParameters.args); } catch(UnacceptableConstructorException ex) { errorLog.add(ex, $IDENTIFIER.line, $IDENTIFIER.pos); } 
-   	  }
+   	  else 
+   	  	errorLog.add(new InvalidMethodDeclarationException($IDENTIFIER.line, $IDENTIFIER.pos));
     	}
     	-> ^(CONSTR modifier IDENTIFIER formalParameters? constructorBody?)
     ;
@@ -380,7 +381,7 @@ selector [CommonTree primary]
 
 creator
     :	createdName! arrayCreatorRest[(CommonTree)$createdName.tree]
-    |	createdName  classCreatorRest
+    |	createdName    classCreatorRest
     ;
 
 createdName

@@ -9,10 +9,10 @@ package jagrammar.exception;
  *
  * @author Gerardo
  */
-public class MismatchedClassName extends JaCompileException {
+public class MismatchedClassNameException extends JaCompileException {
 
     private String className;
-    public MismatchedClassName(String className, int line, int pos) {
+    public MismatchedClassNameException(String className, int line, int pos) {
         super(line, pos);
         this.className = className;
     }
