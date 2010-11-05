@@ -10,8 +10,10 @@ import jagrammar.util.*;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Queue;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.antlr.runtime.*;
@@ -76,6 +78,7 @@ public class JaDriver {
         Map<String, ClassInfo> myASTs = new HashMap<String, ClassInfo>();
         // Coda contenente i percorsi ai file delle classi da analizzare
         Queue<String> todo = new LinkedSetList<String>();
+        Set<String> invalidClasses = new HashSet<String>();
         // Controllo se i file da analizzare non sono Object, String, Class
         for (int i = fileIndex; i < args.length; i++) {
             String cName = args[i];
@@ -107,23 +110,28 @@ public class JaDriver {
                 try {
                     // Inizia il parsing alla regola compilationUnit
                     cuTree = parser.compilationUnit();
+                    // recupero e stampa dell'AST
+                    CommonTree t = (CommonTree) cuTree.getTree();
+                    System.out.println(t.toStringTree());
+                    myASTs.put(className, new ClassInfo(t, tokens, errorLog));
                 } catch (RecognitionException ex) {
                     parser.reportError(ex);
+                    printErrorLogger(errorLog, true);
+                    invalidClasses.add(className);
                 }
-                // recupero e stampa dell'AST
-                CommonTree t = (CommonTree) cuTree.getTree();
-                System.out.println(t.toStringTree());
-                myASTs.put(className, new ClassInfo(t, tokens, errorLog));
 
             } catch (IOException ex) {
                 //Logger.getLogger(JaDriver.class.getName()).log(Level.SEVERE, null, ex);
                 System.err.println(ex.getMessage());
-                /* istanza che rappresenta la classe viene rimossa dalla tabella
-                delle interfaccie in quanto tale file risulta inesistente */
-                myclasses.remove(className);
+                /* istanza che rappresenta la classe viene segnalata per la rimozione
+                dalla tabella delle interfaccie in quanto tale file risulta inesistente */
+                invalidClasses.add(className);
             }
         }
 
+        for(String className : invalidClasses) {
+            myclasses.remove(className);
+        }
 
         // SECONDA FASE: analisi degli AST generati dalla prima fase; type checking
         for (String className : myASTs.keySet()) {
@@ -151,19 +159,24 @@ public class JaDriver {
         System.out.println("-----------------End compilation-----------------");
     }
 
-    private static void printErrorLogger(ErrorLogger el) {
-        if(!el.isEmpty()) {
-	   System.out.flush();
-	   try {
-	   	Thread.sleep(100);
-	   } catch (InterruptedException ex) {
-	   }
-	   System.err.println("ERROR LOG:" + el);
-           System.err.flush();
-	   try {
-	   	Thread.sleep(100);
-	   } catch (InterruptedException ex) {
-	   }
+    private static void printErrorLogger(ErrorLogger el, boolean fatal) {
+        String fatalStr = (fatal) ? "\nFatal Errors" : "";
+        if (!el.isEmpty()) {
+            System.out.flush();
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException ex) {
+            }
+            System.err.println("ERROR LOG:" + fatalStr + el);
+            System.err.flush();
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException ex) {
+            }
         }
+    }
+
+    private static void printErrorLogger(ErrorLogger el) {
+        printErrorLogger(el, false);
     }
 }
