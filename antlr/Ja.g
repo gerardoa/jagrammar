@@ -29,7 +29,7 @@ tokens {
 }
 
 @members {
-	private String fileName;
+	private String fileName = "Test";  // inizializzazione per ANTLRWORKS
 	private ErrorLogger errorLog;        
 	private Queue<String> todo = new LinkedList<String>(); // inizializzazione per ANTLRWORKS
 	private Map<String, ReferenceType> cTab = new HashMap<String, ReferenceType>(); // inizializzazione per ANTLRWORKS
@@ -59,7 +59,18 @@ tokens {
     	public void emitErrorMessage(String msg) {
 		errorLog.add(msg);
     	}
-}
+} 
+
+
+// Alter code generation so catch-clauses get replace with 
+// this action. 
+@rulecatch { 
+	catch (RecognitionException e) { 
+		throw e; 
+	} 
+} 
+
+
 
 
 
@@ -83,7 +94,7 @@ classDeclaration
 	  	cTab.put(fileName, rt);
 	  }
 	}
-        (EXTENDS! classType { rt.addSuperType($classType.t); } )?		    	
+        (EXTENDS! classType { try { rt.addSuperType($classType.t); } catch(CyclicInheritanceException ex) { errorLog.add(ex, $EXTENDS.line, $EXTENDS.pos); } } )?		    	
     	classBody
     ;
   
@@ -381,7 +392,7 @@ selector [CommonTree primary]
 
 creator
     :	createdName! arrayCreatorRest[(CommonTree)$createdName.tree]
-    |	createdName    classCreatorRest
+    |	classType classCreatorRest
     ;
 
 createdName
@@ -604,7 +615,7 @@ RETURN
     ;
 
 SUPER
-    :   'super'
+    	:	   'super'
     ;
 
 THIS

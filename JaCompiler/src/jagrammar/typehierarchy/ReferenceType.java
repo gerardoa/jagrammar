@@ -9,6 +9,7 @@
  */
 package jagrammar.typehierarchy;
 
+import jagrammar.typehierarchy.exception.CyclicInheritanceException;
 import jagrammar.typehierarchy.exception.UnacceptableMethodException;
 import jagrammar.typehierarchy.exception.UnacceptableConstructorException;
 import jagrammar.typehierarchy.exception.UnacceptableFieldException;
@@ -35,6 +36,13 @@ public class ReferenceType extends ComplexType {
     }
 
     public void addSuperType(ReferenceType sClass) {
+        ReferenceType currentClass = sClass;
+        while(currentClass != OBJECT) {
+            if(currentClass.equals(this)) {
+                throw new CyclicInheritanceException(name);
+            }
+            currentClass = currentClass.superClass;
+        }
         superClass = sClass;
     }
 
@@ -645,10 +653,8 @@ public class ReferenceType extends ComplexType {
 
     static {
         OBJECT = new ReferenceType("Object");
-        OBJECT.addSuperType(null);
+        OBJECT.superClass = null;
         STRING = new ReferenceType("String");
-        STRING.addSuperType(OBJECT);
         CLASS = new ReferenceType("Class");
-        CLASS.addSuperType(OBJECT);
     }
 }

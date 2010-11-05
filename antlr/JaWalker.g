@@ -90,14 +90,14 @@ scope JaScope {
 	/* Aggiunge una variabile a JaScope. Se essa e' stata gia' definita precedentemente
 	 * registra un errore di tipo UnacceptableLocalVariableException al log.
 	 */
-	private void addVariableToScope(CommonTree identifier, Type t) { 
+	private void addVariableToScope(CommonTree identifier, Type t) {
 	    String id = identifier.getText();
 	    int line = identifier.getLine();
 	    int pos = identifier.getCharPositionInLine();
 	    if(!isDefined(id))
     	    	$JaScope::symbols.put(id, t);
     	    else
-    		errorLog.add(new UnacceptableLocalVariableException(id, getMethodSignature(), line, pos)); 
+   		errorLog.add(new UnacceptableLocalVariableException(id, getMethodSignature(), line, pos));
     	}
     	
     	/** Effetua controllo sui tipi degli operandi su cui e' applicato l'operatore '+'. Se almeno uno di essi
@@ -593,23 +593,16 @@ selector returns [Type t, boolean isVar]
 
 creator returns [Type t]
     :   arrayCreatorRest {$t = $arrayCreatorRest.t; }
-    |   createdName classCreatorRest? 
-    	{ if(ruleTypeCheck($createdName.t)) {
-    		Token tk = $createdName.start.token;
-    	  	if($createdName.t.isReference()) {
-    	  		if($classCreatorRest.types == null || ruleTypeCheck($classCreatorRest.types.toArray(new Type[$classCreatorRest.types.size()])) ) {
-		    	  try {
-				((ReferenceType)$createdName.t).bindConstructor($classCreatorRest.types);
-		    	  } catch (EarlyBindingException ex) {
-		    	  	errorLog.add(new CannotFindSymbolException(("constructor " + rt.toString() + '(' + printArguments($classCreatorRest.types) + ')'), "class " + rt.toString(), tk.getLine(), tk.getCharPositionInLine()));
-		    	  }
-		    	 }		    	 
-		   $t = $createdName.t;
-		 } else {
-		   // E' un tipo primitivo, tratto le () come se fossero []
-		   $t =  ParserHelper.createArrayType($createdName.t, 1); 		
-		 }
-    	  } 
+    |   classType classCreatorRest? 
+    	{ if(ruleTypeCheck($classType.t) && ($classCreatorRest.types == null || ruleTypeCheck($classCreatorRest.types.toArray(new Type[$classCreatorRest.types.size()])) )) {
+  	  	  Token tk = $classType.start.token;
+	    	  try {
+			((ReferenceType)$classType.t).bindConstructor($classCreatorRest.types);
+	    	  } catch (EarlyBindingException ex) {
+	    	  	errorLog.add(new CannotFindSymbolException(("constructor " + rt.toString() + '(' + printArguments($classCreatorRest.types) + ')'), "class " + rt.toString(), tk.getLine(), tk.getCharPositionInLine()));
+	    	  }	    	 
+		  $t = $classType.t;
+	  }
     	}
     ;
 
