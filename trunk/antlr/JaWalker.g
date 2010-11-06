@@ -184,7 +184,7 @@ scope JaScope {
     	
     	@Override
     	public void emitErrorMessage(String msg) {
-		errorLog.add(msg);
+		errorLog.add("walker reports: " + msg);
     	}    			 
 }
 

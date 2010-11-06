@@ -1,8 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package jagrammar.exception;
 
 /**
@@ -12,6 +7,7 @@ package jagrammar.exception;
 public class MismatchedClassNameException extends JaCompileException {
 
     private String className;
+
     public MismatchedClassNameException(String className, int line, int pos) {
         super(line, pos);
         this.className = className;

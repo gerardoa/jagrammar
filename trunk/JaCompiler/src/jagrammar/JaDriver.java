@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package jagrammar;
 
 import jagrammar.exception.*;
@@ -11,6 +7,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.Map;
 import java.util.Queue;
 import java.util.Set;
@@ -74,7 +71,7 @@ public class JaDriver {
         // con chiave il nome della classe
         Map<String, ClassInfo> myASTs = new HashMap<String, ClassInfo>();
         // Coda contenente i nomi delle classi ancora da analizzare
-        Queue<String> todo = new LinkedSetList<String>();
+        Queue<String> todo = new LinkedList<String>();
         // Insieme delle classi non valide a causa di errori fatali del parser,
         // o dell'assenza del file
         Set<String> invalidClasses = new HashSet<String>();
@@ -96,17 +93,18 @@ public class JaDriver {
         System.out.println("Start compilation...\n");
         while (!todo.isEmpty()) {
             String className = todo.remove();
+            // Error Logger che memorizzerà gli errori generati sia dal parser che dal tree parser
+            ErrorLogger errorLog = new ErrorLogger(className);
             try {
                 // Crea un CharStream che legge da un fileInputStream
                 ANTLRInputStream input = new ANTLRInputStream(new FileInputStream(pathname + "/" + className + ".java"));
                 // Crea il lexer
                 JaLexer lexer = new JaLexer(input);
+                lexer.setErrorLogger(errorLog);
                 // Crea un buffer di token dal lexer
                 CommonTokenStream tokens = new CommonTokenStream(lexer);
                 // Crea il parser passandogli il buffer di tokens
                 JaParser parser = new JaParser(tokens);
-                // Error Logger che memorizzerà gli errori generati sia dal parser che dal tree parser
-                ErrorLogger errorLog = new ErrorLogger(className);
                 parser.setErrorLogger(errorLog);
                 // passo il nome del file per controllarne la coerenza col nome della classe
                 parser.setFileName(className);
@@ -130,7 +128,7 @@ public class JaDriver {
                 }
             } catch (IOException ex) {
                 // solitamente perchè il file non è stato trovato
-                System.err.println(ex.getMessage());
+                errorLog.add(ex, 0, 0);
                 /* istanza che rappresenta la classe viene segnalata per la rimozione
                 dalla tabella delle interfaccie in quanto tale file risulta inesistente */
                 invalidClasses.add(className);
