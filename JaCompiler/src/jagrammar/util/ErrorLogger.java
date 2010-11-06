@@ -15,6 +15,10 @@ public class ErrorLogger {
         classFileName = className + ".java";
     }
 
+    public String getClassFileName() {
+        return classFileName;
+    }
+
     public boolean isEmpty() {
         return exList.toString().equals("");
     }

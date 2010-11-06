@@ -41,20 +41,27 @@ public class JaDriver {
         String pathname = ".";
         // indice di args dove iniziano i file java
         int fileIndex = 0;
+        int optionIndex = 0;
+        boolean debug = false;
         // controllo l'input dell'utente
         if (args.length == 0) {
-            System.err.println("Usage: java -jar JaCompiler.jar -p [<classPath>] <Classe1.java> [<Classe2.java> ...]");
+            System.err.println("Usage: java -jar JaCompiler.jar [-d] [-p <classPath>] <Classe1.java> [<Classe2.java> ...]");
             return;
         }
-        if (args[0].equals("-p")) {
-            if (args.length > 2) {
-                pathname = args[1];
-                fileIndex = 2;
+        if (args[0].equals("-d")) {
+            debug = true;
+            optionIndex = 1;
+        }
+        if (args[optionIndex].equals("-p")) {
+            optionIndex++;
+            if (args.length > optionIndex) {
+                pathname = args[optionIndex++];
             } else {
-                System.err.println("-p option: Pathname required or missing input files.");
+                System.err.println("-p option: Pathname required");
                 return;
             }
         }
+        fileIndex = optionIndex;
         for (int i = fileIndex; i < args.length; i++) {
             String cName = args[i];
             if (!cName.matches("^[A-Za-z]+\\.java$")) {
@@ -71,7 +78,7 @@ public class JaDriver {
         // con chiave il nome della classe
         Map<String, ClassInfo> myASTs = new HashMap<String, ClassInfo>();
         // Coda contenente i nomi delle classi ancora da analizzare
-        Queue<String> todo = new LinkedList<String>();
+        Queue<String> todo = new LinkedSetList<String>();
         // Insieme delle classi non valide a causa di errori fatali del parser,
         // o dell'assenza del file
         Set<String> invalidClasses = new HashSet<String>();
@@ -90,7 +97,7 @@ public class JaDriver {
         }
 
         // PRIMA FASE: ciclo per il recupero delle interfaccie
-        System.out.println("Start compilation...\n");
+        if (debug) System.out.println("-------------- Starting first phase...");
         while (!todo.isEmpty()) {
             String className = todo.remove();
             // Error Logger che memorizzerà gli errori generati sia dal parser che dal tree parser
@@ -117,7 +124,7 @@ public class JaDriver {
                     cuTree = parser.compilationUnit();
                     // recupero e stampa dell'AST
                     CommonTree t = (CommonTree) cuTree.getTree();
-                    System.out.println(t.toStringTree());
+                    if (debug) System.out.println(t.toStringTree());
                     // aggiunta dell'AST e delle altre informazioni necessarie alla fase successiva
                     myASTs.put(className, new ClassInfo(t, tokens, errorLog));
                 } catch (RecognitionException ex) {
@@ -134,6 +141,7 @@ public class JaDriver {
                 invalidClasses.add(className);
             }
         }
+        if (debug) System.out.println("-------------- END first phase.");
 
         // rimuovo le classi non valide, poichè non sono state analizzate,
         // oppure lo sono solo parzialmente
@@ -142,6 +150,7 @@ public class JaDriver {
         }
 
         // SECONDA FASE: analisi degli AST generati dalla prima fase: type checking
+        if (debug) System.out.println("-------------- Starting second phase...");
         for (String className : myASTs.keySet()) {
             ReferenceType rt = myClasses.get(className);
             ClassInfo classInfo = myASTs.get(className);
@@ -155,7 +164,6 @@ public class JaDriver {
             walker.setReferenceType(rt);
             walker.setErrorLogger(classInfo.errorLog);
             try {
-                System.out.println("\n------------Tree parsing for class " + className + "------------");
                 walker.compilationUnit();
             } catch (RecognitionException ex) {
                 walker.reportError(ex);
@@ -163,15 +171,16 @@ public class JaDriver {
                 classInfo.errorLog.add(ex);
             } finally {
                 printErrorLogger(classInfo.errorLog);
-                System.out.println("----------End Tree Parsing for class " + className + "----------\n");
             }
         }
-        System.out.println("-----------------End compilation-----------------");
+        if (debug) System.out.println("-------------- END second phase.");
     }
 
     private static void printErrorLogger(ErrorLogger el, boolean fatal) {
-        String fatalStr = (fatal) ? "\nFatal Errors" : "";
-        if (!el.isEmpty()) {
+        if (el.isEmpty()) {
+            System.out.println(el.getClassFileName() + " compiled successfully.");
+        } else {
+            String fatalStr = (fatal) ? "\nFatal Errors" : "";
             System.out.flush();
             try {
                 Thread.sleep(100);
