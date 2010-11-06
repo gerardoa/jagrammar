@@ -1,12 +1,7 @@
 package jagrammar.util;
 
 import jagrammar.typehierarchy.ArrayType;
-import jagrammar.typehierarchy.BasicType;
-import jagrammar.typehierarchy.ReferenceType;
 import jagrammar.typehierarchy.Type;
-import org.antlr.runtime.tree.CommonTree;
-import jagrammar.exception.*;
-import org.antlr.runtime.Token;
 
 /**
  *
@@ -15,7 +10,9 @@ import org.antlr.runtime.Token;
 public class ParserHelper {
 
     /**
+     * Crea un array di dimensioni dim, a partire dal tipo ospite passando in ingresso;
      * ritorna un Type perche' potrebbe non restituire un ComplexType se dim e' uguale a 0
+     * 
      * @param t Tipo ospite
      * @param dim Dimensioni dell'array
      * @return
@@ -26,10 +23,4 @@ public class ParserHelper {
         }
         return t;
     }
-
-    public static void debugCT(CommonTree ct) {
-        Token t = ct.getToken();
-        return;
-    }
-
 }

@@ -26,13 +26,15 @@ tokens {
 
 @lexer::header{
 	package jagrammar;
+	
+	import jagrammar.util.ErrorLogger;
 }
 
 @members {
-	private String fileName = "Test";  // inizializzazione per ANTLRWORKS
-	private ErrorLogger errorLog;        
-	private Queue<String> todo = new LinkedList<String>(); // inizializzazione per ANTLRWORKS
-	private Map<String, ReferenceType> cTab = new HashMap<String, ReferenceType>(); // inizializzazione per ANTLRWORKS
+	private String fileName = "Test";  // permette il debug da ANTLRWORKS
+	private ErrorLogger errorLog = new ErrorLogger("DEBUG"); // permette il debug da ANTLRWORKS
+	private Queue<String> todo = new LinkedList<String>(); // permette il debug da ANTLRWORKS
+	private Map<String, ReferenceType> cTab = new HashMap<String, ReferenceType>(); // permette il debug da ANTLRWORKS
 	private ReferenceType rt;
 	
 	public void setQueue(Queue<String> q) {
@@ -57,7 +59,20 @@ tokens {
     	
     	@Override
     	public void emitErrorMessage(String msg) {
-		errorLog.add(msg);
+		errorLog.add("parser reports: " + msg);
+    	}
+}
+
+@lexer::members{
+	private ErrorLogger errorLog = new ErrorLogger("DEBUG"); // permette il debug da ANTLRWORKS
+	
+	public void setErrorLogger(ErrorLogger el) {
+    		this.errorLog = el;
+    	}
+    	
+	@Override
+    	public void emitErrorMessage(String msg) {
+		errorLog.add("lexer reports: " + msg);
     	}
 } 
 
@@ -431,6 +446,7 @@ bracketsOpt[CommonTree t] returns [int arrayDim]
     :  	(-> {$t})  l +=(lb='['']' -> ^(ARRAYTYPE[$lb, "ARRAYTYPE"] $bracketsOpt ))*
     	{ if($l != null) $arrayDim = $l.size(); }
     ;
+    
 // LEXER
     
 fragment
@@ -615,7 +631,7 @@ RETURN
     ;
 
 SUPER
-    	:	   'super'
+    :   'super'
     ;
 
 THIS

@@ -1,23 +1,15 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package jagrammar.util;
 
-import org.antlr.runtime.RecognitionException;
 import jagrammar.exception.JaCompileException;
-import java.util.LinkedList;
-import java.util.List;
 
 /**
+ * Accoda gli errori per una specifica classe, generati durante la compilazione
  *
- * @author IlianaPetrova
  */
 public class ErrorLogger {
 
     private String classFileName;
     private StringBuilder exList = new StringBuilder();
-    private List<JaCompileException> exceptions = new LinkedList<JaCompileException>();
 
     public ErrorLogger(String className) {
         classFileName = className + ".java";
@@ -27,20 +19,19 @@ public class ErrorLogger {
         return exList.toString().equals("");
     }
 
+    // errori durante il type checking
     public void add(JaCompileException ex) {
         exList.append("\n").append(classFileName).append(":").append(ex.getLine()).append(":").append(ex.getPosition()).append(" ").append(ex.getMessage());
     }
 
-    public void add (RuntimeException ex, int line, int pos) {
-         exList.append("\n").append(classFileName).append(":").append(line).append(":").append(pos).append(" ").append(ex.getMessage());
+    // errori durante la raccolta dell'interfaccia
+    public void add(Exception ex, int line, int pos) {
+        exList.append("\n").append(classFileName).append(":").append(line).append(":").append(pos).append(" ").append(ex.getMessage());
     }
 
-    public void add(RecognitionException ex) {
-        exList.append("\n").append(classFileName).append(":").append(ex.line).append(":").append(ex.charPositionInLine).append(" ").append(ex.getMessage());
-    }
-
+    // messaggi aggiunti da ANTLR
     public void add(String msg) {
-        exList.append("\n").append(classFileName).append(": ANTLR reports: ").append(msg);
+        exList.append("\n").append(classFileName).append(": ANTLR ").append(msg);
     }
 
     @Override

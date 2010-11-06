@@ -1,8 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package jagrammar.exception;
 
 /**
@@ -11,12 +6,12 @@ package jagrammar.exception;
  */
 public class MissingReturnValueException extends JaCompileException {
 
-        public MissingReturnValueException(int line, int pos) {
-            super(line, pos);
-        }
+    public MissingReturnValueException(int line, int pos) {
+        super(line, pos);
+    }
 
-        @Override
-	public String getMessage(){
-            return "Missing return value";
-	}
+    @Override
+    public String getMessage() {
+        return "Missing return value";
+    }
 }

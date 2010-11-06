@@ -1,8 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package jagrammar.exception;
 
 /**
@@ -11,15 +6,15 @@ package jagrammar.exception;
  */
 public class IllegalArrayInitializerException extends JaCompileException {
 
-        private String type;
+    private String type;
 
-        public IllegalArrayInitializerException(String type, int line, int pos) {
-            super(line, pos);
-            this.type = type;
-        }
+    public IllegalArrayInitializerException(String type, int line, int pos) {
+        super(line, pos);
+        this.type = type;
+    }
 
-        @Override
-	public String getMessage(){
-            return "Illegal initializer for " + type;
-	}
+    @Override
+    public String getMessage() {
+        return "Illegal initializer for " + type;
+    }
 }

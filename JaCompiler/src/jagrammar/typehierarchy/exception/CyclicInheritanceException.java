@@ -1,14 +1,5 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package jagrammar.typehierarchy.exception;
 
-/**
- *
- * @author IlianaPetrova
- */
 public class CyclicInheritanceException extends RuntimeException{
 
         private String className;
