@@ -144,6 +144,11 @@ public class ReferenceType extends ComplexType {
             if (!m.name.equals(name)) {
                 return false;
             }
+
+            if (m.arguments.size() != this.arguments.size()) {
+                return false;
+            }
+
             int i = 0;
             for (Type t : m) {
                 if (!t.equals(arguments.get(i++))) {
@@ -271,7 +276,10 @@ public class ReferenceType extends ComplexType {
                     throw new VisibilityOverridingException();
                 }
                 //verifica il tipo di ritorno
-                if (!m.returnType.isSubtypeOf(am.returnType)) {
+                if (m.returnType.isBasic() && am.returnType.isBasic()) {
+                    if (!m.returnType.equals(am.returnType))
+                        throw new ReturnTypeOverridingException();
+                } else if (!m.returnType.isSubtypeOf(am.returnType)) {
                     throw new ReturnTypeOverridingException();
                 }
                 //mi posso fermare percha' in una classe non ci possono essere altri
@@ -391,7 +399,7 @@ public class ReferenceType extends ComplexType {
             return candL.get(0).returnType;
         }
         //CASO GENERICO:
-        Method[] candA = (Method[]) candL.toArray();
+        Method[] candA = candL.toArray(new Method[candL.size()]);
         boolean[] skip = new boolean[candA.length];
         for (int i = 0; i < candA.length; i++) {
             if (skip[i]) {
