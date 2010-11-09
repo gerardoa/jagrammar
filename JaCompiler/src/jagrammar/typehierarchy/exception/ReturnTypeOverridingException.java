@@ -9,6 +9,10 @@
  */
 package jagrammar.typehierarchy.exception;
 
+public class ReturnTypeOverridingException extends RuntimeException {
 
-public class ReturnTypeOverridingException extends RuntimeException{
+    @Override
+    public String getMessage() {
+        return "cannot override; return type is not compatible";
+    }
 }

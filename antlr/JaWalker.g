@@ -579,7 +579,8 @@ selector returns [Type t, boolean isVar]
     	  }
     	}
     |   ^(ARRAYACCESS e1=expression e2=expression) 
-    	{ if (ruleTypeCheck($e1.t, $e2.t)) {
+    	{ $isVar = true;
+    	  if (ruleTypeCheck($e1.t, $e2.t)) {
 	    	  if (!$e1.t.isArray()) {
 	    	  	errorLog.add(new ArrayRequiredException($e1.t.toString(), $ARRAYACCESS.line, $ARRAYACCESS.pos));
 	    	  } else {

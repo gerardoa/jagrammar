@@ -50,8 +50,14 @@ public class VoidType implements Type{
 	}
 	
 	public boolean isSubtypeOf(Type t){
-		return false;
+                // per mantenere un comportamento omogeneo in checksoverriding
+		return equals(t);
 	}
+
+        @Override
+        public String toString() {
+                return "VOID";
+        }
 
         //unica istanza di questa classe
 	public static final VoidType TYPE = new VoidType();

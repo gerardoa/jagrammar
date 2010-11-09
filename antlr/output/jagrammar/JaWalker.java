@@ -1,4 +1,4 @@
-// $ANTLR 3.2 Sep 23, 2009 12:02:23 D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g 2010-11-06 14:56:26
+// $ANTLR 3.2 Sep 23, 2009 12:02:23 D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g 2010-11-08 19:19:39
 
 	package jagrammar;
 	
@@ -3568,7 +3568,8 @@ public class JaWalker extends TreeParser {
 
 
                     match(input, Token.UP, null); 
-                     if (ruleTypeCheck((e1!=null?e1.t:null), (e2!=null?e2.t:null))) {
+                     retval.isVar = true;
+                        	  if (ruleTypeCheck((e1!=null?e1.t:null), (e2!=null?e2.t:null))) {
                     	    	  if (!(e1!=null?e1.t:null).isArray()) {
                     	    	  	errorLog.add(new ArrayRequiredException((e1!=null?e1.t:null).toString(), (ARRAYACCESS49!=null?ARRAYACCESS49.getLine():0), (ARRAYACCESS49!=null?ARRAYACCESS49.getCharPositionInLine():0)));
                     	    	  } else {
@@ -3596,7 +3597,7 @@ public class JaWalker extends TreeParser {
 
 
     // $ANTLR start "creator"
-    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:594:1: creator returns [Type t] : ( arrayCreatorRest | classType ( classCreatorRest )? );
+    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:595:1: creator returns [Type t] : ( arrayCreatorRest | classType ( classCreatorRest )? );
     public final Type creator() throws RecognitionException {
         Type t = null;
 
@@ -3608,7 +3609,7 @@ public class JaWalker extends TreeParser {
 
 
         try {
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:595:5: ( arrayCreatorRest | classType ( classCreatorRest )? )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:596:5: ( arrayCreatorRest | classType ( classCreatorRest )? )
             int alt38=2;
             int LA38_0 = input.LA(1);
 
@@ -3626,7 +3627,7 @@ public class JaWalker extends TreeParser {
             }
             switch (alt38) {
                 case 1 :
-                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:595:9: arrayCreatorRest
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:596:9: arrayCreatorRest
                     {
                     pushFollow(FOLLOW_arrayCreatorRest_in_creator2339);
                     arrayCreatorRest50=arrayCreatorRest();
@@ -3638,14 +3639,14 @@ public class JaWalker extends TreeParser {
                     }
                     break;
                 case 2 :
-                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:596:9: classType ( classCreatorRest )?
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:597:9: classType ( classCreatorRest )?
                     {
                     pushFollow(FOLLOW_classType_in_creator2351);
                     classType51=classType();
 
                     state._fsp--;
 
-                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:596:19: ( classCreatorRest )?
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:597:19: ( classCreatorRest )?
                     int alt37=2;
                     int LA37_0 = input.LA(1);
 
@@ -3654,7 +3655,7 @@ public class JaWalker extends TreeParser {
                     }
                     switch (alt37) {
                         case 1 :
-                            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:596:19: classCreatorRest
+                            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:597:19: classCreatorRest
                             {
                             pushFollow(FOLLOW_classCreatorRest_in_creator2353);
                             classCreatorRest52=classCreatorRest();
@@ -3695,7 +3696,7 @@ public class JaWalker extends TreeParser {
 
 
     // $ANTLR start "createdName"
-    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:610:1: createdName returns [Type t] : ( classType | primitiveType );
+    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:611:1: createdName returns [Type t] : ( classType | primitiveType );
     public final Type createdName() throws RecognitionException {
         Type t = null;
 
@@ -3705,7 +3706,7 @@ public class JaWalker extends TreeParser {
 
 
         try {
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:611:5: ( classType | primitiveType )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:612:5: ( classType | primitiveType )
             int alt39=2;
             int LA39_0 = input.LA(1);
 
@@ -3723,7 +3724,7 @@ public class JaWalker extends TreeParser {
             }
             switch (alt39) {
                 case 1 :
-                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:611:9: classType
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:612:9: classType
                     {
                     pushFollow(FOLLOW_classType_in_createdName2386);
                     classType53=classType();
@@ -3735,7 +3736,7 @@ public class JaWalker extends TreeParser {
                     }
                     break;
                 case 2 :
-                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:612:9: primitiveType
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:613:9: primitiveType
                     {
                     pushFollow(FOLLOW_primitiveType_in_createdName2402);
                     primitiveType54=primitiveType();
@@ -3761,7 +3762,7 @@ public class JaWalker extends TreeParser {
 
 
     // $ANTLR start "arrayCreatorRest"
-    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:615:1: arrayCreatorRest returns [ArrayType t] : ( ^( ARRAYALLOCINIT brackets arrayInitializer[$brackets.t.getHostType()] ) | ^( ARRAYALLOC bracketsOpt ) );
+    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:616:1: arrayCreatorRest returns [ArrayType t] : ( ^( ARRAYALLOCINIT brackets arrayInitializer[$brackets.t.getHostType()] ) | ^( ARRAYALLOC bracketsOpt ) );
     public final ArrayType arrayCreatorRest() throws RecognitionException {
         ArrayType t = null;
 
@@ -3771,7 +3772,7 @@ public class JaWalker extends TreeParser {
 
 
         try {
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:616:5: ( ^( ARRAYALLOCINIT brackets arrayInitializer[$brackets.t.getHostType()] ) | ^( ARRAYALLOC bracketsOpt ) )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:617:5: ( ^( ARRAYALLOCINIT brackets arrayInitializer[$brackets.t.getHostType()] ) | ^( ARRAYALLOC bracketsOpt ) )
             int alt40=2;
             int LA40_0 = input.LA(1);
 
@@ -3789,7 +3790,7 @@ public class JaWalker extends TreeParser {
             }
             switch (alt40) {
                 case 1 :
-                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:616:7: ^( ARRAYALLOCINIT brackets arrayInitializer[$brackets.t.getHostType()] )
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:617:7: ^( ARRAYALLOCINIT brackets arrayInitializer[$brackets.t.getHostType()] )
                     {
                     match(input,ARRAYALLOCINIT,FOLLOW_ARRAYALLOCINIT_in_arrayCreatorRest2430); 
 
@@ -3811,7 +3812,7 @@ public class JaWalker extends TreeParser {
                     }
                     break;
                 case 2 :
-                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:617:9: ^( ARRAYALLOC bracketsOpt )
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:618:9: ^( ARRAYALLOC bracketsOpt )
                     {
                     match(input,ARRAYALLOC,FOLLOW_ARRAYALLOC_in_arrayCreatorRest2449); 
 
@@ -3842,7 +3843,7 @@ public class JaWalker extends TreeParser {
 
 
     // $ANTLR start "classCreatorRest"
-    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:620:1: classCreatorRest returns [ArrayList<Type> types] : arguments ;
+    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:621:1: classCreatorRest returns [ArrayList<Type> types] : arguments ;
     public final ArrayList<Type> classCreatorRest() throws RecognitionException {
         ArrayList<Type> types = null;
 
@@ -3850,8 +3851,8 @@ public class JaWalker extends TreeParser {
 
 
         try {
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:621:5: ( arguments )
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:621:9: arguments
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:622:5: ( arguments )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:622:9: arguments
             {
             pushFollow(FOLLOW_arguments_in_classCreatorRest2477);
             arguments57=arguments();
@@ -3875,7 +3876,7 @@ public class JaWalker extends TreeParser {
 
 
     // $ANTLR start "superMemberAccess"
-    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:624:1: superMemberAccess returns [Type t] : ( ^( METHODCALL SUPER IDENTIFIER ( arguments )? ) | ^( FIELDACCESS SUPER IDENTIFIER ) );
+    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:625:1: superMemberAccess returns [Type t] : ( ^( METHODCALL SUPER IDENTIFIER ( arguments )? ) | ^( FIELDACCESS SUPER IDENTIFIER ) );
     public final Type superMemberAccess() throws RecognitionException {
         Type t = null;
 
@@ -3885,7 +3886,7 @@ public class JaWalker extends TreeParser {
 
 
         try {
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:625:5: ( ^( METHODCALL SUPER IDENTIFIER ( arguments )? ) | ^( FIELDACCESS SUPER IDENTIFIER ) )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:626:5: ( ^( METHODCALL SUPER IDENTIFIER ( arguments )? ) | ^( FIELDACCESS SUPER IDENTIFIER ) )
             int alt42=2;
             int LA42_0 = input.LA(1);
 
@@ -3903,14 +3904,14 @@ public class JaWalker extends TreeParser {
             }
             switch (alt42) {
                 case 1 :
-                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:625:7: ^( METHODCALL SUPER IDENTIFIER ( arguments )? )
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:626:7: ^( METHODCALL SUPER IDENTIFIER ( arguments )? )
                     {
                     match(input,METHODCALL,FOLLOW_METHODCALL_in_superMemberAccess2509); 
 
                     match(input, Token.DOWN, null); 
                     match(input,SUPER,FOLLOW_SUPER_in_superMemberAccess2511); 
                     IDENTIFIER59=(CommonTree)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_superMemberAccess2513); 
-                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:625:37: ( arguments )?
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:626:37: ( arguments )?
                     int alt41=2;
                     int LA41_0 = input.LA(1);
 
@@ -3919,7 +3920,7 @@ public class JaWalker extends TreeParser {
                     }
                     switch (alt41) {
                         case 1 :
-                            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:625:37: arguments
+                            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:626:37: arguments
                             {
                             pushFollow(FOLLOW_arguments_in_superMemberAccess2515);
                             arguments58=arguments();
@@ -3946,7 +3947,7 @@ public class JaWalker extends TreeParser {
                     }
                     break;
                 case 2 :
-                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:634:9: ^( FIELDACCESS SUPER IDENTIFIER )
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:635:9: ^( FIELDACCESS SUPER IDENTIFIER )
                     {
                     match(input,FIELDACCESS,FOLLOW_FIELDACCESS_in_superMemberAccess2536); 
 
@@ -3979,7 +3980,7 @@ public class JaWalker extends TreeParser {
     };
 
     // $ANTLR start "arguments"
-    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:640:1: arguments returns [ArrayList<Type> types] : ^( ARGUMENTS expressionList ) ;
+    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:641:1: arguments returns [ArrayList<Type> types] : ^( ARGUMENTS expressionList ) ;
     public final JaWalker.arguments_return arguments() throws RecognitionException {
         JaWalker.arguments_return retval = new JaWalker.arguments_return();
         retval.start = input.LT(1);
@@ -3988,8 +3989,8 @@ public class JaWalker extends TreeParser {
 
 
         try {
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:641:5: ( ^( ARGUMENTS expressionList ) )
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:641:8: ^( ARGUMENTS expressionList )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:642:5: ( ^( ARGUMENTS expressionList ) )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:642:8: ^( ARGUMENTS expressionList )
             {
             match(input,ARGUMENTS,FOLLOW_ARGUMENTS_in_arguments2581); 
 
@@ -4018,7 +4019,7 @@ public class JaWalker extends TreeParser {
 
 
     // $ANTLR start "brackets"
-    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:644:1: brackets returns [ArrayType t] : ^( ARRAYTYPE bracketsOpt ) ;
+    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:645:1: brackets returns [ArrayType t] : ^( ARRAYTYPE bracketsOpt ) ;
     public final ArrayType brackets() throws RecognitionException {
         ArrayType t = null;
 
@@ -4026,8 +4027,8 @@ public class JaWalker extends TreeParser {
 
 
         try {
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:645:5: ( ^( ARRAYTYPE bracketsOpt ) )
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:645:7: ^( ARRAYTYPE bracketsOpt )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:646:5: ( ^( ARRAYTYPE bracketsOpt ) )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:646:7: ^( ARRAYTYPE bracketsOpt )
             {
             match(input,ARRAYTYPE,FOLLOW_ARRAYTYPE_in_brackets2612); 
 
@@ -4056,7 +4057,7 @@ public class JaWalker extends TreeParser {
 
 
     // $ANTLR start "bracketsOpt"
-    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:648:1: bracketsOpt returns [Type t] : ( createdName | ^( ARRAYTYPE bo= bracketsOpt ) | ^( ARRAYTYPE expression bo= bracketsOpt ) );
+    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:649:1: bracketsOpt returns [Type t] : ( createdName | ^( ARRAYTYPE bo= bracketsOpt ) | ^( ARRAYTYPE expression bo= bracketsOpt ) );
     public final Type bracketsOpt() throws RecognitionException {
         Type t = null;
 
@@ -4069,7 +4070,7 @@ public class JaWalker extends TreeParser {
 
 
         try {
-            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:649:5: ( createdName | ^( ARRAYTYPE bo= bracketsOpt ) | ^( ARRAYTYPE expression bo= bracketsOpt ) )
+            // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:650:5: ( createdName | ^( ARRAYTYPE bo= bracketsOpt ) | ^( ARRAYTYPE expression bo= bracketsOpt ) )
             int alt43=3;
             int LA43_0 = input.LA(1);
 
@@ -4173,7 +4174,7 @@ public class JaWalker extends TreeParser {
             }
             switch (alt43) {
                 case 1 :
-                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:649:7: createdName
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:650:7: createdName
                     {
                     pushFollow(FOLLOW_createdName_in_bracketsOpt2642);
                     createdName63=createdName();
@@ -4185,7 +4186,7 @@ public class JaWalker extends TreeParser {
                     }
                     break;
                 case 2 :
-                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:650:7: ^( ARRAYTYPE bo= bracketsOpt )
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:651:7: ^( ARRAYTYPE bo= bracketsOpt )
                     {
                     match(input,ARRAYTYPE,FOLLOW_ARRAYTYPE_in_bracketsOpt2659); 
 
@@ -4202,7 +4203,7 @@ public class JaWalker extends TreeParser {
                     }
                     break;
                 case 3 :
-                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:651:7: ^( ARRAYTYPE expression bo= bracketsOpt )
+                    // D:\\Documenti\\Gerardo\\Universita\\Magistrale\\1° Anno\\Compilatori\\jagrammar\\antlr\\JaWalker.g:652:7: ^( ARRAYTYPE expression bo= bracketsOpt )
                     {
                     ARRAYTYPE65=(CommonTree)match(input,ARRAYTYPE,FOLLOW_ARRAYTYPE_in_bracketsOpt2675); 
 

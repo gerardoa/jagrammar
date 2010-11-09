@@ -9,7 +9,10 @@
  */
 package jagrammar.typehierarchy.exception;
 
-public class VisibilityOverridingException extends RuntimeException{
+public class VisibilityOverridingException extends RuntimeException {
 
-	
+    @Override
+    public String getMessage() {
+        return "cannot override; attempting to assign weaker access privileges";
+    }
 }
