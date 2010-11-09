@@ -112,7 +112,7 @@ scope JaScope {
 	    return arithmeticOperation(operator, op1, op2);
 	}
 
-        /** Effetua i controlli di tipo sugli operandi su cui sono applicati gli operatori aritmetici (somma, 
+        /** Effettua i controlli di tipo sugli operandi su cui sono applicati gli operatori aritmetici (somma, 
 	 *  sottrazione, divisione, resto della divisione): entrambi operandi devono essere di tipo numerico. 
 	 *  In caso contrario registra un errore di tipo CannotBeAppliedToException al log. 
 	 *  Per determinare il tipo del risultato dell'operazione si esegue una promozione
@@ -135,7 +135,7 @@ scope JaScope {
 	    return (op1.isAssignableTo(op2)) ? op2 : op1;	   
 	}
 	
-	/** Effetua il controllo di tipo sugli operandi su cui sono applicati gli operatori booleani  
+	/** Effettua il controllo di tipo sugli operandi su cui sono applicati gli operatori booleani  
 	 *  (AND, OR, ==, !=): entrambi operandi devono essere di tipo booleano. 
 	 *  In caso contrario viene aggiunto un errore di tipo CannotBeAppliedToException al log. 
 	 */
@@ -147,8 +147,8 @@ scope JaScope {
 	    return BasicType.BOOLEAN;
 	}
 	
-	/** Effetua il controllo di tipo sugli operandi su cui e' applicato l'operatore di assegnazione:
-	 *  l'espressione a destra di '=' deve avere un tipo asegnabile al tipo della variabile a sinistra.
+	/** Effettua il controllo di tipo sugli operandi su cui e' applicato l'operatore di assegnazione:
+	 *  l'espressione a destra di '=' deve avere un tipo assegnabile al tipo della variabile a sinistra.
 	 *  In caso contrario si possono verificare due tipi di errore:
 	 *	PossibleLossOfPrecisionException, quando l'espressione e' di tipo numerico castabile al tipo della variabile; 
 	 *	PossibleLossOfPrecisionException, altrimenti.
