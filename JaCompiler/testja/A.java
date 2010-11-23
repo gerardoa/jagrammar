@@ -1,10 +1,11 @@
-public class A{
+public class A extends B{
 
     public int field1 = 3;
     public int field2, field3;
 	
 	public void printA(int x) {
-		//TestAST t;
+            Test t;
+            t = new Test(3, "");
             printA(3);
             printA(3);
             while((true || false)) {

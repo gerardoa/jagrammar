@@ -1,13 +1,14 @@
 public class TestDebug{
 	public int A = 3;
 	public int B, C;
+        public int ip = new int[8][;
 
 	public void main(){
 	  int x, y;
 	  a.f().g(1).b.z(3);
 	}
 
-	public int ciao(int c1, int c2, int ... p) {
+	public int ciao(int c1, int c2) {
 		a += 3;
 		{
 		x++;

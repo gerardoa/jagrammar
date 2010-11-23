@@ -15,7 +15,7 @@ public class ParserHelper {
      * 
      * @param t Tipo ospite
      * @param dim Dimensioni dell'array
-     * @return
+     * @return array dim - dimensionale
      */
     public static Type createArrayType(Type t, int dim) {
         for (int i = 0; i < dim; i++) {

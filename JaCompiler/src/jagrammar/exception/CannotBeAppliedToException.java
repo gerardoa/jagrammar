@@ -2,7 +2,7 @@ package jagrammar.exception;
 
 /**
  *
- * @author Gerardo
+ * @author IlianaPetrova
  */
 public class CannotBeAppliedToException extends JaCompileException {
 
