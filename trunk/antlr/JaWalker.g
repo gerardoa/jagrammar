@@ -100,7 +100,7 @@ scope JaScope {
    		errorLog.add(new UnacceptableLocalVariableException(id, getMethodSignature(), line, pos));
     	}
     	
-    	/** Effetua controllo sui tipi degli operandi su cui e' applicato l'operatore '+'. Se almeno uno di essi
+    	/** Effettua controllo sui tipi degli operandi su cui e' applicato l'operatore '+'. Se almeno uno di essi
     	 *  e' di tipo ReferenceType.STRING si deduce che l'operazione da eseguire e' una concatenazione, 
     	 *  ed il risultato sara' quindi di tipo ReferenceType.STRING. Altrimenti l'operazione e' considerata
     	 *  di somma ed e' affidata al metodo arithmeticOperation.
@@ -348,7 +348,7 @@ literal returns [Type t]
     			 if ((literal >= -128) &&( literal <= 127)) 
     			 	{ $t = BasicType.BYTE; } 
     			 else 
-    			 	if ((literal >= -32.768) &&( literal <= 32.767)) 
+    			 	if ((literal >= -32768) &&( literal <= 32767)) 
     			 		{ $t = BasicType.SHORT; } 
     			 	else
     			 		{ $t = BasicType.INT; }
@@ -455,8 +455,18 @@ expression returns [Type t, boolean isVar]
     |   ^(mod='%' e1=expression e2=expression) { if(ruleTypeCheck($e1.t, $e2.t)) $t = arithmeticOperation($mod,   $e1.t, $e2.t); }
     |   ^(or='||'  e1=expression e2=expression) { if(ruleTypeCheck($e1.t, $e2.t)) $t = booleanOperation($or,  $e1.t, $e2.t); }
     |   ^(and='&&' e1=expression e2=expression) { if(ruleTypeCheck($e1.t, $e2.t)) $t = booleanOperation($and, $e1.t, $e2.t); }
-    |   ^(eq='=='  e1=expression e2=expression) { if(ruleTypeCheck($e1.t, $e2.t)) $t = booleanOperation($eq,  $e1.t, $e2.t); }
-    |   ^(nq='!='  e1=expression e2=expression) { if(ruleTypeCheck($e1.t, $e2.t)) $t = booleanOperation($nq,  $e1.t, $e2.t); }
+    |   ^(eq='=='  e1=expression e2=expression) 
+        { if(ruleTypeCheck($e1.t, $e2.t)){
+          	  if (!$e1.t.isCastableTo($e2.t)) errorLog.add(new IncomparableTypesException($e1.t.toString(), $e2.t.toString(), $eq.line, $eq.pos));
+	          $t = BasicType.BOOLEAN; 
+       	  }
+        }
+    |   ^(nq='!='  e1=expression e2=expression) 
+        { if(ruleTypeCheck($e1.t, $e2.t)){
+          	  if (!$e1.t.isCastableTo($e2.t)) errorLog.add(new IncomparableTypesException($e1.t.toString(), $e2.t.toString(), $nq.line, $nq.pos));
+	          $t = BasicType.BOOLEAN; 
+       	  }
+        }    
     |	^(INSTANCEOF e=expression type)
         { if(ruleTypeCheck($e.t, $type.t)) { 
 	          if ( !($e.t.isComplexType() || $e.t.isNull()) ) errorLog.add(new UnexpectedTypeException("reference", $e.t.toString(), $INSTANCEOF.line, $INSTANCEOF.pos));
@@ -600,7 +610,7 @@ creator returns [Type t]
 	    	  try {
 			((ReferenceType)$classType.t).bindConstructor($classCreatorRest.types);
 	    	  } catch (EarlyBindingException ex) {
-	    	  	errorLog.add(new CannotFindSymbolException(("constructor " + rt.toString() + '(' + printArguments($classCreatorRest.types) + ')'), "class " + rt.toString(), tk.getLine(), tk.getCharPositionInLine()));
+	    	  	errorLog.add(new CannotFindSymbolException(("constructor " + $classType.t.toString() + '(' + printArguments($classCreatorRest.types) + ')'), "class " + rt.toString(), tk.getLine(), tk.getCharPositionInLine()));
 	    	  }	    	 
 		  $t = $classType.t;
 	  }

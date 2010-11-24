@@ -407,9 +407,9 @@ public class ReferenceType extends ComplexType {
             }
             for (int j = 0; j < candA.length; j++) {
                 //se I NON è più specifico di J allora sicuramente
-                //non è la firma più specifica, quindi esco dall'iteratac
+                //non è la firma più specifica, quindi esco dall'iterazione
                 //corrente
-                if (!candA[i].isCompatibleWith(candA[j].arguments)) {
+                if (!candA[j].isCompatibleWith(candA[i].arguments)) {
                     break;
                 }
                 //se I è più specifico di J allora J non deve essere
@@ -623,7 +623,7 @@ public class ReferenceType extends ComplexType {
      *
      * @param call lista dei tipi dei parametri della chiamata
      *
-     * @throws EarlyBindingException se non c'è nessun metodo
+     * @throws EarlyBindingException se non c'e' nessun metodo
      *          associabile alla chiamata call
      */
     public void bindConstructor(List<Type> call) {
@@ -636,12 +636,50 @@ public class ReferenceType extends ComplexType {
                 throw new EarlyBindingException(/*name,args*/);
             }
         }
+
+        //OTTIMIZZAZIONI:
+        //se la lista e' vuota o ha un solo elemento siamo in un caso base
+        //se e' vuota, lancio un'eccezione
+        //se c'e' un elemento ritorno semplicemente
+
+        //CASO GENERICO:
+        List<Constructor> cands = new LinkedList<Constructor>();
+
         for (Constructor c : constructors) {
-            if (c.isCompatibleWith(call)) {
-                return;
+                if (c.isCompatibleWith(call)) {
+                    cands.add(c);
+                }
+        }
+
+        Constructor[] candA = cands.toArray(new Constructor[cands.size()]);
+        boolean[] skip = new boolean[candA.length];
+        for (int i = 0; i < candA.length; i++) {
+
+            if (skip[i]) {
+                continue;
+            }
+            for (int j = 0; j < candA.length; j++) {
+                //se I NON e' piu' specifico di J allora sicuramente
+                //non e' la firma piu' specifica, quindi esco dall'iterazione
+                //corrente
+                if (!candA[j].isCompatibleWith(candA[i].arguments)) {
+                    break;
+                }
+                //se I e' piu' specifico di J allora J non deve essere
+                //piu' considerabile come possibile firma piu' specifica
+                //per questo verra'� skippata dal for piu' esterno
+                skip[j] = true;
+                //condizione che esprime il test
+                //di avvenuta ricerca di una firma piu' specifica delle altre
+                if (j == (candA.length - 1)) {
+                    return;
+                }
             }
         }
+        //se arrivo qui� vuol dire che non e' stata trovata alcuna firma
+        //piu' specifica delle altre, quindi sollevo un'eccezione di Early Binding
         throw new EarlyBindingException(/*name,args*/);
+
     }
 
     @Override

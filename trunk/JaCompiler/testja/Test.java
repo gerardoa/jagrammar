@@ -10,18 +10,19 @@
  */
 public class Test {
     public A a =new A();
-   nt i, j, k;
+    public int i, j, k;
+
+    public Test(int i, double d) {}
+    public Test(double d, int i) {}
+    public Test(int i1, int i2) {}
+
 
     public float m(int k) {
-    a b c;
+    Object b, c;
+    Class cl = null;
+    Test t = new Test();
+    if (a == t) j++; j--;
         return 0;
     }
-    UFF m(){return 0;}
-    public id m(k
-    Test t = new A();
 
-    int a = 0;
-    int c = ;
-
-    int i[] = new in
 }
